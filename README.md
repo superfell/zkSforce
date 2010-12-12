@@ -1,0 +1,1 @@
+zkSforce is a cocoa library for calling the Salesforce.com Web Services APIs, easily integrate Salesforce into your OSX and iPhone projects.
