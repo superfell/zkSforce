@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,30 @@
 //
 
 
-@class zkElement;
+#import "ZKXmlDeserializer.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+
+/*
+ <complexType name="DescribeLayoutSection">
+ −
+ <sequence>
+ <element name="columns" type="xsd:int"/>
+ <element name="heading" type="xsd:string"/>
+ <element name="layoutRows" type="tns:DescribeLayoutRow" maxOccurs="unbounded"/>
+ <element name="rows" type="xsd:int"/>
+ <element name="useCollapsibleSection" type="xsd:boolean"/>
+ <element name="useHeading" type="xsd:boolean"/>
+ </sequence>
+ </complexType>
+ */
+@interface ZKDescribeLayoutSection: ZKXmlDeserializer {
+	NSArray *layoutRows;
 }
-
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (BOOL) useCollapsibleSection;
+- (BOOL) useHeading;
+- (NSString *) heading;
+- (NSInteger ) columns;
+- (NSInteger ) rows;
+- (NSArray *) layoutRows;
 
 @end

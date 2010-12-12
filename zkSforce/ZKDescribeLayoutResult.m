@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -18,15 +18,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
 // THE SOFTWARE.
 //
+ 
+#import "ZKDescribeLayoutResult.h"
+#import "ZKDescribeLayout.h"
+#import "ZKRecordTypeMapping.h"
+#import "ZKDescribeLayout.h"
+#import "ZKParser.h" 
 
+@implementation ZKDescribeLayoutResult 
 
-@class zkElement;
-
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+- (void)dealloc  {
+	[recordTypeMappings release];
+	[layouts release];
+	[super dealloc];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (BOOL) recordTypeSelectorRequired  {
+	return [self boolean:@"recordTypeSelectorRequired"];
+}
 
+- (NSArray *) recordTypeMappings {
+	if (recordTypeMappings == nil)
+		recordTypeMappings = [[self complexTypeArrayFromElements:@"recordTypeMappings" cls:[ZKRecordTypeMapping class]] retain];
+	return recordTypeMappings;
+}
+
+- (NSArray *) layouts  {
+	if (layouts == nil) 
+		layouts = [[self complexTypeArrayFromElements:@"layouts" cls:[ZKDescribeLayout class]] retain];
+	return layouts;	
+}
 @end
+

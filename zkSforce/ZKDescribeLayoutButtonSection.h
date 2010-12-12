@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,16 @@
 //
 
 
-@class zkElement;
+#import "ZKXmlDeserializer.h"
+#import "ZKDescribeLayoutButton.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+/*
+ <element name="detailButtons" type="tns:DescribeLayoutButton" maxOccurs="unbounded"/>
+ */
+@interface ZKDescribeLayoutButtonSection: ZKXmlDeserializer {
+	NSArray *detailButtons;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (NSArray *) detailButtons;
 
 @end

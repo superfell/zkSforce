@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,26 @@
 //
 
 
-@class zkElement;
+/*
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+<element name="editable" type="xsd:boolean"/>
+<element name="label" type="xsd:string" nillable="true"/>
+<element name="layoutComponents" type="tns:DescribeLayoutComponent" minOccurs="0" maxOccurs="unbounded"/>
+<element name="placeholder" type="xsd:boolean"/>
+<element name="required" type="xsd:boolean"/>
+ 
+*/
+
+
+#import "ZKXmlDeserializer.h"
+
+
+@interface ZKDescribeLayoutItem: ZKXmlDeserializer {
+	NSArray *layoutComponents;
 }
-
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
-
+- (BOOL) editable;
+- (BOOL) placeholder;
+- (BOOL) required;
+- (NSString *)label;
+- (NSArray *)layoutComponents;
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,21 @@
 //
 
 
-@class zkElement;
+#import "ZKDescribeLayoutButton.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+
+@implementation ZKDescribeLayoutButton
+
+-(BOOL)custom {
+	return [self boolean:@"custom"];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+-(NSString *)label {
+	return [self string:@"label"];
+}
+
+-(NSString *)name {
+	return [self string:@"name"];
+}
 
 @end

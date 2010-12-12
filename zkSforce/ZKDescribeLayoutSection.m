@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,47 @@
 // THE SOFTWARE.
 //
 
+#import "ZKDescribeLayoutSection.h"
+#import "ZKDescribeLayoutRow.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
-@class zkElement;
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+@implementation ZKDescribeLayoutSection 
+
+-(void)dealloc {
+	[layoutRows release];
+	[super dealloc];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+-(BOOL) useCollapsibleSection {
+	return [self boolean:@"useCollapsibleSection"];
+}
+
+-(BOOL) useHeading {
+	return [self boolean:@"useHeading"];
+}
+
+-(NSString *) recordTypeId {
+	return [self string:@"recordTypeId"];
+}
+
+-(NSString *) heading {
+	return [self string:@"heading"];
+}
+
+-(NSInteger ) columns {
+	return [self integer:@"columns"];
+}
+
+-(NSInteger ) rows {
+	return [self integer:@"rows"];
+}
+
+- (NSArray *) layoutRows {
+	if (layoutRows == nil) 
+		layoutRows = [[self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]] retain];
+	return layoutRows;
+}
 
 @end

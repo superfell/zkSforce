@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,26 @@
 // THE SOFTWARE.
 //
 
+#import "ZKRelatedListColumn.h"
+#import "ZKParser.h"
 
-@class zkElement;
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+@implementation ZKRelatedListColumn
+
+-(NSString *) field {
+	return [self string:@"field"];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+-(NSString *) name {
+	return [self string:@"name"];
+}
+
+-(NSString *) format {
+	return [self string:@"format"];
+}
+
+-(NSString *) label {
+	return [self string:@"label"];
+}
 
 @end

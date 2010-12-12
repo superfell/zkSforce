@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,33 @@
 // THE SOFTWARE.
 //
 
+#import "ZKXmlDeserializer.h"
 
-@class zkElement;
-
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+/*
+ <element name="columns" type="tns:RelatedListColumn" maxOccurs="unbounded"/>
+ <element name="custom" type="xsd:boolean"/>
+ <element name="field" type="xsd:string" nillable="true"/>
+ <element name="label" type="xsd:string"/>
+ <element name="limitRows" type="xsd:int"/>
+ <element name="name" type="xsd:string"/>
+ <element name="sobject" type="xsd:string" nillable="true"/>
+ <element name="sort" type="tns:RelatedListSort" minOccurs="0" maxOccurs="unbounded"/> 
+ */
+@interface ZKRelatedList: ZKXmlDeserializer {
+	NSArray *columns;
+	NSArray *sort;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (NSArray *) columns;
+- (BOOL) custom;
+- (NSString *) field;
+- (NSString *) label;
+- (NSInteger ) limitRows;
+- (NSString *) name;
+- (NSString *) sobject;
+- (NSArray *) sort;
+
+- (NSString *) columnsFieldNames ;
+- (NSString *) describe ;
 
 @end

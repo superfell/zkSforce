@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,23 @@
 //
 
 
-@class zkElement;
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+#import "ZKXmlDeserializer.h"
+
+/*
+ <element name="layouts" type="tns:DescribeLayout" maxOccurs="unbounded"/>
+ <element name="recordTypeMappings" type="tns:RecordTypeMapping" minOccurs="0" maxOccurs="unbounded"/>
+ <element name="recordTypeSelectorRequired" type="xsd:boolean"/>
+
+ */
+
+@interface ZKDescribeLayoutResult :  ZKXmlDeserializer  {
+	NSArray *layouts;
+	NSArray *recordTypeMappings;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (NSArray *) layouts;
+- (NSArray *) recordTypeMappings;
+- (BOOL ) recordTypeSelectorRequired;
 
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,21 @@
 // THE SOFTWARE.
 //
 
+#import "ZKXmlDeserializer.h"
 
-@class zkElement;
+#import "ZKParser.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+
+/*
+ <element name="picklistName" type="xsd:string"/>
+ <element name="picklistValues" type="tns:PicklistEntry" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+*/
+
+@interface ZKPicklistForRecordType: ZKXmlDeserializer {
+	NSArray *picklistValues; 
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (NSString *) picklistName; 
+- (NSArray *) picklistValues;
 
 @end

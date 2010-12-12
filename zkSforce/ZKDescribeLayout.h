@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,28 @@
 //
 
 
-@class zkElement;
+#import "ZKXmlDeserializer.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+@class ZKDescribeLayoutButtonSection;
+
+/*
+ <element name="buttonLayoutSection" type="tns:DescribeLayoutButtonSection" minOccurs="0"/>
+ <element name="detailLayoutSections" type="tns:DescribeLayoutSection" minOccurs="0" maxOccurs="unbounded"/>
+ <element name="editLayoutSections" type="tns:DescribeLayoutSection" minOccurs="0" maxOccurs="unbounded"/>
+ <element name="id" type="tns:ID"/>
+ <element name="relatedLists" type="tns:RelatedList" minOccurs="0" maxOccurs="unbounded"/>
+ 
+ */
+@interface ZKDescribeLayout: ZKXmlDeserializer {
+	ZKDescribeLayoutButtonSection *buttonLayoutSection;
+	NSArray *detailLayoutSections;
+	NSArray *editLayoutSections;
+	NSArray *relatedLists;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
-
+- (ZKDescribeLayoutButtonSection *) buttonLayoutSection;
+- (NSArray *) detailLayoutSections;
+- (NSArray *) editLayoutSections;
+- (NSString *) Id;
+- (NSArray *) relatedLists;
 @end

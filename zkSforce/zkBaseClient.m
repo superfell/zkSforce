@@ -33,6 +33,10 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 }
 
 - (zkElement *)sendRequest:(NSString *)payload {
+	return [self sendRequest:payload returnRoot:NO];
+}
+
+- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)returnRoot {
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:endpointUrl]];
 	[request setHTTPMethod:@"POST"];
 	[request addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"content-type"];	
@@ -46,6 +50,7 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 	// todo, support request compression
 	// todo, support response compression
 	NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
+	//NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
 	zkElement *root = [zkParser parseData:respPayload];
 	if (root == nil)	
 		@throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
@@ -62,7 +67,7 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 		NSString *fm = [[fault childElement:@"faultstring"] stringValue];
 		@throw [ZKSoapException exceptionWithFaultCode:fc faultString:fm];
 	}
-	return [[body childElements] objectAtIndex:0];
+	return returnRoot ? root : [[body childElements] objectAtIndex:0];
 }
 
 @end

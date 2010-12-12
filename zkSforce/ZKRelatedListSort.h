@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,15 @@
 // THE SOFTWARE.
 //
 
+#import "ZKXmlDeserializer.h"
 
-@class zkElement;
-
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+/*
+ <element name="ascending" type="xsd:boolean"/>
+ <element name="column" type="xsd:string"/>
+ */
+@interface ZKRelatedListSort: ZKXmlDeserializer {
 }
-
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (BOOL) ascending;
+- (NSString * ) column;
 
 @end

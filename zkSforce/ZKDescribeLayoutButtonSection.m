@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,21 @@
 // THE SOFTWARE.
 //
 
+#import "ZKDescribeLayoutButtonSection.h"
+#import "ZKDescribeLayoutButton.h"
+#import "ZKParser.h"
 
-@class zkElement;
+@implementation ZKDescribeLayoutButtonSection
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+-(void)dealloc  {
+	[detailButtons release];
+	[super dealloc];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (NSArray *) detailButtons {
+	if (detailButtons == nil) 
+		detailButtons = [[self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]] retain];
+	return detailButtons;
+}
 
 @end

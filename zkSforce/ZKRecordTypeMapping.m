@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,43 @@
 // THE SOFTWARE.
 //
 
+#import "ZKRecordTypeMapping.h"
+#import "ZKParser.h"
+#import "ZKPicklistForRecordType.h"
 
-@class zkElement;
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+@implementation ZKRecordTypeMapping
+
+-(void)dealloc {
+	[picklistsForRecordType release];
+	[super dealloc];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+-(BOOL) available {
+	return [self boolean:@"available"];
+}
+
+-(BOOL) defaultRecordTypeMapping {
+	return [self boolean:@"defaultRecordTypeMapping"];
+}
+
+-(NSString *) recordTypeId {
+	return [self string:@"recordTypeId"];
+} 
+
+-(NSString *) name {
+	return [self string:@"name"];
+}
+
+-(NSString *) layoutId {
+	return [self string:@"layoutId"];
+}
+
+- (NSArray *) picklistsForRecordType 
+{
+	if (picklistsForRecordType == nil) 
+		picklistsForRecordType = [[self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKRecordTypeMapping class]] retain];
+	return picklistsForRecordType;
+}
 
 @end

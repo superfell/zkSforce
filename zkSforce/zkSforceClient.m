@@ -31,6 +31,7 @@
 #import "zkLoginResult.h"
 #import "zkDescribeGlobalSObject.h"
 #import "zkParser.h"
+#import "ZKDescribeLayoutResult.h"
 
 static const int MAX_SESSION_AGE = 25 * 60; // 25 minutes
 static const int SAVE_BATCH_SIZE = 25;
@@ -46,7 +47,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (id)init {
 	self = [super init];
-	preferedApiVersion = 19;
+	preferedApiVersion = 20;
 	[self setLoginProtocolAndHost:@"https://www.salesforce.com"];
 	updateMru = NO;
 	cacheDescribes = NO;
@@ -76,6 +77,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	rhs->clientId = [clientId copy];
 	rhs->sessionExpiresAt = [sessionExpiresAt copy];
 	rhs->userInfo = [userInfo retain];
+	rhs->preferedApiVersion = preferedApiVersion;
 	[rhs setCacheDescribes:cacheDescribes];
 	[rhs setUpdateMru:updateMru];
 	return rhs;
@@ -147,17 +149,17 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env endElement:@"login"];
 	[env endElement:@"s:Body"];
 	NSString *xml = [env end];
+	[env release];
 	
 	zkElement *resp = [self sendRequest:xml];	
 	zkElement *result = [[resp childElements:@"result"] objectAtIndex:0];
-	ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
+	ZKLoginResult *lr = [[[ZKLoginResult alloc] initWithXmlElement:result] autorelease];
 	
 	[endpointUrl release];
 	endpointUrl = [[lr serverUrl] copy];
 	sessionId = [[lr sessionId] copy];
 
 	userInfo = [[lr userInfo] retain];
-	[env release];
 	return lr;
 }
 
@@ -198,7 +200,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	if(!sessionId) return;
 	[self checkSession];
 	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope * env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId] autorelease];
 	[env startElement:@"setPassword"];
 	[env addElement:@"userId" elemValue:userId];
 	[env addElement:@"password" elemValue:newPassword];
@@ -259,6 +261,22 @@ static const int SAVE_BATCH_SIZE = 25;
 	return desc;
 }
 
+- (ZKDescribeLayoutResult *)describeLayout:(NSString *)sobjectName recordTypeIds:(NSArray *)recordTypeIds {
+	if (!sessionId) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId] autorelease];
+	[env startElement:@"describeLayout"];
+	[env addElement:@"sObjectType" elemValue:sobjectName];
+	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
+	[env endElement:@"describeLayout"];
+	[env endElement:@"s:Body"];
+
+	zkElement *dr = [self sendRequest:[env end]];
+	zkElement *descResult = [dr childElement:@"result"];
+	ZKDescribeLayoutResult *desc = [[[ZKDescribeLayoutResult alloc] initWithXmlElement:descResult] autorelease];
+	return desc;
+}
+
 - (NSArray *)search:(NSString *)sosl {
 	if (!sessionId) return NULL;
 	[self checkSession];
@@ -275,7 +293,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	for (zkElement *soNode in records)
 		[sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
 	[env release];
-	return sobjects;	
+	return sobjects;
 }
 
 - (NSString *)serverTimestamp {

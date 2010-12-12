@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,34 @@
 //
 
 
-@class zkElement;
+#import "ZKXmlDeserializer.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+typedef enum ZKDescribeLayoutComponentType {
+	zkComponentTypeUnknown,
+	zkComponentTypeField,
+	zkComponentTypeSeparator,
+	zkComponentTypeSControl,
+	zkComponentTypeEmptySpace
+} ZKDescribeLayoutComponentType;
+
+/*
+ <element name="displayLines" type="xsd:int"/>
+ <element name="tabOrder" type="xsd:int"/>
+ <element name="type" type="tns:layoutComponentType"/>
+ <element name="value" type="xsd:string"/>
+ */
+
+@interface ZKDescribeLayoutComponent: ZKXmlDeserializer {
+	ZKDescribeLayoutComponentType compType;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (ZKDescribeLayoutComponentType)type;
+- (NSString *)typeName; /*<enumeration value="Field"/>
+					 <enumeration value="Separator"/>
+					 <enumeration value="SControl"/>
+					 <enumeration value="EmptySpace"/>*/
+- (NSString *)value;
+- (NSInteger )tabOrder;
+- (NSInteger )displayLines;
 
 @end

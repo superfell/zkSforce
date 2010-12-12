@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -26,6 +26,7 @@
 @class ZKDescribeSObject;
 @class ZKQueryResult;
 @class ZKLoginResult;
+@class ZKDescribeLayoutResult;
 
 // This is the primary entry point into the library, you'd create one of these
 // call login, then use it to make other API calls. Your session is automatically
@@ -47,7 +48,7 @@
 
 // configuration for where to connect to and what api version to use
 //////////////////////////////////////////////////////////////////////////////////////
-// Set the default API version to connect to. (defaults to v19.0)
+// Set the default API version to connect to. (defaults to v20.0)
 // login will automatically detect if the endpoint doesn't have this
 // version and automatically retry on a lower API version.
 -(void)setPreferedApiVersion:(int)v;
@@ -80,6 +81,10 @@
 // caching is enabled, subsequent requests for the same sobject will return the locally
 // cached copy.
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName;
+
+// makes a describeLayout call and returns a ZKDescribeLayoutResult isntance.
+// these are NOT cached, regardless of the describe caching flag.
+- (ZKDescribeLayoutResult *)describeLayout:(NSString *)sobjectName recordTypeIds:(NSArray *)recordTypeIds;
 
 // makes a search call with the passed in SOSL expression, returns an array of ZKSObject
 // instances.

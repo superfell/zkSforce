@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,45 @@
 // THE SOFTWARE.
 //
 
+#import "ZKDescribeLayoutComponent.h"
 
-@class zkElement;
+@implementation ZKDescribeLayoutComponent
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+- (id)initWithXmlElement:(zkElement *)e {
+	self = [super initWithXmlElement:e];
+	compType = zkComponentTypeUnknown;
+	return self;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+-(NSString *) value {
+	return [self string:@"value"];
+}
+
+-(NSString *) typeName {
+	return [self string:@"type"];
+}
+
+-(NSInteger) tabOrder {
+	return [self integer:@"tabOrder"];
+}
+
+-(NSInteger) displayLines {
+	return [self integer:@"displayLines"];
+}
+
+- (ZKDescribeLayoutComponentType)type {
+	if (compType == zkComponentTypeUnknown) {
+		NSString *t = [self typeName];
+		if ([t isEqualToString:@"Field"])
+			compType = zkComponentTypeField;
+		else if ([t isEqualToString:@"Separator"])
+			compType = zkComponentTypeSeparator;
+		else if ([t isEqualToString:@"SControl"])
+			compType = zkComponentTypeSControl;
+		else if ([t isEqualToString:@"EmptySpace"])
+			compType = zkComponentTypeEmptySpace;
+	}
+	return compType;
+}
 
 @end

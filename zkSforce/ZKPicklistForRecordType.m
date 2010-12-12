@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,14 +19,20 @@
 // THE SOFTWARE.
 //
 
+#import "ZKPicklistForRecordType.h"
+#import "ZKPicklistEntry.h"
+#import "ZKParser.h"
 
-@class zkElement;
+@implementation ZKPicklistForRecordType
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+-(NSString *) picklistName {
+	return [self string:@"picklistName"];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (NSArray *) picklistValues {
+	if (picklistValues == nil) 
+		picklistValues = [[self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]] retain];
+	return picklistValues;
+}
 
 @end

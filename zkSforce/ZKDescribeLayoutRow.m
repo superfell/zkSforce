@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2010 Ron Hess
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,13 +20,25 @@
 //
 
 
-@class zkElement;
+#import "ZKDescribeLayoutItem.h"
+#import "ZKDescribeLayoutRow.h"
+#import "ZKParser.h"
 
-@interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+@implementation ZKDescribeLayoutRow
+
+-(void)dealloc {
+	[layoutItems release];
+	[super dealloc];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+-(NSInteger) numItems {
+	return [self integer:@"numItems"];
+}
+
+-(NSArray *) layoutItems {
+	if (layoutItems == nil) 
+		layoutItems = [[self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]] retain];
+	return layoutItems;
+}
 
 @end
