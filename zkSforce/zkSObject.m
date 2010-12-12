@@ -63,8 +63,8 @@ static NSDateFormatter *dateFormatter, *dateTimeFormatter;
 - (id) initFromXmlNode:(zkElement *)node {
 	self = [super init];
 	int i, childCount;
-	Id = [[[node childElement:@"sf:Id"] stringValue] copy];
-	type = [[[node childElement:@"sf:type"] stringValue] copy];
+	Id = [[[node childElement:@"Id"] stringValue] copy];
+	type = [[[node childElement:@"type"] stringValue] copy];
 	fields = [[NSMutableDictionary alloc] init];
 	fieldOrder = [[NSMutableArray alloc] init];
 	fieldsToNull = [[NSMutableSet alloc] init];
