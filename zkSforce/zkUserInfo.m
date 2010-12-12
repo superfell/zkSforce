@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006-2010 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -25,23 +25,26 @@
 @implementation ZKUserInfo
 
 /*
-<element name="accessibilityMode"          type="xsd:boolean"/>
-<element name="currencySymbol"             type="xsd:string" nillable="true"/>
-<element name="licenseType"                type="xsd:string"/>
-<element name="organizationId"             type="tns:ID"/>
-<element name="organizationMultiCurrency"  type="xsd:boolean"/>
-<element name="organizationName"           type="xsd:string"/>
-<element name="profileId"                  type="tns:ID"/>
-<element name="roleId"                     type="tns:ID" nillable="true"/>
-<element name="userDefaultCurrencyIsoCode" type="xsd:string" nillable="true"/>
-<element name="userEmail"                  type="xsd:string"/>
-<element name="userFullName"               type="xsd:string"/>
-<element name="userId"                     type="tns:ID"/>
-<element name="userLanguage"               type="xsd:string"/>
-<element name="userLocale"                 type="xsd:string"/>
-<element name="userName"                   type="xsd:string"/>
-<element name="userTimeZone"               type="xsd:string"/>
-<element name="userUiSkin"                 type="xsd:string"/>
+                    <element name="accessibilityMode"          type="xsd:boolean"/>
+                    <element name="currencySymbol"             type="xsd:string" nillable="true"/>
+                    <element name="orgDefaultCurrencyIsoCode"  type="xsd:string" nillable="true"/>
+                    <element name="orgDisallowHtmlAttachments" type="xsd:boolean"/>
+                    <element name="orgHasPersonAccounts"       type="xsd:boolean"/>
+                    <element name="organizationId"             type="tns:ID"/>
+                    <element name="organizationMultiCurrency"  type="xsd:boolean"/>
+                    <element name="organizationName"           type="xsd:string"/>
+                    <element name="profileId"                  type="tns:ID"/>
+                    <element name="roleId"                     type="tns:ID" nillable="true"/>
+                    <element name="userDefaultCurrencyIsoCode" type="xsd:string" nillable="true"/>
+                    <element name="userEmail"                  type="xsd:string"/>
+                    <element name="userFullName"               type="xsd:string"/>
+                    <element name="userId"                     type="tns:ID"/>
+                    <element name="userLanguage"               type="xsd:string"/>
+                    <element name="userLocale"                 type="xsd:string"/>
+                    <element name="userName"                   type="xsd:string"/>
+                    <element name="userTimeZone"               type="xsd:string"/>
+                    <element name="userType"                   type="xsd:string"/>
+                    <element name="userUiSkin"                 type="xsd:string"/>
 */
 
 					
@@ -95,6 +98,15 @@
 }
 -(NSString *)userName {
 	return [self string:@"userName"];
+}
+-(NSString *)userType {
+	return [self string:@"userType"];
+}
+-(BOOL)disallowHtmlAttachments {
+	return [self boolean:@"orgDisallowHtmlAttachments"];
+}
+-(BOOL)hasPersonAccounts {
+	return [self boolean:@"orgHasPersonAccounts"];
 }
 
 @end
