@@ -270,10 +270,10 @@ static const int SAVE_BATCH_SIZE = 25;
 	
 	zkElement *sr = [self sendRequest:[env end]];
 	zkElement *searchResult = [sr childElement:@"result"];
-	NSArray *records = [[searchResult childElement:@"searchRecords"] childElements:@"record"];
-	NSMutableArray *sobjects = [NSMutableArray array];
+	NSArray *records = [searchResult childElements:@"searchRecords"];
+	NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:[records count]];
 	for (zkElement *soNode in records)
-		[sobjects addObject:[ZKSObject fromXmlNode:soNode]];
+		[sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
 	[env release];
 	return sobjects;	
 }
