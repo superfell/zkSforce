@@ -3,23 +3,23 @@
 zkSforce is a cocoa library for calling the Salesforce.com Web Services APIs, easily integrate Salesforce into your OSX and iPhone projects. (supports OSX 10.5 and up, and iOS 3.2 and up)
 
 zkSforce supports all the common methods in the partner web services API
-* login
-* describeGlobal, describeSObject, describeLayout
-* create, update, delete
-* search, query, queryAll
+ * login
+ * describeGlobal, describeSObject, describeLayout
+ * create, update, delete
+ * search, query, queryAll
 
 The following methods are not currently supported
-* describeSObjects
-* upsert, merge, convertLead
-* getDeleted & getUpdated
-* process
+ * describeSObjects
+ * upsert, merge, convertLead
+ * getDeleted & getUpdated
+ * process
 
 In general the client acts just like the Web Services API, however in a few places it has some smarts to make your life easier.
-* it'll track the duration of the session and re-login as required, so just keep calling methods as needed and don't worry about the session expiring away from under you.
-* in ZKDescribeSObject there's a helper method to get the ZKDescribeField given the fields name.
-* In ZKSObject the fieldsToNull collection is managed for you, if you add a field to the fieldsToNull collection (via setFieldToNull) it'll automatically remove any field value, also you can just set the field value directly to nil (aka null) in setFieldValue:field: and it'll automatically translate that into a fieldsToNull call for you.
-* ZKQueryResult implements the NSTableView informal data source interface, so you can easily show a queries results in a table view (just like SoqlX does)
-* You can ask the ZKSforceClient object to automatically cache describe results for you by calling setCacheDescribes
+ * it'll track the duration of the session and re-login as required, so just keep calling methods as needed and don't worry about the session expiring away from under you.
+ * in ZKDescribeSObject there's a helper method to get the ZKDescribeField given the fields name.
+ * In ZKSObject the fieldsToNull collection is managed for you, if you add a field to the fieldsToNull collection (via setFieldToNull) it'll automatically remove any field value, also you can just set the field value directly to nil (aka null) in setFieldValue:field: and it'll automatically translate that into a fieldsToNull call for you.
+ * ZKQueryResult implements the NSTableView informal data source interface, so you can easily show a queries results in a table view (just like SoqlX does)
+ * You can ask the ZKSforceClient object to automatically cache describe results for you by calling setCacheDescribes
 
 
 Usage is really straight forward, create an instance of the ZKSforceClient class, call login, then call the other operations as needed, e.g.
