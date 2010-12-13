@@ -24,7 +24,7 @@
 
 // This category on ZKQueryResult makes it a NSTableView data source.
 
-@interface ZKQueryResult (NSTableViewAdditions)
+@interface ZKQueryResult (NSTableViewAdditions) <NSTableViewDataSource>
 
 -(int)numberOfRowsInTableView:(NSTableView *)v;
 -(id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(int)rowIdx;
