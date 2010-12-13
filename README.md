@@ -46,9 +46,9 @@ Login and create a new contact for Simon Fell, and check the result
         NSArray *results = [sforce create:[NSArray arrayWithObject:contact]];
         ZKSaveResult *sr = [results objectAtIndex:0];
         if ([sr success])
-	    NSLog(@"new contact id %@", [sr id]);
+	        NSLog(@"new contact id %@", [sr id]);
         else
-	    NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
+	        NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
         [sforce release];
 
 
