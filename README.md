@@ -12,7 +12,7 @@ zkSforce supports all the common methods in the partner web services API
 The following methods are not currently supported
 
  * describeSObjects
- * upsert, merge, convertLead
+ * upsert, undelete, merge, convertLead
  * getDeleted & getUpdated
  * process
 
