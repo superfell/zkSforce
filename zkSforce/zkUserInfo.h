@@ -48,4 +48,7 @@
 // v20.0
 -(BOOL)disallowHtmlAttachments;
 -(BOOL)hasPersonAccounts;
+// v21.0
+-(int)orgAttachmentFileSizeLimit;
+-(int)sessionSecondsValid;
 @end

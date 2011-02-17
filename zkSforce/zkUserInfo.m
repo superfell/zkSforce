@@ -108,5 +108,12 @@
 -(BOOL)hasPersonAccounts {
 	return [self boolean:@"orgHasPersonAccounts"];
 }
+-(int)orgAttachmentFileSizeLimit {
+	return [self integer:@"orgAttachmentFileSizeLimit"];
+}
+
+-(int)sessionSecondsValid {
+	return [self integer:@"sessionSecondsValid"];
+}
 
 @end
