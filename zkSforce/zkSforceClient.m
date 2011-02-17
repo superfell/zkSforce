@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006-2011 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -33,7 +33,7 @@
 #import "zkParser.h"
 #import "ZKDescribeLayoutResult.h"
 
-static const int MAX_SESSION_AGE = 25 * 60; // 25 minutes
+static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 static const int SAVE_BATCH_SIZE = 25;
 
 @interface ZKSforceClient (Private)
@@ -136,8 +136,6 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKLoginResult *)startNewSession {
-	[sessionExpiresAt release];
-	sessionExpiresAt = [[NSDate dateWithTimeIntervalSinceNow:MAX_SESSION_AGE] retain];
 	[sessionId release];
 	[endpointUrl release];
 	endpointUrl = [authEndpointUrl copy];
@@ -158,8 +156,12 @@ static const int SAVE_BATCH_SIZE = 25;
 	[endpointUrl release];
 	endpointUrl = [[lr serverUrl] copy];
 	sessionId = [[lr sessionId] copy];
-
 	userInfo = [[lr userInfo] retain];
+	
+	// if we have a sessionSecondsValid in the UserInfo, use that to control when we re-authenticate, otherwise take the default.
+	int sessionAge = [userInfo sessionSecondsValid] > 0 ? [userInfo sessionSecondsValid] - 60 : DEFAULT_MAX_SESSION_AGE;
+	[sessionExpiresAt release];
+	sessionExpiresAt = [[NSDate dateWithTimeIntervalSinceNow:sessionAge] retain];
 	return lr;
 }
 
