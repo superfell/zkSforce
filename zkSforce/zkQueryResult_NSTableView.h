@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2010 Simon Fell
+// Copyright (c) 2006-2011 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,8 +21,11 @@
 
 #import "zkQueryResult.h"
 
-
 // This category on ZKQueryResult makes it a NSTableView data source.
+
+#if __MAC_OS_X_VERSION_MAX_ALLOWED <= __MAC_OS_X_VERSION_10_5
+@protocol NSTableViewDataSource <NSObject> @end
+#endif
 
 @interface ZKQueryResult (NSTableViewAdditions) <NSTableViewDataSource>
 
