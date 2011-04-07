@@ -57,7 +57,7 @@
 	return sobject;
 }
 
-- (unsigned)hash {
+- (NSUInteger)hash {
 	return [node hash];
 }
 - (BOOL)autoNumber {
