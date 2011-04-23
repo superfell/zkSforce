@@ -78,6 +78,10 @@
 // append it to the password parameter.
 - (ZKLoginResult *)login:(NSString *)username password:(NSString *)password;
 
+// Initialize the authentication info from the parameters contained in the OAuth
+// completion callback Uri passed in.
+- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl;
+
 // makes a desribeGlobal call and returns an array of ZKDescribeGlobalSobject instances.
 // if describeCaching is enabled, subsequent calls to this will use the locally cached
 // copy.

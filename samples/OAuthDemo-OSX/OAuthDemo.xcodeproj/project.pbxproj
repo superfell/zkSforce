@@ -47,6 +47,7 @@
 		F49C1CF113637547000CDE02 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CD113637547000CDE02 /* zkXmlDeserializer.m */; };
 		F49C1CF31363770F000CDE02 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F49C1CF21363770F000CDE02 /* libxml2.dylib */; };
 		F49C1D0213637932000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0113637932000CDE02 /* zkAuthentication.m */; };
+		F49C1D0E13639382000CDE02 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0D13639382000CDE02 /* QueryController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +132,8 @@
 		F49C1CF21363770F000CDE02 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F49C1D0013637932000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
 		F49C1D0113637932000CDE02 /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
+		F49C1D0C13639381000CDE02 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryController.h; path = ../QueryController.h; sourceTree = "<group>"; };
+		F49C1D0D13639382000CDE02 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryController.m; path = ../QueryController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +193,8 @@
 				F49C1C7F13636C88000CDE02 /* OAuthDemoAppDelegate.h */,
 				F49C1C8013636C88000CDE02 /* OAuthDemoAppDelegate.m */,
 				F49C1C8213636C88000CDE02 /* MainMenu.xib */,
+				F49C1D0C13639381000CDE02 /* QueryController.h */,
+				F49C1D0D13639382000CDE02 /* QueryController.m */,
 				F49C1C7413636C88000CDE02 /* Supporting Files */,
 			);
 			path = OAuthDemo;
@@ -379,6 +384,7 @@
 				F49C1CF013637547000CDE02 /* zkUserInfo.m in Sources */,
 				F49C1CF113637547000CDE02 /* zkXmlDeserializer.m in Sources */,
 				F49C1D0213637932000CDE02 /* zkAuthentication.m in Sources */,
+				F49C1D0E13639382000CDE02 /* QueryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
 
 @interface ZKQueryResult (NSTableViewAdditions) <NSTableViewDataSource>
 
--(int)numberOfRowsInTableView:(NSTableView *)v;
+-(NSUInteger)numberOfRowsInTableView:(NSTableView *)v;
 -(id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(int)rowIdx;
 
 @end

@@ -24,7 +24,7 @@
 
 @implementation ZKQueryResult (NSTableViewAdditions)
 
-- (int)numberOfRowsInTableView:(NSTableView *)v {
+- (NSUInteger)numberOfRowsInTableView:(NSTableView *)v {
 	return [records count];
 }
 

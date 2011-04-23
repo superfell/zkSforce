@@ -136,6 +136,14 @@ static const int SAVE_BATCH_SIZE = 25;
     return lr;
 }
 
+- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl {
+    ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl]];
+    [auth setApiVersion:preferedApiVersion];
+    [userInfo release];
+    userInfo = nil;
+    [self setAuthenticationInfo:auth];
+}
+
 - (BOOL)loggedIn {
 	return [[authSource sessionId] length] > 0;
 }

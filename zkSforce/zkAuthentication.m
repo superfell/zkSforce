@@ -29,20 +29,38 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @implementation ZKOAuthInfo
 
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authUrl:(NSURL *)auth {
-    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authUrl:auth sessionId:nil instanceUrl:nil] autorelease];
+@synthesize apiVersion;
+
++(id)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl {
+    // callbackUrl will be something:///blah/blah#p=1&q=2&foo=bar
+    // we need to get our params out of the callback fragment
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    for (NSString *param in [[callbackUrl fragment] componentsSeparatedByString:@"&"]) {
+        NSArray *paramParts = [param componentsSeparatedByString:@"="];
+        NSString *name = [[paramParts objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *val = [paramParts count] == 1 ? @"" : [[paramParts objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [params setObject:val forKey:name];
+    }
+    return [ZKOAuthInfo oauthInfoWithRefreshToken:[params objectForKey:@"refresh_token"]
+                                         authHost:[NSURL URLWithString:[params objectForKey:@"id"]]
+                                        sessionId:[params objectForKey:@"access_token"]
+                                      instanceUrl:[NSURL URLWithString:[params objectForKey:@"instance_url"]]];
 }
 
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authUrl:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst {
-    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authUrl:auth sessionId:sid instanceUrl:inst] autorelease];
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth {
+    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:nil instanceUrl:nil] autorelease];
 }
 
--(id)initWithRefreshToken:(NSString *)tkn authUrl:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst {
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst {
+    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:sid instanceUrl:inst] autorelease];
+}
+
+-(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst {
     self = [super init];
     sessionId = [sid retain];
     refreshToken = [tkn retain];
     instanceUrl = [inst retain];
-    authUrl = [auth retain];
+    authUrl = [NSURL URLWithString:@"/" relativeToURL:auth];
     return self;
 }
 
@@ -59,7 +77,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 -(NSURL *)instanceUrl {
-    return instanceUrl;
+    return [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", apiVersion] relativeToURL:instanceUrl];
 }
 
 -(void)refresh {

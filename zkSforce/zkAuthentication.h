@@ -36,13 +36,16 @@
 @interface ZKOAuthInfo : NSObject <ZKAuthenticationInfo> {
     NSString *sessionId, *refreshToken;
     NSURL *instanceUrl, *authUrl;
+    int apiVersion;
 }
 
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authUrl:(NSURL *)auth;
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authUrl:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst;
++(id)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl;
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth;
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst;
 
--(id)initWithRefreshToken:(NSString *)tkn authUrl:(NSURL *)authUrl sessionId:(NSString *)sid instanceUrl:(NSURL *)inst;
+-(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)authUrl sessionId:(NSString *)sid instanceUrl:(NSURL *)inst;
 
+@property (assign) int apiVersion;
 @end
 
 

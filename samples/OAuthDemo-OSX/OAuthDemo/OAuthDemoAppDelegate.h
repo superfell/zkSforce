@@ -7,11 +7,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class QueryController;
+
 @interface OAuthDemoAppDelegate : NSObject <NSApplicationDelegate> {
-@private
-    NSWindow *window;
+    IBOutlet QueryController *controller;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+-(IBAction)startLogin:(id)sender;
 
 @end
