@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2010 Simon Fell
+// Copyright (c) 2006-2011 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,6 +21,7 @@
 
 
 #import "zkBaseClient.h"
+#import "zkAuthentication.h"
 
 @class ZKUserInfo;
 @class ZKDescribeSObject;
@@ -34,16 +35,14 @@
 //////////////////////////////////////////////////////////////////////////////////////
 @interface ZKSforceClient : ZKBaseClient <NSCopying> {
 	NSString	*authEndpointUrl;
-	NSString	*username;
-	NSString	*password;
-	NSString	*clientId;	
-	NSString	*sessionId;
-	NSDate		*sessionExpiresAt;
+	NSString	*clientId;
 	BOOL		updateMru;
 	ZKUserInfo	*userInfo;
 	BOOL		cacheDescribes;
 	NSMutableDictionary	*describes;
 	int			preferedApiVersion;
+    
+    NSObject<ZKAuthenticationInfo>  *authSource;
 }
 
 // configuration for where to connect to and what api version to use
@@ -62,6 +61,13 @@
 
 // returns an NSURL of where authentication will currently go.
 -(NSURL *)authEndpointUrl;
+
+// Authentication Management
+// This lets you manage different authentication schemes, like oauth
+//////////////////////////////////////////////////////////////////////////////////////
+-(NSObject<ZKAuthenticationInfo> *)authenticationInfo;
+
+-(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo;
 
 
 // thse set of methods pretty much map directly onto their Web Services counterparts.

@@ -46,6 +46,7 @@
 		F49C1CF013637547000CDE02 /* zkUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CCF13637547000CDE02 /* zkUserInfo.m */; };
 		F49C1CF113637547000CDE02 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CD113637547000CDE02 /* zkXmlDeserializer.m */; };
 		F49C1CF31363770F000CDE02 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F49C1CF21363770F000CDE02 /* libxml2.dylib */; };
+		F49C1D0213637932000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0113637932000CDE02 /* zkAuthentication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,8 @@
 		F49C1CD013637547000CDE02 /* zkXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkXmlDeserializer.h; path = ../../../zkSforce/zkXmlDeserializer.h; sourceTree = "<group>"; };
 		F49C1CD113637547000CDE02 /* zkXmlDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkXmlDeserializer.m; path = ../../../zkSforce/zkXmlDeserializer.m; sourceTree = "<group>"; };
 		F49C1CF21363770F000CDE02 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F49C1D0013637932000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
+		F49C1D0113637932000CDE02 /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +275,8 @@
 				F49C1CCF13637547000CDE02 /* zkUserInfo.m */,
 				F49C1CD013637547000CDE02 /* zkXmlDeserializer.h */,
 				F49C1CD113637547000CDE02 /* zkXmlDeserializer.m */,
+				F49C1D0013637932000CDE02 /* zkAuthentication.h */,
+				F49C1D0113637932000CDE02 /* zkAuthentication.m */,
 			);
 			name = ZKSforce;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				F49C1CEF13637547000CDE02 /* zkSObject.m in Sources */,
 				F49C1CF013637547000CDE02 /* zkUserInfo.m in Sources */,
 				F49C1CF113637547000CDE02 /* zkXmlDeserializer.m in Sources */,
+				F49C1D0213637932000CDE02 /* zkAuthentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

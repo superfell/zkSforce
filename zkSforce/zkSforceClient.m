@@ -33,14 +33,12 @@
 #import "zkParser.h"
 #import "ZKDescribeLayoutResult.h"
 
-static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 static const int SAVE_BATCH_SIZE = 25;
 
 @interface ZKSforceClient (Private)
 - (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 - (void)checkSession;
-- (ZKLoginResult *)startNewSession;
 @end
 
 @implementation ZKSforceClient
@@ -56,13 +54,10 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (void)dealloc {
 	[authEndpointUrl release];
-	[username release];
-	[password release];
 	[clientId release];
-	[sessionId release];
-	[sessionExpiresAt release];
 	[userInfo release];
 	[describes release];
+    [authSource release];
 	[super dealloc];
 }
 
@@ -71,16 +66,22 @@ static const int SAVE_BATCH_SIZE = 25;
 	[rhs->authEndpointUrl release];
 	rhs->authEndpointUrl = [authEndpointUrl copy];
 	rhs->endpointUrl = [endpointUrl copy];
-	rhs->sessionId = [sessionId copy];
-	rhs->username = [username copy];
-	rhs->password = [password copy];
 	rhs->clientId = [clientId copy];
-	rhs->sessionExpiresAt = [sessionExpiresAt copy];
 	rhs->userInfo = [userInfo retain];
 	rhs->preferedApiVersion = preferedApiVersion;
+    rhs->authSource = [authSource retain];
 	[rhs setCacheDescribes:cacheDescribes];
 	[rhs setUpdateMru:updateMru];
 	return rhs;
+}
+
+-(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
+    return authSource;
+}
+
+-(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
+    [authSource autorelease];
+    authSource = [authenticationInfo retain];
 }
 
 -(void)setPreferedApiVersion:(int)v {
@@ -126,52 +127,20 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
-	[userInfo release];
-	userInfo = nil;
-	[password release];
-	[username release];
-	username = [un retain];
-	password = [pwd retain];
-	return [self startNewSession];
-}
-
-- (ZKLoginResult *)startNewSession {
-	[sessionId release];
-	[endpointUrl release];
-	endpointUrl = [authEndpointUrl copy];
-
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil clientId:clientId];
-	[env startElement:@"login"];
-	[env addElement:@"username" elemValue:username];
-	[env addElement:@"password" elemValue:password];
-	[env endElement:@"login"];
-	[env endElement:@"s:Body"];
-	NSString *xml = [env end];
-	[env release];
-	
-	zkElement *resp = [self sendRequest:xml];	
-	zkElement *result = [[resp childElements:@"result"] objectAtIndex:0];
-	ZKLoginResult *lr = [[[ZKLoginResult alloc] initWithXmlElement:result] autorelease];
-	
-	[endpointUrl release];
-	endpointUrl = [[lr serverUrl] copy];
-	sessionId = [[lr sessionId] copy];
-	userInfo = [[lr userInfo] retain];
-	
-	// if we have a sessionSecondsValid in the UserInfo, use that to control when we re-authenticate, otherwise take the default.
-	int sessionAge = [userInfo sessionSecondsValid] > 0 ? [userInfo sessionSecondsValid] - 60 : DEFAULT_MAX_SESSION_AGE;
-	[sessionExpiresAt release];
-	sessionExpiresAt = [[NSDate dateWithTimeIntervalSinceNow:sessionAge] retain];
-	return lr;
+    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:clientId];
+	ZKLoginResult *lr = [auth login];
+    [userInfo release];
+    userInfo = [[lr userInfo] retain];
+    [self setAuthenticationInfo:auth];
+    return lr;
 }
 
 - (BOOL)loggedIn {
-	return [sessionId length] > 0;
+	return [[authSource sessionId] length] > 0;
 }
 
 - (void)checkSession {
-	if ([sessionExpiresAt timeIntervalSinceNow] < 0)
-		[self startNewSession];
+    [authSource refreshIfNeeded];
 }
 
 - (ZKUserInfo *)currentUserInfo {
@@ -184,7 +153,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (NSString *)sessionId {
 	[self checkSession];
-	return sessionId;
+	return [authSource sessionId];
 }
 
 
@@ -199,10 +168,10 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (void)setPassword:(NSString *)newPassword forUserId:(NSString *)userId {
-	if(!sessionId) return;
+	if (!authSource) return;
 	[self checkSession];
 	
-	ZKEnvelope * env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId] autorelease];
+	ZKEnvelope * env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"setPassword"];
 	[env addElement:@"userId" elemValue:userId];
 	[env addElement:@"password" elemValue:newPassword];
@@ -213,24 +182,23 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSArray *)describeGlobal {
-	if(!sessionId) return NULL;
+	if(!authSource) return NULL;
 	[self checkSession];
 	if (cacheDescribes) {
 		NSArray *dg = [describes objectForKey:@"describe__global"];	// won't be an sfdc object ever called this.
 		if (dg != nil) return dg;
 	}
 	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:@"describeGlobal"];
 	[env endElement:@"describeGlobal"];
 	[env endElement:@"s:Body"];
 	
-	zkElement * rr = [self sendRequest:[env end]];
-	NSMutableArray *types = [NSMutableArray array]; 
+    zkElement * rr = [self sendRequest:[env end]];
 	NSArray *results = [[rr childElement:@"result"] childElements:@"sobjects"];
-	NSEnumerator * e = [results objectEnumerator];
-	while (rr = [e nextObject]) {
-		ZKDescribeGlobalSObject * d = [[ZKDescribeGlobalSObject alloc] initWithXmlElement:rr];
+	NSMutableArray *types = [NSMutableArray arrayWithCapacity:[results count]];
+    for (zkElement *res in results) {
+		ZKDescribeGlobalSObject * d = [[ZKDescribeGlobalSObject alloc] initWithXmlElement:res];
 		[types addObject:d];
 		[d release];
 	}
@@ -241,14 +209,14 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName {
-	if (!sessionId) return NULL;
+	if (!authSource) return NULL;
 	if (cacheDescribes) {
 		ZKDescribeSObject * desc = [describes objectForKey:[sobjectName lowercaseString]];
 		if (desc != nil) return desc;
 	}
 	[self checkSession];
 	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:@"describeSObject"];
 	[env addElement:@"SobjectType" elemValue:sobjectName];
 	[env endElement:@"describeSObject"];
@@ -264,9 +232,9 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKDescribeLayoutResult *)describeLayout:(NSString *)sobjectName recordTypeIds:(NSArray *)recordTypeIds {
-	if (!sessionId) return nil;
+	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"describeLayout"];
 	[env addElement:@"sObjectType" elemValue:sobjectName];
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
@@ -280,9 +248,9 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSArray *)search:(NSString *)sosl {
-	if (!sessionId) return NULL;
+	if (!authSource) return NULL;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:@"search"];
 	[env addElement:@"searchString" elemValue:sosl];
 	[env endElement:@"search"];
@@ -299,9 +267,9 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSString *)serverTimestamp {
-	if (!sessionId) return NULL;
+	if (!authSource) return NULL;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:@"getServerTimestamp"];
 	[env endElement:@"getServerTimestamp"];
 	[env endElement:@"s:Body"];
@@ -333,7 +301,7 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName {
-	if(!sessionId) return NULL;
+	if(!authSource) return NULL;
 	[self checkSession];
 	
 	// if more than we can do in one go, break it up.
@@ -347,11 +315,9 @@ static const int SAVE_BATCH_SIZE = 25;
 		}
 		return allResults;
 	}
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:sessionId mru:updateMru clientId:clientId];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:[authSource sessionId] mru:updateMru clientId:clientId];
 	[env startElement:elemName];
-	NSEnumerator *e = [objects objectEnumerator];
-	ZKSObject *o;
-	while (o = [e nextObject])
+    for (ZKSObject *o in objects) 
 		[env addElement:@"sobject" elemValue:o];
 	[env endElement:elemName];
 	[env endElement:@"s:Body"];
@@ -369,10 +335,10 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids {
-	if(!sessionId) return NULL;
+	if(!authSource) return NULL;
 	[self checkSession];
 	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:@"retrieve"];
 	[env addElement:@"fieldList" elemValue:fields];
 	[env addElement:@"sObjectType" elemValue:sobjectType];
@@ -393,10 +359,10 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSArray *)delete:(NSArray *)ids {
-	if(!sessionId) return NULL;
+	if(!authSource) return NULL;
 	[self checkSession];
 
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:sessionId mru:updateMru clientId:clientId];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:[authSource sessionId] mru:updateMru clientId:clientId];
 	[env startElement:@"delete"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"delete"];
@@ -415,10 +381,10 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)operation name:(NSString *)elemName {
-	if(!sessionId) return NULL;
+	if(!authSource) return NULL;
 	[self checkSession];
 
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:sessionId clientId:clientId];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:operation];
 	[env addElement:elemName elemValue:value];
 	[env endElement:operation];
