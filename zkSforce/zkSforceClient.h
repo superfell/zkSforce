@@ -135,7 +135,7 @@
 - (ZKUserInfo *)currentUserInfo;
 
 // the current endpoint URL where requests are being sent.
-- (NSString *)serverUrl;
+- (NSURL *)serverUrl;
 
 // the current API session Id being used to make requests.
 - (NSString *)sessionId;

@@ -47,6 +47,7 @@
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC08E12B58B5E0052D468 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = F44CC08D12B58B5E0052D468 /* readme.txt */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
+		F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0A1363908A000CDE02 /* zkAuthentication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +132,8 @@
 		F44CC08D12B58B5E0052D468 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		F44CC08F12B58BA40052D468 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryController.h; sourceTree = "<group>"; };
 		F44CC09012B58BA40052D468 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
+		F49C1D091363908A000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
+		F49C1D0A1363908A000CDE02 /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +232,8 @@
 		F44CC01C12B588090052D468 /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F49C1D091363908A000CDE02 /* zkAuthentication.h */,
+				F49C1D0A1363908A000CDE02 /* zkAuthentication.m */,
 				F44CC01D12B5881D0052D468 /* zkBaseClient.h */,
 				F44CC01E12B5881D0052D468 /* zkBaseClient.m */,
 				F44CC01F12B5881D0052D468 /* zkChildRelationship.h */,
@@ -326,7 +331,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "query" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* query */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -389,6 +398,7 @@
 				F44CC07C12B5881D0052D468 /* zkUserInfo.m in Sources */,
 				F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */,
 				F44CC09112B58BA40052D468 /* QueryController.m in Sources */,
+				F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

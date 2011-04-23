@@ -82,6 +82,7 @@ static const int SAVE_BATCH_SIZE = 25;
 -(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
     [authSource autorelease];
     authSource = [authenticationInfo retain];
+    self.endpointUrl = [authSource instanceUrl];
 }
 
 -(void)setPreferedApiVersion:(int)v {
@@ -147,7 +148,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	return userInfo;
 }
 
-- (NSString *)serverUrl {
+- (NSURL *)serverUrl {
 	return endpointUrl;
 }
 

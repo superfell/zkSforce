@@ -27,6 +27,8 @@
 
 static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
+@synthesize endpointUrl;
+
 - (void)dealloc {
 	[endpointUrl release];
 	[super dealloc];
@@ -37,7 +39,7 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 }
 
 - (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)returnRoot {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:endpointUrl]];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endpointUrl];
 	[request setHTTPMethod:@"POST"];
 	[request addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"content-type"];	
 	[request addValue:@"\"\"" forHTTPHeaderField:@"SOAPAction"];

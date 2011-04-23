@@ -25,13 +25,14 @@
 
 @protocol ZKAuthenticationInfo 
 
--(NSString *)sessionId;
--(NSURL *)instanceUrl;
+-(NSString *)sessionId;     // return an API Session ID.
+-(NSURL *)instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
 -(void)refresh;             // force the sessionId to be refreshed.
--(void)refreshIfNeeded;
+-(void)refreshIfNeeded;     // refresh the sesion if its needed. (this gets called before every soap call)
 
 @end
 
+// Impl of ZKAuthenticationInfo that uses an OAuth2 refresh token to generate new session Ids.
 @interface ZKOAuthInfo : NSObject <ZKAuthenticationInfo> {
     NSString *sessionId, *refreshToken;
     NSURL *instanceUrl, *authUrl;
@@ -44,13 +45,16 @@
 
 @end
 
+
+// Impl of ZKAuthenticationInfo that uses Soap Login calls to generate new session Ids.
 @interface ZKSoapLogin : ZKBaseClient<ZKAuthenticationInfo> {
     NSString *username, *password, *sessionId, *clientId;
-    NSURL *instanceUrl, *authUrl;
-    NSDate		*sessionExpiresAt;
+    NSURL    *instanceUrl, *authUrl;
+    NSDate	 *sessionExpiresAt;
 }
 
 +(id)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid;
 
 -(ZKLoginResult *)login;
+
 @end

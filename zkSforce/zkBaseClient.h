@@ -23,8 +23,10 @@
 @class zkElement;
 
 @interface ZKBaseClient : NSObject {
-	NSString	*endpointUrl;
+	NSURL *endpointUrl;
 }
+
+@property (retain) NSURL *endpointUrl;
 
 - (zkElement *)sendRequest:(NSString *)payload;
 - (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
