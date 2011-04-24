@@ -117,7 +117,7 @@
 @implementation zkParser
 
 +(zkElement *)parseData:(NSData *)data {
-	xmlDocPtr doc = xmlReadMemory([data bytes], [data length], "noname.xml", NULL, 0);
+	xmlDocPtr doc = xmlReadMemory([data bytes], (int)[data length], "noname.xml", NULL, 0);
 	if (doc != nil)
 		return [[[zkElement alloc] initWithDocument:doc] autorelease];
 	return nil;

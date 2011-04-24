@@ -84,9 +84,7 @@ enum envState {
 }
 
 - (void) addElementArray:(NSString *)elemName elemValue:(NSArray *)elemValues {
-	NSEnumerator *e = [elemValues objectEnumerator];
-	id o;
-	while(o = [e nextObject])
+    for (id o in elemValues)
 		[self addElement:elemName elemValue:o];
 }
 
@@ -102,9 +100,10 @@ enum envState {
 	[self addElement:@"fieldsToNull" elemValue:[sobject fieldsToNull]];
 	if ([sobject id]) 
 		[self addElement:@"Id" elemValue:[sobject id]];
+    
 	NSEnumerator *e = [[sobject fields] keyEnumerator];
 	NSString *key;
-	while(key = [e nextObject]) {
+	while((key = [e nextObject])) {
 		[self addElement:key elemValue:[[sobject fields] valueForKey:key]];
 	}
 	[self endElement:elemName];
@@ -112,8 +111,8 @@ enum envState {
 
 - (void) writeText:(NSString *)text  {
 	unichar c;
-	unsigned int i, len = [text length];
-	for(i = 0; i < len; i++)
+	NSUInteger i, len = [text length];
+	for (i = 0; i < len; i++)
 	{
 		c = [text characterAtIndex:i];
 		switch (c)
