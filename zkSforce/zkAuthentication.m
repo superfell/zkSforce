@@ -31,16 +31,18 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 @property (retain) NSString *sessionId;
 @property (retain) NSURL *instanceUrl;
 @property (retain) NSDate *sessionExpiresAt;
+@property (retain) NSString *clientId;
 @end
 
 @implementation ZKAuthInfoBase
 
-@synthesize sessionId, instanceUrl, sessionExpiresAt;
+@synthesize sessionId, instanceUrl, sessionExpiresAt, clientId;
 
 -(void)dealloc {
     [sessionId release];
     [instanceUrl release];
     [sessionExpiresAt release];
+    [clientId release];
     [super dealloc];
 }
 
@@ -62,36 +64,45 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @synthesize apiVersion;
 
-+(id)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl {
-    // callbackUrl will be something:///blah/blah#p=1&q=2&foo=bar
-    // we need to get our params out of the callback fragment
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    for (NSString *param in [[callbackUrl fragment] componentsSeparatedByString:@"&"]) {
++(NSDictionary *)decodeParams:(NSString *)params {
+    NSMutableDictionary *results = [NSMutableDictionary dictionary];
+    for (NSString *param in [params componentsSeparatedByString:@"&"]) {
         NSArray *paramParts = [param componentsSeparatedByString:@"="];
         NSString *name = [[paramParts objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *val = [paramParts count] == 1 ? @"" : [[paramParts objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [params setObject:val forKey:name];
+        [results setObject:val forKey:name];
     }
+    return results;
+}
+
++(id)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid {
+    // callbackUrl will be something:///blah/blah#p=1&q=2&foo=bar
+    // we need to get our params out of the callback fragment
+    NSDictionary *params = [self decodeParams:[callbackUrl fragment]];
+
     return [ZKOAuthInfo oauthInfoWithRefreshToken:[params objectForKey:@"refresh_token"]
                                          authHost:[NSURL URLWithString:[params objectForKey:@"id"]]
                                         sessionId:[params objectForKey:@"access_token"]
-                                      instanceUrl:[NSURL URLWithString:[params objectForKey:@"instance_url"]]];
+                                      instanceUrl:[NSURL URLWithString:[params objectForKey:@"instance_url"]]
+                                         clientId:cid];
 }
 
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth {
-    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:nil instanceUrl:nil] autorelease];
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth clientId:(NSString *)cid {
+    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:nil instanceUrl:nil clientId:cid] autorelease];
 }
 
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst {
-    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:sid instanceUrl:inst] autorelease];
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid {
+    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:sid instanceUrl:inst clientId:cid] autorelease];
 }
 
--(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst {
+-(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid {
     self = [super init];
+    clientId = [cid retain];
     sessionId = [sid retain];
     refreshToken = [tkn retain];
     instanceUrl = [inst retain];
-    authUrl = [NSURL URLWithString:@"/" relativeToURL:auth];
+    authUrl = [[NSURL URLWithString:@"/" relativeToURL:auth] retain];
+    self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
     return self;
 }
 
@@ -106,7 +117,23 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 -(void)refresh {
-    // TODO
+    NSURL *token = [NSURL URLWithString:@"/services/oauth2/token" relativeToURL:authUrl];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:token];
+    [req setHTTPMethod:@"POST"];
+    NSString *params = [NSString stringWithFormat:@"grant_type=refresh_token&refresh_token=%@&client_id=%@&format=urlencoded",
+                      [refreshToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], 
+                      [clientId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    [req setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    [req addValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+
+ 	NSHTTPURLResponse *resp = nil;
+	NSError *err = nil;
+	NSData *respPayload = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err];
+    NSString *respBody = [[[NSString alloc] initWithBytes:[respPayload bytes] length:[respPayload length] encoding:NSUTF8StringEncoding] autorelease];
+    NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
+    self.sessionId = [results objectForKey:@"access_token"];
+    self.instanceUrl = [NSURL URLWithString:[results objectForKey:@"instance_url"]];
+    self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
 }
 
 -(BOOL)refreshIfNeeded {
@@ -132,7 +159,6 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 -(void)dealloc {
     [username release];
     [password release];
-    [clientId release];
     [client release];
     [super dealloc];
 }

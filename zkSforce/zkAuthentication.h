@@ -39,6 +39,7 @@
     NSURL  *instanceUrl;
     NSDate *sessionExpiresAt;
     NSString *sessionId;
+    NSString *clientId;
 }
 
 @end
@@ -50,11 +51,11 @@
     int apiVersion;
 }
 
-+(id)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl;
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth;
-+(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst;
++(id)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid;
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth clientId:(NSString *)cid;
++(id)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid;
 
--(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)authUrl sessionId:(NSString *)sid instanceUrl:(NSURL *)inst;
+-(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)authUrl sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid;
 
 @property (assign) int apiVersion;
 @end
@@ -62,7 +63,7 @@
 
 // Impl of ZKAuthenticationInfo that uses Soap Login calls to generate new session Ids.
 @interface ZKSoapLogin : ZKAuthInfoBase {
-    NSString *username, *password, *clientId;
+    NSString *username, *password;
     ZKBaseClient *client;
 }
 

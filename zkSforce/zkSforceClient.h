@@ -73,7 +73,8 @@
 
 // Initialize the authentication info from the parameters contained in the OAuth
 // completion callback Uri passed in.
-- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl;
+// call this when the oauth flow is complete, this doesn't start the oauth flow.
+- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl clientId:(NSString *)oauthClientId;
 
 
 // Authentication Management

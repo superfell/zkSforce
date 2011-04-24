@@ -15,12 +15,15 @@
     IBOutlet NSTableView *table;
     
     ZKQueryResult       *results;
+    NSString            *lastSid;
 }
 
-@property (retain) ZKSforceClient *client;
+@property (nonatomic, retain) ZKSforceClient *client;
 @property (readonly) BOOL canQuery;
 @property (retain) ZKQueryResult *results;
+@property (retain) NSString *lastSid;
 
 -(IBAction)runQuery:(id)sender;
+-(IBAction)refreshSid:(id)sender;
 
 @end

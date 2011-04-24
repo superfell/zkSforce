@@ -116,8 +116,8 @@ static const int SAVE_BATCH_SIZE = 25;
     return lr;
 }
 
-- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl {
-    ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl]];
+- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl clientId:(NSString *)oauthClientId{
+    ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl] clientId:oauthClientId];
     [auth setApiVersion:preferedApiVersion];
     [userInfo release];
     userInfo = nil;

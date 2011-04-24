@@ -42,7 +42,7 @@ static NSString *OAUTH_CALLBCAK = @"compocketsoapoauthdemo:///done";
     NSLog(@"got oauth callback : %@", url);
     
     ZKSforceClient *client = [[[ZKSforceClient alloc] init] autorelease];
-    [client loginFromOAuthCallbackUrl:url];
+    [client loginFromOAuthCallbackUrl:url clientId:OAUTH_CLIENTID];
     
     [controller setClient:client];
 }
