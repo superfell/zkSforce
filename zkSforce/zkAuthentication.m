@@ -129,8 +129,14 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
  	NSHTTPURLResponse *resp = nil;
 	NSError *err = nil;
 	NSData *respPayload = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err];
+    
     NSString *respBody = [[[NSString alloc] initWithBytes:[respPayload bytes] length:[respPayload length] encoding:NSUTF8StringEncoding] autorelease];
     NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
+    if ([results objectForKey:@"error"] != nil)
+        @throw [NSException exceptionWithName:@"OAuth Error" 
+                                       reason:[NSString stringWithFormat:@"%@ : %@", [results objectForKey:@"error"], [results objectForKey:@"error_description"]]
+                                     userInfo:results];
+    
     self.sessionId = [results objectForKey:@"access_token"];
     self.instanceUrl = [NSURL URLWithString:[results objectForKey:@"instance_url"]];
     self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
