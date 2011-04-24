@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4C297A413649C44009ACB8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A313649C44009ACB8D /* UIKit.framework */; };
+		F4C297A613649C44009ACB8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A513649C44009ACB8D /* Foundation.framework */; };
+		F4C297A813649C44009ACB8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A713649C44009ACB8D /* CoreGraphics.framework */; };
+		F4C297AE13649C44009ACB8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4C297AC13649C44009ACB8D /* InfoPlist.strings */; };
+		F4C297B113649C44009ACB8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C297B013649C44009ACB8D /* main.m */; };
+		F4C297B413649C44009ACB8D /* iOSQueryDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C297B313649C44009ACB8D /* iOSQueryDemoAppDelegate.m */; };
+		F4C297BA13649C45009ACB8D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C297B913649C45009ACB8D /* RootViewController.m */; };
+		F4C297BD13649C45009ACB8D /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C297BB13649C45009ACB8D /* RootViewController.xib */; };
+		F4C297C613649C54009ACB8D /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C297C413649C54009ACB8D /* MainWindow-iPad.xib */; };
+		F4C2982D13649D13009ACB8D /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C2982C13649D13009ACB8D /* libxml2.2.dylib */; };
+		F4C2989C1364AA63009ACB8D /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2985A1364AA63009ACB8D /* zkAuthentication.m */; };
+		F4C2989D1364AA63009ACB8D /* zkBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2985C1364AA63009ACB8D /* zkBaseClient.m */; };
+		F4C2989E1364AA63009ACB8D /* zkChildRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2985E1364AA63009ACB8D /* zkChildRelationship.m */; };
+		F4C2989F1364AA63009ACB8D /* zkDescribeField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298601364AA63009ACB8D /* zkDescribeField.m */; };
+		F4C298A01364AA63009ACB8D /* zkDescribeGlobalSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298621364AA63009ACB8D /* zkDescribeGlobalSObject.m */; };
+		F4C298A11364AA63009ACB8D /* ZKDescribeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298641364AA63009ACB8D /* ZKDescribeLayout.m */; };
+		F4C298A21364AA63009ACB8D /* ZKDescribeLayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298661364AA63009ACB8D /* ZKDescribeLayoutButton.m */; };
+		F4C298A31364AA63009ACB8D /* ZKDescribeLayoutButtonSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298681364AA63009ACB8D /* ZKDescribeLayoutButtonSection.m */; };
+		F4C298A41364AA63009ACB8D /* ZKDescribeLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2986A1364AA63009ACB8D /* ZKDescribeLayoutComponent.m */; };
+		F4C298A51364AA63009ACB8D /* ZKDescribeLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2986C1364AA63009ACB8D /* ZKDescribeLayoutItem.m */; };
+		F4C298A61364AA63009ACB8D /* ZKDescribeLayoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2986E1364AA63009ACB8D /* ZKDescribeLayoutResult.m */; };
+		F4C298A71364AA63009ACB8D /* ZKDescribeLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298701364AA63009ACB8D /* ZKDescribeLayoutRow.m */; };
+		F4C298A81364AA63009ACB8D /* ZKDescribeLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298721364AA63009ACB8D /* ZKDescribeLayoutSection.m */; };
+		F4C298A91364AA63009ACB8D /* zkDescribeSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298741364AA63009ACB8D /* zkDescribeSObject.m */; };
+		F4C298AA1364AA63009ACB8D /* zkEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298761364AA63009ACB8D /* zkEnvelope.m */; };
+		F4C298AB1364AA63009ACB8D /* zkLoginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298781364AA63009ACB8D /* zkLoginResult.m */; };
+		F4C298AC1364AA63009ACB8D /* zkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2987A1364AA63009ACB8D /* zkParser.m */; };
+		F4C298AD1364AA63009ACB8D /* ZKPartnerEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2987C1364AA63009ACB8D /* ZKPartnerEnvelope.m */; };
+		F4C298AE1364AA63009ACB8D /* ZKPicklistEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2987E1364AA63009ACB8D /* ZKPicklistEntry.m */; };
+		F4C298AF1364AA63009ACB8D /* ZKPicklistForRecordType.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298801364AA63009ACB8D /* ZKPicklistForRecordType.m */; };
+		F4C298B11364AA63009ACB8D /* zkQueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298841364AA63009ACB8D /* zkQueryResult.m */; };
+		F4C298B21364AA63009ACB8D /* ZKRecordTypeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298861364AA63009ACB8D /* ZKRecordTypeInfo.m */; };
+		F4C298B31364AA63009ACB8D /* ZKRecordTypeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298881364AA63009ACB8D /* ZKRecordTypeMapping.m */; };
+		F4C298B41364AA63009ACB8D /* ZKRelatedList.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2988A1364AA63009ACB8D /* ZKRelatedList.m */; };
+		F4C298B51364AA63009ACB8D /* ZKRelatedListColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2988C1364AA63009ACB8D /* ZKRelatedListColumn.m */; };
+		F4C298B61364AA63009ACB8D /* ZKRelatedListSort.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2988E1364AA63009ACB8D /* ZKRelatedListSort.m */; };
+		F4C298B71364AA63009ACB8D /* zkSaveResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298901364AA63009ACB8D /* zkSaveResult.m */; };
+		F4C298B81364AA63009ACB8D /* zkSforceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298931364AA63009ACB8D /* zkSforceClient.m */; };
+		F4C298B91364AA63009ACB8D /* zkSoapException.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298951364AA63009ACB8D /* zkSoapException.m */; };
+		F4C298BA1364AA63009ACB8D /* zkSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298971364AA63009ACB8D /* zkSObject.m */; };
+		F4C298BB1364AA63009ACB8D /* zkUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298991364AA63009ACB8D /* zkUserInfo.m */; };
+		F4C298BC1364AA63009ACB8D /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2989B1364AA63009ACB8D /* zkXmlDeserializer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F4C2979F13649C44009ACB8D /* iOSQueryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSQueryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4C297A313649C44009ACB8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F4C297A513649C44009ACB8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F4C297A713649C44009ACB8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F4C297AB13649C44009ACB8D /* iOSQueryDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSQueryDemo-Info.plist"; sourceTree = "<group>"; };
+		F4C297AD13649C44009ACB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F4C297AF13649C44009ACB8D /* iOSQueryDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSQueryDemo-Prefix.pch"; sourceTree = "<group>"; };
+		F4C297B013649C44009ACB8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F4C297B213649C44009ACB8D /* iOSQueryDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSQueryDemoAppDelegate.h; sourceTree = "<group>"; };
+		F4C297B313649C44009ACB8D /* iOSQueryDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSQueryDemoAppDelegate.m; sourceTree = "<group>"; };
+		F4C297B813649C45009ACB8D /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		F4C297B913649C45009ACB8D /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		F4C297BC13649C45009ACB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		F4C297C513649C54009ACB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		F4C2982C13649D13009ACB8D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		F4C298591364AA63009ACB8D /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
+		F4C2985A1364AA63009ACB8D /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
+		F4C2985B1364AA63009ACB8D /* zkBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkBaseClient.h; path = ../../../zkSforce/zkBaseClient.h; sourceTree = "<group>"; };
+		F4C2985C1364AA63009ACB8D /* zkBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkBaseClient.m; path = ../../../zkSforce/zkBaseClient.m; sourceTree = "<group>"; };
+		F4C2985D1364AA63009ACB8D /* zkChildRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkChildRelationship.h; path = ../../../zkSforce/zkChildRelationship.h; sourceTree = "<group>"; };
+		F4C2985E1364AA63009ACB8D /* zkChildRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkChildRelationship.m; path = ../../../zkSforce/zkChildRelationship.m; sourceTree = "<group>"; };
+		F4C2985F1364AA63009ACB8D /* zkDescribeField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkDescribeField.h; path = ../../../zkSforce/zkDescribeField.h; sourceTree = "<group>"; };
+		F4C298601364AA63009ACB8D /* zkDescribeField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkDescribeField.m; path = ../../../zkSforce/zkDescribeField.m; sourceTree = "<group>"; };
+		F4C298611364AA63009ACB8D /* zkDescribeGlobalSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkDescribeGlobalSObject.h; path = ../../../zkSforce/zkDescribeGlobalSObject.h; sourceTree = "<group>"; };
+		F4C298621364AA63009ACB8D /* zkDescribeGlobalSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkDescribeGlobalSObject.m; path = ../../../zkSforce/zkDescribeGlobalSObject.m; sourceTree = "<group>"; };
+		F4C298631364AA63009ACB8D /* ZKDescribeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayout.h; path = ../../../zkSforce/ZKDescribeLayout.h; sourceTree = "<group>"; };
+		F4C298641364AA63009ACB8D /* ZKDescribeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayout.m; path = ../../../zkSforce/ZKDescribeLayout.m; sourceTree = "<group>"; };
+		F4C298651364AA63009ACB8D /* ZKDescribeLayoutButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutButton.h; path = ../../../zkSforce/ZKDescribeLayoutButton.h; sourceTree = "<group>"; };
+		F4C298661364AA63009ACB8D /* ZKDescribeLayoutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutButton.m; path = ../../../zkSforce/ZKDescribeLayoutButton.m; sourceTree = "<group>"; };
+		F4C298671364AA63009ACB8D /* ZKDescribeLayoutButtonSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutButtonSection.h; path = ../../../zkSforce/ZKDescribeLayoutButtonSection.h; sourceTree = "<group>"; };
+		F4C298681364AA63009ACB8D /* ZKDescribeLayoutButtonSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutButtonSection.m; path = ../../../zkSforce/ZKDescribeLayoutButtonSection.m; sourceTree = "<group>"; };
+		F4C298691364AA63009ACB8D /* ZKDescribeLayoutComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutComponent.h; path = ../../../zkSforce/ZKDescribeLayoutComponent.h; sourceTree = "<group>"; };
+		F4C2986A1364AA63009ACB8D /* ZKDescribeLayoutComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutComponent.m; path = ../../../zkSforce/ZKDescribeLayoutComponent.m; sourceTree = "<group>"; };
+		F4C2986B1364AA63009ACB8D /* ZKDescribeLayoutItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutItem.h; path = ../../../zkSforce/ZKDescribeLayoutItem.h; sourceTree = "<group>"; };
+		F4C2986C1364AA63009ACB8D /* ZKDescribeLayoutItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutItem.m; path = ../../../zkSforce/ZKDescribeLayoutItem.m; sourceTree = "<group>"; };
+		F4C2986D1364AA63009ACB8D /* ZKDescribeLayoutResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutResult.h; path = ../../../zkSforce/ZKDescribeLayoutResult.h; sourceTree = "<group>"; };
+		F4C2986E1364AA63009ACB8D /* ZKDescribeLayoutResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutResult.m; path = ../../../zkSforce/ZKDescribeLayoutResult.m; sourceTree = "<group>"; };
+		F4C2986F1364AA63009ACB8D /* ZKDescribeLayoutRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutRow.h; path = ../../../zkSforce/ZKDescribeLayoutRow.h; sourceTree = "<group>"; };
+		F4C298701364AA63009ACB8D /* ZKDescribeLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutRow.m; path = ../../../zkSforce/ZKDescribeLayoutRow.m; sourceTree = "<group>"; };
+		F4C298711364AA63009ACB8D /* ZKDescribeLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutSection.h; path = ../../../zkSforce/ZKDescribeLayoutSection.h; sourceTree = "<group>"; };
+		F4C298721364AA63009ACB8D /* ZKDescribeLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutSection.m; path = ../../../zkSforce/ZKDescribeLayoutSection.m; sourceTree = "<group>"; };
+		F4C298731364AA63009ACB8D /* zkDescribeSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkDescribeSObject.h; path = ../../../zkSforce/zkDescribeSObject.h; sourceTree = "<group>"; };
+		F4C298741364AA63009ACB8D /* zkDescribeSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkDescribeSObject.m; path = ../../../zkSforce/zkDescribeSObject.m; sourceTree = "<group>"; };
+		F4C298751364AA63009ACB8D /* zkEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkEnvelope.h; path = ../../../zkSforce/zkEnvelope.h; sourceTree = "<group>"; };
+		F4C298761364AA63009ACB8D /* zkEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkEnvelope.m; path = ../../../zkSforce/zkEnvelope.m; sourceTree = "<group>"; };
+		F4C298771364AA63009ACB8D /* zkLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkLoginResult.h; path = ../../../zkSforce/zkLoginResult.h; sourceTree = "<group>"; };
+		F4C298781364AA63009ACB8D /* zkLoginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkLoginResult.m; path = ../../../zkSforce/zkLoginResult.m; sourceTree = "<group>"; };
+		F4C298791364AA63009ACB8D /* zkParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkParser.h; path = ../../../zkSforce/zkParser.h; sourceTree = "<group>"; };
+		F4C2987A1364AA63009ACB8D /* zkParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkParser.m; path = ../../../zkSforce/zkParser.m; sourceTree = "<group>"; };
+		F4C2987B1364AA63009ACB8D /* ZKPartnerEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPartnerEnvelope.h; path = ../../../zkSforce/ZKPartnerEnvelope.h; sourceTree = "<group>"; };
+		F4C2987C1364AA63009ACB8D /* ZKPartnerEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPartnerEnvelope.m; path = ../../../zkSforce/ZKPartnerEnvelope.m; sourceTree = "<group>"; };
+		F4C2987D1364AA63009ACB8D /* ZKPicklistEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPicklistEntry.h; path = ../../../zkSforce/ZKPicklistEntry.h; sourceTree = "<group>"; };
+		F4C2987E1364AA63009ACB8D /* ZKPicklistEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistEntry.m; path = ../../../zkSforce/ZKPicklistEntry.m; sourceTree = "<group>"; };
+		F4C2987F1364AA63009ACB8D /* ZKPicklistForRecordType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPicklistForRecordType.h; path = ../../../zkSforce/ZKPicklistForRecordType.h; sourceTree = "<group>"; };
+		F4C298801364AA63009ACB8D /* ZKPicklistForRecordType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistForRecordType.m; path = ../../../zkSforce/ZKPicklistForRecordType.m; sourceTree = "<group>"; };
+		F4C298831364AA63009ACB8D /* zkQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkQueryResult.h; path = ../../../zkSforce/zkQueryResult.h; sourceTree = "<group>"; };
+		F4C298841364AA63009ACB8D /* zkQueryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult.m; path = ../../../zkSforce/zkQueryResult.m; sourceTree = "<group>"; };
+		F4C298851364AA63009ACB8D /* ZKRecordTypeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRecordTypeInfo.h; path = ../../../zkSforce/ZKRecordTypeInfo.h; sourceTree = "<group>"; };
+		F4C298861364AA63009ACB8D /* ZKRecordTypeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRecordTypeInfo.m; path = ../../../zkSforce/ZKRecordTypeInfo.m; sourceTree = "<group>"; };
+		F4C298871364AA63009ACB8D /* ZKRecordTypeMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRecordTypeMapping.h; path = ../../../zkSforce/ZKRecordTypeMapping.h; sourceTree = "<group>"; };
+		F4C298881364AA63009ACB8D /* ZKRecordTypeMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRecordTypeMapping.m; path = ../../../zkSforce/ZKRecordTypeMapping.m; sourceTree = "<group>"; };
+		F4C298891364AA63009ACB8D /* ZKRelatedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRelatedList.h; path = ../../../zkSforce/ZKRelatedList.h; sourceTree = "<group>"; };
+		F4C2988A1364AA63009ACB8D /* ZKRelatedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRelatedList.m; path = ../../../zkSforce/ZKRelatedList.m; sourceTree = "<group>"; };
+		F4C2988B1364AA63009ACB8D /* ZKRelatedListColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRelatedListColumn.h; path = ../../../zkSforce/ZKRelatedListColumn.h; sourceTree = "<group>"; };
+		F4C2988C1364AA63009ACB8D /* ZKRelatedListColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRelatedListColumn.m; path = ../../../zkSforce/ZKRelatedListColumn.m; sourceTree = "<group>"; };
+		F4C2988D1364AA63009ACB8D /* ZKRelatedListSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRelatedListSort.h; path = ../../../zkSforce/ZKRelatedListSort.h; sourceTree = "<group>"; };
+		F4C2988E1364AA63009ACB8D /* ZKRelatedListSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRelatedListSort.m; path = ../../../zkSforce/ZKRelatedListSort.m; sourceTree = "<group>"; };
+		F4C2988F1364AA63009ACB8D /* zkSaveResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkSaveResult.h; path = ../../../zkSforce/zkSaveResult.h; sourceTree = "<group>"; };
+		F4C298901364AA63009ACB8D /* zkSaveResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSaveResult.m; path = ../../../zkSforce/zkSaveResult.m; sourceTree = "<group>"; };
+		F4C298911364AA63009ACB8D /* zkSforce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkSforce.h; path = ../../../zkSforce/zkSforce.h; sourceTree = "<group>"; };
+		F4C298921364AA63009ACB8D /* zkSforceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkSforceClient.h; path = ../../../zkSforce/zkSforceClient.h; sourceTree = "<group>"; };
+		F4C298931364AA63009ACB8D /* zkSforceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSforceClient.m; path = ../../../zkSforce/zkSforceClient.m; sourceTree = "<group>"; };
+		F4C298941364AA63009ACB8D /* zkSoapException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkSoapException.h; path = ../../../zkSforce/zkSoapException.h; sourceTree = "<group>"; };
+		F4C298951364AA63009ACB8D /* zkSoapException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSoapException.m; path = ../../../zkSforce/zkSoapException.m; sourceTree = "<group>"; };
+		F4C298961364AA63009ACB8D /* zkSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkSObject.h; path = ../../../zkSforce/zkSObject.h; sourceTree = "<group>"; };
+		F4C298971364AA63009ACB8D /* zkSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSObject.m; path = ../../../zkSforce/zkSObject.m; sourceTree = "<group>"; };
+		F4C298981364AA63009ACB8D /* zkUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkUserInfo.h; path = ../../../zkSforce/zkUserInfo.h; sourceTree = "<group>"; };
+		F4C298991364AA63009ACB8D /* zkUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkUserInfo.m; path = ../../../zkSforce/zkUserInfo.m; sourceTree = "<group>"; };
+		F4C2989A1364AA63009ACB8D /* zkXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkXmlDeserializer.h; path = ../../../zkSforce/zkXmlDeserializer.h; sourceTree = "<group>"; };
+		F4C2989B1364AA63009ACB8D /* zkXmlDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkXmlDeserializer.m; path = ../../../zkSforce/zkXmlDeserializer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4C2979C13649C44009ACB8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4C2982D13649D13009ACB8D /* libxml2.2.dylib in Frameworks */,
+				F4C297A413649C44009ACB8D /* UIKit.framework in Frameworks */,
+				F4C297A613649C44009ACB8D /* Foundation.framework in Frameworks */,
+				F4C297A813649C44009ACB8D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4C2979413649C44009ACB8D = {
+			isa = PBXGroup;
+			children = (
+				F4C2982C13649D13009ACB8D /* libxml2.2.dylib */,
+				F4C297A913649C44009ACB8D /* iOSQueryDemo */,
+				F4C297A213649C44009ACB8D /* Frameworks */,
+				F4C297A013649C44009ACB8D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4C297A013649C44009ACB8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4C2979F13649C44009ACB8D /* iOSQueryDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4C297A213649C44009ACB8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4C297A313649C44009ACB8D /* UIKit.framework */,
+				F4C297A513649C44009ACB8D /* Foundation.framework */,
+				F4C297A713649C44009ACB8D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4C297A913649C44009ACB8D /* iOSQueryDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F4C297C713649CC4009ACB8D /* zksforce */,
+				F4C297C313649C53009ACB8D /* iPad */,
+				F4C297B213649C44009ACB8D /* iOSQueryDemoAppDelegate.h */,
+				F4C297B313649C44009ACB8D /* iOSQueryDemoAppDelegate.m */,
+				F4C297B813649C45009ACB8D /* RootViewController.h */,
+				F4C297B913649C45009ACB8D /* RootViewController.m */,
+				F4C297BB13649C45009ACB8D /* RootViewController.xib */,
+				F4C297AA13649C44009ACB8D /* Supporting Files */,
+			);
+			path = iOSQueryDemo;
+			sourceTree = "<group>";
+		};
+		F4C297AA13649C44009ACB8D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4C297AB13649C44009ACB8D /* iOSQueryDemo-Info.plist */,
+				F4C297AC13649C44009ACB8D /* InfoPlist.strings */,
+				F4C297AF13649C44009ACB8D /* iOSQueryDemo-Prefix.pch */,
+				F4C297B013649C44009ACB8D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F4C297C313649C53009ACB8D /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				F4C297C413649C54009ACB8D /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		F4C297C713649CC4009ACB8D /* zksforce */ = {
+			isa = PBXGroup;
+			children = (
+				F4C298591364AA63009ACB8D /* zkAuthentication.h */,
+				F4C2985A1364AA63009ACB8D /* zkAuthentication.m */,
+				F4C2985B1364AA63009ACB8D /* zkBaseClient.h */,
+				F4C2985C1364AA63009ACB8D /* zkBaseClient.m */,
+				F4C2985D1364AA63009ACB8D /* zkChildRelationship.h */,
+				F4C2985E1364AA63009ACB8D /* zkChildRelationship.m */,
+				F4C2985F1364AA63009ACB8D /* zkDescribeField.h */,
+				F4C298601364AA63009ACB8D /* zkDescribeField.m */,
+				F4C298611364AA63009ACB8D /* zkDescribeGlobalSObject.h */,
+				F4C298621364AA63009ACB8D /* zkDescribeGlobalSObject.m */,
+				F4C298631364AA63009ACB8D /* ZKDescribeLayout.h */,
+				F4C298641364AA63009ACB8D /* ZKDescribeLayout.m */,
+				F4C298651364AA63009ACB8D /* ZKDescribeLayoutButton.h */,
+				F4C298661364AA63009ACB8D /* ZKDescribeLayoutButton.m */,
+				F4C298671364AA63009ACB8D /* ZKDescribeLayoutButtonSection.h */,
+				F4C298681364AA63009ACB8D /* ZKDescribeLayoutButtonSection.m */,
+				F4C298691364AA63009ACB8D /* ZKDescribeLayoutComponent.h */,
+				F4C2986A1364AA63009ACB8D /* ZKDescribeLayoutComponent.m */,
+				F4C2986B1364AA63009ACB8D /* ZKDescribeLayoutItem.h */,
+				F4C2986C1364AA63009ACB8D /* ZKDescribeLayoutItem.m */,
+				F4C2986D1364AA63009ACB8D /* ZKDescribeLayoutResult.h */,
+				F4C2986E1364AA63009ACB8D /* ZKDescribeLayoutResult.m */,
+				F4C2986F1364AA63009ACB8D /* ZKDescribeLayoutRow.h */,
+				F4C298701364AA63009ACB8D /* ZKDescribeLayoutRow.m */,
+				F4C298711364AA63009ACB8D /* ZKDescribeLayoutSection.h */,
+				F4C298721364AA63009ACB8D /* ZKDescribeLayoutSection.m */,
+				F4C298731364AA63009ACB8D /* zkDescribeSObject.h */,
+				F4C298741364AA63009ACB8D /* zkDescribeSObject.m */,
+				F4C298751364AA63009ACB8D /* zkEnvelope.h */,
+				F4C298761364AA63009ACB8D /* zkEnvelope.m */,
+				F4C298771364AA63009ACB8D /* zkLoginResult.h */,
+				F4C298781364AA63009ACB8D /* zkLoginResult.m */,
+				F4C298791364AA63009ACB8D /* zkParser.h */,
+				F4C2987A1364AA63009ACB8D /* zkParser.m */,
+				F4C2987B1364AA63009ACB8D /* ZKPartnerEnvelope.h */,
+				F4C2987C1364AA63009ACB8D /* ZKPartnerEnvelope.m */,
+				F4C2987D1364AA63009ACB8D /* ZKPicklistEntry.h */,
+				F4C2987E1364AA63009ACB8D /* ZKPicklistEntry.m */,
+				F4C2987F1364AA63009ACB8D /* ZKPicklistForRecordType.h */,
+				F4C298801364AA63009ACB8D /* ZKPicklistForRecordType.m */,
+				F4C298831364AA63009ACB8D /* zkQueryResult.h */,
+				F4C298841364AA63009ACB8D /* zkQueryResult.m */,
+				F4C298851364AA63009ACB8D /* ZKRecordTypeInfo.h */,
+				F4C298861364AA63009ACB8D /* ZKRecordTypeInfo.m */,
+				F4C298871364AA63009ACB8D /* ZKRecordTypeMapping.h */,
+				F4C298881364AA63009ACB8D /* ZKRecordTypeMapping.m */,
+				F4C298891364AA63009ACB8D /* ZKRelatedList.h */,
+				F4C2988A1364AA63009ACB8D /* ZKRelatedList.m */,
+				F4C2988B1364AA63009ACB8D /* ZKRelatedListColumn.h */,
+				F4C2988C1364AA63009ACB8D /* ZKRelatedListColumn.m */,
+				F4C2988D1364AA63009ACB8D /* ZKRelatedListSort.h */,
+				F4C2988E1364AA63009ACB8D /* ZKRelatedListSort.m */,
+				F4C2988F1364AA63009ACB8D /* zkSaveResult.h */,
+				F4C298901364AA63009ACB8D /* zkSaveResult.m */,
+				F4C298911364AA63009ACB8D /* zkSforce.h */,
+				F4C298921364AA63009ACB8D /* zkSforceClient.h */,
+				F4C298931364AA63009ACB8D /* zkSforceClient.m */,
+				F4C298941364AA63009ACB8D /* zkSoapException.h */,
+				F4C298951364AA63009ACB8D /* zkSoapException.m */,
+				F4C298961364AA63009ACB8D /* zkSObject.h */,
+				F4C298971364AA63009ACB8D /* zkSObject.m */,
+				F4C298981364AA63009ACB8D /* zkUserInfo.h */,
+				F4C298991364AA63009ACB8D /* zkUserInfo.m */,
+				F4C2989A1364AA63009ACB8D /* zkXmlDeserializer.h */,
+				F4C2989B1364AA63009ACB8D /* zkXmlDeserializer.m */,
+			);
+			name = zksforce;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4C2979E13649C44009ACB8D /* iOSQueryDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4C297C013649C45009ACB8D /* Build configuration list for PBXNativeTarget "iOSQueryDemo" */;
+			buildPhases = (
+				F4C2979B13649C44009ACB8D /* Sources */,
+				F4C2979C13649C44009ACB8D /* Frameworks */,
+				F4C2979D13649C44009ACB8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSQueryDemo;
+			productName = iOSQueryDemo;
+			productReference = F4C2979F13649C44009ACB8D /* iOSQueryDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4C2979613649C44009ACB8D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Salesforce.com;
+			};
+			buildConfigurationList = F4C2979913649C44009ACB8D /* Build configuration list for PBXProject "iOSQueryDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F4C2979413649C44009ACB8D;
+			productRefGroup = F4C297A013649C44009ACB8D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4C2979E13649C44009ACB8D /* iOSQueryDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4C2979D13649C44009ACB8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4C297AE13649C44009ACB8D /* InfoPlist.strings in Resources */,
+				F4C297BD13649C45009ACB8D /* RootViewController.xib in Resources */,
+				F4C297C613649C54009ACB8D /* MainWindow-iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4C2979B13649C44009ACB8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4C297B113649C44009ACB8D /* main.m in Sources */,
+				F4C297B413649C44009ACB8D /* iOSQueryDemoAppDelegate.m in Sources */,
+				F4C297BA13649C45009ACB8D /* RootViewController.m in Sources */,
+				F4C2989C1364AA63009ACB8D /* zkAuthentication.m in Sources */,
+				F4C2989D1364AA63009ACB8D /* zkBaseClient.m in Sources */,
+				F4C2989E1364AA63009ACB8D /* zkChildRelationship.m in Sources */,
+				F4C2989F1364AA63009ACB8D /* zkDescribeField.m in Sources */,
+				F4C298A01364AA63009ACB8D /* zkDescribeGlobalSObject.m in Sources */,
+				F4C298A11364AA63009ACB8D /* ZKDescribeLayout.m in Sources */,
+				F4C298A21364AA63009ACB8D /* ZKDescribeLayoutButton.m in Sources */,
+				F4C298A31364AA63009ACB8D /* ZKDescribeLayoutButtonSection.m in Sources */,
+				F4C298A41364AA63009ACB8D /* ZKDescribeLayoutComponent.m in Sources */,
+				F4C298A51364AA63009ACB8D /* ZKDescribeLayoutItem.m in Sources */,
+				F4C298A61364AA63009ACB8D /* ZKDescribeLayoutResult.m in Sources */,
+				F4C298A71364AA63009ACB8D /* ZKDescribeLayoutRow.m in Sources */,
+				F4C298A81364AA63009ACB8D /* ZKDescribeLayoutSection.m in Sources */,
+				F4C298A91364AA63009ACB8D /* zkDescribeSObject.m in Sources */,
+				F4C298AA1364AA63009ACB8D /* zkEnvelope.m in Sources */,
+				F4C298AB1364AA63009ACB8D /* zkLoginResult.m in Sources */,
+				F4C298AC1364AA63009ACB8D /* zkParser.m in Sources */,
+				F4C298AD1364AA63009ACB8D /* ZKPartnerEnvelope.m in Sources */,
+				F4C298AE1364AA63009ACB8D /* ZKPicklistEntry.m in Sources */,
+				F4C298AF1364AA63009ACB8D /* ZKPicklistForRecordType.m in Sources */,
+				F4C298B11364AA63009ACB8D /* zkQueryResult.m in Sources */,
+				F4C298B21364AA63009ACB8D /* ZKRecordTypeInfo.m in Sources */,
+				F4C298B31364AA63009ACB8D /* ZKRecordTypeMapping.m in Sources */,
+				F4C298B41364AA63009ACB8D /* ZKRelatedList.m in Sources */,
+				F4C298B51364AA63009ACB8D /* ZKRelatedListColumn.m in Sources */,
+				F4C298B61364AA63009ACB8D /* ZKRelatedListSort.m in Sources */,
+				F4C298B71364AA63009ACB8D /* zkSaveResult.m in Sources */,
+				F4C298B81364AA63009ACB8D /* zkSforceClient.m in Sources */,
+				F4C298B91364AA63009ACB8D /* zkSoapException.m in Sources */,
+				F4C298BA1364AA63009ACB8D /* zkSObject.m in Sources */,
+				F4C298BB1364AA63009ACB8D /* zkUserInfo.m in Sources */,
+				F4C298BC1364AA63009ACB8D /* zkXmlDeserializer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F4C297AC13649C44009ACB8D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4C297AD13649C44009ACB8D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F4C297BB13649C45009ACB8D /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4C297BC13649C45009ACB8D /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		F4C297C413649C54009ACB8D /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4C297C513649C54009ACB8D /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4C297BE13649C45009ACB8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F4C297BF13649C45009ACB8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		F4C297C113649C45009ACB8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSQueryDemo/iOSQueryDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "iOSQueryDemo/iOSQueryDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F4C297C213649C45009ACB8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSQueryDemo/iOSQueryDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "iOSQueryDemo/iOSQueryDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4C2979913649C44009ACB8D /* Build configuration list for PBXProject "iOSQueryDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4C297BE13649C45009ACB8D /* Debug */,
+				F4C297BF13649C45009ACB8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4C297C013649C45009ACB8D /* Build configuration list for PBXNativeTarget "iOSQueryDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4C297C113649C45009ACB8D /* Debug */,
+				F4C297C213649C45009ACB8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4C2979613649C44009ACB8D /* Project object */;
+}
