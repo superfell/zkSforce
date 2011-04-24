@@ -39,6 +39,7 @@ static const int SAVE_BATCH_SIZE = 25;
 - (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 - (void)checkSession;
+@property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
 @end
 
 @implementation ZKSforceClient
@@ -85,6 +86,7 @@ static const int SAVE_BATCH_SIZE = 25;
     [authSource autorelease];
     authSource = [authenticationInfo retain];
     self.endpointUrl = [authSource instanceUrl];
+    self.userInfo = nil;
 }
 
 - (void)flushCachedDescribes {
@@ -110,18 +112,27 @@ static const int SAVE_BATCH_SIZE = 25;
 - (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
     ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:clientId];
 	ZKLoginResult *lr = [auth login];
-    [userInfo release];
-    userInfo = [[lr userInfo] retain];
     [self setAuthenticationInfo:auth];
+    self.userInfo = lr.userInfo;
     return lr;
 }
 
-- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl clientId:(NSString *)oauthClientId{
+- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId{
     ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl] clientId:oauthClientId];
     [auth setApiVersion:preferedApiVersion];
-    [userInfo release];
-    userInfo = nil;
     [self setAuthenticationInfo:auth];
+}
+
+- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid {
+    ZKOAuthInfo *auth = [[[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid] autorelease];
+    [auth setApiVersion:preferedApiVersion];
+    [self setAuthenticationInfo:auth];
+    [self checkSession];
+}
+
+-(void)setUserInfo:(ZKUserInfo *)ui {
+    [userInfo autorelease];
+    userInfo = [ui retain];
 }
 
 - (BOOL)loggedIn {

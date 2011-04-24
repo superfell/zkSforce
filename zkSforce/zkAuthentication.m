@@ -62,7 +62,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @implementation ZKOAuthInfo
 
-@synthesize apiVersion;
+@synthesize apiVersion, refreshToken, authHostUrl=authUrl;
 
 +(NSDictionary *)decodeParams:(NSString *)params {
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
@@ -72,6 +72,10 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
         NSString *val = [paramParts count] == 1 ? @"" : [[paramParts objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [results setObject:val forKey:name];
     }
+    if ([results objectForKey:@"error"] != nil)
+        @throw [NSException exceptionWithName:@"OAuth Error" 
+                                       reason:[NSString stringWithFormat:@"%@ : %@", [results objectForKey:@"error"], [results objectForKey:@"error_description"]]
+                                     userInfo:results];
     return results;
 }
 
@@ -129,13 +133,8 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
  	NSHTTPURLResponse *resp = nil;
 	NSError *err = nil;
 	NSData *respPayload = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err];
-    
     NSString *respBody = [[[NSString alloc] initWithBytes:[respPayload bytes] length:[respPayload length] encoding:NSUTF8StringEncoding] autorelease];
     NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
-    if ([results objectForKey:@"error"] != nil)
-        @throw [NSException exceptionWithName:@"OAuth Error" 
-                                       reason:[NSString stringWithFormat:@"%@ : %@", [results objectForKey:@"error"], [results objectForKey:@"error_description"]]
-                                     userInfo:results];
     
     self.sessionId = [results objectForKey:@"access_token"];
     self.instanceUrl = [NSURL URLWithString:[results objectForKey:@"instance_url"]];

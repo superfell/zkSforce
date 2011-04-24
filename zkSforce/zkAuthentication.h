@@ -58,6 +58,8 @@
 -(id)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)authUrl sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid;
 
 @property (assign) int apiVersion;
+@property (readonly) NSURL *authHostUrl;
+@property (readonly) NSString *refreshToken;
 @end
 
 

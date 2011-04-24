@@ -42,9 +42,26 @@ static NSString *OAUTH_CALLBCAK = @"compocketsoapoauthdemo:///done";
     NSLog(@"got oauth callback : %@", url);
     
     ZKSforceClient *client = [[[ZKSforceClient alloc] init] autorelease];
-    [client loginFromOAuthCallbackUrl:url clientId:OAUTH_CLIENTID];
+    [client loginFromOAuthCallbackUrl:url oAuthConsumerKey:OAUTH_CLIENTID];
     
     [controller setClient:client];
 }
+
+
+-(IBAction)createNewClient:(id)sender {
+    // if you've saved the refresh token & auth host away, you can
+    // build a new client from that, and it'll get a sessionId as needed.
+
+    // in this case we're just going to get the token out of the existing client object, 
+    // normally, you'd be storing this in the key chain so that is preserved across restarts.
+    ZKOAuthInfo *oauth = (ZKOAuthInfo *)[[controller client] authenticationInfo];
+    NSString *refreshToken = [oauth refreshToken];
+    NSURL *authHost = [oauth authHostUrl];
+    
+    ZKSforceClient *c = [[[ZKSforceClient alloc] init] autorelease];
+    [c loginWithRefreshToken:refreshToken authUrl:authHost oAuthConsumerKey:OAUTH_CLIENTID];
+    [controller setClient:c];
+}
+
 
 @end

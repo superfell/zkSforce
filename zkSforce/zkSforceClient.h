@@ -74,8 +74,11 @@
 // Initialize the authentication info from the parameters contained in the OAuth
 // completion callback Uri passed in.
 // call this when the oauth flow is complete, this doesn't start the oauth flow.
-- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl clientId:(NSString *)oauthClientId;
+- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId;
 
+// Login by making a refresh token request with this refresh Token to the specifed
+// authentication host. oAuthConsumerKey is the oauth client_id / consumer key
+- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId;
 
 // Authentication Management
 // This lets you manage different authentication schemes, like oauth

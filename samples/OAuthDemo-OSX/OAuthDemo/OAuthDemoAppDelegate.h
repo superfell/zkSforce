@@ -14,5 +14,6 @@
 }
 
 -(IBAction)startLogin:(id)sender;
+-(IBAction)createNewClient:(id)sender;
 
 @end

@@ -9,24 +9,15 @@
 #import "zkSforceClient.h"
 #import "zkQueryResult.h"
 #import "zkQueryResult_NSTableView.h"
+#import "zkAuthentication.h"
 
 @implementation QueryController
 
-@synthesize results, lastSid;
+@synthesize results, client;
 
 // This tells KVO (and theirfore the UI binding, that the 'CanQuery' property value is affected by changes to the 'Client' property
 +(NSSet *)keyPathsForValuesAffectingCanQuery {
     return [NSSet setWithObject:@"client"];
-}
-
--(ZKSforceClient *)client {
-    return client;
-}
-
--(void)setClient:(ZKSforceClient *)c {
-    [client autorelease];
-    client = [c retain];
-    self.lastSid = [client sessionId];
 }
 
 -(BOOL)canQuery {
@@ -38,13 +29,12 @@
     self.results = qr;
     [table setDataSource:qr];
     [table reloadData];
-    self.lastSid = [client sessionId];
 }
 
 -(IBAction)refreshSid:(id)sender {
     // normally you wouldn't need to do this, but its handy to see how it works.
     [[client authenticationInfo] refresh];
-    self.lastSid = [client sessionId];
 }
+
 
 @end
