@@ -6,7 +6,7 @@ It demonstrates use of Objective-C blocks to make the web services calls on a ba
 
 I also have a number of open source projects that use zkSforce that you can also look at for usage samples
 
- * [Maildrop](http://code.google.com/p/maildrop/source/browse/#svn/trunk)
- * [SF3](http://code.google.com/p/sf3/source/browse#svn/trunk)
+ * [Maildrop](https://github.com/superfell/maildrop)
+ * [SF3](https://github.com/superfell/sf3)
  * [SFFS](http://code.google.com/p/sffs/source/browse/#svn/trunk)
  
