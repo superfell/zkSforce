@@ -84,8 +84,9 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     // TODO
 }
 
--(void)refreshIfNeeded {
+-(BOOL)refreshIfNeeded {
     // TODO
+    return FALSE;
 }
 
 @end
@@ -125,9 +126,12 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     [self login];
 }
 
--(void)refreshIfNeeded {
-	if ([sessionExpiresAt timeIntervalSinceNow] < 0)
+-(BOOL)refreshIfNeeded {
+	if ([sessionExpiresAt timeIntervalSinceNow] < 0) {
 		[self login];    
+        return TRUE;
+    }
+    return FALSE;
 }
 
 -(ZKLoginResult *)login {

@@ -129,7 +129,8 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (void)checkSession {
-    [authSource refreshIfNeeded];
+    if ([authSource refreshIfNeeded])
+        self.endpointUrl = [authSource instanceUrl];
 }
 
 - (ZKUserInfo *)currentUserInfo {

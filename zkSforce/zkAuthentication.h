@@ -28,7 +28,8 @@
 -(NSString *)sessionId;     // return an API Session ID.
 -(NSURL *)instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
 -(void)refresh;             // force the sessionId to be refreshed.
--(void)refreshIfNeeded;     // refresh the sesion if its needed. (this gets called before every soap call)
+-(BOOL)refreshIfNeeded;     // refresh the sesion if its needed. (this gets called before every soap call)
+                            // return true if the session was refreshed.
 
 @end
 
