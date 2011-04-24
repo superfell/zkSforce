@@ -27,6 +27,37 @@
 
 static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
+@interface ZKAuthInfoBase()
+@property (retain) NSString *sessionId;
+@property (retain) NSURL *instanceUrl;
+@property (retain) NSDate *sessionExpiresAt;
+@end
+
+@implementation ZKAuthInfoBase
+
+@synthesize sessionId, instanceUrl, sessionExpiresAt;
+
+-(void)dealloc {
+    [sessionId release];
+    [instanceUrl release];
+    [sessionExpiresAt release];
+    [super dealloc];
+}
+
+-(void)refresh {
+    // override me!
+}
+
+-(BOOL)refreshIfNeeded {
+	if (([sessionExpiresAt timeIntervalSinceNow] < 0) || (sessionId == nil)) {
+		[self refresh];    
+        return TRUE;
+    }
+    return FALSE;
+}
+
+@end
+
 @implementation ZKOAuthInfo
 
 @synthesize apiVersion;
@@ -65,15 +96,9 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 -(void)dealloc {
-    [sessionId release];
-    [instanceUrl release];
     [refreshToken release];
     [authUrl release];
     [super dealloc];
-}
-
--(NSString *)sessionId {
-    return sessionId;
 }
 
 -(NSURL *)instanceUrl {
@@ -85,53 +110,35 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 -(BOOL)refreshIfNeeded {
-    // TODO
-    return FALSE;
+    BOOL r = [super refreshIfNeeded];
+    self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
+    return r;
 }
 
 @end
 
-@interface ZKSoapLogin()
-@property (retain) NSString *sessionId;
-@property (retain) NSURL *instanceUrl;
-@property (retain) NSDate *sessionExpiresAt;
-@end
-
 @implementation ZKSoapLogin
-
-@synthesize sessionId, instanceUrl, sessionExpiresAt;
 
 -(id)initWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid {
     self = [super init];
     username = [un retain];
     password = [pwd retain];
-    authUrl = [[NSURL URLWithString:@"/" relativeToURL:auth] retain];
     clientId = [cid retain];
-	endpointUrl = [[NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", v] relativeToURL:authUrl] retain];
+    client = [[ZKBaseClient alloc] init];
+	client.endpointUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", v] relativeToURL:auth];
     return self;
 }
 
 -(void)dealloc {
     [username release];
     [password release];
-    [authUrl release];
-    [instanceUrl release];
-    [sessionId release];
     [clientId release];
-    [sessionExpiresAt release];
+    [client release];
     [super dealloc];
 }
 
 -(void)refresh {
     [self login];
-}
-
--(BOOL)refreshIfNeeded {
-	if ([sessionExpiresAt timeIntervalSinceNow] < 0) {
-		[self login];    
-        return TRUE;
-    }
-    return FALSE;
 }
 
 -(ZKLoginResult *)login {
@@ -144,7 +151,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 	NSString *xml = [env end];
 	[env release];
 	
-	zkElement *resp = [self sendRequest:xml];	
+	zkElement *resp = [client sendRequest:xml];	
 	zkElement *result = [[resp childElements:@"result"] objectAtIndex:0];
 	ZKLoginResult *lr = [[[ZKLoginResult alloc] initWithXmlElement:result] autorelease];
 	

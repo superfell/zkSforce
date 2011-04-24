@@ -22,6 +22,7 @@
 #import "zkBaseClient.h"
 
 @class ZKLoginResult;
+@class ZKBaseClient;
 
 @protocol ZKAuthenticationInfo 
 
@@ -33,10 +34,19 @@
 
 @end
 
+// base class with common auth code in.
+@interface ZKAuthInfoBase : NSObject <ZKAuthenticationInfo> {
+    NSURL  *instanceUrl;
+    NSDate *sessionExpiresAt;
+    NSString *sessionId;
+}
+
+@end
+
 // Impl of ZKAuthenticationInfo that uses an OAuth2 refresh token to generate new session Ids.
-@interface ZKOAuthInfo : NSObject <ZKAuthenticationInfo> {
-    NSString *sessionId, *refreshToken;
-    NSURL *instanceUrl, *authUrl;
+@interface ZKOAuthInfo : ZKAuthInfoBase {
+    NSString *refreshToken;
+    NSURL *authUrl;
     int apiVersion;
 }
 
@@ -51,10 +61,9 @@
 
 
 // Impl of ZKAuthenticationInfo that uses Soap Login calls to generate new session Ids.
-@interface ZKSoapLogin : ZKBaseClient<ZKAuthenticationInfo> {
-    NSString *username, *password, *sessionId, *clientId;
-    NSURL    *instanceUrl, *authUrl;
-    NSDate	 *sessionExpiresAt;
+@interface ZKSoapLogin : ZKAuthInfoBase {
+    NSString *username, *password, *clientId;
+    ZKBaseClient *client;
 }
 
 +(id)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid;
