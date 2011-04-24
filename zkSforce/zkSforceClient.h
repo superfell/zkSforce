@@ -47,10 +47,10 @@
 
 // configuration for where to connect to and what api version to use
 //////////////////////////////////////////////////////////////////////////////////////
-// Set the default API version to connect to. (defaults to v20.0)
+// Set the default API version to connect to. (defaults to v21.0)
 // login will automatically detect if the endpoint doesn't have this
 // version and automatically retry on a lower API version.
--(void)setPreferedApiVersion:(int)v;
+@property (assign) int preferedApiVersion;
 
 // What endpoint to connect to? this should just be the protocol and host
 // part of the URL, e.g. https://test.salesforce.com
@@ -62,16 +62,9 @@
 // returns an NSURL of where authentication will currently go.
 -(NSURL *)authEndpointUrl;
 
-// Authentication Management
-// This lets you manage different authentication schemes, like oauth
+
 //////////////////////////////////////////////////////////////////////////////////////
--(NSObject<ZKAuthenticationInfo> *)authenticationInfo;
-
--(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo;
-
-
-// thse set of methods pretty much map directly onto their Web Services counterparts.
-// These methods will throw a ZKSoapException if there's an error.
+// Start an API session, need to call one of these before making any api calls
 //////////////////////////////////////////////////////////////////////////////////////
 
 // Attempt a login request. If a security token is required to be used you need to
@@ -81,6 +74,19 @@
 // Initialize the authentication info from the parameters contained in the OAuth
 // completion callback Uri passed in.
 - (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl;
+
+
+// Authentication Management
+// This lets you manage different authentication schemes, like oauth
+// Normally you'd just call login:password or loginFromOAuthCallbackUrl:
+// which will create a ZKAuthenticationInfo object for you.
+//////////////////////////////////////////////////////////////////////////////////////
+@property (retain) NSObject<ZKAuthenticationInfo> *authenticationInfo;
+
+
+// thse set of methods pretty much map directly onto their Web Services counterparts.
+// These methods will throw a ZKSoapException if there's an error.
+//////////////////////////////////////////////////////////////////////////////////////
 
 // makes a desribeGlobal call and returns an array of ZKDescribeGlobalSobject instances.
 // if describeCaching is enabled, subsequent calls to this will use the locally cached
@@ -147,18 +153,15 @@
 // SOAP Headers
 //////////////////////////////////////////////////////////////////////////////////////
 // Should create/update calls also update the users MRU info? (defaults false)
-- (BOOL)updateMru;
-- (void)setUpdateMru:(BOOL)aValue;
+@property (assign) BOOL updateMru;
 
 // If you have a clientIf for a certifed partner application, you can set it here.
-- (NSString *)clientId;
-- (void)setClientId:(NSString *)aClientId;
+@property (retain) NSString *clientId;
 
 
 // describe caching
 //////////////////////////////////////////////////////////////////////////////////////
-- (BOOL)cacheDescribes;
-- (void)setCacheDescribes:(BOOL)newCacheDescribes;
+@property (assign) BOOL cacheDescribes;
 - (void)flushCachedDescribes;
 
 @end

@@ -43,6 +43,8 @@ static const int SAVE_BATCH_SIZE = 25;
 
 @implementation ZKSforceClient
 
+@synthesize preferedApiVersion, updateMru, clientId, cacheDescribes;
+
 - (id)init {
 	self = [super init];
 	preferedApiVersion = 21;
@@ -83,28 +85,6 @@ static const int SAVE_BATCH_SIZE = 25;
     [authSource autorelease];
     authSource = [authenticationInfo retain];
     self.endpointUrl = [authSource instanceUrl];
-}
-
--(void)setPreferedApiVersion:(int)v {
-	preferedApiVersion = v;
-}
-
-- (BOOL)updateMru {
-	return updateMru;
-}
-
-- (void)setUpdateMru:(BOOL)aValue {
-	updateMru = aValue;
-}
-
-- (BOOL)cacheDescribes {
-	return cacheDescribes;
-}
-
-- (void)setCacheDescribes:(BOOL)newCacheDescribes {
-	if (cacheDescribes == newCacheDescribes) return;
-	cacheDescribes = newCacheDescribes;
-	[self flushCachedDescribes];
 }
 
 - (void)flushCachedDescribes {
@@ -163,17 +143,6 @@ static const int SAVE_BATCH_SIZE = 25;
 - (NSString *)sessionId {
 	[self checkSession];
 	return [authSource sessionId];
-}
-
-
-- (NSString *)clientId {
-	return clientId;
-}
-
-- (void)setClientId:(NSString *)aClientId {
-	aClientId = [aClientId copy];
-	[clientId release];
-	clientId = aClientId;
 }
 
 - (void)setPassword:(NSString *)newPassword forUserId:(NSString *)userId {
