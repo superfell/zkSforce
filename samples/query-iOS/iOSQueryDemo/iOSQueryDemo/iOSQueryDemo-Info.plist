@@ -36,5 +36,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>OAuth Completion URL</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>compocketsoapoauthdemo</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
