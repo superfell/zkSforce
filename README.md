@@ -2,12 +2,13 @@
 
 zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iPhone projects. (supports OSX 10.5 and up, and iOS 3.2 and up)
 
-zkSforce supports all the common methods in the partner web services API
+zkSforce supports all the popular methods in the partner web services API
 
  * login
  * describeGlobal, describeSObject, describeLayout
  * create, update, delete
  * search, query, queryAll
+ * OAuth support for refresh tokens
 
 The following methods are not currently supported
 
@@ -15,6 +16,7 @@ The following methods are not currently supported
  * upsert, undelete, merge, convertLead
  * getDeleted & getUpdated
  * process
+
 
 In general the client acts just like the Web Services API, however in a few places it has some smarts to make your life easier.
 
@@ -52,6 +54,21 @@ Login and create a new contact for Simon Fell, and check the result
         [sforce release];
 
 
+As well as the tradional username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
+
+		ZKSforceClient *sforce = [[ZKSforceClient alloc] init];
+		[sforce loginFromOAuthCallbackUrl:callbackUrl oAuthConsumerKey:OAUTH_CLIENTID];
+		// use as normal
+
+
+You'll need to store the refresh_token and authHost somewhere safe, like the keychain, then when you restart, you can pass these to ZKSforceClient to initialize it, it'll automatically use the refresh token service to get a new sessionId.
+
+	ZKSforceClient *sforce = [[ZKSforceClient alloc] init];
+	[sforce loginWithRefreshToken:refreshToken authUrl:authHost oAuthConsumerKey:OAUTH_CLIENTID];
+	// use as normal
+	// See the OAuthDemo sample for more info.
+	
+	
 ## Project setup
 
 In order to support usage on both OSX & iPhone OS (so iPhone, iPod Touch, iPad), the library now uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iPhone OS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on  these steps.
