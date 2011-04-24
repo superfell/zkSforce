@@ -24,7 +24,7 @@
 #import "QueryController.h"
 
 static NSString *OAUTH_CLIENTID = @"3MVG99OxTyEMCQ3hP1_9.Mh8dF9TWo9xz6pJ7Hn_6m5irZ1id.xk4XR89yKEuRufdqMbJuBobXTVOqnD0xri_";
-static NSString *OAUTH_CALLBCAK = @"compocketsoapoauthdemo:///done";
+static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 
 @implementation OAuthDemoAppDelegate
 
@@ -32,7 +32,7 @@ static NSString *OAUTH_CALLBCAK = @"compocketsoapoauthdemo:///done";
     // build the URL to the oauth page with our client_id & callback URL set.
     NSString *login = [NSString stringWithFormat:@"https://login.salesforce.com/services/oauth2/authorize?response_type=token&client_id=%@&redirect_uri=%@",
                        [OAUTH_CLIENTID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                       [OAUTH_CALLBCAK stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                       [OAUTH_CALLBACK stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURL *url = [NSURL URLWithString:login];
 
     // ask the OS to open browser to the URL
@@ -53,10 +53,13 @@ static NSString *OAUTH_CALLBCAK = @"compocketsoapoauthdemo:///done";
 	NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
 
 	// Now you can parse the URL and perform whatever action is needed
-    NSLog(@"got oauth callback : %@", url);
     
     ZKSforceClient *client = [[[ZKSforceClient alloc] init] autorelease];
     [client loginFromOAuthCallbackUrl:url oAuthConsumerKey:OAUTH_CLIENTID];
+
+    // in a real app, you'd save the refresh_token & auth host to the keychain, and on
+    // relaunch, try and intialize your client from that first, so that you can skip
+    // the login step.
     
     [controller setClient:client];
 }
