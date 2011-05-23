@@ -39,6 +39,7 @@ static const int SAVE_BATCH_SIZE = 25;
 - (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 - (void)checkSession;
+- (ZKUserInfo *)getUserInfo;
 @property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
 @end
 
@@ -145,6 +146,8 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKUserInfo *)currentUserInfo {
+    if (userInfo == nil)
+        userInfo = [self getUserInfo];
 	return userInfo;
 }
 
@@ -169,6 +172,21 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env endElement:@"s:Body"];
 	
 	[self sendRequest:[env end]];
+}
+
+- (ZKUserInfo *)getUserInfo {
+	if(!authSource) return NULL;
+	[self checkSession];
+    
+    ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+    [env startElement:@"getUserInfo"];
+    [env endElement:@"getUserInfo"];
+    [env endElement:@"s:Body"];
+    
+    zkElement *r = [self sendRequest:[env end]];
+    zkElement *ui = [r childElement:@"result"];
+    ZKUserInfo *result = [[[ZKUserInfo alloc] initWithXmlElement:ui] autorelease];
+    return result;
 }
 
 - (NSArray *)describeGlobal {
