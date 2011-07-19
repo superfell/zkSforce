@@ -53,6 +53,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[self setLoginProtocolAndHost:@"https://www.salesforce.com"];
 	updateMru = NO;
 	cacheDescribes = NO;
+	describes = [[NSMutableDictionary alloc] init];
 	return self;
 }
 
