@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2011 Simon Fell
+// Copyright (c) 2011 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,18 +19,29 @@
 // THE SOFTWARE.
 //
 
+#import "zkXmlDeserializer.h"
 
-// this just imports everything else that's you'll need access to, to make
-// it easy to pull in everything you might need. you can use this, or just
-// import the bits you care about.
+//<complexType name="DescribeTab">
+//<sequence>
+//<element name="custom"           type="xsd:boolean" />
+//<element name="iconUrl"          type="xsd:string" />
+//<element name="label"            type="xsd:string" />
+//<element name="miniIconUrl"      type="xsd:string" />
+//<element name="sobjectName"      type="xsd:string" nillable="true" />
+//<element name="url"              type="xsd:string" />
+//</sequence>
+//</complexType>
 
-#import "zkSforceClient.h"
-#import "zkUserInfo.h"
-#import "zkSObject.h"
-#import "zkSoapException.h"
-#import "zkSaveResult.h"
-#import "zkQueryResult.h"
-#import "zkDescribeSObject.h"
-#import "zkDescribeField.h"
-#import "ZKDescribeTab.h"
-#import "ZKDescribeTabSetResult.h"
+@interface ZKDescribeTab : ZKXmlDeserializer {
+}
+
+-(BOOL)custom;
+-(NSString *)sobjectName;
+-(NSString *)label;
+
+-(NSString *)iconUrl;
+-(NSString *)miniIconUrl;
+
+-(NSString *)url;
+
+@end

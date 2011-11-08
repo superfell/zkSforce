@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2011 Simon Fell
+// Copyright (c) 2011 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,18 +19,32 @@
 // THE SOFTWARE.
 //
 
-
-// this just imports everything else that's you'll need access to, to make
-// it easy to pull in everything you might need. you can use this, or just
-// import the bits you care about.
-
-#import "zkSforceClient.h"
-#import "zkUserInfo.h"
-#import "zkSObject.h"
-#import "zkSoapException.h"
-#import "zkSaveResult.h"
-#import "zkQueryResult.h"
-#import "zkDescribeSObject.h"
-#import "zkDescribeField.h"
 #import "ZKDescribeTab.h"
-#import "ZKDescribeTabSetResult.h"
+
+@implementation ZKDescribeTab
+
+-(BOOL)custom {
+    return [self boolean:@"custom"];
+}
+
+-(NSString *)sobjectName {
+    return [self string:@"sobjectName"];
+}
+
+-(NSString *)label {
+    return [self string:@"label"];
+}
+
+-(NSString *)iconUrl {
+    return [self string:@"iconUrl"];
+}
+
+-(NSString *)miniIconUrl {
+    return [self string:@"miniIconUrl"];
+}
+
+-(NSString *)url {
+    return [self string:@"url"];
+}
+
+@end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2011 Simon Fell
+// Copyright (c) 2011 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,18 +19,26 @@
 // THE SOFTWARE.
 //
 
-
-// this just imports everything else that's you'll need access to, to make
-// it easy to pull in everything you might need. you can use this, or just
-// import the bits you care about.
-
-#import "zkSforceClient.h"
-#import "zkUserInfo.h"
-#import "zkSObject.h"
-#import "zkSoapException.h"
-#import "zkSaveResult.h"
-#import "zkQueryResult.h"
-#import "zkDescribeSObject.h"
-#import "zkDescribeField.h"
+#import "zkXmlDeserializer.h"
 #import "ZKDescribeTab.h"
-#import "ZKDescribeTabSetResult.h"
+
+//<complexType name="DescribeTabSetResult">
+//<sequence>
+//<element name="label"           type="xsd:string" />
+//<element name="logoUrl"         type="xsd:string" />
+//<element name="namespace"       type="xsd:string" minOccurs="0"/>
+//<element name="selected"        type="xsd:boolean" />
+//<element name="tabs"            type="tns:DescribeTab" minOccurs="0" maxOccurs="unbounded"/>
+//</sequence>
+//</complexType>
+
+@interface ZKDescribeTabSetResult : ZKXmlDeserializer {
+}
+
+-(NSString *)label;
+-(NSString *)logoUrl;
+-(NSString *)namespace;
+-(BOOL)selected;
+-(NSArray *)tabs;   // array of ZKDescribeTab
+
+@end

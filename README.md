@@ -5,7 +5,7 @@ zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](h
 zkSforce supports all the popular methods in the partner web services API
 
  * login, getUserInfo
- * describeGlobal, describeSObject, describeLayout
+ * describeGlobal, describeSObject, describeLayout, describeTabs
  * create, update, delete
  * search, query, queryAll
  * OAuth support for refresh tokens
@@ -54,7 +54,7 @@ Login and create a new contact for Simon Fell, and check the result
         [sforce release];
 
 
-As well as the tradional username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
+As well as the traditonal username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
 
 		ZKSforceClient *sforce = [[ZKSforceClient alloc] init];
 		[sforce loginFromOAuthCallbackUrl:callbackUrl oAuthConsumerKey:OAUTH_CLIENTID];

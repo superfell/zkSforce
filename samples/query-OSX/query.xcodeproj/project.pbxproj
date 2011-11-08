@@ -46,8 +46,10 @@
 		F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05D12B5881D0052D468 /* zkXmlDeserializer.m */; };
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
+		F47E2FC01468EB430070F6F8 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */; };
 		F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0A1363908A000CDE02 /* zkAuthentication.m */; };
 		F4C2983B1364A283009ACB8D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F4C2983A1364A283009ACB8D /* readme.md */; };
+		F4C2D25A1468EC8100C73F09 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,9 +133,13 @@
 		F44CC08412B588AE0052D468 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F44CC08F12B58BA40052D468 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryController.h; sourceTree = "<group>"; };
 		F44CC09012B58BA40052D468 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
+		F47E2FBE1468EB430070F6F8 /* ZKDescribeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTab.h; path = ../../zkSforce/ZKDescribeTab.h; sourceTree = "<group>"; };
+		F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTab.m; path = ../../zkSforce/ZKDescribeTab.m; sourceTree = "<group>"; };
 		F49C1D091363908A000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
 		F49C1D0A1363908A000CDE02 /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
 		F4C2983A1364A283009ACB8D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
+		F4C2D2581468EC8100C73F09 /* ZKDescribeTabSetResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTabSetResult.h; path = ../../zkSforce/ZKDescribeTabSetResult.h; sourceTree = "<group>"; };
+		F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTabSetResult.m; path = ../../zkSforce/ZKDescribeTabSetResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +266,10 @@
 				F44CC03412B5881D0052D468 /* ZKDescribeLayoutSection.m */,
 				F44CC03512B5881D0052D468 /* zkDescribeSObject.h */,
 				F44CC03612B5881D0052D468 /* zkDescribeSObject.m */,
+				F47E2FBE1468EB430070F6F8 /* ZKDescribeTab.h */,
+				F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */,
+				F4C2D2581468EC8100C73F09 /* ZKDescribeTabSetResult.h */,
+				F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */,
 				F44CC03712B5881D0052D468 /* zkEnvelope.h */,
 				F44CC03812B5881D0052D468 /* zkEnvelope.m */,
 				F44CC03912B5881D0052D468 /* zkLoginResult.h */,
@@ -399,6 +409,8 @@
 				F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */,
 				F44CC09112B58BA40052D468 /* QueryController.m in Sources */,
 				F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */,
+				F47E2FC01468EB430070F6F8 /* ZKDescribeTab.m in Sources */,
+				F4C2D25A1468EC8100C73F09 /* ZKDescribeTabSetResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

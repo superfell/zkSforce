@@ -102,9 +102,13 @@
 // cached copy.
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName;
 
-// makes a describeLayout call and returns a ZKDescribeLayoutResult isntance.
+// makes a describeLayout call and returns a ZKDescribeLayoutResult instance.
 // these are NOT cached, regardless of the describe caching flag.
 - (ZKDescribeLayoutResult *)describeLayout:(NSString *)sobjectName recordTypeIds:(NSArray *)recordTypeIds;
+
+// makes a describeTabs call and returns an Array of ZKDescribeTabResult instances.
+// these are NOT cached, regardless of the describe caching flag.
+- (NSArray *)describeTabs;
 
 // makes a search call with the passed in SOSL expression, returns an array of ZKSObject
 // instances.
