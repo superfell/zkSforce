@@ -51,4 +51,6 @@
 // v21.0
 -(int)orgAttachmentFileSizeLimit;
 -(int)sessionSecondsValid;
+// v23.0
+-(NSString *)userDefaultCurrencyIsoCode;
 @end

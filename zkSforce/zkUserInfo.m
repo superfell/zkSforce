@@ -111,9 +111,10 @@
 -(int)orgAttachmentFileSizeLimit {
 	return [self integer:@"orgAttachmentFileSizeLimit"];
 }
-
 -(int)sessionSecondsValid {
 	return [self integer:@"sessionSecondsValid"];
 }
-
+-(NSString *)userDefaultCurrencyIsoCode {
+    return [self string:@"userDefaultCurrencyIsoCode"];
+}
 @end
