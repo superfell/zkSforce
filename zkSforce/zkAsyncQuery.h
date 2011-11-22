@@ -59,6 +59,7 @@
  ** Asynchronously perform a SOSL query using zksforce over SOAP. Example usage:
  
  [zkAsyncQuery performSOSLQuery:@"FIND {batman*} IN NAME FIELDS RETURNING User (id,name)"
+                     withClient:client
                       failBlock:^(NSException *e) {
                            NSLog(@"SOSL failed with exception: %@", e);
                       }
