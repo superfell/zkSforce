@@ -468,7 +468,7 @@ static const int SAVE_BATCH_SIZE = 25;
     }
 
     if( ![self loggedIn] ) {
-        NSLog(@"SOQL: Invalid client, or client does not have a valid session.");
+        NSLog(@"SOSL: Invalid client, or client does not have a valid session.");
         return;
     }
         

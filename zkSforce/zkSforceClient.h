@@ -177,7 +177,7 @@
 /**
  ** Asynchronously perform a SOQL query using zksforce over SOAP. Example usage:
  
- [client performSOQLQuery:@"select id from user limit 10"
+ 	   [client performSOQLQuery:@"select id from user limit 10"
                       failBlock:^(NSException *e) {
                           NSLog(@"SOQL failed with exception: %@", e);
                       }
@@ -200,7 +200,7 @@
 /**
  ** Asynchronously perform a SOSL query using zksforce over SOAP. Example usage:
  
- [client performSOSLQuery:@"FIND {batman*} IN NAME FIELDS RETURNING User (id,name)"
+       [client performSOSLQuery:@"FIND {batman*} IN NAME FIELDS RETURNING User (id,name)"
                       failBlock:^(NSException *e) {
                            NSLog(@"SOSL failed with exception: %@", e);
                       }
