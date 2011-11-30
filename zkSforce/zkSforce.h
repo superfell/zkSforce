@@ -25,6 +25,7 @@
 // import the bits you care about.
 
 #import "zkSforceClient.h"
+#import "zkSforceClient+zkAsyncQuery.h"
 #import "zkUserInfo.h"
 #import "zkSObject.h"
 #import "zkSoapException.h"

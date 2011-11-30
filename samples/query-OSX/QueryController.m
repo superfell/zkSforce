@@ -24,7 +24,7 @@
 #import "zkSforceClient.h"
 #import "zkSoapException.h"
 #import "zkQueryResult.h"
-#import "zkQueryResult_NSTableView.h"
+#import "zkQueryResult+NSTableView.h"
 
 @interface QueryController ()
 @property (retain) ZKSforceClient *client;

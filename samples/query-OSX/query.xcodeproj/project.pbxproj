@@ -31,7 +31,7 @@
 		F44CC06E12B5881D0052D468 /* ZKPartnerEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC03E12B5881D0052D468 /* ZKPartnerEnvelope.m */; };
 		F44CC06F12B5881D0052D468 /* ZKPicklistEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04012B5881D0052D468 /* ZKPicklistEntry.m */; };
 		F44CC07012B5881D0052D468 /* ZKPicklistForRecordType.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04212B5881D0052D468 /* ZKPicklistForRecordType.m */; };
-		F44CC07112B5881D0052D468 /* zkQueryResult_NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04412B5881D0052D468 /* zkQueryResult_NSTableView.m */; };
+		F44CC07112B5881D0052D468 /* zkQueryResult+NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04412B5881D0052D468 /* zkQueryResult+NSTableView.m */; };
 		F44CC07212B5881D0052D468 /* zkQueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04612B5881D0052D468 /* zkQueryResult.m */; };
 		F44CC07312B5881D0052D468 /* ZKRecordTypeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04812B5881D0052D468 /* ZKRecordTypeInfo.m */; };
 		F44CC07412B5881D0052D468 /* ZKRecordTypeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC04A12B5881D0052D468 /* ZKRecordTypeMapping.m */; };
@@ -46,6 +46,7 @@
 		F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05D12B5881D0052D468 /* zkXmlDeserializer.m */; };
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
+		F46B68A81485E06F00493685 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */; };
 		F47E2FC01468EB430070F6F8 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */; };
 		F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0A1363908A000CDE02 /* zkAuthentication.m */; };
 		F4C2983B1364A283009ACB8D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F4C2983A1364A283009ACB8D /* readme.md */; };
@@ -103,8 +104,8 @@
 		F44CC04012B5881D0052D468 /* ZKPicklistEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistEntry.m; path = ../../zkSforce/ZKPicklistEntry.m; sourceTree = SOURCE_ROOT; };
 		F44CC04112B5881D0052D468 /* ZKPicklistForRecordType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPicklistForRecordType.h; path = ../../zkSforce/ZKPicklistForRecordType.h; sourceTree = SOURCE_ROOT; };
 		F44CC04212B5881D0052D468 /* ZKPicklistForRecordType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistForRecordType.m; path = ../../zkSforce/ZKPicklistForRecordType.m; sourceTree = SOURCE_ROOT; };
-		F44CC04312B5881D0052D468 /* zkQueryResult_NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkQueryResult_NSTableView.h; path = ../../zkSforce/zkQueryResult_NSTableView.h; sourceTree = SOURCE_ROOT; };
-		F44CC04412B5881D0052D468 /* zkQueryResult_NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult_NSTableView.m; path = ../../zkSforce/zkQueryResult_NSTableView.m; sourceTree = SOURCE_ROOT; };
+		F44CC04312B5881D0052D468 /* zkQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "zkQueryResult+NSTableView.h"; path = "../../zkSforce/zkQueryResult+NSTableView.h"; sourceTree = SOURCE_ROOT; };
+		F44CC04412B5881D0052D468 /* zkQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkQueryResult+NSTableView.m"; path = "../../zkSforce/zkQueryResult+NSTableView.m"; sourceTree = SOURCE_ROOT; };
 		F44CC04512B5881D0052D468 /* zkQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkQueryResult.h; path = ../../zkSforce/zkQueryResult.h; sourceTree = SOURCE_ROOT; };
 		F44CC04612B5881D0052D468 /* zkQueryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult.m; path = ../../zkSforce/zkQueryResult.m; sourceTree = SOURCE_ROOT; };
 		F44CC04712B5881D0052D468 /* ZKRecordTypeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRecordTypeInfo.h; path = ../../zkSforce/ZKRecordTypeInfo.h; sourceTree = SOURCE_ROOT; };
@@ -133,6 +134,8 @@
 		F44CC08412B588AE0052D468 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F44CC08F12B58BA40052D468 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryController.h; sourceTree = "<group>"; };
 		F44CC09012B58BA40052D468 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
+		F46B68A61485E06F00493685 /* zkSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+zkAsyncQuery.h"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
+		F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
 		F47E2FBE1468EB430070F6F8 /* ZKDescribeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTab.h; path = ../../zkSforce/ZKDescribeTab.h; sourceTree = "<group>"; };
 		F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTab.m; path = ../../zkSforce/ZKDescribeTab.m; sourceTree = "<group>"; };
 		F49C1D091363908A000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
@@ -282,8 +285,8 @@
 				F44CC04012B5881D0052D468 /* ZKPicklistEntry.m */,
 				F44CC04112B5881D0052D468 /* ZKPicklistForRecordType.h */,
 				F44CC04212B5881D0052D468 /* ZKPicklistForRecordType.m */,
-				F44CC04312B5881D0052D468 /* zkQueryResult_NSTableView.h */,
-				F44CC04412B5881D0052D468 /* zkQueryResult_NSTableView.m */,
+				F44CC04312B5881D0052D468 /* zkQueryResult+NSTableView.h */,
+				F44CC04412B5881D0052D468 /* zkQueryResult+NSTableView.m */,
 				F44CC04512B5881D0052D468 /* zkQueryResult.h */,
 				F44CC04612B5881D0052D468 /* zkQueryResult.m */,
 				F44CC04712B5881D0052D468 /* ZKRecordTypeInfo.h */,
@@ -301,6 +304,8 @@
 				F44CC05312B5881D0052D468 /* zkSforce.h */,
 				F44CC05412B5881D0052D468 /* zkSforceClient.h */,
 				F44CC05512B5881D0052D468 /* zkSforceClient.m */,
+				F46B68A61485E06F00493685 /* zkSforceClient+zkAsyncQuery.h */,
+				F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */,
 				F44CC05612B5881D0052D468 /* zkSoapException.h */,
 				F44CC05712B5881D0052D468 /* zkSoapException.m */,
 				F44CC05812B5881D0052D468 /* zkSObject.h */,
@@ -394,7 +399,7 @@
 				F44CC06E12B5881D0052D468 /* ZKPartnerEnvelope.m in Sources */,
 				F44CC06F12B5881D0052D468 /* ZKPicklistEntry.m in Sources */,
 				F44CC07012B5881D0052D468 /* ZKPicklistForRecordType.m in Sources */,
-				F44CC07112B5881D0052D468 /* zkQueryResult_NSTableView.m in Sources */,
+				F44CC07112B5881D0052D468 /* zkQueryResult+NSTableView.m in Sources */,
 				F44CC07212B5881D0052D468 /* zkQueryResult.m in Sources */,
 				F44CC07312B5881D0052D468 /* ZKRecordTypeInfo.m in Sources */,
 				F44CC07412B5881D0052D468 /* ZKRecordTypeMapping.m in Sources */,
@@ -411,6 +416,7 @@
 				F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */,
 				F47E2FC01468EB430070F6F8 /* ZKDescribeTab.m in Sources */,
 				F4C2D25A1468EC8100C73F09 /* ZKDescribeTabSetResult.m in Sources */,
+				F46B68A81485E06F00493685 /* zkSforceClient+zkAsyncQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
