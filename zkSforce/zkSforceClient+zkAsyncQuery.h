@@ -43,17 +43,18 @@
  NSLog(@"Received no objects. :(");
  }];
  
+ Both the failBlock and completeBlock are run on the main thread.
  
  ** @param query SOQL query.
- ** @param failBlock A block to be executed if the query fails. Takes an NSException
- ** @param completeBlock A block to be executed if the query succeeds. Takes a ZKQueryResult
+ ** @param failBlock A block to be executed if the query fails. Takes an NSException. 
+ ** @param completeBlock A block to be executed if the query succeeds. Takes a ZKQueryResult.
  **/
 - (void) performSOQLQuery:(NSString *)query 
                 failBlock:(void(^)(NSException *e))failBlock
             completeBlock:(void(^)(ZKQueryResult *result))completeBlock;
 
 /**
- ** Asynchronously perform a SOSL query using zksforce over SOAP. Example usage:
+ ** Asynchronously perform a SOSL search using zksforce over SOAP. Example usage:
  
  [client performSOSLQuery:@"FIND {batman*} IN NAME FIELDS RETURNING User (id,name)"
                 failBlock:^(NSException *e) {
@@ -66,10 +67,11 @@
                      NSLog(@"SOSL received no results. :(");
         }];
  
+ Both the failBlock and completeBlock are run on the main thread.
+
  ** @param query SOSL query.
- ** @param client The current shared client object.
- ** @param failBlock A block to be executed if the query fails. Takes an NSException
- ** @param completeBlock A block to be executed if the query succeeds. Takes a ZKQueryResult
+ ** @param failBlock A block to be executed if the search fails. Takes an NSException
+ ** @param completeBlock A block to be executed if the search succeeds. Takes an NSArray (of ZKSObject)
  **/
 - (void) performSOSLQuery:(NSString *)query 
                 failBlock:(void(^)(NSException *e))failBlock

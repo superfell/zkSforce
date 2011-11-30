@@ -29,73 +29,61 @@
 
 @implementation ZKSforceClient (zkAsyncQuery)
 
-- (void)performSOQLQuery:(NSString *)query 
+-(BOOL)confirmLoggedIn {
+    if (![self loggedIn]) {
+        NSLog(@"ZKSforceClient does not have a valid session. request not executed");
+        return NO;
+    }
+    return YES;
+}
+
+-(void)handleFailure:(void (^)(NSException *))failBlock exception:(NSException *)ex {
+    if (failBlock) {
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            failBlock(ex);
+        });
+    }
+}
+
+-(void)performSOQLQuery:(NSString *)query 
                failBlock:(void (^)(NSException *))failBlock 
            completeBlock:(void (^)(ZKQueryResult *))completeBlock {
     
-    if( !query || [query length] == 0 ) {
-        NSLog(@"SOQL: No query specified.");
-        return;
-    }
-    
-    if( ![self loggedIn] ) {
-        NSLog(@"SOQL: Invalid client, or client does not have a valid session.");
-        return;
-    }
-    
-    NSLog(@"SOQL: %@", query);
+    if (![self confirmLoggedIn]) return;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^(void) {
-        ZKQueryResult *qr = nil;
         
         @try {
-            qr = [self query:query];
-        } @catch( NSException *e ) {                        
-            if( failBlock )
-                failBlock(e);
+            ZKQueryResult *qr = [self query:query];
+            if (completeBlock) {
+                dispatch_async(dispatch_get_main_queue(), ^(void) {            
+                    completeBlock(qr);
+                });
+            }
             
-            return;
+        } @catch (NSException *e) {
+            [self handleFailure:failBlock exception:e];
         }
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void) {            
-            if( completeBlock )
-                completeBlock(qr);
-        });
     });
 }
 
-- (void)performSOSLQuery:(NSString *)query 
+-(void)performSOSLQuery:(NSString *)query 
                failBlock:(void (^)(NSException *))failBlock 
            completeBlock:(void (^)(NSArray *))completeBlock {
     
-    if( !query || [query length] == 0 ) {
-        NSLog(@"SOSL: No query specified.");
-        return;
-    }
-    
-    if( ![self loggedIn] ) {
-        NSLog(@"SOSL: Invalid client, or client does not have a valid session.");
-        return;
-    }
-    
-    NSLog(@"SOSL: %@", query);
+    if (![self confirmLoggedIn]) return;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^(void) {
-        NSArray *qr = nil;
-        
         @try {
-            qr = [self search:query];
-        } @catch( NSException *e ) {            
-            if( failBlock )
-                failBlock(e);
-            
-            return;
+            NSArray *qr = [self search:query];
+            if (completeBlock) {
+                dispatch_async(dispatch_get_main_queue(), ^(void) {            
+                    completeBlock(qr);
+                });
+            }
+        } @catch (NSException *e) {
+            [self handleFailure:failBlock exception:e];
         }
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void) {            
-            if( completeBlock )
-                completeBlock(qr);
-        });
     });
 }
 
