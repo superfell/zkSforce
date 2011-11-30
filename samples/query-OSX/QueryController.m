@@ -21,9 +21,7 @@
 
 
 #import "QueryController.h"
-#import "zkSforceClient.h"
-#import "zkSoapException.h"
-#import "zkQueryResult.h"
+#import "zkSforce.h"
 #import "zkQueryResult+NSTableView.h"
 
 @interface QueryController ()
@@ -44,8 +42,9 @@
 }
 
 // Helper function to show an error dialog/sheet from a soap exception
--(void)showError:(ZKSoapException *)ex {
-	NSAlert *a = [NSAlert	alertWithMessageText:[ex faultCode] 
+-(void)showError:(NSException *)ex {
+    NSString *txt = [ex isKindOfClass:[ZKSoapException class]] ? [(ZKSoapException *)ex faultCode] : @"Error";
+	NSAlert *a = [NSAlert	alertWithMessageText:txt
 							defaultButton:@"Close" 
 							alternateButton:nil 
 							otherButton:nil 
@@ -58,22 +57,18 @@
 
 // run the query on a background thread, and when we get the results, update the UI (from the main thread)
 -(IBAction)runQuery:(id)sender {
-	dispatch_async ( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		@try {
-			ZKQueryResult *qr = [client query:@"select id, name from account order by SystemModStamp desc limit 20"];
-			dispatch_async(dispatch_get_main_queue(), ^{
+    NSString *query = @"select id, name from account order by SystemModStamp desc limit 20";
+    [client performSOQLQuery:query 
+            failBlock:^(NSException *ex) {
+				[self setLoginInProgress:NO];
+				[self showError:ex];
+            } 
+            completeBlock:^(ZKQueryResult *qr) {
 				[self setResult:qr];
 				[table setDataSource:qr];
 				[table reloadData];
 				[self setLoginInProgress:NO];
-			});
-		} @catch (ZKSoapException *ex) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[self setLoginInProgress:NO];
-				[self showError:ex];
-			});
-		}
-	});
+            }];
 }
 
 // Called when the user clicks the Login button, we call login, and if successful, we run the query to populate the table.
