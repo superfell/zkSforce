@@ -58,7 +58,7 @@
 // run the query on a background thread, and when we get the results, update the UI (from the main thread)
 -(IBAction)runQuery:(id)sender {
     NSString *query = @"select id, name from account order by SystemModStamp desc limit 20";
-    [client performSOQLQuery:query 
+    [client performQuery:query 
             failBlock:^(NSException *ex) {
 				[self setLoginInProgress:NO];
 				[self showError:ex];
