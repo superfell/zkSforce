@@ -54,7 +54,7 @@
 - (NSArray *) picklistsForRecordType 
 {
 	if (picklistsForRecordType == nil) 
-		picklistsForRecordType = [[self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKRecordTypeMapping class]] retain];
+		picklistsForRecordType = [[self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]] retain];
 	return picklistsForRecordType;
 }
 

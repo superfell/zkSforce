@@ -36,3 +36,6 @@
 #import "ZKDescribeTab.h"
 #import "ZKDescribeTabSetResult.h"
 #import "ZKDescribeLayoutResult.h"
+#import "ZKPicklistForRecordType.h"
+#import "ZKRecordTypeMapping.h"
+#import "ZKPicklistEntry.h"
