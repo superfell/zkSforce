@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2012 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -27,6 +27,7 @@
 <element name="byteLength"         type="xsd:int"/>
 <element name="calculated"         type="xsd:boolean"/>
 <element name="calculatedFormula"  type="xsd:string" minOccurs="0"/>
+<element name="cascadeDelete"      type="xsd:boolean" minOccurs="0"/>
 <element name="caseSensitive"      type="xsd:boolean"/>
 <element name="controllerName"     type="xsd:string" minOccurs="0"/>
 <element name="createable"         type="xsd:boolean"/>
@@ -113,5 +114,7 @@
 - (NSString *)inlineHelpText;
 // Api v18.0
 - (BOOL)groupable;
+// Api v25.0
+- (BOOL)cascadeDelete;
 
 @end

@@ -104,7 +104,7 @@
 		F44CC04012B5881D0052D468 /* ZKPicklistEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistEntry.m; path = ../../zkSforce/ZKPicklistEntry.m; sourceTree = SOURCE_ROOT; };
 		F44CC04112B5881D0052D468 /* ZKPicklistForRecordType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPicklistForRecordType.h; path = ../../zkSforce/ZKPicklistForRecordType.h; sourceTree = SOURCE_ROOT; };
 		F44CC04212B5881D0052D468 /* ZKPicklistForRecordType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistForRecordType.m; path = ../../zkSforce/ZKPicklistForRecordType.m; sourceTree = SOURCE_ROOT; };
-		F44CC04312B5881D0052D468 /* zkQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "zkQueryResult+NSTableView.h"; path = "../../zkSforce/zkQueryResult+NSTableView.h"; sourceTree = SOURCE_ROOT; };
+		F44CC04312B5881D0052D468 /* zkQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkQueryResult+NSTableView.h"; path = "../../zkSforce/zkQueryResult+NSTableView.h"; sourceTree = SOURCE_ROOT; };
 		F44CC04412B5881D0052D468 /* zkQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkQueryResult+NSTableView.m"; path = "../../zkSforce/zkQueryResult+NSTableView.m"; sourceTree = SOURCE_ROOT; };
 		F44CC04512B5881D0052D468 /* zkQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkQueryResult.h; path = ../../zkSforce/zkQueryResult.h; sourceTree = SOURCE_ROOT; };
 		F44CC04612B5881D0052D468 /* zkQueryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult.m; path = ../../zkSforce/zkQueryResult.m; sourceTree = SOURCE_ROOT; };
@@ -346,7 +346,6 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "query" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,

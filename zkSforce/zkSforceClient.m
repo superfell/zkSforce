@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2011 Simon Fell
+// Copyright (c) 2006-2012 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -50,7 +50,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (id)init {
 	self = [super init];
-	preferedApiVersion = 24;
+	preferedApiVersion = 25;
 	[self setLoginProtocolAndHost:@"https://www.salesforce.com"];
 	updateMru = NO;
 	cacheDescribes = NO;
