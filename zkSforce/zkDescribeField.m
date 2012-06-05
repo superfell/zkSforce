@@ -179,4 +179,8 @@
 - (BOOL)cascadeDelete {
 	return [self boolean:@"cascadeDelete"];
 }
+- (BOOL)displayLocationInDecimal {
+    return [self boolean:@"displayLocationInDecimal"];
+}
+
 @end

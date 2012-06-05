@@ -116,5 +116,6 @@
 - (BOOL)groupable;
 // Api v25.0
 - (BOOL)cascadeDelete;
+- (BOOL)displayLocationInDecimal;
 
 @end
