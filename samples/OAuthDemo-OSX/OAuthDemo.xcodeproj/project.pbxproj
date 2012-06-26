@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F48F13DE157DC52100CB2A50 /* zkQueryResult+NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F48F13DD157DC52100CB2A50 /* zkQueryResult+NSTableView.m */; };
+		F48F13E3157DC54600CB2A50 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F48F13E0157DC54600CB2A50 /* ZKDescribeTab.m */; };
+		F48F13E4157DC54600CB2A50 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F48F13E2157DC54600CB2A50 /* ZKDescribeTabSetResult.m */; };
 		F49C1C6E13636C88000CDE02 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49C1C6D13636C88000CDE02 /* Cocoa.framework */; };
 		F49C1C7813636C88000CDE02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F49C1C7613636C88000CDE02 /* InfoPlist.strings */; };
 		F49C1C7B13636C88000CDE02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1C7A13636C88000CDE02 /* main.m */; };
@@ -32,7 +35,6 @@
 		F49C1CE213637547000CDE02 /* ZKPartnerEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CB213637547000CDE02 /* ZKPartnerEnvelope.m */; };
 		F49C1CE313637547000CDE02 /* ZKPicklistEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CB413637547000CDE02 /* ZKPicklistEntry.m */; };
 		F49C1CE413637547000CDE02 /* ZKPicklistForRecordType.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CB613637547000CDE02 /* ZKPicklistForRecordType.m */; };
-		F49C1CE513637547000CDE02 /* zkQueryResult_NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CB813637547000CDE02 /* zkQueryResult_NSTableView.m */; };
 		F49C1CE613637547000CDE02 /* zkQueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CBA13637547000CDE02 /* zkQueryResult.m */; };
 		F49C1CE713637547000CDE02 /* ZKRecordTypeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CBC13637547000CDE02 /* ZKRecordTypeInfo.m */; };
 		F49C1CE813637547000CDE02 /* ZKRecordTypeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1CBE13637547000CDE02 /* ZKRecordTypeMapping.m */; };
@@ -51,6 +53,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F48F13DC157DC52100CB2A50 /* zkQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkQueryResult+NSTableView.h"; path = "../../../zkSforce/zkQueryResult+NSTableView.h"; sourceTree = "<group>"; };
+		F48F13DD157DC52100CB2A50 /* zkQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkQueryResult+NSTableView.m"; path = "../../../zkSforce/zkQueryResult+NSTableView.m"; sourceTree = "<group>"; };
+		F48F13DF157DC54600CB2A50 /* ZKDescribeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTab.h; path = ../../../zkSforce/ZKDescribeTab.h; sourceTree = "<group>"; };
+		F48F13E0157DC54600CB2A50 /* ZKDescribeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTab.m; path = ../../../zkSforce/ZKDescribeTab.m; sourceTree = "<group>"; };
+		F48F13E1157DC54600CB2A50 /* ZKDescribeTabSetResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTabSetResult.h; path = ../../../zkSforce/ZKDescribeTabSetResult.h; sourceTree = "<group>"; };
+		F48F13E2157DC54600CB2A50 /* ZKDescribeTabSetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTabSetResult.m; path = ../../../zkSforce/ZKDescribeTabSetResult.m; sourceTree = "<group>"; };
 		F49C1C6913636C88000CDE02 /* OAuthDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49C1C6D13636C88000CDE02 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F49C1C7013636C88000CDE02 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -102,8 +110,6 @@
 		F49C1CB413637547000CDE02 /* ZKPicklistEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistEntry.m; path = ../../../zkSforce/ZKPicklistEntry.m; sourceTree = "<group>"; };
 		F49C1CB513637547000CDE02 /* ZKPicklistForRecordType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKPicklistForRecordType.h; path = ../../../zkSforce/ZKPicklistForRecordType.h; sourceTree = "<group>"; };
 		F49C1CB613637547000CDE02 /* ZKPicklistForRecordType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKPicklistForRecordType.m; path = ../../../zkSforce/ZKPicklistForRecordType.m; sourceTree = "<group>"; };
-		F49C1CB713637547000CDE02 /* zkQueryResult_NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkQueryResult_NSTableView.h; path = ../../../zkSforce/zkQueryResult_NSTableView.h; sourceTree = "<group>"; };
-		F49C1CB813637547000CDE02 /* zkQueryResult_NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult_NSTableView.m; path = ../../../zkSforce/zkQueryResult_NSTableView.m; sourceTree = "<group>"; };
 		F49C1CB913637547000CDE02 /* zkQueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkQueryResult.h; path = ../../../zkSforce/zkQueryResult.h; sourceTree = "<group>"; };
 		F49C1CBA13637547000CDE02 /* zkQueryResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkQueryResult.m; path = ../../../zkSforce/zkQueryResult.m; sourceTree = "<group>"; };
 		F49C1CBB13637547000CDE02 /* ZKRecordTypeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRecordTypeInfo.h; path = ../../../zkSforce/ZKRecordTypeInfo.h; sourceTree = "<group>"; };
@@ -215,6 +221,12 @@
 		F49C1C9013637525000CDE02 /* ZKSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F48F13DF157DC54600CB2A50 /* ZKDescribeTab.h */,
+				F48F13E0157DC54600CB2A50 /* ZKDescribeTab.m */,
+				F48F13E1157DC54600CB2A50 /* ZKDescribeTabSetResult.h */,
+				F48F13E2157DC54600CB2A50 /* ZKDescribeTabSetResult.m */,
+				F48F13DC157DC52100CB2A50 /* zkQueryResult+NSTableView.h */,
+				F48F13DD157DC52100CB2A50 /* zkQueryResult+NSTableView.m */,
 				F49C1C9113637547000CDE02 /* zkBaseClient.h */,
 				F49C1C9213637547000CDE02 /* zkBaseClient.m */,
 				F49C1C9313637547000CDE02 /* zkChildRelationship.h */,
@@ -253,8 +265,6 @@
 				F49C1CB413637547000CDE02 /* ZKPicklistEntry.m */,
 				F49C1CB513637547000CDE02 /* ZKPicklistForRecordType.h */,
 				F49C1CB613637547000CDE02 /* ZKPicklistForRecordType.m */,
-				F49C1CB713637547000CDE02 /* zkQueryResult_NSTableView.h */,
-				F49C1CB813637547000CDE02 /* zkQueryResult_NSTableView.m */,
 				F49C1CB913637547000CDE02 /* zkQueryResult.h */,
 				F49C1CBA13637547000CDE02 /* zkQueryResult.m */,
 				F49C1CBB13637547000CDE02 /* ZKRecordTypeInfo.h */,
@@ -370,7 +380,6 @@
 				F49C1CE213637547000CDE02 /* ZKPartnerEnvelope.m in Sources */,
 				F49C1CE313637547000CDE02 /* ZKPicklistEntry.m in Sources */,
 				F49C1CE413637547000CDE02 /* ZKPicklistForRecordType.m in Sources */,
-				F49C1CE513637547000CDE02 /* zkQueryResult_NSTableView.m in Sources */,
 				F49C1CE613637547000CDE02 /* zkQueryResult.m in Sources */,
 				F49C1CE713637547000CDE02 /* ZKRecordTypeInfo.m in Sources */,
 				F49C1CE813637547000CDE02 /* ZKRecordTypeMapping.m in Sources */,
@@ -385,6 +394,9 @@
 				F49C1CF113637547000CDE02 /* zkXmlDeserializer.m in Sources */,
 				F49C1D0213637932000CDE02 /* zkAuthentication.m in Sources */,
 				F49C1D0E13639382000CDE02 /* QueryController.m in Sources */,
+				F48F13DE157DC52100CB2A50 /* zkQueryResult+NSTableView.m in Sources */,
+				F48F13E3157DC54600CB2A50 /* ZKDescribeTab.m in Sources */,
+				F48F13E4157DC54600CB2A50 /* ZKDescribeTabSetResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

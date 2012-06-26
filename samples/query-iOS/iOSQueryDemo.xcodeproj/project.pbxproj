@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4AC5551159968BE00F5CA45 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC554C159968BE00F5CA45 /* ZKDescribeTabSetResult.m */; };
+		F4AC5553159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC5550159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m */; };
+		F4AC5558159968F700F5CA45 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC5556159968F700F5CA45 /* ZKDescribeTab.m */; };
 		F4C297A413649C44009ACB8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A313649C44009ACB8D /* UIKit.framework */; };
 		F4C297A613649C44009ACB8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A513649C44009ACB8D /* Foundation.framework */; };
 		F4C297A813649C44009ACB8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A713649C44009ACB8D /* CoreGraphics.framework */; };
@@ -52,6 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4AC554C159968BE00F5CA45 /* ZKDescribeTabSetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTabSetResult.m; path = ../../../zkSforce/ZKDescribeTabSetResult.m; sourceTree = "<group>"; };
+		F4AC554F159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+zkAsyncQuery.h"; path = "../../../zkSforce/zkSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
+		F4AC5550159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
+		F4AC5555159968F700F5CA45 /* ZKDescribeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTab.h; path = ../../../zkSforce/ZKDescribeTab.h; sourceTree = "<group>"; };
+		F4AC5556159968F700F5CA45 /* ZKDescribeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTab.m; path = ../../../zkSforce/ZKDescribeTab.m; sourceTree = "<group>"; };
+		F4AC5557159968F700F5CA45 /* ZKDescribeTabSetResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTabSetResult.h; path = ../../../zkSforce/ZKDescribeTabSetResult.h; sourceTree = "<group>"; };
 		F4C2979F13649C44009ACB8D /* iOSQueryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSQueryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C297A313649C44009ACB8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F4C297A513649C44009ACB8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -240,6 +249,10 @@
 				F4C298701364AA63009ACB8D /* ZKDescribeLayoutRow.m */,
 				F4C298711364AA63009ACB8D /* ZKDescribeLayoutSection.h */,
 				F4C298721364AA63009ACB8D /* ZKDescribeLayoutSection.m */,
+				F4AC5555159968F700F5CA45 /* ZKDescribeTab.h */,
+				F4AC5556159968F700F5CA45 /* ZKDescribeTab.m */,
+				F4AC5557159968F700F5CA45 /* ZKDescribeTabSetResult.h */,
+				F4AC554C159968BE00F5CA45 /* ZKDescribeTabSetResult.m */,
 				F4C298731364AA63009ACB8D /* zkDescribeSObject.h */,
 				F4C298741364AA63009ACB8D /* zkDescribeSObject.m */,
 				F4C298751364AA63009ACB8D /* zkEnvelope.h */,
@@ -271,6 +284,8 @@
 				F4C298911364AA63009ACB8D /* zkSforce.h */,
 				F4C298921364AA63009ACB8D /* zkSforceClient.h */,
 				F4C298931364AA63009ACB8D /* zkSforceClient.m */,
+				F4AC554F159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.h */,
+				F4AC5550159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m */,
 				F4C298941364AA63009ACB8D /* zkSoapException.h */,
 				F4C298951364AA63009ACB8D /* zkSoapException.m */,
 				F4C298961364AA63009ACB8D /* zkSObject.h */,
@@ -381,6 +396,9 @@
 				F4C298BA1364AA63009ACB8D /* zkSObject.m in Sources */,
 				F4C298BB1364AA63009ACB8D /* zkUserInfo.m in Sources */,
 				F4C298BC1364AA63009ACB8D /* zkXmlDeserializer.m in Sources */,
+				F4AC5551159968BE00F5CA45 /* ZKDescribeTabSetResult.m in Sources */,
+				F4AC5553159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m in Sources */,
+				F4AC5558159968F700F5CA45 /* ZKDescribeTab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
