@@ -158,6 +158,9 @@
 // the current API session Id being used to make requests.
 - (NSString *)sessionId;
 
+// the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed.
+- (NSString *)serverHostAbbriviation;
+
 // SOAP Headers
 //////////////////////////////////////////////////////////////////////////////////////
 // Should create/update calls also update the users MRU info? (defaults false)

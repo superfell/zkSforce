@@ -162,6 +162,21 @@ static const int SAVE_BATCH_SIZE = 25;
 	return [authSource sessionId];
 }
 
+- (NSString *)serverHostAbbriviation {
+    NSString *host = [endpointUrl host];
+    NSString *hostLower = [host lowercaseString];
+    NSArray *suffixes = [NSArray arrayWithObjects:@".salesforce.com", @".force.com", nil];
+    for (NSString *suffix in suffixes) {
+        if ([hostLower hasSuffix:suffix]) {
+            // remove the expected suffix from the host name.
+            host = [host substringToIndex:[host length] - [suffix length]];
+            // remove the trailing -api if there is one.
+            return [[host lowercaseString] hasSuffix:@"-api"] ? [host substringToIndex:[host length] - 4] : host;
+        }
+    }
+    return host;
+}
+
 - (void)setPassword:(NSString *)newPassword forUserId:(NSString *)userId {
 	if (!authSource) return;
 	[self checkSession];
