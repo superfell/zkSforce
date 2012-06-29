@@ -23,6 +23,9 @@
 
 // This category on ZKQueryResult makes it a NSTableView data source.
 
+// Only build on OSX
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+
 #if __MAC_OS_X_VERSION_MAX_ALLOWED <= __MAC_OS_X_VERSION_10_5
 @protocol NSTableViewDataSource <NSObject> @end
 #endif
@@ -33,3 +36,5 @@
 -(id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(int)rowIdx;
 
 @end
+
+#endif

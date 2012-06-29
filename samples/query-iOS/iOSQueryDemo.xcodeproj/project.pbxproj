@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4959539159D7182000F02C5 /* zkQueryResult+NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4959538159D7182000F02C5 /* zkQueryResult+NSTableView.m */; };
 		F4AC5551159968BE00F5CA45 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC554C159968BE00F5CA45 /* ZKDescribeTabSetResult.m */; };
 		F4AC5553159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC5550159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m */; };
 		F4AC5558159968F700F5CA45 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC5556159968F700F5CA45 /* ZKDescribeTab.m */; };
@@ -55,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F4959537159D7182000F02C5 /* zkQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkQueryResult+NSTableView.h"; path = "../../../zkSforce/zkQueryResult+NSTableView.h"; sourceTree = "<group>"; };
+		F4959538159D7182000F02C5 /* zkQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkQueryResult+NSTableView.m"; path = "../../../zkSforce/zkQueryResult+NSTableView.m"; sourceTree = "<group>"; };
 		F4AC554C159968BE00F5CA45 /* ZKDescribeTabSetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTabSetResult.m; path = ../../../zkSforce/ZKDescribeTabSetResult.m; sourceTree = "<group>"; };
 		F4AC554F159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+zkAsyncQuery.h"; path = "../../../zkSforce/zkSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
 		F4AC5550159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 		F4C297C713649CC4009ACB8D /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4959537159D7182000F02C5 /* zkQueryResult+NSTableView.h */,
+				F4959538159D7182000F02C5 /* zkQueryResult+NSTableView.m */,
 				F4C298591364AA63009ACB8D /* zkAuthentication.h */,
 				F4C2985A1364AA63009ACB8D /* zkAuthentication.m */,
 				F4C2985B1364AA63009ACB8D /* zkBaseClient.h */,
@@ -399,6 +404,7 @@
 				F4AC5551159968BE00F5CA45 /* ZKDescribeTabSetResult.m in Sources */,
 				F4AC5553159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m in Sources */,
 				F4AC5558159968F700F5CA45 /* ZKDescribeTab.m in Sources */,
+				F4959539159D7182000F02C5 /* zkQueryResult+NSTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

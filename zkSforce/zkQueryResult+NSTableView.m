@@ -22,6 +22,9 @@
 #import "zkQueryResult+NSTableView.h"
 #import "ZKSObject.h"
 
+// Only build on OSX
+#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
+
 @implementation ZKQueryResult (NSTableViewAdditions)
 
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)v {
@@ -37,3 +40,5 @@
 }
 
 @end
+
+#endif
