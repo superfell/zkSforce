@@ -29,14 +29,14 @@
 
 @interface ZKSforceClient (zkAsyncQuery)
 
-typedef void (^zkFailWithExceptionBlock) (NSException *e);
-typedef void (^zkCompleteQueryResultBlock) (ZKQueryResult *qr);
-typedef void (^zkCompleteArrayBlock) (NSArray *arr);
-typedef void (^zkCompleteDictionaryBlock) (NSDictionary *arr);
-typedef void (^zkCompleteStringBlock) (NSString *str);
-typedef void (^zkCompleteLayoutResultBlock) (ZKDescribeLayoutResult *lr);
-typedef void (^zkCompleteSObjectDescribeBlock) (ZKDescribeSObject *arr);
-typedef void (^zkCompleteVoidBlock) (void);
+typedef void (^zkFailWithExceptionBlock)        (NSException *e);
+typedef void (^zkCompleteQueryResultBlock)      (ZKQueryResult *qr);
+typedef void (^zkCompleteArrayBlock)            (NSArray *arr);
+typedef void (^zkCompleteDictionaryBlock)       (NSDictionary *arr);
+typedef void (^zkCompleteStringBlock)           (NSString *str);
+typedef void (^zkCompleteLayoutResultBlock)     (ZKDescribeLayoutResult *lr);
+typedef void (^zkCompleteSObjectDescribeBlock)  (ZKDescribeSObject *arr);
+typedef void (^zkCompleteVoidBlock)             (void);
 
 /**
  ** Asynchronously perform a SOQL query using zksforce over SOAP. Example usage:
