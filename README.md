@@ -1,6 +1,6 @@
 # zkSforce README
 
-zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iPhone projects. (supports OSX 10.5 and up, and iOS 3.2 and up)
+zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.5 and up, and iOS 3.2 and up)
 
 zkSforce supports all the popular methods in the partner web services API
 
@@ -53,8 +53,11 @@ Login and create a new contact for Simon Fell, and check the result
 	        NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
         [sforce release];
 
+Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a bunch of
+helper method that let you make asynchronous calls and to have a block run on completion of call.
 
-As well as the traditonal username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
+
+As well as the traditional username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
 
 		ZKSforceClient *sforce = [[ZKSforceClient alloc] init];
 		[sforce loginFromOAuthCallbackUrl:callbackUrl oAuthConsumerKey:OAUTH_CLIENTID];
@@ -69,6 +72,16 @@ You'll need to store the refresh_token and authHost somewhere safe, like the key
 	// See the OAuthDemo sample for more info.
 	
 	
-## Project setup
+## Project setup (via CocoaPods)
+
+The easiest way to get ZKSforce integrated into your app is to use [CocoaPods](http://cocoapods.org/), the new Cocoa dependency manager framework, simply create a dependency file, e.g.
+
+    platform :osx
+	dependency 'ZKSforce', '~> 25.0.2'
+	
+and run  `pod install myApp.xcodeproj`
+
+
+## Project setup (manual)
 
 In order to support usage on both OSX & iPhone OS (so iPhone, iPod Touch, iPad), the library now uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iPhone OS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on  these steps.
