@@ -29,6 +29,15 @@
 
 @interface ZKSforceClient (zkAsyncQuery)
 
+typedef void (^zkFailWithExceptionBlock)        (NSException *e);
+typedef void (^zkCompleteQueryResultBlock)      (ZKQueryResult *qr);
+typedef void (^zkCompleteArrayBlock)            (NSArray *arr);
+typedef void (^zkCompleteDictionaryBlock)       (NSDictionary *arr);
+typedef void (^zkCompleteStringBlock)           (NSString *str);
+typedef void (^zkCompleteLayoutResultBlock)     (ZKDescribeLayoutResult *lr);
+typedef void (^zkCompleteSObjectDescribeBlock)  (ZKDescribeSObject *arr);
+typedef void (^zkCompleteVoidBlock)             (void);
+
 /**
  ** Asynchronously perform a SOQL query using zksforce over SOAP. Example usage:
  
@@ -50,8 +59,8 @@
  ** @param completeBlock A block to be executed if the query succeeds. Takes a ZKQueryResult.
  **/
 -(void) performQuery:(NSString *)soqlQuery 
-           failBlock:(void(^)(NSException *e))failBlock
-       completeBlock:(void(^)(ZKQueryResult *result))completeBlock;
+           failBlock:(zkFailWithExceptionBlock)failBlock
+       completeBlock:(zkCompleteQueryResultBlock)completeBlock;
 
 /**
  ** Asynchronously perform a SOSL search using zksforce over SOAP. Example usage:
@@ -74,60 +83,64 @@
  ** @param completeBlock A block to be executed if the search succeeds. Takes an NSArray (of ZKSObject)
  **/
 -(void) performSearch:(NSString *)soslQuery 
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock;
+            failBlock:(zkFailWithExceptionBlock)failBlock
+        completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 // Remaining methods all work similarly to the above 2.
 
 -(void) performQueryMore:(NSString *)queryLocator
-               failBlock:(void(^)(NSException *e))failBlock
-           completeBlock:(void(^)(ZKQueryResult *result))completeBlock;
+               failBlock:(zkFailWithExceptionBlock)failBlock
+           completeBlock:(zkCompleteQueryResultBlock)completeBlock;
 
 -(void) performQueryAll:(NSString *)soqlQuery
-              failBlock:(void(^)(NSException *e))failBlock
-          completeBlock:(void(^)(ZKQueryResult *result))completeBlock;
+              failBlock:(zkFailWithExceptionBlock)failBlock
+          completeBlock:(zkCompleteQueryResultBlock)completeBlock;
 
--(void) performRetrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids
-              failBlock:(void(^)(NSException *e))failBlock
-          completeBlock:(void(^)(NSDictionary *result))completeBlock;  // NSString (Id) -> ZKSObject
+-(void) performRetrieve:(NSString *)fields 
+                sobject:(NSString *)sobjectType 
+                    ids:(NSArray *)ids
+              failBlock:(zkFailWithExceptionBlock)failBlock
+          completeBlock:(zkCompleteDictionaryBlock)completeBlock;  // NSString (Id) -> ZKSObject
 
 
 // CRUD calls
 -(void) performCreate:(NSArray *)sobjects
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock;  // array of ZKSaveResult
+            failBlock:(zkFailWithExceptionBlock)failBlock
+        completeBlock:(zkCompleteArrayBlock)completeBlock;  // array of ZKSaveResult
 
 -(void) performUpdate:(NSArray *)sobjects
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock;  // array of ZKSaveResult
+            failBlock:(zkFailWithExceptionBlock)failBlock
+        completeBlock:(zkCompleteArrayBlock)completeBlock;  // array of ZKSaveResult
 
 -(void) performDelete:(NSArray *)sobjectIds
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock;  // array of ZKSaveResult
+            failBlock:(zkFailWithExceptionBlock)failBlock
+        completeBlock:(zkCompleteArrayBlock)completeBlock;  // array of ZKSaveResult
 
 
 // Describes
--(void) performDescribeGlobalWithFailBlock:(void(^)(NSException *e))failBlock
-                             completeBlock:(void(^)(NSArray *))completeBlock;   // array of ZKDescribeGlobalSObject
+-(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                             completeBlock:(zkCompleteArrayBlock)completeBlock;   // array of ZKDescribeGlobalSObject
 
 -(void) performDescribeSObject:(NSString *)sobjectType
-                     failBlock:(void(^)(NSException *e))failBlock
-                 completeBlock:(void(^)(ZKDescribeSObject *))completeBlock;
+                     failBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteSObjectDescribeBlock)completeBlock;
 
--(void) performDescribeLayout:(NSString *)sobjectType recordTypeIds:(NSArray *)recordTypeIds
-                    failBlock:(void(^)(NSException *e))failBlock
-                completeBlock:(void(^)(ZKDescribeLayoutResult *))completeBlock;
+-(void) performDescribeLayout:(NSString *)sobjectType 
+                recordTypeIds:(NSArray *)recordTypeIds
+                    failBlock:(zkFailWithExceptionBlock)failBlock
+                completeBlock:(zkCompleteLayoutResultBlock)completeBlock;
 
--(void) performDescribeTabsWithFailBlock:(void(^)(NSException *e))failBlock
-                           completeBlock:(void(^)(NSArray *))completeBlock;
+-(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                           completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 
 // Utility methods
--(void) performSetPassword:(NSString *)newPassword forUserId:(NSString *)userId
-                 failBlock:(void(^)(NSException *e))failBlock
-             completeBlock:(void(^)(void))completeBlock;
+-(void) performSetPassword:(NSString *)newPassword 
+                 forUserId:(NSString *)userId
+                 failBlock:(zkFailWithExceptionBlock)failBlock
+             completeBlock:(zkCompleteVoidBlock)completeBlock;
 
--(void) performServerTimestampWithFailBlock:(void(^)(NSException *e))failBlock
-                              completeBlock:(void(^)(NSString *))completeBlock;
+-(void) performServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                              completeBlock:(zkCompleteStringBlock)completeBlock;
 
 @end

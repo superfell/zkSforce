@@ -45,7 +45,7 @@
 // back to the relevant type from NSObject * that's used here.
 //
 -(void)performRequest:(NSObject * (^)(void))requestBlock 
-            failBlock:(void (^)(NSException *))failBlock 
+            failBlock:(zkFailWithExceptionBlock)failBlock 
         completeBlock:(void (^)(NSObject *))completeBlock {
   
     // sanity check that we're actually logged in and ready to go.
@@ -72,8 +72,8 @@
 }
 
 -(void)performQuery:(NSString *)query 
-            failBlock:(void (^)(NSException *))failBlock 
-        completeBlock:(void (^)(ZKQueryResult *))completeBlock {
+          failBlock:(zkFailWithExceptionBlock)failBlock 
+      completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
     [self performRequest:^NSObject *(void) {
             return [self query:query];
@@ -85,8 +85,8 @@
 }
 
 -(void)performSearch:(NSString *)query 
-           failBlock:(void (^)(NSException *))failBlock 
-       completeBlock:(void (^)(NSArray *))completeBlock {
+           failBlock:(zkFailWithExceptionBlock)failBlock 
+       completeBlock:(zkCompleteArrayBlock)completeBlock {
 
     [self performRequest:^NSObject *(void) {
             return [self search:query];
@@ -97,9 +97,9 @@
         }];
 }
 
--(void) performQueryMore:(NSString *)queryLocator
-               failBlock:(void(^)(NSException *e))failBlock
-           completeBlock:(void(^)(ZKQueryResult *result))completeBlock {
+-(void) performQueryMore:(NSString *)queryLocator 
+               failBlock:(zkFailWithExceptionBlock)failBlock 
+           completeBlock:(zkCompleteQueryResultBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
             return [self queryMore:queryLocator];
@@ -110,9 +110,9 @@
            }];
 }
 
--(void) performQueryAll:(NSString *)soqlQuery
-              failBlock:(void(^)(NSException *e))failBlock
-          completeBlock:(void(^)(ZKQueryResult *result))completeBlock {
+-(void) performQueryAll:(NSString *)soqlQuery 
+              failBlock:(zkFailWithExceptionBlock)failBlock 
+          completeBlock:(zkCompleteQueryResultBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
             return [self queryAll:soqlQuery];
@@ -124,9 +124,11 @@
 
 }
 
--(void) performRetrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids
-              failBlock:(void(^)(NSException *e))failBlock
-          completeBlock:(void(^)(NSDictionary *result))completeBlock {  // NSString (Id) -> ZKSObject
+-(void) performRetrieve:(NSString *)fields 
+                sobject:(NSString *)sobjectType 
+                    ids:(NSArray *)ids 
+              failBlock:(zkFailWithExceptionBlock)failBlock 
+          completeBlock:(zkCompleteDictionaryBlock)completeBlock {  // NSString (Id) -> ZKSObject
     
     [self performRequest:^NSObject *(void) {
         return [self retrieve:fields sobject:sobjectType ids:ids];
@@ -137,9 +139,9 @@
            }];
 }
 
--(void) performCreate:(NSArray *)sobjects
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock {  // array of ZKSaveResult
+-(void) performCreate:(NSArray *)sobjects 
+            failBlock:(zkFailWithExceptionBlock)failBlock 
+        completeBlock:(zkCompleteArrayBlock)completeBlock{  // array of ZKSaveResult
 
     [self performRequest:^NSObject *(void) {
             return [self create:sobjects];
@@ -150,9 +152,9 @@
            }];
 }
 
--(void) performUpdate:(NSArray *)sobjects
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock {  // array of ZKSaveResult
+-(void) performUpdate:(NSArray *)sobjects 
+            failBlock:(zkFailWithExceptionBlock)failBlock 
+        completeBlock:(zkCompleteArrayBlock)completeBlock {  // array of ZKSaveResult
 
     [self performRequest:^NSObject *(void) {
             return [self update:sobjects];
@@ -163,9 +165,9 @@
            }];
 }
 
--(void) performDelete:(NSArray *)sobjectIds
-            failBlock:(void(^)(NSException *e))failBlock
-        completeBlock:(void(^)(NSArray *result))completeBlock {  // array of ZKSaveResult
+-(void) performDelete:(NSArray *)sobjectIds 
+            failBlock:(zkFailWithExceptionBlock)failBlock 
+        completeBlock:(zkCompleteArrayBlock)completeBlock {  // array of ZKSaveResult
 
     [self performRequest:^NSObject *(void) {
             return [self delete:sobjectIds];
@@ -176,8 +178,8 @@
            }];
 }
 
--(void) performDescribeGlobalWithFailBlock:(void(^)(NSException *e))failBlock
-                             completeBlock:(void(^)(NSArray *))completeBlock {   // array of ZKDescribeGlobalSObject
+-(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock 
+                             completeBlock:(zkCompleteArrayBlock)completeBlock {   // array of ZKDescribeGlobalSObject
     
     [self performRequest:^NSObject *(void) {
             return [self describeGlobal];
@@ -188,9 +190,9 @@
            }];
 }
 
--(void) performDescribeSObject:(NSString *)sobjectType
-                     failBlock:(void(^)(NSException *e))failBlock
-                 completeBlock:(void(^)(ZKDescribeSObject *))completeBlock {
+-(void) performDescribeSObject:(NSString *)sobjectType 
+                     failBlock:(zkFailWithExceptionBlock)failBlock 
+                 completeBlock:(zkCompleteSObjectDescribeBlock)completeBlock{
 
     [self performRequest:^NSObject *(void) {
             return [self describeSObject:sobjectType];
@@ -201,9 +203,10 @@
            }];
 }
 
--(void) performDescribeLayout:(NSString *)sobjectType recordTypeIds:(NSArray *)recordTypeIds
-                    failBlock:(void(^)(NSException *e))failBlock
-                completeBlock:(void(^)(ZKDescribeLayoutResult *))completeBlock {
+-(void) performDescribeLayout:(NSString *)sobjectType 
+                recordTypeIds:(NSArray *)recordTypeIds 
+                    failBlock:(zkFailWithExceptionBlock)failBlock 
+                completeBlock:(zkCompleteLayoutResultBlock)completeBlock {
 
     [self performRequest:^NSObject *(void) {
             return [self describeLayout:sobjectType recordTypeIds:recordTypeIds];
@@ -215,8 +218,8 @@
     
 }
 
--(void) performDescribeTabsWithFailBlock:(void(^)(NSException *e))failBlock
-                           completeBlock:(void(^)(NSArray *))completeBlock {
+-(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock 
+                           completeBlock:(zkCompleteArrayBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
             return [self describeTabs];
@@ -228,9 +231,10 @@
 }
 
 
--(void) performSetPassword:(NSString *)newPassword forUserId:(NSString *)userId
-                 failBlock:(void(^)(NSException *e))failBlock
-             completeBlock:(void(^)(void))completeBlock {
+-(void) performSetPassword:(NSString *)newPassword 
+                 forUserId:(NSString *)userId 
+                 failBlock:(zkFailWithExceptionBlock)failBlock 
+             completeBlock:(zkCompleteVoidBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
         [self setPassword:newPassword forUserId:userId];
@@ -242,8 +246,8 @@
            }];
 }
 
--(void) performServerTimestampWithFailBlock:(void(^)(NSException *e))failBlock
-                              completeBlock:(void(^)(NSString *))completeBlock {
+-(void) performServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock 
+                              completeBlock:(zkCompleteStringBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
         return [self serverTimestamp];
