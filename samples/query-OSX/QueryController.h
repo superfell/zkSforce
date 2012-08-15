@@ -44,5 +44,5 @@
 
 // The Login button in the UI is wired up to call this method
 -(IBAction)performLogin:(id)sender;
-
+-(IBAction)showServerTimestamp:(id)sender;
 @end

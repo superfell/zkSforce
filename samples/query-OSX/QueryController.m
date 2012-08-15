@@ -97,5 +97,15 @@
 	});
 }
 
-
+-(IBAction)showServerTimestamp:(id)sender {
+    [client performServerTimestampWithFailBlock:^(NSException *e) {
+        NSLog(@"Error fetching timestamp : %@", e);
+    } completeBlock:^(NSString *str) {
+        [[NSAlert alertWithMessageText:@"Server Timestamp"
+                         defaultButton:@"Close"
+                       alternateButton:nil
+                           otherButton:nil
+             informativeTextWithFormat:@"Server Time : %@", str] runModal];
+    }];
+}
 @end

@@ -319,7 +319,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	zkElement *res = [self sendRequest:[env end]];
 	zkElement *timestamp = [res childElement:@"result"];
 	[env release];
-	return [timestamp stringValue];
+	return [[timestamp childElement:@"timestamp"] stringValue];
 }
 
 - (ZKQueryResult *)query:(NSString *) soql {
