@@ -117,5 +117,7 @@
 // Api v25.0
 - (BOOL)cascadeDelete;
 - (BOOL)displayLocationInDecimal;
-
+// Api v26.0
+- (BOOL)permissionable;
+- (BOOL)restrictedDelete;
 @end

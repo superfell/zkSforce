@@ -182,5 +182,10 @@
 - (BOOL)displayLocationInDecimal {
     return [self boolean:@"displayLocationInDecimal"];
 }
-
+- (BOOL)permissionable {
+    return [self boolean:@"permissionable"];
+}
+- (BOOL)restrictedDelete {
+    return [self boolean:@"restrictedDelete"];
+}
 @end
