@@ -106,6 +106,7 @@ static const int SAVE_BATCH_SIZE = 25;
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version {
 	[authEndpointUrl release];
 	authEndpointUrl = [[NSString stringWithFormat:@"%@/services/Soap/u/%d.0", protocolAndHost, version] retain];
+    preferedApiVersion = version;
 }
 
 - (NSURL *)authEndpointUrl {
