@@ -40,8 +40,9 @@
 	return [self string:@"userId"];
 }
 
+// Note that for Self Service Portal Users, they won't have a userInfo returned.
 -(ZKUserInfo *)userInfo {
-	return [[self complexTypeArrayFromElements:@"userInfo" cls:[ZKUserInfo class]] objectAtIndex:0];
+    return [[self complexTypeArrayFromElements:@"userInfo" cls:[ZKUserInfo class]] lastObject];
 }
 
 -(BOOL)passwordExpired {

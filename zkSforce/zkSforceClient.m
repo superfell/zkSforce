@@ -113,12 +113,16 @@ static const int SAVE_BATCH_SIZE = 25;
 	return [NSURL URLWithString:authEndpointUrl];
 }
 
-- (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
-    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:clientId];
+-(ZKLoginResult *)soapLogin:(ZKSoapLogin *)auth {
 	ZKLoginResult *lr = [auth login];
     [self setAuthenticationInfo:auth];
     self.userInfo = lr.userInfo;
     return lr;
+}
+
+- (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
+    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:clientId];
+    return [self soapLogin:auth];
 }
 
 - (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId{
@@ -132,6 +136,17 @@ static const int SAVE_BATCH_SIZE = 25;
     [auth setApiVersion:preferedApiVersion];
     [self setAuthenticationInfo:auth];
     [self checkSession];
+}
+
+- (ZKLoginResult *)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId {
+    ZKSoapPortalLogin *auth = [ZKSoapPortalLogin soapPortalLoginWithUsername:username
+                                                                    password:password
+                                                                    authHost:[NSURL URLWithString:authEndpointUrl]
+                                                                  apiVersion:preferedApiVersion
+                                                                    clientId:clientId
+                                                                       orgId:orgId
+                                                                    portalId:portalId];
+    return [self soapLogin:auth];
 }
 
 -(void)setUserInfo:(ZKUserInfo *)ui {

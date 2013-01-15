@@ -172,8 +172,12 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     [self login];
 }
 
+-(ZKPartnerEnvelope *)newEnvelope {
+	return [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil clientId:clientId];
+}
+
 -(ZKLoginResult *)login {
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil clientId:clientId];
+	ZKEnvelope *env = [self newEnvelope];
 	[env startElement:@"login"];
 	[env addElement:@"username" elemValue:username];
 	[env addElement:@"password" elemValue:password];
@@ -197,6 +201,37 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 +(id)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid {
     return [[[ZKSoapLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid] autorelease];
+}
+
+@end
+
+@implementation ZKSoapPortalLogin
+
+-(id)initWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid orgId:(NSString *)oid portalId:(NSString *)pid {
+    self = [super initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid];
+    orgId = [oid retain];
+    portalId = [pid retain];
+    return self;
+}
+
+-(void)dealloc {
+    [orgId release];
+    [portalId release];
+    [super dealloc];
+}
+
+-(ZKPartnerEnvelope *)newEnvelope {
+    return [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:nil mru:NO clientId:clientId additionalHeaders:^(ZKEnvelope *env) {
+        [env startElement:@"LoginScopeHeader"];
+        [env addElement:@"organizationId" elemValue:orgId];
+        if ([portalId length] > 0)
+            [env addElement:@"portalId" elemValue:portalId];
+        [env endElement:@"LoginScopeHeader"];
+    }];
+}
+
++(id)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid orgId:(NSString *)orgId portalId:(NSString *)portalId {
+    return [[ZKSoapPortalLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid orgId:orgId portalId:portalId];
 }
 
 @end

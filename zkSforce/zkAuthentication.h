@@ -74,3 +74,12 @@
 -(ZKLoginResult *)login;
 
 @end
+
+// Impl of ZKAuthenticatioNInfo that uses Soap Login calls setup for portal users to generate new session Ids.
+@interface ZKSoapPortalLogin : ZKSoapLogin {
+    NSString *orgId, *portalId;
+}
+
++(id)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid orgId:(NSString *)orgId portalId:(NSString *)portalId;
+
+@end

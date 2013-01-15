@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2006-2008,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -28,11 +28,20 @@
 }
 
 - (id)initWithSessionAndMruHeaders:(NSString *)sessionId mru:(BOOL)mru clientId:(NSString *)clientId {
+    return [self initWithSessionAndMruHeaders:sessionId mru:mru clientId:clientId additionalHeaders:nil];
+}
+
+- (id)initWithSessionAndMruHeaders:(NSString *)sessionId mru:(BOOL)mru clientId:(NSString *)clientId additionalHeaders:(ZKEnvelopeHeaderWriter)headerBlock {
 	self = [super init];
 	[self start:@"urn:partner.soap.sforce.com"];
 	[self writeSessionHeader:sessionId];
 	[self writeCallOptionsHeader:clientId];
 	[self writeMruHeader:mru];
+    if (headerBlock) {
+        [self moveToHeaders];
+        headerBlock(self);
+    }
+    
 	[self moveToBody];
 	return self;
 }

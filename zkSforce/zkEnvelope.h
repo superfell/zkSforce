@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -32,6 +32,7 @@
 - (void)writeCallOptionsHeader:(NSString *)callOptions;
 - (void)writeMruHeader:(BOOL)updateMru;
 
+- (void) moveToHeaders;
 - (void) moveToBody;
 - (void) startElement:(NSString *)elemName;
 - (void) endElement:(NSString *)elemName;

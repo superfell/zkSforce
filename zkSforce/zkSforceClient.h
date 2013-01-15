@@ -80,6 +80,13 @@
 // authentication host. oAuthConsumerKey is the oauth client_id / consumer key
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId;
 
+// Attempt a login for a portal User.
+// OrgId is required, and should be the Id of the organization that owns the portal.
+// PortalId is required for new generation portals, can be null for old style self service portals.
+// In the case of self service portals, you can ony authenticate users, they don't have access
+// to the rest of the API, attempts to call other API methods will return an error.
+- (ZKLoginResult *)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId;
+
 // Authentication Management
 // This lets you manage different authentication schemes, like oauth
 // Normally you'd just call login:password or loginFromOAuthCallbackUrl:
