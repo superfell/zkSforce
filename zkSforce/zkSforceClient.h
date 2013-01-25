@@ -47,7 +47,7 @@
 
 // configuration for where to connect to and what api version to use
 //////////////////////////////////////////////////////////////////////////////////////
-// Set the default API version to connect to. (defaults to v21.0)
+// Set the default API version to connect to. (defaults to v27.0)
 // login will automatically detect if the endpoint doesn't have this
 // version and automatically retry on a lower API version.
 @property (assign) int preferedApiVersion;
@@ -173,7 +173,7 @@
 // Should create/update calls also update the users MRU info? (defaults false)
 @property (assign) BOOL updateMru;
 
-// If you have a clientIf for a certifed partner application, you can set it here.
+// If you have a clientId for a certifed partner application, you can set it here.
 @property (retain) NSString *clientId;
 
 

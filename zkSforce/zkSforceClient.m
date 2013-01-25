@@ -50,7 +50,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (id)init {
 	self = [super init];
-	preferedApiVersion = 26;
+	preferedApiVersion = 27;
 	[self setLoginProtocolAndHost:@"https://www.salesforce.com"];
 	updateMru = NO;
 	cacheDescribes = NO;
