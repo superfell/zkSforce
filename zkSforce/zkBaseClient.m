@@ -38,12 +38,19 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 	return [self sendRequest:payload returnRoot:NO];
 }
 
+-(void)logInvalidResponse:(NSHTTPURLResponse *)resp payload:(NSData *)data note:(NSString *)note {
+    NSString *payload = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %ld\r\nresponseData:\r\n%@", note, [[resp URL] absoluteString], [resp statusCode], payload);
+}
+
 - (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)returnRoot {
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endpointUrl];
 	[request setHTTPMethod:@"POST"];
 	[request addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"content-type"];	
 	[request addValue:@"\"\"" forHTTPHeaderField:@"SOAPAction"];
-	
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setHTTPShouldHandleCookies:NO];
+
 	NSData *data = [payload dataUsingEncoding:NSUTF8StringEncoding];
 	[request setHTTPBody:data];
 	
@@ -54,12 +61,18 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 	NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
 	//NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
 	zkElement *root = [zkParser parseData:respPayload];
-	if (root == nil)	
+	if (root == nil) {
+        [self logInvalidResponse:resp payload:data note:@"Unable to parse XML"];
 		@throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
-	if (![[root name] isEqualToString:@"Envelope"])
+    }
+	if (![[root name] isEqualToString:@"Envelope"]) {
+        [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", [root name]]];
 		@throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", [root name]] userInfo:nil];
-	if (![[root namespace] isEqualToString:SOAP_NS])
+    }
+	if (![[root namespace] isEqualToString:SOAP_NS]) {
+        [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
 		@throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, [root namespace]] userInfo:nil];
+    }
 	zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
 	if (500 == [resp statusCode]) {
 		zkElement *fault = [body childElement:@"Fault" ns:SOAP_NS];
