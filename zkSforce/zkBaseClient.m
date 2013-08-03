@@ -40,7 +40,7 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
 -(void)logInvalidResponse:(NSHTTPURLResponse *)resp payload:(NSData *)data note:(NSString *)note {
     NSString *payload = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %ld\r\nresponseData:\r\n%@", note, [[resp URL] absoluteString], [resp statusCode], payload);
+    NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, [[resp URL] absoluteString], (int)[resp statusCode], payload);
 }
 
 - (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)returnRoot {
