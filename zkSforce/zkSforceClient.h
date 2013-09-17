@@ -37,6 +37,7 @@
 	NSString	*authEndpointUrl;
 	NSString	*clientId;
 	BOOL		updateMru;
+    NSNumber    *queryBatchSize;
 	ZKUserInfo	*userInfo;
 	BOOL		cacheDescribes;
 	NSMutableDictionary	*describes;
@@ -176,6 +177,8 @@
 // If you have a clientId for a certifed partner application, you can set it here.
 @property (retain) NSString *clientId;
 
+// If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default)
+@property (retain) NSNumber *queryBatchSize;
 
 // describe caching
 //////////////////////////////////////////////////////////////////////////////////////

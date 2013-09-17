@@ -46,7 +46,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 @implementation ZKSforceClient
 
-@synthesize preferedApiVersion, updateMru, clientId, cacheDescribes;
+@synthesize preferedApiVersion, updateMru, clientId, cacheDescribes, queryBatchSize;
 
 - (id)init {
 	self = [super init];
@@ -64,6 +64,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[userInfo release];
 	[describes release];
     [authSource release];
+    [queryBatchSize release];
 	[super dealloc];
 }
 
@@ -191,6 +192,17 @@ static const int SAVE_BATCH_SIZE = 25;
         }
     }
     return host;
+}
+
+- (ZKEnvelope *)envelopeWithQueryOptions {
+    ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:[authSource sessionId] mru:self.updateMru clientId:self.clientId additionalHeaders:^(ZKEnvelope *e) {
+        if (self.queryBatchSize != nil) {
+            [e startElement:@"QueryOptions"];
+            [e addElement:@"batchSize" elemValue:self.queryBatchSize];
+            [e endElement:@"QueryOptions"];
+        }
+    }];
+    return [env autorelease];
 }
 
 - (void)setPassword:(NSString *)newPassword forUserId:(NSString *)userId {
@@ -442,7 +454,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	if(!authSource) return NULL;
 	[self checkSession];
 
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
+	ZKEnvelope *env = [self envelopeWithQueryOptions];
 	[env startElement:operation];
 	[env addElement:elemName elemValue:value];
 	[env endElement:operation];
@@ -450,7 +462,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	
 	zkElement *qr = [self sendRequest:[env end]];
 	ZKQueryResult *result = [[ZKQueryResult alloc] initFromXmlNode:[[qr childElements] objectAtIndex:0]];
-	[env release];
 	return [result autorelease];
 }
 
