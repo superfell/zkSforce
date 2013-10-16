@@ -23,6 +23,7 @@
 #import "QueryController.h"
 #import "zkSforce.h"
 #import "zkQueryResult+NSTableView.h"
+#import "ZKLimitInfoHeader.h"
 
 @interface QueryController ()
 @property (retain) ZKSforceClient *client;
@@ -31,13 +32,14 @@
 
 @implementation QueryController
 
-@synthesize username, password, client, loginInProgress, result;
+@synthesize username, password, client, loginInProgress, result, apiLimitInfo;
 
 -(void)dealloc {
 	[username release];
 	[password release];
 	[client release];
 	[result release];
+    [apiLimitInfo release];
 	[super dealloc];
 }
 
@@ -55,6 +57,11 @@
 		contextInfo:nil];
 }
 
+-(void)updateApiLimitInfo {
+    ZKLimitInfoHeader *h = [client lastLimitInfoHeader];
+    self.apiLimitInfo = [[h limitInfoOfType:@"API REQUESTS"] description];
+}
+
 // run the query on a background thread, and when we get the results, update the UI (from the main thread)
 -(IBAction)runQuery:(id)sender {
     NSString *query = @"select id, name from account order by SystemModStamp desc limit 20";
@@ -65,6 +72,7 @@
             } 
             completeBlock:^(ZKQueryResult *qr) {
 				[self setResult:qr];
+                [self updateApiLimitInfo];
 				[table setDataSource:qr];
 				[table reloadData];
 				[self setLoginInProgress:NO];
@@ -86,6 +94,7 @@
 				[self willChangeValueForKey:@"isLoggedIn"];
 				[self setClient:theClient];
 				[self didChangeValueForKey:@"isLoggedIn"];
+                [self updateApiLimitInfo];
 				[self runQuery:self];
 			});
 		} @catch (ZKSoapException *ex) {
@@ -101,6 +110,7 @@
     [client performServerTimestampWithFailBlock:^(NSException *e) {
         NSLog(@"Error fetching timestamp : %@", e);
     } completeBlock:^(NSString *str) {
+        [self updateApiLimitInfo];
         [[NSAlert alertWithMessageText:@"Server Timestamp"
                          defaultButton:@"Close"
                        alternateButton:nil

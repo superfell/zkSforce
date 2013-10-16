@@ -34,13 +34,14 @@
 	ZKSforceClient		 *client;
 	BOOL				 loginInProgress;
 	ZKQueryResult		 *result;
+    NSString             *apiLimitInfo;
 }
 
 // We use binding to have the UI automatically set these when they're edited.
 @property (retain) NSString *username;
 @property (retain) NSString *password;
 @property (assign) BOOL loginInProgress;
-
+@property (retain) NSString *apiLimitInfo;
 
 // The Login button in the UI is wired up to call this method
 -(IBAction)performLogin:(id)sender;
