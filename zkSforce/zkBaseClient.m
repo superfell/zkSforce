@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2006-2008,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -31,7 +31,17 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
 - (void)dealloc {
 	[endpointUrl release];
+    [responseHeaders release];
 	[super dealloc];
+}
+
+- (zkElement *)lastResponseSoapHeaders {
+    return responseHeaders;
+}
+
+-(void)setLastResponseSoapHeaders:(zkElement *)h {
+    [responseHeaders autorelease];
+    responseHeaders = [h retain];
 }
 
 - (zkElement *)sendRequest:(NSString *)payload {
@@ -73,6 +83,9 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
         [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
 		@throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, [root namespace]] userInfo:nil];
     }
+    zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
+    [self setLastResponseSoapHeaders:header];
+    
 	zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
 	if (500 == [resp statusCode]) {
 		zkElement *fault = [body childElement:@"Fault" ns:SOAP_NS];

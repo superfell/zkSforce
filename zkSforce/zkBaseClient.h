@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008 Simon Fell
+// Copyright (c) 2006-2008,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -23,12 +23,16 @@
 @class zkElement;
 
 @interface ZKBaseClient : NSObject {
-	NSURL *endpointUrl;
+	NSURL   *endpointUrl;
+    zkElement *responseHeaders;
 }
 
 @property (retain) NSURL *endpointUrl;
 
 - (zkElement *)sendRequest:(NSString *)payload;
 - (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+
+// returns the Soap:Header element from the response payload.
+- (zkElement *)lastResponseSoapHeaders;
 
 @end
