@@ -47,6 +47,13 @@
 	return [self string:@"urlNew"];
 }
 
+-(BOOL)compactLayoutable {
+   	return [self boolean:@"compactLayoutable"];
+}
+-(BOOL)searchLayoutable {
+   	return [self boolean:@"searchLayoutable"];
+}
+
 -(NSArray *)fields {
 	if (fields == nil) {
 		NSArray * fn = [node childElements:@"fields"];

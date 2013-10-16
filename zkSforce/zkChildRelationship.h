@@ -37,5 +37,6 @@
 -(NSString *)childSObject;
 -(NSString *)field;
 -(NSString *)relationshipName;
-
+-(BOOL)deprecatedAndHidden;
+-(BOOL)restrictedDelete;
 @end

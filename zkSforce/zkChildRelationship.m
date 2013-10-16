@@ -40,4 +40,12 @@
 	return [self string:@"relationshipName"];
 }
 
+-(BOOL)deprecatedAndHidden {
+    return [self boolean:@"deprecatedAndHidden"];
+}
+
+-(BOOL)restrictedDelete {
+    return [self boolean:@"restrictedDelete"];
+}
+
 @end

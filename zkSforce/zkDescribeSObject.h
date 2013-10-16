@@ -63,4 +63,8 @@
 -(ZKDescribeField *)fieldWithName:(NSString *)name;
 -(NSArray *)childRelationships;
 -(NSArray *)recordTypeInfos;
+// v29.0
+-(BOOL)compactLayoutable;
+-(BOOL)searchLayoutable;
+
 @end
