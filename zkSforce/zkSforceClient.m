@@ -33,6 +33,7 @@
 #import "zkParser.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeTabSetResult.h"
+#import "ZKLimitInfoHeader.h"
 
 static const int SAVE_BATCH_SIZE = 25;
 
@@ -41,12 +42,13 @@ static const int SAVE_BATCH_SIZE = 25;
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 - (void)checkSession;
 - (ZKUserInfo *)getUserInfo;
+- (void)updateLimitInfo;
 @property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
 @end
 
 @implementation ZKSforceClient
 
-@synthesize preferedApiVersion, updateMru, clientId, cacheDescribes;
+@synthesize preferedApiVersion, updateMru, clientId, cacheDescribes, lastLimitInfoHeader=limitInfo;
 
 - (id)init {
 	self = [super init];
@@ -64,6 +66,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[userInfo release];
 	[describes release];
     [authSource release];
+    [limitInfo release];
 	[super dealloc];
 }
 
@@ -76,6 +79,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	rhs->userInfo = [userInfo retain];
 	rhs->preferedApiVersion = preferedApiVersion;
     rhs->authSource = [authSource retain];
+    rhs->limitInfo = [limitInfo retain];
 	[rhs setCacheDescribes:cacheDescribes];
 	[rhs setUpdateMru:updateMru];
 	return rhs;
@@ -452,6 +456,23 @@ static const int SAVE_BATCH_SIZE = 25;
 	ZKQueryResult *result = [[ZKQueryResult alloc] initFromXmlNode:[[qr childElements] objectAtIndex:0]];
 	[env release];
 	return [result autorelease];
+}
+
+// We override sendRequest here so that we can do some common additional processing on the response (looking at the response soap headers)
+- (zkElement *)sendRequest:(NSString *)payload {
+    zkElement *result = [super sendRequest:payload];
+    [self updateLimitInfo];
+    return result;
+}
+
+-(void)updateLimitInfo {
+    // this looks in the last response for a limit info header and if we got one, hangs onto it.
+    zkElement *soapHeader = [self lastResponseSoapHeaders];
+    zkElement *liElem = [soapHeader childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
+    if (liElem != nil) {
+        [limitInfo autorelease];
+        limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
+    }
 }
 
 @end

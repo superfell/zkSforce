@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2011 Simon Fell
+// Copyright (c) 2006-2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -28,6 +28,7 @@
 @class ZKQueryResult;
 @class ZKLoginResult;
 @class ZKDescribeLayoutResult;
+@class ZKLimitInfoHeader;
 
 // This is the primary entry point into the library, you'd create one of these
 // call login, then use it to make other API calls. Your session is automatically
@@ -43,6 +44,7 @@
 	int			preferedApiVersion;
     
     NSObject<ZKAuthenticationInfo>  *authSource;
+    ZKLimitInfoHeader *limitInfo;
 }
 
 // configuration for where to connect to and what api version to use
@@ -176,6 +178,8 @@
 // If you have a clientId for a certifed partner application, you can set it here.
 @property (retain) NSString *clientId;
 
+// contains the last received LimitInfoHeader we got from the server.
+@property (readonly) ZKLimitInfoHeader *lastLimitInfoHeader;
 
 // describe caching
 //////////////////////////////////////////////////////////////////////////////////////
