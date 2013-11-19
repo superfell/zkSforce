@@ -39,3 +39,6 @@
 #import "ZKPicklistForRecordType.h"
 #import "ZKRecordTypeMapping.h"
 #import "ZKPicklistEntry.h"
+#import "ZKLeadConvert.h"
+#import "ZKLeadConvertResult.h"
+#import "ZKError.h"

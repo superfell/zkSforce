@@ -32,7 +32,7 @@ enum envState {
 
 - (void)start:(NSString *)primaryNamespceUri {
 	[env release];
-	env = [NSMutableString stringWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns='%@'>", primaryNamespceUri];
+	env = [NSMutableString stringWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='%@'>", primaryNamespceUri];
 	state = inEnvelope;
 }
 
@@ -76,8 +76,17 @@ enum envState {
 	state = inBody;
 }
 
+- (void) addNullElement:(NSString *)elemName {
+    [env appendFormat:@"<%@ x:nil='true'/>", elemName];
+}
+
+- (void) addBoolElement:(NSString *)elemName elemValue:(BOOL)elemValue {
+    [self addElement:elemName elemValue:(elemValue ? @"true" :@"false")];
+}
+
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue {
-	if ([elemValue isKindOfClass:[NSString class]])      	[self addElementString:elemName elemValue:elemValue];
+    if (elemValue == nil)                                   [self addNullElement:elemName];
+	else if ([elemValue isKindOfClass:[NSString class]])    [self addElementString:elemName elemValue:elemValue];
 	else if ([elemValue isKindOfClass:[NSArray class]]) 	[self addElementArray:elemName elemValue:elemValue];
 	else if ([elemValue isKindOfClass:[ZKSObject class]]) 	[self addElementSObject:elemName elemValue:elemValue];
 	else [self addElementString:elemName elemValue:[elemValue stringValue]];

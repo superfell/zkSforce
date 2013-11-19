@@ -34,6 +34,9 @@
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeTabSetResult.h"
 #import "ZKLimitInfoHeader.h"
+#import "ZKLeadConvert.h"
+#import "ZKLeadConvertResult.h"
+#import "ZKXMLSerializable.h"
 
 static const int SAVE_BATCH_SIZE = 25;
 
@@ -449,6 +452,30 @@ static const int SAVE_BATCH_SIZE = 25;
 		ZKSaveResult *sr = [[ZKSaveResult alloc] initWithXmlElement:cr];
 		[results addObject:sr];
 		[sr release];
+	}
+	[env release];
+	return results;
+}
+
+- (NSArray *)convertLead:(NSArray *)leadConverts {
+    if (!authSource) return NULL;
+    [self checkSession];
+    
+    ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:[authSource sessionId] mru:updateMru clientId:clientId];
+    [env startElement:@"convertLead"];
+    for (NSObject<ZKXMLSerializable> *l in leadConverts) {
+        [l serializeToEnvelope:env];
+    }
+    [env endElement:@"convertLead"];
+    [env endElement:@"s:Body"];
+	
+	zkElement *cr = [self sendRequest:[env end]];
+	NSArray *resArr = [cr childElements:@"result"];
+	NSMutableArray *results = [NSMutableArray arrayWithCapacity:[resArr count]];
+	for (zkElement *cr in resArr) {
+		ZKLeadConvertResult *clr = [[ZKLeadConvertResult alloc] initWithXmlElement:cr];
+		[results addObject:clr];
+		[clr release];
 	}
 	[env release];
 	return results;
