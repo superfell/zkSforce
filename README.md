@@ -4,16 +4,16 @@ zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](h
 
 zkSforce supports all the popular methods in the partner web services API
 
- * login, getUserInfo
+ * login, getUserInfo, serverTimestamp, setPassword
  * describeGlobal, describeSObject, describeLayout, describeTabs
- * create, update, delete
- * search, query, queryAll
+ * create, update, delete, convertLead
+ * search, query, queryAll, queryMore, retrieve
  * OAuth support for refresh tokens
 
 The following methods are not currently supported
 
  * describeSObjects
- * upsert, undelete, merge, convertLead
+ * upsert, undelete, merge
  * getDeleted & getUpdated
  * process
 
