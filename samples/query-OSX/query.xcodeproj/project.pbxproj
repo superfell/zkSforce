@@ -50,6 +50,9 @@
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
 		F46B68A81485E06F00493685 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */; };
 		F47E2FC01468EB430070F6F8 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */; };
+		F49241E4183B1239000F9541 /* ZKLeadConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = F49241E3183B1239000F9541 /* ZKLeadConvert.m */; };
+		F49241E7183B13DE000F9541 /* ZKLeadConvertResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F49241E6183B13DE000F9541 /* ZKLeadConvertResult.m */; };
+		F49241EA183B14B8000F9541 /* ZKError.m in Sources */ = {isa = PBXBuildFile; fileRef = F49241E9183B14B8000F9541 /* ZKError.m */; };
 		F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0A1363908A000CDE02 /* zkAuthentication.m */; };
 		F4C2983B1364A283009ACB8D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F4C2983A1364A283009ACB8D /* readme.md */; };
 		F4C2D25A1468EC8100C73F09 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */; };
@@ -144,6 +147,13 @@
 		F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
 		F47E2FBE1468EB430070F6F8 /* ZKDescribeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTab.h; path = ../../zkSforce/ZKDescribeTab.h; sourceTree = "<group>"; };
 		F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTab.m; path = ../../zkSforce/ZKDescribeTab.m; sourceTree = "<group>"; };
+		F49241E2183B1239000F9541 /* ZKLeadConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLeadConvert.h; path = ../../zkSforce/ZKLeadConvert.h; sourceTree = "<group>"; };
+		F49241E3183B1239000F9541 /* ZKLeadConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLeadConvert.m; path = ../../zkSforce/ZKLeadConvert.m; sourceTree = "<group>"; };
+		F49241E5183B13DE000F9541 /* ZKLeadConvertResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLeadConvertResult.h; path = ../../zkSforce/ZKLeadConvertResult.h; sourceTree = "<group>"; };
+		F49241E6183B13DE000F9541 /* ZKLeadConvertResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLeadConvertResult.m; path = ../../zkSforce/ZKLeadConvertResult.m; sourceTree = "<group>"; };
+		F49241E8183B14B8000F9541 /* ZKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKError.h; path = ../../zkSforce/ZKError.h; sourceTree = "<group>"; };
+		F49241E9183B14B8000F9541 /* ZKError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKError.m; path = ../../zkSforce/ZKError.m; sourceTree = "<group>"; };
+		F49241EB183B16CD000F9541 /* ZKXMLSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKXMLSerializable.h; path = ../../zkSforce/ZKXMLSerializable.h; sourceTree = "<group>"; };
 		F49C1D091363908A000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
 		F49C1D0A1363908A000CDE02 /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
 		F4C2983A1364A283009ACB8D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
@@ -324,6 +334,13 @@
 				F42DBF8C180E1A5D005E1028 /* ZKLimitInfo.m */,
 				F42DBF8E180E31D3005E1028 /* ZKLimitInfoHeader.h */,
 				F42DBF8F180E31D3005E1028 /* ZKLimitInfoHeader.m */,
+				F49241E2183B1239000F9541 /* ZKLeadConvert.h */,
+				F49241E3183B1239000F9541 /* ZKLeadConvert.m */,
+				F49241E5183B13DE000F9541 /* ZKLeadConvertResult.h */,
+				F49241E6183B13DE000F9541 /* ZKLeadConvertResult.m */,
+				F49241E8183B14B8000F9541 /* ZKError.h */,
+				F49241E9183B14B8000F9541 /* ZKError.m */,
+				F49241EB183B16CD000F9541 /* ZKXMLSerializable.h */,
 			);
 			name = zksforce;
 			sourceTree = "<group>";
@@ -429,6 +446,9 @@
 				F46B68A81485E06F00493685 /* zkSforceClient+zkAsyncQuery.m in Sources */,
 				F42DBF8D180E1A5D005E1028 /* ZKLimitInfo.m in Sources */,
 				F42DBF90180E31D4005E1028 /* ZKLimitInfoHeader.m in Sources */,
+				F49241E4183B1239000F9541 /* ZKLeadConvert.m in Sources */,
+				F49241E7183B13DE000F9541 /* ZKLeadConvertResult.m in Sources */,
+				F49241EA183B14B8000F9541 /* ZKError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
