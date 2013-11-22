@@ -52,7 +52,7 @@
 		F44CC07912B5881D0052D468 /* zkSforceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05512B5881D0052D468 /* zkSforceClient.m */; };
 		F44CC07A12B5881D0052D468 /* zkSoapException.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05712B5881D0052D468 /* zkSoapException.m */; };
 		F44CC07B12B5881D0052D468 /* zkSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05912B5881D0052D468 /* zkSObject.m */; };
-		F44CC07C12B5881D0052D468 /* zkUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05B12B5881D0052D468 /* zkUserInfo.m */; };
+		F44CC07C12B5881D0052D468 /* ZKUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05B12B5881D0052D468 /* ZKUserInfo.m */; };
 		F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05D12B5881D0052D468 /* zkXmlDeserializer.m */; };
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
@@ -160,8 +160,8 @@
 		F44CC05712B5881D0052D468 /* zkSoapException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSoapException.m; path = ../../zkSforce/zkSoapException.m; sourceTree = SOURCE_ROOT; };
 		F44CC05812B5881D0052D468 /* zkSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkSObject.h; path = ../../zkSforce/zkSObject.h; sourceTree = SOURCE_ROOT; };
 		F44CC05912B5881D0052D468 /* zkSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSObject.m; path = ../../zkSforce/zkSObject.m; sourceTree = SOURCE_ROOT; };
-		F44CC05A12B5881D0052D468 /* zkUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkUserInfo.h; path = ../../zkSforce/zkUserInfo.h; sourceTree = SOURCE_ROOT; };
-		F44CC05B12B5881D0052D468 /* zkUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkUserInfo.m; path = ../../zkSforce/zkUserInfo.m; sourceTree = SOURCE_ROOT; };
+		F44CC05A12B5881D0052D468 /* ZKUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUserInfo.h; path = ../../zkSforce/ZKUserInfo.h; sourceTree = SOURCE_ROOT; };
+		F44CC05B12B5881D0052D468 /* ZKUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUserInfo.m; path = ../../zkSforce/ZKUserInfo.m; sourceTree = SOURCE_ROOT; };
 		F44CC05C12B5881D0052D468 /* zkXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkXmlDeserializer.h; path = ../../zkSforce/zkXmlDeserializer.h; sourceTree = SOURCE_ROOT; };
 		F44CC05D12B5881D0052D468 /* zkXmlDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkXmlDeserializer.m; path = ../../zkSforce/zkXmlDeserializer.m; sourceTree = SOURCE_ROOT; };
 		F44CC08412B588AE0052D468 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
@@ -366,8 +366,8 @@
 				F44CC05712B5881D0052D468 /* zkSoapException.m */,
 				F44CC05812B5881D0052D468 /* zkSObject.h */,
 				F44CC05912B5881D0052D468 /* zkSObject.m */,
-				F44CC05A12B5881D0052D468 /* zkUserInfo.h */,
-				F44CC05B12B5881D0052D468 /* zkUserInfo.m */,
+				F44CC05A12B5881D0052D468 /* ZKUserInfo.h */,
+				F44CC05B12B5881D0052D468 /* ZKUserInfo.m */,
 				F44CC05C12B5881D0052D468 /* zkXmlDeserializer.h */,
 				F44CC05D12B5881D0052D468 /* zkXmlDeserializer.m */,
 				F42DBF8B180E1A5C005E1028 /* ZKLimitInfo.h */,
@@ -477,7 +477,7 @@
 				F44CC07912B5881D0052D468 /* zkSforceClient.m in Sources */,
 				F44CC07A12B5881D0052D468 /* zkSoapException.m in Sources */,
 				F44CC07B12B5881D0052D468 /* zkSObject.m in Sources */,
-				F44CC07C12B5881D0052D468 /* zkUserInfo.m in Sources */,
+				F44CC07C12B5881D0052D468 /* ZKUserInfo.m in Sources */,
 				F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */,
 				F44CC09112B58BA40052D468 /* QueryController.m in Sources */,
 				F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */,
