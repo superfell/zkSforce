@@ -140,9 +140,6 @@
 - (BOOL)updateable {
 	return [self boolean:@"updateable"];
 }
-- (NSString *)description {
-	return [NSString stringWithFormat:@"Field %@ (%@)", [self name], [self label]];
-}
 - (NSString *)calculatedFormula {
 	return [self string:@"calculatedFormula"];
 }
