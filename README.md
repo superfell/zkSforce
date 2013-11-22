@@ -77,8 +77,11 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
 
  * some files have had the casing of their filename fixed to match the classname (e.g. zkChildRelationship.h is now ZKChildRelationship.h)
  * The Id property on ZKDescribeLayout is now called id
+ * message & statusCode properties on ZKSaveResult have been moved to an Extras category/file
+ * describe & fieldsColumnNames properties on ZKRelatedList have been moved to an Extras category/file
+ * many properties on ZKUserInfo are now in an Extras category/file
+ * licenceType from ZKUserInfo was removed (its not longer in the API)
  * 
-
 
 ## Project setup (via CocoaPods)
 
