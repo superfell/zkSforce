@@ -12,6 +12,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		F414BACC183FE85600322AC2 /* ZKRelatedList+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BACB183FE85600322AC2 /* ZKRelatedList+Extras.m */; };
 		F4214DF9183FD165007D495C /* ZKDescribeQuickActionListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214DF8183FD165007D495C /* ZKDescribeQuickActionListResult.m */; };
 		F4214DFC183FD192007D495C /* ZKDescribeQuickActionListItemResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214DFB183FD192007D495C /* ZKDescribeQuickActionListItemResult.m */; };
 		F4214E01183FD1C2007D495C /* ZKDescribeIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214DFE183FD1C1007D495C /* ZKDescribeIcon.m */; };
@@ -78,6 +79,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* query-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "query-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* query.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = query.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F414BACA183FE85600322AC2 /* ZKRelatedList+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKRelatedList+Extras.h"; path = "../../zkSforce/ZKRelatedList+Extras.h"; sourceTree = "<group>"; };
+		F414BACB183FE85600322AC2 /* ZKRelatedList+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKRelatedList+Extras.m"; path = "../../zkSforce/ZKRelatedList+Extras.m"; sourceTree = "<group>"; };
 		F4214DF7183FD165007D495C /* ZKDescribeQuickActionListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeQuickActionListResult.h; path = ../../zkSforce/ZKDescribeQuickActionListResult.h; sourceTree = "<group>"; };
 		F4214DF8183FD165007D495C /* ZKDescribeQuickActionListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeQuickActionListResult.m; path = ../../zkSforce/ZKDescribeQuickActionListResult.m; sourceTree = "<group>"; };
 		F4214DFA183FD192007D495C /* ZKDescribeQuickActionListItemResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeQuickActionListItemResult.h; path = ../../zkSforce/ZKDescribeQuickActionListItemResult.h; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 				F44CC04A12B5881D0052D468 /* ZKRecordTypeMapping.m */,
 				F44CC04B12B5881D0052D468 /* ZKRelatedList.h */,
 				F44CC04C12B5881D0052D468 /* ZKRelatedList.m */,
+				F414BACA183FE85600322AC2 /* ZKRelatedList+Extras.h */,
+				F414BACB183FE85600322AC2 /* ZKRelatedList+Extras.m */,
 				F44CC04D12B5881D0052D468 /* ZKRelatedListColumn.h */,
 				F44CC04E12B5881D0052D468 /* ZKRelatedListColumn.m */,
 				F44CC04F12B5881D0052D468 /* ZKRelatedListSort.h */,
@@ -491,6 +496,7 @@
 				F4214E05183FD7BD007D495C /* ZKRelatedContent.m in Sources */,
 				F4214E08183FD7F8007D495C /* ZKDescribeRelatedContentItem.m in Sources */,
 				F4214E0B183FE563007D495C /* ZKSaveResult+Extras.m in Sources */,
+				F414BACC183FE85600322AC2 /* ZKRelatedList+Extras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
