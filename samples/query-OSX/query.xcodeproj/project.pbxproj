@@ -18,6 +18,7 @@
 		F4214E02183FD1C2007D495C /* ZKDescribeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214E00183FD1C1007D495C /* ZKDescribeColor.m */; };
 		F4214E05183FD7BD007D495C /* ZKRelatedContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214E04183FD7BD007D495C /* ZKRelatedContent.m */; };
 		F4214E08183FD7F8007D495C /* ZKDescribeRelatedContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214E07183FD7F8007D495C /* ZKDescribeRelatedContentItem.m */; };
+		F4214E0B183FE563007D495C /* ZKSaveResult+FirstError.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214E0A183FE562007D495C /* ZKSaveResult+FirstError.m */; };
 		F42DBF8D180E1A5D005E1028 /* ZKLimitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42DBF8C180E1A5D005E1028 /* ZKLimitInfo.m */; };
 		F42DBF90180E31D4005E1028 /* ZKLimitInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F42DBF8F180E31D3005E1028 /* ZKLimitInfoHeader.m */; };
 		F44CC05E12B5881D0052D468 /* zkBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC01E12B5881D0052D468 /* zkBaseClient.m */; };
@@ -89,6 +90,8 @@
 		F4214E04183FD7BD007D495C /* ZKRelatedContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRelatedContent.m; path = ../../zkSforce/ZKRelatedContent.m; sourceTree = "<group>"; };
 		F4214E06183FD7F8007D495C /* ZKDescribeRelatedContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeRelatedContentItem.h; path = ../../zkSforce/ZKDescribeRelatedContentItem.h; sourceTree = "<group>"; };
 		F4214E07183FD7F8007D495C /* ZKDescribeRelatedContentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeRelatedContentItem.m; path = ../../zkSforce/ZKDescribeRelatedContentItem.m; sourceTree = "<group>"; };
+		F4214E09183FE561007D495C /* ZKSaveResult+FirstError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKSaveResult+FirstError.h"; path = "../../zkSforce/ZKSaveResult+FirstError.h"; sourceTree = "<group>"; };
+		F4214E0A183FE562007D495C /* ZKSaveResult+FirstError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKSaveResult+FirstError.m"; path = "../../zkSforce/ZKSaveResult+FirstError.m"; sourceTree = "<group>"; };
 		F42DBF8B180E1A5C005E1028 /* ZKLimitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLimitInfo.h; path = ../../zkSforce/ZKLimitInfo.h; sourceTree = "<group>"; };
 		F42DBF8C180E1A5D005E1028 /* ZKLimitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLimitInfo.m; path = ../../zkSforce/ZKLimitInfo.m; sourceTree = "<group>"; };
 		F42DBF8E180E31D3005E1028 /* ZKLimitInfoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLimitInfoHeader.h; path = ../../zkSforce/ZKLimitInfoHeader.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				F44CC05012B5881D0052D468 /* ZKRelatedListSort.m */,
 				F44CC05112B5881D0052D468 /* ZKSaveResult.h */,
 				F44CC05212B5881D0052D468 /* ZKSaveResult.m */,
+				F4214E09183FE561007D495C /* ZKSaveResult+FirstError.h */,
+				F4214E0A183FE562007D495C /* ZKSaveResult+FirstError.m */,
 				F44CC05312B5881D0052D468 /* zkSforce.h */,
 				F44CC05412B5881D0052D468 /* zkSforceClient.h */,
 				F44CC05512B5881D0052D468 /* zkSforceClient.m */,
@@ -485,6 +490,7 @@
 				F4214E02183FD1C2007D495C /* ZKDescribeColor.m in Sources */,
 				F4214E05183FD7BD007D495C /* ZKRelatedContent.m in Sources */,
 				F4214E08183FD7F8007D495C /* ZKDescribeRelatedContentItem.m in Sources */,
+				F4214E0B183FE563007D495C /* ZKSaveResult+FirstError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

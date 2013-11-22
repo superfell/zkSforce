@@ -19,34 +19,21 @@
 // THE SOFTWARE.
 //
 
-
-#import "zkSaveResult.h"
-#import "zkParser.h"
+#import "ZKSaveResult.h"
+#import "ZKError.h"
 
 @implementation ZKSaveResult
 
-- (NSString *)id {
-	return [self string:@"id"];
+-(NSArray *)errors {
+    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }
-
-- (BOOL)success {
-	return [self boolean:@"success"];
+			
+-(NSString *)id {
+    return [self string:@"id"];
 }
-
-- (NSString *)statusCode {
-	if ([self success]) return nil;
-	return [self string:@"statusCode" fromXmlElement:[node childElement:@"errors"]];
+			
+-(BOOL)success {
+    return [self boolean:@"success"];
 }
-
-- (NSString *)message {
-	if ([self success]) return nil;
-	return [self string:@"message" fromXmlElement:[node childElement:@"errors"]];
-}
-
-- (NSString *)description {
-	if ([self success])
-		return [self id];
-	return [NSString stringWithFormat:@"%@ - %@", [self statusCode], [self message]];
-}
-
+			
 @end
