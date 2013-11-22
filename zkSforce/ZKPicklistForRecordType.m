@@ -21,18 +21,15 @@
 
 #import "ZKPicklistForRecordType.h"
 #import "ZKPicklistEntry.h"
-#import "ZKParser.h"
 
 @implementation ZKPicklistForRecordType
 
--(NSString *) picklistName {
-	return [self string:@"picklistName"];
+-(NSString *)picklistName {
+    return [self string:@"picklistName"];
 }
-
-- (NSArray *) picklistValues {
-	if (picklistValues == nil) 
-		picklistValues = [[self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]] retain];
-	return picklistValues;
+			
+-(NSArray *)picklistValues {
+    return [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
 }
-
+			
 @end

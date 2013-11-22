@@ -21,36 +21,27 @@
 
 #import "ZKDescribeLayoutItem.h"
 #import "ZKDescribeLayoutComponent.h"
-#import "ZKParser.h"
-
 
 @implementation ZKDescribeLayoutItem
 
--(void)dealloc  {
-	[layoutComponents release];
-	[super dealloc];
+-(BOOL)editable {
+    return [self boolean:@"editable"];
 }
-
--(BOOL) editable {
-	return [self boolean:@"editable"];
+			
+-(NSString *)label {
+    return [self string:@"label"];
 }
-
--(BOOL) placeholder {
-	return [self boolean:@"placeholder"];
+			
+-(NSArray *)layoutComponents {
+    return [self complexTypeArrayFromElements:@"layoutComponents" cls:[ZKDescribeLayoutComponent class]];
 }
-
--(BOOL) required {
-	return [self boolean:@"required"];
+			
+-(BOOL)placeholder {
+    return [self boolean:@"placeholder"];
 }
-
--(NSString *) label {
-	return [self string:@"label"];
+			
+-(BOOL)required {
+    return [self boolean:@"required"];
 }
-
-- (NSArray *) layoutComponents {
-	if (layoutComponents == nil) 
-		layoutComponents = [[self complexTypeArrayFromElements:@"layoutComponents" cls:[ZKDescribeLayoutComponent class]] retain];
-	return layoutComponents;
-}
-
+			
 @end

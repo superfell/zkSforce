@@ -19,15 +19,18 @@
 // THE SOFTWARE.
 //
 
-#import "ZKXmlDeserializer.h"
+#import "zkXmlDeserializer.h"
 
 /*
- <element name="ascending" type="xsd:boolean"/>
- <element name="column" type="xsd:string"/>
- */
-@interface ZKRelatedListSort: ZKXmlDeserializer {
+<complexType name="RelatedListSort" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:boolean" name="ascending"/>
+    <element type="xsd:string" name="column"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKRelatedListSort : ZKXmlDeserializer {
 }
-- (BOOL) ascending;
-- (NSString * ) column;
-
+@property (readonly) BOOL       ascending; 
+@property (readonly) NSString  *column; 
 @end

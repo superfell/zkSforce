@@ -71,7 +71,15 @@ You'll need to store the refresh_token and authHost somewhere safe, like the key
 	// use as normal
 	// See the OAuthDemo sample for more info.
 	
-	
+
+## Major Update
+vXXXXX is a major update where a significant amount of the code is now code-generated from the partner WSDL, because of this there are a number of API changes that might affect an existing project that you're trying to update to this version of zkSforce.
+
+ * some files have had the casing of their filename fixed to match the classname (e.g. zkChildRelationship.h is now ZKChildRelationship.h)
+ * The Id property on ZKDescribeLayout is now called id
+ * 
+
+
 ## Project setup (via CocoaPods)
 
 The easiest way to get ZKSforce integrated into your app is to use [CocoaPods](http://cocoapods.org/), the new Cocoa dependency manager framework, simply create a dependency file, e.g.

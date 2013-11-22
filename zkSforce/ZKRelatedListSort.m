@@ -21,15 +21,14 @@
 
 #import "ZKRelatedListSort.h"
 
-
 @implementation ZKRelatedListSort
 
--(BOOL) ascending {
-	return [self boolean:@"ascending"];
+-(BOOL)ascending {
+    return [self boolean:@"ascending"];
 }
-
--(NSString *) column {
-	return [self string:@"column"];
+			
+-(NSString *)column {
+    return [self string:@"column"];
 }
-
+			
 @end

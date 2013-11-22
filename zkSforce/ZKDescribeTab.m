@@ -20,31 +20,41 @@
 //
 
 #import "ZKDescribeTab.h"
+#import "ZKDescribeColor.h"
+#import "ZKDescribeIcon.h"
 
 @implementation ZKDescribeTab
 
+-(NSArray *)colors {
+    return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+}
+			
 -(BOOL)custom {
     return [self boolean:@"custom"];
 }
-
--(NSString *)sobjectName {
-    return [self string:@"sobjectName"];
-}
-
--(NSString *)label {
-    return [self string:@"label"];
-}
-
+			
 -(NSString *)iconUrl {
     return [self string:@"iconUrl"];
 }
-
+			
+-(NSArray *)icons {
+    return [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+}
+			
+-(NSString *)label {
+    return [self string:@"label"];
+}
+			
 -(NSString *)miniIconUrl {
     return [self string:@"miniIconUrl"];
 }
-
+			
+-(NSString *)sobjectName {
+    return [self string:@"sobjectName"];
+}
+			
 -(NSString *)url {
     return [self string:@"url"];
 }
-
+			
 @end

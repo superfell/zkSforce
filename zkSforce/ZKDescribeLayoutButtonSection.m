@@ -21,19 +21,11 @@
 
 #import "ZKDescribeLayoutButtonSection.h"
 #import "ZKDescribeLayoutButton.h"
-#import "ZKParser.h"
 
 @implementation ZKDescribeLayoutButtonSection
 
--(void)dealloc  {
-	[detailButtons release];
-	[super dealloc];
+-(NSArray *)detailButtons {
+    return [self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]];
 }
-
-- (NSArray *) detailButtons {
-	if (detailButtons == nil) 
-		detailButtons = [[self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]] retain];
-	return detailButtons;
-}
-
+			
 @end

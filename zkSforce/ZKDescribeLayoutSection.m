@@ -21,45 +21,31 @@
 
 #import "ZKDescribeLayoutSection.h"
 #import "ZKDescribeLayoutRow.h"
-#import "ZKXmlDeserializer.h"
-#import "ZKParser.h"
 
+@implementation ZKDescribeLayoutSection
 
-@implementation ZKDescribeLayoutSection 
-
--(void)dealloc {
-	[layoutRows release];
-	[super dealloc];
+-(NSInteger)columns {
+    return [self integer:@"columns"];
 }
-
--(BOOL) useCollapsibleSection {
-	return [self boolean:@"useCollapsibleSection"];
+			
+-(NSString *)heading {
+    return [self string:@"heading"];
 }
-
--(BOOL) useHeading {
-	return [self boolean:@"useHeading"];
+			
+-(NSArray *)layoutRows {
+    return [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
 }
-
--(NSString *) recordTypeId {
-	return [self string:@"recordTypeId"];
+			
+-(NSInteger)rows {
+    return [self integer:@"rows"];
 }
-
--(NSString *) heading {
-	return [self string:@"heading"];
+			
+-(BOOL)useCollapsibleSection {
+    return [self boolean:@"useCollapsibleSection"];
 }
-
--(NSInteger ) columns {
-	return [self integer:@"columns"];
+			
+-(BOOL)useHeading {
+    return [self boolean:@"useHeading"];
 }
-
--(NSInteger ) rows {
-	return [self integer:@"rows"];
-}
-
-- (NSArray *) layoutRows {
-	if (layoutRows == nil) 
-		layoutRows = [[self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]] retain];
-	return layoutRows;
-}
-
+			
 @end

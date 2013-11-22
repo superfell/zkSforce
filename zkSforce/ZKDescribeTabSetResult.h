@@ -20,25 +20,23 @@
 //
 
 #import "zkXmlDeserializer.h"
-#import "ZKDescribeTab.h"
 
-//<complexType name="DescribeTabSetResult">
-//<sequence>
-//<element name="label"           type="xsd:string" />
-//<element name="logoUrl"         type="xsd:string" />
-//<element name="namespace"       type="xsd:string" minOccurs="0"/>
-//<element name="selected"        type="xsd:boolean" />
-//<element name="tabs"            type="tns:DescribeTab" minOccurs="0" maxOccurs="unbounded"/>
-//</sequence>
-//</complexType>
-
+/*
+<complexType name="DescribeTabSetResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:string" name="label"/>
+    <element type="xsd:string" name="logoUrl"/>
+    <element minOccurs="0" type="xsd:string" name="namespace"/>
+    <element type="xsd:boolean" name="selected"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeTab" name="tabs"/>
+  </sequence>
+</complexType>
+*/
 @interface ZKDescribeTabSetResult : ZKXmlDeserializer {
 }
-
--(NSString *)label;
--(NSString *)logoUrl;
--(NSString *)namespace;
--(BOOL)selected;
--(NSArray *)tabs;   // array of ZKDescribeTab
-
+@property (readonly) NSString  *label; 
+@property (readonly) NSString  *logoUrl; 
+@property (readonly) NSString  *namespace; 
+@property (readonly) BOOL       selected; 
+@property (readonly) NSArray   *tabs;  // of ZKDescribeTab
 @end

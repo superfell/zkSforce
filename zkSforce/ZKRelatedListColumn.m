@@ -20,25 +20,27 @@
 //
 
 #import "ZKRelatedListColumn.h"
-#import "ZKParser.h"
-
 
 @implementation ZKRelatedListColumn
 
--(NSString *) field {
-	return [self string:@"field"];
+-(NSString *)field {
+    return [self string:@"field"];
 }
-
--(NSString *) name {
-	return [self string:@"name"];
+			
+-(NSString *)format {
+    return [self string:@"format"];
 }
-
--(NSString *) format {
-	return [self string:@"format"];
+			
+-(NSString *)label {
+    return [self string:@"label"];
 }
-
--(NSString *) label {
-	return [self string:@"label"];
+			
+-(NSString *)lookupId {
+    return [self string:@"lookupId"];
 }
-
+			
+-(NSString *)name {
+    return [self string:@"name"];
+}
+			
 @end

@@ -21,20 +21,22 @@
 
 #import "ZKRecordTypeInfo.h"
 
-
 @implementation ZKRecordTypeInfo
 
-- (BOOL)available {
-	return [self boolean:@"available"];
+-(BOOL)available {
+    return [self boolean:@"available"];
 }
-- (BOOL)defaultRecordTypeMapping {
-	return [self boolean:@"defaultRecordTypeMapping"];
+			
+-(BOOL)defaultRecordTypeMapping {
+    return [self boolean:@"defaultRecordTypeMapping"];
 }
-- (NSString *)name {
-	return [self string:@"name"];
+			
+-(NSString *)name {
+    return [self string:@"name"];
 }
-- (NSString *)recordTypeId {
-	return [self string:@"recordTypeId"];
+			
+-(NSString *)recordTypeId {
+    return [self string:@"recordTypeId"];
 }
-
+			
 @end

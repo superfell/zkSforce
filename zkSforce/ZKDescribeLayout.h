@@ -19,29 +19,34 @@
 // THE SOFTWARE.
 //
 
-
-#import "ZKXmlDeserializer.h"
+#import "zkXmlDeserializer.h"
 
 @class ZKDescribeLayoutButtonSection;
-
+@class ZKDescribeLayoutSection;
+@class ZKDescribeQuickActionListResult;
+@class ZKRelatedContent;
 /*
- <element name="buttonLayoutSection" type="tns:DescribeLayoutButtonSection" minOccurs="0"/>
- <element name="detailLayoutSections" type="tns:DescribeLayoutSection" minOccurs="0" maxOccurs="unbounded"/>
- <element name="editLayoutSections" type="tns:DescribeLayoutSection" minOccurs="0" maxOccurs="unbounded"/>
- <element name="id" type="tns:ID"/>
- <element name="relatedLists" type="tns:RelatedList" minOccurs="0" maxOccurs="unbounded"/>
- 
- */
-@interface ZKDescribeLayout: ZKXmlDeserializer {
-	ZKDescribeLayoutButtonSection *buttonLayoutSection;
-	NSArray *detailLayoutSections;
-	NSArray *editLayoutSections;
-	NSArray *relatedLists;
+<complexType name="DescribeLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element minOccurs="0" type="tns:DescribeLayoutButtonSection" name="buttonLayoutSection"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="detailLayoutSections"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="editLayoutSections"/>
+    <element minOccurs="0" type="tns:DescribeLayoutSection" name="highlightsPanelLayoutSection"/>
+    <element nillable="true" type="tns:ID" name="id"/>
+    <element minOccurs="0" type="tns:DescribeQuickActionListResult" name="quickActionList"/>
+    <element maxOccurs="1" minOccurs="0" type="tns:RelatedContent" name="relatedContent"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:RelatedList" name="relatedLists"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDescribeLayout : ZKXmlDeserializer {
 }
-
-- (ZKDescribeLayoutButtonSection *) buttonLayoutSection;
-- (NSArray *) detailLayoutSections;
-- (NSArray *) editLayoutSections;
-- (NSString *) Id;
-- (NSArray *) relatedLists;
+@property (readonly) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
+@property (readonly) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
+@property (readonly) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
+@property (readonly) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
+@property (readonly) NSString                         *id; 
+@property (readonly) ZKDescribeQuickActionListResult  *quickActionList; 
+@property (readonly) ZKRelatedContent                 *relatedContent; 
+@property (readonly) NSArray                          *relatedLists;  // of ZKRelatedList
 @end

@@ -19,22 +19,24 @@
 // THE SOFTWARE.
 //
 
-
-#import "ZKXmlDeserializer.h"
+#import "zkXmlDeserializer.h"
 
 /*
- <element name="field" type="xsd:string" nillable="true"/>
- <element name="format" type="xsd:string" nillable="true"/>
- <element name="label" type="xsd:string"/>
- <element name="name" type="xsd:string"/>
+<complexType name="RelatedListColumn" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element nillable="true" type="xsd:string" name="field"/>
+    <element nillable="true" type="xsd:string" name="format"/>
+    <element type="xsd:string" name="label"/>
+    <element minOccurs="0" nillable="true" type="xsd:string" name="lookupId"/>
+    <element type="xsd:string" name="name"/>
+  </sequence>
+</complexType>
 */
-
-@interface ZKRelatedListColumn: ZKXmlDeserializer {
+@interface ZKRelatedListColumn : ZKXmlDeserializer {
 }
-
-- (NSString *) field;
-- (NSString *) format;
-- (NSString *) label;
-- (NSString *) name;
-
+@property (readonly) NSString  *field; 
+@property (readonly) NSString  *format; 
+@property (readonly) NSString  *label; 
+@property (readonly) NSString  *lookupId; 
+@property (readonly) NSString  *name; 
 @end

@@ -19,22 +19,25 @@
 // THE SOFTWARE.
 //
 
-
 #import "ZKDescribeLayoutButton.h"
-
+#import "ZKDescribeIcon.h"
 
 @implementation ZKDescribeLayoutButton
 
 -(BOOL)custom {
-	return [self boolean:@"custom"];
+    return [self boolean:@"custom"];
 }
-
+			
+-(NSArray *)icons {
+    return [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+}
+			
 -(NSString *)label {
-	return [self string:@"label"];
+    return [self string:@"label"];
 }
-
+			
 -(NSString *)name {
-	return [self string:@"name"];
+    return [self string:@"name"];
 }
-
+			
 @end

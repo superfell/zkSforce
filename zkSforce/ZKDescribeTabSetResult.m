@@ -20,28 +20,28 @@
 //
 
 #import "ZKDescribeTabSetResult.h"
+#import "ZKDescribeTab.h"
 
 @implementation ZKDescribeTabSetResult
 
 -(NSString *)label {
     return [self string:@"label"];
 }
-
+			
 -(NSString *)logoUrl {
     return [self string:@"logoUrl"];
 }
-
+			
 -(NSString *)namespace {
     return [self string:@"namespace"];
 }
-
+			
 -(BOOL)selected {
     return [self boolean:@"selected"];
 }
-
-// array of ZKDescribeTab
+			
 -(NSArray *)tabs {
     return [self complexTypeArrayFromElements:@"tabs" cls:[ZKDescribeTab class]];
 }
-
+			
 @end

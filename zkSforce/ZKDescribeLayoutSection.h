@@ -19,31 +19,26 @@
 // THE SOFTWARE.
 //
 
-
-#import "ZKXmlDeserializer.h"
-
+#import "zkXmlDeserializer.h"
 
 /*
- <complexType name="DescribeLayoutSection">
- −
- <sequence>
- <element name="columns" type="xsd:int"/>
- <element name="heading" type="xsd:string"/>
- <element name="layoutRows" type="tns:DescribeLayoutRow" maxOccurs="unbounded"/>
- <element name="rows" type="xsd:int"/>
- <element name="useCollapsibleSection" type="xsd:boolean"/>
- <element name="useHeading" type="xsd:boolean"/>
- </sequence>
- </complexType>
- */
-@interface ZKDescribeLayoutSection: ZKXmlDeserializer {
-	NSArray *layoutRows;
+<complexType name="DescribeLayoutSection" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:int" name="columns"/>
+    <element type="xsd:string" name="heading"/>
+    <element maxOccurs="unbounded" type="tns:DescribeLayoutRow" name="layoutRows"/>
+    <element type="xsd:int" name="rows"/>
+    <element type="xsd:boolean" name="useCollapsibleSection"/>
+    <element type="xsd:boolean" name="useHeading"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDescribeLayoutSection : ZKXmlDeserializer {
 }
-- (BOOL) useCollapsibleSection;
-- (BOOL) useHeading;
-- (NSString *) heading;
-- (NSInteger ) columns;
-- (NSInteger ) rows;
-- (NSArray *) layoutRows;
-
+@property (readonly) NSInteger  columns; 
+@property (readonly) NSString  *heading; 
+@property (readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
+@property (readonly) NSInteger  rows; 
+@property (readonly) BOOL       useCollapsibleSection; 
+@property (readonly) BOOL       useHeading; 
 @end

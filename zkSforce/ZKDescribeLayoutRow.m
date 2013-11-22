@@ -19,26 +19,17 @@
 // THE SOFTWARE.
 //
 
-
-#import "ZKDescribeLayoutItem.h"
 #import "ZKDescribeLayoutRow.h"
-#import "ZKParser.h"
+#import "ZKDescribeLayoutItem.h"
 
 @implementation ZKDescribeLayoutRow
 
--(void)dealloc {
-	[layoutItems release];
-	[super dealloc];
+-(NSArray *)layoutItems {
+    return [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
 }
-
--(NSInteger) numItems {
-	return [self integer:@"numItems"];
+			
+-(NSInteger)numItems {
+    return [self integer:@"numItems"];
 }
-
--(NSArray *) layoutItems {
-	if (layoutItems == nil) 
-		layoutItems = [[self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]] retain];
-	return layoutItems;
-}
-
+			
 @end

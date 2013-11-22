@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,22 +21,22 @@
 
 #import "zkXmlDeserializer.h"
 
-//			<complexType name="ChildRelationship">
-//				<sequence>
-//					<element name="cascadeDelete" 	 type="xsd:boolean"/>
-//					<element name="childSObject"  	 type="xsd:string"/>
-//					<element name="field"		  	 type="xsd:string"/>
-//					<element name="relationshipName" type="xsd:string" minOccurs="0"/>
-//				</sequence>
-//			</complexType>
-
-@interface ZKChildRelationship : ZKXmlDeserializer {
+/*
+<complexType name="DescribeIcon" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:string" name="contentType"/>
+    <element nillable="true" type="xsd:int" name="height"/>
+    <element type="xsd:string" name="theme"/>
+    <element type="xsd:string" name="url"/>
+    <element nillable="true" type="xsd:int" name="width"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDescribeIcon : ZKXmlDeserializer {
 }
-
--(BOOL)cascadeDelete;
--(NSString *)childSObject;
--(NSString *)field;
--(NSString *)relationshipName;
--(BOOL)deprecatedAndHidden;
--(BOOL)restrictedDelete;
+@property (readonly) NSString  *contentType; 
+@property (readonly) NSInteger  height; 
+@property (readonly) NSString  *theme; 
+@property (readonly) NSString  *url; 
+@property (readonly) NSInteger  width; 
 @end

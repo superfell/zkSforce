@@ -20,42 +20,32 @@
 //
 
 #import "ZKRecordTypeMapping.h"
-#import "ZKParser.h"
 #import "ZKPicklistForRecordType.h"
-
 
 @implementation ZKRecordTypeMapping
 
--(void)dealloc {
-	[picklistsForRecordType release];
-	[super dealloc];
+-(BOOL)available {
+    return [self boolean:@"available"];
 }
-
--(BOOL) available {
-	return [self boolean:@"available"];
+			
+-(BOOL)defaultRecordTypeMapping {
+    return [self boolean:@"defaultRecordTypeMapping"];
 }
-
--(BOOL) defaultRecordTypeMapping {
-	return [self boolean:@"defaultRecordTypeMapping"];
+			
+-(NSString *)layoutId {
+    return [self string:@"layoutId"];
 }
-
--(NSString *) recordTypeId {
-	return [self string:@"recordTypeId"];
-} 
-
--(NSString *) name {
-	return [self string:@"name"];
+			
+-(NSString *)name {
+    return [self string:@"name"];
 }
-
--(NSString *) layoutId {
-	return [self string:@"layoutId"];
+			
+-(NSArray *)picklistsForRecordType {
+    return [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
 }
-
-- (NSArray *) picklistsForRecordType 
-{
-	if (picklistsForRecordType == nil) 
-		picklistsForRecordType = [[self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]] retain];
-	return picklistsForRecordType;
+			
+-(NSString *)recordTypeId {
+    return [self string:@"recordTypeId"];
 }
-
+			
 @end

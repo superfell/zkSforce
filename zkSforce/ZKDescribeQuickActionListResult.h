@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Ron Hess
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -22,17 +22,13 @@
 #import "zkXmlDeserializer.h"
 
 /*
-<complexType name="DescribeLayoutResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeQuickActionListResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element maxOccurs="unbounded" type="tns:DescribeLayout" name="layouts"/>
-    <element maxOccurs="unbounded" minOccurs="0" type="tns:RecordTypeMapping" name="recordTypeMappings"/>
-    <element type="xsd:boolean" name="recordTypeSelectorRequired"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeQuickActionListItemResult" name="quickActionListItems"/>
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutResult : ZKXmlDeserializer {
+@interface ZKDescribeQuickActionListResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *layouts;  // of ZKDescribeLayout
-@property (readonly) NSArray  *recordTypeMappings;  // of ZKRecordTypeMapping
-@property (readonly) BOOL      recordTypeSelectorRequired; 
+@property (readonly) NSArray  *quickActionListItems;  // of ZKDescribeQuickActionListItemResult
 @end

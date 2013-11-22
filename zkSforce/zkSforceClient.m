@@ -464,7 +464,7 @@ static const int SAVE_BATCH_SIZE = 25;
     ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:[authSource sessionId] mru:updateMru clientId:clientId];
     [env startElement:@"convertLead"];
     for (NSObject<ZKXMLSerializable> *l in leadConverts) {
-        [l serializeToEnvelope:env];
+        [l serializeToEnvelope:env elemName:@"leadConverts"];
     }
     [env endElement:@"convertLead"];
     [env endElement:@"s:Body"];

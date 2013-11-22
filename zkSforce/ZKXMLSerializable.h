@@ -26,6 +26,6 @@
 @protocol ZKXMLSerializable <NSObject>
 
 // Write the current instance to this envelope
--(void)serializeToEnvelope:(ZKEnvelope *)env;
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName;
 
 @end

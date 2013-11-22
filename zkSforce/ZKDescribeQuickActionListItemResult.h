@@ -1,4 +1,4 @@
-// Copyright (c) 2011 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -22,27 +22,27 @@
 #import "zkXmlDeserializer.h"
 
 /*
-<complexType name="DescribeTab" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeQuickActionListItemResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
-    <element type="xsd:boolean" name="custom"/>
-    <element type="xsd:string" name="iconUrl"/>
+    <element nillable="true" type="xsd:string" name="iconUrl"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeIcon" name="icons"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="miniIconUrl"/>
-    <element nillable="true" type="xsd:string" name="sobjectName"/>
-    <element type="xsd:string" name="url"/>
+    <element type="xsd:string" name="quickActionName"/>
+    <element nillable="true" type="xsd:string" name="targetSobjectType"/>
+    <element type="xsd:string" name="type"/>
   </sequence>
 </complexType>
 */
-@interface ZKDescribeTab : ZKXmlDeserializer {
+@interface ZKDescribeQuickActionListItemResult : ZKXmlDeserializer {
 }
 @property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) BOOL       custom; 
 @property (readonly) NSString  *iconUrl; 
 @property (readonly) NSArray   *icons;  // of ZKDescribeIcon
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *miniIconUrl; 
-@property (readonly) NSString  *sobjectName; 
-@property (readonly) NSString  *url; 
+@property (readonly) NSString  *quickActionName; 
+@property (readonly) NSString  *targetSobjectType; 
+@property (readonly) NSString  *type; 
 @end

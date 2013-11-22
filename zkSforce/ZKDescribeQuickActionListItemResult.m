@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,33 +19,42 @@
 // THE SOFTWARE.
 //
 
+#import "ZKDescribeQuickActionListItemResult.h"
+#import "ZKDescribeColor.h"
+#import "ZKDescribeIcon.h"
 
-#import "zkChildRelationship.h"
+@implementation ZKDescribeQuickActionListItemResult
 
-@implementation ZKChildRelationship
-
--(BOOL)cascadeDelete {
-	return [self boolean:@"cascadeDelete"];
+-(NSArray *)colors {
+    return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
 }
-
--(NSString *)childSObject {
-	return [self string:@"childSObject"];
+			
+-(NSString *)iconUrl {
+    return [self string:@"iconUrl"];
 }
-
--(NSString *)field {
-	return [self string:@"field"];
+			
+-(NSArray *)icons {
+    return [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
 }
-
--(NSString *)relationshipName {
-	return [self string:@"relationshipName"];
+			
+-(NSString *)label {
+    return [self string:@"label"];
 }
-
--(BOOL)deprecatedAndHidden {
-    return [self boolean:@"deprecatedAndHidden"];
+			
+-(NSString *)miniIconUrl {
+    return [self string:@"miniIconUrl"];
 }
-
--(BOOL)restrictedDelete {
-    return [self boolean:@"restrictedDelete"];
+			
+-(NSString *)quickActionName {
+    return [self string:@"quickActionName"];
 }
-
+			
+-(NSString *)targetSobjectType {
+    return [self string:@"targetSobjectType"];
+}
+			
+-(NSString *)type {
+    return [self string:@"type"];
+}
+			
 @end
