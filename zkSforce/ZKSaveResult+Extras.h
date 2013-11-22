@@ -21,7 +21,7 @@
 
 #import "ZKSaveResult.h"
 
-@interface ZKSaveResult (FirstError)
+@interface ZKSaveResult (Extras)
 
 - (NSString *)statusCode;
 - (NSString *)message;

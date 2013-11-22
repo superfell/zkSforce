@@ -19,10 +19,10 @@
 // THE SOFTWARE.
 //
 
-#import "ZKSaveResult+FirstError.h"
+#import "ZKSaveResult+Extras.h"
 #import "ZKError.h"
 
-@implementation ZKSaveResult (FirstError)
+@implementation ZKSaveResult (Extras)
 
 - (ZKError *)firstError {
     return [[self errors] objectAtIndex:0];
