@@ -19,105 +19,102 @@
 // THE SOFTWARE.
 //
 
-
 #import "zkXmlDeserializer.h"
 
-/*
-<element name="autoNumber"         type="xsd:boolean"/>
-<element name="byteLength"         type="xsd:int"/>
-<element name="calculated"         type="xsd:boolean"/>
-<element name="calculatedFormula"  type="xsd:string" minOccurs="0"/>
-<element name="cascadeDelete"      type="xsd:boolean" minOccurs="0"/>
-<element name="caseSensitive"      type="xsd:boolean"/>
-<element name="controllerName"     type="xsd:string" minOccurs="0"/>
-<element name="createable"         type="xsd:boolean"/>
-<element name="custom"             type="xsd:boolean"/>
-<element name="defaultValueFormula" type="xsd:string" minOccurs="0"/>
-<element name="defaultedOnCreate"  type="xsd:boolean"/>
-<element name="dependentPicklist"  type="xsd:boolean" minOccurs="0"/>
-<element name="digits"             type="xsd:int"/>
-<element name="externalId"         type="xsd:boolean" minOccurs="0"/>
-<element name="filterable"         type="xsd:boolean"/>
-<element name="htmlFormatted"      type="xsd:boolean" minOccurs="0"/>
-<element name="idLookup"           type="xsd:boolean"/>
-<element name="label"              type="xsd:string"/>
-<element name="length"             type="xsd:int"/>
-<element name="name"               type="xsd:string"/>
-<element name="nameField"          type="xsd:boolean"/>
-<element name="namePointing"       type="xsd:boolean" minOccurs="0"/>
-<element name="nillable"           type="xsd:boolean"/>
-<element name="picklistValues"     type="tns:PicklistEntry" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<element name="precision"          type="xsd:int"/>
-<element name="referenceTo"        type="xsd:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<element name="relationshipName"   type="xsd:string" minOccurs="0"/>
-<element name="relationshipOrder"  type="xsd:int" minOccurs="0"/>
-<element name="restrictedPicklist" type="xsd:boolean"/>
-<element name="scale"              type="xsd:int"/>
-<element name="soapType"           type="tns:soapType"/>
-<element name="sortable"           type="xsd:boolean" minOccurs="0"/>
-<element name="type"               type="tns:fieldType"/>
-<element name="unique"             type="xsd:boolean"/>
-<element name="updateable"         type="xsd:boolean"/>
-<element name="writeRequiresMasterRead" type="xsd:boolean" minOccurs="0"/>
-
-*/
-
 @class ZKDescribeSObject;
-
+/*
+<complexType name="Field" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:boolean" name="autoNumber"/>
+    <element type="xsd:int" name="byteLength"/>
+    <element type="xsd:boolean" name="calculated"/>
+    <element minOccurs="0" type="xsd:string" name="calculatedFormula"/>
+    <element minOccurs="0" type="xsd:boolean" name="cascadeDelete"/>
+    <element type="xsd:boolean" name="caseSensitive"/>
+    <element minOccurs="0" type="xsd:string" name="controllerName"/>
+    <element type="xsd:boolean" name="createable"/>
+    <element type="xsd:boolean" name="custom"/>
+    <element minOccurs="0" type="xsd:string" name="defaultValueFormula"/>
+    <element type="xsd:boolean" name="defaultedOnCreate"/>
+    <element minOccurs="0" type="xsd:boolean" name="dependentPicklist"/>
+    <element type="xsd:boolean" name="deprecatedAndHidden"/>
+    <element type="xsd:int" name="digits"/>
+    <element minOccurs="0" type="xsd:boolean" name="displayLocationInDecimal"/>
+    <element minOccurs="0" type="xsd:boolean" name="externalId"/>
+    <element type="xsd:boolean" name="filterable"/>
+    <element type="xsd:boolean" name="groupable"/>
+    <element minOccurs="0" type="xsd:boolean" name="htmlFormatted"/>
+    <element type="xsd:boolean" name="idLookup"/>
+    <element minOccurs="0" type="xsd:string" name="inlineHelpText"/>
+    <element type="xsd:string" name="label"/>
+    <element type="xsd:int" name="length"/>
+    <element type="xsd:string" name="name"/>
+    <element type="xsd:boolean" name="nameField"/>
+    <element minOccurs="0" type="xsd:boolean" name="namePointing"/>
+    <element type="xsd:boolean" name="nillable"/>
+    <element type="xsd:boolean" name="permissionable"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:PicklistEntry" name="picklistValues"/>
+    <element type="xsd:int" name="precision"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string" name="referenceTo"/>
+    <element minOccurs="0" type="xsd:string" name="relationshipName"/>
+    <element minOccurs="0" type="xsd:int" name="relationshipOrder"/>
+    <element minOccurs="0" type="xsd:boolean" name="restrictedDelete"/>
+    <element type="xsd:boolean" name="restrictedPicklist"/>
+    <element type="xsd:int" name="scale"/>
+    <element type="tns:soapType" name="soapType"/>
+    <element minOccurs="0" type="xsd:boolean" name="sortable"/>
+    <element type="tns:fieldType" name="type"/>
+    <element type="xsd:boolean" name="unique"/>
+    <element type="xsd:boolean" name="updateable"/>
+    <element minOccurs="0" type="xsd:boolean" name="writeRequiresMasterRead"/>
+  </sequence>
+</complexType>
+*/
 @interface ZKDescribeField : ZKXmlDeserializer <NSCopying> {
-	NSArray				*picklistValues;
-	ZKDescribeSObject	*sobject;
+	ZKDescribeSObject *sobject;
 }
-- (void)setSobject:(ZKDescribeSObject *)s;
-- (ZKDescribeSObject *)sobject;
+@property (assign) ZKDescribeSObject *sobject; // assign to stop a ref counting loop
 
-// Api v7.0
-- (BOOL)autoNumber;
-- (int)byteLength;
-- (BOOL)calculated;
-- (NSString *)controllerName;
-- (BOOL)createable;
-- (BOOL)custom;
-- (BOOL)defaultOnCreate;
-- (BOOL)dependentPicklist;
-- (int)digits;
-- (BOOL)externalId;
-- (BOOL)filterable;
-- (BOOL)htmlFormatted;
-- (NSString *)label;
-- (int)length;
-- (NSString *)name;
-- (BOOL)nameField;
-- (BOOL)nillable;
-- (NSArray *)picklistValues;
-- (int)precision;
-- (NSArray *)referenceTo;
-- (NSString *)relationshipName;
-- (BOOL)restrictedPicklist;
-- (int)scale;
-- (NSString *)soapType;
-- (NSString *)type;
-- (BOOL)updateable;
-// Api v8.0
-- (NSString *)calculatedFormula;
-- (BOOL)caseSensitive;
-- (NSString *)defaultValueFormula;
-- (BOOL)namePointing;
-- (BOOL)sortable;
-- (BOOL)unique;
-// Api v11.1
-- (BOOL)idLookup;
-// Api v13.0
-- (int)relationshipOrder;			// for CJO's, is this the first or 2nd FK to the parent ?
-- (BOOL)writeRequiresMasterRead;	// writing to this requires at least read access to the parent object (e.g. on CJO's)
-// Api v14.0
-- (NSString *)inlineHelpText;
-// Api v18.0
-- (BOOL)groupable;
-// Api v25.0
-- (BOOL)cascadeDelete;
-- (BOOL)displayLocationInDecimal;
-// Api v26.0
-- (BOOL)permissionable;
-- (BOOL)restrictedDelete;
+@property (readonly) BOOL       autoNumber; 
+@property (readonly) NSInteger  byteLength; 
+@property (readonly) BOOL       calculated; 
+@property (readonly) NSString  *calculatedFormula; 
+@property (readonly) BOOL       cascadeDelete; 
+@property (readonly) BOOL       caseSensitive; 
+@property (readonly) NSString  *controllerName; 
+@property (readonly) BOOL       createable; 
+@property (readonly) BOOL       custom; 
+@property (readonly) NSString  *defaultValueFormula; 
+@property (readonly) BOOL       defaultedOnCreate; 
+@property (readonly) BOOL       dependentPicklist; 
+@property (readonly) BOOL       deprecatedAndHidden; 
+@property (readonly) NSInteger  digits; 
+@property (readonly) BOOL       displayLocationInDecimal; 
+@property (readonly) BOOL       externalId; 
+@property (readonly) BOOL       filterable; 
+@property (readonly) BOOL       groupable; 
+@property (readonly) BOOL       htmlFormatted; 
+@property (readonly) BOOL       idLookup; 
+@property (readonly) NSString  *inlineHelpText; 
+@property (readonly) NSString  *label; 
+@property (readonly) NSInteger  length; 
+@property (readonly) NSString  *name; 
+@property (readonly) BOOL       nameField; 
+@property (readonly) BOOL       namePointing; 
+@property (readonly) BOOL       nillable; 
+@property (readonly) BOOL       permissionable; 
+@property (readonly) NSArray   *picklistValues;  // of ZKPicklistEntry
+@property (readonly) NSInteger  precision; 
+@property (readonly) NSArray   *referenceTo;  // of NSString
+@property (readonly) NSString  *relationshipName; 
+@property (readonly) NSInteger  relationshipOrder; 
+@property (readonly) BOOL       restrictedDelete; 
+@property (readonly) BOOL       restrictedPicklist; 
+@property (readonly) NSInteger  scale; 
+@property (readonly) NSString  *soapType; 
+@property (readonly) BOOL       sortable; 
+@property (readonly) NSString  *type; 
+@property (readonly) BOOL       unique; 
+@property (readonly) BOOL       updateable; 
+@property (readonly) BOOL       writeRequiresMasterRead; 
 @end

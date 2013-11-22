@@ -19,170 +19,200 @@
 // THE SOFTWARE.
 //
 
-
-#import "zkDescribeField.h"
-#import "zkPicklistEntry.h"
-#import "zkParser.h"
+#import "ZKDescribeField.h"
+#import "ZKDescribeSObject.h"
+#import "ZKPicklistEntry.h"
 
 @implementation ZKDescribeField
 
-- (void)dealloc {
-	[picklistValues release];
-	[super dealloc];
+@synthesize sobject;
+
+-(id)copyWithZone:(NSZone *)zone {
+    zkElement *e = [[node copyWithZone:zone] autorelease];
+    ZKDescribeField *c = [[ZKDescribeField alloc] initWithXmlElement:e];
+    c.sobject = self.sobject;
+    return c;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-	zkElement *n = [[node copyWithZone:zone] autorelease];
-	ZKDescribeField *rhs = [[ZKDescribeField alloc] initWithXmlElement:n];
-	[rhs setSobject:sobject];
-	return rhs;
-}
-
-- (zkElement *)node {
+-(zkElement *)node {
 	return node;
 }
 
-- (BOOL)isEqual:(id)anObject {
+-(BOOL)isEqual:(id)anObject {
 	if (![anObject isKindOfClass:[ZKDescribeField class]]) return NO;
 	return [node isEqual:[anObject node]];
 }
 
-- (void)setSobject:(ZKDescribeSObject *)s {
-	// note we explicitly don't retain this to stop a retain cycle between us and the parent sobject.
-	// as it has a reatined reference on us, it can't go away before we do.
-	sobject = s;
-}
-
-- (ZKDescribeSObject *)sobject {
-	return sobject;
-}
-
-- (NSUInteger)hash {
+-(NSUInteger)hash {
 	return [node hash];
 }
-- (BOOL)autoNumber {
-	return [self boolean:@"autoNumber"];
+
+-(BOOL)autoNumber {
+    return [self boolean:@"autoNumber"];
 }
-- (int)byteLength {
-	return [self integer:@"byteLength"];
+			
+-(NSInteger)byteLength {
+    return [self integer:@"byteLength"];
 }
-- (BOOL)calculated {
-	return [self boolean:@"calculated"];
+			
+-(BOOL)calculated {
+    return [self boolean:@"calculated"];
 }
-- (NSString *)controllerName {
-	return [self string:@"controllerName"];
+			
+-(NSString *)calculatedFormula {
+    return [self string:@"calculatedFormula"];
 }
-- (BOOL)createable {
-	return [self boolean:@"createable"];
+			
+-(BOOL)cascadeDelete {
+    return [self boolean:@"cascadeDelete"];
 }
-- (BOOL)custom {
-	return [self boolean:@"custom"];
+			
+-(BOOL)caseSensitive {
+    return [self boolean:@"caseSensitive"];
 }
-- (BOOL)defaultOnCreate {
-	return [self boolean:@"defaultOnCreate"];
+			
+-(NSString *)controllerName {
+    return [self string:@"controllerName"];
 }
-- (BOOL)dependentPicklist {
-	return [self boolean:@"dependentPicklist"];
+			
+-(BOOL)createable {
+    return [self boolean:@"createable"];
 }
-- (int)digits {
-	return [self integer:@"digits"];
+			
+-(BOOL)custom {
+    return [self boolean:@"custom"];
 }
-- (BOOL)externalId {
-	return [self boolean:@"externalId"];
+			
+-(NSString *)defaultValueFormula {
+    return [self string:@"defaultValueFormula"];
 }
-- (BOOL)filterable {
-	return [self boolean:@"filterable"];
+			
+-(BOOL)defaultedOnCreate {
+    return [self boolean:@"defaultedOnCreate"];
 }
-- (BOOL)htmlFormatted {
-	return [self boolean:@"htmlFormatted"];
+			
+-(BOOL)dependentPicklist {
+    return [self boolean:@"dependentPicklist"];
 }
-- (NSString *)label {
-	return [self string:@"label"];
+			
+-(BOOL)deprecatedAndHidden {
+    return [self boolean:@"deprecatedAndHidden"];
 }
-- (int)length {
-	return [self integer:@"length"];
+			
+-(NSInteger)digits {
+    return [self integer:@"digits"];
 }
-- (NSString *)name {
-	return [self string:@"name"];
-}
-- (BOOL)nameField {
-	return [self boolean:@"nameField"];
-}
-- (BOOL)nillable {
-	return [self boolean:@"nillable"];
-}
-- (NSArray *)picklistValues {
-	if (picklistValues == nil) 
-		picklistValues = [[self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]] retain];
-	return picklistValues;
-}
-- (int)precision {
-	return [self integer:@"precision"];
-}
-- (NSArray *)referenceTo {
-	return [self strings:@"referenceTo"];
-}
-- (NSString *)relationshipName {
-	return [self string:@"relationshipName"];
-}
-- (BOOL)restrictedPicklist {
-	return [self boolean:@"restrictedPicklist"];
-}
-- (int)scale {
-	return [self integer:@"scale"];
-}
-- (NSString *)soapType {
-	return [self string:@"soapType"];
-}
-- (NSString *)type {
-	return [self string:@"type"];
-}
-- (BOOL)updateable {
-	return [self boolean:@"updateable"];
-}
-- (NSString *)calculatedFormula {
-	return [self string:@"calculatedFormula"];
-}
-- (BOOL)caseSensitive {
-	return [self boolean:@"caseSensitive"];
-}
-- (NSString *)defaultValueFormula {
-	return [self string:@"defaultValueFormula"];
-}
-- (BOOL)namePointing {
-	return [self boolean:@"namePointing"];
-}
-- (BOOL)sortable {
-	return [self boolean:@"sortable"];
-}
-- (BOOL)unique {
-	return [self boolean:@"unique"];
-}
-- (BOOL)idLookup {
-	return [self boolean:@"idLookup"];
-}
-- (int)relationshipOrder {
-	return [self integer:@"relationshipOrder"];
-}
-- (BOOL)writeRequiresMasterRead {
-	return [self boolean:@"writeRequiresMasterRead"];
-}
-- (NSString *)inlineHelpText {
-	return [self string:@"inlineHelpText"];
-}
-- (BOOL)groupable {
-	return [self boolean:@"groupable"];
-}
-- (BOOL)cascadeDelete {
-	return [self boolean:@"cascadeDelete"];
-}
-- (BOOL)displayLocationInDecimal {
+			
+-(BOOL)displayLocationInDecimal {
     return [self boolean:@"displayLocationInDecimal"];
 }
-- (BOOL)permissionable {
+			
+-(BOOL)externalId {
+    return [self boolean:@"externalId"];
+}
+			
+-(BOOL)filterable {
+    return [self boolean:@"filterable"];
+}
+			
+-(BOOL)groupable {
+    return [self boolean:@"groupable"];
+}
+			
+-(BOOL)htmlFormatted {
+    return [self boolean:@"htmlFormatted"];
+}
+			
+-(BOOL)idLookup {
+    return [self boolean:@"idLookup"];
+}
+			
+-(NSString *)inlineHelpText {
+    return [self string:@"inlineHelpText"];
+}
+			
+-(NSString *)label {
+    return [self string:@"label"];
+}
+			
+-(NSInteger)length {
+    return [self integer:@"length"];
+}
+			
+-(NSString *)name {
+    return [self string:@"name"];
+}
+			
+-(BOOL)nameField {
+    return [self boolean:@"nameField"];
+}
+			
+-(BOOL)namePointing {
+    return [self boolean:@"namePointing"];
+}
+			
+-(BOOL)nillable {
+    return [self boolean:@"nillable"];
+}
+			
+-(BOOL)permissionable {
     return [self boolean:@"permissionable"];
 }
-- (BOOL)restrictedDelete {
+			
+-(NSArray *)picklistValues {
+    return [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
+}
+			
+-(NSInteger)precision {
+    return [self integer:@"precision"];
+}
+			
+-(NSArray *)referenceTo {
+    return [self strings:@"referenceTo"];
+}
+			
+-(NSString *)relationshipName {
+    return [self string:@"relationshipName"];
+}
+			
+-(NSInteger)relationshipOrder {
+    return [self integer:@"relationshipOrder"];
+}
+			
+-(BOOL)restrictedDelete {
     return [self boolean:@"restrictedDelete"];
 }
+			
+-(BOOL)restrictedPicklist {
+    return [self boolean:@"restrictedPicklist"];
+}
+			
+-(NSInteger)scale {
+    return [self integer:@"scale"];
+}
+			
+-(NSString *)soapType {
+    return [self string:@"soapType"];
+}
+			
+-(BOOL)sortable {
+    return [self boolean:@"sortable"];
+}
+			
+-(NSString *)type {
+    return [self string:@"type"];
+}
+			
+-(BOOL)unique {
+    return [self boolean:@"unique"];
+}
+			
+-(BOOL)updateable {
+    return [self boolean:@"updateable"];
+}
+			
+-(BOOL)writeRequiresMasterRead {
+    return [self boolean:@"writeRequiresMasterRead"];
+}
+			
 @end
