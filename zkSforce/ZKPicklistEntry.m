@@ -22,19 +22,25 @@
 #import "ZKPicklistEntry.h"
 
 @implementation ZKPicklistEntry
-- (BOOL)active {
-	return [self boolean:@"active"];
+
+-(BOOL)active {
+    return [self boolean:@"active"];
 }
-- (BOOL)defaultValue {
-	return [self boolean:@"defaultValue"];
+			
+-(BOOL)defaultValue {
+    return [self boolean:@"defaultValue"];
 }
-- (NSString *)label {
-	return [self string:@"label"];
+			
+-(NSString *)label {
+    return [self string:@"label"];
 }
-- (NSString *)validFor {
-	return [self string:@"validFor"];
+			
+-(NSData *)validFor {
+    return [self blob:@"validFor"];
 }
-- (NSString *)value {
-	return [self string:@"value"];
+			
+-(NSString *)value {
+    return [self string:@"value"];
 }
+			
 @end

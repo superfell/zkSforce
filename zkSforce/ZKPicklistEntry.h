@@ -19,24 +19,24 @@
 // THE SOFTWARE.
 //
 
-
 #import "zkXmlDeserializer.h"
 
-//<complexType name="PicklistEntry">
-//    <sequence>
-//        <element name="active"       type="xsd:boolean"/>
-//        <element name="defaultValue" type="xsd:boolean"/>
-//        <element name="label"        type="xsd:string" nillable="true"/>
-//        <element name="validFor"     type="xsd:base64Binary" minOccurs="0"/>
-//        <element name="value"        type="xsd:string"/>
-//    </sequence>
-//</complexType>
-
+/*
+<complexType name="PicklistEntry" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:boolean" name="active"/>
+    <element type="xsd:boolean" name="defaultValue"/>
+    <element nillable="true" type="xsd:string" name="label"/>
+    <element minOccurs="0" type="xsd:base64Binary" name="validFor"/>
+    <element type="xsd:string" name="value"/>
+  </sequence>
+</complexType>
+*/
 @interface ZKPicklistEntry : ZKXmlDeserializer {
 }
-- (BOOL)active;
-- (BOOL)defaultValue;
-- (NSString *)label;
-- (NSString *)validFor;
-- (NSString *)value;
+@property (readonly) BOOL       active; 
+@property (readonly) BOOL       defaultValue; 
+@property (readonly) NSString  *label; 
+@property (readonly) NSData    *validFor; 
+@property (readonly) NSString  *value; 
 @end

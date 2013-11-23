@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,6 +21,7 @@
 
 #import "zkXmlDeserializer.h"
 #import "zkParser.h"
+#import "ZKBase64.h"
 
 @implementation ZKXmlDeserializer
 
@@ -55,6 +56,16 @@
 
 - (double)double:(NSString *)elem {
 	return [[self string:elem] doubleValue];
+}
+
+- (NSData *)blob:(NSString *)elem {
+    NSData *cached = [values objectForKey:elem];
+    if (cached == nil) {
+        NSString *b64 = [self string:elem fromXmlElement:node];
+        cached = [b64 ZKBase64Decode];
+        [values setObject:cached forKey:elem];
+    }
+    return cached;
 }
 
 - (NSArray *)strings:(NSString *)elem {

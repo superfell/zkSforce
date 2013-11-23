@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -33,6 +33,7 @@
 - (int)integer:(NSString *)elem;
 - (double)double:(NSString *)elem;
 - (NSArray *)strings:(NSString *)elem;
+- (NSData *)blob:(NSString *)elem;
 
 - (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement;
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type;

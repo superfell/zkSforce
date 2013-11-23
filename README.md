@@ -81,7 +81,7 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
  * describe & fieldsColumnNames properties on ZKRelatedList have been moved to an Extras category/file
  * many properties on ZKUserInfo are now in an Extras category/file
  * licenceType from ZKUserInfo was removed (its not longer in the API)
- * 
+ * validFor on ZKPicklistEntry now returns an NSData rather than an NSString
 
 ## Project setup (via CocoaPods)
 
