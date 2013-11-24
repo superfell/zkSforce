@@ -26,6 +26,10 @@
 
 @implementation ZKQueryResult
 
+- (id)initWithXmlElement:(zkElement *)node {
+    return [self initFromXmlNode:node];
+}
+
 - (id)initFromXmlNode:(zkElement *)node {
 	self = [super init];
 	int i = 0;

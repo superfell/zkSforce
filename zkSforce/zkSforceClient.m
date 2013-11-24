@@ -37,6 +37,7 @@
 #import "ZKLeadConvert.h"
 #import "ZKLeadConvertResult.h"
 #import "ZKXMLSerializable.h"
+#import "zkXmlDeserializer.h"
 
 static const int SAVE_BATCH_SIZE = 25;
 
@@ -492,8 +493,9 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env endElement:@"s:Body"];
 	
 	zkElement *qr = [self sendRequest:[env end]];
-	ZKQueryResult *result = [[ZKQueryResult alloc] initFromXmlNode:[[qr childElements] objectAtIndex:0]];
-	return [result autorelease];
+    ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:qr] autorelease];
+    ZKQueryResult *result = [[deser complexTypeArrayFromElements:@"result" cls:[ZKQueryResult class]] lastObject];
+	return result;
 }
 
 // We override sendRequest here so that we can do some common additional processing on the response (looking at the response soap headers)
