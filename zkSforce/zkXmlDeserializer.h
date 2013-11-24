@@ -21,6 +21,7 @@
 
 
 @class zkElement;
+@class ZKSObject;
 
 @interface ZKXmlDeserializer : NSObject {
 	zkElement *node;
@@ -36,6 +37,7 @@
 - (NSData *)blob:(NSString *)elem;
 - (NSDate *)date:(NSString *)elem;
 - (NSDate *)dateTime:(NSString *)elem;
+- (ZKSObject *)sObject:(NSString *)elem;
 
 - (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement;
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type;

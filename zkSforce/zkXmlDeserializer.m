@@ -23,6 +23,7 @@
 #import "zkParser.h"
 #import "ZKBase64.h"
 #import "ZKSoapDate.h"
+#import "zkSObject.h"
 
 @implementation ZKXmlDeserializer
 
@@ -65,6 +66,10 @@
 
 - (NSDate *)dateTime:(NSString *)elem {
     return [[ZKSoapDate instance] fromDateTimeString:[self string:elem]];
+}
+
+- (ZKSObject *)sObject:(NSString *)elem {
+    return [[self complexTypeArrayFromElements:elem cls:[ZKSObject class]] lastObject];
 }
 
 - (NSData *)blob:(NSString *)elem {
