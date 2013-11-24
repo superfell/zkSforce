@@ -38,7 +38,7 @@ NSString * NS_URI_XSI;
 + (id) withTypeAndId:(NSString *)type sfId:(NSString *)sfId;
 + (id) fromXmlNode:(zkElement *)node;
 
-- (id) initFromXmlNode:(zkElement *)node;
+- (id) initWithXmlElement:(zkElement *)node;
 - (id) initWithType:(NSString *)type;
 
 // setters

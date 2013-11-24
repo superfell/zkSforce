@@ -428,7 +428,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	NSMutableDictionary *sobjects = [NSMutableDictionary dictionary]; 
 	NSArray *results = [rr childElements:@"result"];
 	for (zkElement *res in results) {
-		ZKSObject *o = [[ZKSObject alloc] initFromXmlNode:res];
+		ZKSObject *o = [[ZKSObject alloc] initWithXmlElement:res];
 		[sobjects setObject:o forKey:[o id]];
 		[o release];
 	}

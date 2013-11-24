@@ -40,7 +40,7 @@ NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 }
 
 + (id) fromXmlNode:(zkElement *)node {
-	return [[[ZKSObject alloc] initFromXmlNode:node] autorelease];
+	return [[[ZKSObject alloc] initWithXmlElement:node] autorelease];
 }
 
 - (id) initWithType:(NSString *)aType {
@@ -52,7 +52,7 @@ NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 	return self;
 }
 
-- (id) initFromXmlNode:(zkElement *)node {
+- (id) initWithXmlElement:(zkElement *)node {
 	self = [super init];
 	NSUInteger i, childCount;
 	Id = [[[node childElement:@"Id"] stringValue] copy];
@@ -73,9 +73,9 @@ NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 		else {
 			NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
 			if ([xsiType hasSuffix:@"QueryResult"]) 
-				fieldVal = [[[ZKQueryResult alloc] initFromXmlNode:f] autorelease];
+				fieldVal = [[[ZKQueryResult alloc] initWithXmlElement:f] autorelease];
 			else if ([xsiType hasSuffix:@"sObject"])
-				fieldVal = [[[ZKSObject alloc] initFromXmlNode:f] autorelease];
+				fieldVal = [[[ZKSObject alloc] initWithXmlElement:f] autorelease];
 			else
 				fieldVal = [f stringValue];
 		}

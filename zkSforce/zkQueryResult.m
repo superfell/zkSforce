@@ -27,10 +27,6 @@
 @implementation ZKQueryResult
 
 - (id)initWithXmlElement:(zkElement *)node {
-    return [self initFromXmlNode:node];
-}
-
-- (id)initFromXmlNode:(zkElement *)node {
 	self = [super init];
 	int i = 0;
 	size = [[[node childElement:@"size"] stringValue] intValue];
@@ -48,7 +44,7 @@
 		NSString *xsiNil = [n attributeValue:@"nil" ns:NS_URI_XSI];
 		if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) 
 			continue;
-		o = [[ZKSObject alloc] initFromXmlNode:n];
+		o = [[ZKSObject alloc] initWithXmlElement:n];
 		[recArray addObject:o];
 		[o release];
 	}	
