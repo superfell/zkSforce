@@ -22,6 +22,7 @@
 #import "zkXmlDeserializer.h"
 #import "zkParser.h"
 #import "ZKBase64.h"
+#import "ZKSoapDate.h"
 
 @implementation ZKXmlDeserializer
 
@@ -56,6 +57,14 @@
 
 - (double)double:(NSString *)elem {
 	return [[self string:elem] doubleValue];
+}
+
+- (NSDate *)date:(NSString *)elem {
+    return [[ZKSoapDate instance] fromDateString:[self string:elem]];
+}
+
+- (NSDate *)dateTime:(NSString *)elem {
+    return [[ZKSoapDate instance] fromDateTimeString:[self string:elem]];
 }
 
 - (NSData *)blob:(NSString *)elem {

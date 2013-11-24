@@ -34,6 +34,8 @@
 - (double)double:(NSString *)elem;
 - (NSArray *)strings:(NSString *)elem;
 - (NSData *)blob:(NSString *)elem;
+- (NSDate *)date:(NSString *)elem;
+- (NSDate *)dateTime:(NSString *)elem;
 
 - (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement;
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type;
