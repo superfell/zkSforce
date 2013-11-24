@@ -19,9 +19,10 @@
 // THE SOFTWARE.
 //
 
-#import "zkQueryResult.h"
+#import "zkXmlDeserializer.h"
 
 @class zkElement;
+@class ZKQueryResult;
 
 NSString * NS_URI_XSI;
 
