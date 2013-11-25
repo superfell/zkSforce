@@ -127,9 +127,6 @@
 // pass an array of ZKSObject's to update in salesforce, returns a matching array of ZKSaveResults
 - (NSArray *)update:(NSArray *)objects;
 
-// pass an array of record Ids to delete from salesforce. returns a matching array of ZKSaveResults
-- (NSArray *)delete:(NSArray *)ids;
-
 // the current server timestamp, as a string (ISO8601 format)
 - (NSString *)serverTimestamp;
 

@@ -81,6 +81,9 @@
 // Merge and update a set of sObjects based on object id
 -(NSArray *)merge:(NSArray *)request;
 
+// Delete a set of sObjects
+-(NSArray *)delete:(NSArray *)ids;
+
 // Undelete a set of sObjects
 -(NSArray *)undelete:(NSArray *)ids;
 

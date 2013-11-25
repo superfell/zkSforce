@@ -22,6 +22,7 @@
 #import "ZKSforceClient+Operations.h"
 #import "ZKPartnerEnvelope.h"
 #import "ZKDataCategoryGroupSobjectTypePair.h"
+#import "ZKDeleteResult.h"
 #import "ZKDescribeAppMenuResult.h"
 #import "ZKDescribeAvailableQuickActionResult.h"
 #import "ZKDescribeCompactLayoutsResult.h"
@@ -269,6 +270,20 @@
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
+}
+
+// Delete a set of sObjects
+-(NSArray *)delete:(NSArray *)ids {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"delete"];
+	[env addElement:@"ids" elemValue:ids];
+	[env endElement:@"delete"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
 }
 
 // Undelete a set of sObjects

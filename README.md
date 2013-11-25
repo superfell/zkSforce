@@ -83,6 +83,8 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
  * licenceType from ZKUserInfo was removed (its not longer in the API)
  * validFor on ZKPicklistEntry now returns an NSData rather than an NSString
  * the signature for setPassword has changed from setPassword:forUserId: to setPassword:userId:
+ * delete now returns an NSArray of ZKDeleteResult rather than an NSArray of ZKSaveResult (note that these 2 types both have the same properties though)
+
 
 ## Project setup (via CocoaPods)
 

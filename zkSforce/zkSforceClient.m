@@ -355,28 +355,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	return sobjects;
 }
 
-- (NSArray *)delete:(NSArray *)ids {
-	if(!authSource) return NULL;
-	[self checkSession];
-
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:[authSource sessionId] mru:updateMru clientId:clientId];
-	[env startElement:@"delete"];
-	[env addElement:@"ids" elemValue:ids];
-	[env endElement:@"delete"];
-	[env endElement:@"s:Body"];
-	
-	zkElement *cr = [self sendRequest:[env end]];
-	NSArray *resArr = [cr childElements:@"result"];
-	NSMutableArray *results = [NSMutableArray arrayWithCapacity:[resArr count]];
-	for (zkElement *cr in resArr) {
-		ZKSaveResult *sr = [[ZKSaveResult alloc] initWithXmlElement:cr];
-		[results addObject:sr];
-		[sr release];
-	}
-	[env release];
-	return results;
-}
-
 // We override sendRequest here so that we can do some common additional processing on the response (looking at the response soap headers)
 - (zkElement *)sendRequest:(NSString *)payload {
     zkElement *result = [super sendRequest:payload];
