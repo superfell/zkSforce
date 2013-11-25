@@ -120,6 +120,7 @@
 		F414BD4F1842ED0B00322AC2 /* zkSoapException.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BCE41842ED0B00322AC2 /* zkSoapException.m */; };
 		F414BD511842ED3E00322AC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BD501842ED3E00322AC2 /* Security.framework */; };
 		F414BD531842ED4900322AC2 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BD521842ED4900322AC2 /* libxml2.2.dylib */; };
+		F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -352,6 +353,8 @@
 		F414BCE41842ED0B00322AC2 /* zkSoapException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkSoapException.m; path = ../zkSforce/zkSoapException.m; sourceTree = "<group>"; };
 		F414BD501842ED3E00322AC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F414BD521842ED4900322AC2 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		F414BD571842FD3800322AC2 /* ZKSoapDateTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSoapDateTests.h; sourceTree = "<group>"; };
+		F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSoapDateTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -414,6 +417,8 @@
 			children = (
 				F414BC021842EC4700322AC2 /* ZKEnvelopeTests.h */,
 				F414BC031842EC4700322AC2 /* ZKEnvelopeTests.m */,
+				F414BD571842FD3800322AC2 /* ZKSoapDateTests.h */,
+				F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
 			);
 			name = UnitTests;
@@ -839,6 +844,7 @@
 				F414BD4D1842ED0B00322AC2 /* ZKDescribeLayoutComponent.m in Sources */,
 				F414BD4E1842ED0B00322AC2 /* zkDescribeGlobalSObject.m in Sources */,
 				F414BD4F1842ED0B00322AC2 /* zkSoapException.m in Sources */,
+				F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

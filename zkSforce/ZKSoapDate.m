@@ -64,12 +64,7 @@ static ZKSoapDate *INSTANCE;
 }
 
 -(NSDate *)fromDateTimeString:(NSString *)aDateTime {
-    // ok, so a little hackish, but does the job
-	// note to self, make sure API always returns GMT times ;)
-	NSMutableString *dt = [NSMutableString stringWithString:aDateTime];
-	[dt deleteCharactersInRange:NSMakeRange([dt length] -1,1)];
-	[dt appendString:@"+00"];
-	return [dateTimeFormatter dateFromString:dt];
+	return [dateTimeFormatter dateFromString:aDateTime];
 }
 
 @end
