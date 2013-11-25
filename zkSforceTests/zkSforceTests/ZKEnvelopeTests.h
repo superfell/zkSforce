@@ -21,6 +21,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface ZKEnvelopeTests : SenTestCase
+@class ZKEnvelope;
+
+@interface ZKEnvelopeTests : SenTestCase {
+    ZKEnvelope *env;
+}
 
 @end

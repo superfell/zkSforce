@@ -217,7 +217,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
 	[env startElement:@"describeGlobal"];
 	[env endElement:@"describeGlobal"];
-	[env endElement:@"s:Body"];
 	
     zkElement * rr = [self sendRequest:[env end]];
 	NSArray *results = [[rr childElement:@"result"] childElements:@"sobjects"];
@@ -245,7 +244,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env startElement:@"describeSObject"];
 	[env addElement:@"SobjectType" elemValue:sobjectName];
 	[env endElement:@"describeSObject"];
-	[env endElement:@"s:Body"];
 	
 	zkElement *dr = [self sendRequest:[env end]];
 	zkElement *descResult = [dr childElement:@"result"];
@@ -263,7 +261,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env startElement:@"search"];
 	[env addElement:@"searchString" elemValue:sosl];
 	[env endElement:@"search"];
-	[env endElement:@"s:Body"];
 	
 	zkElement *sr = [self sendRequest:[env end]];
 	zkElement *searchResult = [sr childElement:@"result"];
@@ -303,7 +300,6 @@ static const int SAVE_BATCH_SIZE = 25;
     for (ZKSObject *o in objects) 
 		[env addElement:@"sobject" elemValue:o];
 	[env endElement:elemName];
-	[env endElement:@"s:Body"];
 
 	zkElement *cr = [self sendRequest:[env end]];
 	NSArray *resultsArr = [cr childElements:@"result"];
@@ -327,7 +323,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env addElement:@"sObjectType" elemValue:sobjectType];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"retrieve"];
-	[env endElement:@"s:Body"];
 	
 	zkElement *rr = [self sendRequest:[env end]];
 	NSMutableDictionary *sobjects = [NSMutableDictionary dictionary]; 

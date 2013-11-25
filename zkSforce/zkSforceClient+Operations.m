@@ -70,7 +70,6 @@
 	[env startElement:@"describeSObjects"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSObjects"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObjectResult class]];
@@ -84,7 +83,6 @@
 	[env startElement:@"describeDataCategoryGroups"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeDataCategoryGroups"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
@@ -99,7 +97,6 @@
 	[env addElement:@"pairs" elemValue:pairs];
 	[env addBoolElement:@"topCategoriesOnly" elemValue:topCategoriesOnly];
 	[env endElement:@"describeDataCategoryGroupStructures"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
@@ -113,7 +110,6 @@
 	[env startElement:@"describeFlexiPages"];
 	[env addElement:@"flexiPages" elemValue:flexiPages];
 	[env endElement:@"describeFlexiPages"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeFlexiPageResult class]];
@@ -127,7 +123,6 @@
 	[env startElement:@"describeAppMenu"];
 	[env addElement:@"appMenuType" elemValue:appMenuType];
 	[env endElement:@"describeAppMenu"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAppMenuResult class]] lastObject];
@@ -140,7 +135,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"describeGlobalTheme"];
 	[env endElement:@"describeGlobalTheme"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]] lastObject];
@@ -154,7 +148,6 @@
 	[env startElement:@"describeTheme"];
 	[env addElement:@"sobjectType" elemValue:sobjectType];
 	[env endElement:@"describeTheme"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]] lastObject];
@@ -169,7 +162,6 @@
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeLayout"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]] lastObject];
@@ -182,7 +174,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"describeSoftphoneLayout"];
 	[env endElement:@"describeSoftphoneLayout"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]] lastObject];
@@ -196,7 +187,6 @@
 	[env startElement:@"describeSearchLayouts"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSearchLayouts"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
@@ -209,7 +199,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"describeSearchScopeOrder"];
 	[env endElement:@"describeSearchScopeOrder"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
@@ -224,7 +213,6 @@
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeCompactLayouts"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]] lastObject];
@@ -237,7 +225,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"describeTabs"];
 	[env endElement:@"describeTabs"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
@@ -252,7 +239,6 @@
 	[env addElement:@"externalIDFieldName" elemValue:externalIDFieldName];
 	[env addElement:@"sObjects" elemValue:sObjects];
 	[env endElement:@"upsert"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
@@ -266,7 +252,6 @@
 	[env startElement:@"merge"];
 	[env addElement:@"request" elemValue:request];
 	[env endElement:@"merge"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
@@ -280,7 +265,6 @@
 	[env startElement:@"delete"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"delete"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
@@ -294,7 +278,6 @@
 	[env startElement:@"undelete"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"undelete"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
@@ -308,7 +291,6 @@
 	[env startElement:@"emptyRecycleBin"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"emptyRecycleBin"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
@@ -324,7 +306,6 @@
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"retrieve"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSObject class]];
@@ -338,7 +319,6 @@
 	[env startElement:@"process"];
 	[env addElement:@"actions" elemValue:actions];
 	[env endElement:@"process"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
@@ -352,7 +332,6 @@
 	[env startElement:@"convertLead"];
 	[env addElement:@"leadConverts" elemValue:leadConverts];
 	[env endElement:@"convertLead"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
@@ -365,7 +344,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"logout"];
 	[env endElement:@"logout"];
-	[env endElement:@"s:Body"];
 	[self sendRequest:[env end]];
 }
 
@@ -377,7 +355,6 @@
 	[env startElement:@"invalidateSessions"];
 	[env addElement:@"sessionIds" elemValue:sessionIds];
 	[env endElement:@"invalidateSessions"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
@@ -393,7 +370,6 @@
 	[env addElement:@"startDate" elemValue:startDate];
 	[env addElement:@"endDate" elemValue:endDate];
 	[env endElement:@"getDeleted"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetDeletedResult class]] lastObject];
@@ -409,7 +385,6 @@
 	[env addElement:@"startDate" elemValue:startDate];
 	[env addElement:@"endDate" elemValue:endDate];
 	[env endElement:@"getUpdated"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]] lastObject];
@@ -423,7 +398,6 @@
 	[env startElement:@"query"];
 	[env addElement:@"queryString" elemValue:queryString];
 	[env endElement:@"query"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser queryResult:@"result"];
@@ -437,7 +411,6 @@
 	[env startElement:@"queryAll"];
 	[env addElement:@"queryString" elemValue:queryString];
 	[env endElement:@"queryAll"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser queryResult:@"result"];
@@ -451,7 +424,6 @@
 	[env startElement:@"queryMore"];
 	[env addElement:@"queryLocator" elemValue:queryLocator];
 	[env endElement:@"queryMore"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser queryResult:@"result"];
@@ -464,7 +436,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"getServerTimestamp"];
 	[env endElement:@"getServerTimestamp"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]] lastObject];
@@ -479,7 +450,6 @@
 	[env addElement:@"userId" elemValue:userId];
 	[env addElement:@"password" elemValue:password];
 	[env endElement:@"setPassword"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]] lastObject];
@@ -493,7 +463,6 @@
 	[env startElement:@"resetPassword"];
 	[env addElement:@"userId" elemValue:userId];
 	[env endElement:@"resetPassword"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]] lastObject];
@@ -506,7 +475,6 @@
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
 	[env startElement:@"getUserInfo"];
 	[env endElement:@"getUserInfo"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]] lastObject];
@@ -520,7 +488,6 @@
 	[env startElement:@"sendEmailMessage"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"sendEmailMessage"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
@@ -534,7 +501,6 @@
 	[env startElement:@"sendEmail"];
 	[env addElement:@"messages" elemValue:messages];
 	[env endElement:@"sendEmail"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
@@ -548,7 +514,6 @@
 	[env startElement:@"performQuickActions"];
 	[env addElement:@"quickActions" elemValue:quickActions];
 	[env endElement:@"performQuickActions"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
@@ -562,7 +527,6 @@
 	[env startElement:@"describeQuickActions"];
 	[env addElement:@"quickActions" elemValue:quickActions];
 	[env endElement:@"describeQuickActions"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
@@ -576,7 +540,6 @@
 	[env startElement:@"describeAvailableQuickActions"];
 	[env addElement:@"contextType" elemValue:contextType];
 	[env endElement:@"describeAvailableQuickActions"];
-	[env endElement:@"s:Body"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];

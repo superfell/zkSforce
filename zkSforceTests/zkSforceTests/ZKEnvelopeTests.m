@@ -28,11 +28,12 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 
 -(void)setUp {
     [super setUp];
-    // Set-up code here.
+    env = [[ZKEnvelope alloc] init];
+    [env start:@"urn:test"];
 }
 
 -(void)tearDown {
-    // Tear-down code here.
+    [env release];
     [super tearDown];
 }
 
@@ -41,19 +42,35 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testSimpleEnvelope {
-    ZKEnvelope *e = [[[ZKEnvelope alloc] init] autorelease];
-    [e start:@"urn:test"];
-    NSString *result = [e end];
-    STAssertEqualObjects([self envWith:@""], result, @"plain env is wrong");
+    STAssertEqualObjects([self envWith:@""], [env end], @"plain env is wrong");
 }
 
 -(void)testStartEndElement {
-    ZKEnvelope *e = [[[ZKEnvelope alloc] init] autorelease];
-    [e start:@"urn:test"];
-    [e startElement:@"bob"];
-    [e endElement:@"bob"];
-    NSString *result = [e end];
-    STAssertEqualObjects([self envWith:@"<bob></bob>"], result, nil);
+    [env startElement:@"bob"];
+    [env endElement:@"bob"];
+    STAssertEqualObjects([self envWith:@"<bob></bob>"], [env end], nil);
 }
 
+-(void)testWriteText {
+    [env startElement:@"bob"];
+    [env writeText:@"<>&\"'hello"];
+    [env endElement:@"bob"];
+    STAssertEqualObjects([self envWith:@"<bob>&lt;&gt;&amp;\"'hello</bob>"], [env end], nil);
+}
+
+-(void)testAddNullElement {
+    [env addNullElement:@"bob"];
+    STAssertEqualObjects([self envWith:@"<bob x:nil='true'/>"], [env end], nil);
+}
+
+-(void)testAddBoolElement {
+    [env addBoolElement:@"one" elemValue:TRUE];
+    [env addBoolElement:@"two" elemValue:FALSE];
+    STAssertEqualObjects([self envWith:@"<one>true</one><two>false</two>"], [env end], nil);
+}
+
+-(void)testWriteSessionHeader {
+    [env writeSessionHeader:@"a sid"];
+    STAssertEqualObjects([self envWith:@"<s:Header><SessionHeader><sessionId>a sid</sessionId></SessionHeader></s:Header>"], [env end], nil);
+}
 @end

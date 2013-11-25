@@ -145,7 +145,11 @@ enum envState {
 }
 
 - (NSString *)end {
-	[env appendString:@"</s:Envelope>"];
+    if (state == inHeaders)
+        [self endElement:@"s:Header"];
+    if (state == inBody)
+        [self endElement:@"s:Body"];
+    [self endElement:@"s:Envelope"];
 	return env;
 }
 
