@@ -35,6 +35,7 @@
 #import "ZKDescribeSearchLayoutResult.h"
 #import "ZKDescribeSearchScopeOrderResult.h"
 #import "ZKDescribeSoftphoneLayoutResult.h"
+#import "ZKDescribeTabSetResult.h"
 #import "ZKDescribeThemeResult.h"
 #import "ZKEmail.h"
 #import "ZKEmptyRecycleBinResult.h"
@@ -226,6 +227,19 @@
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]] lastObject];
+}
+
+// Describe the tabs that appear on a users page
+-(NSArray *)describeTabs {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"describeTabs"];
+	[env endElement:@"describeTabs"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
 }
 
 // Update or insert a set of sObjects based on object id

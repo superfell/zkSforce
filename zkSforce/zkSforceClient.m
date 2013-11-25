@@ -256,23 +256,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	return desc;
 }
 
-- (NSArray *)describeTabs {
-    if (!authSource) return nil;
-    [self checkSession];
-    ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
-    [env startElement:@"describeTabs"];
-    [env endElement:@"describeTabs"];
-    [env endElement:@"s:Body"];
-    
-    zkElement *dr = [self sendRequest:[env end]];
-    NSMutableArray *results = [NSMutableArray array];
-    for (zkElement *res in [dr childElements:@"result"]) {
-        ZKDescribeTabSetResult *dt = [[[ZKDescribeTabSetResult alloc] initWithXmlElement:res] autorelease];
-        [results addObject:dt];
-    }
-    return results;
-}
-
 - (NSArray *)search:(NSString *)sosl {
 	if (!authSource) return NULL;
 	[self checkSession];

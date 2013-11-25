@@ -72,6 +72,9 @@
 // Describe the compact layouts of the given sObject
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
 
+// Describe the tabs that appear on a users page
+-(NSArray *)describeTabs;
+
 // Update or insert a set of sObjects based on object id
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects;
 
