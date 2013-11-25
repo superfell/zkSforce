@@ -120,15 +120,6 @@
 // instances.
 - (NSArray *)search:(NSString *)sosl;
 
-// makes a query call with the passed in SOQL expression, returns a ZKQueryResult instance.
-- (ZKQueryResult *)query:(NSString *)soql;
-
-// makes a queryAll call with the passed in SOQL expression, returns a ZKQueryResult instance.
-- (ZKQueryResult *)queryAll:(NSString *)soql;
-
-// makes a queryMore call, pass in the queryLocator from a previous ZKQueryResult instance.
-- (ZKQueryResult *)queryMore:(NSString *)queryLocator;
-
 // retreives a set of records, fields is a comma separated list of fields to fetch values for
 // ids can be upto 200 record Ids, the returned dictionary is keyed from Id and the dictionary
 // values are ZKSObject's.
@@ -191,7 +182,6 @@
 
 // These are helper methods used by the Operations category, you shouldn't need to call these directly 
 @interface ZKSforceClient (Helpers)
-- (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 - (void)checkSession;
 - (void)updateLimitInfo;

@@ -25,12 +25,13 @@
 @class ZKGetUpdatedResult;
 @class ZKDescribeCompactLayoutsResult;
 @class ZKDescribeGlobalTheme;
-@class ZKGetServerTimestampResult;
+@class ZKQueryResult;
 @class ZKDescribeAppMenuResult;
 @class ZKGetDeletedResult;
-@class ZKResetPasswordResult;
 @class ZKDescribeThemeResult;
 @class ZKDescribeSoftphoneLayoutResult;
+@class ZKGetServerTimestampResult;
+@class ZKResetPasswordResult;
 @class ZKSetPasswordResult;
 @class ZKUserInfo;
 
@@ -100,6 +101,15 @@
 
 // Get the IDs for updated sObjects
 -(ZKGetUpdatedResult *)getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
+// Create a Query Cursor
+-(ZKQueryResult *)query:(NSString *)queryString;
+
+// Create a Query Cursor, including deleted sObjects
+-(ZKQueryResult *)queryAll:(NSString *)queryString;
+
+// Gets the next batch of sObjects from a query
+-(ZKQueryResult *)queryMore:(NSString *)queryLocator;
 
 // Gets server timestamp
 -(ZKGetServerTimestampResult *)getServerTimestamp;

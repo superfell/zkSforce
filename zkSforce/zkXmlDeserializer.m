@@ -24,6 +24,7 @@
 #import "ZKBase64.h"
 #import "ZKSoapDate.h"
 #import "zkSObject.h"
+#import "zkQueryResult.h"
 
 @implementation ZKXmlDeserializer
 
@@ -70,6 +71,10 @@
 
 - (ZKSObject *)sObject:(NSString *)elem {
     return [[self complexTypeArrayFromElements:elem cls:[ZKSObject class]] lastObject];
+}
+
+- (ZKQueryResult *)queryResult:(NSString *)elem {
+    return [[self complexTypeArrayFromElements:elem cls:[ZKQueryResult class]] lastObject];
 }
 
 - (NSData *)blob:(NSString *)elem {

@@ -48,6 +48,7 @@
 #import "ZKSetPasswordResult.h"
 #import "ZKGetUpdatedResult.h"
 #import "ZKDescribeLayoutResult.h"
+#import "ZKQueryResult.h"
 #import "ZKEmail.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKDescribeGlobalTheme.h"
@@ -367,6 +368,48 @@
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]] lastObject];
+}
+
+// Create a Query Cursor
+-(ZKQueryResult *)query:(NSString *)queryString {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"query"];
+	[env addElement:@"queryString" elemValue:queryString];
+	[env endElement:@"query"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser queryResult:@"result"];
+}
+
+// Create a Query Cursor, including deleted sObjects
+-(ZKQueryResult *)queryAll:(NSString *)queryString {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"queryAll"];
+	[env addElement:@"queryString" elemValue:queryString];
+	[env endElement:@"queryAll"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser queryResult:@"result"];
+}
+
+// Gets the next batch of sObjects from a query
+-(ZKQueryResult *)queryMore:(NSString *)queryLocator {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"queryMore"];
+	[env addElement:@"queryLocator" elemValue:queryLocator];
+	[env endElement:@"queryMore"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser queryResult:@"result"];
 }
 
 // Gets server timestamp

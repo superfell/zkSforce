@@ -306,18 +306,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	return [[timestamp childElement:@"timestamp"] stringValue];
 }
 
-- (ZKQueryResult *)query:(NSString *) soql {
-	return [self queryImpl:soql operation:@"query" name:@"queryString"];
-}
-
-- (ZKQueryResult *)queryAll:(NSString *) soql {
-	return [self queryImpl:soql operation:@"queryAll" name:@"queryString"];
-}
-
-- (ZKQueryResult *)queryMore:(NSString *)queryLocator {
-	return [self queryImpl:queryLocator operation:@"queryMore" name:@"queryLocator"];
-}
-
 - (NSArray *)create:(NSArray *)objects {
 	return [self sobjectsImpl:objects name:@"create"];
 }
@@ -428,22 +416,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	}
 	[env release];
 	return results;
-}
-
-- (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)operation name:(NSString *)elemName {
-	if(!authSource) return NULL;
-	[self checkSession];
-
-	ZKEnvelope *env = [self envelopeWithQueryOptions];
-	[env startElement:operation];
-	[env addElement:elemName elemValue:value];
-	[env endElement:operation];
-	[env endElement:@"s:Body"];
-	
-	zkElement *qr = [self sendRequest:[env end]];
-    ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:qr] autorelease];
-    ZKQueryResult *result = [[deser complexTypeArrayFromElements:@"result" cls:[ZKQueryResult class]] lastObject];
-	return result;
 }
 
 // We override sendRequest here so that we can do some common additional processing on the response (looking at the response soap headers)
