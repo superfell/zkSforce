@@ -20,6 +20,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "ZKXMLSerializable.h"
 
 @class ZKEnvelope;
 
@@ -27,4 +28,9 @@
     ZKEnvelope *env;
 }
 
+@end
+
+@interface ZKTestSerialize : NSObject<ZKXMLSerializable> {
+    
+}
 @end
