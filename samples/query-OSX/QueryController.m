@@ -107,15 +107,15 @@
 }
 
 -(IBAction)showServerTimestamp:(id)sender {
-    [client performServerTimestampWithFailBlock:^(NSException *e) {
+    [client performGetServerTimestampWithFailBlock:^(NSException *e) {
         NSLog(@"Error fetching timestamp : %@", e);
-    } completeBlock:^(NSString *str) {
+    } completeBlock:^(ZKGetServerTimestampResult *str) {
         [self updateApiLimitInfo];
         [[NSAlert alertWithMessageText:@"Server Timestamp"
                          defaultButton:@"Close"
                        alternateButton:nil
                            otherButton:nil
-             informativeTextWithFormat:@"Server Time : %@", str] runModal];
+             informativeTextWithFormat:@"Server Time : %@", [str timestamp]] runModal];
     }];
 }
 @end

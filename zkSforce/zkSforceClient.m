@@ -275,20 +275,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	return sobjects;
 }
 
-- (NSString *)serverTimestamp {
-	if (!authSource) return NULL;
-	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId];
-	[env startElement:@"getServerTimestamp"];
-	[env endElement:@"getServerTimestamp"];
-	[env endElement:@"s:Body"];
-	
-	zkElement *res = [self sendRequest:[env end]];
-	zkElement *timestamp = [res childElement:@"result"];
-	[env release];
-	return [[timestamp childElement:@"timestamp"] stringValue];
-}
-
 - (NSArray *)create:(NSArray *)objects {
 	return [self sobjectsImpl:objects name:@"create"];
 }

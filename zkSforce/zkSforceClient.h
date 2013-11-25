@@ -50,7 +50,7 @@
 
 // configuration for where to connect to and what api version to use
 //////////////////////////////////////////////////////////////////////////////////////
-// Set the default API version to connect to. (defaults to v27.0)
+// Set the default API version to connect to. (defaults to v29.0)
 // login will automatically detect if the endpoint doesn't have this
 // version and automatically retry on a lower API version.
 @property (assign) int preferedApiVersion;
@@ -127,8 +127,10 @@
 // pass an array of ZKSObject's to update in salesforce, returns a matching array of ZKSaveResults
 - (NSArray *)update:(NSArray *)objects;
 
-// the current server timestamp, as a string (ISO8601 format)
-- (NSString *)serverTimestamp;
+//////////////////////////////////////////////////////////////////////////////////////
+// Other methods from the WSDL such as delete, query, merge, etc are all declared in
+// ZKSforceClient+Operations.h
+//////////////////////////////////////////////////////////////////////////////////////
 
 
 // Information about the current session
@@ -162,7 +164,8 @@
 // contains the last received LimitInfoHeader we got from the server.
 @property (readonly) ZKLimitInfoHeader *lastLimitInfoHeader;
 
-// describe caching
+
+// describe caching support, if true, describeGlobal & describeSObject call results are cached.
 //////////////////////////////////////////////////////////////////////////////////////
 @property (assign) BOOL cacheDescribes;
 - (void)flushCachedDescribes;

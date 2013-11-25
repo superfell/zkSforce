@@ -84,6 +84,9 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
  * validFor on ZKPicklistEntry now returns an NSData rather than an NSString
  * the signature for setPassword has changed from setPassword:forUserId: to setPassword:userId:
  * delete now returns an NSArray of ZKDeleteResult rather than an NSArray of ZKSaveResult (note that these 2 types both have the same properties though)
+ * the serverTimestamp method is replaced by getServerTimestamp, and now returns a ZKGetServerTimestampResult class with a timestamp member (of type NSDate) instead of returning a string.
+
+
 
 
 ## Project setup (via CocoaPods)

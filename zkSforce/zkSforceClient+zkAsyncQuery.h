@@ -36,6 +36,7 @@ typedef void (^zkCompleteDictionaryBlock)       (NSDictionary *arr);
 typedef void (^zkCompleteStringBlock)           (NSString *str);
 typedef void (^zkCompleteLayoutResultBlock)     (ZKDescribeLayoutResult *lr);
 typedef void (^zkCompleteSObjectDescribeBlock)  (ZKDescribeSObject *arr);
+typedef void (^zkCompleteServerTimestampBlock)  (ZKGetServerTimestampResult *res);
 typedef void (^zkCompleteVoidBlock)             (void);
 
 /**
@@ -140,7 +141,7 @@ typedef void (^zkCompleteVoidBlock)             (void);
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteVoidBlock)completeBlock;
 
--(void) performServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
-                              completeBlock:(zkCompleteStringBlock)completeBlock;
+-(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                                 completeBlock:(zkCompleteServerTimestampBlock)completeBlock;
 
 @end

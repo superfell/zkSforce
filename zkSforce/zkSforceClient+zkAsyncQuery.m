@@ -247,15 +247,15 @@
            }];
 }
 
--(void) performServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock 
-                              completeBlock:(zkCompleteStringBlock)completeBlock {
+-(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                                 completeBlock:(zkCompleteServerTimestampBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
-        return [self serverTimestamp];
+        return [self getServerTimestamp];
     }
                failBlock:failBlock
            completeBlock:^(NSObject *r) {
-               if (completeBlock) completeBlock((NSString *)r);
+               if (completeBlock) completeBlock((ZKGetServerTimestampResult *)r);
            }];
     
 }
