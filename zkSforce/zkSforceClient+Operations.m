@@ -37,6 +37,7 @@
 #import "ZKDescribeSObjectResult.h"
 #import "ZKInvalidateSessionsResult.h"
 #import "ZKDescribeSearchScopeOrderResult.h"
+#import "ZKUserInfo.h"
 #import "ZKMergeResult.h"
 #import "ZKSObject.h"
 #import "ZKPerformQuickActionRequest.h"
@@ -44,7 +45,9 @@
 #import "ZKProcessRequest.h"
 #import "ZKResetPasswordResult.h"
 #import "ZKDescribeDataCategoryGroupStructureResult.h"
+#import "ZKSetPasswordResult.h"
 #import "ZKGetUpdatedResult.h"
+#import "ZKDescribeLayoutResult.h"
 #import "ZKEmail.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKDescribeGlobalTheme.h"
@@ -150,6 +153,21 @@
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]] lastObject];
+}
+
+// Describe the layout of the given sObject or the given actionable global page.
+-(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"describeLayout"];
+	[env addElement:@"sObjectType" elemValue:sObjectType];
+	[env addElement:@"recordTypeIds" elemValue:recordTypeIds];
+	[env endElement:@"describeLayout"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]] lastObject];
 }
 
 // Describe the layout of the SoftPhone
@@ -364,6 +382,21 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]] lastObject];
 }
 
+// Set a user's password
+-(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"setPassword"];
+	[env addElement:@"userId" elemValue:userId];
+	[env addElement:@"password" elemValue:password];
+	[env endElement:@"setPassword"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]] lastObject];
+}
+
 // Reset a user's password
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId {
 	if (!authSource) return nil;
@@ -376,6 +409,19 @@
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]] lastObject];
+}
+
+// Returns standard information relevant to the current user
+-(ZKUserInfo *)getUserInfo {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"getUserInfo"];
+	[env endElement:@"getUserInfo"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]] lastObject];
 }
 
 // Send existing draft EmailMessage

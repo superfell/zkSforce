@@ -135,8 +135,8 @@ typedef void (^zkCompleteVoidBlock)             (void);
 
 
 // Utility methods
--(void) performSetPassword:(NSString *)newPassword 
-                 forUserId:(NSString *)userId
+-(void) performSetPassword:(NSString *)userId
+                 password:(NSString *)newPassword
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteVoidBlock)completeBlock;
 

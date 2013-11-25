@@ -38,6 +38,7 @@
 #import "ZKLeadConvertResult.h"
 #import "ZKXMLSerializable.h"
 #import "zkXmlDeserializer.h"
+#import "zkSforceClient+Operations.h"
 
 static const int SAVE_BATCH_SIZE = 25;
 
@@ -204,34 +205,6 @@ static const int SAVE_BATCH_SIZE = 25;
     return [env autorelease];
 }
 
-- (void)setPassword:(NSString *)newPassword forUserId:(NSString *)userId {
-	if (!authSource) return;
-	[self checkSession];
-	
-	ZKEnvelope * env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
-	[env startElement:@"setPassword"];
-	[env addElement:@"userId" elemValue:userId];
-	[env addElement:@"password" elemValue:newPassword];
-	[env endElement:@"setPassword"];
-	[env endElement:@"s:Body"];
-	
-	[self sendRequest:[env end]];
-}
-
-- (ZKUserInfo *)getUserInfo {
-	if(!authSource) return NULL;
-	[self checkSession];
-    
-    ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
-    [env startElement:@"getUserInfo"];
-    [env endElement:@"getUserInfo"];
-    [env endElement:@"s:Body"];
-    
-    zkElement *r = [self sendRequest:[env end]];
-    zkElement *ui = [r childElement:@"result"];
-    ZKUserInfo *result = [[[ZKUserInfo alloc] initWithXmlElement:ui] autorelease];
-    return result;
-}
 
 - (NSArray *)describeGlobal {
 	if(!authSource) return NULL;
@@ -280,22 +253,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env release];
 	if (cacheDescribes) 
 		[describes setObject:desc forKey:[sobjectName lowercaseString]];
-	return desc;
-}
-
-- (ZKDescribeLayoutResult *)describeLayout:(NSString *)sobjectName recordTypeIds:(NSArray *)recordTypeIds {
-	if (!authSource) return nil;
-	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
-	[env startElement:@"describeLayout"];
-	[env addElement:@"sObjectType" elemValue:sobjectName];
-	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
-	[env endElement:@"describeLayout"];
-	[env endElement:@"s:Body"];
-
-	zkElement *dr = [self sendRequest:[env end]];
-	zkElement *descResult = [dr childElement:@"result"];
-	ZKDescribeLayoutResult *desc = [[[ZKDescribeLayoutResult alloc] initWithXmlElement:descResult] autorelease];
 	return desc;
 }
 

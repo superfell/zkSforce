@@ -25,7 +25,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "zkSforceClient+zkAsyncQuery.h"
+#import "zkSforceClient.h"
+#import "zkSforceClient+Operations.h"
 
 @implementation ZKSforceClient (zkAsyncQuery)
 
@@ -195,7 +196,7 @@
                  completeBlock:(zkCompleteSObjectDescribeBlock)completeBlock{
 
     [self performRequest:^NSObject *(void) {
-            return [self describeSObject:sobjectType];
+            return (NSObject *)[self describeSObject:sobjectType];
         }
                failBlock:failBlock
            completeBlock:^(NSObject *r) {
@@ -231,13 +232,13 @@
 }
 
 
--(void) performSetPassword:(NSString *)newPassword 
-                 forUserId:(NSString *)userId 
+-(void) performSetPassword:(NSString *)userId
+                  password:(NSString *)newPassword
                  failBlock:(zkFailWithExceptionBlock)failBlock 
              completeBlock:(zkCompleteVoidBlock)completeBlock {
     
     [self performRequest:^NSObject *(void) {
-        [self setPassword:newPassword forUserId:userId];
+        [self setPassword:userId password:newPassword];
         return nil;
     } 
                failBlock:failBlock

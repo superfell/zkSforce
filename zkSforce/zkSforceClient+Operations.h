@@ -21,15 +21,18 @@
 
 #import "zkSforce.h"
 
-@class ZKDescribeThemeResult;
-@class ZKDescribeGlobalTheme;
+@class ZKDescribeLayoutResult;
 @class ZKGetUpdatedResult;
 @class ZKDescribeCompactLayoutsResult;
-@class ZKDescribeAppMenuResult;
+@class ZKDescribeGlobalTheme;
 @class ZKGetServerTimestampResult;
+@class ZKDescribeAppMenuResult;
 @class ZKGetDeletedResult;
-@class ZKDescribeSoftphoneLayoutResult;
 @class ZKResetPasswordResult;
+@class ZKDescribeThemeResult;
+@class ZKDescribeSoftphoneLayoutResult;
+@class ZKSetPasswordResult;
+@class ZKUserInfo;
 
 @interface ZKSforceClient (Operations)
 // Describe a number sObjects
@@ -52,6 +55,9 @@
 
 // Describe Themes
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType;
+
+// Describe the layout of the given sObject or the given actionable global page.
+-(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
 
 // Describe the layout of the SoftPhone
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout;
@@ -98,8 +104,14 @@
 // Gets server timestamp
 -(ZKGetServerTimestampResult *)getServerTimestamp;
 
+// Set a user's password
+-(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password;
+
 // Reset a user's password
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId;
+
+// Returns standard information relevant to the current user
+-(ZKUserInfo *)getUserInfo;
 
 // Send existing draft EmailMessage
 -(NSArray *)sendEmailMessage:(NSArray *)ids;

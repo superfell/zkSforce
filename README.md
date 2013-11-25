@@ -82,6 +82,7 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
  * many properties on ZKUserInfo are now in an Extras category/file
  * licenceType from ZKUserInfo was removed (its not longer in the API)
  * validFor on ZKPicklistEntry now returns an NSData rather than an NSString
+ * the signature for setPassword has changed from setPassword:forUserId: to setPassword:userId:
 
 ## Project setup (via CocoaPods)
 

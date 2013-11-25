@@ -112,10 +112,6 @@
 // cached copy.
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName;
 
-// makes a describeLayout call and returns a ZKDescribeLayoutResult instance.
-// these are NOT cached, regardless of the describe caching flag.
-- (ZKDescribeLayoutResult *)describeLayout:(NSString *)sobjectName recordTypeIds:(NSArray *)recordTypeIds;
-
 // makes a describeTabs call and returns an Array of ZKDescribeTabResult instances.
 // these are NOT cached, regardless of the describe caching flag.
 - (NSArray *)describeTabs;
@@ -152,9 +148,6 @@
 
 // the current server timestamp, as a string (ISO8601 format)
 - (NSString *)serverTimestamp;
-
-// makes a setPassword call for the specified userId, with the new password.
-- (void)setPassword:(NSString *)newPassword forUserId:(NSString *)userId;
 
 
 // Information about the current session
@@ -201,7 +194,6 @@
 - (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 - (void)checkSession;
-- (ZKUserInfo *)getUserInfo;
 - (void)updateLimitInfo;
 @property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
 @end
