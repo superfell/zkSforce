@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -21,6 +21,7 @@
 
 
 #import "zkEnvelope.h"
+#import "ZKXMLSerializable.h"
 
 @implementation ZKEnvelope
 
@@ -89,6 +90,7 @@ enum envState {
 	else if ([elemValue isKindOfClass:[NSString class]])    [self addElementString:elemName elemValue:elemValue];
 	else if ([elemValue isKindOfClass:[NSArray class]]) 	[self addElementArray:elemName elemValue:elemValue];
 	else if ([elemValue isKindOfClass:[ZKSObject class]]) 	[self addElementSObject:elemName elemValue:elemValue];
+    else if ([elemValue conformsToProtocol:@protocol(ZKXMLSerializable)]) [elemValue serializeToEnvelope:self elemName:elemName];
 	else [self addElementString:elemName elemValue:[elemValue stringValue]];
 }
 

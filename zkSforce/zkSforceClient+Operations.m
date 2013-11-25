@@ -42,6 +42,8 @@
 #import "ZKGetServerTimestampResult.h"
 #import "ZKGetUpdatedResult.h"
 #import "ZKInvalidateSessionsResult.h"
+#import "ZKLeadConvert.h"
+#import "ZKLeadConvertResult.h"
 #import "ZKMergeRequest.h"
 #import "ZKMergeResult.h"
 #import "ZKPerformQuickActionRequest.h"
@@ -311,6 +313,20 @@
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
+}
+
+// convert a set of leads
+-(NSArray *)convertLead:(NSArray *)leadConverts {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	[env startElement:@"convertLead"];
+	[env addElement:@"leadConverts" elemValue:leadConverts];
+	[env endElement:@"convertLead"];
+	[env endElement:@"s:Body"];
+	zkElement *rn = [self sendRequest:[env end]];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
 }
 
 // Logout the current user, invalidating the current session.

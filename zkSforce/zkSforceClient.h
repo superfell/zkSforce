@@ -134,9 +134,6 @@
 // pass an array of record Ids to delete from salesforce. returns a matching array of ZKSaveResults
 - (NSArray *)delete:(NSArray *)ids;
 
-// pass an array of ZKLeadConvert, convert leads to accounts/opportunities, returns a matching array of ZKLeadConvertResult's
-- (NSArray *)convertLead:(NSArray *)leadConverts;
-
 // the current server timestamp, as a string (ISO8601 format)
 - (NSString *)serverTimestamp;
 

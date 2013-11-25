@@ -90,6 +90,9 @@
 // Submit an entity to a workflow process or process a workitem
 -(NSArray *)process:(NSArray *)actions;
 
+// convert a set of leads
+-(NSArray *)convertLead:(NSArray *)leadConverts;
+
 // Logout the current user, invalidating the current session.
 -(void)logout;
 
