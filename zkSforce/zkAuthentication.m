@@ -182,7 +182,6 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 	[env addElement:@"username" elemValue:username];
 	[env addElement:@"password" elemValue:password];
 	[env endElement:@"login"];
-	[env endElement:@"s:Body"];
 	NSString *xml = [env end];
 	[env release];
 	
