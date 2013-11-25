@@ -21,8 +21,8 @@
 
 #import "ZKDescribeSoftphoneLayoutCallType.h"
 #import "ZKDescribeSoftphoneLayoutInfoField.h"
-#import "ZKDescribeSoftphoneScreenPopOption.h"
 #import "ZKDescribeSoftphoneLayoutSection.h"
+#import "ZKDescribeSoftphoneScreenPopOption.h"
 
 @implementation ZKDescribeSoftphoneLayoutCallType
 

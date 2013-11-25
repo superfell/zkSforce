@@ -21,16 +21,16 @@
 
 #import "zkSforce.h"
 
-@class ZKDescribeLayoutResult;
-@class ZKGetUpdatedResult;
+@class ZKDescribeAppMenuResult;
 @class ZKDescribeCompactLayoutsResult;
 @class ZKDescribeGlobalTheme;
-@class ZKQueryResult;
-@class ZKDescribeAppMenuResult;
-@class ZKGetDeletedResult;
-@class ZKDescribeThemeResult;
+@class ZKDescribeLayoutResult;
 @class ZKDescribeSoftphoneLayoutResult;
+@class ZKDescribeThemeResult;
+@class ZKGetDeletedResult;
 @class ZKGetServerTimestampResult;
+@class ZKGetUpdatedResult;
+@class ZKQueryResult;
 @class ZKResetPasswordResult;
 @class ZKSetPasswordResult;
 @class ZKUserInfo;
