@@ -41,15 +41,6 @@
 
 static const int SAVE_BATCH_SIZE = 25;
 
-@interface ZKSforceClient (Private)
-- (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
-- (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
-- (void)checkSession;
-- (ZKUserInfo *)getUserInfo;
-- (void)updateLimitInfo;
-@property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
-@end
-
 @implementation ZKSforceClient
 
 @synthesize preferedApiVersion, updateMru, clientId, cacheDescribes, queryBatchSize, lastLimitInfoHeader=limitInfo;

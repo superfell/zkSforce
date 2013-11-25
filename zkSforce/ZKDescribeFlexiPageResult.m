@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Ron Hess
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,45 +19,30 @@
 // THE SOFTWARE.
 //
 
-#import "ZKDescribeLayout.h"
-#import "ZKRelatedList.h"
-#import "ZKRelatedContent.h"
+#import "ZKDescribeFlexiPageResult.h"
 #import "ZKDescribeQuickActionListResult.h"
-#import "ZKDescribeLayoutButtonSection.h"
-#import "ZKDescribeLayoutSection.h"
+#import "ZKDescribeFlexiPageRegion.h"
 
-@implementation ZKDescribeLayout
+@implementation ZKDescribeFlexiPageResult
 
--(ZKDescribeLayoutButtonSection *)buttonLayoutSection {
-    return [[self complexTypeArrayFromElements:@"buttonLayoutSection" cls:[ZKDescribeLayoutButtonSection class]] lastObject];
-}
-			
--(NSArray *)detailLayoutSections {
-    return [self complexTypeArrayFromElements:@"detailLayoutSections" cls:[ZKDescribeLayoutSection class]];
-}
-			
--(NSArray *)editLayoutSections {
-    return [self complexTypeArrayFromElements:@"editLayoutSections" cls:[ZKDescribeLayoutSection class]];
-}
-			
--(ZKDescribeLayoutSection *)highlightsPanelLayoutSection {
-    return [[self complexTypeArrayFromElements:@"highlightsPanelLayoutSection" cls:[ZKDescribeLayoutSection class]] lastObject];
-}
-			
 -(NSString *)id {
     return [self string:@"id"];
+}
+			
+-(NSString *)label {
+    return [self string:@"label"];
+}
+			
+-(NSString *)name {
+    return [self string:@"name"];
 }
 			
 -(ZKDescribeQuickActionListResult *)quickActionList {
     return [[self complexTypeArrayFromElements:@"quickActionList" cls:[ZKDescribeQuickActionListResult class]] lastObject];
 }
 			
--(ZKRelatedContent *)relatedContent {
-    return [[self complexTypeArrayFromElements:@"relatedContent" cls:[ZKRelatedContent class]] lastObject];
-}
-			
--(NSArray *)relatedLists {
-    return [self complexTypeArrayFromElements:@"relatedLists" cls:[ZKRelatedList class]];
+-(NSArray *)regions {
+    return [self complexTypeArrayFromElements:@"regions" cls:[ZKDescribeFlexiPageRegion class]];
 }
 			
 @end

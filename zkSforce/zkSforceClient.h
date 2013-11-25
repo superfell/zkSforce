@@ -194,3 +194,15 @@
 - (void)flushCachedDescribes;
 
 @end
+
+
+// These are helper methods used by the Operations category, you shouldn't need to call these directly 
+@interface ZKSforceClient (Helpers)
+- (ZKQueryResult *)queryImpl:(NSString *)value operation:(NSString *)op name:(NSString *)elemName;
+- (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
+- (void)checkSession;
+- (ZKUserInfo *)getUserInfo;
+- (void)updateLimitInfo;
+@property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
+@end
+
