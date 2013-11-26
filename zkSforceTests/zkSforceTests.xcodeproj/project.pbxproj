@@ -122,6 +122,7 @@
 		F414BD531842ED4900322AC2 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BD521842ED4900322AC2 /* libxml2.2.dylib */; };
 		F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */; };
 		F414BD5C184309D700322AC2 /* ZKParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD5B184309D700322AC2 /* ZKParserTests.m */; };
+		F414BD5F184447D100322AC2 /* ZKXmlDeserializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -358,6 +359,8 @@
 		F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSoapDateTests.m; sourceTree = "<group>"; };
 		F414BD5A184309D700322AC2 /* ZKParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKParserTests.h; sourceTree = "<group>"; };
 		F414BD5B184309D700322AC2 /* ZKParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKParserTests.m; sourceTree = "<group>"; };
+		F414BD5D184447D100322AC2 /* ZKXmlDeserializerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXmlDeserializerTests.h; sourceTree = "<group>"; };
+		F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXmlDeserializerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,8 +381,6 @@
 		F414BBE31842EC1900322AC2 = {
 			isa = PBXGroup;
 			children = (
-				F414BD521842ED4900322AC2 /* libxml2.2.dylib */,
-				F414BD501842ED3E00322AC2 /* Security.framework */,
 				F414BC091842ECB100322AC2 /* zkSforce */,
 				F414BBFC1842EC4700322AC2 /* UnitTests */,
 				F414BBF31842EC4700322AC2 /* Frameworks */,
@@ -398,6 +399,8 @@
 		F414BBF31842EC4700322AC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F414BD521842ED4900322AC2 /* libxml2.2.dylib */,
+				F414BD501842ED3E00322AC2 /* Security.framework */,
 				F414BBF41842EC4700322AC2 /* SenTestingKit.framework */,
 				F414BBF61842EC4700322AC2 /* Cocoa.framework */,
 				F414BBF81842EC4700322AC2 /* Other Frameworks */,
@@ -424,6 +427,8 @@
 				F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */,
 				F414BD5A184309D700322AC2 /* ZKParserTests.h */,
 				F414BD5B184309D700322AC2 /* ZKParserTests.m */,
+				F414BD5D184447D100322AC2 /* ZKXmlDeserializerTests.h */,
+				F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
 			);
 			name = UnitTests;
@@ -851,6 +856,7 @@
 				F414BD4F1842ED0B00322AC2 /* zkSoapException.m in Sources */,
 				F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */,
 				F414BD5C184309D700322AC2 /* ZKParserTests.m in Sources */,
+				F414BD5F184447D100322AC2 /* ZKXmlDeserializerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

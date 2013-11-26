@@ -31,7 +31,7 @@
 // OSX 10.7+ Only
 -(NSData *)ZKBase64Decode {
     SecTransformRef b64transform = SecDecodeTransformCreate(kSecBase64Encoding, NULL);
-    SecTransformSetAttribute(b64transform, kSecTransformInputAttributeName, (CFTypeRef)self, NULL);
+    SecTransformSetAttribute(b64transform, kSecTransformInputAttributeName, (CFTypeRef)[self dataUsingEncoding:NSASCIIStringEncoding], NULL);
     CFDataRef output = SecTransformExecute(b64transform, NULL);
     CFRelease(b64transform);
     return (NSData*)output;
