@@ -128,6 +128,6 @@
 #import "zkQueryResult+NSTableView.h"
 #import "ZKRelatedList+Extras.h"
 #import "ZKSaveResult+Extras.h"
-#import "zkSforceClient+Operations.h"
+#import "ZKSforceClient+Operations.h"
 #import "zkSforceClient+zkAsyncQuery.h"
 #import "ZKUserInfo+Extras.h"

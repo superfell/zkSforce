@@ -56,6 +56,7 @@
 </complexType>
 */
 @interface ZKDescribeSObject : ZKDescribeGlobalSObject {
+	NSArray 	 *fieldList;
 	NSDictionary *fieldsByName;
 }
 @property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
