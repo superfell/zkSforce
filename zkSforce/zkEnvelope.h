@@ -40,6 +40,7 @@
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue;
 - (void) addNullElement:(NSString *)elemName;
 - (void) addBoolElement:(NSString *)elemName elemValue:(BOOL)elemValue;
+- (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
 
 - (NSString *)end;
 

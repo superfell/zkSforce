@@ -83,6 +83,11 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     STAssertEqualObjects([self envWith:@"<one>true</one><two>false</two>"], [env end], nil);
 }
 
+-(void)testAddIntElement {
+    [env addIntElement:@"one" elemValue:12345];
+    STAssertEqualObjects([self envWith:@"<one>12345</one>"], [env end], nil);
+}
+
 -(void)testWriteSessionHeader {
     [env writeSessionHeader:@"a sid"];
     STAssertEqualObjects([self envWith:@"<s:Header><SessionHeader><sessionId>a sid</sessionId></SessionHeader></s:Header>"], [env end], nil);

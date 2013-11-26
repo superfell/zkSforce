@@ -85,6 +85,10 @@ enum envState {
     [self addElement:elemName elemValue:(elemValue ? @"true" :@"false")];
 }
 
+- (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue {
+    [self addElement:elemName elemValue:[NSNumber numberWithInteger:elemValue]];
+}
+
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue {
     if (elemValue == nil)                                   [self addNullElement:elemName];
 	else if ([elemValue isKindOfClass:[NSString class]])    [self addElementString:elemName elemValue:elemValue];
