@@ -23,41 +23,20 @@
 
 @implementation ZKDescribeLayoutComponent
 
-- (id)initWithXmlElement:(zkElement *)e {
-	self = [super initWithXmlElement:e];
-	compType = zkComponentTypeUnknown;
-	return self;
+-(NSInteger)displayLines {
+    return [self integer:@"displayLines"];
 }
-
--(NSString *) value {
-	return [self string:@"value"];
+			
+-(NSInteger)tabOrder {
+    return [self integer:@"tabOrder"];
 }
-
--(NSString *) typeName {
-	return [self string:@"type"];
+			
+-(NSString *)type {
+    return [self string:@"type"];
 }
-
--(NSInteger) tabOrder {
-	return [self integer:@"tabOrder"];
+			
+-(NSString *)value {
+    return [self string:@"value"];
 }
-
--(NSInteger) displayLines {
-	return [self integer:@"displayLines"];
-}
-
-- (ZKDescribeLayoutComponentType)type {
-	if (compType == zkComponentTypeUnknown) {
-		NSString *t = [self typeName];
-		if ([t isEqualToString:@"Field"])
-			compType = zkComponentTypeField;
-		else if ([t isEqualToString:@"Separator"])
-			compType = zkComponentTypeSeparator;
-		else if ([t isEqualToString:@"SControl"])
-			compType = zkComponentTypeSControl;
-		else if ([t isEqualToString:@"EmptySpace"])
-			compType = zkComponentTypeEmptySpace;
-	}
-	return compType;
-}
-
+			
 @end

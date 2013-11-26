@@ -19,35 +19,22 @@
 // THE SOFTWARE.
 //
 
-
-#import "ZKXmlDeserializer.h"
-
-typedef enum ZKDescribeLayoutComponentType {
-	zkComponentTypeUnknown,
-	zkComponentTypeField,
-	zkComponentTypeSeparator,
-	zkComponentTypeSControl,
-	zkComponentTypeEmptySpace
-} ZKDescribeLayoutComponentType;
+#import "zkXmlDeserializer.h"
 
 /*
- <element name="displayLines" type="xsd:int"/>
- <element name="tabOrder" type="xsd:int"/>
- <element name="type" type="tns:layoutComponentType"/>
- <element name="value" type="xsd:string"/>
- */
-
-@interface ZKDescribeLayoutComponent: ZKXmlDeserializer {
-	ZKDescribeLayoutComponentType compType;
+<complexType name="DescribeLayoutComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:int" name="displayLines"/>
+    <element type="xsd:int" name="tabOrder"/>
+    <element type="tns:layoutComponentType" name="type"/>
+    <element type="xsd:string" name="value"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDescribeLayoutComponent : ZKXmlDeserializer {
 }
-
-- (ZKDescribeLayoutComponentType)type;
-- (NSString *)typeName; /*<enumeration value="Field"/>
-					 <enumeration value="Separator"/>
-					 <enumeration value="SControl"/>
-					 <enumeration value="EmptySpace"/>*/
-- (NSString *)value;
-- (NSInteger )tabOrder;
-- (NSInteger )displayLines;
-
+@property (readonly) NSInteger  displayLines; 
+@property (readonly) NSInteger  tabOrder; 
+@property (readonly) NSString  *type; 
+@property (readonly) NSString  *value; 
 @end
