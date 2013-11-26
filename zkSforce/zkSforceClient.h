@@ -29,6 +29,21 @@
 @class ZKLoginResult;
 @class ZKDescribeLayoutResult;
 @class ZKLimitInfoHeader;
+@class ZKEnvelope;
+@class ZKCallOptions;
+@class ZKPackageVersionHeader;
+@class ZKLocaleOptions;
+@class ZKAssignmentRuleHeader;
+@class ZKMruHeader;
+@class ZKAllowFieldTruncationHeader;
+@class ZKDisableFeedTrackingHeader;
+@class ZKStreamingEnabledHeader;
+@class ZKAllOrNoneHeader;
+@class ZKDebuggingHeader;
+@class ZKEmailHeader;
+@class ZKOwnerChangeOptions;
+@class ZKUserTerritoryDeleteHeader;
+@class ZKQueryOptions;
 
 // This is the primary entry point into the library, you'd create one of these
 // call login, then use it to make other API calls. Your session is automatically
@@ -36,9 +51,6 @@
 //////////////////////////////////////////////////////////////////////////////////////
 @interface ZKSforceClient : ZKBaseClient <NSCopying> {
 	NSString	*authEndpointUrl;
-	NSString	*clientId;
-	BOOL		updateMru;
-    NSNumber    *queryBatchSize;
 	ZKUserInfo	*userInfo;
 	BOOL		cacheDescribes;
 	NSMutableDictionary	*describes;
@@ -46,6 +58,22 @@
     
     NSObject<ZKAuthenticationInfo>  *authSource;
     ZKLimitInfoHeader *limitInfo;
+    
+    // Soap Headers on requests
+    ZKCallOptions           *callOptions;
+    ZKPackageVersionHeader  *packageVersionHeader;
+    ZKLocaleOptions         *localeOptions;
+    ZKAssignmentRuleHeader  *assignmentRuleHeader;
+    ZKMruHeader             *mruHeader;
+    ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
+    ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
+    ZKStreamingEnabledHeader     *streamingEnabledHeader;
+    ZKAllOrNoneHeader            *allOrNoneHeader;
+    ZKDebuggingHeader            *debuggingHeader;
+    ZKEmailHeader                *emailHeader;
+    ZKOwnerChangeOptions         *ownerChangeOptions;
+    ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
+    ZKQueryOptions               *queryOptions;
 }
 
 // configuration for where to connect to and what api version to use
@@ -150,8 +178,13 @@
 // the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed.
 - (NSString *)serverHostAbbriviation;
 
+//////////////////////////////////////////////////////////////////////////////////////
 // SOAP Headers
 //////////////////////////////////////////////////////////////////////////////////////
+// contains the last received LimitInfoHeader we got from the server.
+@property (readonly) ZKLimitInfoHeader *lastLimitInfoHeader;
+
+// These 3 are for backwards compat, they will update the relevant header property
 // Should create/update calls also update the users MRU info? (defaults false)
 @property (assign) BOOL updateMru;
 
@@ -161,9 +194,20 @@
 // If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default)
 @property (retain) NSNumber *queryBatchSize;
 
-// contains the last received LimitInfoHeader we got from the server.
-@property (readonly) ZKLimitInfoHeader *lastLimitInfoHeader;
-
+@property (retain) ZKCallOptions                *callOptions;
+@property (retain) ZKPackageVersionHeader       *packageVersionHeader;
+@property (retain) ZKLocaleOptions              *localeOptions;
+@property (retain) ZKAssignmentRuleHeader       *assignmentRuleHeader;
+@property (retain) ZKMruHeader                  *mruHeader;
+@property (retain) ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
+@property (retain) ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
+@property (retain) ZKStreamingEnabledHeader     *streamingEnabledHeader;
+@property (retain) ZKAllOrNoneHeader            *allOrNoneHeader;
+@property (retain) ZKDebuggingHeader            *debuggingHeader;
+@property (retain) ZKEmailHeader                *emailHeader;
+@property (retain) ZKOwnerChangeOptions         *ownerChangeOptions;
+@property (retain) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
+@property (retain) ZKQueryOptions               *queryOptions;
 
 // describe caching support, if true, describeGlobal & describeSObject call results are cached.
 //////////////////////////////////////////////////////////////////////////////////////
@@ -175,9 +219,21 @@
 
 // These are helper methods used by the Operations category, you shouldn't need to call these directly 
 @interface ZKSforceClient (Helpers)
-- (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
-- (void)checkSession;
-- (void)updateLimitInfo;
-@property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
+-(void)checkSession;
+-(void)updateLimitInfo;
+-(void)addCallOptions:(ZKEnvelope *)env;
+-(void)addPackageVersionHeader:(ZKEnvelope *)env;
+-(void)addLocaleOptions:(ZKEnvelope *)env;
+-(void)addAssignmentRuleHeader:(ZKEnvelope *)env;
+-(void)addMruHeader:(ZKEnvelope *)env;
+-(void)addAllowFieldTruncationHeader:(ZKEnvelope *)env;
+-(void)addDisableFeedTrackingHeader:(ZKEnvelope *)env;
+-(void)addStreamingEnabledHeader:(ZKEnvelope *)env;
+-(void)addAllOrNoneHeader:(ZKEnvelope *)env;
+-(void)addDebuggingHeader:(ZKEnvelope *)env;
+-(void)addEmailHeader:(ZKEnvelope *)env;
+-(void)addOwnerChangeOptions:(ZKEnvelope *)env;
+-(void)addUserTerritoryDeleteHeader:(ZKEnvelope *)env;
+-(void)addQueryOptions:(ZKEnvelope *)env;
 @end
 

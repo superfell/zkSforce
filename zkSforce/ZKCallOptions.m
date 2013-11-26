@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,11 +19,22 @@
 // THE SOFTWARE.
 //
 
-#import "ZKEnvelope.h"
+#import "ZKCallOptions.h"
+#import "zkEnvelope.h"
 
-@interface ZKPartnerEnvelope : ZKEnvelope {
+@implementation ZKCallOptions
+
+@synthesize client, defaultNamespace;
+
+-(void)dealloc {
+	[client release];
+	[defaultNamespace release];
+	[super dealloc];
 }
-
-- (id)initWithSessionHeader:(NSString *)sessionId;
-
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"client"           elemValue:self.client];
+	[env addElement:@"defaultNamespace" elemValue:self.defaultNamespace];
+	[env endElement:elemName];
+}
 @end

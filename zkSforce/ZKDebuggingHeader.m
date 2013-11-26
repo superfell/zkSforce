@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,11 +19,20 @@
 // THE SOFTWARE.
 //
 
-#import "ZKEnvelope.h"
+#import "ZKDebuggingHeader.h"
+#import "zkEnvelope.h"
 
-@interface ZKPartnerEnvelope : ZKEnvelope {
+@implementation ZKDebuggingHeader
+
+@synthesize debugLevel;
+
+-(void)dealloc {
+	[debugLevel release];
+	[super dealloc];
 }
-
-- (id)initWithSessionHeader:(NSString *)sessionId;
-
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"debugLevel" elemValue:self.debugLevel];
+	[env endElement:elemName];
+}
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,11 +19,22 @@
 // THE SOFTWARE.
 //
 
-#import "ZKEnvelope.h"
+#import "ZKLoginScopeHeader.h"
+#import "zkEnvelope.h"
 
-@interface ZKPartnerEnvelope : ZKEnvelope {
+@implementation ZKLoginScopeHeader
+
+@synthesize organizationId, portalId;
+
+-(void)dealloc {
+	[organizationId release];
+	[portalId release];
+	[super dealloc];
 }
-
-- (id)initWithSessionHeader:(NSString *)sessionId;
-
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"organizationId" elemValue:self.organizationId];
+	[env addElement:@"portalId"       elemValue:self.portalId];
+	[env endElement:elemName];
+}
 @end

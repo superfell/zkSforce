@@ -66,7 +66,11 @@
 -(NSArray *)describeSObjects:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
 	[env startElement:@"describeSObjects"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSObjects"];
@@ -79,7 +83,11 @@
 -(NSArray *)describeDataCategoryGroups:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
 	[env startElement:@"describeDataCategoryGroups"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeDataCategoryGroups"];
@@ -92,7 +100,11 @@
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
 	[env startElement:@"describeDataCategoryGroupStructures"];
 	[env addElement:@"pairs" elemValue:pairs];
 	[env addBoolElement:@"topCategoriesOnly" elemValue:topCategoriesOnly];
@@ -106,7 +118,10 @@
 -(NSArray *)describeFlexiPages:(NSArray *)flexiPages {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeFlexiPages"];
 	[env addElement:@"flexiPages" elemValue:flexiPages];
 	[env endElement:@"describeFlexiPages"];
@@ -119,7 +134,10 @@
 -(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeAppMenu"];
 	[env addElement:@"appMenuType" elemValue:appMenuType];
 	[env endElement:@"describeAppMenu"];
@@ -132,7 +150,10 @@
 -(ZKDescribeGlobalTheme *)describeGlobalTheme {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeGlobalTheme"];
 	[env endElement:@"describeGlobalTheme"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -144,7 +165,10 @@
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeTheme"];
 	[env addElement:@"sobjectType" elemValue:sobjectType];
 	[env endElement:@"describeTheme"];
@@ -157,7 +181,10 @@
 -(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeLayout"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"recordTypeIds" elemValue:recordTypeIds];
@@ -171,7 +198,10 @@
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeSoftphoneLayout"];
 	[env endElement:@"describeSoftphoneLayout"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -183,7 +213,10 @@
 -(NSArray *)describeSearchLayouts:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeSearchLayouts"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSearchLayouts"];
@@ -196,7 +229,10 @@
 -(NSArray *)describeSearchScopeOrder {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeSearchScopeOrder"];
 	[env endElement:@"describeSearchScopeOrder"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -208,7 +244,10 @@
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeCompactLayouts"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"recordTypeIds" elemValue:recordTypeIds];
@@ -222,7 +261,10 @@
 -(NSArray *)describeTabs {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"describeTabs"];
 	[env endElement:@"describeTabs"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -234,7 +276,19 @@
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addAssignmentRuleHeader:env];
+	[self addMruHeader:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addAllOrNoneHeader:env];
+	[self addDebuggingHeader:env];
+	[self addPackageVersionHeader:env];
+	[self addEmailHeader:env];
+	[self addOwnerChangeOptions:env];
+	[env moveToBody];
 	[env startElement:@"upsert"];
 	[env addElement:@"externalIDFieldName" elemValue:externalIDFieldName];
 	[env addElement:@"sObjects" elemValue:sObjects];
@@ -248,7 +302,17 @@
 -(NSArray *)merge:(NSArray *)request {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addAssignmentRuleHeader:env];
+	[self addMruHeader:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addDebuggingHeader:env];
+	[self addPackageVersionHeader:env];
+	[self addEmailHeader:env];
+	[env moveToBody];
 	[env startElement:@"merge"];
 	[env addElement:@"request" elemValue:request];
 	[env endElement:@"merge"];
@@ -261,7 +325,17 @@
 -(NSArray *)delete:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addUserTerritoryDeleteHeader:env];
+	[self addEmailHeader:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addAllOrNoneHeader:env];
+	[self addDebuggingHeader:env];
+	[env moveToBody];
 	[env startElement:@"delete"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"delete"];
@@ -274,7 +348,15 @@
 -(NSArray *)undelete:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addAllOrNoneHeader:env];
+	[self addDebuggingHeader:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"undelete"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"undelete"];
@@ -287,7 +369,9 @@
 -(NSArray *)emptyRecycleBin:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"emptyRecycleBin"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"emptyRecycleBin"];
@@ -300,7 +384,12 @@
 -(NSArray *)retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addQueryOptions:env];
+	[self addMruHeader:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"retrieve"];
 	[env addElement:@"fieldList" elemValue:fieldList];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
@@ -315,7 +404,14 @@
 -(NSArray *)process:(NSArray *)actions {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addDebuggingHeader:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"process"];
 	[env addElement:@"actions" elemValue:actions];
 	[env endElement:@"process"];
@@ -328,7 +424,14 @@
 -(NSArray *)convertLead:(NSArray *)leadConverts {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addDebuggingHeader:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"convertLead"];
 	[env addElement:@"leadConverts" elemValue:leadConverts];
 	[env endElement:@"convertLead"];
@@ -341,7 +444,9 @@
 -(void)logout {
 	if (!authSource) return ;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"logout"];
 	[env endElement:@"logout"];
 	[self sendRequest:[env end]];
@@ -351,7 +456,9 @@
 -(NSArray *)invalidateSessions:(NSArray *)sessionIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"invalidateSessions"];
 	[env addElement:@"sessionIds" elemValue:sessionIds];
 	[env endElement:@"invalidateSessions"];
@@ -364,7 +471,9 @@
 -(ZKGetDeletedResult *)getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"getDeleted"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"startDate" elemValue:startDate];
@@ -379,7 +488,9 @@
 -(ZKGetUpdatedResult *)getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"getUpdated"];
 	[env addElement:@"sObjectType" elemValue:sObjectType];
 	[env addElement:@"startDate" elemValue:startDate];
@@ -394,7 +505,12 @@
 -(ZKQueryResult *)query:(NSString *)queryString {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addQueryOptions:env];
+	[self addMruHeader:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
 	[env startElement:@"query"];
 	[env addElement:@"queryString" elemValue:queryString];
 	[env endElement:@"query"];
@@ -407,7 +523,10 @@
 -(ZKQueryResult *)queryAll:(NSString *)queryString {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addQueryOptions:env];
+	[env moveToBody];
 	[env startElement:@"queryAll"];
 	[env addElement:@"queryString" elemValue:queryString];
 	[env endElement:@"queryAll"];
@@ -420,7 +539,10 @@
 -(ZKQueryResult *)queryMore:(NSString *)queryLocator {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addQueryOptions:env];
+	[env moveToBody];
 	[env startElement:@"queryMore"];
 	[env addElement:@"queryLocator" elemValue:queryLocator];
 	[env endElement:@"queryMore"];
@@ -433,7 +555,9 @@
 -(ZKGetServerTimestampResult *)getServerTimestamp {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"getServerTimestamp"];
 	[env endElement:@"getServerTimestamp"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -445,7 +569,9 @@
 -(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"setPassword"];
 	[env addElement:@"userId" elemValue:userId];
 	[env addElement:@"password" elemValue:password];
@@ -459,7 +585,10 @@
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addEmailHeader:env];
+	[env moveToBody];
 	[env startElement:@"resetPassword"];
 	[env addElement:@"userId" elemValue:userId];
 	[env endElement:@"resetPassword"];
@@ -472,7 +601,9 @@
 -(ZKUserInfo *)getUserInfo {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"getUserInfo"];
 	[env endElement:@"getUserInfo"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -484,7 +615,9 @@
 -(NSArray *)sendEmailMessage:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"sendEmailMessage"];
 	[env addElement:@"ids" elemValue:ids];
 	[env endElement:@"sendEmailMessage"];
@@ -497,7 +630,9 @@
 -(NSArray *)sendEmail:(NSArray *)messages {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
 	[env startElement:@"sendEmail"];
 	[env addElement:@"messages" elemValue:messages];
 	[env endElement:@"sendEmail"];
@@ -510,7 +645,19 @@
 -(NSArray *)performQuickActions:(NSArray *)quickActions {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addAssignmentRuleHeader:env];
+	[self addMruHeader:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addAllOrNoneHeader:env];
+	[self addDebuggingHeader:env];
+	[self addPackageVersionHeader:env];
+	[self addEmailHeader:env];
+	[self addOwnerChangeOptions:env];
+	[env moveToBody];
 	[env startElement:@"performQuickActions"];
 	[env addElement:@"quickActions" elemValue:quickActions];
 	[env endElement:@"performQuickActions"];
@@ -523,7 +670,11 @@
 -(NSArray *)describeQuickActions:(NSArray *)quickActions {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
 	[env startElement:@"describeQuickActions"];
 	[env addElement:@"quickActions" elemValue:quickActions];
 	[env endElement:@"describeQuickActions"];
@@ -536,7 +687,11 @@
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId] clientId:clientId] autorelease];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
 	[env startElement:@"describeAvailableQuickActions"];
 	[env addElement:@"contextType" elemValue:contextType];
 	[env endElement:@"describeAvailableQuickActions"];

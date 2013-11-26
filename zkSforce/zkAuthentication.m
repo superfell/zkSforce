@@ -173,7 +173,10 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 -(ZKPartnerEnvelope *)newEnvelope {
-	return [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil clientId:clientId];
+	ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
+    [env writeCallOptionsHeader:clientId];
+    [env moveToBody];
+    return env;
 }
 
 -(ZKLoginResult *)login {
@@ -220,13 +223,15 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 -(ZKPartnerEnvelope *)newEnvelope {
-    return [[ZKPartnerEnvelope alloc] initWithSessionAndMruHeaders:nil mru:NO clientId:clientId additionalHeaders:^(ZKEnvelope *env) {
-        [env startElement:@"LoginScopeHeader"];
-        [env addElement:@"organizationId" elemValue:orgId];
-        if ([portalId length] > 0)
-            [env addElement:@"portalId" elemValue:portalId];
-        [env endElement:@"LoginScopeHeader"];
-    }];
+    ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
+    [env writeCallOptionsHeader:clientId];
+    [env startElement:@"LoginScopeHeader"];
+    [env addElement:@"organizationId" elemValue:orgId];
+    if ([portalId length] > 0)
+        [env addElement:@"portalId" elemValue:portalId];
+    [env endElement:@"LoginScopeHeader"];
+    [env moveToBody];
+    return env;
 }
 
 +(id)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid orgId:(NSString *)orgId portalId:(NSString *)portalId {

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,11 +19,17 @@
 // THE SOFTWARE.
 //
 
-#import "ZKEnvelope.h"
+#import "ZKXMLSerializable.h"
 
-@interface ZKPartnerEnvelope : ZKEnvelope {
+/*
+<complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:boolean" name="disableFeedTracking"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDisableFeedTrackingHeader : NSObject<ZKXMLSerializable> {
+	BOOL disableFeedTracking;
 }
-
-- (id)initWithSessionHeader:(NSString *)sessionId;
-
+@property (assign) BOOL disableFeedTracking; 
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,11 +19,21 @@
 // THE SOFTWARE.
 //
 
-#import "ZKEnvelope.h"
+#import "ZKAssignmentRuleHeader.h"
+#import "zkEnvelope.h"
 
-@interface ZKPartnerEnvelope : ZKEnvelope {
+@implementation ZKAssignmentRuleHeader
+
+@synthesize assignmentRuleId, useDefaultRule;
+
+-(void)dealloc {
+	[assignmentRuleId release];
+	[super dealloc];
 }
-
-- (id)initWithSessionHeader:(NSString *)sessionId;
-
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"assignmentRuleId"   elemValue:self.assignmentRuleId];
+	[env addBoolElement:@"useDefaultRule" elemValue:self.useDefaultRule];
+	[env endElement:elemName];
+}
 @end

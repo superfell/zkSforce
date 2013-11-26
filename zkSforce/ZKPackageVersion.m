@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,11 +19,22 @@
 // THE SOFTWARE.
 //
 
-#import "ZKEnvelope.h"
+#import "ZKPackageVersion.h"
+#import "zkEnvelope.h"
 
-@interface ZKPartnerEnvelope : ZKEnvelope {
+@implementation ZKPackageVersion
+
+@synthesize majorNumber, minorNumber, namespace;
+
+-(void)dealloc {
+	[namespace release];
+	[super dealloc];
 }
-
-- (id)initWithSessionHeader:(NSString *)sessionId;
-
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addIntElement:@"majorNumber" elemValue:self.majorNumber];
+	[env addIntElement:@"minorNumber" elemValue:self.minorNumber];
+	[env addElement:@"namespace"      elemValue:self.namespace];
+	[env endElement:elemName];
+}
 @end
