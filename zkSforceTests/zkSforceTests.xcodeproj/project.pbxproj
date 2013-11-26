@@ -123,6 +123,7 @@
 		F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */; };
 		F414BD5C184309D700322AC2 /* ZKParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD5B184309D700322AC2 /* ZKParserTests.m */; };
 		F414BD5F184447D100322AC2 /* ZKXmlDeserializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */; };
+		F414BD621844543500322AC2 /* ZKBase64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD611844543500322AC2 /* ZKBase64Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -361,6 +362,8 @@
 		F414BD5B184309D700322AC2 /* ZKParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKParserTests.m; sourceTree = "<group>"; };
 		F414BD5D184447D100322AC2 /* ZKXmlDeserializerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXmlDeserializerTests.h; sourceTree = "<group>"; };
 		F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXmlDeserializerTests.m; sourceTree = "<group>"; };
+		F414BD601844543500322AC2 /* ZKBase64Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKBase64Tests.h; sourceTree = "<group>"; };
+		F414BD611844543500322AC2 /* ZKBase64Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBase64Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +430,8 @@
 				F414BD581842FD3800322AC2 /* ZKSoapDateTests.m */,
 				F414BD5A184309D700322AC2 /* ZKParserTests.h */,
 				F414BD5B184309D700322AC2 /* ZKParserTests.m */,
+				F414BD601844543500322AC2 /* ZKBase64Tests.h */,
+				F414BD611844543500322AC2 /* ZKBase64Tests.m */,
 				F414BD5D184447D100322AC2 /* ZKXmlDeserializerTests.h */,
 				F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
@@ -857,6 +862,7 @@
 				F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */,
 				F414BD5C184309D700322AC2 /* ZKParserTests.m in Sources */,
 				F414BD5F184447D100322AC2 /* ZKXmlDeserializerTests.m in Sources */,
+				F414BD621844543500322AC2 /* ZKBase64Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
