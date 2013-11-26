@@ -69,7 +69,6 @@
 		F414BB8C184183C500322AC2 /* ZKSetPasswordResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB5A184183C400322AC2 /* ZKSetPasswordResult.m */; };
 		F414BB8D184183C500322AC2 /* ZKUndeleteResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB5C184183C500322AC2 /* ZKUndeleteResult.m */; };
 		F414BB90184184DE00322AC2 /* zkSforceClient+Operations.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB8F184184DD00322AC2 /* zkSforceClient+Operations.m */; };
-		F414BB99184185C600322AC2 /* ZKDescribeSObjectResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB92184185C100322AC2 /* ZKDescribeSObjectResult.m */; };
 		F414BB9A184185C600322AC2 /* ZKDeleteResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB94184185C200322AC2 /* ZKDeleteResult.m */; };
 		F414BB9B184185C600322AC2 /* ZKDescribeGlobalResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB96184185C400322AC2 /* ZKDescribeGlobalResult.m */; };
 		F414BB9F184188B100322AC2 /* ZKSoapDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BB9E184188B000322AC2 /* ZKSoapDate.m */; };
@@ -268,8 +267,6 @@
 		F414BB5C184183C500322AC2 /* ZKUndeleteResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUndeleteResult.m; path = ../../zkSforce/ZKUndeleteResult.m; sourceTree = "<group>"; };
 		F414BB8E184184DD00322AC2 /* zkSforceClient+Operations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+Operations.h"; path = "../../zkSforce/zkSforceClient+Operations.h"; sourceTree = "<group>"; };
 		F414BB8F184184DD00322AC2 /* zkSforceClient+Operations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+Operations.m"; path = "../../zkSforce/zkSforceClient+Operations.m"; sourceTree = "<group>"; };
-		F414BB91184185C100322AC2 /* ZKDescribeSObjectResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSObjectResult.h; path = ../../zkSforce/ZKDescribeSObjectResult.h; sourceTree = "<group>"; };
-		F414BB92184185C100322AC2 /* ZKDescribeSObjectResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSObjectResult.m; path = ../../zkSforce/ZKDescribeSObjectResult.m; sourceTree = "<group>"; };
 		F414BB93184185C200322AC2 /* ZKDeleteResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDeleteResult.h; path = ../../zkSforce/ZKDeleteResult.h; sourceTree = "<group>"; };
 		F414BB94184185C200322AC2 /* ZKDeleteResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDeleteResult.m; path = ../../zkSforce/ZKDeleteResult.m; sourceTree = "<group>"; };
 		F414BB95184185C300322AC2 /* ZKDescribeGlobalResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeGlobalResult.h; path = ../../zkSforce/ZKDescribeGlobalResult.h; sourceTree = "<group>"; };
@@ -552,8 +549,6 @@
 			isa = PBXGroup;
 			children = (
 				F414BDCD18451DEE00322AC2 /* soapHeaders */,
-				F414BB91184185C100322AC2 /* ZKDescribeSObjectResult.h */,
-				F414BB92184185C100322AC2 /* ZKDescribeSObjectResult.m */,
 				F414BB93184185C200322AC2 /* ZKDeleteResult.h */,
 				F414BB94184185C200322AC2 /* ZKDeleteResult.m */,
 				F414BB95184185C300322AC2 /* ZKDescribeGlobalResult.h */,
@@ -937,7 +932,6 @@
 				F414BB8C184183C500322AC2 /* ZKSetPasswordResult.m in Sources */,
 				F414BB8D184183C500322AC2 /* ZKUndeleteResult.m in Sources */,
 				F414BB90184184DE00322AC2 /* zkSforceClient+Operations.m in Sources */,
-				F414BB99184185C600322AC2 /* ZKDescribeSObjectResult.m in Sources */,
 				F414BB9A184185C600322AC2 /* ZKDeleteResult.m in Sources */,
 				F414BB9B184185C600322AC2 /* ZKDescribeGlobalResult.m in Sources */,
 				F414BB9F184188B100322AC2 /* ZKSoapDate.m in Sources */,

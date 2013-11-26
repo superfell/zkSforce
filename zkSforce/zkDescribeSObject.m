@@ -19,82 +19,51 @@
 // THE SOFTWARE.
 //
 
-
-#import "zkDescribeSObject.h"
-#import "zkDescribeField.h"
-#import "zkChildRelationship.h"
-#import "zkRecordTypeInfo.h"
-#import "zkParser.h"
+#import "ZKDescribeSObject.h"
+#import "ZKChildRelationship.h"
+#import "ZKDescribeField.h"
+#import "ZKRecordTypeInfo.h"
 
 @implementation ZKDescribeSObject
 
 -(void)dealloc {
-	[fields release];
 	[fieldsByName release];
-	[childRelationships release];
-	[recordTypeInfos release];
 	[super dealloc];
 }
 
-
--(NSString *)urlDetail {
-	return [self string:@"urlDetail"];
-}
--(NSString *)urlEdit {
-	return [self string:@"urlEdit"];
-}
--(NSString *)urlNew {
-	return [self string:@"urlNew"];
-}
-
--(BOOL)compactLayoutable {
-   	return [self boolean:@"compactLayoutable"];
-}
--(BOOL)searchLayoutable {
-   	return [self boolean:@"searchLayoutable"];
-}
-
 -(NSArray *)fields {
-	if (fields == nil) {
-		NSArray * fn = [node childElements:@"fields"];
-		NSMutableArray * fs = [NSMutableArray arrayWithCapacity:[fn count]];
-		for (zkElement *fieldNode in fn) {
-			ZKDescribeField * df = [[ZKDescribeField alloc] initWithXmlElement:fieldNode];
-			[df setSobject:self];
-			[fs addObject:df];
-			[df release];
-		}
-		fields = [fs retain];
-	}
-	return fields;
+	NSArray *fa = [self complexTypeArrayFromElements:@"fields" cls:[ZKDescribeField class]];
+	for (ZKDescribeField *f in fa)
+		[f setSobject:self];
+	return fa;
 }
 
 -(NSArray *)childRelationships {
-	if (childRelationships == nil) {
-		NSArray *crn = [node childElements:@"childRelationships"];
-		NSMutableArray *crs = [NSMutableArray arrayWithCapacity:[crn count]];
-		for (zkElement *crNode in crn) {
-			ZKChildRelationship * cr = [[ZKChildRelationship alloc] initWithXmlElement:crNode];
-			[crs addObject:cr];
-			[cr release];
-		}
-		childRelationships = [crs retain];
-	}
-	return childRelationships;
+    return [self complexTypeArrayFromElements:@"childRelationships" cls:[ZKChildRelationship class]];
 }
-
+			
+-(BOOL)compactLayoutable {
+    return [self boolean:@"compactLayoutable"];
+}
+			
 -(NSArray *)recordTypeInfos {
-	if (recordTypeInfos == nil) {
-		NSArray *rti = [node childElements:@"recordTypeInfos"];
-		NSMutableArray *res = [NSMutableArray arrayWithCapacity:[rti count]];
-		for (zkElement *rnode in rti) {
-			ZKRecordTypeInfo *r = [[ZKRecordTypeInfo alloc] initWithXmlElement:rnode];
-			[res addObject:r];
-			[r release];
-		}
-		recordTypeInfos = [res retain];
-	}
-	return recordTypeInfos;
+    return [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];
 }
-
+			
+-(BOOL)searchLayoutable {
+    return [self boolean:@"searchLayoutable"];
+}
+			
+-(NSString *)urlDetail {
+    return [self string:@"urlDetail"];
+}
+			
+-(NSString *)urlEdit {
+    return [self string:@"urlEdit"];
+}
+			
+-(NSString *)urlNew {
+    return [self string:@"urlNew"];
+}
+			
 @end

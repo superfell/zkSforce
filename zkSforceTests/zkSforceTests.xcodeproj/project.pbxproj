@@ -38,7 +38,6 @@
 		F414BCFD1842ED0B00322AC2 /* ZKDescribeRelatedContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC3B1842ED0B00322AC2 /* ZKDescribeRelatedContentItem.m */; };
 		F414BCFE1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC3D1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m */; };
 		F414BCFF1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC3F1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.m */; };
-		F414BD001842ED0B00322AC2 /* ZKDescribeSObjectResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC411842ED0B00322AC2 /* ZKDescribeSObjectResult.m */; };
 		F414BD011842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC441842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m */; };
 		F414BD021842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC461842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutSection.m */; };
 		F414BD031842ED0B00322AC2 /* ZKDescribeThemeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC481842ED0B00322AC2 /* ZKDescribeThemeItem.m */; };
@@ -206,8 +205,6 @@
 		F414BC3D1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSearchLayoutResult.m; path = ../zkSforce/ZKDescribeSearchLayoutResult.m; sourceTree = "<group>"; };
 		F414BC3E1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSearchScopeOrderResult.h; path = ../zkSforce/ZKDescribeSearchScopeOrderResult.h; sourceTree = "<group>"; };
 		F414BC3F1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSearchScopeOrderResult.m; path = ../zkSforce/ZKDescribeSearchScopeOrderResult.m; sourceTree = "<group>"; };
-		F414BC401842ED0B00322AC2 /* ZKDescribeSObjectResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSObjectResult.h; path = ../zkSforce/ZKDescribeSObjectResult.h; sourceTree = "<group>"; };
-		F414BC411842ED0B00322AC2 /* ZKDescribeSObjectResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSObjectResult.m; path = ../zkSforce/ZKDescribeSObjectResult.m; sourceTree = "<group>"; };
 		F414BC421842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutCallType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSoftphoneLayoutCallType.h; path = ../zkSforce/ZKDescribeSoftphoneLayoutCallType.h; sourceTree = "<group>"; };
 		F414BC431842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSoftphoneLayoutInfoField.h; path = ../zkSforce/ZKDescribeSoftphoneLayoutInfoField.h; sourceTree = "<group>"; };
 		F414BC441842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSoftphoneLayoutInfoField.m; path = ../zkSforce/ZKDescribeSoftphoneLayoutInfoField.m; sourceTree = "<group>"; };
@@ -591,8 +588,6 @@
 				F414BC3D1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m */,
 				F414BC3E1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.h */,
 				F414BC3F1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.m */,
-				F414BC401842ED0B00322AC2 /* ZKDescribeSObjectResult.h */,
-				F414BC411842ED0B00322AC2 /* ZKDescribeSObjectResult.m */,
 				F414BC421842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutCallType.h */,
 				F414BC431842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.h */,
 				F414BC441842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m */,
@@ -864,7 +859,6 @@
 				F414BCFD1842ED0B00322AC2 /* ZKDescribeRelatedContentItem.m in Sources */,
 				F414BCFE1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m in Sources */,
 				F414BCFF1842ED0B00322AC2 /* ZKDescribeSearchScopeOrderResult.m in Sources */,
-				F414BD001842ED0B00322AC2 /* ZKDescribeSObjectResult.m in Sources */,
 				F414BD011842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m in Sources */,
 				F414BD021842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutSection.m in Sources */,
 				F414BD031842ED0B00322AC2 /* ZKDescribeThemeItem.m in Sources */,

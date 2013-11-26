@@ -19,51 +19,51 @@
 // THE SOFTWARE.
 //
 
-#import "zkXmlDeserializer.h"
-#import "zkDescribeField.h"
-#import "zkDescribeGlobalSObject.h"
+#import "ZKDescribeGlobalSObject.h"
 
 /*
-<element name="activateable"   		type="xsd:boolean"/>
-<element name="childRelationships" 	type="tns:ChildRelationship" minOccurs="0" maxOccurs="unbounded"/>
-<element name="createable"     		type="xsd:boolean"/>
-<element name="custom"         		type="xsd:boolean"/>
-<element name="deletable"      		type="xsd:boolean"/>
-<element name="fields"         		type="tns:Field" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<element name="keyPrefix"      		type="xsd:string" nillable="true"/>
-<element name="label"          		type="xsd:string"/>
-<element name="labelPlural"    		type="xsd:string"/>
-<element name="layoutable"     		type="xsd:boolean"/>
-<element name="mergeable"           type="xsd:boolean"/>
-<element name="name"           		type="xsd:string"/>
-<element name="queryable"      		type="xsd:boolean"/>
-<element name="recordTypeInfos"     type="tns:RecordTypeInfo" minOccurs="0" maxOccurs="unbounded"/>
-<element name="replicateable"  		type="xsd:boolean"/>
-<element name="retrieveable"   		type="xsd:boolean"/>
-<element name="searchable"     		type="xsd:boolean"/>
-<element name="triggerable"         type="xsd:boolean" minOccurs="0"/>
-<element name="undeletable"    		type="xsd:boolean"/>
-<element name="updateable"     		type="xsd:boolean"/>
-<element name="urlDetail"      		type="xsd:string" nillable="true"/>
-<element name="urlEdit"        		type="xsd:string" nillable="true"/>
-<element name="urlNew"         		type="xsd:string" nillable="true"/>
- */
- 
+<complexType name="DescribeSObjectResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:boolean" name="activateable"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:ChildRelationship" name="childRelationships"/>
+    <element type="xsd:boolean" name="compactLayoutable"/>
+    <element type="xsd:boolean" name="createable"/>
+    <element type="xsd:boolean" name="custom"/>
+    <element type="xsd:boolean" name="customSetting"/>
+    <element type="xsd:boolean" name="deletable"/>
+    <element type="xsd:boolean" name="deprecatedAndHidden"/>
+    <element type="xsd:boolean" name="feedEnabled"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:Field" name="fields"/>
+    <element nillable="true" type="xsd:string" name="keyPrefix"/>
+    <element type="xsd:string" name="label"/>
+    <element type="xsd:string" name="labelPlural"/>
+    <element type="xsd:boolean" name="layoutable"/>
+    <element type="xsd:boolean" name="mergeable"/>
+    <element type="xsd:string" name="name"/>
+    <element type="xsd:boolean" name="queryable"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:RecordTypeInfo" name="recordTypeInfos"/>
+    <element type="xsd:boolean" name="replicateable"/>
+    <element type="xsd:boolean" name="retrieveable"/>
+    <element minOccurs="0" type="xsd:boolean" name="searchLayoutable"/>
+    <element type="xsd:boolean" name="searchable"/>
+    <element minOccurs="0" type="xsd:boolean" name="triggerable"/>
+    <element type="xsd:boolean" name="undeletable"/>
+    <element type="xsd:boolean" name="updateable"/>
+    <element nillable="true" type="xsd:string" name="urlDetail"/>
+    <element nillable="true" type="xsd:string" name="urlEdit"/>
+    <element nillable="true" type="xsd:string" name="urlNew"/>
+  </sequence>
+</complexType>
+*/
 @interface ZKDescribeSObject : ZKDescribeGlobalSObject {
-	NSArray			*fields;
-	NSDictionary	*fieldsByName;
-	NSArray			*childRelationships;
-	NSArray 		*recordTypeInfos;
+	NSDictionary *fieldsByName;
 }
-
--(NSString *)urlDetail;
--(NSString *)urlEdit;
--(NSString *)urlNew;
--(NSArray *)fields;
--(NSArray *)childRelationships;
--(NSArray *)recordTypeInfos;
-// v29.0
--(BOOL)compactLayoutable;
--(BOOL)searchLayoutable;
-
+@property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
+@property (readonly) BOOL       compactLayoutable; 
+@property (readonly) NSArray   *fields;  // of ZKDescribeField
+@property (readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
+@property (readonly) BOOL       searchLayoutable; 
+@property (readonly) NSString  *urlDetail; 
+@property (readonly) NSString  *urlEdit; 
+@property (readonly) NSString  *urlNew; 
 @end

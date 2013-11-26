@@ -21,6 +21,8 @@
 
 #import "ZKDescribeSObject.h"
 
+@class ZKDescribeField;
+
 @interface ZKDescribeSObject (Extras)
 
 -(ZKDescribeField *)fieldWithName:(NSString *)name;

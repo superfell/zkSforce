@@ -32,7 +32,7 @@
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeQuickActionResult.h"
-#import "ZKDescribeSObjectResult.h"
+#import "ZKDescribeSObject.h"
 #import "ZKDescribeSearchLayoutResult.h"
 #import "ZKDescribeSearchScopeOrderResult.h"
 #import "ZKDescribeSoftphoneLayoutResult.h"
@@ -76,7 +76,7 @@
 	[env endElement:@"describeSObjects"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObjectResult class]];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
 }
 
 // Describe all the data category groups available for a given set of types
