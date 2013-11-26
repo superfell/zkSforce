@@ -60,7 +60,6 @@
 -(NSString *)urlEdit;
 -(NSString *)urlNew;
 -(NSArray *)fields;
--(ZKDescribeField *)fieldWithName:(NSString *)name;
 -(NSArray *)childRelationships;
 -(NSArray *)recordTypeInfos;
 // v29.0

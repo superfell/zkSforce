@@ -140,6 +140,7 @@
 		F414BDC918451D5200322AC2 /* ZKSessionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDB618451D5100322AC2 /* ZKSessionHeader.m */; };
 		F414BDCA18451D5200322AC2 /* ZKStreamingEnabledHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDB818451D5100322AC2 /* ZKStreamingEnabledHeader.m */; };
 		F414BDCB18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDBA18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m */; };
+		F414BDD318453D4600322AC2 /* ZKDescribeSObject+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDD218453D4600322AC2 /* ZKDescribeSObject+Extras.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -412,6 +413,8 @@
 		F414BDB818451D5100322AC2 /* ZKStreamingEnabledHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKStreamingEnabledHeader.m; path = ../zkSforce/ZKStreamingEnabledHeader.m; sourceTree = "<group>"; };
 		F414BDB918451D5200322AC2 /* ZKUserTerritoryDeleteHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUserTerritoryDeleteHeader.h; path = ../zkSforce/ZKUserTerritoryDeleteHeader.h; sourceTree = "<group>"; };
 		F414BDBA18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUserTerritoryDeleteHeader.m; path = ../zkSforce/ZKUserTerritoryDeleteHeader.m; sourceTree = "<group>"; };
+		F414BDD118453D4600322AC2 /* ZKDescribeSObject+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKDescribeSObject+Extras.h"; path = "../zkSforce/ZKDescribeSObject+Extras.h"; sourceTree = "<group>"; };
+		F414BDD218453D4600322AC2 /* ZKDescribeSObject+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKDescribeSObject+Extras.m"; path = "../zkSforce/ZKDescribeSObject+Extras.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +504,8 @@
 		F414BC091842ECB100322AC2 /* zkSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F414BDD118453D4600322AC2 /* ZKDescribeSObject+Extras.h */,
+				F414BDD218453D4600322AC2 /* ZKDescribeSObject+Extras.m */,
 				F414BD9918451D5000322AC2 /* ZKDebuggingHeader.h */,
 				F414BD9A18451D5100322AC2 /* ZKDebuggingHeader.m */,
 				F414BD9B18451D5100322AC2 /* ZKLocaleOptions.h */,
@@ -959,6 +964,7 @@
 				F414BDC918451D5200322AC2 /* ZKSessionHeader.m in Sources */,
 				F414BDCA18451D5200322AC2 /* ZKStreamingEnabledHeader.m in Sources */,
 				F414BDCB18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */,
+				F414BDD318453D4600322AC2 /* ZKDescribeSObject+Extras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -90,6 +90,7 @@
 		F414BD8F184460D400322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD80184460D400322AC2 /* ZKUserTerritoryDeleteHeader.m */; };
 		F414BD9418451C9600322AC2 /* ZKDebuggingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD9118451C9600322AC2 /* ZKDebuggingHeader.m */; };
 		F414BD9518451C9600322AC2 /* ZKLocaleOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BD9318451C9600322AC2 /* ZKLocaleOptions.m */; };
+		F414BDD018453B7B00322AC2 /* ZKDescribeSObject+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDCF18453B7A00322AC2 /* ZKDescribeSObject+Extras.m */; };
 		F4214DF9183FD165007D495C /* ZKDescribeQuickActionListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214DF8183FD165007D495C /* ZKDescribeQuickActionListResult.m */; };
 		F4214DFC183FD192007D495C /* ZKDescribeQuickActionListItemResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214DFB183FD192007D495C /* ZKDescribeQuickActionListItemResult.m */; };
 		F4214E01183FD1C2007D495C /* ZKDescribeIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = F4214DFE183FD1C1007D495C /* ZKDescribeIcon.m */; };
@@ -309,6 +310,8 @@
 		F414BD9118451C9600322AC2 /* ZKDebuggingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDebuggingHeader.m; path = ../../zkSforce/ZKDebuggingHeader.m; sourceTree = "<group>"; };
 		F414BD9218451C9600322AC2 /* ZKLocaleOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLocaleOptions.h; path = ../../zkSforce/ZKLocaleOptions.h; sourceTree = "<group>"; };
 		F414BD9318451C9600322AC2 /* ZKLocaleOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLocaleOptions.m; path = ../../zkSforce/ZKLocaleOptions.m; sourceTree = "<group>"; };
+		F414BDCE18453B7A00322AC2 /* ZKDescribeSObject+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKDescribeSObject+Extras.h"; path = "../../zkSforce/ZKDescribeSObject+Extras.h"; sourceTree = "<group>"; };
+		F414BDCF18453B7A00322AC2 /* ZKDescribeSObject+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKDescribeSObject+Extras.m"; path = "../../zkSforce/ZKDescribeSObject+Extras.m"; sourceTree = "<group>"; };
 		F4214DF7183FD165007D495C /* ZKDescribeQuickActionListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeQuickActionListResult.h; path = ../../zkSforce/ZKDescribeQuickActionListResult.h; sourceTree = "<group>"; };
 		F4214DF8183FD165007D495C /* ZKDescribeQuickActionListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeQuickActionListResult.m; path = ../../zkSforce/ZKDescribeQuickActionListResult.m; sourceTree = "<group>"; };
 		F4214DFA183FD192007D495C /* ZKDescribeQuickActionListItemResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeQuickActionListItemResult.h; path = ../../zkSforce/ZKDescribeQuickActionListItemResult.h; sourceTree = "<group>"; };
@@ -695,6 +698,8 @@
 				F44CC03412B5881D0052D468 /* ZKDescribeLayoutSection.m */,
 				F44CC03512B5881D0052D468 /* zkDescribeSObject.h */,
 				F44CC03612B5881D0052D468 /* zkDescribeSObject.m */,
+				F414BDCE18453B7A00322AC2 /* ZKDescribeSObject+Extras.h */,
+				F414BDCF18453B7A00322AC2 /* ZKDescribeSObject+Extras.m */,
 				F47E2FBE1468EB430070F6F8 /* ZKDescribeTab.h */,
 				F47E2FBF1468EB430070F6F8 /* ZKDescribeTab.m */,
 				F4C2D2581468EC8100C73F09 /* ZKDescribeTabSetResult.h */,
@@ -953,6 +958,7 @@
 				F414BD8F184460D400322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */,
 				F414BD9418451C9600322AC2 /* ZKDebuggingHeader.m in Sources */,
 				F414BD9518451C9600322AC2 /* ZKLocaleOptions.m in Sources */,
+				F414BDD018453B7B00322AC2 /* ZKDescribeSObject+Extras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

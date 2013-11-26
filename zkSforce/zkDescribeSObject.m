@@ -57,25 +57,16 @@
 -(NSArray *)fields {
 	if (fields == nil) {
 		NSArray * fn = [node childElements:@"fields"];
-		NSMutableDictionary *byName = [NSMutableDictionary dictionary];
 		NSMutableArray * fs = [NSMutableArray arrayWithCapacity:[fn count]];
 		for (zkElement *fieldNode in fn) {
 			ZKDescribeField * df = [[ZKDescribeField alloc] initWithXmlElement:fieldNode];
 			[df setSobject:self];
 			[fs addObject:df];
-			[byName setObject:df forKey:[[df name] lowercaseString]];
 			[df release];
 		}
 		fields = [fs retain];
-		fieldsByName = [byName retain];
 	}
 	return fields;
-}
-
--(ZKDescribeField *)fieldWithName:(NSString *)name {
-	if (fieldsByName == nil) 
-		[self fields];
-	return [fieldsByName objectForKey:[name lowercaseString]];
 }
 
 -(NSArray *)childRelationships {
@@ -90,10 +81,6 @@
 		childRelationships = [crs retain];
 	}
 	return childRelationships;
-}
-
-- (NSString *)description {
-	return [NSString stringWithFormat:@"SObject %@ (%@)", [self name], [self label]];
 }
 
 -(NSArray *)recordTypeInfos {
