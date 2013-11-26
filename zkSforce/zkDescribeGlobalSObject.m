@@ -19,70 +19,88 @@
 // THE SOFTWARE.
 //
 
-#import "zkDescribeGlobalSObject.h"
-
+#import "ZKDescribeGlobalSObject.h"
 
 @implementation ZKDescribeGlobalSObject
 
 -(BOOL)activateable {
-	return [self boolean:@"activateable"];
+    return [self boolean:@"activateable"];
 }
+			
 -(BOOL)createable {
-	return [self boolean:@"createable"];
+    return [self boolean:@"createable"];
 }
+			
 -(BOOL)custom {
-	return [self boolean:@"custom"];
+    return [self boolean:@"custom"];
 }
+			
 -(BOOL)customSetting {
-	return [self boolean:@"customSetting"];
+    return [self boolean:@"customSetting"];
 }
+			
 -(BOOL)deletable {
-	return [self boolean:@"deletable"];
+    return [self boolean:@"deletable"];
 }
+			
 -(BOOL)deprecatedAndHidden {
-	return [self boolean:@"deprecatedAndHidden"];
+    return [self boolean:@"deprecatedAndHidden"];
 }
+			
 -(BOOL)feedEnabled {
-	return [self boolean:@"feedEnabled"];
+    return [self boolean:@"feedEnabled"];
 }
--(BOOL)layoutable {
-	return [self boolean:@"layoutable"];
-}
--(BOOL)mergeable {
-	return [self boolean:@"mergeable"];
-}
--(BOOL)queryable {
-	return [self boolean:@"queryable"];
-}
--(BOOL)replicateable {
-	return [self boolean:@"replicateable"];
-}
--(BOOL)retrieveable {
-	return [self boolean:@"retrieveable"];
-}
--(BOOL)searchable {
-	return [self boolean:@"searchable"];
-}
--(BOOL)triggerable {
-	return [self boolean:@"triggerable"];
-}
--(BOOL)undeleteable {
-	return [self boolean:@"undeleteable"];
-}
--(BOOL)updateable {
-	return [self boolean:@"updateable"];
-}
+			
 -(NSString *)keyPrefix {
-	return [self string:@"keyPrefix"];
+    return [self string:@"keyPrefix"];
 }
+			
 -(NSString *)label {
-	return [self string:@"label"];
+    return [self string:@"label"];
 }
+			
 -(NSString *)labelPlural {
-	return [self string:@"labelPlural"];
+    return [self string:@"labelPlural"];
 }
+			
+-(BOOL)layoutable {
+    return [self boolean:@"layoutable"];
+}
+			
+-(BOOL)mergeable {
+    return [self boolean:@"mergeable"];
+}
+			
 -(NSString *)name {
-	return [self string:@"name"];
+    return [self string:@"name"];
 }
-
+			
+-(BOOL)queryable {
+    return [self boolean:@"queryable"];
+}
+			
+-(BOOL)replicateable {
+    return [self boolean:@"replicateable"];
+}
+			
+-(BOOL)retrieveable {
+    return [self boolean:@"retrieveable"];
+}
+			
+-(BOOL)searchable {
+    return [self boolean:@"searchable"];
+}
+			
+-(BOOL)triggerable {
+    return [self boolean:@"triggerable"];
+}
+			
+-(BOOL)undeletable {
+    return [self boolean:@"undeletable"];
+}
+			
+-(BOOL)updateable {
+    return [self boolean:@"updateable"];
+}
+			
 @end

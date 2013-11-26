@@ -47,7 +47,7 @@
 #import "ZKDescribeFlexiPageRegion.h"
 #import "ZKDescribeFlexiPageResult.h"
 #import "ZKDescribeGlobalResult.h"
-#import "ZKDescribeGlobalSObjectResult.h"
+#import "ZKDescribeGlobalSObject.h"
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeIcon.h"
 #import "ZKDescribeLayout.h"

@@ -34,5 +34,5 @@
 }
 @property (readonly) NSString  *encoding; 
 @property (readonly) NSInteger  maxBatchSize; 
-@property (readonly) NSArray   *sobjects;  // of ZKDescribeGlobalSObjectResult
+@property (readonly) NSArray   *sobjects;  // of ZKDescribeGlobalSObject
 @end

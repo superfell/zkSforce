@@ -20,7 +20,7 @@
 //
 
 #import "ZKDescribeGlobalResult.h"
-#import "ZKDescribeGlobalSObjectResult.h"
+#import "ZKDescribeGlobalSObject.h"
 
 @implementation ZKDescribeGlobalResult
 
@@ -33,7 +33,7 @@
 }
 			
 -(NSArray *)sobjects {
-    return [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObjectResult class]];
+    return [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
 }
 			
 @end

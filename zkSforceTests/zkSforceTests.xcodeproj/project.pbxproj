@@ -69,7 +69,6 @@
 		F414BD1C1842ED0B00322AC2 /* ZKDescribeComponentInstanceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC7A1842ED0B00322AC2 /* ZKDescribeComponentInstanceProperty.m */; };
 		F414BD1D1842ED0B00322AC2 /* ZKDescribeDataCategoryGroupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC7C1842ED0B00322AC2 /* ZKDescribeDataCategoryGroupResult.m */; };
 		F414BD1E1842ED0B00322AC2 /* ZKDescribeGlobalResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC7E1842ED0B00322AC2 /* ZKDescribeGlobalResult.m */; };
-		F414BD1F1842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC801842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.m */; };
 		F414BD201842ED0B00322AC2 /* ZKDescribeIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC821842ED0B00322AC2 /* ZKDescribeIcon.m */; };
 		F414BD211842ED0B00322AC2 /* ZKDescribeQuickActionDefaultValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC841842ED0B00322AC2 /* ZKDescribeQuickActionDefaultValue.m */; };
 		F414BD221842ED0B00322AC2 /* ZKDescribeQuickActionListItemResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC861842ED0B00322AC2 /* ZKDescribeQuickActionListItemResult.m */; };
@@ -269,8 +268,6 @@
 		F414BC7C1842ED0B00322AC2 /* ZKDescribeDataCategoryGroupResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeDataCategoryGroupResult.m; path = ../zkSforce/ZKDescribeDataCategoryGroupResult.m; sourceTree = "<group>"; };
 		F414BC7D1842ED0B00322AC2 /* ZKDescribeGlobalResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeGlobalResult.h; path = ../zkSforce/ZKDescribeGlobalResult.h; sourceTree = "<group>"; };
 		F414BC7E1842ED0B00322AC2 /* ZKDescribeGlobalResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeGlobalResult.m; path = ../zkSforce/ZKDescribeGlobalResult.m; sourceTree = "<group>"; };
-		F414BC7F1842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeGlobalSObjectResult.h; path = ../zkSforce/ZKDescribeGlobalSObjectResult.h; sourceTree = "<group>"; };
-		F414BC801842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeGlobalSObjectResult.m; path = ../zkSforce/ZKDescribeGlobalSObjectResult.m; sourceTree = "<group>"; };
 		F414BC811842ED0B00322AC2 /* ZKDescribeIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeIcon.h; path = ../zkSforce/ZKDescribeIcon.h; sourceTree = "<group>"; };
 		F414BC821842ED0B00322AC2 /* ZKDescribeIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeIcon.m; path = ../zkSforce/ZKDescribeIcon.m; sourceTree = "<group>"; };
 		F414BC831842ED0B00322AC2 /* ZKDescribeQuickActionDefaultValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeQuickActionDefaultValue.h; path = ../zkSforce/ZKDescribeQuickActionDefaultValue.h; sourceTree = "<group>"; };
@@ -652,8 +649,6 @@
 				F414BC7C1842ED0B00322AC2 /* ZKDescribeDataCategoryGroupResult.m */,
 				F414BC7D1842ED0B00322AC2 /* ZKDescribeGlobalResult.h */,
 				F414BC7E1842ED0B00322AC2 /* ZKDescribeGlobalResult.m */,
-				F414BC7F1842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.h */,
-				F414BC801842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.m */,
 				F414BC811842ED0B00322AC2 /* ZKDescribeIcon.h */,
 				F414BC821842ED0B00322AC2 /* ZKDescribeIcon.m */,
 				F414BC831842ED0B00322AC2 /* ZKDescribeQuickActionDefaultValue.h */,
@@ -895,7 +890,6 @@
 				F414BD1C1842ED0B00322AC2 /* ZKDescribeComponentInstanceProperty.m in Sources */,
 				F414BD1D1842ED0B00322AC2 /* ZKDescribeDataCategoryGroupResult.m in Sources */,
 				F414BD1E1842ED0B00322AC2 /* ZKDescribeGlobalResult.m in Sources */,
-				F414BD1F1842ED0B00322AC2 /* ZKDescribeGlobalSObjectResult.m in Sources */,
 				F414BD201842ED0B00322AC2 /* ZKDescribeIcon.m in Sources */,
 				F414BD211842ED0B00322AC2 /* ZKDescribeQuickActionDefaultValue.m in Sources */,
 				F414BD221842ED0B00322AC2 /* ZKDescribeQuickActionListItemResult.m in Sources */,
