@@ -33,8 +33,8 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"dataCategoryGroupName" elemValue:self.dataCategoryGroupName];
-	[env addElement:@"sobject"               elemValue:self.sobject];
+	[env addElement:@"dataCategoryGroupName" elemValue:self.dataCategoryGroupName nillable:NO  optional:NO];
+	[env addElement:@"sobject"               elemValue:self.sobject               nillable:NO  optional:NO];
 	[env endElement:elemName];
 }
 @end

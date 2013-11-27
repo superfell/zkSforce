@@ -34,8 +34,8 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"contextId"       elemValue:self.contextId];
-	[env addElement:@"quickActionName" elemValue:self.quickActionName];
+	[env addElement:@"contextId"       elemValue:self.contextId       nillable:YES optional:NO];
+	[env addElement:@"quickActionName" elemValue:self.quickActionName nillable:NO  optional:NO];
 	[env addElementArray:@"records"    elemValue:self.records];
 	[env endElement:elemName];
 }

@@ -33,7 +33,7 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"masterRecord"          elemValue:self.masterRecord];
+	[env addElement:@"masterRecord"          elemValue:self.masterRecord     nillable:NO  optional:NO];
 	[env addElementArray:@"recordToMergeIds" elemValue:self.recordToMergeIds];
 	[env endElement:elemName];
 }

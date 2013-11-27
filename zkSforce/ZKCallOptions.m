@@ -33,8 +33,8 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"client"           elemValue:self.client];
-	[env addElement:@"defaultNamespace" elemValue:self.defaultNamespace];
+	[env addElement:@"client"           elemValue:self.client           nillable:YES optional:NO];
+	[env addElement:@"defaultNamespace" elemValue:self.defaultNamespace nillable:YES optional:NO];
 	[env endElement:elemName];
 }
 @end

@@ -36,11 +36,11 @@
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"bccSender"      elemValue:self.bccSender];
-	[env addElement:@"emailPriority"      elemValue:self.emailPriority];
-	[env addElement:@"replyTo"            elemValue:self.replyTo];
+	[env addElement:@"emailPriority"      elemValue:self.emailPriority     nillable:YES optional:NO];
+	[env addElement:@"replyTo"            elemValue:self.replyTo           nillable:YES optional:NO];
 	[env addBoolElement:@"saveAsActivity" elemValue:self.saveAsActivity];
-	[env addElement:@"senderDisplayName"  elemValue:self.senderDisplayName];
-	[env addElement:@"subject"            elemValue:self.subject];
+	[env addElement:@"senderDisplayName"  elemValue:self.senderDisplayName nillable:YES optional:NO];
+	[env addElement:@"subject"            elemValue:self.subject           nillable:YES optional:NO];
 	[env addBoolElement:@"useSignature"   elemValue:self.useSignature];
 	[env endElement:elemName];
 }

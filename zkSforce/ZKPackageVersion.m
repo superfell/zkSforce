@@ -34,7 +34,7 @@
 	[env startElement:elemName];
 	[env addIntElement:@"majorNumber" elemValue:self.majorNumber];
 	[env addIntElement:@"minorNumber" elemValue:self.minorNumber];
-	[env addElement:@"namespace"      elemValue:self.namespace];
+	[env addElement:@"namespace"      elemValue:self.namespace   nillable:NO  optional:NO];
 	[env endElement:elemName];
 }
 @end

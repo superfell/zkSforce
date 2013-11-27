@@ -37,14 +37,14 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"accountId"                  elemValue:self.accountId];
-	[env addElement:@"contactId"                  elemValue:self.contactId];
-	[env addElement:@"convertedStatus"            elemValue:self.convertedStatus];
+	[env addElement:@"accountId"                  elemValue:self.accountId              nillable:YES optional:NO];
+	[env addElement:@"contactId"                  elemValue:self.contactId              nillable:YES optional:NO];
+	[env addElement:@"convertedStatus"            elemValue:self.convertedStatus        nillable:NO  optional:NO];
 	[env addBoolElement:@"doNotCreateOpportunity" elemValue:self.doNotCreateOpportunity];
-	[env addElement:@"leadId"                     elemValue:self.leadId];
-	[env addElement:@"opportunityName"            elemValue:self.opportunityName];
+	[env addElement:@"leadId"                     elemValue:self.leadId                 nillable:NO  optional:NO];
+	[env addElement:@"opportunityName"            elemValue:self.opportunityName        nillable:YES optional:NO];
 	[env addBoolElement:@"overwriteLeadSource"    elemValue:self.overwriteLeadSource];
-	[env addElement:@"ownerId"                    elemValue:self.ownerId];
+	[env addElement:@"ownerId"                    elemValue:self.ownerId                nillable:YES optional:NO];
 	[env addBoolElement:@"sendNotificationEmail"  elemValue:self.sendNotificationEmail];
 	[env endElement:elemName];
 }

@@ -33,8 +33,8 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"organizationId" elemValue:self.organizationId];
-	[env addElement:@"portalId"       elemValue:self.portalId];
+	[env addElement:@"organizationId" elemValue:self.organizationId nillable:NO  optional:NO];
+	[env addElement:@"portalId"       elemValue:self.portalId       nillable:NO  optional:YES];
 	[env endElement:elemName];
 }
 @end

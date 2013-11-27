@@ -32,7 +32,7 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"language" elemValue:self.language];
+	[env addElement:@"language" elemValue:self.language nillable:NO  optional:YES];
 	[env endElement:elemName];
 }
 @end

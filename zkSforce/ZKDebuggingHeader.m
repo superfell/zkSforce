@@ -32,7 +32,7 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"debugLevel" elemValue:self.debugLevel];
+	[env addElement:@"debugLevel" elemValue:self.debugLevel nillable:NO  optional:NO];
 	[env endElement:elemName];
 }
 @end

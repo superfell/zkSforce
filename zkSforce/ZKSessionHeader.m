@@ -32,7 +32,7 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"sessionId" elemValue:self.sessionId];
+	[env addElement:@"sessionId" elemValue:self.sessionId nillable:NO  optional:NO];
 	[env endElement:elemName];
 }
 @end

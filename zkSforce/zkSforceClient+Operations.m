@@ -106,7 +106,7 @@
 	[self addLocaleOptions:env];
 	[env moveToBody];
 	[env startElement:@"describeDataCategoryGroupStructures"];
-	[env addElementArray:@"pairs" elemValue:pairs];
+	[env addElementArray:@"pairs"            elemValue:pairs];
 	[env addBoolElement:@"topCategoriesOnly" elemValue:topCategoriesOnly];
 	[env endElement:@"describeDataCategoryGroupStructures"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -139,7 +139,7 @@
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeAppMenu"];
-	[env addElement:@"appMenuType" elemValue:appMenuType];
+	[env addElement:@"appMenuType" elemValue:appMenuType nillable:NO  optional:NO];
 	[env endElement:@"describeAppMenu"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -186,7 +186,7 @@
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeLayout"];
-	[env addElement:@"sObjectType" elemValue:sObjectType];
+	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeLayout"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -249,7 +249,7 @@
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeCompactLayouts"];
-	[env addElement:@"sObjectType" elemValue:sObjectType];
+	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeCompactLayouts"];
 	zkElement *rn = [self sendRequest:[env end]];
@@ -290,8 +290,8 @@
 	[self addOwnerChangeOptions:env];
 	[env moveToBody];
 	[env startElement:@"upsert"];
-	[env addElement:@"externalIDFieldName" elemValue:externalIDFieldName];
-	[env addElementArray:@"sObjects" elemValue:sObjects];
+	[env addElement:@"externalIDFieldName" elemValue:externalIDFieldName nillable:NO  optional:NO];
+	[env addElementArray:@"sObjects"       elemValue:sObjects];
 	[env endElement:@"upsert"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -391,9 +391,9 @@
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"retrieve"];
-	[env addElement:@"fieldList" elemValue:fieldList];
-	[env addElement:@"sObjectType" elemValue:sObjectType];
-	[env addElementArray:@"ids" elemValue:ids];
+	[env addElement:@"fieldList"   elemValue:fieldList   nillable:NO  optional:NO];
+	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
+	[env addElementArray:@"ids"    elemValue:ids];
 	[env endElement:@"retrieve"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -475,9 +475,9 @@
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"getDeleted"];
-	[env addElement:@"sObjectType" elemValue:sObjectType];
-	[env addElement:@"startDate" elemValue:startDate];
-	[env addElement:@"endDate" elemValue:endDate];
+	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
+	[env addElement:@"startDate"   elemValue:startDate   nillable:NO  optional:NO];
+	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
 	[env endElement:@"getDeleted"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -492,9 +492,9 @@
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"getUpdated"];
-	[env addElement:@"sObjectType" elemValue:sObjectType];
-	[env addElement:@"startDate" elemValue:startDate];
-	[env addElement:@"endDate" elemValue:endDate];
+	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
+	[env addElement:@"startDate"   elemValue:startDate   nillable:NO  optional:NO];
+	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
 	[env endElement:@"getUpdated"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -512,7 +512,7 @@
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"query"];
-	[env addElement:@"queryString" elemValue:queryString];
+	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
 	[env endElement:@"query"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -528,7 +528,7 @@
 	[self addQueryOptions:env];
 	[env moveToBody];
 	[env startElement:@"queryAll"];
-	[env addElement:@"queryString" elemValue:queryString];
+	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
 	[env endElement:@"queryAll"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -544,7 +544,7 @@
 	[self addQueryOptions:env];
 	[env moveToBody];
 	[env startElement:@"queryMore"];
-	[env addElement:@"queryLocator" elemValue:queryLocator];
+	[env addElement:@"queryLocator" elemValue:queryLocator nillable:NO  optional:NO];
 	[env endElement:@"queryMore"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -573,8 +573,8 @@
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"setPassword"];
-	[env addElement:@"userId" elemValue:userId];
-	[env addElement:@"password" elemValue:password];
+	[env addElement:@"userId"   elemValue:userId   nillable:NO  optional:NO];
+	[env addElement:@"password" elemValue:password nillable:NO  optional:NO];
 	[env endElement:@"setPassword"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -590,7 +590,7 @@
 	[self addEmailHeader:env];
 	[env moveToBody];
 	[env startElement:@"resetPassword"];
-	[env addElement:@"userId" elemValue:userId];
+	[env addElement:@"userId" elemValue:userId nillable:NO  optional:NO];
 	[env endElement:@"resetPassword"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -693,7 +693,7 @@
 	[self addLocaleOptions:env];
 	[env moveToBody];
 	[env startElement:@"describeAvailableQuickActions"];
-	[env addElement:@"contextType" elemValue:contextType];
+	[env addElement:@"contextType" elemValue:contextType nillable:YES optional:NO];
 	[env endElement:@"describeAvailableQuickActions"];
 	zkElement *rn = [self sendRequest:[env end]];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
