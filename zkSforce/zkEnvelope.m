@@ -90,8 +90,15 @@ enum envState {
 }
 
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue {
-    if (elemValue == nil)                                   [self addNullElement:elemName];
-	else if ([elemValue isKindOfClass:[NSString class]])    [self addElementString:elemName elemValue:elemValue];
+    [self addElement:elemName elemValue:elemValue nillable:NO optional:NO];
+}
+
+- (void) addElement:(NSString *)elemName elemValue:(id)elemValue nillable:(BOOL)nillable optional:(BOOL)optional {
+    if (elemValue == nil) {
+        if (optional) return;
+        if (nillable) [self addNullElement:elemName];
+        else [self addElementString:elemName elemValue:@""];
+    } else if ([elemValue isKindOfClass:[NSString class]])    [self addElementString:elemName elemValue:elemValue];
 	else if ([elemValue isKindOfClass:[NSArray class]]) 	[self addElementArray:elemName elemValue:elemValue];
 	else if ([elemValue isKindOfClass:[ZKSObject class]]) 	[self addElementSObject:elemName elemValue:elemValue];
     else if ([elemValue conformsToProtocol:@protocol(ZKXMLSerializable)]) [elemValue serializeToEnvelope:self elemName:elemName];

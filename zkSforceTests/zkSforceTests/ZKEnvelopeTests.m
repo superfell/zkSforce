@@ -77,6 +77,14 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     STAssertEqualObjects([self envWith:@"<bob x:nil='true'/>"], [env end], nil);
 }
 
+-(void)testAddElementNil {
+    [env addElement:@"a" elemValue:nil nillable:YES optional:NO];
+    [env addElement:@"b" elemValue:nil nillable:YES optional:YES];
+    [env addElement:@"c" elemValue:nil nillable:NO optional:YES];
+    [env addElement:@"d" elemValue:nil nillable:NO optional:NO];
+    STAssertEqualObjects([self envWith:@"<a x:nil='true'/><d></d>"], [env end], nil);
+}
+
 -(void)testAddBoolElement {
     [env addBoolElement:@"one" elemValue:TRUE];
     [env addBoolElement:@"two" elemValue:FALSE];
@@ -144,6 +152,11 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     [self makeEnv];
     [env addElement:@"alice" elemValue:vals];
     STAssertEqualObjects([self envWith:@"<alice>one</alice><alice>two</alice>"], [env end], nil);
+}
+
+-(void)testNullArray {
+    [env addElementArray:@"bob" elemValue:nil];
+    STAssertEqualObjects([self envWith:@""], [env end], nil);
 }
 
 -(void)testAddElementSObject {

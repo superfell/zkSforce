@@ -38,6 +38,7 @@
 - (void) endElement:(NSString *)elemName;
 - (void) writeText:(NSString *)text;
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue;
+- (void) addElement:(NSString *)elemName elemValue:(id)elemValue nillable:(BOOL)nillable optional:(BOOL)optional;
 - (void) addNullElement:(NSString *)elemName;
 - (void) addBoolElement:(NSString *)elemName elemValue:(BOOL)elemValue;
 - (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
