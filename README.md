@@ -86,6 +86,7 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
  * delete now returns an NSArray of ZKDeleteResult rather than an NSArray of ZKSaveResult (note that these 2 types both have the same properties though)
  * the serverTimestamp method is replaced by getServerTimestamp, and now returns a ZKGetServerTimestampResult class with a timestamp member (of type NSDate) instead of returning a string.
  * the componentType enum was removed from ZKDescribeLayoutComponent
+ * on OSX you need to add Security framework to the list of frameworks to link against.
 
 
 
@@ -101,4 +102,4 @@ and run  `pod install myApp.xcodeproj`
 
 ## Project setup (manual)
 
-In order to support usage on both OSX & iPhone OS (so iPhone, iPod Touch, iPad), the library now uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iPhone OS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on  these steps.
+In order to support usage on both OSX & iPhone OS (so iPhone, iPod Touch, iPad), the library now uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iPhone OS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. For OSX you'll also need to add Security framework to the list of linked Frameworks. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on these steps.
