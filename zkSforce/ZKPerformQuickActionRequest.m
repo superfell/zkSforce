@@ -36,7 +36,7 @@
 	[env startElement:elemName];
 	[env addElement:@"contextId"       elemValue:self.contextId];
 	[env addElement:@"quickActionName" elemValue:self.quickActionName];
-	[env addElement:@"records"         elemValue:self.records];
+	[env addElementArray:@"records"    elemValue:self.records];
 	[env endElement:elemName];
 }
 @end

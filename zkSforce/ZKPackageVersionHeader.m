@@ -32,7 +32,7 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"packageVersions" elemValue:self.packageVersions];
+	[env addElementArray:@"packageVersions" elemValue:self.packageVersions];
 	[env endElement:elemName];
 }
 @end

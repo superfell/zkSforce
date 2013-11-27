@@ -33,8 +33,8 @@
 }
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"comments"        elemValue:self.comments];
-	[env addElement:@"nextApproverIds" elemValue:self.nextApproverIds];
+	[env addElement:@"comments"             elemValue:self.comments];
+	[env addElementArray:@"nextApproverIds" elemValue:self.nextApproverIds];
 	[env endElement:elemName];
 }
 @end
