@@ -31,6 +31,7 @@
 	[defaultNamespace release];
 	[super dealloc];
 }
+
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"client"           elemValue:self.client           nillable:YES optional:NO];

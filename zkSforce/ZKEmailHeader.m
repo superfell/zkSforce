@@ -29,6 +29,7 @@
 -(void)dealloc {
 	[super dealloc];
 }
+
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"triggerAutoResponseEmail" elemValue:self.triggerAutoResponseEmail];

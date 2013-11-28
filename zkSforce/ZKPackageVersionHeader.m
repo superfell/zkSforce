@@ -30,6 +30,7 @@
 	[packageVersions release];
 	[super dealloc];
 }
+
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"packageVersions" elemValue:self.packageVersions];
