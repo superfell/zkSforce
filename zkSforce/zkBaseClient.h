@@ -21,16 +21,24 @@
 
 
 @class zkElement;
+@class ZKBaseClient;
+
+@protocol ZKBaseClientDelegate
+-(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withResponse:(zkElement *)response in:(NSTimeInterval)time;
+-(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withException:(NSException *)ex    in:(NSTimeInterval)time;
+@end
 
 @interface ZKBaseClient : NSObject {
-	NSURL   *endpointUrl;
-    zkElement *responseHeaders;
+    NSURL                           *endpointUrl;
+    zkElement                       *responseHeaders;
+    NSObject<ZKBaseClientDelegate>  *delegate;
 }
 
+@property (assign) NSObject<ZKBaseClientDelegate> *delegate;
 @property (retain) NSURL *endpointUrl;
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
 
 // returns the Soap:Header element from the response payload.
 - (zkElement *)lastResponseSoapHeaders;

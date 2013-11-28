@@ -55,7 +55,7 @@
 	BOOL		cacheDescribes;
 	NSMutableDictionary	*describes;
 	int			preferedApiVersion;
-    
+
     NSObject<ZKAuthenticationInfo>  *authSource;
     ZKLimitInfoHeader *limitInfo;
     
@@ -92,7 +92,6 @@
 
 // returns an NSURL of where authentication will currently go.
 -(NSURL *)authEndpointUrl;
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Start an API session, need to call one of these before making any api calls

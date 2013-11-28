@@ -21,11 +21,9 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import "zkSforce.h"
 
-@class ZKSforceClient;
-@class ZKQueryResult;
-
-@interface QueryController : NSObject {
+@interface QueryController : NSObject<ZKBaseClientDelegate> {
 	IBOutlet NSWindow	 *window;
 	IBOutlet NSTableView *table;
 

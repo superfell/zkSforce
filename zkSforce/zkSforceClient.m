@@ -19,7 +19,6 @@
 // THE SOFTWARE.
 //
 
-
 #import "zkSforceClient.h"
 #import "zkPartnerEnvelope.h"
 #import "zkQueryResult.h"
@@ -126,6 +125,7 @@ static const int SAVE_BATCH_SIZE = 25;
     rhs.ownerChangeOptions = self.ownerChangeOptions;
     rhs.userTerritoryDeleteHeader = self.userTerritoryDeleteHeader;
     rhs.queryOptions = self.queryOptions;
+    rhs.delegate = delegate;
 	return rhs;
 }
 
@@ -169,7 +169,7 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
-    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:self.clientId];
+    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:self.clientId delegate:delegate];
     return [self soapLogin:auth];
 }
 
@@ -192,6 +192,7 @@ static const int SAVE_BATCH_SIZE = 25;
                                                                     authHost:[NSURL URLWithString:authEndpointUrl]
                                                                   apiVersion:preferedApiVersion
                                                                     clientId:self.clientId
+                                                                    delegate:delegate
                                                                        orgId:orgId
                                                                     portalId:portalId];
     return [self soapLogin:auth];
@@ -347,7 +348,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env startElement:@"describeGlobal"];
 	[env endElement:@"describeGlobal"];
 	
-    zkElement * rr = [self sendRequest:[env end]];
+    zkElement * rr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	NSArray *results = [[rr childElement:@"result"] childElements:@"sobjects"];
 	NSMutableArray *types = [NSMutableArray arrayWithCapacity:[results count]];
     for (zkElement *res in results) {
@@ -378,7 +379,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env addElement:@"SobjectType" elemValue:sobjectName];
 	[env endElement:@"describeSObject"];
 	
-	zkElement *dr = [self sendRequest:[env end]];
+	zkElement *dr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	zkElement *descResult = [dr childElement:@"result"];
 	ZKDescribeSObject *desc = [[[ZKDescribeSObject alloc] initWithXmlElement:descResult] autorelease];
 	[env release];
@@ -398,7 +399,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env addElement:@"searchString" elemValue:sosl];
 	[env endElement:@"search"];
 	
-	zkElement *sr = [self sendRequest:[env end]];
+	zkElement *sr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	zkElement *searchResult = [sr childElement:@"result"];
 	NSArray *records = [searchResult childElements:@"searchRecords"];
 	NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:[records count]];
@@ -450,7 +451,7 @@ static const int SAVE_BATCH_SIZE = 25;
 		[env addElement:@"sobject" elemValue:o];
 	[env endElement:elemName];
 
-	zkElement *cr = [self sendRequest:[env end]];
+	zkElement *cr = [self sendRequest:[env end] name:[NSString stringWithFormat:@"%@:", elemName]];
 	NSArray *resultsArr = [cr childElements:@"result"];
 	NSMutableArray *results = [NSMutableArray arrayWithCapacity:[resultsArr count]];
 	for (zkElement *cr in resultsArr) {
@@ -478,7 +479,7 @@ static const int SAVE_BATCH_SIZE = 25;
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"retrieve"];
 	
-	zkElement *rr = [self sendRequest:[env end]];
+	zkElement *rr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	NSMutableDictionary *sobjects = [NSMutableDictionary dictionary]; 
 	NSArray *results = [rr childElements:@"result"];
 	for (zkElement *res in results) {
@@ -491,8 +492,8 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 // We override sendRequest here so that we can do some common additional processing on the response (looking at the response soap headers)
-- (zkElement *)sendRequest:(NSString *)payload {
-    zkElement *result = [super sendRequest:payload];
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
+    zkElement *result = [super sendRequest:payload name:name];
     [self updateLimitInfo];
     return result;
 }

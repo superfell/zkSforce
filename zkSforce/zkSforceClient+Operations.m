@@ -74,7 +74,7 @@
 	[env startElement:@"describeSObjects"];
 	[env addElementArray:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSObjects"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
 }
@@ -91,7 +91,7 @@
 	[env startElement:@"describeDataCategoryGroups"];
 	[env addElementArray:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeDataCategoryGroups"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
 }
@@ -109,7 +109,7 @@
 	[env addElementArray:@"pairs"            elemValue:pairs];
 	[env addBoolElement:@"topCategoriesOnly" elemValue:topCategoriesOnly];
 	[env endElement:@"describeDataCategoryGroupStructures"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
 }
@@ -125,7 +125,7 @@
 	[env startElement:@"describeFlexiPages"];
 	[env addElementArray:@"flexiPages" elemValue:flexiPages];
 	[env endElement:@"describeFlexiPages"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeFlexiPageResult class]];
 }
@@ -141,7 +141,7 @@
 	[env startElement:@"describeAppMenu"];
 	[env addElement:@"appMenuType" elemValue:appMenuType nillable:NO  optional:NO];
 	[env endElement:@"describeAppMenu"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAppMenuResult class]] lastObject];
 }
@@ -156,7 +156,7 @@
 	[env moveToBody];
 	[env startElement:@"describeGlobalTheme"];
 	[env endElement:@"describeGlobalTheme"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]] lastObject];
 }
@@ -172,7 +172,7 @@
 	[env startElement:@"describeTheme"];
 	[env addElementArray:@"sobjectType" elemValue:sobjectType];
 	[env endElement:@"describeTheme"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]] lastObject];
 }
@@ -189,7 +189,7 @@
 	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeLayout"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]] lastObject];
 }
@@ -204,7 +204,7 @@
 	[env moveToBody];
 	[env startElement:@"describeSoftphoneLayout"];
 	[env endElement:@"describeSoftphoneLayout"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]] lastObject];
 }
@@ -220,7 +220,7 @@
 	[env startElement:@"describeSearchLayouts"];
 	[env addElementArray:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSearchLayouts"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
 }
@@ -235,7 +235,7 @@
 	[env moveToBody];
 	[env startElement:@"describeSearchScopeOrder"];
 	[env endElement:@"describeSearchScopeOrder"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
 }
@@ -252,7 +252,7 @@
 	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeCompactLayouts"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]] lastObject];
 }
@@ -267,7 +267,7 @@
 	[env moveToBody];
 	[env startElement:@"describeTabs"];
 	[env endElement:@"describeTabs"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
 }
@@ -293,7 +293,7 @@
 	[env addElement:@"externalIDFieldName" elemValue:externalIDFieldName nillable:NO  optional:NO];
 	[env addElementArray:@"sObjects"       elemValue:sObjects];
 	[env endElement:@"upsert"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
 }
@@ -316,7 +316,7 @@
 	[env startElement:@"merge"];
 	[env addElementArray:@"request" elemValue:request];
 	[env endElement:@"merge"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
 }
@@ -339,7 +339,7 @@
 	[env startElement:@"delete"];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"delete"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
 }
@@ -360,7 +360,7 @@
 	[env startElement:@"undelete"];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"undelete"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
 }
@@ -375,7 +375,7 @@
 	[env startElement:@"emptyRecycleBin"];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"emptyRecycleBin"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
 }
@@ -395,7 +395,7 @@
 	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
 	[env addElementArray:@"ids"    elemValue:ids];
 	[env endElement:@"retrieve"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSObject class]];
 }
@@ -415,7 +415,7 @@
 	[env startElement:@"process"];
 	[env addElementArray:@"actions" elemValue:actions];
 	[env endElement:@"process"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
 }
@@ -435,7 +435,7 @@
 	[env startElement:@"convertLead"];
 	[env addElementArray:@"leadConverts" elemValue:leadConverts];
 	[env endElement:@"convertLead"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
 }
@@ -449,7 +449,7 @@
 	[env moveToBody];
 	[env startElement:@"logout"];
 	[env endElement:@"logout"];
-	[self sendRequest:[env end]];
+	[self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 }
 
 // Logs out and invalidates session ids
@@ -462,7 +462,7 @@
 	[env startElement:@"invalidateSessions"];
 	[env addElementArray:@"sessionIds" elemValue:sessionIds];
 	[env endElement:@"invalidateSessions"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
 }
@@ -479,7 +479,7 @@
 	[env addElement:@"startDate"   elemValue:startDate   nillable:NO  optional:NO];
 	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
 	[env endElement:@"getDeleted"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetDeletedResult class]] lastObject];
 }
@@ -496,7 +496,7 @@
 	[env addElement:@"startDate"   elemValue:startDate   nillable:NO  optional:NO];
 	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
 	[env endElement:@"getUpdated"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]] lastObject];
 }
@@ -514,7 +514,7 @@
 	[env startElement:@"query"];
 	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
 	[env endElement:@"query"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser queryResult:@"result"];
 }
@@ -530,7 +530,7 @@
 	[env startElement:@"queryAll"];
 	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
 	[env endElement:@"queryAll"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser queryResult:@"result"];
 }
@@ -546,7 +546,7 @@
 	[env startElement:@"queryMore"];
 	[env addElement:@"queryLocator" elemValue:queryLocator nillable:NO  optional:NO];
 	[env endElement:@"queryMore"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser queryResult:@"result"];
 }
@@ -560,7 +560,7 @@
 	[env moveToBody];
 	[env startElement:@"getServerTimestamp"];
 	[env endElement:@"getServerTimestamp"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]] lastObject];
 }
@@ -576,7 +576,7 @@
 	[env addElement:@"userId"   elemValue:userId   nillable:NO  optional:NO];
 	[env addElement:@"password" elemValue:password nillable:NO  optional:NO];
 	[env endElement:@"setPassword"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]] lastObject];
 }
@@ -592,7 +592,7 @@
 	[env startElement:@"resetPassword"];
 	[env addElement:@"userId" elemValue:userId nillable:NO  optional:NO];
 	[env endElement:@"resetPassword"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]] lastObject];
 }
@@ -606,7 +606,7 @@
 	[env moveToBody];
 	[env startElement:@"getUserInfo"];
 	[env endElement:@"getUserInfo"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]] lastObject];
 }
@@ -621,7 +621,7 @@
 	[env startElement:@"sendEmailMessage"];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"sendEmailMessage"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
@@ -636,7 +636,7 @@
 	[env startElement:@"sendEmail"];
 	[env addElementArray:@"messages" elemValue:messages];
 	[env endElement:@"sendEmail"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
@@ -661,7 +661,7 @@
 	[env startElement:@"performQuickActions"];
 	[env addElementArray:@"quickActions" elemValue:quickActions];
 	[env endElement:@"performQuickActions"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
 }
@@ -678,7 +678,7 @@
 	[env startElement:@"describeQuickActions"];
 	[env addElementArray:@"quickActions" elemValue:quickActions];
 	[env endElement:@"describeQuickActions"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
@@ -695,7 +695,7 @@
 	[env startElement:@"describeAvailableQuickActions"];
 	[env addElement:@"contextType" elemValue:contextType nillable:YES optional:NO];
 	[env endElement:@"describeAvailableQuickActions"];
-	zkElement *rn = [self sendRequest:[env end]];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
 }

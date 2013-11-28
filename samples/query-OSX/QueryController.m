@@ -59,7 +59,9 @@
 
 -(void)updateApiLimitInfo {
     ZKLimitInfoHeader *h = [client lastLimitInfoHeader];
-    self.apiLimitInfo = [[h limitInfoOfType:@"API REQUESTS"] description];
+    ZKLimitInfo *i = [h limitInfoOfType:@"API REQUESTS"];
+    if (i != nil)
+        self.apiLimitInfo = [i description];
 }
 
 // run the query on a background thread, and when we get the results, update the UI (from the main thread)
@@ -72,7 +74,6 @@
             } 
             completeBlock:^(ZKQueryResult *qr) {
 				[self setResult:qr];
-                [self updateApiLimitInfo];
 				[table setDataSource:qr];
 				[table reloadData];
 				[self setLoginInProgress:NO];
@@ -88,13 +89,13 @@
 	[self setLoginInProgress:YES];
 	dispatch_async ( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		ZKSforceClient *theClient = [[[ZKSforceClient alloc] init] autorelease];
+        [theClient setDelegate:self];
 		@try {
 			[theClient login:username password:password];
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self willChangeValueForKey:@"isLoggedIn"];
 				[self setClient:theClient];
 				[self didChangeValueForKey:@"isLoggedIn"];
-                [self updateApiLimitInfo];
 				[self runQuery:self];
 			});
 		} @catch (ZKSoapException *ex) {
@@ -110,7 +111,6 @@
     [client performGetServerTimestampWithFailBlock:^(NSException *e) {
         NSLog(@"Error fetching timestamp : %@", e);
     } completeBlock:^(ZKGetServerTimestampResult *str) {
-        [self updateApiLimitInfo];
         [[NSAlert alertWithMessageText:@"Server Timestamp"
                          defaultButton:@"Close"
                        alternateButton:nil
@@ -118,4 +118,14 @@
              informativeTextWithFormat:@"Server Time : %@", [str timestamp]] runModal];
     }];
 }
+
+-(void)client:(ZKSforceClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)endpoint withResponse:(zkElement *)response in:(NSTimeInterval)time {
+    NSLog(@"%@ took %f", callName, time);
+    [self updateApiLimitInfo];
+}
+
+-(void)client:(ZKSforceClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)endpoint withException:(NSException *)ex    in:(NSTimeInterval)time {
+    NSLog(@"%@ took %f withException %@", callName, time, ex);
+}
+
 @end
