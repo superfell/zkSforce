@@ -566,6 +566,7 @@
 		F44CC01C12B588090052D468 /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F414BDCD18451DEE00322AC2 /* soapHeaders */,
 				F414C0091846CB8F00322AC2 /* ZKEmailFileAttachment.h */,
 				F414C00A1846CB8F00322AC2 /* ZKEmailFileAttachment.m */,
 				F414C00B1846CB8F00322AC2 /* ZKMassEmailMessage.h */,
@@ -578,7 +579,6 @@
 				F414C0121846CB9000322AC2 /* ZKReportChartComponent.m */,
 				F414C0131846CB9000322AC2 /* ZKSingleEmailMessage.h */,
 				F414C0141846CB9000322AC2 /* ZKSingleEmailMessage.m */,
-				F414BDCD18451DEE00322AC2 /* soapHeaders */,
 				F414BB93184185C200322AC2 /* ZKDeleteResult.h */,
 				F414BB94184185C200322AC2 /* ZKDeleteResult.m */,
 				F414BB95184185C300322AC2 /* ZKDescribeGlobalResult.h */,

@@ -22,6 +22,7 @@
 #import "ZKEnvelopeTests.h"
 #import "ZKEnvelope.h"
 #import "zkSObject.h"
+#import "ZKProcessSubmitRequest.h"
 
 @implementation ZKTestSerialize
 
@@ -177,6 +178,14 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     ZKTestSerialize *s = [[[ZKTestSerialize alloc] init] autorelease];
     [env addElement:@"bob" elemValue:s];
     STAssertEqualObjects([self envWith:@"<bob>Hello World</bob>"], [env end], nil);
+}
+
+-(void)testExtentsionTypeSerializable {
+    ZKProcessSubmitRequest *r = [[[ZKProcessSubmitRequest alloc] init] autorelease];
+    r.objectId = @"obj";
+    r.comments = @"comment";
+    [env addElement:@"p" elemValue:r];
+    STAssertEqualObjects([self envWith:@"<p><comments>comment</comments><objectId>obj</objectId></p>"], [env end], nil);
 }
 
 -(void)testToString {
