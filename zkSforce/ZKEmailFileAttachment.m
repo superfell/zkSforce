@@ -24,7 +24,7 @@
 
 @implementation ZKEmailFileAttachment
 
-@synthesize body, contentType, fileName, inline;
+@synthesize body, contentType, fileName, _inline;
 
 -(void)dealloc {
 	[body release];
@@ -38,7 +38,7 @@
 	[env addElement:@"body"        elemValue:self.body        nillable:YES optional:YES];
 	[env addElement:@"contentType" elemValue:self.contentType nillable:YES optional:YES];
 	[env addElement:@"fileName"    elemValue:self.fileName    nillable:NO  optional:NO];
-	[env addBoolElement:@"inline"  elemValue:self.inline];
+	[env addBoolElement:@"inline"  elemValue:self._inline];
 	[env endElement:elemName];
 }
 @end

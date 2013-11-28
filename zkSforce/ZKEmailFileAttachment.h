@@ -35,10 +35,10 @@
 	NSData    *body;
 	NSString  *contentType;
 	NSString  *fileName;
-	BOOL       inline;
+	BOOL       _inline;
 }
 @property (retain) NSData    *body; 
 @property (retain) NSString  *contentType; 
 @property (retain) NSString  *fileName; 
-@property (assign) BOOL       inline; 
+@property (assign) BOOL       _inline; 
 @end
