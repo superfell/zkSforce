@@ -140,6 +140,12 @@
 		F414BDCA18451D5200322AC2 /* ZKStreamingEnabledHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDB818451D5100322AC2 /* ZKStreamingEnabledHeader.m */; };
 		F414BDCB18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDBA18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m */; };
 		F414BDD318453D4600322AC2 /* ZKDescribeSObject+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDD218453D4600322AC2 /* ZKDescribeSObject+Extras.m */; };
+		F414BFF51846BD1200322AC2 /* ZKReportChartComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BFF41846BD1200322AC2 /* ZKReportChartComponent.m */; };
+		F414C0011846BDAD00322AC2 /* ZKEmailFileAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BFF81846BDAA00322AC2 /* ZKEmailFileAttachment.m */; };
+		F414C0021846BDAD00322AC2 /* ZKMassEmailMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BFFA1846BDAB00322AC2 /* ZKMassEmailMessage.m */; };
+		F414C0031846BDAD00322AC2 /* ZKProcessSubmitRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BFFC1846BDAC00322AC2 /* ZKProcessSubmitRequest.m */; };
+		F414C0041846BDAD00322AC2 /* ZKProcessWorkitemRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BFFE1846BDAC00322AC2 /* ZKProcessWorkitemRequest.m */; };
+		F414C0051846BDAD00322AC2 /* ZKSingleEmailMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F414C0001846BDAD00322AC2 /* ZKSingleEmailMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -412,6 +418,18 @@
 		F414BDBA18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKUserTerritoryDeleteHeader.m; path = ../zkSforce/ZKUserTerritoryDeleteHeader.m; sourceTree = "<group>"; };
 		F414BDD118453D4600322AC2 /* ZKDescribeSObject+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKDescribeSObject+Extras.h"; path = "../zkSforce/ZKDescribeSObject+Extras.h"; sourceTree = "<group>"; };
 		F414BDD218453D4600322AC2 /* ZKDescribeSObject+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKDescribeSObject+Extras.m"; path = "../zkSforce/ZKDescribeSObject+Extras.m"; sourceTree = "<group>"; };
+		F414BFF31846BD1200322AC2 /* ZKReportChartComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKReportChartComponent.h; path = ../zkSforce/ZKReportChartComponent.h; sourceTree = "<group>"; };
+		F414BFF41846BD1200322AC2 /* ZKReportChartComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKReportChartComponent.m; path = ../zkSforce/ZKReportChartComponent.m; sourceTree = "<group>"; };
+		F414BFF71846BDAA00322AC2 /* ZKEmailFileAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKEmailFileAttachment.h; path = ../zkSforce/ZKEmailFileAttachment.h; sourceTree = "<group>"; };
+		F414BFF81846BDAA00322AC2 /* ZKEmailFileAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEmailFileAttachment.m; path = ../zkSforce/ZKEmailFileAttachment.m; sourceTree = "<group>"; };
+		F414BFF91846BDAB00322AC2 /* ZKMassEmailMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKMassEmailMessage.h; path = ../zkSforce/ZKMassEmailMessage.h; sourceTree = "<group>"; };
+		F414BFFA1846BDAB00322AC2 /* ZKMassEmailMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKMassEmailMessage.m; path = ../zkSforce/ZKMassEmailMessage.m; sourceTree = "<group>"; };
+		F414BFFB1846BDAB00322AC2 /* ZKProcessSubmitRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKProcessSubmitRequest.h; path = ../zkSforce/ZKProcessSubmitRequest.h; sourceTree = "<group>"; };
+		F414BFFC1846BDAC00322AC2 /* ZKProcessSubmitRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKProcessSubmitRequest.m; path = ../zkSforce/ZKProcessSubmitRequest.m; sourceTree = "<group>"; };
+		F414BFFD1846BDAC00322AC2 /* ZKProcessWorkitemRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKProcessWorkitemRequest.h; path = ../zkSforce/ZKProcessWorkitemRequest.h; sourceTree = "<group>"; };
+		F414BFFE1846BDAC00322AC2 /* ZKProcessWorkitemRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKProcessWorkitemRequest.m; path = ../zkSforce/ZKProcessWorkitemRequest.m; sourceTree = "<group>"; };
+		F414BFFF1846BDAD00322AC2 /* ZKSingleEmailMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSingleEmailMessage.h; path = ../zkSforce/ZKSingleEmailMessage.h; sourceTree = "<group>"; };
+		F414C0001846BDAD00322AC2 /* ZKSingleEmailMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSingleEmailMessage.m; path = ../zkSforce/ZKSingleEmailMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +519,18 @@
 		F414BC091842ECB100322AC2 /* zkSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F414BFF71846BDAA00322AC2 /* ZKEmailFileAttachment.h */,
+				F414BFF81846BDAA00322AC2 /* ZKEmailFileAttachment.m */,
+				F414BFF91846BDAB00322AC2 /* ZKMassEmailMessage.h */,
+				F414BFFA1846BDAB00322AC2 /* ZKMassEmailMessage.m */,
+				F414BFFB1846BDAB00322AC2 /* ZKProcessSubmitRequest.h */,
+				F414BFFC1846BDAC00322AC2 /* ZKProcessSubmitRequest.m */,
+				F414BFFD1846BDAC00322AC2 /* ZKProcessWorkitemRequest.h */,
+				F414BFFE1846BDAC00322AC2 /* ZKProcessWorkitemRequest.m */,
+				F414BFFF1846BDAD00322AC2 /* ZKSingleEmailMessage.h */,
+				F414C0001846BDAD00322AC2 /* ZKSingleEmailMessage.m */,
+				F414BFF31846BD1200322AC2 /* ZKReportChartComponent.h */,
+				F414BFF41846BD1200322AC2 /* ZKReportChartComponent.m */,
 				F414BDD118453D4600322AC2 /* ZKDescribeSObject+Extras.h */,
 				F414BDD218453D4600322AC2 /* ZKDescribeSObject+Extras.m */,
 				F414BD9918451D5000322AC2 /* ZKDebuggingHeader.h */,
@@ -959,6 +989,12 @@
 				F414BDCA18451D5200322AC2 /* ZKStreamingEnabledHeader.m in Sources */,
 				F414BDCB18451D5200322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */,
 				F414BDD318453D4600322AC2 /* ZKDescribeSObject+Extras.m in Sources */,
+				F414BFF51846BD1200322AC2 /* ZKReportChartComponent.m in Sources */,
+				F414C0011846BDAD00322AC2 /* ZKEmailFileAttachment.m in Sources */,
+				F414C0021846BDAD00322AC2 /* ZKMassEmailMessage.m in Sources */,
+				F414C0031846BDAD00322AC2 /* ZKProcessSubmitRequest.m in Sources */,
+				F414C0041846BDAD00322AC2 /* ZKProcessWorkitemRequest.m in Sources */,
+				F414C0051846BDAD00322AC2 /* ZKSingleEmailMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
