@@ -26,6 +26,8 @@
 #import "zkSObject.h"
 #import "zkQueryResult.h"
 
+static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instance";
+
 @implementation ZKXmlDeserializer
 
 -(id)initWithXmlElement:(zkElement *)e {
@@ -103,13 +105,23 @@
 	return [[xmlElement childElement:elemName] stringValue];
 }
 
+-(Class)parseType:(NSString *)xsiType baseClass:(Class)base {
+    if ([xsiType length] == 0) return base;
+    NSString *typeName = [[xsiType componentsSeparatedByString:@":"] lastObject];
+    NSString *className = [NSString stringWithFormat:@"ZK%@%@", [[typeName substringToIndex:1] uppercaseString], [typeName substringFromIndex:1]];
+    Class cls = NSClassFromString(className);
+    return cls != nil && [cls isSubclassOfClass:base] ? cls : base;
+}
+
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type {
 	NSArray *cached = [values objectForKey:elemName];
 	if (cached == nil) {
 		NSArray *elements = [node childElements:elemName];
 		NSMutableArray *results = [NSMutableArray arrayWithCapacity:[elements count]];
 		for(zkElement *childNode in elements) {
-			NSObject *child = [[type alloc] initWithXmlElement:childNode];
+            NSString *xsiType = [childNode attributeValue:@"type" ns:SCHEMA_INSTANCE_NS];
+            Class actualType = [self parseType:xsiType baseClass:(Class)type];
+			NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
 			[results addObject:child];
 			[child release];
 		}

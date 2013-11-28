@@ -24,6 +24,7 @@
 #import "zkParser.h"
 #import "zkSObject.h"
 #import "zkQueryResult.h"
+#import "ZKReportChartComponent.h"
 
 @implementation ZKXmlDeserializerTests
 
@@ -56,7 +57,7 @@
 -(void)testBlob {
     NSString *doc = @"<root><b>Ym9iIQ==</b></root>";
     ZKXmlDeserializer *d = [self deser:doc];
-   NSData *expected = [@"bob!" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *expected = [@"bob!" dataUsingEncoding:NSUTF8StringEncoding];
     NSData *actual = [d blob:@"b"];
     STAssertEqualObjects(expected, actual, nil);
 }
@@ -66,6 +67,28 @@
     ZKXmlDeserializer *d = [self deser:doc];
     NSArray *exp = [NSArray arrayWithObjects:@"one", @"two", nil];
     STAssertEqualObjects(exp, [d strings:@"a"], nil);
+}
+
+-(void)testDeserializerType {
+    NSString *doc = @"<root><comp><displayLines>4</displayLines><tabOrder>1</tabOrder><type>foo</type><value>bob</value></comp></root>";
+    ZKXmlDeserializer *d = [self deser:doc];
+    ZKDescribeLayoutComponent *c = [[d complexTypeArrayFromElements:@"comp" cls:[ZKDescribeLayoutComponent class]] lastObject];
+    STAssertEquals((NSInteger)4, c.displayLines, nil);
+    STAssertEquals((NSInteger)1, c.tabOrder, nil);
+    STAssertEqualObjects(@"foo", c.type, nil);
+    STAssertEqualObjects(@"bob", c.value, nil);
+}
+
+-(void)testExtensionDeserializerType {
+    NSString *doc = @"<root xmlns:x='http://www.w3.org/2001/XMLSchema-instance'><comp x:type='s:ReportChartComponent'><displayLines>4</displayLines><tabOrder>1</tabOrder><type>foo</type><value>bob</value><cacheData>true</cacheData></comp></root>";
+    ZKXmlDeserializer *d = [self deser:doc];
+    ZKReportChartComponent *c = [[d complexTypeArrayFromElements:@"comp" cls:[ZKDescribeLayoutComponent class]] lastObject];
+    STAssertTrue([c isKindOfClass:[ZKReportChartComponent class]], nil);
+    STAssertEquals((NSInteger)4, c.displayLines, nil);
+    STAssertEquals((NSInteger)1, c.tabOrder, nil);
+    STAssertEqualObjects(@"foo", c.type, nil);
+    STAssertEqualObjects(@"bob", c.value, nil);
+    STAssertTrue(c.cacheData, nil);
 }
 
 -(void)testSObject {
