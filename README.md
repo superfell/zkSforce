@@ -86,6 +86,7 @@ vXXXXX is a major update where a significant amount of the code is now code-gene
  * delete now returns an NSArray of ZKDeleteResult rather than an NSArray of ZKSaveResult (note that these 2 types both have the same properties though)
  * the serverTimestamp method is replaced by getServerTimestamp, and now returns a ZKGetServerTimestampResult class with a timestamp member (of type NSDate) instead of returning a string.
  * the componentType enum was removed from ZKDescribeLayoutComponent
+ * on ZKDecribeGlobalSObject defaultOnCreate is now defaultedOnCreate, undeleteable is now deletable, deleteable is now deletable
  * on OSX you need to add Security framework to the list of frameworks to link against.
 
 
