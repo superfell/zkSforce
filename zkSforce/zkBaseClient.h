@@ -44,3 +44,9 @@
 - (zkElement *)lastResponseSoapHeaders;
 
 @end
+
+// Your ZKBaseClient can override this to do any processing it wants on the response soap headers, this is called before the client:sentRequest:named:... delegate is fired.
+@interface ZKBaseClient (ZKHeaders)
+// soapHeaders can be nil if there's no soap:Header element in the response
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders;
+@end

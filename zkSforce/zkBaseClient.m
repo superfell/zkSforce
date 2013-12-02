@@ -105,6 +105,7 @@ NSTimeInterval intervalFrom(uint64_t *start) {
         }
         zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
         [self setLastResponseSoapHeaders:header];
+        [self handleResponseSoapHeaders:header];
         
         zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
         if (500 == [resp statusCode]) {
@@ -124,6 +125,9 @@ NSTimeInterval intervalFrom(uint64_t *start) {
             [delegate client:self sentRequest:payload named:callName to:endpointUrl withException:ex in:intervalFrom(&start)];
         @throw;
     }
+}
+
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
 }
 
 @end

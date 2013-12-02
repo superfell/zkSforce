@@ -491,17 +491,13 @@ static const int SAVE_BATCH_SIZE = 25;
 	return sobjects;
 }
 
-// We override sendRequest here so that we can do some common additional processing on the response (looking at the response soap headers)
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
-    zkElement *result = [super sendRequest:payload name:name];
-    [self updateLimitInfo];
-    return result;
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
+    [self updateLimitInfo:soapHeaders];
 }
 
--(void)updateLimitInfo {
+-(void)updateLimitInfo:(zkElement *)soapHeaders {
     // this looks in the last response for a limit info header and if we got one, hangs onto it.
-    zkElement *soapHeader = [self lastResponseSoapHeaders];
-    zkElement *liElem = [soapHeader childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
+    zkElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
     if (liElem != nil) {
         [limitInfo autorelease];
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
