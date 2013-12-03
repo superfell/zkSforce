@@ -495,10 +495,6 @@ static const int SAVE_BATCH_SIZE = 25;
 	return sobjects;
 }
 
--(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
-    [self updateLimitInfo:soapHeaders];
-}
-
 -(void)updateLimitInfo:(zkElement *)soapHeaders {
     // this looks in the last response for a limit info header and if we got one, hangs onto it.
     zkElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
@@ -506,6 +502,10 @@ static const int SAVE_BATCH_SIZE = 25;
         [limitInfo autorelease];
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
     }
+}
+
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
+    [self updateLimitInfo:soapHeaders];
 }
 
 -(void)addHeader:(NSObject<ZKXMLSerializable> *)header name:(NSString *)headerName toEnvelope:(ZKEnvelope *)env {

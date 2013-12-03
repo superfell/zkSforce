@@ -125,6 +125,7 @@ NSTimeInterval intervalFrom(uint64_t *start) {
             [delegate client:self sentRequest:payload named:callName to:endpointUrl withException:ex in:intervalFrom(&start)];
         @throw;
     }
+    return nil; // we never here stupid compiler
 }
 
 -(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
