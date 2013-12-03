@@ -135,5 +135,5 @@
 #import "ZKRelatedList+Extras.h"
 #import "ZKSaveResult+Extras.h"
 #import "ZKSforceClient+Operations.h"
-#import "zkSforceClient+zkAsyncQuery.h"
+#import "ZKSforceClient+zkAsyncQuery.h"
 #import "ZKUserInfo+Extras.h"

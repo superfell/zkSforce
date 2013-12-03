@@ -25,7 +25,6 @@
 
 typedef void (^zkCompleteUserInfoBlock)                      (ZKUserInfo *result);
 typedef void (^zkCompleteSetPasswordResultBlock)             (ZKSetPasswordResult *result);
-typedef void (^zkCompleteSearchResultBlock)                  (ZKSearchResult *result);
 typedef void (^zkCompleteResetPasswordResultBlock)           (ZKResetPasswordResult *result);
 typedef void (^zkCompleteQueryResultBlock)                   (ZKQueryResult *result);
 typedef void (^zkCompleteLoginResultBlock)                   (ZKLoginResult *result);
@@ -37,9 +36,9 @@ typedef void (^zkCompleteDescribeSoftphoneLayoutResultBlock) (ZKDescribeSoftphon
 typedef void (^zkCompleteDescribeSObjectBlock)               (ZKDescribeSObject *result);
 typedef void (^zkCompleteDescribeLayoutResultBlock)          (ZKDescribeLayoutResult *result);
 typedef void (^zkCompleteDescribeGlobalThemeBlock)           (ZKDescribeGlobalTheme *result);
-typedef void (^zkCompleteDescribeGlobalResultBlock)          (ZKDescribeGlobalResult *result);
 typedef void (^zkCompleteDescribeCompactLayoutsResultBlock)  (ZKDescribeCompactLayoutsResult *result);
 typedef void (^zkCompleteDescribeAppMenuResultBlock)         (ZKDescribeAppMenuResult *result);
+typedef void (^zkCompleteDictionaryBlock)                    (NSDictionary *result);
 typedef void (^zkCompleteArrayBlock)                         (NSArray *result);
 typedef void (^zkFailWithExceptionBlock)                     (NSException *result);
 typedef void (^zkCompleteVoidBlock)                          (void);
@@ -61,7 +60,7 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 
 // Describe the Global state
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
-                completeBlock:(zkCompleteDescribeGlobalResultBlock)completeBlock;
+                completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 // Describe all the data category groups available for a given set of types
 -(void) performDescribeDataCategoryGroups:(NSArray *)sObjectType
@@ -157,7 +156,7 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 // Get a set of sObjects
 -(void) performRetrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
               failBlock:(zkFailWithExceptionBlock)failBlock
-          completeBlock:(zkCompleteArrayBlock)completeBlock;
+          completeBlock:(zkCompleteDictionaryBlock)completeBlock;
 
 // Submit an entity to a workflow process or process a workitem
 -(void) performProcess:(NSArray *)actions
@@ -206,7 +205,7 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 // Search for sObjects
 -(void) performSearch:(NSString *)searchString
             failBlock:(zkFailWithExceptionBlock)failBlock
-        completeBlock:(zkCompleteSearchResultBlock)completeBlock;
+        completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 // Gets server timestamp
 -(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock

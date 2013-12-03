@@ -108,14 +108,14 @@
 
 // Describe the Global state
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
-                completeBlock:(zkCompleteDescribeGlobalResultBlock)completeBlock {
+                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
 	[self performRequest:^NSObject *(void) {
 			return [self describeGlobal];
 		}
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
-			if (completeBlock) completeBlock((ZKDescribeGlobalResult *)r);
+			if (completeBlock) completeBlock((NSArray *)r);
 		}];
 }
 
@@ -384,14 +384,14 @@
 // Get a set of sObjects
 -(void) performRetrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
               failBlock:(zkFailWithExceptionBlock)failBlock
-          completeBlock:(zkCompleteArrayBlock)completeBlock {
+          completeBlock:(zkCompleteDictionaryBlock)completeBlock {
 
 	[self performRequest:^NSObject *(void) {
 			return [self retrieve:fieldList sObjectType:sObjectType  ids:ids];
 		}
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
-			if (completeBlock) completeBlock((NSArray *)r);
+			if (completeBlock) completeBlock((NSDictionary *)r);
 		}];
 }
 
@@ -524,14 +524,14 @@
 // Search for sObjects
 -(void) performSearch:(NSString *)searchString
             failBlock:(zkFailWithExceptionBlock)failBlock
-        completeBlock:(zkCompleteSearchResultBlock)completeBlock {
+        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
 	[self performRequest:^NSObject *(void) {
 			return [self search:searchString];
 		}
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
-			if (completeBlock) completeBlock((ZKSearchResult *)r);
+			if (completeBlock) completeBlock((NSArray *)r);
 		}];
 }
 
