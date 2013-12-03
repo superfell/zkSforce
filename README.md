@@ -1,21 +1,15 @@
 # zkSforce README
 
-zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.5 and up, and iOS 3.2 and up)
+zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.7+, iOS 7+)
 
-zkSforce supports all the popular methods in the partner web services API
+zkSforce supports all of the partner web services API, including
 
- * login, getUserInfo, serverTimestamp, setPassword
- * describeGlobal, describeSObject, describeLayout, describeTabs
- * create, update, delete, convertLead
- * search, query, queryAll, queryMore, retrieve
+ * login, getUserInfo, serverTimestamp, setPassword, resetPassword
+ * describeGlobal, describeSObject, describeLayout, describeTabs and other describes.
+ * create, update, delete, undelete, merge, upsert, convertLead
+ * search, query, queryAll, queryMore, retrieve, process.
+ * everything else in the parter API.
  * OAuth support for refresh tokens
-
-The following methods are not currently supported
-
- * describeSObjects
- * upsert, undelete, merge
- * getDeleted & getUpdated
- * process
 
 
 In general the client acts just like the Web Services API, however in a few places it has some smarts to make your life easier.
@@ -24,7 +18,7 @@ In general the client acts just like the Web Services API, however in a few plac
  * in ZKDescribeSObject there's a helper method to get the ZKDescribeField given the fields name.
  * In ZKSObject the fieldsToNull collection is managed for you, if you add a field to the fieldsToNull collection (via setFieldToNull) it'll automatically remove any field value, also you can just set the field value directly to nil (aka null) in setFieldValue:field: and it'll automatically translate that into a fieldsToNull call for you.
  * ZKQueryResult implements the NSTableView informal data source interface, so you can easily show a queries results in a table view (just like SoqlX does)
- * You can ask the ZKSforceClient object to automatically cache describe results for you by calling setCacheDescribes
+ * You can ask the ZKSforceClient object to automatically cache describeGlobal/describeSObject results for you by calling setCacheDescribes
 
 
 Usage is really straight forward, create an instance of the [ZKSforceClient](https://github.com/superfell/zkSforce/blob/master/zkSforce/zkSforceClient.h) class, call login, then call the other operations as needed, e.g.
@@ -53,9 +47,17 @@ Login and create a new contact for Simon Fell, and check the result
 	        NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
         [sforce release];
 
-Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a bunch of
-helper method that let you make asynchronous calls and to have a block run on completion of call.
+Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a versions of all the calls that are asynchronous and use blocks to get completion/error callbacks.
 
+		[client performQuery:query 
+        	failBlock:^(NSException *ex) {
+				[self showError:ex];
+        	} 
+        	completeBlock:^(ZKQueryResult *qr) {
+				[self setResult:qr];
+				[table setDataSource:qr];
+				[table reloadData];
+        	}];
 
 As well as the traditional username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
 
@@ -72,8 +74,8 @@ You'll need to store the refresh_token and authHost somewhere safe, like the key
 	// See the OAuthDemo sample for more info.
 	
 
-## Major Update
-vXXXXX is a major update where a significant amount of the code is now code-generated from the partner WSDL, because of this there are a number of API changes that might affect an existing project that you're trying to update to this version of zkSforce.
+# Updating from older versions
+v29 is a major update where a significant amount of the code is now code-generated from the partner WSDL, because of this there are a number of API changes that might affect an existing project that you're trying to update to this version of zkSforce.
 
  * some files have had the casing of their filename fixed to match the classname (e.g. zkChildRelationship.h is now ZKChildRelationship.h)
  * The Id property on ZKDescribeLayout is now called id
@@ -103,4 +105,4 @@ and run  `pod install myApp.xcodeproj`
 
 ## Project setup (manual)
 
-In order to support usage on both OSX & iPhone OS (so iPhone, iPod Touch, iPad), the library now uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iPhone OS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. For OSX you'll also need to add Security framework to the list of linked Frameworks. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on these steps.
+In order to support usage on both OSX & iOS, the library now uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iOS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. For OSX you'll also need to add Security framework to the list of linked Frameworks. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on these steps.
