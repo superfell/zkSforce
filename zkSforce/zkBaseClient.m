@@ -19,6 +19,8 @@
 // THE SOFTWARE.
 //
 
+#include <mach/mach.h>
+#include <mach/mach_time.h>
 #import "zkBaseClient.h"
 #import "zkSoapException.h"
 #import "zkParser.h"
@@ -27,7 +29,7 @@
 
 static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
-@synthesize endpointUrl;
+@synthesize endpointUrl, delegate;
 
 - (void)dealloc {
 	[endpointUrl release];
@@ -44,8 +46,8 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
     responseHeaders = [h retain];
 }
 
-- (zkElement *)sendRequest:(NSString *)payload {
-	return [self sendRequest:payload returnRoot:NO];
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
+	return [self sendRequest:payload name:name returnRoot:NO];
 }
 
 -(void)logInvalidResponse:(NSHTTPURLResponse *)resp payload:(NSData *)data note:(NSString *)note {
@@ -53,7 +55,24 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
     NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, [[resp URL] absoluteString], (int)[resp statusCode], payload);
 }
 
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)returnRoot {
+NSTimeInterval intervalFrom(uint64_t *start) {
+    uint64_t elapsed = mach_absolute_time() - (*start);
+    
+    // If this is the first time we've run, get the timebase.
+    // We can use denom == 0 to indicate that sTimebaseInfo is
+    // uninitialised because it makes no sense to have a zero
+    // denominator is a fraction.
+    static mach_timebase_info_data_t sTimebaseInfo;
+    if ( sTimebaseInfo.denom == 0 ) {
+        (void) mach_timebase_info(&sTimebaseInfo);
+    }
+    uint64_t elapsedNano = elapsed * sTimebaseInfo.numer / sTimebaseInfo.denom;
+    NSTimeInterval duration = elapsedNano / 1000000000.0;
+    return duration;
+}
+
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)returnRoot {
+    uint64_t start = mach_absolute_time();
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endpointUrl];
 	[request setHTTPMethod:@"POST"];
 	[request addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"content-type"];	
@@ -69,33 +88,47 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 	// todo, support request compression
 	// todo, support response compression
 	NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
-	//NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
-	zkElement *root = [zkParser parseData:respPayload];
-	if (root == nil) {
-        [self logInvalidResponse:resp payload:data note:@"Unable to parse XML"];
-		@throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
+    @try {
+        //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
+        zkElement *root = [zkParser parseData:respPayload];
+        if (root == nil) {
+            [self logInvalidResponse:resp payload:data note:@"Unable to parse XML"];
+            @throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
+        }
+        if (![[root name] isEqualToString:@"Envelope"]) {
+            [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", [root name]]];
+            @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", [root name]] userInfo:nil];
+        }
+        if (![[root namespace] isEqualToString:SOAP_NS]) {
+            [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
+            @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, [root namespace]] userInfo:nil];
+        }
+        zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
+        [self setLastResponseSoapHeaders:header];
+        [self handleResponseSoapHeaders:header];
+        
+        zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
+        if (500 == [resp statusCode]) {
+            zkElement *fault = [body childElement:@"Fault" ns:SOAP_NS];
+            if (fault == nil)
+                @throw [NSException exceptionWithName:@"Xml error" reason:@"Fault status code returned, but unable to find soap:Fault element" userInfo:nil];
+            NSString *fc = [[fault childElement:@"faultcode"] stringValue];
+            NSString *fm = [[fault childElement:@"faultstring"] stringValue];
+            @throw [ZKSoapException exceptionWithFaultCode:fc faultString:fm];
+        }
+        if (delegate != nil)
+            [delegate client:self sentRequest:payload named:callName to:endpointUrl withResponse:root in:intervalFrom(&start)];
+        return returnRoot ? root : [[body childElements] objectAtIndex:0];
+
+    } @catch (NSException *ex) {
+        if (delegate != nil)
+            [delegate client:self sentRequest:payload named:callName to:endpointUrl withException:ex in:intervalFrom(&start)];
+        @throw;
     }
-	if (![[root name] isEqualToString:@"Envelope"]) {
-        [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", [root name]]];
-		@throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", [root name]] userInfo:nil];
-    }
-	if (![[root namespace] isEqualToString:SOAP_NS]) {
-        [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
-		@throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, [root namespace]] userInfo:nil];
-    }
-    zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
-    [self setLastResponseSoapHeaders:header];
-    
-	zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
-	if (500 == [resp statusCode]) {
-		zkElement *fault = [body childElement:@"Fault" ns:SOAP_NS];
-		if (fault == nil)
-			@throw [NSException exceptionWithName:@"Xml error" reason:@"Fault status code returned, but unable to find soap:Fault element" userInfo:nil];
-		NSString *fc = [[fault childElement:@"faultcode"] stringValue];
-		NSString *fm = [[fault childElement:@"faultstring"] stringValue];
-		@throw [ZKSoapException exceptionWithFaultCode:fc faultString:fm];
-	}
-	return returnRoot ? root : [[body childElements] objectAtIndex:0];
+    return nil; // we never here stupid compiler
+}
+
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
 }
 
 @end

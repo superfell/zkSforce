@@ -20,9 +20,7 @@
 //
 
 #import "RootViewController.h"
-#import "zkQueryResult.h"
-#import "zkSforceClient.h"
-#import "zkSObject.h"
+#import "zkSforce.h"
 
 @implementation RootViewController
 

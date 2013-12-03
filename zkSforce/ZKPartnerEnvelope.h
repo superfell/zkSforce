@@ -21,14 +21,9 @@
 
 #import "ZKEnvelope.h"
 
-// defines a block you can implement to write additional soap headers.
-typedef void (^ZKEnvelopeHeaderWriter)(ZKEnvelope *);
-
 @interface ZKPartnerEnvelope : ZKEnvelope {
 }
 
-- (id)initWithSessionHeader:(NSString *)sessionId clientId:(NSString *)clientId;
-- (id)initWithSessionAndMruHeaders:(NSString *)sessionId mru:(BOOL)mru clientId:(NSString *)clientId;
-- (id)initWithSessionAndMruHeaders:(NSString *)sessionId mru:(BOOL)mru clientId:(NSString *)clientId additionalHeaders:(ZKEnvelopeHeaderWriter)headerBlock;
+- (id)initWithSessionHeader:(NSString *)sessionId;
 
 @end

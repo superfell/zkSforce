@@ -22,7 +22,6 @@
 #import "zkBaseClient.h"
 
 @class ZKLoginResult;
-@class ZKBaseClient;
 
 @protocol ZKAuthenticationInfo 
 
@@ -69,7 +68,7 @@
     ZKBaseClient *client;
 }
 
-+(id)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid;
++(id)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate;
 
 -(ZKLoginResult *)login;
 
@@ -80,6 +79,6 @@
     NSString *orgId, *portalId;
 }
 
-+(id)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid orgId:(NSString *)orgId portalId:(NSString *)portalId;
++(id)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate orgId:(NSString *)orgId portalId:(NSString *)portalId;
 
 @end

@@ -28,7 +28,7 @@
 	NSArray * records;
 }
 
-- (id)initFromXmlNode:(zkElement *)node;
+- (id)initWithXmlElement:(zkElement *)node;
 - (id)initWithRecords:(NSArray *)records size:(int)s done:(BOOL)d queryLocator:(NSString *)ql;
 
 - (int)size;

@@ -23,26 +23,10 @@
 
 @implementation ZKPartnerEnvelope
 
-- (id)initWithSessionHeader:(NSString *)sessionId clientId:(NSString *)clientId {
-	return [self initWithSessionAndMruHeaders:sessionId mru:NO clientId:clientId];
-}
-
-- (id)initWithSessionAndMruHeaders:(NSString *)sessionId mru:(BOOL)mru clientId:(NSString *)clientId {
-    return [self initWithSessionAndMruHeaders:sessionId mru:mru clientId:clientId additionalHeaders:nil];
-}
-
-- (id)initWithSessionAndMruHeaders:(NSString *)sessionId mru:(BOOL)mru clientId:(NSString *)clientId additionalHeaders:(ZKEnvelopeHeaderWriter)headerBlock {
+- (id)initWithSessionHeader:(NSString *)sessionId {
 	self = [super init];
 	[self start:@"urn:partner.soap.sforce.com"];
 	[self writeSessionHeader:sessionId];
-	[self writeCallOptionsHeader:clientId];
-	[self writeMruHeader:mru];
-    if (headerBlock) {
-        [self moveToHeaders];
-        headerBlock(self);
-    }
-    
-	[self moveToBody];
 	return self;
 }
 

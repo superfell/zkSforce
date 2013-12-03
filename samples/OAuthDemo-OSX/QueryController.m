@@ -20,10 +20,7 @@
 //
 
 #import "QueryController.h"
-#import "zkSforceClient.h"
-#import "zkQueryResult.h"
-#import "zkQueryResult+NSTableView.h"
-#import "zkAuthentication.h"
+#import "zkSforce.h"
 
 @implementation QueryController
 

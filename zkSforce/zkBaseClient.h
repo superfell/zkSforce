@@ -21,18 +21,32 @@
 
 
 @class zkElement;
+@class ZKBaseClient;
+
+@protocol ZKBaseClientDelegate
+-(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withResponse:(zkElement *)response in:(NSTimeInterval)time;
+-(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withException:(NSException *)ex    in:(NSTimeInterval)time;
+@end
 
 @interface ZKBaseClient : NSObject {
-	NSURL   *endpointUrl;
-    zkElement *responseHeaders;
+    NSURL                           *endpointUrl;
+    zkElement                       *responseHeaders;
+    NSObject<ZKBaseClientDelegate>  *delegate;
 }
 
+@property (assign) NSObject<ZKBaseClientDelegate> *delegate;
 @property (retain) NSURL *endpointUrl;
 
-- (zkElement *)sendRequest:(NSString *)payload;
-- (zkElement *)sendRequest:(NSString *)payload returnRoot:(BOOL)root;
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
 
 // returns the Soap:Header element from the response payload.
 - (zkElement *)lastResponseSoapHeaders;
 
+@end
+
+// Your ZKBaseClient can override this to do any processing it wants on the response soap headers, this is called before the client:sentRequest:named:... delegate is fired.
+@interface ZKBaseClient (ZKHeaders)
+// soapHeaders can be nil if there's no soap:Header element in the response
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders;
 @end

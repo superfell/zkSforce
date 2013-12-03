@@ -23,19 +23,11 @@
 #import "zkSObject.h"
 #import "zkQueryResult.h"
 #import "zkParser.h"
+#import "ZKSoapDate.h"
 
 NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 
-static NSDateFormatter *dateFormatter, *dateTimeFormatter;
-
 @implementation ZKSObject
-
-+(void)initialize {
-	dateTimeFormatter = [[NSDateFormatter alloc] init];
-	[dateTimeFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZ"];
-	dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-}
 
 + (id)withType:(NSString *)type {
 	return [[[ZKSObject alloc] initWithType:type] autorelease];
@@ -48,7 +40,7 @@ static NSDateFormatter *dateFormatter, *dateTimeFormatter;
 }
 
 + (id) fromXmlNode:(zkElement *)node {
-	return [[[ZKSObject alloc] initFromXmlNode:node] autorelease];
+	return [[[ZKSObject alloc] initWithXmlElement:node] autorelease];
 }
 
 - (id) initWithType:(NSString *)aType {
@@ -60,7 +52,7 @@ static NSDateFormatter *dateFormatter, *dateTimeFormatter;
 	return self;
 }
 
-- (id) initFromXmlNode:(zkElement *)node {
+- (id) initWithXmlElement:(zkElement *)node {
 	self = [super init];
 	NSUInteger i, childCount;
 	Id = [[[node childElement:@"Id"] stringValue] copy];
@@ -81,9 +73,9 @@ static NSDateFormatter *dateFormatter, *dateTimeFormatter;
 		else {
 			NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
 			if ([xsiType hasSuffix:@"QueryResult"]) 
-				fieldVal = [[[ZKQueryResult alloc] initFromXmlNode:f] autorelease];
+				fieldVal = [[[ZKQueryResult alloc] initWithXmlElement:f] autorelease];
 			else if ([xsiType hasSuffix:@"sObject"])
-				fieldVal = [[[ZKSObject alloc] initFromXmlNode:f] autorelease];
+				fieldVal = [[[ZKSObject alloc] initWithXmlElement:f] autorelease];
 			else
 				fieldVal = [f stringValue];
 		}
@@ -152,14 +144,11 @@ static NSDateFormatter *dateFormatter, *dateTimeFormatter;
 }
 
 - (void)setFieldDateTimeValue:(NSDate *)value field:(NSString *)field {
-	NSMutableString *dt = [NSMutableString stringWithString:[dateTimeFormatter stringFromDate:value]];
-	// meh, insert the : in the TZ offset, to make it xsd:dateTime
-	[dt insertString:@":" atIndex:[dt length]-2];
-	[self setFieldValue:dt field:field];
+    [self setFieldValue:[[ZKSoapDate instance] toDateTimeString:value] field:field];
 }
 
 - (void)setFieldDateValue:(NSDate *)value field:(NSString *)field {
-	[self setFieldValue:[dateFormatter stringFromDate:value] field:field];	
+	[self setFieldValue:[[ZKSoapDate instance] toDateString:value] field:field];
 }	
 
 - (id)fieldValue:(NSString *)field {
@@ -176,16 +165,11 @@ static NSDateFormatter *dateFormatter, *dateTimeFormatter;
 }
 
 - (NSDate *)dateTimeValue:(NSString *)field {
-	// ok, so a little hackish, but does the job
-	// note to self, make sure API always returns GMT times ;)
-	NSMutableString *dt = [NSMutableString stringWithString:[self fieldValue:field]];
-	[dt deleteCharactersInRange:NSMakeRange([dt length] -1,1)];
-	[dt appendString:@"+00"];
-	return [dateTimeFormatter dateFromString:dt];
+    return [[ZKSoapDate instance] fromDateTimeString:[self fieldValue:field]];
 }
 
 - (NSDate *)dateValue:(NSString *)field {
-	return [dateFormatter dateFromString:[self fieldValue:field]];
+    return [[ZKSoapDate instance] fromDateString:[self fieldValue:field]];
 }
 
 - (int)intValue:(NSString *)field {
