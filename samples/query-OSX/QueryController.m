@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Simon Fell
+// Copyright (c) 2010,2013 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -87,24 +87,19 @@
 	// request happen on another thread, then switch back to the UI
 	// thread at the end to update the UI state.
 	[self setLoginInProgress:YES];
-	dispatch_async ( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		ZKSforceClient *theClient = [[[ZKSforceClient alloc] init] autorelease];
-        [theClient setDelegate:self];
-		@try {
-			[theClient login:username password:password];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[self willChangeValueForKey:@"isLoggedIn"];
-				[self setClient:theClient];
-				[self didChangeValueForKey:@"isLoggedIn"];
-				[self runQuery:self];
-			});
-		} @catch (ZKSoapException *ex) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[self setLoginInProgress:NO];
-				[self showError:ex];
-			});
-		}
-	});
+    // you can either do the blocks stuff yourself and use the methods in SforceClient / SforceClient(Operations)
+    // or there's a blocks vesion available in SforceClient(zkAsyncQuery) that you can use.
+    ZKSforceClient *theClient = [[[ZKSforceClient alloc] init] autorelease];
+    [theClient setDelegate:self];
+    [theClient performLogin:username password:password failBlock:^(NSException *res) {
+        [self setLoginInProgress:NO];
+        [self showError:res];
+    } completeBlock:^(ZKLoginResult *result) {
+        [self willChangeValueForKey:@"isLoggedIn"];
+        [self setClient:theClient];
+        [self didChangeValueForKey:@"isLoggedIn"];
+        [self runQuery:self];
+    }];
 }
 
 -(IBAction)showServerTimestamp:(id)sender {
