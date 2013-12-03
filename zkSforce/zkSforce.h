@@ -22,6 +22,8 @@
 #import "zkSforceClient.h"
 #import "zkSObject.h"
 #import "zkSoapException.h"
+#import "ZKLimitInfoHeader.h"
+#import "ZKLimitInfo.h"
 #import "ZKAllOrNoneHeader.h"
 #import "ZKAllowFieldTruncationHeader.h"
 #import "ZKAssignmentRuleHeader.h"
