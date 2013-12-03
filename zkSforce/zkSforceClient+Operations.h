@@ -24,7 +24,7 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkSforce.h"
+#import "zkSforceClient.h"
 
 @class ZKDescribeAppMenuResult;
 @class ZKDescribeCompactLayoutsResult;
