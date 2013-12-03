@@ -90,9 +90,6 @@
 // Empty a set of sObjects from the recycle bin
 -(NSArray *)emptyRecycleBin:(NSArray *)ids;
 
-// Get a set of sObjects
--(NSArray *)retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids;
-
 // Submit an entity to a workflow process or process a workitem
 -(NSArray *)process:(NSArray *)actions;
 

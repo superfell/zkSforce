@@ -380,26 +380,6 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
 }
 
-// Get a set of sObjects
--(NSArray *)retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids {
-	if (!authSource) return nil;
-	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
-	[self addCallOptions:env];
-	[self addQueryOptions:env];
-	[self addMruHeader:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"retrieve"];
-	[env addElement:@"fieldList"   elemValue:fieldList   nillable:NO  optional:NO];
-	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
-	[env addElementArray:@"ids"    elemValue:ids];
-	[env endElement:@"retrieve"];
-	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSObject class]];
-}
-
 // Submit an entity to a workflow process or process a workitem
 -(NSArray *)process:(NSArray *)actions {
 	if (!authSource) return nil;

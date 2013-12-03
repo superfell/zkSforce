@@ -146,6 +146,8 @@
 // retreives a set of records, fields is a comma separated list of fields to fetch values for
 // ids can be upto 200 record Ids, the returned dictionary is keyed from Id and the dictionary
 // values are ZKSObject's.
+- (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids;
+// old signature of this method, same impl as above
 - (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids;
 
 // pass an array of ZKSObject's to create in salesforce, returns a matching array of ZKSaveResults

@@ -464,6 +464,10 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids {
+    return [self retrieve:fields sObjectType:sobjectType ids:ids];
+}
+
+- (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids {
 	if(!authSource) return NULL;
 	[self checkSession];
 	
