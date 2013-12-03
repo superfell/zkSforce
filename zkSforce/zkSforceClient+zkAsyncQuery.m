@@ -30,6 +30,7 @@
 	}
 	return YES;
 }
+
 // This method implements the meat of all the perform* calls,
 // it handles making the relevant call in a background thread/queue, 
 // and then calling the fail or complete block on the UI thread.
@@ -37,12 +38,13 @@
 // so the perform* methods all have shim completeBlock to cast 
 // back to the relevant type from NSObject * that's used here.
 //
--(void)performRequest:(NSObject * (^)(void))requestBlock 
+-(void)performRequest:(NSObject * (^)(void))requestBlock
+		  checkSession:(BOOL)checkSession
             failBlock:(zkFailWithExceptionBlock)failBlock 
         completeBlock:(void (^)(NSObject *))completeBlock {
 
     // sanity check that we're actually logged in and ready to go.
-    if (![self confirmLoggedIn]) return;
+    if (checkSession && (![self confirmLoggedIn])) return;
 
    // run this block async on the default queue
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^(void) {
@@ -72,6 +74,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self login:username password:password];
 		}
+		 checkSession:NO
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKLoginResult *)r);
@@ -86,6 +89,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeSObject:sObjectType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeSObject *)r);
@@ -100,6 +104,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeSObjects:sObjectType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -113,6 +118,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeGlobal];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -127,6 +133,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeDataCategoryGroups:sObjectType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -141,6 +148,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeDataCategoryGroupStructures:pairs topCategoriesOnly:topCategoriesOnly];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -155,6 +163,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeFlexiPages:flexiPages];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -169,6 +178,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeAppMenu:appMenuType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeAppMenuResult *)r);
@@ -182,6 +192,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeGlobalTheme];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeGlobalTheme *)r);
@@ -196,6 +207,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeTheme:sobjectType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeThemeResult *)r);
@@ -210,6 +222,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeLayout:sObjectType recordTypeIds:recordTypeIds];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeLayoutResult *)r);
@@ -223,6 +236,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeSoftphoneLayout];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeSoftphoneLayoutResult *)r);
@@ -237,6 +251,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeSearchLayouts:sObjectType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -250,6 +265,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeSearchScopeOrder];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -264,6 +280,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeCompactLayouts:sObjectType recordTypeIds:recordTypeIds];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKDescribeCompactLayoutsResult *)r);
@@ -277,6 +294,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeTabs];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -291,6 +309,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self create:sObjects];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -305,6 +324,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self update:sObjects];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -319,6 +339,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self upsert:externalIDFieldName sObjects:sObjects];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -333,6 +354,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self merge:request];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -347,6 +369,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self delete:ids];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -361,6 +384,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self undelete:ids];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -375,6 +399,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self emptyRecycleBin:ids];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -389,6 +414,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self retrieve:fieldList sObjectType:sObjectType  ids:ids];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSDictionary *)r);
@@ -403,6 +429,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self process:actions];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -417,6 +444,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self convertLead:leadConverts];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -431,6 +459,7 @@
 			[self logout];
 			return nil;
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock();
@@ -445,6 +474,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self invalidateSessions:sessionIds];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -459,6 +489,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self getDeleted:sObjectType startDate:startDate  endDate:endDate];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKGetDeletedResult *)r);
@@ -473,6 +504,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self getUpdated:sObjectType startDate:startDate  endDate:endDate];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKGetUpdatedResult *)r);
@@ -487,6 +519,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self query:queryString];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKQueryResult *)r);
@@ -501,6 +534,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self queryAll:queryString];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKQueryResult *)r);
@@ -515,6 +549,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self queryMore:queryLocator];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKQueryResult *)r);
@@ -529,6 +564,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self search:searchString];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -542,6 +578,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self getServerTimestamp];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKGetServerTimestampResult *)r);
@@ -556,6 +593,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self setPassword:userId password:password];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKSetPasswordResult *)r);
@@ -570,6 +608,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self resetPassword:userId];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKResetPasswordResult *)r);
@@ -583,6 +622,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self getUserInfo];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((ZKUserInfo *)r);
@@ -597,6 +637,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self sendEmailMessage:ids];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -611,6 +652,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self sendEmail:messages];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -625,6 +667,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self performQuickActions:quickActions];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -639,6 +682,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeQuickActions:quickActions];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
@@ -653,6 +697,7 @@
 	[self performRequest:^NSObject *(void) {
 			return [self describeAvailableQuickActions:contextType];
 		}
+		 checkSession:YES
 		    failBlock:failBlock
 		completeBlock:^(NSObject *r) {
 			if (completeBlock) completeBlock((NSArray *)r);
