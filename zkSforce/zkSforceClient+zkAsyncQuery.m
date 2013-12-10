@@ -41,7 +41,7 @@
 // it handles making the relevant call in any desired queue, 
 // and then calling the fail or complete block on the UI thread.
 //
--(void)performRequest:(id (^)(void))requestBlock
+-(void)performRequest:(id (^)())requestBlock
          checkSession:(BOOL)checkSession
             failBlock:(zkFailWithExceptionBlock)failBlock 
         completeBlock:(void (^)(id))completeBlock
@@ -54,30 +54,34 @@
 
     // run this block async on the desired queue
     dispatch_async(queue, ^{
+        id result;
+				
         @try {
-            id result = requestBlock();
-            // run the completeBlock on the main thread.
-            if (completeBlock) {
-                dispatch_async(dispatch_get_main_queue(), ^{            
-                    completeBlock(result);
-                });
-            }
-
+            result = requestBlock();
         } @catch (NSException *ex) {
-           // run the failBlock on the main thread.
+            // run the failBlock on the main thread.
             if (failBlock) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     failBlock(ex);
                 });
             }
+
+            return;
         }
-	});
+
+        // run the completeBlock on the main thread.
+        if (completeBlock) {
+            dispatch_async(dispatch_get_main_queue(), ^{            
+                completeBlock(result);
+            });
+        }
+    });
 }
 
 // Perform an asynchronous API call. 
 // Defaults to the default background global queue.
 //
--(void)performRequest:(id (^)(void))requestBlock
+-(void)performRequest:(id (^)())requestBlock
          checkSession:(BOOL)checkSession
             failBlock:(zkFailWithExceptionBlock)failBlock 
         completeBlock:(void (^)(id))completeBlock {
@@ -94,7 +98,7 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteLoginResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self login:username password:password];
 		}
 		 checkSession:NO
@@ -109,7 +113,7 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeSObjectBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeSObject:sObjectType];
 		}
 		 checkSession:YES
@@ -124,7 +128,7 @@
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeSObjects:sObjectType];
 		}
 		 checkSession:YES
@@ -138,7 +142,7 @@
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeGlobal];
 		}
 		 checkSession:YES
@@ -153,7 +157,7 @@
                                 failBlock:(zkFailWithExceptionBlock)failBlock
                             completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeDataCategoryGroups:sObjectType];
 		}
 		 checkSession:YES
@@ -168,7 +172,7 @@
                                          failBlock:(zkFailWithExceptionBlock)failBlock
                                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeDataCategoryGroupStructures:pairs topCategoriesOnly:topCategoriesOnly];
 		}
 		 checkSession:YES
@@ -183,7 +187,7 @@
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeFlexiPages:flexiPages];
 		}
 		 checkSession:YES
@@ -198,7 +202,7 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeAppMenuResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeAppMenu:appMenuType];
 		}
 		 checkSession:YES
@@ -212,7 +216,7 @@
 -(void) performDescribeGlobalThemeWithFailBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteDescribeGlobalThemeBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeGlobalTheme];
 		}
 		 checkSession:YES
@@ -227,7 +231,7 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteDescribeThemeResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeTheme:sobjectType];
 		}
 		 checkSession:YES
@@ -242,7 +246,7 @@
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteDescribeLayoutResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeLayout:sObjectType recordTypeIds:recordTypeIds];
 		}
 		 checkSession:YES
@@ -256,7 +260,7 @@
 -(void) performDescribeSoftphoneLayoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
                          completeBlock:(zkCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeSoftphoneLayout];
 		}
 		 checkSession:YES
@@ -271,7 +275,7 @@
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeSearchLayouts:sObjectType];
 		}
 		 checkSession:YES
@@ -285,7 +289,7 @@
 -(void) performDescribeSearchScopeOrderWithFailBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeSearchScopeOrder];
 		}
 		 checkSession:YES
@@ -300,7 +304,7 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeCompactLayoutsResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeCompactLayouts:sObjectType recordTypeIds:recordTypeIds];
 		}
 		 checkSession:YES
@@ -314,7 +318,7 @@
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeTabs];
 		}
 		 checkSession:YES
@@ -329,7 +333,7 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self create:sObjects];
 		}
 		 checkSession:YES
@@ -344,7 +348,7 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self update:sObjects];
 		}
 		 checkSession:YES
@@ -359,7 +363,7 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self upsert:externalIDFieldName sObjects:sObjects];
 		}
 		 checkSession:YES
@@ -374,7 +378,7 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self merge:request];
 		}
 		 checkSession:YES
@@ -389,7 +393,7 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self delete:ids];
 		}
 		 checkSession:YES
@@ -404,7 +408,7 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self undelete:ids];
 		}
 		 checkSession:YES
@@ -419,7 +423,7 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self emptyRecycleBin:ids];
 		}
 		 checkSession:YES
@@ -434,7 +438,7 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteDictionaryBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self retrieve:fieldList sObjectType:sObjectType  ids:ids];
 		}
 		 checkSession:YES
@@ -449,7 +453,7 @@
              failBlock:(zkFailWithExceptionBlock)failBlock
          completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self process:actions];
 		}
 		 checkSession:YES
@@ -464,7 +468,7 @@
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self convertLead:leadConverts];
 		}
 		 checkSession:YES
@@ -478,7 +482,7 @@
 -(void) performLogoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteVoidBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			[self logout];
 			return nil;
 		}
@@ -494,7 +498,7 @@
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self invalidateSessions:sessionIds];
 		}
 		 checkSession:YES
@@ -509,7 +513,7 @@
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetDeletedResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self getDeleted:sObjectType startDate:startDate  endDate:endDate];
 		}
 		 checkSession:YES
@@ -524,7 +528,7 @@
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetUpdatedResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self getUpdated:sObjectType startDate:startDate  endDate:endDate];
 		}
 		 checkSession:YES
@@ -539,7 +543,7 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self query:queryString];
 		}
 		 checkSession:YES
@@ -554,7 +558,7 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self queryAll:queryString];
 		}
 		 checkSession:YES
@@ -569,7 +573,7 @@
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self queryMore:queryLocator];
 		}
 		 checkSession:YES
@@ -584,7 +588,7 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self search:searchString];
 		}
 		 checkSession:YES
@@ -598,7 +602,7 @@
 -(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteGetServerTimestampResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self getServerTimestamp];
 		}
 		 checkSession:YES
@@ -613,7 +617,7 @@
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteSetPasswordResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self setPassword:userId password:password];
 		}
 		 checkSession:YES
@@ -628,7 +632,7 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteResetPasswordResultBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self resetPassword:userId];
 		}
 		 checkSession:YES
@@ -642,7 +646,7 @@
 -(void) performGetUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteUserInfoBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self getUserInfo];
 		}
 		 checkSession:YES
@@ -657,7 +661,7 @@
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self sendEmailMessage:ids];
 		}
 		 checkSession:YES
@@ -672,7 +676,7 @@
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self sendEmail:messages];
 		}
 		 checkSession:YES
@@ -687,7 +691,7 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self performQuickActions:quickActions];
 		}
 		 checkSession:YES
@@ -702,7 +706,7 @@
                           failBlock:(zkFailWithExceptionBlock)failBlock
                       completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeQuickActions:quickActions];
 		}
 		 checkSession:YES
@@ -717,7 +721,7 @@
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id(void) {
+	[self performRequest:^id {
 			return [self describeAvailableQuickActions:contextType];
 		}
 		 checkSession:YES
