@@ -29,8 +29,10 @@
 /*
 <complexType name="DescribeQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element nillable="true" type="tns:ShareAccessLevel" name="accessLevelRequired"/>
     <element nillable="true" type="xsd:string" name="canvasApplicationName"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
+    <element nillable="true" type="xsd:string" name="contextSobjectType"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:DescribeQuickActionDefaultValue" name="defaultValues"/>
     <element nillable="true" type="xsd:int" name="height"/>
     <element nillable="true" type="xsd:string" name="iconName"/>
@@ -40,7 +42,6 @@
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="layout"/>
     <element nillable="true" type="xsd:string" name="miniIconUrl"/>
     <element type="xsd:string" name="name"/>
-    <element nillable="true" type="xsd:string" name="sourceSobjectType"/>
     <element nillable="true" type="xsd:string" name="targetParentField"/>
     <element nillable="true" type="tns:ID" name="targetRecordTypeId"/>
     <element nillable="true" type="xsd:string" name="targetSobjectType"/>
@@ -52,8 +53,10 @@
 */
 @interface ZKDescribeQuickActionResult : ZKXmlDeserializer {
 }
+@property (readonly) NSString  *accessLevelRequired; 
 @property (readonly) NSString  *canvasApplicationName; 
 @property (readonly) NSArray   *colors;  // of ZKDescribeColor
+@property (readonly) NSString  *contextSobjectType; 
 @property (readonly) NSArray   *defaultValues;  // of ZKDescribeQuickActionDefaultValue
 @property (readonly) NSInteger  height; 
 @property (readonly) NSString  *iconName; 
@@ -63,7 +66,6 @@
 @property (readonly) NSArray   *layout;  // of ZKDescribeLayoutSection
 @property (readonly) NSString  *miniIconUrl; 
 @property (readonly) NSString  *name; 
-@property (readonly) NSString  *sourceSobjectType; 
 @property (readonly) NSString  *targetParentField; 
 @property (readonly) NSString  *targetRecordTypeId; 
 @property (readonly) NSString  *targetSobjectType; 

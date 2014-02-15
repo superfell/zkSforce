@@ -30,6 +30,10 @@
 
 @implementation ZKRelatedList
 
+-(NSString *)accessLevelRequiredForCreate {
+    return [self string:@"accessLevelRequiredForCreate"];
+}
+			
 -(NSArray *)columns {
     return [self complexTypeArrayFromElements:@"columns" cls:[ZKRelatedListColumn class]];
 }

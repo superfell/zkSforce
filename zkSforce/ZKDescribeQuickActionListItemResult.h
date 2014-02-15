@@ -29,6 +29,7 @@
 /*
 <complexType name="DescribeQuickActionListItemResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element nillable="true" type="tns:ShareAccessLevel" name="accessLevelRequired"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
     <element nillable="true" type="xsd:string" name="iconUrl"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeIcon" name="icons"/>
@@ -42,6 +43,7 @@
 */
 @interface ZKDescribeQuickActionListItemResult : ZKXmlDeserializer {
 }
+@property (readonly) NSString  *accessLevelRequired; 
 @property (readonly) NSArray   *colors;  // of ZKDescribeColor
 @property (readonly) NSString  *iconUrl; 
 @property (readonly) NSArray   *icons;  // of ZKDescribeIcon

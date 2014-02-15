@@ -30,6 +30,10 @@
 
 @implementation ZKDescribeQuickActionListItemResult
 
+-(NSString *)accessLevelRequired {
+    return [self string:@"accessLevelRequired"];
+}
+			
 -(NSArray *)colors {
     return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
 }

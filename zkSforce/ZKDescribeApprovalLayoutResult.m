@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,29 +24,13 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeSearchLayoutResult.h"
-#import "ZKDescribeColumn.h"
+#import "ZKDescribeApprovalLayoutResult.h"
+#import "ZKDescribeApprovalLayout.h"
 
-@implementation ZKDescribeSearchLayoutResult
+@implementation ZKDescribeApprovalLayoutResult
 
--(NSString *)errorMsg {
-    return [self string:@"errorMsg"];
-}
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
-}
-			
--(NSString *)objectType {
-    return [self string:@"objectType"];
-}
-			
--(NSArray *)searchColumns {
-    return [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
+-(NSArray *)approvalLayouts {
+    return [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
 }
 			
 @end

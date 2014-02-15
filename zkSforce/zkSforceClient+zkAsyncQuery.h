@@ -42,6 +42,7 @@ typedef void (^zkCompleteDescribeSObjectBlock)               (ZKDescribeSObject 
 typedef void (^zkCompleteDescribeLayoutResultBlock)          (ZKDescribeLayoutResult *result);
 typedef void (^zkCompleteDescribeGlobalThemeBlock)           (ZKDescribeGlobalTheme *result);
 typedef void (^zkCompleteDescribeCompactLayoutsResultBlock)  (ZKDescribeCompactLayoutsResult *result);
+typedef void (^zkCompleteDescribeApprovalLayoutResultBlock)  (ZKDescribeApprovalLayoutResult *result);
 typedef void (^zkCompleteDescribeAppMenuResultBlock)         (ZKDescribeAppMenuResult *result);
 typedef void (^zkCompleteDictionaryBlock)                    (NSDictionary *result);
 typedef void (^zkCompleteArrayBlock)                         (NSArray *result);
@@ -118,6 +119,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performDescribeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeCompactLayoutsResultBlock)completeBlock;
+
+// Describe the approval layouts of the given sObject
+-(void) performDescribeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
+                            failBlock:(zkFailWithExceptionBlock)failBlock
+                        completeBlock:(zkCompleteDescribeApprovalLayoutResultBlock)completeBlock;
 
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
@@ -254,5 +260,10 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performDescribeAvailableQuickActions:(NSString *)contextType
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+-(void) performRetrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
+                                  failBlock:(zkFailWithExceptionBlock)failBlock
+                              completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 @end

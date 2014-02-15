@@ -42,7 +42,7 @@
 	{
 		zkElement * n = [nodes objectAtIndex:i];
 		NSString *xsiNil = [n attributeValue:@"nil" ns:NS_URI_XSI];
-		if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) 
+		if (xsiNil != nil && [xsiNil isEqualToString:@"true"])
 			continue;
 		o = [[ZKSObject alloc] initWithXmlElement:n];
 		[recArray addObject:o];

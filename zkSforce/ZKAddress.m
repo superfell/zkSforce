@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,29 +24,36 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeSearchLayoutResult.h"
-#import "ZKDescribeColumn.h"
+#import "ZKAddress.h"
 
-@implementation ZKDescribeSearchLayoutResult
+@implementation ZKAddress
 
--(NSString *)errorMsg {
-    return [self string:@"errorMsg"];
+-(NSString *)city {
+    return [self string:@"city"];
 }
 			
--(NSString *)label {
-    return [self string:@"label"];
+-(NSString *)country {
+    return [self string:@"country"];
 }
 			
--(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
+-(NSString *)countryCode {
+    return [self string:@"countryCode"];
 }
 			
--(NSString *)objectType {
-    return [self string:@"objectType"];
+-(NSString *)postalCode {
+    return [self string:@"postalCode"];
 }
 			
--(NSArray *)searchColumns {
-    return [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
+-(NSString *)state {
+    return [self string:@"state"];
+}
+			
+-(NSString *)stateCode {
+    return [self string:@"stateCode"];
+}
+			
+-(NSString *)street {
+    return [self string:@"street"];
 }
 			
 @end

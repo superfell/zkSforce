@@ -27,6 +27,7 @@
 #import "zkSforceClient.h"
 
 @class ZKDescribeAppMenuResult;
+@class ZKDescribeApprovalLayoutResult;
 @class ZKDescribeCompactLayoutsResult;
 @class ZKDescribeGlobalTheme;
 @class ZKDescribeLayoutResult;
@@ -76,6 +77,9 @@
 
 // Describe the compact layouts of the given sObject
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
+
+// Describe the approval layouts of the given sObject
+-(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames;
 
 // Describe the tabs that appear on a users page
 -(NSArray *)describeTabs;
@@ -148,5 +152,8 @@
 
 // Describe the details of a series of quick actions available for the given contextType
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType;
+
+// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+-(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId;
 
 @end
