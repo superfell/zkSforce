@@ -32,12 +32,20 @@
 
 @implementation ZKDescribeQuickActionResult
 
+-(NSString *)accessLevelRequired {
+    return [self string:@"accessLevelRequired"];
+}
+			
 -(NSString *)canvasApplicationName {
     return [self string:@"canvasApplicationName"];
 }
 			
 -(NSArray *)colors {
     return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+}
+			
+-(NSString *)contextSobjectType {
+    return [self string:@"contextSobjectType"];
 }
 			
 -(NSArray *)defaultValues {
@@ -74,10 +82,6 @@
 			
 -(NSString *)name {
     return [self string:@"name"];
-}
-			
--(NSString *)sourceSobjectType {
-    return [self string:@"sourceSobjectType"];
 }
 			
 -(NSString *)targetParentField {

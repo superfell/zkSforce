@@ -29,6 +29,7 @@
 #import "ZKDataCategoryGroupSobjectTypePair.h"
 #import "ZKDeleteResult.h"
 #import "ZKDescribeAppMenuResult.h"
+#import "ZKDescribeApprovalLayoutResult.h"
 #import "ZKDescribeAvailableQuickActionResult.h"
 #import "ZKDescribeCompactLayoutsResult.h"
 #import "ZKDescribeDataCategoryGroupResult.h"
@@ -58,6 +59,7 @@
 #import "ZKProcessRequest.h"
 #import "ZKProcessResult.h"
 #import "ZKQueryResult.h"
+#import "ZKQuickActionTemplateResult.h"
 #import "ZKResetPasswordResult.h"
 #import "ZKSObject.h"
 #import "ZKSendEmailResult.h"
@@ -260,6 +262,23 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]] lastObject];
+}
+
+// Describe the approval layouts of the given sObject
+-(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describeApprovalLayout"];
+	[env addElement:@"sObjectType"               elemValue:sObjectType          nillable:NO  optional:NO];
+	[env addElementArray:@"approvalProcessNames" elemValue:approvalProcessNames];
+	[env endElement:@"describeApprovalLayout"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeApprovalLayoutResult class]] lastObject];
 }
 
 // Describe the tabs that appear on a users page
@@ -683,6 +702,24 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
+}
+
+// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+-(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
+	[env startElement:@"retrieveQuickActionTemplates"];
+	[env addElementArray:@"quickActionNames" elemValue:quickActionNames];
+	[env addElement:@"contextId"             elemValue:contextId        nillable:YES optional:NO];
+	[env endElement:@"retrieveQuickActionTemplates"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
 
 @end

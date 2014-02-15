@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,29 +24,24 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeSearchLayoutResult.h"
-#import "ZKDescribeColumn.h"
+#import "zkXmlDeserializer.h"
 
-@implementation ZKDescribeSearchLayoutResult
-
--(NSString *)errorMsg {
-    return [self string:@"errorMsg"];
+@class ZKSObject;
+@class ZKSObject;
+/*
+<complexType name="QuickActionTemplateResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element nillable="true" type="ens:sObject" name="defaultValueFormulas"/>
+    <element nillable="true" type="ens:sObject" name="defaultValues"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
+    <element type="xsd:boolean" name="success"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKQuickActionTemplateResult : ZKXmlDeserializer {
 }
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
-}
-			
--(NSString *)objectType {
-    return [self string:@"objectType"];
-}
-			
--(NSArray *)searchColumns {
-    return [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
-}
-			
+@property (readonly) ZKSObject  *defaultValueFormulas; 
+@property (readonly) ZKSObject  *defaultValues; 
+@property (readonly) NSArray    *errors;  // of ZKError
+@property (readonly) BOOL        success; 
 @end

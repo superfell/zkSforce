@@ -116,6 +116,10 @@
     return [self boolean:@"externalId"];
 }
 			
+-(NSString *)extraTypeInfo {
+    return [self string:@"extraTypeInfo"];
+}
+			
 -(BOOL)filterable {
     return [self boolean:@"filterable"];
 }
@@ -144,6 +148,14 @@
     return [self integer:@"length"];
 }
 			
+-(NSString *)mask {
+    return [self string:@"mask"];
+}
+			
+-(NSString *)maskType {
+    return [self string:@"maskType"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
 }
@@ -170,6 +182,10 @@
 			
 -(NSInteger)precision {
     return [self integer:@"precision"];
+}
+			
+-(BOOL)queryByDistance {
+    return [self boolean:@"queryByDistance"];
 }
 			
 -(NSArray *)referenceTo {

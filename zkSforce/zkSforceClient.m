@@ -71,7 +71,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (id)init {
 	self = [super init];
-	preferedApiVersion = 29;
+	preferedApiVersion = 30;
 	[self setLoginProtocolAndHost:@"https://www.salesforce.com"];
 	cacheDescribes = NO;
 	describes = [[NSMutableDictionary alloc] init];

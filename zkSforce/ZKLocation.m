@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,29 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeSearchLayoutResult.h"
-#import "ZKDescribeColumn.h"
+#import "ZKLocation.h"
 
-@implementation ZKDescribeSearchLayoutResult
+@implementation ZKLocation
 
--(NSString *)errorMsg {
-    return [self string:@"errorMsg"];
+-(double)latitude {
+    return [self double:@"latitude"];
 }
 			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
-}
-			
--(NSString *)objectType {
-    return [self string:@"objectType"];
-}
-			
--(NSArray *)searchColumns {
-    return [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
+-(double)longitude {
+    return [self double:@"longitude"];
 }
 			
 @end

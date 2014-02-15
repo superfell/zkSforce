@@ -46,6 +46,7 @@
     <element type="xsd:int" name="digits"/>
     <element minOccurs="0" type="xsd:boolean" name="displayLocationInDecimal"/>
     <element minOccurs="0" type="xsd:boolean" name="externalId"/>
+    <element minOccurs="0" type="xsd:string" name="extraTypeInfo"/>
     <element type="xsd:boolean" name="filterable"/>
     <element type="xsd:boolean" name="groupable"/>
     <element minOccurs="0" type="xsd:boolean" name="htmlFormatted"/>
@@ -53,6 +54,8 @@
     <element minOccurs="0" type="xsd:string" name="inlineHelpText"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:int" name="length"/>
+    <element minOccurs="0" type="xsd:string" name="mask"/>
+    <element minOccurs="0" type="xsd:string" name="maskType"/>
     <element type="xsd:string" name="name"/>
     <element type="xsd:boolean" name="nameField"/>
     <element minOccurs="0" type="xsd:boolean" name="namePointing"/>
@@ -60,6 +63,7 @@
     <element type="xsd:boolean" name="permissionable"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:PicklistEntry" name="picklistValues"/>
     <element type="xsd:int" name="precision"/>
+    <element type="xsd:boolean" name="queryByDistance"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string" name="referenceTo"/>
     <element minOccurs="0" type="xsd:string" name="relationshipName"/>
     <element minOccurs="0" type="xsd:int" name="relationshipOrder"/>
@@ -96,6 +100,7 @@
 @property (readonly) NSInteger  digits; 
 @property (readonly) BOOL       displayLocationInDecimal; 
 @property (readonly) BOOL       externalId; 
+@property (readonly) NSString  *extraTypeInfo; 
 @property (readonly) BOOL       filterable; 
 @property (readonly) BOOL       groupable; 
 @property (readonly) BOOL       htmlFormatted; 
@@ -103,6 +108,8 @@
 @property (readonly) NSString  *inlineHelpText; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSInteger  length; 
+@property (readonly) NSString  *mask; 
+@property (readonly) NSString  *maskType; 
 @property (readonly) NSString  *name; 
 @property (readonly) BOOL       nameField; 
 @property (readonly) BOOL       namePointing; 
@@ -110,6 +117,7 @@
 @property (readonly) BOOL       permissionable; 
 @property (readonly) NSArray   *picklistValues;  // of ZKPicklistEntry
 @property (readonly) NSInteger  precision; 
+@property (readonly) BOOL       queryByDistance; 
 @property (readonly) NSArray   *referenceTo;  // of NSString
 @property (readonly) NSString  *relationshipName; 
 @property (readonly) NSInteger  relationshipOrder; 

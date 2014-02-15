@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,29 +24,22 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeSearchLayoutResult.h"
-#import "ZKDescribeColumn.h"
+#import "zkXmlDeserializer.h"
 
-@implementation ZKDescribeSearchLayoutResult
-
--(NSString *)errorMsg {
-    return [self string:@"errorMsg"];
+/*
+<complexType name="DescribeApprovalLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="tns:ID" name="id"/>
+    <element type="xsd:string" name="label"/>
+    <element maxOccurs="unbounded" type="tns:DescribeLayoutItem" name="layoutItems"/>
+    <element type="xsd:string" name="name"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDescribeApprovalLayout : ZKXmlDeserializer {
 }
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
-}
-			
--(NSString *)objectType {
-    return [self string:@"objectType"];
-}
-			
--(NSArray *)searchColumns {
-    return [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
-}
-			
+@property (readonly) NSString  *id; 
+@property (readonly) NSString  *label; 
+@property (readonly) NSArray   *layoutItems;  // of ZKDescribeLayoutItem
+@property (readonly) NSString  *name; 
 @end

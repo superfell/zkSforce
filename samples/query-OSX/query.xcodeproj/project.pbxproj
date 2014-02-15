@@ -143,6 +143,11 @@
 		F49241E7183B13DE000F9541 /* ZKLeadConvertResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F49241E6183B13DE000F9541 /* ZKLeadConvertResult.m */; };
 		F49241EA183B14B8000F9541 /* ZKError.m in Sources */ = {isa = PBXBuildFile; fileRef = F49241E9183B14B8000F9541 /* ZKError.m */; };
 		F49C1D0B1363908A000CDE02 /* zkAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C1D0A1363908A000CDE02 /* zkAuthentication.m */; };
+		F4BB7F6F18B01BB500444797 /* ZKDescribeApprovalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F6618B01BB500444797 /* ZKDescribeApprovalLayout.m */; };
+		F4BB7F7018B01BB500444797 /* ZKDescribeApprovalLayoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F6818B01BB500444797 /* ZKDescribeApprovalLayoutResult.m */; };
+		F4BB7F7118B01BB500444797 /* ZKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F6A18B01BB500444797 /* ZKAddress.m */; };
+		F4BB7F7218B01BB500444797 /* ZKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F6C18B01BB500444797 /* ZKLocation.m */; };
+		F4BB7F7318B01BB500444797 /* ZKQuickActionTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F6E18B01BB500444797 /* ZKQuickActionTemplateResult.m */; };
 		F4C2983B1364A283009ACB8D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F4C2983A1364A283009ACB8D /* readme.md */; };
 		F4C2D25A1468EC8100C73F09 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */; };
 /* End PBXBuildFile section */
@@ -422,6 +427,16 @@
 		F49241EB183B16CD000F9541 /* ZKXMLSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKXMLSerializable.h; path = ../../zkSforce/ZKXMLSerializable.h; sourceTree = "<group>"; };
 		F49C1D091363908A000CDE02 /* zkAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkAuthentication.h; path = ../../zkSforce/zkAuthentication.h; sourceTree = "<group>"; };
 		F49C1D0A1363908A000CDE02 /* zkAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkAuthentication.m; path = ../../zkSforce/zkAuthentication.m; sourceTree = "<group>"; };
+		F4BB7F6518B01BB500444797 /* ZKDescribeApprovalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeApprovalLayout.h; path = ../../zkSforce/ZKDescribeApprovalLayout.h; sourceTree = "<group>"; };
+		F4BB7F6618B01BB500444797 /* ZKDescribeApprovalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeApprovalLayout.m; path = ../../zkSforce/ZKDescribeApprovalLayout.m; sourceTree = "<group>"; };
+		F4BB7F6718B01BB500444797 /* ZKDescribeApprovalLayoutResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeApprovalLayoutResult.h; path = ../../zkSforce/ZKDescribeApprovalLayoutResult.h; sourceTree = "<group>"; };
+		F4BB7F6818B01BB500444797 /* ZKDescribeApprovalLayoutResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeApprovalLayoutResult.m; path = ../../zkSforce/ZKDescribeApprovalLayoutResult.m; sourceTree = "<group>"; };
+		F4BB7F6918B01BB500444797 /* ZKAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAddress.h; path = ../../zkSforce/ZKAddress.h; sourceTree = "<group>"; };
+		F4BB7F6A18B01BB500444797 /* ZKAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAddress.m; path = ../../zkSforce/ZKAddress.m; sourceTree = "<group>"; };
+		F4BB7F6B18B01BB500444797 /* ZKLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLocation.h; path = ../../zkSforce/ZKLocation.h; sourceTree = "<group>"; };
+		F4BB7F6C18B01BB500444797 /* ZKLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLocation.m; path = ../../zkSforce/ZKLocation.m; sourceTree = "<group>"; };
+		F4BB7F6D18B01BB500444797 /* ZKQuickActionTemplateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKQuickActionTemplateResult.h; path = ../../zkSforce/ZKQuickActionTemplateResult.h; sourceTree = "<group>"; };
+		F4BB7F6E18B01BB500444797 /* ZKQuickActionTemplateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKQuickActionTemplateResult.m; path = ../../zkSforce/ZKQuickActionTemplateResult.m; sourceTree = "<group>"; };
 		F4C2983A1364A283009ACB8D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 		F4C2D2581468EC8100C73F09 /* ZKDescribeTabSetResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTabSetResult.h; path = ../../zkSforce/ZKDescribeTabSetResult.h; sourceTree = "<group>"; };
 		F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTabSetResult.m; path = ../../zkSforce/ZKDescribeTabSetResult.m; sourceTree = "<group>"; };
@@ -567,6 +582,16 @@
 			isa = PBXGroup;
 			children = (
 				F414BDCD18451DEE00322AC2 /* soapHeaders */,
+				F4BB7F6518B01BB500444797 /* ZKDescribeApprovalLayout.h */,
+				F4BB7F6618B01BB500444797 /* ZKDescribeApprovalLayout.m */,
+				F4BB7F6718B01BB500444797 /* ZKDescribeApprovalLayoutResult.h */,
+				F4BB7F6818B01BB500444797 /* ZKDescribeApprovalLayoutResult.m */,
+				F4BB7F6918B01BB500444797 /* ZKAddress.h */,
+				F4BB7F6A18B01BB500444797 /* ZKAddress.m */,
+				F4BB7F6B18B01BB500444797 /* ZKLocation.h */,
+				F4BB7F6C18B01BB500444797 /* ZKLocation.m */,
+				F4BB7F6D18B01BB500444797 /* ZKQuickActionTemplateResult.h */,
+				F4BB7F6E18B01BB500444797 /* ZKQuickActionTemplateResult.m */,
 				F414C0091846CB8F00322AC2 /* ZKEmailFileAttachment.h */,
 				F414C00A1846CB8F00322AC2 /* ZKEmailFileAttachment.m */,
 				F414C00B1846CB8F00322AC2 /* ZKMassEmailMessage.h */,
@@ -992,6 +1017,11 @@
 				F414C0181846CB9000322AC2 /* ZKProcessWorkitemRequest.m in Sources */,
 				F414C0191846CB9000322AC2 /* ZKReportChartComponent.m in Sources */,
 				F414C01A1846CB9000322AC2 /* ZKSingleEmailMessage.m in Sources */,
+				F4BB7F6F18B01BB500444797 /* ZKDescribeApprovalLayout.m in Sources */,
+				F4BB7F7018B01BB500444797 /* ZKDescribeApprovalLayoutResult.m in Sources */,
+				F4BB7F7118B01BB500444797 /* ZKAddress.m in Sources */,
+				F4BB7F7218B01BB500444797 /* ZKLocation.m in Sources */,
+				F4BB7F7318B01BB500444797 /* ZKQuickActionTemplateResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

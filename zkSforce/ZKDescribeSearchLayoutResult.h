@@ -29,15 +29,19 @@
 /*
 <complexType name="DescribeSearchLayoutResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element type="xsd:string" name="label"/>
-    <element type="xsd:int" name="limitRows"/>
-    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColumn" name="searchColumns"/>
+    <element nillable="true" type="xsd:string" name="errorMsg"/>
+    <element nillable="true" type="xsd:string" name="label"/>
+    <element nillable="true" type="xsd:int" name="limitRows"/>
+    <element type="xsd:string" name="objectType"/>
+    <element nillable="true" maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColumn" name="searchColumns"/>
   </sequence>
 </complexType>
 */
 @interface ZKDescribeSearchLayoutResult : ZKXmlDeserializer {
 }
+@property (readonly) NSString  *errorMsg; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSInteger  limitRows; 
+@property (readonly) NSString  *objectType; 
 @property (readonly) NSArray   *searchColumns;  // of ZKDescribeColumn
 @end

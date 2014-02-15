@@ -314,6 +314,21 @@
 		}];
 }
 
+// Describe the approval layouts of the given sObject
+-(void) performDescribeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
+                            failBlock:(zkFailWithExceptionBlock)failBlock
+                        completeBlock:(zkCompleteDescribeApprovalLayoutResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeApprovalLayout:sObjectType approvalProcessNames:approvalProcessNames];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKDescribeApprovalLayoutResult *)r);
+		}];
+}
+
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -723,6 +738,21 @@
 
 	[self performRequest:^id {
 			return [self describeAvailableQuickActions:contextType];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+-(void) performRetrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
+                                  failBlock:(zkFailWithExceptionBlock)failBlock
+                              completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self retrieveQuickActionTemplates:quickActionNames contextId:contextId];
 		}
 		 checkSession:YES
 		    failBlock:failBlock

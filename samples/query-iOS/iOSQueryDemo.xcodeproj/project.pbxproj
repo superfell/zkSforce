@@ -104,6 +104,11 @@
 		F4AC5551159968BE00F5CA45 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC554C159968BE00F5CA45 /* ZKDescribeTabSetResult.m */; };
 		F4AC5553159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC5550159968BE00F5CA45 /* zkSforceClient+zkAsyncQuery.m */; };
 		F4AC5558159968F700F5CA45 /* ZKDescribeTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC5556159968F700F5CA45 /* ZKDescribeTab.m */; };
+		F4BB7F5C18B01B7D00444797 /* ZKDescribeApprovalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F5318B01B7D00444797 /* ZKDescribeApprovalLayout.m */; };
+		F4BB7F5D18B01B7D00444797 /* ZKDescribeApprovalLayoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F5518B01B7D00444797 /* ZKDescribeApprovalLayoutResult.m */; };
+		F4BB7F5E18B01B7D00444797 /* ZKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F5718B01B7D00444797 /* ZKAddress.m */; };
+		F4BB7F5F18B01B7D00444797 /* ZKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F5918B01B7D00444797 /* ZKLocation.m */; };
+		F4BB7F6018B01B7D00444797 /* ZKQuickActionTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F5B18B01B7D00444797 /* ZKQuickActionTemplateResult.m */; };
 		F4C297A413649C44009ACB8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A313649C44009ACB8D /* UIKit.framework */; };
 		F4C297A613649C44009ACB8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A513649C44009ACB8D /* Foundation.framework */; };
 		F4C297A813649C44009ACB8D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C297A713649C44009ACB8D /* CoreGraphics.framework */; };
@@ -344,6 +349,16 @@
 		F4AC5555159968F700F5CA45 /* ZKDescribeTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTab.h; path = ../../../zkSforce/ZKDescribeTab.h; sourceTree = "<group>"; };
 		F4AC5556159968F700F5CA45 /* ZKDescribeTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTab.m; path = ../../../zkSforce/ZKDescribeTab.m; sourceTree = "<group>"; };
 		F4AC5557159968F700F5CA45 /* ZKDescribeTabSetResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTabSetResult.h; path = ../../../zkSforce/ZKDescribeTabSetResult.h; sourceTree = "<group>"; };
+		F4BB7F5218B01B7D00444797 /* ZKDescribeApprovalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeApprovalLayout.h; path = ../../../zkSforce/ZKDescribeApprovalLayout.h; sourceTree = "<group>"; };
+		F4BB7F5318B01B7D00444797 /* ZKDescribeApprovalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeApprovalLayout.m; path = ../../../zkSforce/ZKDescribeApprovalLayout.m; sourceTree = "<group>"; };
+		F4BB7F5418B01B7D00444797 /* ZKDescribeApprovalLayoutResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeApprovalLayoutResult.h; path = ../../../zkSforce/ZKDescribeApprovalLayoutResult.h; sourceTree = "<group>"; };
+		F4BB7F5518B01B7D00444797 /* ZKDescribeApprovalLayoutResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeApprovalLayoutResult.m; path = ../../../zkSforce/ZKDescribeApprovalLayoutResult.m; sourceTree = "<group>"; };
+		F4BB7F5618B01B7D00444797 /* ZKAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKAddress.h; path = ../../../zkSforce/ZKAddress.h; sourceTree = "<group>"; };
+		F4BB7F5718B01B7D00444797 /* ZKAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKAddress.m; path = ../../../zkSforce/ZKAddress.m; sourceTree = "<group>"; };
+		F4BB7F5818B01B7D00444797 /* ZKLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKLocation.h; path = ../../../zkSforce/ZKLocation.h; sourceTree = "<group>"; };
+		F4BB7F5918B01B7D00444797 /* ZKLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLocation.m; path = ../../../zkSforce/ZKLocation.m; sourceTree = "<group>"; };
+		F4BB7F5A18B01B7D00444797 /* ZKQuickActionTemplateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKQuickActionTemplateResult.h; path = ../../../zkSforce/ZKQuickActionTemplateResult.h; sourceTree = "<group>"; };
+		F4BB7F5B18B01B7D00444797 /* ZKQuickActionTemplateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKQuickActionTemplateResult.m; path = ../../../zkSforce/ZKQuickActionTemplateResult.m; sourceTree = "<group>"; };
 		F4C2979F13649C44009ACB8D /* iOSQueryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSQueryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4C297A313649C44009ACB8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F4C297A513649C44009ACB8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -506,6 +521,16 @@
 		F4C297C713649CC4009ACB8D /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4BB7F5218B01B7D00444797 /* ZKDescribeApprovalLayout.h */,
+				F4BB7F5318B01B7D00444797 /* ZKDescribeApprovalLayout.m */,
+				F4BB7F5418B01B7D00444797 /* ZKDescribeApprovalLayoutResult.h */,
+				F4BB7F5518B01B7D00444797 /* ZKDescribeApprovalLayoutResult.m */,
+				F4BB7F5618B01B7D00444797 /* ZKAddress.h */,
+				F4BB7F5718B01B7D00444797 /* ZKAddress.m */,
+				F4BB7F5818B01B7D00444797 /* ZKLocation.h */,
+				F4BB7F5918B01B7D00444797 /* ZKLocation.m */,
+				F4BB7F5A18B01B7D00444797 /* ZKQuickActionTemplateResult.h */,
+				F4BB7F5B18B01B7D00444797 /* ZKQuickActionTemplateResult.m */,
 				F414C01F1846E61A00322AC2 /* ZKEmailFileAttachment.h */,
 				F414C0201846E61A00322AC2 /* ZKEmailFileAttachment.m */,
 				F414C0211846E61A00322AC2 /* ZKMassEmailMessage.h */,
@@ -965,6 +990,11 @@
 				F414C02E1846E61A00322AC2 /* ZKProcessWorkitemRequest.m in Sources */,
 				F414C02F1846E61A00322AC2 /* ZKReportChartComponent.m in Sources */,
 				F414C0301846E61A00322AC2 /* ZKSingleEmailMessage.m in Sources */,
+				F4BB7F5C18B01B7D00444797 /* ZKDescribeApprovalLayout.m in Sources */,
+				F4BB7F5D18B01B7D00444797 /* ZKDescribeApprovalLayoutResult.m in Sources */,
+				F4BB7F5E18B01B7D00444797 /* ZKAddress.m in Sources */,
+				F4BB7F5F18B01B7D00444797 /* ZKLocation.m in Sources */,
+				F4BB7F6018B01B7D00444797 /* ZKQuickActionTemplateResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

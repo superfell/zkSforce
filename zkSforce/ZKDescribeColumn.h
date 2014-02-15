@@ -33,6 +33,7 @@
     <element nillable="true" type="xsd:string" name="format"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="name"/>
+    <element type="xsd:boolean" name="sortable"/>
   </sequence>
 </complexType>
 */
@@ -42,4 +43,5 @@
 @property (readonly) NSString  *format; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *name; 
+@property (readonly) BOOL       sortable; 
 @end
