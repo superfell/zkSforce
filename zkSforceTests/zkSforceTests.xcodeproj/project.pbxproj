@@ -151,6 +151,7 @@
 		F4BB7F4718B0139700444797 /* ZKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4018B0139700444797 /* ZKAddress.m */; };
 		F4BB7F4818B0139700444797 /* ZKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4218B0139700444797 /* ZKLocation.m */; };
 		F4BB7F4918B0139700444797 /* ZKQuickActionTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4418B0139700444797 /* ZKQuickActionTemplateResult.m */; };
+		F4BB7F4D18B015EB00444797 /* ZKSObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -445,6 +446,8 @@
 		F4BB7F4218B0139700444797 /* ZKLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLocation.m; path = ../zkSforce/ZKLocation.m; sourceTree = "<group>"; };
 		F4BB7F4318B0139700444797 /* ZKQuickActionTemplateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKQuickActionTemplateResult.h; path = ../zkSforce/ZKQuickActionTemplateResult.h; sourceTree = "<group>"; };
 		F4BB7F4418B0139700444797 /* ZKQuickActionTemplateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKQuickActionTemplateResult.m; path = ../zkSforce/ZKQuickActionTemplateResult.m; sourceTree = "<group>"; };
+		F4BB7F4B18B015EB00444797 /* ZKSObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSObjectTests.h; sourceTree = "<group>"; };
+		F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSObjectTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +518,8 @@
 				F414BD611844543500322AC2 /* ZKBase64Tests.m */,
 				F414BD5D184447D100322AC2 /* ZKXmlDeserializerTests.h */,
 				F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */,
+				F4BB7F4B18B015EB00444797 /* ZKSObjectTests.h */,
+				F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
 			);
 			name = UnitTests;
@@ -1025,6 +1030,7 @@
 				F4BB7F4718B0139700444797 /* ZKAddress.m in Sources */,
 				F4BB7F4818B0139700444797 /* ZKLocation.m in Sources */,
 				F4BB7F4918B0139700444797 /* ZKQuickActionTemplateResult.m in Sources */,
+				F4BB7F4D18B015EB00444797 /* ZKSObjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
