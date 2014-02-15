@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2010 Simon Fell
+// Copyright (c) 2006-2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -23,6 +23,8 @@
 
 @class zkElement;
 @class ZKQueryResult;
+@class ZKAddress;
+@class ZKLocation;
 
 NSString * NS_URI_XSI;
 
@@ -66,7 +68,10 @@ NSString * NS_URI_XSI;
 - (NSDate *)dateValue:(NSString *)field;
 - (int)intValue:(NSString *)field;
 - (double)doubleValue:(NSString *)field;
+
 - (ZKQueryResult *)queryResultValue:(NSString *)field;
+- (ZKAddress *)addressValue:(NSString *)field;
+- (ZKLocation *)locationValue:(NSString *)field;
 
 // others
 - (NSArray *)orderedFieldNames;

@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,6 +24,7 @@
 #import "zkQueryResult.h"
 #import "zkParser.h"
 #import "ZKSoapDate.h"
+#import "ZKAddress.h"
 
 NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 
@@ -76,6 +77,10 @@ NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 				fieldVal = [[[ZKQueryResult alloc] initWithXmlElement:f] autorelease];
 			else if ([xsiType hasSuffix:@"sObject"])
 				fieldVal = [[[ZKSObject alloc] initWithXmlElement:f] autorelease];
+            else if ([xsiType hasSuffix:@"address"])
+                fieldVal = [[[ZKAddress alloc] initWithXmlElement:f] autorelease];
+            else if ([xsiType hasSuffix:@"location"])
+                fieldVal = [[[ZKLocation alloc] initWithXmlElement:f] autorelease];
 			else
 				fieldVal = [f stringValue];
 		}
@@ -181,6 +186,14 @@ NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 }
 
 - (ZKQueryResult *)queryResultValue:(NSString *)field {
+	return [self fieldValue:field];
+}
+
+- (ZKAddress *)addressValue:(NSString *)field {
+	return [self fieldValue:field];
+}
+
+- (ZKLocation *)locationValue:(NSString *)field {
 	return [self fieldValue:field];
 }
 
