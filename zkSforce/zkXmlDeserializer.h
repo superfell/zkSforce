@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2013 Simon Fell
+// Copyright (c) 2006,2013,2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,7 +24,7 @@
 @class ZKSObject;
 @class ZKQueryResult;
 
-@interface ZKXmlDeserializer : NSObject {
+@interface ZKXmlDeserializer : NSObject<NSCopying> {
 	zkElement *node;
 	NSMutableDictionary *values;
 }

@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2013 Simon Fell
+// Copyright (c) 2006,2013,2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -41,6 +41,10 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 	[node release];
 	[values release];
 	[super dealloc];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return [[[self class] allocWithZone:zone] initWithXmlElement:node];
 }
 
 - (NSString *)string:(NSString *)elem {

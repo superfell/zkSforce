@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2013-2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -25,6 +25,7 @@
 #import "zkSObject.h"
 #import "zkQueryResult.h"
 #import "ZKReportChartComponent.h"
+#import "ZKLocation.h"
 
 @implementation ZKXmlDeserializerTests
 
@@ -108,6 +109,18 @@
     STAssertEqualObjects(@"123", [qr queryLocator], nil);
     STAssertEqualObjects(@"Account", [(ZKSObject *)[[qr records] lastObject] type], nil);
     STAssertEquals(1, [qr size], nil);
+}
+
+-(void)testNSCopying {
+    NSString *doc = @"<root><longitude>33</longitude><latitude>44</latitude></root>";
+    zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKLocation *l = [[[ZKLocation alloc] initWithXmlElement:e] autorelease];
+    STAssertEqualObjects([ZKLocation class], [l class], @"original of wrong type");
+    STAssertEquals(33.0, [l longitude], @"longitude is wrong");
+    STAssertEquals(44.0, [l latitude],  @"lattitude is wrong");
+    ZKLocation *copy = [[l copyWithZone:nil] autorelease];
+    STAssertNotNil(copy, @"copy was nil");
+    STAssertEqualObjects([ZKLocation class], [copy class], @"copy of wrong type");
 }
 
 @end
