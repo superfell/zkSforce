@@ -33,9 +33,14 @@
 
 - (id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(int)rowIdx {
 	NSArray *path = [[tc identifier] componentsSeparatedByString:@"."];
-	id val = [records objectAtIndex:rowIdx];
-	for (NSString *step in path) 
-		val = [(ZKSObject *)val fieldValue:step];	 
+	NSObject *val = [records objectAtIndex:rowIdx];
+	for (NSString *step in path) {
+        if ([val isKindOfClass:[ZKSObject class]]) {
+            val = [(ZKSObject *)val fieldValue:step];
+        } else {
+            val = [val valueForKey:step];
+        }
+    }
 	return val;
 }
 
