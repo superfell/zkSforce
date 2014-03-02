@@ -46,6 +46,6 @@
 @property (readonly) NSArray   *errors;  // of ZKError
 @property (readonly) NSString  *instanceId; 
 @property (readonly) NSString  *instanceStatus; 
-@property (readonly) NSArray   *newWorkitemIds;  // of NSString
+@property (readonly) NSArray   *newWorkitemIds NS_RETURNS_NOT_RETAINED;  // of NSString; returns an autoreleased object, doesn't follow cocoa rules for properties/method starting with 'new'
 @property (readonly) BOOL       success; 
 @end
