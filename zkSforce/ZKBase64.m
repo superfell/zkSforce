@@ -34,7 +34,7 @@
     SecTransformSetAttribute(b64transform, kSecTransformInputAttributeName, (CFTypeRef)[self dataUsingEncoding:NSASCIIStringEncoding], NULL);
     CFDataRef output = SecTransformExecute(b64transform, NULL);
     CFRelease(b64transform);
-    return (NSData*)output;
+    return (NSData*)CFBridgingRelease(output);
 }
 #endif
 
@@ -56,7 +56,7 @@
     SecTransformSetAttribute(b64transform, kSecTransformInputAttributeName, (CFTypeRef)self, NULL);
     CFDataRef output = SecTransformExecute(b64transform, NULL);
     CFRelease(b64transform);
-    return [[[NSString alloc] initWithData:(NSData *)output encoding:NSASCIIStringEncoding] autorelease];
+    return [[[NSString alloc] initWithData:(NSData *)CFBridgingRelease(output) encoding:NSASCIIStringEncoding] autorelease];
 }
 #endif
 
