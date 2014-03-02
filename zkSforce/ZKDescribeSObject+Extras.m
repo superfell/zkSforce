@@ -20,6 +20,7 @@
 //
 
 #import "ZKDescribeSObject+Extras.h"
+#import "ZKDescribeField.h"
 
 @implementation ZKDescribeSObject (Extras)
 
