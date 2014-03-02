@@ -26,6 +26,7 @@
 
 #import "ZKDescribeField.h"
 #import "ZKDescribeSObject.h"
+#import "zkParser.h"
 #import "ZKPicklistEntry.h"
 
 @implementation ZKDescribeField
