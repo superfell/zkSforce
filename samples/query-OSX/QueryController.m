@@ -50,7 +50,7 @@
 							defaultButton:@"Close" 
 							alternateButton:nil 
 							otherButton:nil 
-							informativeTextWithFormat:[ex reason]];
+							informativeTextWithFormat:@"%@", [ex reason]];
 	[a	beginSheetModalForWindow:window 
 		modalDelegate:nil 
 		didEndSelector:nil 
