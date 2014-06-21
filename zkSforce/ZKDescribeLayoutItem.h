@@ -29,7 +29,8 @@
 /*
 <complexType name="DescribeLayoutItem" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element type="xsd:boolean" name="editable"/>
+    <element type="xsd:boolean" name="editableForNew"/>
+    <element type="xsd:boolean" name="editableForUpdate"/>
     <element nillable="true" type="xsd:string" name="label"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutComponent" name="layoutComponents"/>
     <element type="xsd:boolean" name="placeholder"/>
@@ -39,7 +40,8 @@
 */
 @interface ZKDescribeLayoutItem : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       editable; 
+@property (readonly) BOOL       editableForNew; 
+@property (readonly) BOOL       editableForUpdate; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSArray   *layoutComponents;  // of ZKDescribeLayoutComponent
 @property (readonly) BOOL       placeholder; 

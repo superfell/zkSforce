@@ -29,8 +29,12 @@
 
 @implementation ZKDescribeLayoutItem
 
--(BOOL)editable {
-    return [self boolean:@"editable"];
+-(BOOL)editableForNew {
+    return [self boolean:@"editableForNew"];
+}
+			
+-(BOOL)editableForUpdate {
+    return [self boolean:@"editableForUpdate"];
 }
 			
 -(NSString *)label {

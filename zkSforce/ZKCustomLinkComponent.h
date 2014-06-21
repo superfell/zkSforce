@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,21 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeCompactLayout.h"
-#import "ZKDescribeLayoutButton.h"
-#import "ZKDescribeLayoutItem.h"
+#import "ZKDescribeLayoutComponent.h"
 
-@implementation ZKDescribeCompactLayout
-
--(NSArray *)actions {
-    return [self complexTypeArrayFromElements:@"actions" cls:[ZKDescribeLayoutButton class]];
+@class ZKDescribeLayoutButton;
+/*
+<complexType name="CustomLinkComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <complexContent>
+    <extension base="tns:DescribeLayoutComponent">
+      <sequence>
+        <element type="tns:DescribeLayoutButton" name="customLink"/>
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+*/
+@interface ZKCustomLinkComponent : ZKDescribeLayoutComponent {
 }
-			
--(NSArray *)fieldItems {
-    return [self complexTypeArrayFromElements:@"fieldItems" cls:[ZKDescribeLayoutItem class]];
-}
-			
--(NSString *)id {
-    return [self string:@"id"];
-}
-			
--(NSArray *)imageItems {
-    return [self complexTypeArrayFromElements:@"imageItems" cls:[ZKDescribeLayoutItem class]];
-}
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSString *)name {
-    return [self string:@"name"];
-}
-			
--(NSString *)objectType {
-    return [self string:@"objectType"];
-}
-			
+@property (readonly) ZKDescribeLayoutButton  *customLink; 
 @end

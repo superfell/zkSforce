@@ -33,6 +33,7 @@
       <sequence>
         <element type="xsd:boolean" name="cacheData"/>
         <element type="xsd:string" name="contextFilterableField"/>
+        <element type="xsd:string" name="error"/>
         <element type="xsd:boolean" name="hideOnError"/>
         <element type="xsd:boolean" name="includeContext"/>
         <element type="xsd:boolean" name="showTitle"/>
@@ -46,6 +47,7 @@
 }
 @property (readonly) BOOL       cacheData; 
 @property (readonly) NSString  *contextFilterableField; 
+@property (readonly) NSString  *error; 
 @property (readonly) BOOL       hideOnError; 
 @property (readonly) BOOL       includeContext; 
 @property (readonly) BOOL       showTitle; 

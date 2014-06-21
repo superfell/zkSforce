@@ -44,8 +44,4 @@
     return [self string:@"name"];
 }
 			
--(BOOL)sortable {
-    return [self boolean:@"sortable"];
-}
-			
 @end

@@ -33,6 +33,7 @@
     <element type="xsd:string" name="heading"/>
     <element maxOccurs="unbounded" type="tns:DescribeLayoutRow" name="layoutRows"/>
     <element type="xsd:int" name="rows"/>
+    <element type="tns:TabOrderType" name="tabOrder"/>
     <element type="xsd:boolean" name="useCollapsibleSection"/>
     <element type="xsd:boolean" name="useHeading"/>
   </sequence>
@@ -44,6 +45,7 @@
 @property (readonly) NSString  *heading; 
 @property (readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
 @property (readonly) NSInteger  rows; 
+@property (readonly) NSString  *tabOrder; 
 @property (readonly) BOOL       useCollapsibleSection; 
 @property (readonly) BOOL       useHeading; 
 @end

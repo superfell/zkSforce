@@ -33,6 +33,7 @@ typedef void (^zkCompleteSetPasswordResultBlock)             (ZKSetPasswordResul
 typedef void (^zkCompleteResetPasswordResultBlock)           (ZKResetPasswordResult *result);
 typedef void (^zkCompleteQueryResultBlock)                   (ZKQueryResult *result);
 typedef void (^zkCompleteLoginResultBlock)                   (ZKLoginResult *result);
+typedef void (^zkCompleteKnowledgeSettingsBlock)             (ZKKnowledgeSettings *result);
 typedef void (^zkCompleteGetUpdatedResultBlock)              (ZKGetUpdatedResult *result);
 typedef void (^zkCompleteGetServerTimestampResultBlock)      (ZKGetServerTimestampResult *result);
 typedef void (^zkCompleteGetDeletedResultBlock)              (ZKGetDeletedResult *result);
@@ -78,6 +79,10 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                                          failBlock:(zkFailWithExceptionBlock)failBlock
                                      completeBlock:(zkCompleteArrayBlock)completeBlock;
 
+// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+-(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                           completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock;
+
 // Describe a list of FlexiPage and their contents
 -(void) performDescribeFlexiPages:(NSArray *)flexiPages
                         failBlock:(zkFailWithExceptionBlock)failBlock
@@ -98,7 +103,7 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                completeBlock:(zkCompleteDescribeThemeResultBlock)completeBlock;
 
 // Describe the layout of the given sObject or the given actionable global page.
--(void) performDescribeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
+-(void) performDescribeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteDescribeLayoutResultBlock)completeBlock;
 
@@ -128,6 +133,15 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+// Describe all tabs available to a user
+-(void) performDescribeAllTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+// Describe the primary compact layouts for the sObjects requested
+-(void) performDescribePrimaryCompactLayouts:(NSArray *)sObjectTypes
+                                   failBlock:(zkFailWithExceptionBlock)failBlock
+                               completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 // Create a set of new sObjects
 -(void) performCreate:(NSArray *)sObjects

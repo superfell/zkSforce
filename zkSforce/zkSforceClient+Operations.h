@@ -36,6 +36,7 @@
 @class ZKGetDeletedResult;
 @class ZKGetServerTimestampResult;
 @class ZKGetUpdatedResult;
+@class ZKKnowledgeSettings;
 @class ZKQueryResult;
 @class ZKResetPasswordResult;
 @class ZKSetPasswordResult;
@@ -51,6 +52,9 @@
 // Describe the data category group structures for a given set of pair of types and data category group name
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly;
 
+// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+-(ZKKnowledgeSettings *)describeKnowledgeSettings;
+
 // Describe a list of FlexiPage and their contents
 -(NSArray *)describeFlexiPages:(NSArray *)flexiPages;
 
@@ -64,7 +68,7 @@
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType;
 
 // Describe the layout of the given sObject or the given actionable global page.
--(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
+-(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds;
 
 // Describe the layout of the SoftPhone
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout;
@@ -83,6 +87,12 @@
 
 // Describe the tabs that appear on a users page
 -(NSArray *)describeTabs;
+
+// Describe all tabs available to a user
+-(NSArray *)describeAllTabs;
+
+// Describe the primary compact layouts for the sObjects requested
+-(NSArray *)describePrimaryCompactLayouts:(NSArray *)sObjectTypes;
 
 // Update or insert a set of sObjects based on object id
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects;

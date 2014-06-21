@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeCompactLayout.h"
-#import "ZKDescribeLayoutButton.h"
-#import "ZKDescribeLayoutItem.h"
+#import "ZKKnowledgeLanguageItem.h"
 
-@implementation ZKDescribeCompactLayout
+@implementation ZKKnowledgeLanguageItem
 
--(NSArray *)actions {
-    return [self complexTypeArrayFromElements:@"actions" cls:[ZKDescribeLayoutButton class]];
-}
-			
--(NSArray *)fieldItems {
-    return [self complexTypeArrayFromElements:@"fieldItems" cls:[ZKDescribeLayoutItem class]];
-}
-			
--(NSString *)id {
-    return [self string:@"id"];
-}
-			
--(NSArray *)imageItems {
-    return [self complexTypeArrayFromElements:@"imageItems" cls:[ZKDescribeLayoutItem class]];
-}
-			
--(NSString *)label {
-    return [self string:@"label"];
+-(BOOL)active {
+    return [self boolean:@"active"];
 }
 			
 -(NSString *)name {
     return [self string:@"name"];
-}
-			
--(NSString *)objectType {
-    return [self string:@"objectType"];
 }
 			
 @end

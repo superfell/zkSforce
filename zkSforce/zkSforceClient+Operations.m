@@ -31,6 +31,7 @@
 #import "ZKDescribeAppMenuResult.h"
 #import "ZKDescribeApprovalLayoutResult.h"
 #import "ZKDescribeAvailableQuickActionResult.h"
+#import "ZKDescribeCompactLayout.h"
 #import "ZKDescribeCompactLayoutsResult.h"
 #import "ZKDescribeDataCategoryGroupResult.h"
 #import "ZKDescribeDataCategoryGroupStructureResult.h"
@@ -42,6 +43,7 @@
 #import "ZKDescribeSearchLayoutResult.h"
 #import "ZKDescribeSearchScopeOrderResult.h"
 #import "ZKDescribeSoftphoneLayoutResult.h"
+#import "ZKDescribeTab.h"
 #import "ZKDescribeTabSetResult.h"
 #import "ZKDescribeThemeResult.h"
 #import "ZKEmail.h"
@@ -50,6 +52,7 @@
 #import "ZKGetServerTimestampResult.h"
 #import "ZKGetUpdatedResult.h"
 #import "ZKInvalidateSessionsResult.h"
+#import "ZKKnowledgeSettings.h"
 #import "ZKLeadConvert.h"
 #import "ZKLeadConvertResult.h"
 #import "ZKMergeRequest.h"
@@ -121,6 +124,22 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
 }
 
+// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+-(ZKKnowledgeSettings *)describeKnowledgeSettings {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
+	[env startElement:@"describeKnowledgeSettings"];
+	[env endElement:@"describeKnowledgeSettings"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKKnowledgeSettings class]] lastObject];
+}
+
 // Describe a list of FlexiPage and their contents
 -(NSArray *)describeFlexiPages:(NSArray *)flexiPages {
 	if (!authSource) return nil;
@@ -185,7 +204,7 @@
 }
 
 // Describe the layout of the given sObject or the given actionable global page.
--(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
+-(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
@@ -194,6 +213,7 @@
 	[env moveToBody];
 	[env startElement:@"describeLayout"];
 	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
+	[env addElement:@"layoutName"         elemValue:layoutName    nillable:YES optional:NO];
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeLayout"];
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
@@ -294,6 +314,37 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
+}
+
+// Describe all tabs available to a user
+-(NSArray *)describeAllTabs {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describeAllTabs"];
+	[env endElement:@"describeAllTabs"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTab class]];
+}
+
+// Describe the primary compact layouts for the sObjects requested
+-(NSArray *)describePrimaryCompactLayouts:(NSArray *)sObjectTypes {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describePrimaryCompactLayouts"];
+	[env addElementArray:@"sObjectTypes" elemValue:sObjectTypes];
+	[env endElement:@"describePrimaryCompactLayouts"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayout class]];
 }
 
 // Update or insert a set of sObjects based on object id

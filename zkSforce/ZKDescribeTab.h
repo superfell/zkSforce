@@ -35,6 +35,7 @@
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeIcon" name="icons"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="miniIconUrl"/>
+    <element type="xsd:string" name="name"/>
     <element nillable="true" type="xsd:string" name="sobjectName"/>
     <element type="xsd:string" name="url"/>
   </sequence>
@@ -48,6 +49,7 @@
 @property (readonly) NSArray   *icons;  // of ZKDescribeIcon
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *miniIconUrl; 
+@property (readonly) NSString  *name; 
 @property (readonly) NSString  *sobjectName; 
 @property (readonly) NSString  *url; 
 @end

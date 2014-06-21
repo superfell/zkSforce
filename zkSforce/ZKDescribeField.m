@@ -27,6 +27,7 @@
 #import "ZKDescribeField.h"
 #import "ZKDescribeSObject.h"
 #import "zkParser.h"
+#import "ZKFilteredLookupInfo.h"
 #import "ZKPicklistEntry.h"
 
 @implementation ZKDescribeField
@@ -123,6 +124,10 @@
 			
 -(BOOL)filterable {
     return [self boolean:@"filterable"];
+}
+			
+-(ZKFilteredLookupInfo *)filteredLookupInfo {
+    return [[self complexTypeArrayFromElements:@"filteredLookupInfo" cls:[ZKFilteredLookupInfo class]] lastObject];
 }
 			
 -(BOOL)groupable {

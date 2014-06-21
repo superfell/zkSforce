@@ -54,6 +54,10 @@
     return [self string:@"miniIconUrl"];
 }
 			
+-(NSString *)name {
+    return [self string:@"name"];
+}
+			
 -(NSString *)sobjectName {
     return [self string:@"sobjectName"];
 }

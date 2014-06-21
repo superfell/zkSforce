@@ -29,17 +29,47 @@
 /*
 <complexType name="DescribeLayoutButton" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element minOccurs="0" nillable="true" type="tns:WebLinkWindowType" name="behavior"/>
+    <element minOccurs="0" nillable="true" type="xsd:string" name="content"/>
+    <element minOccurs="0" nillable="true" type="tns:WebLinkType" name="contentSource"/>
     <element type="xsd:boolean" name="custom"/>
+    <element minOccurs="0" nillable="true" type="xsd:string" name="encoding"/>
+    <element minOccurs="0" nillable="true" type="xsd:int" name="height"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeIcon" name="icons"/>
     <element nillable="true" type="xsd:string" name="label"/>
+    <element nillable="true" type="xsd:boolean" name="menubar"/>
     <element nillable="true" type="xsd:string" name="name"/>
+    <element type="xsd:boolean" name="overridden"/>
+    <element nillable="true" type="xsd:boolean" name="resizeable"/>
+    <element nillable="true" type="xsd:boolean" name="scrollbars"/>
+    <element nillable="true" type="xsd:boolean" name="showsLocation"/>
+    <element nillable="true" type="xsd:boolean" name="showsStatus"/>
+    <element nillable="true" type="xsd:boolean" name="toolbar"/>
+    <element minOccurs="0" nillable="true" type="xsd:string" name="url"/>
+    <element minOccurs="0" nillable="true" type="xsd:int" name="width"/>
+    <element minOccurs="0" nillable="true" type="tns:WebLinkPosition" name="windowPosition"/>
   </sequence>
 </complexType>
 */
 @interface ZKDescribeLayoutButton : ZKXmlDeserializer {
 }
+@property (readonly) NSString  *behavior; 
+@property (readonly) NSString  *content; 
+@property (readonly) NSString  *contentSource; 
 @property (readonly) BOOL       custom; 
+@property (readonly) NSString  *encoding; 
+@property (readonly) NSInteger  height; 
 @property (readonly) NSArray   *icons;  // of ZKDescribeIcon
 @property (readonly) NSString  *label; 
+@property (readonly) BOOL       menubar; 
 @property (readonly) NSString  *name; 
+@property (readonly) BOOL       overridden; 
+@property (readonly) BOOL       resizeable; 
+@property (readonly) BOOL       scrollbars; 
+@property (readonly) BOOL       showsLocation; 
+@property (readonly) BOOL       showsStatus; 
+@property (readonly) BOOL       toolbar; 
+@property (readonly) NSString  *url; 
+@property (readonly) NSInteger  width; 
+@property (readonly) NSString  *windowPosition; 
 @end

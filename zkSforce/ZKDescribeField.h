@@ -27,6 +27,7 @@
 #import "zkXmlDeserializer.h"
 
 @class ZKDescribeSObject;
+@class ZKFilteredLookupInfo;
 /*
 <complexType name="Field" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
@@ -48,6 +49,7 @@
     <element minOccurs="0" type="xsd:boolean" name="externalId"/>
     <element minOccurs="0" type="xsd:string" name="extraTypeInfo"/>
     <element type="xsd:boolean" name="filterable"/>
+    <element minOccurs="0" nillable="true" type="tns:FilteredLookupInfo" name="filteredLookupInfo"/>
     <element type="xsd:boolean" name="groupable"/>
     <element minOccurs="0" type="xsd:boolean" name="htmlFormatted"/>
     <element type="xsd:boolean" name="idLookup"/>
@@ -84,50 +86,51 @@
 }
 @property (assign) ZKDescribeSObject *sobject; // assign to stop a ref counting loop
 
-@property (readonly) BOOL       autoNumber; 
-@property (readonly) NSInteger  byteLength; 
-@property (readonly) BOOL       calculated; 
-@property (readonly) NSString  *calculatedFormula; 
-@property (readonly) BOOL       cascadeDelete; 
-@property (readonly) BOOL       caseSensitive; 
-@property (readonly) NSString  *controllerName; 
-@property (readonly) BOOL       createable; 
-@property (readonly) BOOL       custom; 
-@property (readonly) NSString  *defaultValueFormula; 
-@property (readonly) BOOL       defaultedOnCreate; 
-@property (readonly) BOOL       dependentPicklist; 
-@property (readonly) BOOL       deprecatedAndHidden; 
-@property (readonly) NSInteger  digits; 
-@property (readonly) BOOL       displayLocationInDecimal; 
-@property (readonly) BOOL       externalId; 
-@property (readonly) NSString  *extraTypeInfo; 
-@property (readonly) BOOL       filterable; 
-@property (readonly) BOOL       groupable; 
-@property (readonly) BOOL       htmlFormatted; 
-@property (readonly) BOOL       idLookup; 
-@property (readonly) NSString  *inlineHelpText; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSInteger  length; 
-@property (readonly) NSString  *mask; 
-@property (readonly) NSString  *maskType; 
-@property (readonly) NSString  *name; 
-@property (readonly) BOOL       nameField; 
-@property (readonly) BOOL       namePointing; 
-@property (readonly) BOOL       nillable; 
-@property (readonly) BOOL       permissionable; 
-@property (readonly) NSArray   *picklistValues;  // of ZKPicklistEntry
-@property (readonly) NSInteger  precision; 
-@property (readonly) BOOL       queryByDistance; 
-@property (readonly) NSArray   *referenceTo;  // of NSString
-@property (readonly) NSString  *relationshipName; 
-@property (readonly) NSInteger  relationshipOrder; 
-@property (readonly) BOOL       restrictedDelete; 
-@property (readonly) BOOL       restrictedPicklist; 
-@property (readonly) NSInteger  scale; 
-@property (readonly) NSString  *soapType; 
-@property (readonly) BOOL       sortable; 
-@property (readonly) NSString  *type; 
-@property (readonly) BOOL       unique; 
-@property (readonly) BOOL       updateable; 
-@property (readonly) BOOL       writeRequiresMasterRead; 
+@property (readonly) BOOL                   autoNumber; 
+@property (readonly) NSInteger              byteLength; 
+@property (readonly) BOOL                   calculated; 
+@property (readonly) NSString              *calculatedFormula; 
+@property (readonly) BOOL                   cascadeDelete; 
+@property (readonly) BOOL                   caseSensitive; 
+@property (readonly) NSString              *controllerName; 
+@property (readonly) BOOL                   createable; 
+@property (readonly) BOOL                   custom; 
+@property (readonly) NSString              *defaultValueFormula; 
+@property (readonly) BOOL                   defaultedOnCreate; 
+@property (readonly) BOOL                   dependentPicklist; 
+@property (readonly) BOOL                   deprecatedAndHidden; 
+@property (readonly) NSInteger              digits; 
+@property (readonly) BOOL                   displayLocationInDecimal; 
+@property (readonly) BOOL                   externalId; 
+@property (readonly) NSString              *extraTypeInfo; 
+@property (readonly) BOOL                   filterable; 
+@property (readonly) ZKFilteredLookupInfo  *filteredLookupInfo; 
+@property (readonly) BOOL                   groupable; 
+@property (readonly) BOOL                   htmlFormatted; 
+@property (readonly) BOOL                   idLookup; 
+@property (readonly) NSString              *inlineHelpText; 
+@property (readonly) NSString              *label; 
+@property (readonly) NSInteger              length; 
+@property (readonly) NSString              *mask; 
+@property (readonly) NSString              *maskType; 
+@property (readonly) NSString              *name; 
+@property (readonly) BOOL                   nameField; 
+@property (readonly) BOOL                   namePointing; 
+@property (readonly) BOOL                   nillable; 
+@property (readonly) BOOL                   permissionable; 
+@property (readonly) NSArray               *picklistValues;  // of ZKPicklistEntry
+@property (readonly) NSInteger              precision; 
+@property (readonly) BOOL                   queryByDistance; 
+@property (readonly) NSArray               *referenceTo;  // of NSString
+@property (readonly) NSString              *relationshipName; 
+@property (readonly) NSInteger              relationshipOrder; 
+@property (readonly) BOOL                   restrictedDelete; 
+@property (readonly) BOOL                   restrictedPicklist; 
+@property (readonly) NSInteger              scale; 
+@property (readonly) NSString              *soapType; 
+@property (readonly) BOOL                   sortable; 
+@property (readonly) NSString              *type; 
+@property (readonly) BOOL                   unique; 
+@property (readonly) BOOL                   updateable; 
+@property (readonly) BOOL                   writeRequiresMasterRead; 
 @end

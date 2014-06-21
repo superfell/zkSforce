@@ -35,6 +35,7 @@
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutItem" name="imageItems"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="name"/>
+    <element type="xsd:string" name="objectType"/>
   </sequence>
 </complexType>
 */
@@ -46,4 +47,5 @@
 @property (readonly) NSArray   *imageItems;  // of ZKDescribeLayoutItem
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *name; 
+@property (readonly) NSString  *objectType; 
 @end

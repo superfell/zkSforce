@@ -36,6 +36,10 @@
     return [self string:@"contextFilterableField"];
 }
 			
+-(NSString *)error {
+    return [self string:@"error"];
+}
+			
 -(BOOL)hideOnError {
     return [self boolean:@"hideOnError"];
 }

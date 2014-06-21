@@ -45,6 +45,10 @@
     return [self integer:@"rows"];
 }
 			
+-(NSString *)tabOrder {
+    return [self string:@"tabOrder"];
+}
+			
 -(BOOL)useCollapsibleSection {
     return [self boolean:@"useCollapsibleSection"];
 }

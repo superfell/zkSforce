@@ -182,6 +182,20 @@
 		}];
 }
 
+// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+-(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                           completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeKnowledgeSettings];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKKnowledgeSettings *)r);
+		}];
+}
+
 // Describe a list of FlexiPage and their contents
 -(void) performDescribeFlexiPages:(NSArray *)flexiPages
                         failBlock:(zkFailWithExceptionBlock)failBlock
@@ -242,12 +256,12 @@
 }
 
 // Describe the layout of the given sObject or the given actionable global page.
--(void) performDescribeLayout:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
+-(void) performDescribeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteDescribeLayoutResultBlock)completeBlock {
 
 	[self performRequest:^id {
-			return [self describeLayout:sObjectType recordTypeIds:recordTypeIds];
+			return [self describeLayout:sObjectType layoutName:layoutName  recordTypeIds:recordTypeIds];
 		}
 		 checkSession:YES
 		    failBlock:failBlock
@@ -335,6 +349,35 @@
 
 	[self performRequest:^id {
 			return [self describeTabs];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+// Describe all tabs available to a user
+-(void) performDescribeAllTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeAllTabs];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+// Describe the primary compact layouts for the sObjects requested
+-(void) performDescribePrimaryCompactLayouts:(NSArray *)sObjectTypes
+                                   failBlock:(zkFailWithExceptionBlock)failBlock
+                               completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describePrimaryCompactLayouts:sObjectTypes];
 		}
 		 checkSession:YES
 		    failBlock:failBlock

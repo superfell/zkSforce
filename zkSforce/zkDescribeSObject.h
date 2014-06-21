@@ -45,6 +45,7 @@
     <element type="xsd:boolean" name="layoutable"/>
     <element type="xsd:boolean" name="mergeable"/>
     <element type="xsd:string" name="name"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:NamedLayoutInfo" name="namedLayoutInfos"/>
     <element type="xsd:boolean" name="queryable"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:RecordTypeInfo" name="recordTypeInfos"/>
     <element type="xsd:boolean" name="replicateable"/>
@@ -67,6 +68,7 @@
 @property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
 @property (readonly) BOOL       compactLayoutable; 
 @property (readonly) NSArray   *fields;  // of ZKDescribeField
+@property (readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
 @property (readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
 @property (readonly) BOOL       searchLayoutable; 
 @property (readonly) NSString  *urlDetail; 

@@ -29,8 +29,28 @@
 
 @implementation ZKDescribeLayoutButton
 
+-(NSString *)behavior {
+    return [self string:@"behavior"];
+}
+			
+-(NSString *)content {
+    return [self string:@"content"];
+}
+			
+-(NSString *)contentSource {
+    return [self string:@"contentSource"];
+}
+			
 -(BOOL)custom {
     return [self boolean:@"custom"];
+}
+			
+-(NSString *)encoding {
+    return [self string:@"encoding"];
+}
+			
+-(NSInteger)height {
+    return [self integer:@"height"];
 }
 			
 -(NSArray *)icons {
@@ -41,8 +61,48 @@
     return [self string:@"label"];
 }
 			
+-(BOOL)menubar {
+    return [self boolean:@"menubar"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
+}
+			
+-(BOOL)overridden {
+    return [self boolean:@"overridden"];
+}
+			
+-(BOOL)resizeable {
+    return [self boolean:@"resizeable"];
+}
+			
+-(BOOL)scrollbars {
+    return [self boolean:@"scrollbars"];
+}
+			
+-(BOOL)showsLocation {
+    return [self boolean:@"showsLocation"];
+}
+			
+-(BOOL)showsStatus {
+    return [self boolean:@"showsStatus"];
+}
+			
+-(BOOL)toolbar {
+    return [self boolean:@"toolbar"];
+}
+			
+-(NSString *)url {
+    return [self string:@"url"];
+}
+			
+-(NSInteger)width {
+    return [self integer:@"width"];
+}
+			
+-(NSString *)windowPosition {
+    return [self string:@"windowPosition"];
 }
 			
 @end

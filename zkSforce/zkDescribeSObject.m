@@ -27,6 +27,7 @@
 #import "ZKDescribeSObject.h"
 #import "ZKChildRelationship.h"
 #import "ZKDescribeField.h"
+#import "ZKNamedLayoutInfo.h"
 #import "ZKRecordTypeInfo.h"
 
 @implementation ZKDescribeSObject
@@ -53,6 +54,10 @@
 			
 -(BOOL)compactLayoutable {
     return [self boolean:@"compactLayoutable"];
+}
+			
+-(NSArray *)namedLayoutInfos {
+    return [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
 }
 			
 -(NSArray *)recordTypeInfos {

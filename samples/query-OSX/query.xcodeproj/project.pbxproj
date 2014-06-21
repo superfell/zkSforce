@@ -12,6 +12,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		F402CBCA1955431300C6E1E2 /* ZKCustomLinkComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBBF1955431300C6E1E2 /* ZKCustomLinkComponent.m */; };
+		F402CBCB1955431300C6E1E2 /* ZKFieldLayoutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBC11955431300C6E1E2 /* ZKFieldLayoutComponent.m */; };
+		F402CBCC1955431300C6E1E2 /* ZKFilteredLookupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBC31955431300C6E1E2 /* ZKFilteredLookupInfo.m */; };
+		F402CBCD1955431300C6E1E2 /* ZKKnowledgeLanguageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBC51955431300C6E1E2 /* ZKKnowledgeLanguageItem.m */; };
+		F402CBCE1955431300C6E1E2 /* ZKKnowledgeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBC71955431300C6E1E2 /* ZKKnowledgeSettings.m */; };
+		F402CBCF1955431300C6E1E2 /* ZKNamedLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBC91955431300C6E1E2 /* ZKNamedLayoutInfo.m */; };
 		F414BACC183FE85600322AC2 /* ZKRelatedList+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BACB183FE85600322AC2 /* ZKRelatedList+Extras.m */; };
 		F414BAD2183FEFF400322AC2 /* ZKUserInfo+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BAD1183FEFF400322AC2 /* ZKUserInfo+Extras.m */; };
 		F414BADD1840016400322AC2 /* ZKDescribeField+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BADC1840016400322AC2 /* ZKDescribeField+Extras.m */; };
@@ -165,6 +171,18 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* query-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "query-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* query.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = query.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F402CBBE1955431300C6E1E2 /* ZKCustomLinkComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKCustomLinkComponent.h; path = ../../zkSforce/ZKCustomLinkComponent.h; sourceTree = "<group>"; };
+		F402CBBF1955431300C6E1E2 /* ZKCustomLinkComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKCustomLinkComponent.m; path = ../../zkSforce/ZKCustomLinkComponent.m; sourceTree = "<group>"; };
+		F402CBC01955431300C6E1E2 /* ZKFieldLayoutComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFieldLayoutComponent.h; path = ../../zkSforce/ZKFieldLayoutComponent.h; sourceTree = "<group>"; };
+		F402CBC11955431300C6E1E2 /* ZKFieldLayoutComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFieldLayoutComponent.m; path = ../../zkSforce/ZKFieldLayoutComponent.m; sourceTree = "<group>"; };
+		F402CBC21955431300C6E1E2 /* ZKFilteredLookupInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFilteredLookupInfo.h; path = ../../zkSforce/ZKFilteredLookupInfo.h; sourceTree = "<group>"; };
+		F402CBC31955431300C6E1E2 /* ZKFilteredLookupInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFilteredLookupInfo.m; path = ../../zkSforce/ZKFilteredLookupInfo.m; sourceTree = "<group>"; };
+		F402CBC41955431300C6E1E2 /* ZKKnowledgeLanguageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKKnowledgeLanguageItem.h; path = ../../zkSforce/ZKKnowledgeLanguageItem.h; sourceTree = "<group>"; };
+		F402CBC51955431300C6E1E2 /* ZKKnowledgeLanguageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKKnowledgeLanguageItem.m; path = ../../zkSforce/ZKKnowledgeLanguageItem.m; sourceTree = "<group>"; };
+		F402CBC61955431300C6E1E2 /* ZKKnowledgeSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKKnowledgeSettings.h; path = ../../zkSforce/ZKKnowledgeSettings.h; sourceTree = "<group>"; };
+		F402CBC71955431300C6E1E2 /* ZKKnowledgeSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKKnowledgeSettings.m; path = ../../zkSforce/ZKKnowledgeSettings.m; sourceTree = "<group>"; };
+		F402CBC81955431300C6E1E2 /* ZKNamedLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKNamedLayoutInfo.h; path = ../../zkSforce/ZKNamedLayoutInfo.h; sourceTree = "<group>"; };
+		F402CBC91955431300C6E1E2 /* ZKNamedLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKNamedLayoutInfo.m; path = ../../zkSforce/ZKNamedLayoutInfo.m; sourceTree = "<group>"; };
 		F414BACA183FE85600322AC2 /* ZKRelatedList+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKRelatedList+Extras.h"; path = "../../zkSforce/ZKRelatedList+Extras.h"; sourceTree = "<group>"; };
 		F414BACB183FE85600322AC2 /* ZKRelatedList+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKRelatedList+Extras.m"; path = "../../zkSforce/ZKRelatedList+Extras.m"; sourceTree = "<group>"; };
 		F414BAD0183FEFF400322AC2 /* ZKUserInfo+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKUserInfo+Extras.h"; path = "../../zkSforce/ZKUserInfo+Extras.h"; sourceTree = "<group>"; };
@@ -582,6 +600,18 @@
 			isa = PBXGroup;
 			children = (
 				F414BDCD18451DEE00322AC2 /* soapHeaders */,
+				F402CBBE1955431300C6E1E2 /* ZKCustomLinkComponent.h */,
+				F402CBBF1955431300C6E1E2 /* ZKCustomLinkComponent.m */,
+				F402CBC01955431300C6E1E2 /* ZKFieldLayoutComponent.h */,
+				F402CBC11955431300C6E1E2 /* ZKFieldLayoutComponent.m */,
+				F402CBC21955431300C6E1E2 /* ZKFilteredLookupInfo.h */,
+				F402CBC31955431300C6E1E2 /* ZKFilteredLookupInfo.m */,
+				F402CBC41955431300C6E1E2 /* ZKKnowledgeLanguageItem.h */,
+				F402CBC51955431300C6E1E2 /* ZKKnowledgeLanguageItem.m */,
+				F402CBC61955431300C6E1E2 /* ZKKnowledgeSettings.h */,
+				F402CBC71955431300C6E1E2 /* ZKKnowledgeSettings.m */,
+				F402CBC81955431300C6E1E2 /* ZKNamedLayoutInfo.h */,
+				F402CBC91955431300C6E1E2 /* ZKNamedLayoutInfo.m */,
 				F4BB7F6518B01BB500444797 /* ZKDescribeApprovalLayout.h */,
 				F4BB7F6618B01BB500444797 /* ZKDescribeApprovalLayout.m */,
 				F4BB7F6718B01BB500444797 /* ZKDescribeApprovalLayoutResult.h */,
@@ -925,6 +955,7 @@
 				F42DBF8D180E1A5D005E1028 /* ZKLimitInfo.m in Sources */,
 				F42DBF90180E31D4005E1028 /* ZKLimitInfoHeader.m in Sources */,
 				F49241E4183B1239000F9541 /* ZKLeadConvert.m in Sources */,
+				F402CBCE1955431300C6E1E2 /* ZKKnowledgeSettings.m in Sources */,
 				F49241E7183B13DE000F9541 /* ZKLeadConvertResult.m in Sources */,
 				F49241EA183B14B8000F9541 /* ZKError.m in Sources */,
 				F4214DF9183FD165007D495C /* ZKDescribeQuickActionListResult.m in Sources */,
@@ -940,11 +971,13 @@
 				F414BAE5184020FD00322AC2 /* ZKDescribeField.m in Sources */,
 				F414BAE6184020FD00322AC2 /* ZKLoginResult.m in Sources */,
 				F414BAF518402E2F00322AC2 /* ZKBase64.m in Sources */,
+				F402CBCC1955431300C6E1E2 /* ZKFilteredLookupInfo.m in Sources */,
 				F414BB5D184183C500322AC2 /* ZKDataCategory.m in Sources */,
 				F414BB5E184183C500322AC2 /* ZKDataCategoryGroupSobjectTypePair.m in Sources */,
 				F414BB5F184183C500322AC2 /* ZKDescribeAppMenuItem.m in Sources */,
 				F414BB60184183C500322AC2 /* ZKDescribeAvailableQuickActionResult.m in Sources */,
 				F414BB61184183C500322AC2 /* ZKDescribeColumn.m in Sources */,
+				F402CBCF1955431300C6E1E2 /* ZKNamedLayoutInfo.m in Sources */,
 				F414BB62184183C500322AC2 /* ZKDescribeCompactLayout.m in Sources */,
 				F414BB63184183C500322AC2 /* ZKDescribeCompactLayoutsResult.m in Sources */,
 				F414BB64184183C500322AC2 /* ZKDescribeComponentInstance.m in Sources */,
@@ -953,6 +986,7 @@
 				F414BB67184183C500322AC2 /* ZKDescribeFlexiPageResult.m in Sources */,
 				F414BB68184183C500322AC2 /* ZKDescribeGlobalTheme.m in Sources */,
 				F414BB69184183C500322AC2 /* ZKDescribeSearchLayoutResult.m in Sources */,
+				F402CBCD1955431300C6E1E2 /* ZKKnowledgeLanguageItem.m in Sources */,
 				F414BB6A184183C500322AC2 /* ZKDescribeSearchScopeOrderResult.m in Sources */,
 				F414BB6B184183C500322AC2 /* ZKDescribeSoftphoneLayoutCallType.m in Sources */,
 				F414BB6C184183C500322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m in Sources */,
@@ -968,8 +1002,10 @@
 				F414BB76184183C500322AC2 /* ZKProcessResult.m in Sources */,
 				F414BB77184183C500322AC2 /* ZKRecordTypeCompactLayoutMapping.m in Sources */,
 				F414BB78184183C500322AC2 /* ZKSearchRecord.m in Sources */,
+				F402CBCA1955431300C6E1E2 /* ZKCustomLinkComponent.m in Sources */,
 				F414BB79184183C500322AC2 /* ZKSearchResult.m in Sources */,
 				F414BB7A184183C500322AC2 /* ZKSendEmailError.m in Sources */,
+				F402CBCB1955431300C6E1E2 /* ZKFieldLayoutComponent.m in Sources */,
 				F414BB7B184183C500322AC2 /* ZKSendEmailResult.m in Sources */,
 				F414BB7C184183C500322AC2 /* ZKUpsertResult.m in Sources */,
 				F414BB7D184183C500322AC2 /* ZKDeletedRecord.m in Sources */,
@@ -1051,6 +1087,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1061,7 +1098,7 @@
 				INFOPLIST_FILE = "query-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = query;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -1069,6 +1106,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
@@ -1077,33 +1115,34 @@
 				INFOPLIST_FILE = "query-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = query;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.6;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				SDKROOT = macosx10.6;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
