@@ -98,7 +98,7 @@ v29 is a major update where a significant amount of the code is now code-generat
 The easiest way to get ZKSforce integrated into your app is to use [CocoaPods](http://cocoapods.org/), the new Cocoa dependency manager framework, simply create a Podfile, e.g.
 
     platform :osx
-	pod 'ZKSforce', '29'
+	pod 'ZKSforce', '32.0.0'
 	
 and run  `pod install myApp.xcodeproj`
 
