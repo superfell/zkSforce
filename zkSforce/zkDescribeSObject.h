@@ -29,6 +29,7 @@
 /*
 <complexType name="DescribeSObjectResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:ActionOverride" name="actionOverrides"/>
     <element type="xsd:boolean" name="activateable"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:ChildRelationship" name="childRelationships"/>
     <element type="xsd:boolean" name="compactLayoutable"/>
@@ -65,6 +66,7 @@
 	NSArray 	 *fieldList;
 	NSDictionary *fieldsByName;
 }
+@property (readonly) NSArray   *actionOverrides;  // of ZKActionOverride
 @property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
 @property (readonly) BOOL       compactLayoutable; 
 @property (readonly) NSArray   *fields;  // of ZKDescribeField

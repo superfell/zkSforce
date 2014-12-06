@@ -50,4 +50,8 @@
     return [self complexTypeArrayFromElements:@"regions" cls:[ZKDescribeFlexiPageRegion class]];
 }
 			
+-(NSString *)type {
+    return [self string:@"type"];
+}
+			
 @end

@@ -32,6 +32,9 @@
     <extension base="tns:ProcessRequest">
       <sequence>
         <element type="tns:ID" name="objectId"/>
+        <element nillable="true" type="tns:ID" name="submitterId"/>
+        <element nillable="true" type="xsd:string" name="processDefinitionNameOrId"/>
+        <element nillable="true" type="xsd:boolean" name="skipEntryCriteria"/>
       </sequence>
     </extension>
   </complexContent>
@@ -39,6 +42,12 @@
 */
 @interface ZKProcessSubmitRequest : ZKProcessRequest {
 	NSString  *objectId;
+	NSString  *submitterId;
+	NSString  *processDefinitionNameOrId;
+	BOOL       skipEntryCriteria;
 }
 @property (retain) NSString  *objectId; 
+@property (retain) NSString  *submitterId; 
+@property (retain) NSString  *processDefinitionNameOrId; 
+@property (assign) BOOL       skipEntryCriteria; 
 @end

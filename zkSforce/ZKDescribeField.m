@@ -194,6 +194,10 @@
     return [self boolean:@"queryByDistance"];
 }
 			
+-(NSString *)referenceTargetField {
+    return [self string:@"referenceTargetField"];
+}
+			
 -(NSArray *)referenceTo {
     return [self strings:@"referenceTo"];
 }

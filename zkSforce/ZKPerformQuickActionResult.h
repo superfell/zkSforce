@@ -29,6 +29,7 @@
 /*
 <complexType name="PerformQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element nillable="true" minOccurs="0" type="tns:ID" name="contextId"/>
     <element type="xsd:boolean" name="created"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
     <element nillable="true" maxOccurs="unbounded" minOccurs="0" type="tns:ID" name="feedItemIds"/>
@@ -39,9 +40,10 @@
 */
 @interface ZKPerformQuickActionResult : ZKXmlDeserializer {
 }
-@property (readonly) BOOL      created; 
-@property (readonly) NSArray  *errors;  // of ZKError
-@property (readonly) NSArray  *feedItemIds;  // of NSString
-@property (readonly) NSArray  *ids;  // of NSString
-@property (readonly) BOOL      success; 
+@property (readonly) NSString  *contextId; 
+@property (readonly) BOOL       created; 
+@property (readonly) NSArray   *errors;  // of ZKError
+@property (readonly) NSArray   *feedItemIds;  // of NSString
+@property (readonly) NSArray   *ids;  // of NSString
+@property (readonly) BOOL       success; 
 @end

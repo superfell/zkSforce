@@ -26,6 +26,8 @@
 
 #import "ZKLocation.h"
 
+@class ZKXmlDeserializer;
+@class zkElement;
 /*
 <complexType name="address" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <complexContent>
@@ -44,12 +46,23 @@
 </complexType>
 */
 @interface ZKAddress : ZKLocation {
+	NSString  *city;
+	NSString  *country;
+	NSString  *countryCode;
+	NSString  *postalCode;
+	NSString  *state;
+	NSString  *stateCode;
+	NSString  *street;
 }
-@property (readonly) NSString  *city; 
-@property (readonly) NSString  *country; 
-@property (readonly) NSString  *countryCode; 
-@property (readonly) NSString  *postalCode; 
-@property (readonly) NSString  *state; 
-@property (readonly) NSString  *stateCode; 
-@property (readonly) NSString  *street; 
+-(id)init;
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
+-(id)initWithXmlElement:(zkElement *)e;
+
+@property (retain) NSString  *city; 
+@property (retain) NSString  *country; 
+@property (retain) NSString  *countryCode; 
+@property (retain) NSString  *postalCode; 
+@property (retain) NSString  *state; 
+@property (retain) NSString  *stateCode; 
+@property (retain) NSString  *street; 
 @end

@@ -25,6 +25,7 @@
 //
 
 #import "ZKRelatedList.h"
+#import "ZKDescribeLayoutButton.h"
 #import "ZKRelatedListColumn.h"
 #import "ZKRelatedListSort.h"
 
@@ -32,6 +33,10 @@
 
 -(NSString *)accessLevelRequiredForCreate {
     return [self string:@"accessLevelRequiredForCreate"];
+}
+			
+-(NSArray *)buttons {
+    return [self complexTypeArrayFromElements:@"buttons" cls:[ZKDescribeLayoutButton class]];
 }
 			
 -(NSArray *)columns {

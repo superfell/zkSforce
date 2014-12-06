@@ -32,7 +32,11 @@
 @class ZKDescribeGlobalTheme;
 @class ZKDescribeLayoutResult;
 @class ZKDescribeSoftphoneLayoutResult;
+@class ZKDescribeSoqlListViewResult;
+@class ZKDescribeSoqlListViewsRequest;
 @class ZKDescribeThemeResult;
+@class ZKExecuteListViewRequest;
+@class ZKExecuteListViewResult;
 @class ZKGetDeletedResult;
 @class ZKGetServerTimestampResult;
 @class ZKGetUpdatedResult;
@@ -84,6 +88,12 @@
 
 // Describe the approval layouts of the given sObject
 -(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames;
+
+// Describe the ListViews as SOQL metadata for the generation of SOQL.
+-(ZKDescribeSoqlListViewResult *)describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request;
+
+// Execute the specified list view and return the presentation-ready results.
+-(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request;
 
 // Describe the tabs that appear on a users page
 -(NSArray *)describeTabs;

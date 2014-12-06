@@ -343,6 +343,36 @@
 		}];
 }
 
+// Describe the ListViews as SOQL metadata for the generation of SOQL.
+-(void) performDescribeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request
+                           failBlock:(zkFailWithExceptionBlock)failBlock
+                       completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeSoqlListViews:request];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKDescribeSoqlListViewResult *)r);
+		}];
+}
+
+// Execute the specified list view and return the presentation-ready results.
+-(void) performExecuteListView:(ZKExecuteListViewRequest *)request
+                     failBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteExecuteListViewResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self executeListView:request];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKExecuteListViewResult *)r);
+		}];
+}
+
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {

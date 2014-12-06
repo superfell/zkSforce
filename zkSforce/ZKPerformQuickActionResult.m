@@ -29,6 +29,10 @@
 
 @implementation ZKPerformQuickActionResult
 
+-(NSString *)contextId {
+    return [self string:@"contextId"];
+}
+			
 -(BOOL)created {
     return [self boolean:@"created"];
 }

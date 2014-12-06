@@ -30,6 +30,7 @@
 <complexType name="DescribeLayoutButton" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element minOccurs="0" nillable="true" type="tns:WebLinkWindowType" name="behavior"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
     <element minOccurs="0" nillable="true" type="xsd:string" name="content"/>
     <element minOccurs="0" nillable="true" type="tns:WebLinkType" name="contentSource"/>
     <element type="xsd:boolean" name="custom"/>
@@ -54,6 +55,7 @@
 @interface ZKDescribeLayoutButton : ZKXmlDeserializer {
 }
 @property (readonly) NSString  *behavior; 
+@property (readonly) NSArray   *colors;  // of ZKDescribeColor
 @property (readonly) NSString  *content; 
 @property (readonly) NSString  *contentSource; 
 @property (readonly) BOOL       custom; 

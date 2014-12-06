@@ -30,11 +30,14 @@
 <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element minOccurs="0" type="xsd:string" name="language"/>
+    <element type="xsd:boolean" name="localizeErrors"/>
   </sequence>
 </complexType>
 */
 @interface ZKLocaleOptions : NSObject<ZKXMLSerializable> {
 	NSString  *language;
+	BOOL       localizeErrors;
 }
 @property (retain) NSString  *language; 
+@property (assign) BOOL       localizeErrors; 
 @end

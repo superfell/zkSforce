@@ -29,6 +29,10 @@
 
 @implementation ZKSearchResult
 
+-(NSString *)queryId {
+    return [self string:@"queryId"];
+}
+			
 -(NSArray *)searchRecords {
     return [self complexTypeArrayFromElements:@"searchRecords" cls:[ZKSearchRecord class]];
 }

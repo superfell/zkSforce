@@ -24,8 +24,10 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkXmlDeserializer.h"
+#import "ZKXMLSerializable.h"
 
+@class ZKXmlDeserializer;
+@class zkElement;
 /*
 <complexType name="location" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
@@ -34,8 +36,14 @@
   </sequence>
 </complexType>
 */
-@interface ZKLocation : ZKXmlDeserializer {
+@interface ZKLocation : NSObject<ZKXMLSerializable> {
+	double latitude;
+	double longitude;
 }
-@property (readonly) double latitude; 
-@property (readonly) double longitude; 
+-(id)init;
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
+-(id)initWithXmlElement:(zkElement *)e;
+
+@property (assign) double latitude; 
+@property (assign) double longitude; 
 @end

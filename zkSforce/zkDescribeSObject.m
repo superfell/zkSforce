@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeSObject.h"
+#import "ZKActionOverride.h"
 #import "ZKChildRelationship.h"
 #import "ZKDescribeField.h"
 #import "ZKNamedLayoutInfo.h"
@@ -48,6 +49,10 @@
 	return fieldList;
 }
 
+-(NSArray *)actionOverrides {
+    return [self complexTypeArrayFromElements:@"actionOverrides" cls:[ZKActionOverride class]];
+}
+			
 -(NSArray *)childRelationships {
     return [self complexTypeArrayFromElements:@"childRelationships" cls:[ZKChildRelationship class]];
 }

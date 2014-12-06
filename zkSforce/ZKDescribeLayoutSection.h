@@ -30,7 +30,7 @@
 <complexType name="DescribeLayoutSection" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="xsd:int" name="columns"/>
-    <element type="xsd:string" name="heading"/>
+    <element nillable="true" type="xsd:string" name="heading"/>
     <element maxOccurs="unbounded" type="tns:DescribeLayoutRow" name="layoutRows"/>
     <element type="xsd:int" name="rows"/>
     <element type="tns:TabOrderType" name="tabOrder"/>

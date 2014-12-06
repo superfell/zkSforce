@@ -66,6 +66,7 @@
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:PicklistEntry" name="picklistValues"/>
     <element type="xsd:int" name="precision"/>
     <element type="xsd:boolean" name="queryByDistance"/>
+    <element minOccurs="0" type="xsd:string" name="referenceTargetField"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string" name="referenceTo"/>
     <element minOccurs="0" type="xsd:string" name="relationshipName"/>
     <element minOccurs="0" type="xsd:int" name="relationshipOrder"/>
@@ -121,6 +122,7 @@
 @property (readonly) NSArray               *picklistValues;  // of ZKPicklistEntry
 @property (readonly) NSInteger              precision; 
 @property (readonly) BOOL                   queryByDistance; 
+@property (readonly) NSString              *referenceTargetField; 
 @property (readonly) NSArray               *referenceTo;  // of NSString
 @property (readonly) NSString              *relationshipName; 
 @property (readonly) NSInteger              relationshipOrder; 

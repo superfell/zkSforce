@@ -25,12 +25,17 @@
 //
 
 #import "ZKDescribeLayoutButton.h"
+#import "ZKDescribeColor.h"
 #import "ZKDescribeIcon.h"
 
 @implementation ZKDescribeLayoutButton
 
 -(NSString *)behavior {
     return [self string:@"behavior"];
+}
+			
+-(NSArray *)colors {
+    return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
 }
 			
 -(NSString *)content {

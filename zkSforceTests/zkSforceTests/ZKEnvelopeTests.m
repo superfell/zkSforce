@@ -23,6 +23,7 @@
 #import "ZKEnvelope.h"
 #import "zkSObject.h"
 #import "ZKProcessSubmitRequest.h"
+#import "ZKAddress.h"
 
 @implementation ZKTestSerialize
 
@@ -179,6 +180,22 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     STAssertEqualObjects(accEnv, [env end], nil);
 }
 
+-(void)testSObjectAddress {
+    ZKSObject *o = [[[ZKSObject alloc] initWithType:@"Account"] autorelease];
+    ZKAddress * a = [[ZKAddress alloc] init];
+    a.longitude = 10;
+    a.latitude = 11;
+    a.city = @"SF";
+    a.state = @"CA";
+    a.street = @"Market";
+    a.country = @"USA";
+    a.postalCode = @"94925";
+    [o setFieldValue:a field:@"MailingAddress"];
+    [env addElementSObject:@"acc" elemValue:o];
+    NSString *expected = [self envWith:@"<acc><type>Account</type><MailingAddress><latitude>11</latitude><longitude>10</longitude><city>SF</city><country>USA</country><countryCode x:nil='true'/><postalCode>94925</postalCode><state>CA</state><stateCode x:nil='true'/><street>Market</street></MailingAddress></acc>"];
+    STAssertEqualObjects(expected, [env end], nil);
+}
+
 -(void)testSerializable {
     ZKTestSerialize *s = [[[ZKTestSerialize alloc] init] autorelease];
     [env addElement:@"bob" elemValue:s];
@@ -190,7 +207,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     r.objectId = @"obj";
     r.comments = @"comment";
     [env addElement:@"p" elemValue:r];
-    STAssertEqualObjects([self envWith:@"<p><comments>comment</comments><objectId>obj</objectId></p>"], [env end], nil);
+    STAssertEqualObjects([self envWith:@"<p><comments>comment</comments><objectId>obj</objectId><submitterId x:nil='true'/><processDefinitionNameOrId x:nil='true'/><skipEntryCriteria>false</skipEntryCriteria></p>"], [env end], nil);
 }
 
 -(void)testToString {

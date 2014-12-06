@@ -29,7 +29,7 @@
 
 @implementation ZKLocaleOptions
 
-@synthesize language;
+@synthesize language, localizeErrors;
 
 -(void)dealloc {
 	[language release];
@@ -38,7 +38,8 @@
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"language" elemValue:self.language nillable:NO  optional:YES];
+	[env addElement:@"language"           elemValue:self.language       nillable:NO  optional:YES];
+	[env addBoolElement:@"localizeErrors" elemValue:self.localizeErrors];
 	[env endElement:elemName];
 }
 @end

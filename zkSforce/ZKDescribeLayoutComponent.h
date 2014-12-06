@@ -32,7 +32,7 @@
     <element type="xsd:int" name="displayLines"/>
     <element type="xsd:int" name="tabOrder"/>
     <element type="tns:layoutComponentType" name="type"/>
-    <element type="xsd:string" name="value"/>
+    <element nillable="true" type="xsd:string" name="value"/>
   </sequence>
 </complexType>
 */

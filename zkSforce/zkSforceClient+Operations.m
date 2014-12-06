@@ -43,11 +43,15 @@
 #import "ZKDescribeSearchLayoutResult.h"
 #import "ZKDescribeSearchScopeOrderResult.h"
 #import "ZKDescribeSoftphoneLayoutResult.h"
+#import "ZKDescribeSoqlListViewResult.h"
+#import "ZKDescribeSoqlListViewsRequest.h"
 #import "ZKDescribeTab.h"
 #import "ZKDescribeTabSetResult.h"
 #import "ZKDescribeThemeResult.h"
 #import "ZKEmail.h"
 #import "ZKEmptyRecycleBinResult.h"
+#import "ZKExecuteListViewRequest.h"
+#import "ZKExecuteListViewResult.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKGetServerTimestampResult.h"
 #import "ZKGetUpdatedResult.h"
@@ -301,6 +305,38 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeApprovalLayoutResult class]] lastObject];
 }
 
+// Describe the ListViews as SOQL metadata for the generation of SOQL.
+-(ZKDescribeSoqlListViewResult *)describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describeSoqlListViews"];
+	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
+	[env endElement:@"describeSoqlListViews"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]] lastObject];
+}
+
+// Execute the specified list view and return the presentation-ready results.
+-(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addMruHeader:env];
+	[env moveToBody];
+	[env startElement:@"executeListView"];
+	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
+	[env endElement:@"executeListView"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKExecuteListViewResult class]] lastObject];
+}
+
 // Describe the tabs that appear on a users page
 -(NSArray *)describeTabs {
 	if (!authSource) return nil;
@@ -359,6 +395,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
 	[self addEmailHeader:env];
@@ -384,6 +421,7 @@
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
 	[self addEmailHeader:env];
@@ -409,6 +447,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[env moveToBody];
 	[env startElement:@"delete"];
@@ -429,6 +468,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -464,6 +504,7 @@
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -484,6 +525,7 @@
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -708,6 +750,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
 	[self addEmailHeader:env];

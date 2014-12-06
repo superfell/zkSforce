@@ -29,18 +29,23 @@
 
 @implementation ZKProcessSubmitRequest
 
-@synthesize objectId;
+@synthesize objectId, submitterId, processDefinitionNameOrId, skipEntryCriteria;
 
 -(void)dealloc {
 	[objectId release];
+	[submitterId release];
+	[processDefinitionNameOrId release];
 	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"comments"             elemValue:self.comments        nillable:YES optional:NO];
-	[env addElementArray:@"nextApproverIds" elemValue:self.nextApproverIds];
-	[env addElement:@"objectId"             elemValue:self.objectId        nillable:NO  optional:NO];
+	[env addElement:@"comments"                  elemValue:self.comments                  nillable:YES optional:NO];
+	[env addElementArray:@"nextApproverIds"      elemValue:self.nextApproverIds];
+	[env addElement:@"objectId"                  elemValue:self.objectId                  nillable:NO  optional:NO];
+	[env addElement:@"submitterId"               elemValue:self.submitterId               nillable:YES optional:NO];
+	[env addElement:@"processDefinitionNameOrId" elemValue:self.processDefinitionNameOrId nillable:YES optional:NO];
+	[env addBoolElement:@"skipEntryCriteria"     elemValue:self.skipEntryCriteria];
 	[env endElement:elemName];
 }
 @end

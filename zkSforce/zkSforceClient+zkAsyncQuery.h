@@ -37,7 +37,9 @@ typedef void (^zkCompleteKnowledgeSettingsBlock)             (ZKKnowledgeSetting
 typedef void (^zkCompleteGetUpdatedResultBlock)              (ZKGetUpdatedResult *result);
 typedef void (^zkCompleteGetServerTimestampResultBlock)      (ZKGetServerTimestampResult *result);
 typedef void (^zkCompleteGetDeletedResultBlock)              (ZKGetDeletedResult *result);
+typedef void (^zkCompleteExecuteListViewResultBlock)         (ZKExecuteListViewResult *result);
 typedef void (^zkCompleteDescribeThemeResultBlock)           (ZKDescribeThemeResult *result);
+typedef void (^zkCompleteDescribeSoqlListViewResultBlock)    (ZKDescribeSoqlListViewResult *result);
 typedef void (^zkCompleteDescribeSoftphoneLayoutResultBlock) (ZKDescribeSoftphoneLayoutResult *result);
 typedef void (^zkCompleteDescribeSObjectBlock)               (ZKDescribeSObject *result);
 typedef void (^zkCompleteDescribeLayoutResultBlock)          (ZKDescribeLayoutResult *result);
@@ -129,6 +131,16 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performDescribeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeApprovalLayoutResultBlock)completeBlock;
+
+// Describe the ListViews as SOQL metadata for the generation of SOQL.
+-(void) performDescribeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request
+                           failBlock:(zkFailWithExceptionBlock)failBlock
+                       completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock;
+
+// Execute the specified list view and return the presentation-ready results.
+-(void) performExecuteListView:(ZKExecuteListViewRequest *)request
+                     failBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteExecuteListViewResultBlock)completeBlock;
 
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock

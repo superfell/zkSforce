@@ -25,7 +25,7 @@
 #import "zkSObject.h"
 #import "zkQueryResult.h"
 #import "ZKReportChartComponent.h"
-#import "ZKLocation.h"
+#import "ZKDescribeColumn.h"
 
 @implementation ZKXmlDeserializerTests
 
@@ -112,15 +112,21 @@
 }
 
 -(void)testNSCopying {
-    NSString *doc = @"<root><longitude>33</longitude><latitude>44</latitude></root>";
+    NSString *doc = @"<root><field>f</field><format>fmt</format><label>lbl</label><name>n</name></root>";
     zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    ZKLocation *l = [[[ZKLocation alloc] initWithXmlElement:e] autorelease];
-    STAssertEqualObjects([ZKLocation class], [l class], @"original of wrong type");
-    STAssertEquals(33.0, [l longitude], @"longitude is wrong");
-    STAssertEquals(44.0, [l latitude],  @"lattitude is wrong");
-    ZKLocation *copy = [[l copyWithZone:nil] autorelease];
+    ZKDescribeColumn *l = [[[ZKDescribeColumn alloc] initWithXmlElement:e] autorelease];
+    STAssertEqualObjects([ZKDescribeColumn class], [l class], @"original of wrong type");
+    STAssertEqualObjects(@"f", [l field], @"field is wrong");
+    STAssertEqualObjects(@"fmt", [l format],  @"format is wrong");
+    STAssertEqualObjects(@"lbl", [l label],  @"label is wrong");
+    STAssertEqualObjects(@"n", [l name],  @"name is wrong");
+    ZKDescribeColumn *copy = [[l copyWithZone:nil] autorelease];
     STAssertNotNil(copy, @"copy was nil");
-    STAssertEqualObjects([ZKLocation class], [copy class], @"copy of wrong type");
+    STAssertEqualObjects([ZKDescribeColumn class], [copy class], @"copy of wrong type");
+    STAssertEqualObjects(@"f", [copy field], @"field is wrong");
+    STAssertEqualObjects(@"fmt", [copy format],  @"format is wrong");
+    STAssertEqualObjects(@"lbl", [copy label],  @"label is wrong");
+    STAssertEqualObjects(@"n", [copy name],  @"name is wrong");
 }
 
 @end

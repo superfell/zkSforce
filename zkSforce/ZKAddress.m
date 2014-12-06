@@ -25,35 +25,58 @@
 //
 
 #import "ZKAddress.h"
+#import "zkEnvelope.h"
+#import "ZKXmlDeserializer.h"
+#import "zkParser.h"
 
 @implementation ZKAddress
 
--(NSString *)city {
-    return [self string:@"city"];
+@synthesize city, country, countryCode, postalCode, state, stateCode, street;
+
+-(id)init {
+    self = [super init];
+    return self;
 }
-			
--(NSString *)country {
-    return [self string:@"country"];
+
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+    self = [super initWithZKXmlDeserializer:d];
+	self.city = [d string:@"city"];
+	self.country = [d string:@"country"];
+	self.countryCode = [d string:@"countryCode"];
+	self.postalCode = [d string:@"postalCode"];
+	self.state = [d string:@"state"];
+	self.stateCode = [d string:@"stateCode"];
+	self.street = [d string:@"street"];
+    return self;
 }
-			
--(NSString *)countryCode {
-    return [self string:@"countryCode"];
+
+-(id)initWithXmlElement:(zkElement *)e {
+    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+    return [self initWithZKXmlDeserializer:d];
 }
-			
--(NSString *)postalCode {
-    return [self string:@"postalCode"];
+
+-(void)dealloc {
+	[city release];
+	[country release];
+	[countryCode release];
+	[postalCode release];
+	[state release];
+	[stateCode release];
+	[street release];
+	[super dealloc];
 }
-			
--(NSString *)state {
-    return [self string:@"state"];
+
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
+	[env addDoubleElement:@"longitude" elemValue:self.longitude];
+	[env addElement:@"city"            elemValue:self.city        nillable:YES optional:NO];
+	[env addElement:@"country"         elemValue:self.country     nillable:YES optional:NO];
+	[env addElement:@"countryCode"     elemValue:self.countryCode nillable:YES optional:NO];
+	[env addElement:@"postalCode"      elemValue:self.postalCode  nillable:YES optional:NO];
+	[env addElement:@"state"           elemValue:self.state       nillable:YES optional:NO];
+	[env addElement:@"stateCode"       elemValue:self.stateCode   nillable:YES optional:NO];
+	[env addElement:@"street"          elemValue:self.street      nillable:YES optional:NO];
+	[env endElement:elemName];
 }
-			
--(NSString *)stateCode {
-    return [self string:@"stateCode"];
-}
-			
--(NSString *)street {
-    return [self string:@"street"];
-}
-			
 @end
