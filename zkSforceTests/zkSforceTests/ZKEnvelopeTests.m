@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2013-2014 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -158,6 +158,11 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 -(void)testNullArray {
     [env addElementArray:@"bob" elemValue:nil];
     STAssertEqualObjects([self envWith:@""], [env end], nil);
+}
+
+-(void)testAddDoubleElement {
+    [env addDoubleElement:@"d" elemValue:42.5f];
+    STAssertEqualObjects([self envWith:@"<d>42.5</d>"], [env end], nil);
 }
 
 -(void)testAddElementSObject {

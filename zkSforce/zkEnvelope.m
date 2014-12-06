@@ -89,6 +89,10 @@ enum envState {
     [self addElement:elemName elemValue:[NSNumber numberWithInteger:elemValue]];
 }
 
+- (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue {
+    [self addElement:elemName elemValue:[NSNumber numberWithDouble:elemValue]];
+}
+
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue {
     [self addElement:elemName elemValue:elemValue nillable:NO optional:NO];
 }
