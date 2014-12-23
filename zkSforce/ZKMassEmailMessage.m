@@ -40,7 +40,7 @@
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
+	[env startElement:elemName type:@"MassEmailMessage"];
 	[env addBoolElement:@"bccSender"        elemValue:self.bccSender];
 	[env addElement:@"emailPriority"        elemValue:self.emailPriority     nillable:YES optional:NO];
 	[env addElement:@"replyTo"              elemValue:self.replyTo           nillable:YES optional:NO];
