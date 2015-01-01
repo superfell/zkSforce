@@ -155,6 +155,10 @@ enum envState {
 	[env appendFormat:@"<%@>", elemName];
 }
 
+- (void) startElement:(NSString *)elemName type:(NSString *)type {
+    [env appendFormat:@"<%@ x:type=\"%@\">", elemName, type];
+}
+
 - (void )endElement:(NSString *)elemName {
 	[env appendFormat:@"</%@>", elemName];
 }

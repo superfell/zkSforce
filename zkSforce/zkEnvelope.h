@@ -35,6 +35,7 @@
 - (void) moveToHeaders;
 - (void) moveToBody;
 - (void) startElement:(NSString *)elemName;
+- (void) startElement:(NSString *)elemName type:(NSString *)type;
 - (void) endElement:(NSString *)elemName;
 - (void) writeText:(NSString *)text;
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue;
