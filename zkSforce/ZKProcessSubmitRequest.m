@@ -39,7 +39,7 @@
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
+	[env startElement:elemName type:@"ProcessSubmitRequest"];
 	[env addElement:@"comments"                  elemValue:self.comments                  nillable:YES optional:NO];
 	[env addElementArray:@"nextApproverIds"      elemValue:self.nextApproverIds];
 	[env addElement:@"objectId"                  elemValue:self.objectId                  nillable:NO  optional:NO];

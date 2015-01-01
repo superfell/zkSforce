@@ -155,8 +155,8 @@ enum envState {
 	[env appendFormat:@"<%@>", elemName];
 }
 
-- (void) startElement:(NSString *)elemName type:(NSString *)type {
-    [env appendFormat:@"<%@ x:type=\"%@\">", elemName, type];
+- (void) startElement:(NSString *)elemName type:(NSString *)xmlType {
+    [env appendFormat:@"<%@ x:type=\"%@\">", elemName, xmlType];
 }
 
 - (void )endElement:(NSString *)elemName {

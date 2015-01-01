@@ -67,7 +67,7 @@
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
+	[env startElement:elemName type:@"address"];
 	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
 	[env addDoubleElement:@"longitude" elemValue:self.longitude];
 	[env addElement:@"city"            elemValue:self.city        nillable:YES optional:NO];

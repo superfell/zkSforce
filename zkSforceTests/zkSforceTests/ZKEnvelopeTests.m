@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2014 Simon Fell
+// Copyright (c) 2013-2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -192,7 +192,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     a.postalCode = @"94925";
     [o setFieldValue:a field:@"MailingAddress"];
     [env addElementSObject:@"acc" elemValue:o];
-    NSString *expected = [self envWith:@"<acc><type>Account</type><MailingAddress><latitude>11</latitude><longitude>10</longitude><city>SF</city><country>USA</country><countryCode x:nil='true'/><postalCode>94925</postalCode><state>CA</state><stateCode x:nil='true'/><street>Market</street></MailingAddress></acc>"];
+    NSString *expected = [self envWith:@"<acc><type>Account</type><MailingAddress x:type=\"address\"><latitude>11</latitude><longitude>10</longitude><city>SF</city><country>USA</country><countryCode x:nil='true'/><postalCode>94925</postalCode><state>CA</state><stateCode x:nil='true'/><street>Market</street></MailingAddress></acc>"];
     STAssertEqualObjects(expected, [env end], nil);
 }
 
@@ -207,7 +207,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     r.objectId = @"obj";
     r.comments = @"comment";
     [env addElement:@"p" elemValue:r];
-    STAssertEqualObjects([self envWith:@"<p><comments>comment</comments><objectId>obj</objectId><submitterId x:nil='true'/><processDefinitionNameOrId x:nil='true'/><skipEntryCriteria>false</skipEntryCriteria></p>"], [env end], nil);
+    STAssertEqualObjects([self envWith:@"<p x:type=\"ProcessSubmitRequest\"><comments>comment</comments><objectId>obj</objectId><submitterId x:nil='true'/><processDefinitionNameOrId x:nil='true'/><skipEntryCriteria>false</skipEntryCriteria></p>"], [env end], nil);
 }
 
 -(void)testToString {
