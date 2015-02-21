@@ -134,6 +134,10 @@
     return [self boolean:@"groupable"];
 }
 			
+-(BOOL)highScaleNumber {
+    return [self boolean:@"highScaleNumber"];
+}
+			
 -(BOOL)htmlFormatted {
     return [self boolean:@"htmlFormatted"];
 }

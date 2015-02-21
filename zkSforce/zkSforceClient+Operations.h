@@ -95,6 +95,9 @@
 // Execute the specified list view and return the presentation-ready results.
 -(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request;
 
+// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+-(ZKDescribeSoqlListViewResult *)describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset;
+
 // Describe the tabs that appear on a users page
 -(NSArray *)describeTabs;
 

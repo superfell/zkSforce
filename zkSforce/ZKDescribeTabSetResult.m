@@ -45,6 +45,10 @@
     return [self boolean:@"selected"];
 }
 			
+-(NSString *)tabSetId {
+    return [self string:@"tabSetId"];
+}
+			
 -(NSArray *)tabs {
     return [self complexTypeArrayFromElements:@"tabs" cls:[ZKDescribeTab class]];
 }

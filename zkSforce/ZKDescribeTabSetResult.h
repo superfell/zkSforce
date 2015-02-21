@@ -33,6 +33,7 @@
     <element type="xsd:string" name="logoUrl"/>
     <element minOccurs="0" type="xsd:string" name="namespace"/>
     <element type="xsd:boolean" name="selected"/>
+    <element type="xsd:string" name="tabSetId"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeTab" name="tabs"/>
   </sequence>
 </complexType>
@@ -43,5 +44,6 @@
 @property (readonly) NSString  *logoUrl; 
 @property (readonly) NSString  *namespace; 
 @property (readonly) BOOL       selected; 
+@property (readonly) NSString  *tabSetId; 
 @property (readonly) NSArray   *tabs;  // of ZKDescribeTab
 @end

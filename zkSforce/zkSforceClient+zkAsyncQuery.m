@@ -373,6 +373,21 @@
 		}];
 }
 
+// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+-(void) performDescribeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset
+                              failBlock:(zkFailWithExceptionBlock)failBlock
+                          completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeSObjectListViews:sObjectType recentsOnly:recentsOnly  isSoqlCompatible:isSoqlCompatible  limit:limit  offset:offset];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKDescribeSoqlListViewResult *)r);
+		}];
+}
+
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {

@@ -51,6 +51,7 @@
     <element type="xsd:boolean" name="filterable"/>
     <element minOccurs="0" nillable="true" type="tns:FilteredLookupInfo" name="filteredLookupInfo"/>
     <element type="xsd:boolean" name="groupable"/>
+    <element minOccurs="0" type="xsd:boolean" name="highScaleNumber"/>
     <element minOccurs="0" type="xsd:boolean" name="htmlFormatted"/>
     <element type="xsd:boolean" name="idLookup"/>
     <element minOccurs="0" type="xsd:string" name="inlineHelpText"/>
@@ -107,6 +108,7 @@
 @property (readonly) BOOL                   filterable; 
 @property (readonly) ZKFilteredLookupInfo  *filteredLookupInfo; 
 @property (readonly) BOOL                   groupable; 
+@property (readonly) BOOL                   highScaleNumber; 
 @property (readonly) BOOL                   htmlFormatted; 
 @property (readonly) BOOL                   idLookup; 
 @property (readonly) NSString              *inlineHelpText; 

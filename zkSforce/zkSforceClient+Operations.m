@@ -337,6 +337,26 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKExecuteListViewResult class]] lastObject];
 }
 
+// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+-(ZKDescribeSoqlListViewResult *)describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describeSObjectListViews"];
+	[env addElement:@"sObjectType"      elemValue:sObjectType      nillable:NO  optional:NO];
+	[env addBoolElement:@"recentsOnly"  elemValue:recentsOnly];
+	[env addElement:@"isSoqlCompatible" elemValue:isSoqlCompatible nillable:NO  optional:NO];
+	[env addIntElement:@"limit"         elemValue:limit];
+	[env addIntElement:@"offset"        elemValue:offset];
+	[env endElement:@"describeSObjectListViews"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]] lastObject];
+}
+
 // Describe the tabs that appear on a users page
 -(NSArray *)describeTabs {
 	if (!authSource) return nil;

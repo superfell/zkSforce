@@ -142,6 +142,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteExecuteListViewResultBlock)completeBlock;
 
+// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+-(void) performDescribeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset
+                              failBlock:(zkFailWithExceptionBlock)failBlock
+                          completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock;
+
 // Describe the tabs that appear on a users page
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock;

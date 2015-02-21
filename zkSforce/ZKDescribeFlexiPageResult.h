@@ -35,6 +35,8 @@
     <element type="xsd:string" name="name"/>
     <element minOccurs="0" type="tns:DescribeQuickActionListResult" name="quickActionList"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeFlexiPageRegion" name="regions"/>
+    <element nillable="true" type="xsd:string" name="sobjectType"/>
+    <element nillable="true" type="xsd:string" name="template"/>
     <element type="xsd:string" name="type"/>
   </sequence>
 </complexType>
@@ -46,5 +48,7 @@
 @property (readonly) NSString                         *name; 
 @property (readonly) ZKDescribeQuickActionListResult  *quickActionList; 
 @property (readonly) NSArray                          *regions;  // of ZKDescribeFlexiPageRegion
+@property (readonly) NSString                         *sobjectType; 
+@property (readonly) NSString                         *template; 
 @property (readonly) NSString                         *type; 
 @end

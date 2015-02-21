@@ -44,6 +44,14 @@
     return [self string:@"field"];
 }
 			
+-(NSString *)junctionIdListName {
+    return [self string:@"junctionIdListName"];
+}
+			
+-(NSArray *)junctionReferenceTo {
+    return [self strings:@"junctionReferenceTo"];
+}
+			
 -(NSString *)relationshipName {
     return [self string:@"relationshipName"];
 }
