@@ -135,4 +135,12 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 	return cached;
 }
 
+-(NSString *)description {
+    NSString *objectName = [NSString stringWithFormat:@"<%@: %p>", NSStringFromClass([self class]), self];
+    if ([self respondsToSelector:@selector(name)]) {
+        objectName = [NSString stringWithFormat:@"%@ name: %@", objectName, [self performSelector:@selector(name) withObject:nil]];
+    }
+    return objectName;
+}
+
 @end
