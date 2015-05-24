@@ -52,6 +52,7 @@
 #import "ZKOwnerChangeOptions.h"
 #import "ZKUserTerritoryDeleteHeader.h"
 #import "ZKQueryOptions.h"
+#import "ZKDuplicateRuleHeader.h"
 #import "ZKXMLSerializable.h"
 
 static const int SAVE_BATCH_SIZE = 25;
@@ -67,7 +68,7 @@ static const int SAVE_BATCH_SIZE = 25;
 @synthesize preferedApiVersion, cacheDescribes, lastLimitInfoHeader=limitInfo;
 @synthesize callOptions, packageVersionHeader, localeOptions, assignmentRuleHeader, mruHeader, allowFieldTruncationHeader;
 @synthesize disableFeedTrackingHeader, streamingEnabledHeader, allOrNoneHeader, debuggingHeader, emailHeader, ownerChangeOptions;
-@synthesize userTerritoryDeleteHeader, queryOptions;
+@synthesize userTerritoryDeleteHeader, queryOptions, duplicateRuleHeader;
 
 - (id)init {
 	self = [super init];
@@ -98,6 +99,7 @@ static const int SAVE_BATCH_SIZE = 25;
     self.ownerChangeOptions = nil;
     self.userTerritoryDeleteHeader = nil;
     self.queryOptions = nil;
+    self.duplicateRuleHeader = nil;
 	[super dealloc];
 }
 
@@ -125,6 +127,7 @@ static const int SAVE_BATCH_SIZE = 25;
     rhs.ownerChangeOptions = self.ownerChangeOptions;
     rhs.userTerritoryDeleteHeader = self.userTerritoryDeleteHeader;
     rhs.queryOptions = self.queryOptions;
+    rhs.duplicateRuleHeader = self.duplicateRuleHeader;
     rhs.delegate = delegate;
 	return rhs;
 }
@@ -330,6 +333,10 @@ static const int SAVE_BATCH_SIZE = 25;
 
 -(void)addQueryOptions:(ZKEnvelope *)env {
     [self addHeader:self.queryOptions name:@"QueryOptions" toEnvelope:env];
+}
+
+-(void)addDuplicateRuleHeader:(ZKEnvelope *)env {
+    [self addHeader:self.duplicateRuleHeader name:@"DuplicateRuleHeader" toEnvelope:env];
 }
 
 - (NSArray *)describeGlobal {

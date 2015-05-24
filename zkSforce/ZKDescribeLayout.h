@@ -27,6 +27,7 @@
 #import "zkXmlDeserializer.h"
 
 @class ZKDescribeLayoutButtonSection;
+@class ZKDescribeLayoutFeedView;
 @class ZKDescribeLayoutSection;
 @class ZKDescribeQuickActionListResult;
 @class ZKRelatedContent;
@@ -36,6 +37,7 @@
     <element minOccurs="0" type="tns:DescribeLayoutButtonSection" name="buttonLayoutSection"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="detailLayoutSections"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="editLayoutSections"/>
+    <element minOccurs="0" type="tns:DescribeLayoutFeedView" name="feedView"/>
     <element minOccurs="0" type="tns:DescribeLayoutSection" name="highlightsPanelLayoutSection"/>
     <element nillable="true" type="tns:ID" name="id"/>
     <element minOccurs="0" type="tns:DescribeQuickActionListResult" name="quickActionList"/>
@@ -49,6 +51,7 @@
 @property (readonly) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
 @property (readonly) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
 @property (readonly) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
+@property (readonly) ZKDescribeLayoutFeedView         *feedView; 
 @property (readonly) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
 @property (readonly) NSString                         *id; 
 @property (readonly) ZKDescribeQuickActionListResult  *quickActionList; 

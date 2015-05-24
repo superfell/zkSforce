@@ -26,6 +26,7 @@
 
 #import "ZKDescribeLayout.h"
 #import "ZKDescribeLayoutButtonSection.h"
+#import "ZKDescribeLayoutFeedView.h"
 #import "ZKDescribeLayoutSection.h"
 #import "ZKDescribeQuickActionListResult.h"
 #import "ZKRelatedContent.h"
@@ -43,6 +44,10 @@
 			
 -(NSArray *)editLayoutSections {
     return [self complexTypeArrayFromElements:@"editLayoutSections" cls:[ZKDescribeLayoutSection class]];
+}
+			
+-(ZKDescribeLayoutFeedView *)feedView {
+    return [[self complexTypeArrayFromElements:@"feedView" cls:[ZKDescribeLayoutFeedView class]] lastObject];
 }
 			
 -(ZKDescribeLayoutSection *)highlightsPanelLayoutSection {

@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,21 +24,22 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeComponentInstanceProperty.h"
-#import "ZKDescribeFlexiPageRegion.h"
+#import "ZKDuplicateRuleHeader.h"
+#import "zkEnvelope.h"
 
-@implementation ZKDescribeComponentInstanceProperty
+@implementation ZKDuplicateRuleHeader
 
--(NSString *)name {
-    return [self string:@"name"];
+@synthesize allowSave, includeRecordDetails, runAsCurrentUser;
+
+-(void)dealloc {
+	[super dealloc];
 }
-			
--(ZKDescribeFlexiPageRegion *)region {
-    return [[self complexTypeArrayFromElements:@"region" cls:[ZKDescribeFlexiPageRegion class]] lastObject];
+
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"allowSave"            elemValue:self.allowSave];
+	[env addBoolElement:@"includeRecordDetails" elemValue:self.includeRecordDetails];
+	[env addBoolElement:@"runAsCurrentUser"     elemValue:self.runAsCurrentUser];
+	[env endElement:elemName];
 }
-			
--(NSString *)value {
-    return [self string:@"value"];
-}
-			
 @end

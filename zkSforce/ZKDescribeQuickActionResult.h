@@ -26,10 +26,12 @@
 
 #import "zkXmlDeserializer.h"
 
+@class ZKDescribeLayoutSection;
 /*
 <complexType name="DescribeQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element nillable="true" type="tns:ShareAccessLevel" name="accessLevelRequired"/>
+    <element nillable="true" type="tns:ID" name="canvasApplicationId"/>
     <element nillable="true" type="xsd:string" name="canvasApplicationName"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
     <element nillable="true" type="xsd:string" name="contextSobjectType"/>
@@ -39,7 +41,7 @@
     <element nillable="true" type="xsd:string" name="iconUrl"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeIcon" name="icons"/>
     <element type="xsd:string" name="label"/>
-    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="layout"/>
+    <element nillable="true" type="tns:DescribeLayoutSection" name="layout"/>
     <element nillable="true" type="xsd:string" name="miniIconUrl"/>
     <element type="xsd:string" name="name"/>
     <element nillable="true" type="xsd:string" name="targetParentField"/>
@@ -53,23 +55,24 @@
 */
 @interface ZKDescribeQuickActionResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *accessLevelRequired; 
-@property (readonly) NSString  *canvasApplicationName; 
-@property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) NSString  *contextSobjectType; 
-@property (readonly) NSArray   *defaultValues;  // of ZKDescribeQuickActionDefaultValue
-@property (readonly) NSInteger  height; 
-@property (readonly) NSString  *iconName; 
-@property (readonly) NSString  *iconUrl; 
-@property (readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (readonly) NSString  *label; 
-@property (readonly) NSArray   *layout;  // of ZKDescribeLayoutSection
-@property (readonly) NSString  *miniIconUrl; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *targetParentField; 
-@property (readonly) NSString  *targetRecordTypeId; 
-@property (readonly) NSString  *targetSobjectType; 
-@property (readonly) NSString  *type; 
-@property (readonly) NSString  *visualforcePageName; 
-@property (readonly) NSInteger  width; 
+@property (readonly) NSString                 *accessLevelRequired; 
+@property (readonly) NSString                 *canvasApplicationId; 
+@property (readonly) NSString                 *canvasApplicationName; 
+@property (readonly) NSArray                  *colors;  // of ZKDescribeColor
+@property (readonly) NSString                 *contextSobjectType; 
+@property (readonly) NSArray                  *defaultValues;  // of ZKDescribeQuickActionDefaultValue
+@property (readonly) NSInteger                 height; 
+@property (readonly) NSString                 *iconName; 
+@property (readonly) NSString                 *iconUrl; 
+@property (readonly) NSArray                  *icons;  // of ZKDescribeIcon
+@property (readonly) NSString                 *label; 
+@property (readonly) ZKDescribeLayoutSection  *layout; 
+@property (readonly) NSString                 *miniIconUrl; 
+@property (readonly) NSString                 *name; 
+@property (readonly) NSString                 *targetParentField; 
+@property (readonly) NSString                 *targetRecordTypeId; 
+@property (readonly) NSString                 *targetSobjectType; 
+@property (readonly) NSString                 *type; 
+@property (readonly) NSString                 *visualforcePageName; 
+@property (readonly) NSInteger                 width; 
 @end

@@ -31,13 +31,11 @@
   <sequence>
     <element type="tns:ID" maxOccurs="unbounded" minOccurs="0" name="ids"/>
     <element type="xsd:dateTime" name="latestDateCovered"/>
-    <element type="xsd:string" maxOccurs="1" minOccurs="0" name="sforceReserved"/>
   </sequence>
 </complexType>
 */
 @interface ZKGetUpdatedResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *ids;  // of NSString
-@property (readonly) NSDate    *latestDateCovered; 
-@property (readonly) NSString  *sforceReserved; 
+@property (readonly) NSArray  *ids;  // of NSString
+@property (readonly) NSDate   *latestDateCovered; 
 @end

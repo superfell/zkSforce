@@ -38,6 +38,7 @@
 #import "ZKDescribeFlexiPageResult.h"
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeLayoutResult.h"
+#import "ZKDescribeNounResult.h"
 #import "ZKDescribeQuickActionResult.h"
 #import "ZKDescribeSObject.h"
 #import "ZKDescribeSearchLayoutResult.h"
@@ -415,6 +416,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
@@ -441,6 +443,7 @@
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
@@ -467,6 +470,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[env moveToBody];
@@ -488,6 +492,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
@@ -524,6 +529,7 @@
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
@@ -545,6 +551,7 @@
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
@@ -770,6 +777,7 @@
 	[self addDisableFeedTrackingHeader:env];
 	[self addStreamingEnabledHeader:env];
 	[self addAllOrNoneHeader:env];
+	[self addDuplicateRuleHeader:env];
 	[self addLocaleOptions:env];
 	[self addDebuggingHeader:env];
 	[self addPackageVersionHeader:env];
@@ -834,6 +842,25 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
+}
+
+// Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+-(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
+	[env startElement:@"describeNouns"];
+	[env addElementArray:@"nouns"        elemValue:nouns];
+	[env addBoolElement:@"onlyRenamed"   elemValue:onlyRenamed];
+	[env addBoolElement:@"includeFields" elemValue:includeFields];
+	[env endElement:@"describeNouns"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeNounResult class]];
 }
 
 @end

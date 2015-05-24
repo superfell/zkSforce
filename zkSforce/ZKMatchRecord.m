@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,21 +24,27 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeComponentInstanceProperty.h"
-#import "ZKDescribeFlexiPageRegion.h"
+#import "ZKMatchRecord.h"
+#import "ZKAdditionalInformationMap.h"
+#import "ZKFieldDiff.h"
+#import "ZKSObject.h"
 
-@implementation ZKDescribeComponentInstanceProperty
+@implementation ZKMatchRecord
 
--(NSString *)name {
-    return [self string:@"name"];
+-(NSArray *)additionalInformation {
+    return [self complexTypeArrayFromElements:@"additionalInformation" cls:[ZKAdditionalInformationMap class]];
 }
 			
--(ZKDescribeFlexiPageRegion *)region {
-    return [[self complexTypeArrayFromElements:@"region" cls:[ZKDescribeFlexiPageRegion class]] lastObject];
+-(NSArray *)fieldDiffs {
+    return [self complexTypeArrayFromElements:@"fieldDiffs" cls:[ZKFieldDiff class]];
 }
 			
--(NSString *)value {
-    return [self string:@"value"];
+-(double)matchConfidence {
+    return [self double:@"matchConfidence"];
+}
+			
+-(ZKSObject *)record {
+    return [self sObject:@"record"];
 }
 			
 @end

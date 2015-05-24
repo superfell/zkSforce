@@ -41,8 +41,4 @@
     return [self dateTime:@"latestDateCovered"];
 }
 			
--(NSString *)sforceReserved {
-    return [self string:@"sforceReserved"];
-}
-			
 @end

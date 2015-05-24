@@ -114,6 +114,10 @@
     return [self boolean:@"displayLocationInDecimal"];
 }
 			
+-(BOOL)encrypted {
+    return [self boolean:@"encrypted"];
+}
+			
 -(BOOL)externalId {
     return [self boolean:@"externalId"];
 }

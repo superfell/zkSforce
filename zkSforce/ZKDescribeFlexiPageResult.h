@@ -35,7 +35,7 @@
     <element type="xsd:string" name="name"/>
     <element minOccurs="0" type="tns:DescribeQuickActionListResult" name="quickActionList"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeFlexiPageRegion" name="regions"/>
-    <element nillable="true" type="xsd:string" name="sobjectType"/>
+    <element nillable="true" minOccurs="0" type="xsd:string" name="sobjectType"/>
     <element nillable="true" type="xsd:string" name="template"/>
     <element type="xsd:string" name="type"/>
   </sequence>

@@ -179,4 +179,7 @@
 // Retreive the template sobjects, if appropriate, for the given quick action names in a given context
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId;
 
+// Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+-(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields;
+
 @end

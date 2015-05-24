@@ -297,4 +297,9 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock;
 
+// Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+-(void) performDescribeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
+                   failBlock:(zkFailWithExceptionBlock)failBlock
+               completeBlock:(zkCompleteArrayBlock)completeBlock;
+
 @end

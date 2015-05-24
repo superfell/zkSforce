@@ -36,6 +36,10 @@
     return [self string:@"accessLevelRequired"];
 }
 			
+-(NSString *)canvasApplicationId {
+    return [self string:@"canvasApplicationId"];
+}
+			
 -(NSString *)canvasApplicationName {
     return [self string:@"canvasApplicationName"];
 }
@@ -72,8 +76,8 @@
     return [self string:@"label"];
 }
 			
--(NSArray *)layout {
-    return [self complexTypeArrayFromElements:@"layout" cls:[ZKDescribeLayoutSection class]];
+-(ZKDescribeLayoutSection *)layout {
+    return [[self complexTypeArrayFromElements:@"layout" cls:[ZKDescribeLayoutSection class]] lastObject];
 }
 			
 -(NSString *)miniIconUrl {

@@ -37,8 +37,4 @@
     return [self complexTypeArrayFromElements:@"searchRecords" cls:[ZKSearchRecord class]];
 }
 			
--(NSString *)sforceReserved {
-    return [self string:@"sforceReserved"];
-}
-			
 @end

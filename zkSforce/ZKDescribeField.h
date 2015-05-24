@@ -46,6 +46,7 @@
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:int" name="digits"/>
     <element minOccurs="0" type="xsd:boolean" name="displayLocationInDecimal"/>
+    <element minOccurs="0" type="xsd:boolean" name="encrypted"/>
     <element minOccurs="0" type="xsd:boolean" name="externalId"/>
     <element minOccurs="0" type="xsd:string" name="extraTypeInfo"/>
     <element type="xsd:boolean" name="filterable"/>
@@ -103,6 +104,7 @@
 @property (readonly) BOOL                   deprecatedAndHidden; 
 @property (readonly) NSInteger              digits; 
 @property (readonly) BOOL                   displayLocationInDecimal; 
+@property (readonly) BOOL                   encrypted; 
 @property (readonly) BOOL                   externalId; 
 @property (readonly) NSString              *extraTypeInfo; 
 @property (readonly) BOOL                   filterable; 

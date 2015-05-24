@@ -1,6 +1,6 @@
 # zkSforce README
 
-zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.7+, iOS 7+)
+zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.9+, iOS 7+)
 
 zkSforce supports all of the partner web services API, including
 
@@ -15,7 +15,7 @@ zkSforce supports all of the partner web services API, including
 In general the client acts just like the Web Services API, however in a few places it has some smarts to make your life easier.
 
  * it'll track the duration of the session and re-login as required, so just keep calling methods as needed and don't worry about the session expiring away from under you.
- * in ZKDescribeSObject there's a helper method to get the ZKDescribeField given the fields name.
+ * in ZKDescribeSObject there's a helper method to get the ZKDescribeField given the field name.
  * In ZKSObject the fieldsToNull collection is managed for you, if you add a field to the fieldsToNull collection (via setFieldToNull) it'll automatically remove any field value, also you can just set the field value directly to nil (aka null) in setFieldValue:field: and it'll automatically translate that into a fieldsToNull call for you.
  * ZKQueryResult implements the NSTableView informal data source interface, so you can easily show a queries results in a table view (just like SoqlX does)
  * You can ask the ZKSforceClient object to automatically cache describeGlobal/describeSObject results for you by calling setCacheDescribes
@@ -47,7 +47,7 @@ Login and create a new contact for Simon Fell, and check the result
 	        NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
         [sforce release];
 
-Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a versions of all the calls that are asynchronous and use blocks to get completion/error callbacks.
+Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a version of all the calls that are asynchronous and use blocks to get completion/error callbacks.
 
 		[client performQuery:query 
         	failBlock:^(NSException *ex) {

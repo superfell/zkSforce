@@ -31,7 +31,6 @@
   <sequence>
     <element maxOccurs="1" minOccurs="1" nillable="false" type="xsd:string" name="queryId"/>
     <element type="tns:SearchRecord" maxOccurs="unbounded" minOccurs="0" name="searchRecords"/>
-    <element type="xsd:string" maxOccurs="1" minOccurs="0" name="sforceReserved"/>
   </sequence>
 </complexType>
 */
@@ -39,5 +38,4 @@
 }
 @property (readonly) NSString  *queryId; 
 @property (readonly) NSArray   *searchRecords;  // of ZKSearchRecord
-@property (readonly) NSString  *sforceReserved; 
 @end

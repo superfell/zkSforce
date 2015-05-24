@@ -32,14 +32,12 @@
     <element type="tns:DeletedRecord" maxOccurs="unbounded" minOccurs="0" name="deletedRecords"/>
     <element type="xsd:dateTime" name="earliestDateAvailable"/>
     <element type="xsd:dateTime" name="latestDateCovered"/>
-    <element type="xsd:string" maxOccurs="1" minOccurs="0" name="sforceReserved"/>
   </sequence>
 </complexType>
 */
 @interface ZKGetDeletedResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *deletedRecords;  // of ZKDeletedRecord
-@property (readonly) NSDate    *earliestDateAvailable; 
-@property (readonly) NSDate    *latestDateCovered; 
-@property (readonly) NSString  *sforceReserved; 
+@property (readonly) NSArray  *deletedRecords;  // of ZKDeletedRecord
+@property (readonly) NSDate   *earliestDateAvailable; 
+@property (readonly) NSDate   *latestDateCovered; 
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,17 +24,24 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeComponentInstanceProperty.h"
-#import "ZKDescribeFlexiPageRegion.h"
+#import "ZKNameCaseValue.h"
 
-@implementation ZKDescribeComponentInstanceProperty
+@implementation ZKNameCaseValue
 
--(NSString *)name {
-    return [self string:@"name"];
+-(NSString *)article {
+    return [self string:@"article"];
 }
 			
--(ZKDescribeFlexiPageRegion *)region {
-    return [[self complexTypeArrayFromElements:@"region" cls:[ZKDescribeFlexiPageRegion class]] lastObject];
+-(NSString *)caseType {
+    return [self string:@"caseType"];
+}
+			
+-(NSString *)number {
+    return [self string:@"number"];
+}
+			
+-(NSString *)possessive {
+    return [self string:@"possessive"];
 }
 			
 -(NSString *)value {

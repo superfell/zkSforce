@@ -44,6 +44,7 @@
 @class ZKOwnerChangeOptions;
 @class ZKUserTerritoryDeleteHeader;
 @class ZKQueryOptions;
+@class ZKDuplicateRuleHeader;
 
 // This is the primary entry point into the library, you'd create one of these
 // call login, then use it to make other API calls. Your session is automatically
@@ -74,6 +75,7 @@
     ZKOwnerChangeOptions         *ownerChangeOptions;
     ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
     ZKQueryOptions               *queryOptions;
+    ZKDuplicateRuleHeader        *duplicateRuleHeader;
 }
 
 // configuration for where to connect to and what api version to use
@@ -209,6 +211,7 @@
 @property (retain) ZKOwnerChangeOptions         *ownerChangeOptions;
 @property (retain) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
 @property (retain) ZKQueryOptions               *queryOptions;
+@property (retain) ZKDuplicateRuleHeader        *duplicateRuleHeader;
 
 // describe caching support, if true, describeGlobal & describeSObject call results are cached.
 //////////////////////////////////////////////////////////////////////////////////////
@@ -236,5 +239,6 @@
 -(void)addOwnerChangeOptions:(ZKEnvelope *)env;
 -(void)addUserTerritoryDeleteHeader:(ZKEnvelope *)env;
 -(void)addQueryOptions:(ZKEnvelope *)env;
+-(void)addDuplicateRuleHeader:(ZKEnvelope *)env;
 @end
 

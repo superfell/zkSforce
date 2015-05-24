@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,21 +24,32 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeComponentInstanceProperty.h"
-#import "ZKDescribeFlexiPageRegion.h"
+#import "ZKAnalyticsCloudComponent.h"
 
-@implementation ZKDescribeComponentInstanceProperty
+@implementation ZKAnalyticsCloudComponent
 
--(NSString *)name {
-    return [self string:@"name"];
+-(NSString *)error {
+    return [self string:@"error"];
 }
 			
--(ZKDescribeFlexiPageRegion *)region {
-    return [[self complexTypeArrayFromElements:@"region" cls:[ZKDescribeFlexiPageRegion class]] lastObject];
+-(NSString *)filter {
+    return [self string:@"filter"];
 }
 			
--(NSString *)value {
-    return [self string:@"value"];
+-(NSString *)height {
+    return [self string:@"height"];
+}
+			
+-(BOOL)hideOnError {
+    return [self boolean:@"hideOnError"];
+}
+			
+-(BOOL)showTitle {
+    return [self boolean:@"showTitle"];
+}
+			
+-(NSString *)width {
+    return [self string:@"width"];
 }
 			
 @end
