@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2014 Simon Fell
+// Copyright (c) 2006-2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -72,8 +72,8 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (id)init {
 	self = [super init];
-	preferedApiVersion = 33;
-	[self setLoginProtocolAndHost:@"https://www.salesforce.com"];
+	preferedApiVersion = 35;
+	[self setLoginProtocolAndHost:@"https://login.salesforce.com"];
 	cacheDescribes = NO;
 	describes = [[NSMutableDictionary alloc] init];
 	return self;
@@ -156,6 +156,11 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version {
 	[authEndpointUrl release];
+    // www.salesforce.com is no longer going to be support for login, so map requests for that
+    // to login.salesforce.com
+    NSString *www = @"://www.salesforce.com";
+    NSString *login = @"://login.salesforce.com";
+    protocolAndHost = [protocolAndHost stringByReplacingOccurrencesOfString:www withString:login options:NSCaseInsensitiveSearch range:NSMakeRange(0, protocolAndHost.length)];
 	authEndpointUrl = [[NSString stringWithFormat:@"%@/services/Soap/u/%d.0", protocolAndHost, version] retain];
     preferedApiVersion = version;
 }
