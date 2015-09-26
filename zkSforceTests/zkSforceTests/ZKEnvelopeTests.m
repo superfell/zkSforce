@@ -58,25 +58,25 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testSimpleEnvelope {
-    STAssertEqualObjects([self envWith:@""], [env end], @"plain env is wrong");
+    XCTAssertEqualObjects([self envWith:@""], [env end], @"plain env is wrong");
 }
 
 -(void)testStartEndElement {
     [env startElement:@"bob"];
     [env endElement:@"bob"];
-    STAssertEqualObjects([self envWith:@"<bob></bob>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob></bob>"], [env end]);
 }
 
 -(void)testWriteText {
     [env startElement:@"bob"];
     [env writeText:@"<>&\"'hello"];
     [env endElement:@"bob"];
-    STAssertEqualObjects([self envWith:@"<bob>&lt;&gt;&amp;\"'hello</bob>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob>&lt;&gt;&amp;\"'hello</bob>"], [env end]);
 }
 
 -(void)testAddNullElement {
     [env addNullElement:@"bob"];
-    STAssertEqualObjects([self envWith:@"<bob x:nil='true'/>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob x:nil='true'/>"], [env end]);
 }
 
 -(void)testAddElementNil {
@@ -84,86 +84,86 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     [env addElement:@"b" elemValue:nil nillable:YES optional:YES];
     [env addElement:@"c" elemValue:nil nillable:NO optional:YES];
     [env addElement:@"d" elemValue:nil nillable:NO optional:NO];
-    STAssertEqualObjects([self envWith:@"<a x:nil='true'/><d></d>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<a x:nil='true'/><d></d>"], [env end]);
 }
 
 -(void)testAddBoolElement {
     [env addBoolElement:@"one" elemValue:TRUE];
     [env addBoolElement:@"two" elemValue:FALSE];
-    STAssertEqualObjects([self envWith:@"<one>true</one><two>false</two>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<one>true</one><two>false</two>"], [env end]);
 }
 
 -(void)testAddIntElement {
     [env addIntElement:@"one" elemValue:12345];
-    STAssertEqualObjects([self envWith:@"<one>12345</one>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<one>12345</one>"], [env end]);
 }
 
 -(void)testWriteSessionHeader {
     [env writeSessionHeader:@"a sid"];
-    STAssertEqualObjects([self envWith:@"<s:Header><SessionHeader><sessionId>a sid</sessionId></SessionHeader></s:Header>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<s:Header><SessionHeader><sessionId>a sid</sessionId></SessionHeader></s:Header>"], [env end]);
 }
 
 -(void)testWriteCallOptionsHeader {
     [env writeCallOptionsHeader:@"test"];
-    STAssertEqualObjects([self envWith:@"<s:Header><CallOptions><client>test</client></CallOptions></s:Header>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<s:Header><CallOptions><client>test</client></CallOptions></s:Header>"], [env end]);
 }
 
 -(void)testWriteTrueMruHeader {
     [env writeMruHeader:TRUE];
-    STAssertEqualObjects([self envWith:@"<s:Header><MruHeader><updateMru>true</updateMru></MruHeader></s:Header>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<s:Header><MruHeader><updateMru>true</updateMru></MruHeader></s:Header>"], [env end]);
 }
 
 -(void)testWriteFalseMruHeader {
     [env writeMruHeader:FALSE];
-    STAssertEqualObjects([self envWith:@""], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@""], [env end]);
 }
 
 -(void)testMoveToBody {
     [env moveToBody];
-    STAssertEqualObjects([self envWith:@"<s:Body></s:Body>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<s:Body></s:Body>"], [env end]);
 }
 
 -(void)testMoveToHeaders {
     [env moveToHeaders];
-    STAssertEqualObjects([self envWith:@"<s:Header></s:Header>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<s:Header></s:Header>"], [env end]);
 }
 
 -(void)testMoveToHeadersAndBody {
     [env moveToHeaders];
     [env moveToBody];
-    STAssertEqualObjects([self envWith:@"<s:Header></s:Header><s:Body></s:Body>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<s:Header></s:Header><s:Body></s:Body>"], [env end]);
 }
 
 -(void)testCantMoveFromBodyToHeaders {
     [env moveToBody];
-    STAssertThrows([env moveToHeaders], nil);
+    XCTAssertThrows([env moveToHeaders]);
 }
 
 -(void)testAddElementString {
     [env addElementString:@"bob" elemValue:@"hello>"];
-    STAssertEqualObjects([self envWith:@"<bob>hello&gt;</bob>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob>hello&gt;</bob>"], [env end]);
     [self makeEnv];
     [env addElement:@"alice" elemValue:@"!"];
-    STAssertEqualObjects([self envWith:@"<alice>!</alice>"],[env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<alice>!</alice>"],[env end]);
 }
 
 -(void)testAddElementArray {
     NSArray *vals = [NSArray arrayWithObjects:@"one", @"two", nil];
     [env addElementArray:@"bob" elemValue:vals];
-    STAssertEqualObjects([self envWith:@"<bob>one</bob><bob>two</bob>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob>one</bob><bob>two</bob>"], [env end]);
     [self makeEnv];
     [env addElement:@"alice" elemValue:vals];
-    STAssertEqualObjects([self envWith:@"<alice>one</alice><alice>two</alice>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<alice>one</alice><alice>two</alice>"], [env end]);
 }
 
 -(void)testNullArray {
     [env addElementArray:@"bob" elemValue:nil];
-    STAssertEqualObjects([self envWith:@""], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@""], [env end]);
 }
 
 -(void)testAddDoubleElement {
     [env addDoubleElement:@"d" elemValue:42.5f];
-    STAssertEqualObjects([self envWith:@"<d>42.5</d>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<d>42.5</d>"], [env end]);
 }
 
 -(void)testAddElementSObject {
@@ -174,10 +174,10 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     [o setFieldValue:@"Sid" field:@"LastMod"];
     [env addElementSObject:@"acc" elemValue:o];
     NSString *accEnv = [self envWith:@"<acc><type>Account</type><fieldsToNull>IsWon</fieldsToNull><fieldsToNull>Bob__c</fieldsToNull><status>Lost</status><LastMod>Sid</LastMod></acc>"];
-    STAssertEqualObjects(accEnv, [env end], nil);
+    XCTAssertEqualObjects(accEnv, [env end]);
     [self makeEnv];
     [env addElement:@"acc" elemValue:o];
-    STAssertEqualObjects(accEnv, [env end], nil);
+    XCTAssertEqualObjects(accEnv, [env end]);
 }
 
 -(void)testSObjectAddress {
@@ -190,16 +190,17 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     a.street = @"Market";
     a.country = @"USA";
     a.postalCode = @"94925";
+    a.geocodeAccuracy = @"1";
     [o setFieldValue:a field:@"MailingAddress"];
     [env addElementSObject:@"acc" elemValue:o];
-    NSString *expected = [self envWith:@"<acc><type>Account</type><MailingAddress x:type=\"address\"><latitude>11</latitude><longitude>10</longitude><city>SF</city><country>USA</country><countryCode x:nil='true'/><postalCode>94925</postalCode><state>CA</state><stateCode x:nil='true'/><street>Market</street></MailingAddress></acc>"];
-    STAssertEqualObjects(expected, [env end], nil);
+    NSString *expected = [self envWith:@"<acc><type>Account</type><MailingAddress x:type=\"address\"><latitude>11</latitude><longitude>10</longitude><city>SF</city><country>USA</country><countryCode x:nil='true'/><geocodeAccuracy>1</geocodeAccuracy><postalCode>94925</postalCode><state>CA</state><stateCode x:nil='true'/><street>Market</street></MailingAddress></acc>"];
+    XCTAssertEqualObjects(expected, [env end]);
 }
 
 -(void)testSerializable {
     ZKTestSerialize *s = [[[ZKTestSerialize alloc] init] autorelease];
     [env addElement:@"bob" elemValue:s];
-    STAssertEqualObjects([self envWith:@"<bob>Hello World</bob>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob>Hello World</bob>"], [env end]);
 }
 
 -(void)testExtentsionTypeSerializable {
@@ -207,12 +208,12 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
     r.objectId = @"obj";
     r.comments = @"comment";
     [env addElement:@"p" elemValue:r];
-    STAssertEqualObjects([self envWith:@"<p x:type=\"ProcessSubmitRequest\"><comments>comment</comments><objectId>obj</objectId><submitterId x:nil='true'/><processDefinitionNameOrId x:nil='true'/><skipEntryCriteria>false</skipEntryCriteria></p>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<p x:type=\"ProcessSubmitRequest\"><comments>comment</comments><objectId>obj</objectId><submitterId x:nil='true'/><processDefinitionNameOrId x:nil='true'/><skipEntryCriteria>false</skipEntryCriteria></p>"], [env end]);
 }
 
 -(void)testToString {
     [env addElement:@"bob" elemValue:[NSNumber numberWithInt:42]];
-    STAssertEqualObjects([self envWith:@"<bob>42</bob>"], [env end], nil);
+    XCTAssertEqualObjects([self envWith:@"<bob>42</bob>"], [env end]);
 }
 
 @end

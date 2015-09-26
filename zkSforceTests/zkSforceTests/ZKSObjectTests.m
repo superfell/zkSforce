@@ -35,32 +35,32 @@
 -(void)testLocation {
     NSString *xml = @"<type>Account</type><Id>001_test</Id><foo x:type='ens:location'><latitude>10</latitude><longitude>33</longitude></foo>";
     ZKSObject *so = [self parseSobject:xml];
-    STAssertEqualObjects([so type], @"Account", @"type should match");
-    STAssertEqualObjects([so id], @"001_test", @"Id wrong");
+    XCTAssertEqualObjects([so type], @"Account", @"type should match");
+    XCTAssertEqualObjects([so id], @"001_test", @"Id wrong");
     ZKLocation*l = [so locationValue:@"foo"];
-    STAssertNotNil(l, @"should have a location object");
-    STAssertEqualObjects([ZKLocation class], [l class], @"location unexpected type");
-    STAssertEquals(10.0, [l latitude], @"lattitude wrong");
-    STAssertEquals(33.0, [l longitude], @"longitude wrong");
+    XCTAssertNotNil(l, @"should have a location object");
+    XCTAssertEqualObjects([ZKLocation class], [l class], @"location unexpected type");
+    XCTAssertEqual(10.0, [l latitude], @"lattitude wrong");
+    XCTAssertEqual(33.0, [l longitude], @"longitude wrong");
 }
 
 -(void)testAddress {
     NSString *xml = @"<type>Account</type><Id>001_test</Id><foo x:type='ens:address'><latitude>10</latitude><longitude>33</longitude><city>SF</city><country>USA</country><countryCode>US</countryCode><postalCode>94105</postalCode><state>Cali</state><stateCode>CA</stateCode><street>Market St</street></foo>";
     ZKSObject *so = [self parseSobject:xml];
-    STAssertEqualObjects([so type], @"Account", @"type should match");
-    STAssertEqualObjects([so id], @"001_test", @"Id wrong");
+    XCTAssertEqualObjects([so type], @"Account", @"type should match");
+    XCTAssertEqualObjects([so id], @"001_test", @"Id wrong");
     ZKAddress*a = [so addressValue:@"foo"];
-    STAssertNotNil(a, @"should have an address object");
-    STAssertEqualObjects([ZKAddress class], [a class], @"address unexpected type");
-    STAssertEquals(10.0, [a latitude], @"lattitude wrong");
-    STAssertEquals(33.0, [a longitude], @"longitude wrong");
-    STAssertEqualObjects([a city], @"SF", @"city wrong");
-    STAssertEqualObjects([a country], @"USA", @"country wrong");
-    STAssertEqualObjects([a countryCode], @"US", @"countryCode wrong");
-    STAssertEqualObjects([a postalCode], @"94105", @"postalCode wrong");
-    STAssertEqualObjects([a state], @"Cali", @"state wrong");
-    STAssertEqualObjects([a stateCode], @"CA", @"stateCode wrong");
-    STAssertEqualObjects([a street], @"Market St", @"street wrong");
+    XCTAssertNotNil(a, @"should have an address object");
+    XCTAssertEqualObjects([ZKAddress class], [a class], @"address unexpected type");
+    XCTAssertEqual(10.0, [a latitude], @"lattitude wrong");
+    XCTAssertEqual(33.0, [a longitude], @"longitude wrong");
+    XCTAssertEqualObjects([a city], @"SF", @"city wrong");
+    XCTAssertEqualObjects([a country], @"USA", @"country wrong");
+    XCTAssertEqualObjects([a countryCode], @"US", @"countryCode wrong");
+    XCTAssertEqualObjects([a postalCode], @"94105", @"postalCode wrong");
+    XCTAssertEqualObjects([a state], @"Cali", @"state wrong");
+    XCTAssertEqualObjects([a stateCode], @"CA", @"stateCode wrong");
+    XCTAssertEqualObjects([a street], @"Market St", @"street wrong");
 }
 
 @end

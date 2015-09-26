@@ -19,8 +19,8 @@
 // THE SOFTWARE.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface ZKXmlDeserializerTests : SenTestCase
+@interface ZKXmlDeserializerTests : XCTestCase
 
 @end

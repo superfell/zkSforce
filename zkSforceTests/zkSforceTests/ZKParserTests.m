@@ -29,13 +29,13 @@
 }
 
 -(void)assert:(zkElement *)e hasName:(NSString *)n text:(NSString *)t {
-    STAssertEqualObjects([e name], n, nil);
-    STAssertEqualObjects([e stringValue], t, nil);
+    XCTAssertEqualObjects([e name], n);
+    XCTAssertEqualObjects([e stringValue], t);
 }
 
 -(void)assert:(zkElement *)e hasName:(NSString *)n ns:(NSString *)ns text:(NSString *)t {
     [self assert:e hasName:n text:t];
-    STAssertEqualObjects([e namespace], ns, nil);
+    XCTAssertEqualObjects([e namespace], ns);
 }
 
 -(void)testSimple {
@@ -47,19 +47,19 @@
 -(void)testChildElement {
     NSString *doc = @"<root><child>some text</child><child2>more text</child2></root>";
     zkElement *e = [self parse:doc];
-    STAssertEqualObjects(@"root", [e name], nil);
+    XCTAssertEqualObjects(@"root", [e name]);
     zkElement *c1 = [e childElement:@"child"];
     zkElement *c2 = [e childElement:@"child2"];
     [self assert:c1 hasName:@"child" text:@"some text"];
     [self assert:c2 hasName:@"child2" text:@"more text"];
-    STAssertNil([e childElement:@"dontExist"], nil);
+    XCTAssertNil([e childElement:@"dontExist"]);
 }
 
 -(void)testChildElements {
     NSString *doc = @"<root><c>one</c><c>two</c></root>";
     zkElement *e = [self parse:doc];
     NSArray *c = [e childElements:@"c"];
-    STAssertEquals((NSUInteger)2, [c count], nil);
+    XCTAssertEqual((NSUInteger)2, [c count]);
     [self assert:[c objectAtIndex:0] hasName:@"c" text:@"one"];
     [self assert:[c objectAtIndex:1] hasName:@"c" text:@"two"];
 }
@@ -67,30 +67,30 @@
 -(void)testAttributeValue {
     NSString *doc = @"<root a='bob'/>";
     zkElement *e = [self parse:doc];
-    STAssertEqualObjects(@"bob", [e attributeValue:@"a" ns:nil], nil);
+    XCTAssertEqualObjects(@"bob", [e attributeValue:@"a" ns:nil]);
 }
 
 -(void)testAttributeValueNs {
     NSString *doc = @"<root xmlns='a' xmlns:x='b' bob='a' x:bob='b' />";
     zkElement *e = [self parse:doc];
-    STAssertEqualObjects(@"a", [e attributeValue:@"bob" ns:nil], nil);
-    STAssertEqualObjects(@"b", [e attributeValue:@"bob" ns:@"b"], nil);
+    XCTAssertEqualObjects(@"a", [e attributeValue:@"bob" ns:nil]);
+    XCTAssertEqualObjects(@"b", [e attributeValue:@"bob" ns:@"b"]);
 }
 
 -(void)testChildElementsNs {
     NSString *doc = @"<root xmlns='a' xmlns:b='bb'><c>one</c><b:c>two</b:c><b:c>three</b:c></root>";
     zkElement *e = [self parse:doc];
     NSArray *bc = [e childElements:@"c" ns:@"bb"];
-    STAssertEquals((NSUInteger)2, [bc count], nil);
+    XCTAssertEqual((NSUInteger)2, [bc count]);
     [self assert:[bc objectAtIndex:0] hasName:@"c" ns:@"bb" text:@"two"];
     [self assert:[bc objectAtIndex:1] hasName:@"c" ns:@"bb" text:@"three"];
 
     NSArray *ac = [e childElements:@"c" ns:@"a"];
-    STAssertEquals((NSUInteger)1, [ac count], nil);
+    XCTAssertEqual((NSUInteger)1, [ac count]);
     [self assert:[ac objectAtIndex:0] hasName:@"c" ns:@"a" text:@"one"];
     
     NSArray *c = [e childElements:@"c"];
-    STAssertEquals((NSUInteger)3, [c count], nil);
+    XCTAssertEqual((NSUInteger)3, [c count]);
     [self assert:[c objectAtIndex:0] hasName:@"c" ns:@"a" text:@"one"];
     [self assert:[c objectAtIndex:1] hasName:@"c" ns:@"bb" text:@"two"];
     [self assert:[c objectAtIndex:2] hasName:@"c" ns:@"bb" text:@"three"];

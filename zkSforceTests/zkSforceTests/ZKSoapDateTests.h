@@ -19,9 +19,9 @@
 // THE SOFTWARE.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface ZKSoapDateTests : SenTestCase {
+@interface ZKSoapDateTests : XCTestCase {
     NSCalendar *cal;
 }
 @end

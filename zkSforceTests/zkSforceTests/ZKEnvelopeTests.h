@@ -19,12 +19,12 @@
 // THE SOFTWARE.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "ZKXMLSerializable.h"
 
 @class ZKEnvelope;
 
-@interface ZKEnvelopeTests : SenTestCase {
+@interface ZKEnvelopeTests : XCTestCase {
     ZKEnvelope *env;
 }
 

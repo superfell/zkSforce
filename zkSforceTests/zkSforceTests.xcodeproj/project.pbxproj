@@ -13,7 +13,6 @@
 		F402CC03195545AB00C6E1E2 /* ZKKnowledgeLanguageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBFB195545AB00C6E1E2 /* ZKKnowledgeLanguageItem.m */; };
 		F402CC04195545AB00C6E1E2 /* ZKKnowledgeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBFD195545AB00C6E1E2 /* ZKKnowledgeSettings.m */; };
 		F402CC05195545AB00C6E1E2 /* ZKNamedLayoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F402CBFF195545AB00C6E1E2 /* ZKNamedLayoutInfo.m */; };
-		F414BBF51842EC4700322AC2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BBF41842EC4700322AC2 /* SenTestingKit.framework */; };
 		F414BBF71842EC4700322AC2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BBF61842EC4700322AC2 /* Cocoa.framework */; };
 		F414BC011842EC4700322AC2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F414BBFF1842EC4700322AC2 /* InfoPlist.strings */; };
 		F414BC041842EC4700322AC2 /* ZKEnvelopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BC031842EC4700322AC2 /* ZKEnvelopeTests.m */; };
@@ -183,6 +182,19 @@
 		F4913EF81B113E85001CC650 /* ZKMatchRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EE91B113E85001CC650 /* ZKMatchRecord.m */; };
 		F4913EF91B113E85001CC650 /* ZKMatchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EEB1B113E85001CC650 /* ZKMatchResult.m */; };
 		F4913EFA1B113E85001CC650 /* ZKNameCaseValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EED1B113E85001CC650 /* ZKNameCaseValue.m */; };
+		F4B7704A1BB737C100681844 /* ZKCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770311BB737C100681844 /* ZKCanvas.m */; };
+		F4B7704B1BB737C100681844 /* ZKDescribePathAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770331BB737C100681844 /* ZKDescribePathAssistant.m */; };
+		F4B7704C1BB737C100681844 /* ZKDescribePathAssistantField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770351BB737C100681844 /* ZKDescribePathAssistantField.m */; };
+		F4B7704D1BB737C100681844 /* ZKDescribePathAssistantsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770371BB737C100681844 /* ZKDescribePathAssistantsResult.m */; };
+		F4B7704E1BB737C100681844 /* ZKDescribePathAssistantStep.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770391BB737C100681844 /* ZKDescribePathAssistantStep.m */; };
+		F4B7704F1BB737C100681844 /* ZKFlexipageContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B7703B1BB737C100681844 /* ZKFlexipageContext.m */; };
+		F4B770501BB737C100681844 /* ZKOwnerChangeOption.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B7703D1BB737C100681844 /* ZKOwnerChangeOption.m */; };
+		F4B770511BB737C100681844 /* ZKRenderEmailTemplateBodyResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B7703F1BB737C100681844 /* ZKRenderEmailTemplateBodyResult.m */; };
+		F4B770521BB737C100681844 /* ZKRenderEmailTemplateError.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770411BB737C100681844 /* ZKRenderEmailTemplateError.m */; };
+		F4B770531BB737C100681844 /* ZKRenderEmailTemplateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770431BB737C100681844 /* ZKRenderEmailTemplateRequest.m */; };
+		F4B770541BB737C100681844 /* ZKRenderEmailTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770451BB737C100681844 /* ZKRenderEmailTemplateResult.m */; };
+		F4B770551BB737C100681844 /* ZKScopeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770471BB737C100681844 /* ZKScopeInfo.m */; };
+		F4B770561BB737C100681844 /* ZKVisualforcePage.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770491BB737C100681844 /* ZKVisualforcePage.m */; };
 		F4BB7F4518B0139700444797 /* ZKDescribeApprovalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F3C18B0139700444797 /* ZKDescribeApprovalLayout.m */; };
 		F4BB7F4618B0139700444797 /* ZKDescribeApprovalLayoutResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F3E18B0139700444797 /* ZKDescribeApprovalLayoutResult.m */; };
 		F4BB7F4718B0139700444797 /* ZKAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4018B0139700444797 /* ZKAddress.m */; };
@@ -204,8 +216,7 @@
 		F402CBFD195545AB00C6E1E2 /* ZKKnowledgeSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKKnowledgeSettings.m; path = ../zkSforce/ZKKnowledgeSettings.m; sourceTree = "<group>"; };
 		F402CBFE195545AB00C6E1E2 /* ZKNamedLayoutInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKNamedLayoutInfo.h; path = ../zkSforce/ZKNamedLayoutInfo.h; sourceTree = "<group>"; };
 		F402CBFF195545AB00C6E1E2 /* ZKNamedLayoutInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKNamedLayoutInfo.m; path = ../zkSforce/ZKNamedLayoutInfo.m; sourceTree = "<group>"; };
-		F414BBF11842EC4700322AC2 /* zkSforceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zkSforceTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F414BBF41842EC4700322AC2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F414BBF11842EC4700322AC2 /* zkSforceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zkSforceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414BBF61842EC4700322AC2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		F414BBF91842EC4700322AC2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F414BBFA1842EC4700322AC2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -547,6 +558,32 @@
 		F4913EEB1B113E85001CC650 /* ZKMatchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKMatchResult.m; path = ../zkSforce/ZKMatchResult.m; sourceTree = "<group>"; };
 		F4913EEC1B113E85001CC650 /* ZKNameCaseValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKNameCaseValue.h; path = ../zkSforce/ZKNameCaseValue.h; sourceTree = "<group>"; };
 		F4913EED1B113E85001CC650 /* ZKNameCaseValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKNameCaseValue.m; path = ../zkSforce/ZKNameCaseValue.m; sourceTree = "<group>"; };
+		F4B770301BB737C100681844 /* ZKCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKCanvas.h; path = ../zkSforce/ZKCanvas.h; sourceTree = "<group>"; };
+		F4B770311BB737C100681844 /* ZKCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKCanvas.m; path = ../zkSforce/ZKCanvas.m; sourceTree = "<group>"; };
+		F4B770321BB737C100681844 /* ZKDescribePathAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistant.h; path = ../zkSforce/ZKDescribePathAssistant.h; sourceTree = "<group>"; };
+		F4B770331BB737C100681844 /* ZKDescribePathAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribePathAssistant.m; path = ../zkSforce/ZKDescribePathAssistant.m; sourceTree = "<group>"; };
+		F4B770341BB737C100681844 /* ZKDescribePathAssistantField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistantField.h; path = ../zkSforce/ZKDescribePathAssistantField.h; sourceTree = "<group>"; };
+		F4B770351BB737C100681844 /* ZKDescribePathAssistantField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribePathAssistantField.m; path = ../zkSforce/ZKDescribePathAssistantField.m; sourceTree = "<group>"; };
+		F4B770361BB737C100681844 /* ZKDescribePathAssistantsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistantsResult.h; path = ../zkSforce/ZKDescribePathAssistantsResult.h; sourceTree = "<group>"; };
+		F4B770371BB737C100681844 /* ZKDescribePathAssistantsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribePathAssistantsResult.m; path = ../zkSforce/ZKDescribePathAssistantsResult.m; sourceTree = "<group>"; };
+		F4B770381BB737C100681844 /* ZKDescribePathAssistantStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistantStep.h; path = ../zkSforce/ZKDescribePathAssistantStep.h; sourceTree = "<group>"; };
+		F4B770391BB737C100681844 /* ZKDescribePathAssistantStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribePathAssistantStep.m; path = ../zkSforce/ZKDescribePathAssistantStep.m; sourceTree = "<group>"; };
+		F4B7703A1BB737C100681844 /* ZKFlexipageContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFlexipageContext.h; path = ../zkSforce/ZKFlexipageContext.h; sourceTree = "<group>"; };
+		F4B7703B1BB737C100681844 /* ZKFlexipageContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFlexipageContext.m; path = ../zkSforce/ZKFlexipageContext.m; sourceTree = "<group>"; };
+		F4B7703C1BB737C100681844 /* ZKOwnerChangeOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKOwnerChangeOption.h; path = ../zkSforce/ZKOwnerChangeOption.h; sourceTree = "<group>"; };
+		F4B7703D1BB737C100681844 /* ZKOwnerChangeOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKOwnerChangeOption.m; path = ../zkSforce/ZKOwnerChangeOption.m; sourceTree = "<group>"; };
+		F4B7703E1BB737C100681844 /* ZKRenderEmailTemplateBodyResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderEmailTemplateBodyResult.h; path = ../zkSforce/ZKRenderEmailTemplateBodyResult.h; sourceTree = "<group>"; };
+		F4B7703F1BB737C100681844 /* ZKRenderEmailTemplateBodyResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRenderEmailTemplateBodyResult.m; path = ../zkSforce/ZKRenderEmailTemplateBodyResult.m; sourceTree = "<group>"; };
+		F4B770401BB737C100681844 /* ZKRenderEmailTemplateError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderEmailTemplateError.h; path = ../zkSforce/ZKRenderEmailTemplateError.h; sourceTree = "<group>"; };
+		F4B770411BB737C100681844 /* ZKRenderEmailTemplateError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRenderEmailTemplateError.m; path = ../zkSforce/ZKRenderEmailTemplateError.m; sourceTree = "<group>"; };
+		F4B770421BB737C100681844 /* ZKRenderEmailTemplateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderEmailTemplateRequest.h; path = ../zkSforce/ZKRenderEmailTemplateRequest.h; sourceTree = "<group>"; };
+		F4B770431BB737C100681844 /* ZKRenderEmailTemplateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRenderEmailTemplateRequest.m; path = ../zkSforce/ZKRenderEmailTemplateRequest.m; sourceTree = "<group>"; };
+		F4B770441BB737C100681844 /* ZKRenderEmailTemplateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderEmailTemplateResult.h; path = ../zkSforce/ZKRenderEmailTemplateResult.h; sourceTree = "<group>"; };
+		F4B770451BB737C100681844 /* ZKRenderEmailTemplateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRenderEmailTemplateResult.m; path = ../zkSforce/ZKRenderEmailTemplateResult.m; sourceTree = "<group>"; };
+		F4B770461BB737C100681844 /* ZKScopeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKScopeInfo.h; path = ../zkSforce/ZKScopeInfo.h; sourceTree = "<group>"; };
+		F4B770471BB737C100681844 /* ZKScopeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKScopeInfo.m; path = ../zkSforce/ZKScopeInfo.m; sourceTree = "<group>"; };
+		F4B770481BB737C100681844 /* ZKVisualforcePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKVisualforcePage.h; path = ../zkSforce/ZKVisualforcePage.h; sourceTree = "<group>"; };
+		F4B770491BB737C100681844 /* ZKVisualforcePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKVisualforcePage.m; path = ../zkSforce/ZKVisualforcePage.m; sourceTree = "<group>"; };
 		F4BB7F3B18B0139700444797 /* ZKDescribeApprovalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeApprovalLayout.h; path = ../zkSforce/ZKDescribeApprovalLayout.h; sourceTree = "<group>"; };
 		F4BB7F3C18B0139700444797 /* ZKDescribeApprovalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeApprovalLayout.m; path = ../zkSforce/ZKDescribeApprovalLayout.m; sourceTree = "<group>"; };
 		F4BB7F3D18B0139700444797 /* ZKDescribeApprovalLayoutResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeApprovalLayoutResult.h; path = ../zkSforce/ZKDescribeApprovalLayoutResult.h; sourceTree = "<group>"; };
@@ -568,7 +605,6 @@
 			files = (
 				F414BD531842ED4900322AC2 /* libxml2.2.dylib in Frameworks */,
 				F414BD511842ED3E00322AC2 /* Security.framework in Frameworks */,
-				F414BBF51842EC4700322AC2 /* SenTestingKit.framework in Frameworks */,
 				F414BBF71842EC4700322AC2 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,7 +625,7 @@
 		F414BBF21842EC4700322AC2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F414BBF11842EC4700322AC2 /* zkSforceTests.octest */,
+				F414BBF11842EC4700322AC2 /* zkSforceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -599,7 +635,6 @@
 			children = (
 				F414BD521842ED4900322AC2 /* libxml2.2.dylib */,
 				F414BD501842ED3E00322AC2 /* Security.framework */,
-				F414BBF41842EC4700322AC2 /* SenTestingKit.framework */,
 				F414BBF61842EC4700322AC2 /* Cocoa.framework */,
 				F414BBF81842EC4700322AC2 /* Other Frameworks */,
 			);
@@ -650,6 +685,32 @@
 		F414BC091842ECB100322AC2 /* zkSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4B770301BB737C100681844 /* ZKCanvas.h */,
+				F4B770311BB737C100681844 /* ZKCanvas.m */,
+				F4B770321BB737C100681844 /* ZKDescribePathAssistant.h */,
+				F4B770331BB737C100681844 /* ZKDescribePathAssistant.m */,
+				F4B770341BB737C100681844 /* ZKDescribePathAssistantField.h */,
+				F4B770351BB737C100681844 /* ZKDescribePathAssistantField.m */,
+				F4B770361BB737C100681844 /* ZKDescribePathAssistantsResult.h */,
+				F4B770371BB737C100681844 /* ZKDescribePathAssistantsResult.m */,
+				F4B770381BB737C100681844 /* ZKDescribePathAssistantStep.h */,
+				F4B770391BB737C100681844 /* ZKDescribePathAssistantStep.m */,
+				F4B7703A1BB737C100681844 /* ZKFlexipageContext.h */,
+				F4B7703B1BB737C100681844 /* ZKFlexipageContext.m */,
+				F4B7703C1BB737C100681844 /* ZKOwnerChangeOption.h */,
+				F4B7703D1BB737C100681844 /* ZKOwnerChangeOption.m */,
+				F4B7703E1BB737C100681844 /* ZKRenderEmailTemplateBodyResult.h */,
+				F4B7703F1BB737C100681844 /* ZKRenderEmailTemplateBodyResult.m */,
+				F4B770401BB737C100681844 /* ZKRenderEmailTemplateError.h */,
+				F4B770411BB737C100681844 /* ZKRenderEmailTemplateError.m */,
+				F4B770421BB737C100681844 /* ZKRenderEmailTemplateRequest.h */,
+				F4B770431BB737C100681844 /* ZKRenderEmailTemplateRequest.m */,
+				F4B770441BB737C100681844 /* ZKRenderEmailTemplateResult.h */,
+				F4B770451BB737C100681844 /* ZKRenderEmailTemplateResult.m */,
+				F4B770461BB737C100681844 /* ZKScopeInfo.h */,
+				F4B770471BB737C100681844 /* ZKScopeInfo.m */,
+				F4B770481BB737C100681844 /* ZKVisualforcePage.h */,
+				F4B770491BB737C100681844 /* ZKVisualforcePage.m */,
 				F4913ED41B113E85001CC650 /* ZKAdditionalInformationMap.h */,
 				F4913ED51B113E85001CC650 /* ZKAdditionalInformationMap.m */,
 				F4913ED61B113E85001CC650 /* ZKAnalyticsCloudComponent.h */,
@@ -1016,8 +1077,8 @@
 			);
 			name = zkSforceTests;
 			productName = zkSforceTests;
-			productReference = F414BBF11842EC4700322AC2 /* zkSforceTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = F414BBF11842EC4700322AC2 /* zkSforceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -1025,7 +1086,8 @@
 		F414BBE51842EC1900322AC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastTestingUpgradeCheck = 0640;
+				LastUpgradeCheck = 0640;
 			};
 			buildConfigurationList = F414BBE81842EC1900322AC2 /* Build configuration list for PBXProject "zkSforceTests" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1102,6 +1164,7 @@
 				F414BCF91842ED0B00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.m in Sources */,
 				F4913EF21B113E85001CC650 /* ZKDescribeNounResult.m in Sources */,
 				F414BCFA1842ED0B00322AC2 /* ZKDescribeFlexiPageRegion.m in Sources */,
+				F4B7704C1BB737C100681844 /* ZKDescribePathAssistantField.m in Sources */,
 				F4913EF01B113E85001CC650 /* ZKDescribeLayoutFeedFilter.m in Sources */,
 				F425F9FE1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m in Sources */,
 				F414BCFB1842ED0B00322AC2 /* ZKDescribeGlobalTheme.m in Sources */,
@@ -1114,6 +1177,8 @@
 				F414BD011842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m in Sources */,
 				F414BD021842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutSection.m in Sources */,
 				F414BD031842ED0B00322AC2 /* ZKDescribeThemeItem.m in Sources */,
+				F4B770501BB737C100681844 /* ZKOwnerChangeOption.m in Sources */,
+				F4B770541BB737C100681844 /* ZKRenderEmailTemplateResult.m in Sources */,
 				F414BD041842ED0B00322AC2 /* ZKDescribeThemeResult.m in Sources */,
 				F414BD051842ED0B00322AC2 /* ZKGetServerTimestampResult.m in Sources */,
 				F414BD061842ED0B00322AC2 /* ZKGetUpdatedResult.m in Sources */,
@@ -1138,6 +1203,7 @@
 				F414BD131842ED0B00322AC2 /* ZKSearchResult.m in Sources */,
 				F414BD141842ED0B00322AC2 /* ZKSendEmailError.m in Sources */,
 				F414BD151842ED0B00322AC2 /* ZKSendEmailResult.m in Sources */,
+				F4B7704A1BB737C100681844 /* ZKCanvas.m in Sources */,
 				F414BD161842ED0B00322AC2 /* ZKUpsertResult.m in Sources */,
 				F425F9F61A338D0F0055D8B8 /* ZKListViewOrderBy.m in Sources */,
 				F402CC02195545AB00C6E1E2 /* ZKFilteredLookupInfo.m in Sources */,
@@ -1149,10 +1215,14 @@
 				F414BD1C1842ED0B00322AC2 /* ZKDescribeComponentInstanceProperty.m in Sources */,
 				F414BD1D1842ED0B00322AC2 /* ZKDescribeDataCategoryGroupResult.m in Sources */,
 				F414BD1E1842ED0B00322AC2 /* ZKDescribeGlobalResult.m in Sources */,
+				F4B770561BB737C100681844 /* ZKVisualforcePage.m in Sources */,
+				F4B770511BB737C100681844 /* ZKRenderEmailTemplateBodyResult.m in Sources */,
+				F4B770551BB737C100681844 /* ZKScopeInfo.m in Sources */,
 				F414BD201842ED0B00322AC2 /* ZKDescribeIcon.m in Sources */,
 				F414BD211842ED0B00322AC2 /* ZKDescribeQuickActionDefaultValue.m in Sources */,
 				F414BD221842ED0B00322AC2 /* ZKDescribeQuickActionListItemResult.m in Sources */,
 				F414BD231842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutItem.m in Sources */,
+				F4B7704D1BB737C100681844 /* ZKDescribePathAssistantsResult.m in Sources */,
 				F414BD241842ED0B00322AC2 /* ZKDescribeSoftphoneLayoutResult.m in Sources */,
 				F414BD251842ED0B00322AC2 /* ZKDescribeSoftphoneScreenPopOption.m in Sources */,
 				F414BD261842ED0B00322AC2 /* ZKEmail.m in Sources */,
@@ -1163,6 +1233,7 @@
 				F414BD2B1842ED0B00322AC2 /* ZKPerformQuickActionRequest.m in Sources */,
 				F4913EFA1B113E85001CC650 /* ZKNameCaseValue.m in Sources */,
 				F414BD2C1842ED0B00322AC2 /* ZKRelatedListColumn.m in Sources */,
+				F4B770521BB737C100681844 /* ZKRenderEmailTemplateError.m in Sources */,
 				F4913EF41B113E85001CC650 /* ZKDuplicateResult.m in Sources */,
 				F414BD2D1842ED0B00322AC2 /* ZKResetPasswordResult.m in Sources */,
 				F4913EF61B113E85001CC650 /* ZKFieldComponent.m in Sources */,
@@ -1170,8 +1241,10 @@
 				F414BD2F1842ED0B00322AC2 /* ZKUndeleteResult.m in Sources */,
 				F414BD301842ED0B00322AC2 /* ZKBase64.m in Sources */,
 				F414BD311842ED0B00322AC2 /* ZKPicklistEntry.m in Sources */,
+				F4B7704E1BB737C100681844 /* ZKDescribePathAssistantStep.m in Sources */,
 				F414BD321842ED0B00322AC2 /* ZKDescribeField.m in Sources */,
 				F425F9FB1A338D0F0055D8B8 /* ZKSoqlCondition.m in Sources */,
+				F4B770531BB737C100681844 /* ZKRenderEmailTemplateRequest.m in Sources */,
 				F414BD331842ED0B00322AC2 /* ZKLoginResult.m in Sources */,
 				F414BD341842ED0B00322AC2 /* ZKDescribeField+Extras.m in Sources */,
 				F414BD351842ED0B00322AC2 /* ZKUserInfo+Extras.m in Sources */,
@@ -1215,6 +1288,7 @@
 				F414BD621844543500322AC2 /* ZKBase64Tests.m in Sources */,
 				F4913EEE1B113E85001CC650 /* ZKAdditionalInformationMap.m in Sources */,
 				F425F9F71A338D0F0055D8B8 /* ZKListViewRecord.m in Sources */,
+				F4B7704F1BB737C100681844 /* ZKFlexipageContext.m in Sources */,
 				F414BDBB18451D5200322AC2 /* ZKDebuggingHeader.m in Sources */,
 				F425F9F81A338D0F0055D8B8 /* ZKListViewRecordColumn.m in Sources */,
 				F414BDBC18451D5200322AC2 /* ZKLocaleOptions.m in Sources */,
@@ -1249,6 +1323,7 @@
 				F4BB7F4518B0139700444797 /* ZKDescribeApprovalLayout.m in Sources */,
 				F4BB7F4618B0139700444797 /* ZKDescribeApprovalLayoutResult.m in Sources */,
 				F4BB7F4718B0139700444797 /* ZKAddress.m in Sources */,
+				F4B7704B1BB737C100681844 /* ZKDescribePathAssistant.m in Sources */,
 				F4BB7F4818B0139700444797 /* ZKLocation.m in Sources */,
 				F4BB7F4918B0139700444797 /* ZKQuickActionTemplateResult.m in Sources */,
 				F4BB7F4D18B015EB00444797 /* ZKSObjectTests.m in Sources */,
@@ -1274,6 +1349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.9;
 			};
 			name = Debug;
@@ -1290,14 +1366,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1314,11 +1392,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "zkSforceTests/zkSforceTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1326,7 +1403,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1334,7 +1410,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1344,10 +1423,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "zkSforceTests/zkSforceTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

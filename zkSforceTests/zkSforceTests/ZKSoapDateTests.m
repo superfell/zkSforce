@@ -37,17 +37,17 @@
 
 -(void)assertDate:(NSDate *)date equalsYear:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day {
     NSDateComponents *dc = [cal components:-1 fromDate:date];
-    STAssertEquals(yr, [dc year], nil);
-    STAssertEquals(month, [dc month], nil);
-    STAssertEquals(day, [dc day], nil);
+    XCTAssertEqual(yr, [dc year]);
+    XCTAssertEqual(month, [dc month]);
+    XCTAssertEqual(day, [dc day]);
 }
 
 -(void)assertDateTime:(NSDate *)date equalsYears:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour mins:(NSInteger)mins seconds:(NSInteger)seconds {
     [self assertDate:date equalsYear:yr month:month day:day];
     NSDateComponents *dc = [cal components:-1 fromDate:date];
-    STAssertEquals(hour, [dc hour], nil);
-    STAssertEquals(mins, [dc minute], nil);
-    STAssertEquals(seconds, [dc second], nil);
+    XCTAssertEqual(hour, [dc hour]);
+    XCTAssertEqual(mins, [dc minute]);
+    XCTAssertEqual(seconds, [dc second]);
 }
 
 -(void)testDateFromString {
@@ -66,7 +66,7 @@
     [c setMonth:11];
     [c setDay:23];
     NSDate *d = [[NSCalendar currentCalendar] dateFromComponents:c];
-    STAssertEqualObjects(@"2013-11-23", [[ZKSoapDate instance] toDateString:d], nil);
+    XCTAssertEqualObjects(@"2013-11-23", [[ZKSoapDate instance] toDateString:d]);
 }
 
 -(void)testToDateTimeString {
@@ -79,7 +79,7 @@
     [c setMinute:18];
     [c setSecond:59];
     NSDate *d = [[NSCalendar currentCalendar] dateFromComponents:c];
-    STAssertEqualObjects(@"2013-12-05T19:18:59.0000-08:00", [[ZKSoapDate instance] toDateTimeString:d], nil);
+    XCTAssertEqualObjects(@"2013-12-05T19:18:59.0000-08:00", [[ZKSoapDate instance] toDateTimeString:d]);
 }
 
 @end
