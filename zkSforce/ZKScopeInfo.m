@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,21 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkXmlDeserializer.h"
+#import "ZKScopeInfo.h"
 
-@class ZKDescribeFlexiPageRegion;
-/*
-<complexType name="DescribeComponentInstanceProperty" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
-  <sequence>
-    <element type="xsd:string" name="name"/>
-    <element minOccurs="0" nillable="true" type="tns:DescribeFlexiPageRegion" name="region"/>
-    <element nillable="true" type="xsd:string" name="value"/>
-  </sequence>
-</complexType>
-*/
-@interface ZKDescribeComponentInstanceProperty : ZKXmlDeserializer {
+@implementation ZKScopeInfo
+
+-(NSString *)label {
+    return [self string:@"label"];
 }
-@property (readonly) NSString                   *name; 
-@property (readonly) ZKDescribeFlexiPageRegion  *region; 
-@property (readonly) NSString                   *value; 
+			
+-(NSString *)name {
+    return [self string:@"name"];
+}
+			
 @end

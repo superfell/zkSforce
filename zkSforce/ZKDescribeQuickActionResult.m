@@ -36,6 +36,10 @@
     return [self string:@"accessLevelRequired"];
 }
 			
+-(NSString *)actionEnumOrId {
+    return [self string:@"actionEnumOrId"];
+}
+			
 -(NSString *)canvasApplicationId {
     return [self string:@"canvasApplicationId"];
 }
@@ -88,6 +92,10 @@
     return [self string:@"name"];
 }
 			
+-(BOOL)showQuickActionVfHeader {
+    return [self boolean:@"showQuickActionVfHeader"];
+}
+			
 -(NSString *)targetParentField {
     return [self string:@"targetParentField"];
 }
@@ -106,6 +114,10 @@
 			
 -(NSString *)visualforcePageName {
     return [self string:@"visualforcePageName"];
+}
+			
+-(NSString *)visualforcePageUrl {
+    return [self string:@"visualforcePageUrl"];
 }
 			
 -(NSInteger)width {

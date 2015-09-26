@@ -31,6 +31,7 @@
 <complexType name="DescribeQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element nillable="true" type="tns:ShareAccessLevel" name="accessLevelRequired"/>
+    <element type="xsd:string" name="actionEnumOrId"/>
     <element nillable="true" type="tns:ID" name="canvasApplicationId"/>
     <element nillable="true" type="xsd:string" name="canvasApplicationName"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
@@ -44,11 +45,13 @@
     <element nillable="true" type="tns:DescribeLayoutSection" name="layout"/>
     <element nillable="true" type="xsd:string" name="miniIconUrl"/>
     <element type="xsd:string" name="name"/>
+    <element type="xsd:boolean" name="showQuickActionVfHeader"/>
     <element nillable="true" type="xsd:string" name="targetParentField"/>
     <element nillable="true" type="tns:ID" name="targetRecordTypeId"/>
     <element nillable="true" type="xsd:string" name="targetSobjectType"/>
     <element type="xsd:string" name="type"/>
     <element nillable="true" type="xsd:string" name="visualforcePageName"/>
+    <element nillable="true" type="xsd:string" name="visualforcePageUrl"/>
     <element nillable="true" type="xsd:int" name="width"/>
   </sequence>
 </complexType>
@@ -56,6 +59,7 @@
 @interface ZKDescribeQuickActionResult : ZKXmlDeserializer {
 }
 @property (readonly) NSString                 *accessLevelRequired; 
+@property (readonly) NSString                 *actionEnumOrId; 
 @property (readonly) NSString                 *canvasApplicationId; 
 @property (readonly) NSString                 *canvasApplicationName; 
 @property (readonly) NSArray                  *colors;  // of ZKDescribeColor
@@ -69,10 +73,12 @@
 @property (readonly) ZKDescribeLayoutSection  *layout; 
 @property (readonly) NSString                 *miniIconUrl; 
 @property (readonly) NSString                 *name; 
+@property (readonly) BOOL                      showQuickActionVfHeader; 
 @property (readonly) NSString                 *targetParentField; 
 @property (readonly) NSString                 *targetRecordTypeId; 
 @property (readonly) NSString                 *targetSobjectType; 
 @property (readonly) NSString                 *type; 
 @property (readonly) NSString                 *visualforcePageName; 
+@property (readonly) NSString                 *visualforcePageUrl; 
 @property (readonly) NSInteger                 width; 
 @end

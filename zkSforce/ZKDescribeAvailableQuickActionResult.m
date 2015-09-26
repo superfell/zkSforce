@@ -28,6 +28,10 @@
 
 @implementation ZKDescribeAvailableQuickActionResult
 
+-(NSString *)actionEnumOrId {
+    return [self string:@"actionEnumOrId"];
+}
+			
 -(NSString *)label {
     return [self string:@"label"];
 }

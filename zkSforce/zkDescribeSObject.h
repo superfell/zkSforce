@@ -40,11 +40,13 @@
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:boolean" name="feedEnabled"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:Field" name="fields"/>
+    <element type="xsd:boolean" name="idEnabled"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="labelPlural"/>
     <element type="xsd:boolean" name="layoutable"/>
     <element type="xsd:boolean" name="mergeable"/>
+    <element type="xsd:boolean" name="mruEnabled"/>
     <element type="xsd:string" name="name"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:NamedLayoutInfo" name="namedLayoutInfos"/>
     <element type="xsd:boolean" name="queryable"/>
@@ -53,6 +55,7 @@
     <element type="xsd:boolean" name="retrieveable"/>
     <element minOccurs="0" type="xsd:boolean" name="searchLayoutable"/>
     <element type="xsd:boolean" name="searchable"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:ScopeInfo" name="supportedScopes"/>
     <element minOccurs="0" type="xsd:boolean" name="triggerable"/>
     <element type="xsd:boolean" name="undeletable"/>
     <element type="xsd:boolean" name="updateable"/>
@@ -70,9 +73,11 @@
 @property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
 @property (readonly) BOOL       compactLayoutable; 
 @property (readonly) NSArray   *fields;  // of ZKDescribeField
+@property (readonly) BOOL       mruEnabled; 
 @property (readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
 @property (readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
 @property (readonly) BOOL       searchLayoutable; 
+@property (readonly) NSArray   *supportedScopes;  // of ZKScopeInfo
 @property (readonly) NSString  *urlDetail; 
 @property (readonly) NSString  *urlEdit; 
 @property (readonly) NSString  *urlNew; 

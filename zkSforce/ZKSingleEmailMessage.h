@@ -35,15 +35,19 @@
         <element nillable="true" type="xsd:string" maxOccurs="25" minOccurs="0" name="ccAddresses"/>
         <element nillable="true" type="xsd:string" name="charset"/>
         <element type="tns:ID" maxOccurs="unbounded" minOccurs="0" name="documentAttachments"/>
+        <element type="tns:ID" maxOccurs="unbounded" minOccurs="0" name="entityAttachments"/>
+        <element type="tns:EmailFileAttachment" maxOccurs="unbounded" minOccurs="0" name="fileAttachments"/>
         <element nillable="true" type="xsd:string" name="htmlBody"/>
         <element nillable="true" type="xsd:string" minOccurs="0" name="inReplyTo"/>
-        <element type="tns:EmailFileAttachment" maxOccurs="unbounded" minOccurs="0" name="fileAttachments"/>
+        <element nillable="true" type="tns:SendEmailOptOutPolicy" name="optOutPolicy"/>
         <element nillable="true" type="tns:ID" maxOccurs="1" minOccurs="0" name="orgWideEmailAddressId"/>
         <element nillable="true" type="xsd:string" name="plainTextBody"/>
         <element nillable="true" type="xsd:string" minOccurs="0" name="references"/>
         <element nillable="true" type="tns:ID" name="targetObjectId"/>
         <element nillable="true" type="tns:ID" name="templateId"/>
         <element nillable="true" type="xsd:string" maxOccurs="100" minOccurs="0" name="toAddresses"/>
+        <element nillable="true" type="xsd:boolean" name="treatBodiesAsTemplate"/>
+        <element nillable="true" type="xsd:boolean" name="treatTargetObjectAsRecipient"/>
         <element nillable="true" type="tns:ID" name="whatId"/>
       </sequence>
     </extension>
@@ -55,29 +59,37 @@
 	NSArray   *ccAddresses;
 	NSString  *charset;
 	NSArray   *documentAttachments;
+	NSArray   *entityAttachments;
+	NSArray   *fileAttachments;
 	NSString  *htmlBody;
 	NSString  *inReplyTo;
-	NSArray   *fileAttachments;
+	NSString  *optOutPolicy;
 	NSString  *orgWideEmailAddressId;
 	NSString  *plainTextBody;
 	NSString  *references;
 	NSString  *targetObjectId;
 	NSString  *templateId;
 	NSArray   *toAddresses;
+	BOOL       treatBodiesAsTemplate;
+	BOOL       treatTargetObjectAsRecipient;
 	NSString  *whatId;
 }
 @property (retain) NSArray   *bccAddresses;  // of NSString
 @property (retain) NSArray   *ccAddresses;  // of NSString
 @property (retain) NSString  *charset; 
 @property (retain) NSArray   *documentAttachments;  // of NSString
+@property (retain) NSArray   *entityAttachments;  // of NSString
+@property (retain) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
 @property (retain) NSString  *htmlBody; 
 @property (retain) NSString  *inReplyTo; 
-@property (retain) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
+@property (retain) NSString  *optOutPolicy; 
 @property (retain) NSString  *orgWideEmailAddressId; 
 @property (retain) NSString  *plainTextBody; 
 @property (retain) NSString  *references; 
 @property (retain) NSString  *targetObjectId; 
 @property (retain) NSString  *templateId; 
 @property (retain) NSArray   *toAddresses;  // of NSString
+@property (assign) BOOL       treatBodiesAsTemplate; 
+@property (assign) BOOL       treatTargetObjectAsRecipient; 
 @property (retain) NSString  *whatId; 
 @end

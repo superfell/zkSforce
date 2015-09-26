@@ -36,6 +36,10 @@
     return [self boolean:@"defaultRecordTypeMapping"];
 }
 			
+-(BOOL)master {
+    return [self boolean:@"master"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
 }

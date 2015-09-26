@@ -29,15 +29,12 @@
 /*
 <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element type="xsd:boolean" name="transferAttachments"/>
-    <element type="xsd:boolean" name="transferOpenActivities"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:OwnerChangeOption" name="options"/>
   </sequence>
 </complexType>
 */
 @interface ZKOwnerChangeOptions : NSObject<ZKXMLSerializable> {
-	BOOL transferAttachments;
-	BOOL transferOpenActivities;
+	NSArray  *options;
 }
-@property (assign) BOOL transferAttachments; 
-@property (assign) BOOL transferOpenActivities; 
+@property (retain) NSArray  *options;  // of ZKOwnerChangeOption
 @end

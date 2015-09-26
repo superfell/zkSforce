@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -27,19 +27,25 @@
 #import "zkXmlDeserializer.h"
 
 /*
-<complexType name="DescribeAvailableQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribePathAssistant" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element type="xsd:string" name="actionEnumOrId"/>
+    <element type="xsd:boolean" name="active"/>
+    <element type="xsd:string" name="apiName"/>
     <element type="xsd:string" name="label"/>
-    <element type="xsd:string" name="name"/>
-    <element type="xsd:string" name="type"/>
+    <element type="xsd:string" name="pathPicklistField"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:PicklistForRecordType" name="picklistsForRecordType"/>
+    <element nillable="true" type="tns:ID" name="recordTypeId"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribePathAssistantStep" name="steps"/>
   </sequence>
 </complexType>
 */
-@interface ZKDescribeAvailableQuickActionResult : ZKXmlDeserializer {
+@interface ZKDescribePathAssistant : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *actionEnumOrId; 
+@property (readonly) BOOL       active; 
+@property (readonly) NSString  *apiName; 
 @property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *type; 
+@property (readonly) NSString  *pathPicklistField; 
+@property (readonly) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
+@property (readonly) NSString  *recordTypeId; 
+@property (readonly) NSArray   *steps;  // of ZKDescribePathAssistantStep
 @end

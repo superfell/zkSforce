@@ -42,6 +42,7 @@ typedef void (^zkCompleteDescribeThemeResultBlock)           (ZKDescribeThemeRes
 typedef void (^zkCompleteDescribeSoqlListViewResultBlock)    (ZKDescribeSoqlListViewResult *result);
 typedef void (^zkCompleteDescribeSoftphoneLayoutResultBlock) (ZKDescribeSoftphoneLayoutResult *result);
 typedef void (^zkCompleteDescribeSObjectBlock)               (ZKDescribeSObject *result);
+typedef void (^zkCompleteDescribePathAssistantsResultBlock)  (ZKDescribePathAssistantsResult *result);
 typedef void (^zkCompleteDescribeLayoutResultBlock)          (ZKDescribeLayoutResult *result);
 typedef void (^zkCompleteDescribeGlobalThemeBlock)           (ZKDescribeGlobalTheme *result);
 typedef void (^zkCompleteDescribeCompactLayoutsResultBlock)  (ZKDescribeCompactLayoutsResult *result);
@@ -62,7 +63,7 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeSObjectBlock)completeBlock;
 
-// Describe a number sObjects
+// Describe multiple sObjects (upto 100)
 -(void) performDescribeSObjects:(NSArray *)sObjectType
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock;
@@ -86,12 +87,12 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock;
 
 // Describe a list of FlexiPage and their contents
--(void) performDescribeFlexiPages:(NSArray *)flexiPages
+-(void) performDescribeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 // Describe the items in an AppMenu
--(void) performDescribeAppMenu:(NSString *)appMenuType
+-(void) performDescribeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeAppMenuResultBlock)completeBlock;
 
@@ -126,6 +127,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performDescribeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeCompactLayoutsResultBlock)completeBlock;
+
+// Describe the Path Assistants for the given sObject and optionally RecordTypes
+-(void) performDescribePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
+                            failBlock:(zkFailWithExceptionBlock)failBlock
+                        completeBlock:(zkCompleteDescribePathAssistantsResultBlock)completeBlock;
 
 // Describe the approval layouts of the given sObject
 -(void) performDescribeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
@@ -276,6 +282,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performSendEmail:(NSArray *)messages
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+-(void) performRenderEmailTemplate:(NSArray *)renderRequests
+                         failBlock:(zkFailWithExceptionBlock)failBlock
+                     completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 // Perform a series of predefined actions such as quick create or log a task
 -(void) performPerformQuickActions:(NSArray *)quickActions

@@ -30,6 +30,7 @@
 #import "ZKDescribeField.h"
 #import "ZKNamedLayoutInfo.h"
 #import "ZKRecordTypeInfo.h"
+#import "ZKScopeInfo.h"
 
 @implementation ZKDescribeSObject
 
@@ -61,6 +62,10 @@
     return [self boolean:@"compactLayoutable"];
 }
 			
+-(BOOL)mruEnabled {
+    return [self boolean:@"mruEnabled"];
+}
+			
 -(NSArray *)namedLayoutInfos {
     return [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
 }
@@ -71,6 +76,10 @@
 			
 -(BOOL)searchLayoutable {
     return [self boolean:@"searchLayoutable"];
+}
+			
+-(NSArray *)supportedScopes {
+    return [self complexTypeArrayFromElements:@"supportedScopes" cls:[ZKScopeInfo class]];
 }
 			
 -(NSString *)urlDetail {

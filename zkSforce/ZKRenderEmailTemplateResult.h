@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Ron Hess
+// Copyright (c) 2015 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -27,27 +27,17 @@
 #import "zkXmlDeserializer.h"
 
 /*
-<complexType name="DescribeLayoutSection" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="RenderEmailTemplateResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element type="xsd:int" name="columns"/>
-    <element nillable="true" type="xsd:string" name="heading"/>
-    <element maxOccurs="unbounded" type="tns:DescribeLayoutRow" name="layoutRows"/>
-    <element type="tns:ID" name="parentLayoutId"/>
-    <element type="xsd:int" name="rows"/>
-    <element type="tns:TabOrderType" name="tabOrder"/>
-    <element type="xsd:boolean" name="useCollapsibleSection"/>
-    <element type="xsd:boolean" name="useHeading"/>
+    <element maxOccurs="10" minOccurs="0" type="tns:RenderEmailTemplateBodyResult" name="bodyResults"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
+    <element type="xsd:boolean" name="success"/>
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutSection : ZKXmlDeserializer {
+@interface ZKRenderEmailTemplateResult : ZKXmlDeserializer {
 }
-@property (readonly) NSInteger  columns; 
-@property (readonly) NSString  *heading; 
-@property (readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
-@property (readonly) NSString  *parentLayoutId; 
-@property (readonly) NSInteger  rows; 
-@property (readonly) NSString  *tabOrder; 
-@property (readonly) BOOL       useCollapsibleSection; 
-@property (readonly) BOOL       useHeading; 
+@property (readonly) NSArray  *bodyResults;  // of ZKRenderEmailTemplateBodyResult
+@property (readonly) NSArray  *errors;  // of ZKError
+@property (readonly) BOOL      success; 
 @end

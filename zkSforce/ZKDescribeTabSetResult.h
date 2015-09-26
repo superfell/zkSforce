@@ -29,6 +29,7 @@
 /*
 <complexType name="DescribeTabSetResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element type="xsd:string" name="description"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="logoUrl"/>
     <element minOccurs="0" type="xsd:string" name="namespace"/>
@@ -40,6 +41,7 @@
 */
 @interface ZKDescribeTabSetResult : ZKXmlDeserializer {
 }
+@property (readonly) NSString  *description; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *logoUrl; 
 @property (readonly) NSString  *namespace; 

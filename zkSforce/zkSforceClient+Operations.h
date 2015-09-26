@@ -31,6 +31,7 @@
 @class ZKDescribeCompactLayoutsResult;
 @class ZKDescribeGlobalTheme;
 @class ZKDescribeLayoutResult;
+@class ZKDescribePathAssistantsResult;
 @class ZKDescribeSoftphoneLayoutResult;
 @class ZKDescribeSoqlListViewResult;
 @class ZKDescribeSoqlListViewsRequest;
@@ -47,7 +48,7 @@
 @class ZKUserInfo;
 
 @interface ZKSforceClient (Operations)
-// Describe a number sObjects
+// Describe multiple sObjects (upto 100)
 -(NSArray *)describeSObjects:(NSArray *)sObjectType;
 
 // Describe all the data category groups available for a given set of types
@@ -60,10 +61,10 @@
 -(ZKKnowledgeSettings *)describeKnowledgeSettings;
 
 // Describe a list of FlexiPage and their contents
--(NSArray *)describeFlexiPages:(NSArray *)flexiPages;
+-(NSArray *)describeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts;
 
 // Describe the items in an AppMenu
--(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType;
+-(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId;
 
 // Describe Gloal and Themes
 -(ZKDescribeGlobalTheme *)describeGlobalTheme;
@@ -85,6 +86,9 @@
 
 // Describe the compact layouts of the given sObject
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
+
+// Describe the Path Assistants for the given sObject and optionally RecordTypes
+-(ZKDescribePathAssistantsResult *)describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds;
 
 // Describe the approval layouts of the given sObject
 -(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames;
@@ -166,6 +170,9 @@
 
 // Send outbound email
 -(NSArray *)sendEmail:(NSArray *)messages;
+
+// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+-(NSArray *)renderEmailTemplate:(NSArray *)renderRequests;
 
 // Perform a series of predefined actions such as quick create or log a task
 -(NSArray *)performQuickActions:(NSArray *)quickActions;

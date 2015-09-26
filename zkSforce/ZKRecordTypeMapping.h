@@ -32,6 +32,7 @@
     <element type="xsd:boolean" name="available"/>
     <element type="xsd:boolean" name="defaultRecordTypeMapping"/>
     <element type="tns:ID" name="layoutId"/>
+    <element type="xsd:boolean" name="master"/>
     <element type="xsd:string" name="name"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:PicklistForRecordType" name="picklistsForRecordType"/>
     <element nillable="true" type="tns:ID" name="recordTypeId"/>
@@ -43,6 +44,7 @@
 @property (readonly) BOOL       available; 
 @property (readonly) BOOL       defaultRecordTypeMapping; 
 @property (readonly) NSString  *layoutId; 
+@property (readonly) BOOL       master; 
 @property (readonly) NSString  *name; 
 @property (readonly) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
 @property (readonly) NSString  *recordTypeId; 

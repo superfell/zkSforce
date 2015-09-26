@@ -41,6 +41,10 @@
     return [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
 }
 			
+-(NSString *)parentLayoutId {
+    return [self string:@"parentLayoutId"];
+}
+			
 -(NSInteger)rows {
     return [self integer:@"rows"];
 }

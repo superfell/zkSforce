@@ -36,6 +36,7 @@
     <element type="xsd:boolean" name="deletable"/>
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:boolean" name="feedEnabled"/>
+    <element type="xsd:boolean" name="idEnabled"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="labelPlural"/>
@@ -61,6 +62,7 @@
 @property (readonly) BOOL       deletable; 
 @property (readonly) BOOL       deprecatedAndHidden; 
 @property (readonly) BOOL       feedEnabled; 
+@property (readonly) BOOL       idEnabled; 
 @property (readonly) NSString  *keyPrefix; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *labelPlural; 

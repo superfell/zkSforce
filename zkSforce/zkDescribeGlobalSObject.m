@@ -56,6 +56,10 @@
     return [self boolean:@"feedEnabled"];
 }
 			
+-(BOOL)idEnabled {
+    return [self boolean:@"idEnabled"];
+}
+			
 -(NSString *)keyPrefix {
     return [self string:@"keyPrefix"];
 }

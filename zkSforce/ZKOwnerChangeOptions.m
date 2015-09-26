@@ -29,16 +29,16 @@
 
 @implementation ZKOwnerChangeOptions
 
-@synthesize transferAttachments, transferOpenActivities;
+@synthesize options;
 
 -(void)dealloc {
+	[options release];
 	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addBoolElement:@"transferAttachments"    elemValue:self.transferAttachments];
-	[env addBoolElement:@"transferOpenActivities" elemValue:self.transferOpenActivities];
+	[env addElementArray:@"options" elemValue:self.options];
 	[env endElement:elemName];
 }
 @end

@@ -123,7 +123,7 @@
 		}];
 }
 
-// Describe a number sObjects
+// Describe multiple sObjects (upto 100)
 -(void) performDescribeSObjects:(NSArray *)sObjectType
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -197,12 +197,12 @@
 }
 
 // Describe a list of FlexiPage and their contents
--(void) performDescribeFlexiPages:(NSArray *)flexiPages
+-(void) performDescribeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
 
 	[self performRequest:^id {
-			return [self describeFlexiPages:flexiPages];
+			return [self describeFlexiPages:flexiPages contexts:contexts];
 		}
 		 checkSession:YES
 		    failBlock:failBlock
@@ -212,12 +212,12 @@
 }
 
 // Describe the items in an AppMenu
--(void) performDescribeAppMenu:(NSString *)appMenuType
+-(void) performDescribeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeAppMenuResultBlock)completeBlock {
 
 	[self performRequest:^id {
-			return [self describeAppMenu:appMenuType];
+			return [self describeAppMenu:appMenuType networkId:networkId];
 		}
 		 checkSession:YES
 		    failBlock:failBlock
@@ -325,6 +325,21 @@
 		    failBlock:failBlock
 		completeBlock:^(id r) {
 			if (completeBlock) completeBlock((ZKDescribeCompactLayoutsResult *)r);
+		}];
+}
+
+// Describe the Path Assistants for the given sObject and optionally RecordTypes
+-(void) performDescribePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
+                            failBlock:(zkFailWithExceptionBlock)failBlock
+                        completeBlock:(zkCompleteDescribePathAssistantsResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describePathAssistants:sObjectType picklistValue:picklistValue  recordTypeIds:recordTypeIds];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKDescribePathAssistantsResult *)r);
 		}];
 }
 
@@ -781,6 +796,21 @@
 
 	[self performRequest:^id {
 			return [self sendEmail:messages];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+-(void) performRenderEmailTemplate:(NSArray *)renderRequests
+                         failBlock:(zkFailWithExceptionBlock)failBlock
+                     completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self renderEmailTemplate:renderRequests];
 		}
 		 checkSession:YES
 		    failBlock:failBlock

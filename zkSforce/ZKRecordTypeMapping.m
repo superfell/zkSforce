@@ -41,6 +41,10 @@
     return [self string:@"layoutId"];
 }
 			
+-(BOOL)master {
+    return [self boolean:@"master"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
 }

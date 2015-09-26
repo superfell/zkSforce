@@ -36,6 +36,7 @@
         <element nillable="true" type="xsd:string" name="city"/>
         <element nillable="true" type="xsd:string" name="country"/>
         <element nillable="true" type="xsd:string" name="countryCode"/>
+        <element nillable="true" type="xsd:string" name="geocodeAccuracy"/>
         <element nillable="true" type="xsd:string" name="postalCode"/>
         <element nillable="true" type="xsd:string" name="state"/>
         <element nillable="true" type="xsd:string" name="stateCode"/>
@@ -49,6 +50,7 @@
 	NSString  *city;
 	NSString  *country;
 	NSString  *countryCode;
+	NSString  *geocodeAccuracy;
 	NSString  *postalCode;
 	NSString  *state;
 	NSString  *stateCode;
@@ -61,6 +63,7 @@
 @property (retain) NSString  *city; 
 @property (retain) NSString  *country; 
 @property (retain) NSString  *countryCode; 
+@property (retain) NSString  *geocodeAccuracy; 
 @property (retain) NSString  *postalCode; 
 @property (retain) NSString  *state; 
 @property (retain) NSString  *stateCode; 

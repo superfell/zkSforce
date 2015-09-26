@@ -29,6 +29,10 @@
 
 @implementation ZKDescribeTabSetResult
 
+-(NSString *)description {
+    return [self string:@"description"];
+}
+			
 -(NSString *)label {
     return [self string:@"label"];
 }

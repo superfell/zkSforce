@@ -29,16 +29,18 @@
 
 @implementation ZKSingleEmailMessage
 
-@synthesize bccAddresses, ccAddresses, charset, documentAttachments, htmlBody, inReplyTo, fileAttachments, orgWideEmailAddressId, plainTextBody, references, targetObjectId, templateId, toAddresses, whatId;
+@synthesize bccAddresses, ccAddresses, charset, documentAttachments, entityAttachments, fileAttachments, htmlBody, inReplyTo, optOutPolicy, orgWideEmailAddressId, plainTextBody, references, targetObjectId, templateId, toAddresses, treatBodiesAsTemplate, treatTargetObjectAsRecipient, whatId;
 
 -(void)dealloc {
 	[bccAddresses release];
 	[ccAddresses release];
 	[charset release];
 	[documentAttachments release];
+	[entityAttachments release];
+	[fileAttachments release];
 	[htmlBody release];
 	[inReplyTo release];
-	[fileAttachments release];
+	[optOutPolicy release];
 	[orgWideEmailAddressId release];
 	[plainTextBody release];
 	[references release];
@@ -51,27 +53,31 @@
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"SingleEmailMessage"];
-	[env addBoolElement:@"bccSender"            elemValue:self.bccSender];
-	[env addElement:@"emailPriority"            elemValue:self.emailPriority         nillable:YES optional:NO];
-	[env addElement:@"replyTo"                  elemValue:self.replyTo               nillable:YES optional:NO];
-	[env addBoolElement:@"saveAsActivity"       elemValue:self.saveAsActivity];
-	[env addElement:@"senderDisplayName"        elemValue:self.senderDisplayName     nillable:YES optional:NO];
-	[env addElement:@"subject"                  elemValue:self.subject               nillable:YES optional:NO];
-	[env addBoolElement:@"useSignature"         elemValue:self.useSignature];
-	[env addElementArray:@"bccAddresses"        elemValue:self.bccAddresses];
-	[env addElementArray:@"ccAddresses"         elemValue:self.ccAddresses];
-	[env addElement:@"charset"                  elemValue:self.charset               nillable:YES optional:NO];
-	[env addElementArray:@"documentAttachments" elemValue:self.documentAttachments];
-	[env addElement:@"htmlBody"                 elemValue:self.htmlBody              nillable:YES optional:NO];
-	[env addElement:@"inReplyTo"                elemValue:self.inReplyTo             nillable:YES optional:YES];
-	[env addElementArray:@"fileAttachments"     elemValue:self.fileAttachments];
-	[env addElement:@"orgWideEmailAddressId"    elemValue:self.orgWideEmailAddressId nillable:YES optional:YES];
-	[env addElement:@"plainTextBody"            elemValue:self.plainTextBody         nillable:YES optional:NO];
-	[env addElement:@"references"               elemValue:self.references            nillable:YES optional:YES];
-	[env addElement:@"targetObjectId"           elemValue:self.targetObjectId        nillable:YES optional:NO];
-	[env addElement:@"templateId"               elemValue:self.templateId            nillable:YES optional:NO];
-	[env addElementArray:@"toAddresses"         elemValue:self.toAddresses];
-	[env addElement:@"whatId"                   elemValue:self.whatId                nillable:YES optional:NO];
+	[env addBoolElement:@"bccSender"                    elemValue:self.bccSender];
+	[env addElement:@"emailPriority"                    elemValue:self.emailPriority                nillable:YES optional:NO];
+	[env addElement:@"replyTo"                          elemValue:self.replyTo                      nillable:YES optional:NO];
+	[env addBoolElement:@"saveAsActivity"               elemValue:self.saveAsActivity];
+	[env addElement:@"senderDisplayName"                elemValue:self.senderDisplayName            nillable:YES optional:NO];
+	[env addElement:@"subject"                          elemValue:self.subject                      nillable:YES optional:NO];
+	[env addBoolElement:@"useSignature"                 elemValue:self.useSignature];
+	[env addElementArray:@"bccAddresses"                elemValue:self.bccAddresses];
+	[env addElementArray:@"ccAddresses"                 elemValue:self.ccAddresses];
+	[env addElement:@"charset"                          elemValue:self.charset                      nillable:YES optional:NO];
+	[env addElementArray:@"documentAttachments"         elemValue:self.documentAttachments];
+	[env addElementArray:@"entityAttachments"           elemValue:self.entityAttachments];
+	[env addElementArray:@"fileAttachments"             elemValue:self.fileAttachments];
+	[env addElement:@"htmlBody"                         elemValue:self.htmlBody                     nillable:YES optional:NO];
+	[env addElement:@"inReplyTo"                        elemValue:self.inReplyTo                    nillable:YES optional:YES];
+	[env addElement:@"optOutPolicy"                     elemValue:self.optOutPolicy                 nillable:YES optional:NO];
+	[env addElement:@"orgWideEmailAddressId"            elemValue:self.orgWideEmailAddressId        nillable:YES optional:YES];
+	[env addElement:@"plainTextBody"                    elemValue:self.plainTextBody                nillable:YES optional:NO];
+	[env addElement:@"references"                       elemValue:self.references                   nillable:YES optional:YES];
+	[env addElement:@"targetObjectId"                   elemValue:self.targetObjectId               nillable:YES optional:NO];
+	[env addElement:@"templateId"                       elemValue:self.templateId                   nillable:YES optional:NO];
+	[env addElementArray:@"toAddresses"                 elemValue:self.toAddresses];
+	[env addBoolElement:@"treatBodiesAsTemplate"        elemValue:self.treatBodiesAsTemplate];
+	[env addBoolElement:@"treatTargetObjectAsRecipient" elemValue:self.treatTargetObjectAsRecipient];
+	[env addElement:@"whatId"                           elemValue:self.whatId                       nillable:YES optional:NO];
 	[env endElement:elemName];
 }
 @end

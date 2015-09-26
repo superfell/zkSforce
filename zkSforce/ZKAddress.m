@@ -31,7 +31,7 @@
 
 @implementation ZKAddress
 
-@synthesize city, country, countryCode, postalCode, state, stateCode, street;
+@synthesize city, country, countryCode, geocodeAccuracy, postalCode, state, stateCode, street;
 
 -(id)init {
     self = [super init];
@@ -43,6 +43,7 @@
 	self.city = [d string:@"city"];
 	self.country = [d string:@"country"];
 	self.countryCode = [d string:@"countryCode"];
+	self.geocodeAccuracy = [d string:@"geocodeAccuracy"];
 	self.postalCode = [d string:@"postalCode"];
 	self.state = [d string:@"state"];
 	self.stateCode = [d string:@"stateCode"];
@@ -59,6 +60,7 @@
 	[city release];
 	[country release];
 	[countryCode release];
+	[geocodeAccuracy release];
 	[postalCode release];
 	[state release];
 	[stateCode release];
@@ -70,13 +72,14 @@
 	[env startElement:elemName type:@"address"];
 	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
 	[env addDoubleElement:@"longitude" elemValue:self.longitude];
-	[env addElement:@"city"            elemValue:self.city        nillable:YES optional:NO];
-	[env addElement:@"country"         elemValue:self.country     nillable:YES optional:NO];
-	[env addElement:@"countryCode"     elemValue:self.countryCode nillable:YES optional:NO];
-	[env addElement:@"postalCode"      elemValue:self.postalCode  nillable:YES optional:NO];
-	[env addElement:@"state"           elemValue:self.state       nillable:YES optional:NO];
-	[env addElement:@"stateCode"       elemValue:self.stateCode   nillable:YES optional:NO];
-	[env addElement:@"street"          elemValue:self.street      nillable:YES optional:NO];
+	[env addElement:@"city"            elemValue:self.city            nillable:YES optional:NO];
+	[env addElement:@"country"         elemValue:self.country         nillable:YES optional:NO];
+	[env addElement:@"countryCode"     elemValue:self.countryCode     nillable:YES optional:NO];
+	[env addElement:@"geocodeAccuracy" elemValue:self.geocodeAccuracy nillable:YES optional:NO];
+	[env addElement:@"postalCode"      elemValue:self.postalCode      nillable:YES optional:NO];
+	[env addElement:@"state"           elemValue:self.state           nillable:YES optional:NO];
+	[env addElement:@"stateCode"       elemValue:self.stateCode       nillable:YES optional:NO];
+	[env addElement:@"street"          elemValue:self.street          nillable:YES optional:NO];
 	[env endElement:elemName];
 }
 @end

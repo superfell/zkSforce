@@ -39,6 +39,7 @@
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeNounResult.h"
+#import "ZKDescribePathAssistantsResult.h"
 #import "ZKDescribeQuickActionResult.h"
 #import "ZKDescribeSObject.h"
 #import "ZKDescribeSearchLayoutResult.h"
@@ -53,6 +54,7 @@
 #import "ZKEmptyRecycleBinResult.h"
 #import "ZKExecuteListViewRequest.h"
 #import "ZKExecuteListViewResult.h"
+#import "ZKFlexipageContext.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKGetServerTimestampResult.h"
 #import "ZKGetUpdatedResult.h"
@@ -68,6 +70,8 @@
 #import "ZKProcessResult.h"
 #import "ZKQueryResult.h"
 #import "ZKQuickActionTemplateResult.h"
+#import "ZKRenderEmailTemplateRequest.h"
+#import "ZKRenderEmailTemplateResult.h"
 #import "ZKResetPasswordResult.h"
 #import "ZKSObject.h"
 #import "ZKSendEmailResult.h"
@@ -77,7 +81,7 @@
 #import "ZKUserInfo.h"
 
 @implementation ZKSforceClient (Operations)
-// Describe a number sObjects
+// Describe multiple sObjects (upto 100)
 -(NSArray *)describeSObjects:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -146,7 +150,7 @@
 }
 
 // Describe a list of FlexiPage and their contents
--(NSArray *)describeFlexiPages:(NSArray *)flexiPages {
+-(NSArray *)describeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts {
 	if (!authSource) return nil;
 	[self checkSession];
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
@@ -155,6 +159,7 @@
 	[env moveToBody];
 	[env startElement:@"describeFlexiPages"];
 	[env addElementArray:@"flexiPages" elemValue:flexiPages];
+	[env addElementArray:@"contexts"   elemValue:contexts];
 	[env endElement:@"describeFlexiPages"];
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -162,7 +167,7 @@
 }
 
 // Describe the items in an AppMenu
--(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType {
+-(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId {
 	if (!authSource) return nil;
 	[self checkSession];
 	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
@@ -171,6 +176,7 @@
 	[env moveToBody];
 	[env startElement:@"describeAppMenu"];
 	[env addElement:@"appMenuType" elemValue:appMenuType nillable:NO  optional:NO];
+	[env addElement:@"networkId"   elemValue:networkId   nillable:YES optional:NO];
 	[env endElement:@"describeAppMenu"];
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
@@ -287,6 +293,24 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]] lastObject];
+}
+
+// Describe the Path Assistants for the given sObject and optionally RecordTypes
+-(ZKDescribePathAssistantsResult *)describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describePathAssistants"];
+	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
+	[env addElement:@"picklistValue"      elemValue:picklistValue nillable:YES optional:NO];
+	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
+	[env endElement:@"describePathAssistants"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribePathAssistantsResult class]] lastObject];
 }
 
 // Describe the approval layouts of the given sObject
@@ -763,6 +787,21 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
+}
+
+// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+-(NSArray *)renderEmailTemplate:(NSArray *)renderRequests {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
+	[env startElement:@"renderEmailTemplate"];
+	[env addElementArray:@"renderRequests" elemValue:renderRequests];
+	[env endElement:@"renderEmailTemplate"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
 }
 
 // Perform a series of predefined actions such as quick create or log a task
