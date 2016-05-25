@@ -26,7 +26,7 @@
 @class ZKAddress;
 @class ZKLocation;
 
-NSString * NS_URI_XSI;
+FOUNDATION_EXPORT NSString *const NS_URI_XSI;
 
 @interface ZKSObject : NSObject {
 	NSString 			*Id;
