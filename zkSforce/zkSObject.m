@@ -26,7 +26,7 @@
 #import "ZKSoapDate.h"
 #import "ZKAddress.h"
 
-NSString * NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
+NSString *const NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
 
 @implementation ZKSObject
 
