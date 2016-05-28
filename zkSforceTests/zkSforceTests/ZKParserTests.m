@@ -71,29 +71,29 @@
 }
 
 -(void)testAttributeValueNs {
-    NSString *doc = @"<root xmlns='a' xmlns:x='b' bob='a' x:bob='b' />";
+    NSString *doc = @"<root xmlns='urn:a' xmlns:x='urn:b' bob='a' x:bob='b' />";
     zkElement *e = [self parse:doc];
     XCTAssertEqualObjects(@"a", [e attributeValue:@"bob" ns:nil]);
-    XCTAssertEqualObjects(@"b", [e attributeValue:@"bob" ns:@"b"]);
+    XCTAssertEqualObjects(@"b", [e attributeValue:@"bob" ns:@"urn:b"]);
 }
 
 -(void)testChildElementsNs {
-    NSString *doc = @"<root xmlns='a' xmlns:b='bb'><c>one</c><b:c>two</b:c><b:c>three</b:c></root>";
+    NSString *doc = @"<root xmlns='urn:a' xmlns:b='urn:bb'><c>one</c><b:c>two</b:c><b:c>three</b:c></root>";
     zkElement *e = [self parse:doc];
-    NSArray *bc = [e childElements:@"c" ns:@"bb"];
+    NSArray *bc = [e childElements:@"c" ns:@"urn:bb"];
     XCTAssertEqual((NSUInteger)2, [bc count]);
-    [self assert:[bc objectAtIndex:0] hasName:@"c" ns:@"bb" text:@"two"];
-    [self assert:[bc objectAtIndex:1] hasName:@"c" ns:@"bb" text:@"three"];
+    [self assert:[bc objectAtIndex:0] hasName:@"c" ns:@"urn:bb" text:@"two"];
+    [self assert:[bc objectAtIndex:1] hasName:@"c" ns:@"urn:bb" text:@"three"];
 
-    NSArray *ac = [e childElements:@"c" ns:@"a"];
+    NSArray *ac = [e childElements:@"c" ns:@"urn:a"];
     XCTAssertEqual((NSUInteger)1, [ac count]);
-    [self assert:[ac objectAtIndex:0] hasName:@"c" ns:@"a" text:@"one"];
+    [self assert:[ac objectAtIndex:0] hasName:@"c" ns:@"urn:a" text:@"one"];
     
     NSArray *c = [e childElements:@"c"];
     XCTAssertEqual((NSUInteger)3, [c count]);
-    [self assert:[c objectAtIndex:0] hasName:@"c" ns:@"a" text:@"one"];
-    [self assert:[c objectAtIndex:1] hasName:@"c" ns:@"bb" text:@"two"];
-    [self assert:[c objectAtIndex:2] hasName:@"c" ns:@"bb" text:@"three"];
+    [self assert:[c objectAtIndex:0] hasName:@"c" ns:@"urn:a" text:@"one"];
+    [self assert:[c objectAtIndex:1] hasName:@"c" ns:@"urn:bb" text:@"two"];
+    [self assert:[c objectAtIndex:2] hasName:@"c" ns:@"urn:bb" text:@"three"];
 }
 
 @end
