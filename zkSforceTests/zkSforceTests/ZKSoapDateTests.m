@@ -70,7 +70,6 @@
 }
 
 -(void)testToDateTimeString {
-    // TODO, this depends on the current users timezone
     NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
     [c setYear:2013];
     [c setMonth:12];
@@ -78,8 +77,8 @@
     [c setHour:19];
     [c setMinute:18];
     [c setSecond:59];
-    NSDate *d = [[NSCalendar currentCalendar] dateFromComponents:c];
-    XCTAssertEqualObjects(@"2013-12-05T19:18:59.0000-08:00", [[ZKSoapDate instance] toDateTimeString:d]);
+    NSDate *d = [cal dateFromComponents:c];
+    XCTAssertEqualObjects(@"2013-12-05T19:18:59.0000Z", [[ZKSoapDate instance] toDateTimeString:d]);
 }
 
 @end

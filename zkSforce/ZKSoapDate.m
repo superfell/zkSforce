@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2013,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -32,9 +32,13 @@ static ZKSoapDate *INSTANCE;
 -(id)init {
     self = [super init];
 	dateTimeFormatter = [[NSDateFormatter alloc] init];
-	[dateTimeFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZ"];
-	dateFormatter = [[NSDateFormatter alloc] init];
+	[dateTimeFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
+    dateTimeFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    dateTimeFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+
+    dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     return self;
 }
 
@@ -53,10 +57,7 @@ static ZKSoapDate *INSTANCE;
 }
 
 -(NSString *)toDateTimeString:(NSDate *)aDateTime {
-    NSMutableString *dt = [NSMutableString stringWithString:[dateTimeFormatter stringFromDate:aDateTime]];
-	// meh, insert the : in the TZ offset, to make it xsd:dateTime
-	[dt insertString:@":" atIndex:[dt length]-2];
-    return dt;
+    return [NSMutableString stringWithString:[dateTimeFormatter stringFromDate:aDateTime]];
 }
 
 -(NSDate *)fromDateString:(NSString *)aDate {
