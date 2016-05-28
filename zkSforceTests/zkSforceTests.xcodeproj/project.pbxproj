@@ -1087,7 +1087,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0640;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = F414BBE81842EC1900322AC2 /* Build configuration list for PBXProject "zkSforceTests" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1348,9 +1348,11 @@
 		F414BBEA1842EC1900322AC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.11;
 			};
 			name = Debug;
 		};
@@ -1358,7 +1360,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				SDKROOT = macosx10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx10.11;
 			};
 			name = Release;
 		};
@@ -1394,8 +1397,9 @@
 				INFOPLIST_FILE = "zkSforceTests/zkSforceTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.11;
 			};
 			name = Debug;
 		};
@@ -1424,8 +1428,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "zkSforceTests/zkSforceTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx10.11;
 			};
 			name = Release;
 		};
