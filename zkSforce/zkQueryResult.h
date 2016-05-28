@@ -31,9 +31,16 @@
 - (id)initWithXmlElement:(zkElement *)node;
 - (id)initWithRecords:(NSArray *)records size:(int)s done:(BOOL)d queryLocator:(NSString *)ql;
 
+/** @return the total size of the query results [if this is larger than one page, this is only a hint] */
 - (int)size;
+
+/** @return true if this is the last page of results for this query, or false if there are more pages available via QueryMore */
 - (BOOL)done;
+
+/** @return a queryLocator that can be used with QueryMore to fetch the next page of results */
 - (NSString *)queryLocator;
+
+/** @return the query result records that are in this page of results */
 - (NSArray *)records;
 
 @end

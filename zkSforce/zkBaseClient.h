@@ -40,13 +40,15 @@
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
 
-// returns the Soap:Header element from the response payload.
+/** @return the Soap:Header element from the response payload. */
 - (zkElement *)lastResponseSoapHeaders;
 
 @end
 
-// Your ZKBaseClient can override this to do any processing it wants on the response soap headers, this is called before the client:sentRequest:named:... delegate is fired.
+/** Your ZKBaseClient can override this to do any processing it wants on the response soap headers, this is called before the client:sentRequest:named:... delegate is fired. */
 @interface ZKBaseClient (ZKHeaders)
-// soapHeaders can be nil if there's no soap:Header element in the response
+
+/** soapHeaders can be nil if there's no soap:Header element in the response */
 -(void)handleResponseSoapHeaders:(zkElement *)soapHeaders;
+
 @end

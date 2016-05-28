@@ -23,7 +23,10 @@
 
 @interface ZKSaveResult (Extras)
 
+/** @return the statusCode of the first error in the errors collection, or nil if there's no error */
 - (NSString *)statusCode;
+
+/** @return the message of the first error in the errors collection, or nil if there's no error */
 - (NSString *)message;
 
 @end

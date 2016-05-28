@@ -21,9 +21,8 @@
 
 #import "zkUserInfo.h"
 
+/** These are all aliases added to be backwards compatibile with earlier versions */
 @interface ZKUserInfo (Extras)
-
-// These are all aliases added to be backwards compatibile with earlier versions
 
 -(BOOL)organizationIsMultiCurrency;
 -(NSString *)defaultCurrencyIsoCode;

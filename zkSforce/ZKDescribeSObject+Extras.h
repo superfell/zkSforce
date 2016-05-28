@@ -23,8 +23,16 @@
 
 @class ZKDescribeField;
 
+/** Additional helper methods available on ZKDescribeSObject */
 @interface ZKDescribeSObject (Extras)
 
+/** looks for a Field in the describe results with the specifeid API Name
+ 
+ @param name the API name of the field to look for
+ 
+ @return the Field describe for the named field, or nil if it can't be found
+ 
+ */
 -(ZKDescribeField *)fieldWithName:(NSString *)name;
 
 @end

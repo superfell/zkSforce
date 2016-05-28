@@ -46,10 +46,12 @@
 @class ZKQueryOptions;
 @class ZKDuplicateRuleHeader;
 
-// This is the primary entry point into the library, you'd create one of these
-// call login, then use it to make other API calls. Your session is automatically
-// kept alive, and login will be called again for you if needed.
-//////////////////////////////////////////////////////////////////////////////////////
+/**
+  This is the primary entry point into the library, you'd create one of these
+  call login, then use it to make other API calls. Your session is automatically
+  kept alive, and login will be called again for you if needed.
+ 
+*/
 @interface ZKSforceClient : ZKBaseClient <NSCopying> {
 	NSString	*authEndpointUrl;
 	ZKUserInfo	*userInfo;
@@ -78,85 +80,130 @@
     ZKDuplicateRuleHeader        *duplicateRuleHeader;
 }
 
-// configuration for where to connect to and what api version to use
-//////////////////////////////////////////////////////////////////////////////////////
-// Set the default API version to connect to. (defaults to v29.0)
-// login will automatically detect if the endpoint doesn't have this
-// version and automatically retry on a lower API version.
+/** @name configuration for where to connect to and what api version to use */
+
+/** Set the default API version to connect to. (defaults to v35.0)
+ login will detect if the endpoint doesn't have this
+ version and automatically retry on a lower API version.
+*/
 @property (assign) int preferedApiVersion;
 
-// What endpoint to connect to? this should just be the protocol and host
-// part of the URL, e.g. https://test.salesforce.com
+/** What endpoint to connect to? this should just be the protocol and host
+    part of the URL, e.g. https://test.salesforce.com
+*/
 -(void)setLoginProtocolAndHost:(NSString *)protocolAndHost;
 
-// set both the endpoint to connect to, and an explicit API version to use.
+/** set both the endpoint to connect to, and an explicit API version to use. */
 -(void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version;
 
-// returns an NSURL of where authentication will currently go.
+/** returns an NSURL of where authentication will currently go. */
 -(NSURL *)authEndpointUrl;
 
-//////////////////////////////////////////////////////////////////////////////////////
-// Start an API session, need to call one of these before making any api calls
-//////////////////////////////////////////////////////////////////////////////////////
 
-// Attempt a login request. If a security token is required to be used you need to
-// append it to the password parameter.
+/** @name Start an API session, need to call one of these before making any api call */
+
+/** Attempt a login request. If a security token is required to be used you need to
+    append it to the password parameter.
+    @param username the salesforce username to try and authenticate
+    @param password the password [and possibly api security token] of the user
+*/
 - (ZKLoginResult *)login:(NSString *)username password:(NSString *)password;
 
-// Initialize the authentication info from the parameters contained in the OAuth
-// completion callback Uri passed in.
-// call this when the oauth flow is complete, this doesn't start the oauth flow.
+/** Initialize the authentication info from the parameters contained in the OAuth
+    completion callback Uri passed in.
+    call this when the oauth flow is complete, this doesn't start the oauth flow.
+    @param callbackUrl the oauth callback URL received from the OS
+    @param oauthClientId the oauth consumerKey for your applications oauth configuration
+ */
 - (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId;
 
-// Login by making a refresh token request with this refresh Token to the specifed
-// authentication host. oAuthConsumerKey is the oauth client_id / consumer key
+/** Login by making a refresh token request with this refresh Token to the specifed
+    authentication host. oAuthConsumerKey is the oauth client_id / consumer key
+ 
+    @param refreshToken  a refresh token previously obtained from the oauth login flow
+    @param authUrl       the URL to the token service to send the refresh token to
+    @param oauthClientId the OAuth consumer key for your applications oauth configuration
+ */
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId;
 
-// Attempt a login for a portal User.
-// OrgId is required, and should be the Id of the organization that owns the portal.
-// PortalId is required for new generation portals, can be null for old style self service portals.
-// In the case of self service portals, you can ony authenticate users, they don't have access
-// to the rest of the API, attempts to call other API methods will return an error.
+/** Attempt a login for a portal User.
+ 
+    In the case of self service portals, you can ony authenticate users, they don't have access
+    to the rest of the API, attempts to call other API methods will return an error.
+ 
+    @param username  the portal users username
+    @param password  the portal users password
+    @param orgId     OrgId is required, and should be the Id of the organization that owns the portal.
+    @param portalid  PortalId is required for new generation portals, can be null for old style self service portals.
+*/
 - (ZKLoginResult *)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId;
 
-// Authentication Management
-// This lets you manage different authentication schemes, like oauth
-// Normally you'd just call login:password or loginFromOAuthCallbackUrl:
-// which will create a ZKAuthenticationInfo object for you.
-//////////////////////////////////////////////////////////////////////////////////////
+/** Authentication Management
+    This lets you manage different authentication schemes, like oauth
+    Normally you'd just call login:password or loginFromOAuthCallbackUrl:
+    which will create a ZKAuthenticationInfo object for you.
+*/
 @property (retain) NSObject<ZKAuthenticationInfo> *authenticationInfo;
 
 
-// thse set of methods pretty much map directly onto their Web Services counterparts.
-// These methods will throw a ZKSoapException if there's an error.
-//////////////////////////////////////////////////////////////////////////////////////
+/** @name basic Web Service operations
+    
+    these set of methods pretty much map directly onto their Web Services counterparts.
+    These methods will throw a ZKSoapException if there's an error.
+*/
 
-// makes a desribeGlobal call and returns an array of ZKDescribeGlobalSobject instances.
-// if describeCaching is enabled, subsequent calls to this will use the locally cached
-// copy.
+
+/** make a desribeGlobal call and @return an array of ZKDescribeGlobalSobject instances.
+    if describeCaching is enabled, subsequent calls to this will use the locally cached
+    copy.
+*/
 - (NSArray *)describeGlobal;
 
-// makes a describeSObject call and returns a ZKDescribeSObject instance, if describe
-// caching is enabled, subsequent requests for the same sobject will return the locally
-// cached copy.
+/** make a describeSObject call and @return a ZKDescribeSObject instance, if describe
+    caching is enabled, subsequent requests for the same sobject will return the locally
+    cached copy.
+*/
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName;
 
-// makes a search call with the passed in SOSL expression, returns an array of ZKSObject
-// instances.
+/** make a search call with the passed in SOSL expression, @return an array of ZKSObject instances.*/
 - (NSArray *)search:(NSString *)sosl;
 
-// retreives a set of records, fields is a comma separated list of fields to fetch values for
-// ids can be upto 200 record Ids, the returned dictionary is keyed from Id and the dictionary
-// values are ZKSObject's.
+/** retreives a set of records, 
+ 
+    @param fields       is a comma separated list of fields to fetch values for
+    @param sobjectType  is the API name of the SObject type that we're fetching records for
+    @param ids          is an array of record Ids, can be upto 200.
+ 
+    @return a diction of record Id -> ZKSObject instance. If a specified record doesn't exist
+    it won't appear in the returned dictionary
+ */
 - (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids;
-// old signature of this method, same impl as above
+
+/** retreives a set of records,
+ 
+ @param fields       is a comma separated list of fields to fetch values for
+ @param sobjectType  is the API name of the SObject type that we're fetching records for
+ @param ids          is an array of record Ids, can be upto 200.
+ 
+ @return a diction of record Id -> ZKSObject instance. If a specified record doesn't exist
+ it won't appear in the returned dictionary
+ */
 - (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids;
 
-// pass an array of ZKSObject's to create in salesforce, returns a matching array of ZKSaveResults
+/** create 1 or more new records in Salseforce.
+ 
+    @param objects an array of ZKSObject's to create.
+    @return a matching array of ZKSaveResults
+*/
 - (NSArray *)create:(NSArray *)objects;
 
-// pass an array of ZKSObject's to update in salesforce, returns a matching array of ZKSaveResults
+/** update 1 or more records in Salseforce.
+ 
+ @param objects an array of ZKSObject's to update.
+ @return a matching array of ZKSaveResults
+ */
 - (NSArray *)update:(NSArray *)objects;
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Other methods from the WSDL such as delete, query, merge, etc are all declared in
@@ -164,37 +211,37 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-// Information about the current session
-//////////////////////////////////////////////////////////////////////////////////////
-// returns true if we've performed a login request and it succeeded.
+/** @name SessionInfo - Information about the current session */
+
+/** @return true if we've performed a login request and it succeeded. */
 - (BOOL)loggedIn;
 
-// the UserInfo returned by the last call to login.
+/** @return the UserInfo returned by the last call to login. */
 - (ZKUserInfo *)currentUserInfo;
 
-// the current endpoint URL where requests are being sent.
+/** @return the current endpoint URL where requests are being sent. */
 - (NSURL *)serverUrl;
 
-// the current API session Id being used to make requests.
+/** @return the current API session Id being used to make requests */
 - (NSString *)sessionId;
 
-// the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed.
+/** @return the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed. */
 - (NSString *)serverHostAbbriviation;
 
-//////////////////////////////////////////////////////////////////////////////////////
-// SOAP Headers
-//////////////////////////////////////////////////////////////////////////////////////
-// contains the last received LimitInfoHeader we got from the server.
+/** @name SOAP Headers - properties that represent soap headers that are sent in conjuction with relevant requests. */
+
+/** contains the last received LimitInfoHeader we got from the server. */
 @property (readonly) ZKLimitInfoHeader *lastLimitInfoHeader;
 
 // These 3 are for backwards compat, they will update the relevant header property
-// Should create/update calls also update the users MRU info? (defaults false)
+
+/** Should create/update calls also update the users MRU info? (defaults false) */
 @property (assign) BOOL updateMru;
 
-// If you have a clientId for a certifed partner application, you can set it here.
+/** If you have a clientId for a certifed partner application, you can set it here. */
 @property (retain) NSString *clientId;
 
-// If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default)
+/** If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default) */
 @property (retain) NSNumber *queryBatchSize;
 
 @property (retain) ZKCallOptions                *callOptions;
@@ -213,15 +260,16 @@
 @property (retain) ZKQueryOptions               *queryOptions;
 @property (retain) ZKDuplicateRuleHeader        *duplicateRuleHeader;
 
-// describe caching support, if true, describeGlobal & describeSObject call results are cached.
-//////////////////////////////////////////////////////////////////////////////////////
+/** describe caching support, if true, describeGlobal & describeSObject call results are cached. */
 @property (assign) BOOL cacheDescribes;
+ 
+/** will discard any current cached describes, any future describe request will fetch fresh info from salesforce */
 - (void)flushCachedDescribes;
 
 @end
 
 
-// These are helper methods used by the Operations category, you shouldn't need to call these directly 
+/** These are helper methods used by the Operations category, you shouldn't need to call these directly */
 @interface ZKSforceClient (Helpers)
 -(void)checkSession;
 -(void)updateLimitInfo;
