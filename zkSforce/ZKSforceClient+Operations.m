@@ -81,7 +81,7 @@
 #import "ZKUserInfo.h"
 
 @implementation ZKSforceClient (Operations)
-// Describe multiple sObjects (upto 100)
+/** Describe multiple sObjects (upto 100) */
 -(NSArray *)describeSObjects:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -98,7 +98,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
 }
 
-// Describe all the data category groups available for a given set of types
+/** Describe all the data category groups available for a given set of types */
 -(NSArray *)describeDataCategoryGroups:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -115,7 +115,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
 }
 
-// Describe the data category group structures for a given set of pair of types and data category group name
+/** Describe the data category group structures for a given set of pair of types and data category group name */
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -133,7 +133,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
 }
 
-// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+/** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(ZKKnowledgeSettings *)describeKnowledgeSettings {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -149,7 +149,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKKnowledgeSettings class]] lastObject];
 }
 
-// Describe a list of FlexiPage and their contents
+/** Describe a list of FlexiPage and their contents */
 -(NSArray *)describeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -166,7 +166,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeFlexiPageResult class]];
 }
 
-// Describe the items in an AppMenu
+/** Describe the items in an AppMenu */
 -(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -183,7 +183,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAppMenuResult class]] lastObject];
 }
 
-// Describe Gloal and Themes
+/** Describe Gloal and Themes */
 -(ZKDescribeGlobalTheme *)describeGlobalTheme {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -198,7 +198,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]] lastObject];
 }
 
-// Describe Themes
+/** Describe Themes */
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -214,7 +214,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]] lastObject];
 }
 
-// Describe the layout of the given sObject or the given actionable global page.
+/** Describe the layout of the given sObject or the given actionable global page. */
 -(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -232,7 +232,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]] lastObject];
 }
 
-// Describe the layout of the SoftPhone
+/** Describe the layout of the SoftPhone */
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -247,7 +247,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]] lastObject];
 }
 
-// Describe the search view of an sObject
+/** Describe the search view of an sObject */
 -(NSArray *)describeSearchLayouts:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -263,7 +263,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
 }
 
-// Describe a list of objects representing the order and scope of objects on a users search result page
+/** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(NSArray *)describeSearchScopeOrder {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -278,7 +278,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
 }
 
-// Describe the compact layouts of the given sObject
+/** Describe the compact layouts of the given sObject */
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -295,7 +295,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]] lastObject];
 }
 
-// Describe the Path Assistants for the given sObject and optionally RecordTypes
+/** Describe the Path Assistants for the given sObject and optionally RecordTypes */
 -(ZKDescribePathAssistantsResult *)describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -313,7 +313,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribePathAssistantsResult class]] lastObject];
 }
 
-// Describe the approval layouts of the given sObject
+/** Describe the approval layouts of the given sObject */
 -(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -330,7 +330,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeApprovalLayoutResult class]] lastObject];
 }
 
-// Describe the ListViews as SOQL metadata for the generation of SOQL.
+/** Describe the ListViews as SOQL metadata for the generation of SOQL. */
 -(ZKDescribeSoqlListViewResult *)describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -346,7 +346,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]] lastObject];
 }
 
-// Execute the specified list view and return the presentation-ready results.
+/** Execute the specified list view and return the presentation-ready results. */
 -(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -362,7 +362,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKExecuteListViewResult class]] lastObject];
 }
 
-// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+/** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL. */
 -(ZKDescribeSoqlListViewResult *)describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -382,7 +382,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]] lastObject];
 }
 
-// Describe the tabs that appear on a users page
+/** Describe the tabs that appear on a users page */
 -(NSArray *)describeTabs {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -397,7 +397,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
 }
 
-// Describe all tabs available to a user
+/** Describe all tabs available to a user */
 -(NSArray *)describeAllTabs {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -412,7 +412,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTab class]];
 }
 
-// Describe the primary compact layouts for the sObjects requested
+/** Describe the primary compact layouts for the sObjects requested */
 -(NSArray *)describePrimaryCompactLayouts:(NSArray *)sObjectTypes {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -428,7 +428,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayout class]];
 }
 
-// Update or insert a set of sObjects based on object id
+/** Update or insert a set of sObjects based on object id */
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -456,7 +456,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
 }
 
-// Merge and update a set of sObjects based on object id
+/** Merge and update a set of sObjects based on object id */
 -(NSArray *)merge:(NSArray *)request {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -481,7 +481,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
 }
 
-// Delete a set of sObjects
+/** Delete a set of sObjects */
 -(NSArray *)delete:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -506,7 +506,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
 }
 
-// Undelete a set of sObjects
+/** Undelete a set of sObjects */
 -(NSArray *)undelete:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -529,7 +529,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
 }
 
-// Empty a set of sObjects from the recycle bin
+/** Empty a set of sObjects from the recycle bin */
 -(NSArray *)emptyRecycleBin:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -544,7 +544,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
 }
 
-// Submit an entity to a workflow process or process a workitem
+/** Submit an entity to a workflow process or process a workitem */
 -(NSArray *)process:(NSArray *)actions {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -566,7 +566,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
 }
 
-// convert a set of leads
+/** convert a set of leads */
 -(NSArray *)convertLead:(NSArray *)leadConverts {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -588,7 +588,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
 }
 
-// Logout the current user, invalidating the current session.
+/** Logout the current user, invalidating the current session. */
 -(void)logout {
 	if (!authSource) return ;
 	[self checkSession];
@@ -600,7 +600,7 @@
 	[self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 }
 
-// Logs out and invalidates session ids
+/** Logs out and invalidates session ids */
 -(NSArray *)invalidateSessions:(NSArray *)sessionIds {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -615,7 +615,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
 }
 
-// Get the IDs for deleted sObjects
+/** Get the IDs for deleted sObjects */
 -(ZKGetDeletedResult *)getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -632,7 +632,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetDeletedResult class]] lastObject];
 }
 
-// Get the IDs for updated sObjects
+/** Get the IDs for updated sObjects */
 -(ZKGetUpdatedResult *)getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -649,7 +649,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]] lastObject];
 }
 
-// Create a Query Cursor
+/** Create a Query Cursor */
 -(ZKQueryResult *)query:(NSString *)queryString {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -667,7 +667,7 @@
 	return [deser queryResult:@"result"];
 }
 
-// Create a Query Cursor, including deleted sObjects
+/** Create a Query Cursor, including deleted sObjects */
 -(ZKQueryResult *)queryAll:(NSString *)queryString {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -683,7 +683,7 @@
 	return [deser queryResult:@"result"];
 }
 
-// Gets the next batch of sObjects from a query
+/** Gets the next batch of sObjects from a query */
 -(ZKQueryResult *)queryMore:(NSString *)queryLocator {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -699,7 +699,7 @@
 	return [deser queryResult:@"result"];
 }
 
-// Gets server timestamp
+/** Gets server timestamp */
 -(ZKGetServerTimestampResult *)getServerTimestamp {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -713,7 +713,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]] lastObject];
 }
 
-// Set a user's password
+/** Set a user's password */
 -(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -729,7 +729,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]] lastObject];
 }
 
-// Reset a user's password
+/** Reset a user's password */
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -745,7 +745,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]] lastObject];
 }
 
-// Returns standard information relevant to the current user
+/** Returns standard information relevant to the current user */
 -(ZKUserInfo *)getUserInfo {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -759,7 +759,7 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]] lastObject];
 }
 
-// Send existing draft EmailMessage
+/** Send existing draft EmailMessage */
 -(NSArray *)sendEmailMessage:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -774,7 +774,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
-// Send outbound email
+/** Send outbound email */
 -(NSArray *)sendEmail:(NSArray *)messages {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -789,7 +789,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
-// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -804,7 +804,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
 }
 
-// Perform a series of predefined actions such as quick create or log a task
+/** Perform a series of predefined actions such as quick create or log a task */
 -(NSArray *)performQuickActions:(NSArray *)quickActions {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -831,7 +831,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
 }
 
-// Describe the details of a series of quick actions
+/** Describe the details of a series of quick actions */
 -(NSArray *)describeQuickActions:(NSArray *)quickActions {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -848,7 +848,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
 
-// Describe the details of a series of quick actions available for the given contextType
+/** Describe the details of a series of quick actions available for the given contextType */
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -865,7 +865,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
 }
 
-// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -883,7 +883,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
 
-// Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+/** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields {
 	if (!authSource) return nil;
 	[self checkSession];

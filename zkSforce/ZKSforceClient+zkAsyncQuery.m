@@ -93,7 +93,7 @@
                    queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)];
 }
 
-// Login to the Salesforce.com SOAP Api
+/** Login to the Salesforce.com SOAP Api */
 -(void) performLogin:(NSString *)username password:(NSString *)password
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteLoginResultBlock)completeBlock {
@@ -108,7 +108,7 @@
 		}];
 }
 
-// Describe an sObject
+/** Describe an sObject */
 -(void) performDescribeSObject:(NSString *)sObjectType
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeSObjectBlock)completeBlock {
@@ -123,7 +123,7 @@
 		}];
 }
 
-// Describe multiple sObjects (upto 100)
+/** Describe multiple sObjects (upto 100) */
 -(void) performDescribeSObjects:(NSArray *)sObjectType
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -138,7 +138,7 @@
 		}];
 }
 
-// Describe the Global state
+/** Describe the Global state */
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock {
 
@@ -152,7 +152,7 @@
 		}];
 }
 
-// Describe all the data category groups available for a given set of types
+/** Describe all the data category groups available for a given set of types */
 -(void) performDescribeDataCategoryGroups:(NSArray *)sObjectType
                                 failBlock:(zkFailWithExceptionBlock)failBlock
                             completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -167,7 +167,7 @@
 		}];
 }
 
-// Describe the data category group structures for a given set of pair of types and data category group name
+/** Describe the data category group structures for a given set of pair of types and data category group name */
 -(void) performDescribeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
                                          failBlock:(zkFailWithExceptionBlock)failBlock
                                      completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -182,7 +182,7 @@
 		}];
 }
 
-// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+/** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock {
 
@@ -196,7 +196,7 @@
 		}];
 }
 
-// Describe a list of FlexiPage and their contents
+/** Describe a list of FlexiPage and their contents */
 -(void) performDescribeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -211,7 +211,7 @@
 		}];
 }
 
-// Describe the items in an AppMenu
+/** Describe the items in an AppMenu */
 -(void) performDescribeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeAppMenuResultBlock)completeBlock {
@@ -226,7 +226,7 @@
 		}];
 }
 
-// Describe Gloal and Themes
+/** Describe Gloal and Themes */
 -(void) performDescribeGlobalThemeWithFailBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteDescribeGlobalThemeBlock)completeBlock {
 
@@ -240,7 +240,7 @@
 		}];
 }
 
-// Describe Themes
+/** Describe Themes */
 -(void) performDescribeTheme:(NSArray *)sobjectType
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteDescribeThemeResultBlock)completeBlock {
@@ -255,7 +255,7 @@
 		}];
 }
 
-// Describe the layout of the given sObject or the given actionable global page.
+/** Describe the layout of the given sObject or the given actionable global page. */
 -(void) performDescribeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteDescribeLayoutResultBlock)completeBlock {
@@ -270,7 +270,7 @@
 		}];
 }
 
-// Describe the layout of the SoftPhone
+/** Describe the layout of the SoftPhone */
 -(void) performDescribeSoftphoneLayoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
                          completeBlock:(zkCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
@@ -284,7 +284,7 @@
 		}];
 }
 
-// Describe the search view of an sObject
+/** Describe the search view of an sObject */
 -(void) performDescribeSearchLayouts:(NSArray *)sObjectType
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -299,7 +299,7 @@
 		}];
 }
 
-// Describe a list of objects representing the order and scope of objects on a users search result page
+/** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(void) performDescribeSearchScopeOrderWithFailBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
@@ -313,7 +313,7 @@
 		}];
 }
 
-// Describe the compact layouts of the given sObject
+/** Describe the compact layouts of the given sObject */
 -(void) performDescribeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeCompactLayoutsResultBlock)completeBlock {
@@ -328,7 +328,7 @@
 		}];
 }
 
-// Describe the Path Assistants for the given sObject and optionally RecordTypes
+/** Describe the Path Assistants for the given sObject and optionally RecordTypes */
 -(void) performDescribePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribePathAssistantsResultBlock)completeBlock {
@@ -343,7 +343,7 @@
 		}];
 }
 
-// Describe the approval layouts of the given sObject
+/** Describe the approval layouts of the given sObject */
 -(void) performDescribeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeApprovalLayoutResultBlock)completeBlock {
@@ -358,7 +358,7 @@
 		}];
 }
 
-// Describe the ListViews as SOQL metadata for the generation of SOQL.
+/** Describe the ListViews as SOQL metadata for the generation of SOQL. */
 -(void) performDescribeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
@@ -373,7 +373,7 @@
 		}];
 }
 
-// Execute the specified list view and return the presentation-ready results.
+/** Execute the specified list view and return the presentation-ready results. */
 -(void) performExecuteListView:(ZKExecuteListViewRequest *)request
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteExecuteListViewResultBlock)completeBlock {
@@ -388,7 +388,7 @@
 		}];
 }
 
-// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+/** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL. */
 -(void) performDescribeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset
                               failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
@@ -403,7 +403,7 @@
 		}];
 }
 
-// Describe the tabs that appear on a users page
+/** Describe the tabs that appear on a users page */
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
@@ -417,7 +417,7 @@
 		}];
 }
 
-// Describe all tabs available to a user
+/** Describe all tabs available to a user */
 -(void) performDescribeAllTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
@@ -431,7 +431,7 @@
 		}];
 }
 
-// Describe the primary compact layouts for the sObjects requested
+/** Describe the primary compact layouts for the sObjects requested */
 -(void) performDescribePrimaryCompactLayouts:(NSArray *)sObjectTypes
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -446,7 +446,7 @@
 		}];
 }
 
-// Create a set of new sObjects
+/** Create a set of new sObjects */
 -(void) performCreate:(NSArray *)sObjects
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -461,7 +461,7 @@
 		}];
 }
 
-// Update a set of sObjects
+/** Update a set of sObjects */
 -(void) performUpdate:(NSArray *)sObjects
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -476,7 +476,7 @@
 		}];
 }
 
-// Update or insert a set of sObjects based on object id
+/** Update or insert a set of sObjects based on object id */
 -(void) performUpsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -491,7 +491,7 @@
 		}];
 }
 
-// Merge and update a set of sObjects based on object id
+/** Merge and update a set of sObjects based on object id */
 -(void) performMerge:(NSArray *)request
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -506,7 +506,7 @@
 		}];
 }
 
-// Delete a set of sObjects
+/** Delete a set of sObjects */
 -(void) performDelete:(NSArray *)ids
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -521,7 +521,7 @@
 		}];
 }
 
-// Undelete a set of sObjects
+/** Undelete a set of sObjects */
 -(void) performUndelete:(NSArray *)ids
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -536,7 +536,7 @@
 		}];
 }
 
-// Empty a set of sObjects from the recycle bin
+/** Empty a set of sObjects from the recycle bin */
 -(void) performEmptyRecycleBin:(NSArray *)ids
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -551,7 +551,7 @@
 		}];
 }
 
-// Get a set of sObjects
+/** Get a set of sObjects */
 -(void) performRetrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteDictionaryBlock)completeBlock {
@@ -566,7 +566,7 @@
 		}];
 }
 
-// Submit an entity to a workflow process or process a workitem
+/** Submit an entity to a workflow process or process a workitem */
 -(void) performProcess:(NSArray *)actions
              failBlock:(zkFailWithExceptionBlock)failBlock
          completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -581,7 +581,7 @@
 		}];
 }
 
-// convert a set of leads
+/** convert a set of leads */
 -(void) performConvertLead:(NSArray *)leadConverts
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -596,7 +596,7 @@
 		}];
 }
 
-// Logout the current user, invalidating the current session.
+/** Logout the current user, invalidating the current session. */
 -(void) performLogoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteVoidBlock)completeBlock {
 
@@ -611,7 +611,7 @@
 		}];
 }
 
-// Logs out and invalidates session ids
+/** Logs out and invalidates session ids */
 -(void) performInvalidateSessions:(NSArray *)sessionIds
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -626,7 +626,7 @@
 		}];
 }
 
-// Get the IDs for deleted sObjects
+/** Get the IDs for deleted sObjects */
 -(void) performGetDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetDeletedResultBlock)completeBlock {
@@ -641,7 +641,7 @@
 		}];
 }
 
-// Get the IDs for updated sObjects
+/** Get the IDs for updated sObjects */
 -(void) performGetUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetUpdatedResultBlock)completeBlock {
@@ -656,7 +656,7 @@
 		}];
 }
 
-// Create a Query Cursor
+/** Create a Query Cursor */
 -(void) performQuery:(NSString *)queryString
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteQueryResultBlock)completeBlock {
@@ -671,7 +671,7 @@
 		}];
 }
 
-// Create a Query Cursor, including deleted sObjects
+/** Create a Query Cursor, including deleted sObjects */
 -(void) performQueryAll:(NSString *)queryString
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteQueryResultBlock)completeBlock {
@@ -686,7 +686,7 @@
 		}];
 }
 
-// Gets the next batch of sObjects from a query
+/** Gets the next batch of sObjects from a query */
 -(void) performQueryMore:(NSString *)queryLocator
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteQueryResultBlock)completeBlock {
@@ -701,7 +701,7 @@
 		}];
 }
 
-// Search for sObjects
+/** Search for sObjects */
 -(void) performSearch:(NSString *)searchString
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -716,7 +716,7 @@
 		}];
 }
 
-// Gets server timestamp
+/** Gets server timestamp */
 -(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteGetServerTimestampResultBlock)completeBlock {
 
@@ -730,7 +730,7 @@
 		}];
 }
 
-// Set a user's password
+/** Set a user's password */
 -(void) performSetPassword:(NSString *)userId password:(NSString *)password
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteSetPasswordResultBlock)completeBlock {
@@ -745,7 +745,7 @@
 		}];
 }
 
-// Reset a user's password
+/** Reset a user's password */
 -(void) performResetPassword:(NSString *)userId
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteResetPasswordResultBlock)completeBlock {
@@ -760,7 +760,7 @@
 		}];
 }
 
-// Returns standard information relevant to the current user
+/** Returns standard information relevant to the current user */
 -(void) performGetUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteUserInfoBlock)completeBlock {
 
@@ -774,7 +774,7 @@
 		}];
 }
 
-// Send existing draft EmailMessage
+/** Send existing draft EmailMessage */
 -(void) performSendEmailMessage:(NSArray *)ids
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -789,7 +789,7 @@
 		}];
 }
 
-// Send outbound email
+/** Send outbound email */
 -(void) performSendEmail:(NSArray *)messages
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -804,7 +804,7 @@
 		}];
 }
 
-// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
 -(void) performRenderEmailTemplate:(NSArray *)renderRequests
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -819,7 +819,7 @@
 		}];
 }
 
-// Perform a series of predefined actions such as quick create or log a task
+/** Perform a series of predefined actions such as quick create or log a task */
 -(void) performPerformQuickActions:(NSArray *)quickActions
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -834,7 +834,7 @@
 		}];
 }
 
-// Describe the details of a series of quick actions
+/** Describe the details of a series of quick actions */
 -(void) performDescribeQuickActions:(NSArray *)quickActions
                           failBlock:(zkFailWithExceptionBlock)failBlock
                       completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -849,7 +849,7 @@
 		}];
 }
 
-// Describe the details of a series of quick actions available for the given contextType
+/** Describe the details of a series of quick actions available for the given contextType */
 -(void) performDescribeAvailableQuickActions:(NSString *)contextType
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -864,7 +864,7 @@
 		}];
 }
 
-// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
 -(void) performRetrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -879,7 +879,7 @@
 		}];
 }
 
-// Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+/** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(void) performDescribeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteArrayBlock)completeBlock {

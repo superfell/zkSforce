@@ -48,145 +48,145 @@
 @class ZKUserInfo;
 
 @interface ZKSforceClient (Operations)
-// Describe multiple sObjects (upto 100)
+/** Describe multiple sObjects (upto 100) */
 -(NSArray *)describeSObjects:(NSArray *)sObjectType;
 
-// Describe all the data category groups available for a given set of types
+/** Describe all the data category groups available for a given set of types */
 -(NSArray *)describeDataCategoryGroups:(NSArray *)sObjectType;
 
-// Describe the data category group structures for a given set of pair of types and data category group name
+/** Describe the data category group structures for a given set of pair of types and data category group name */
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly;
 
-// Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+/** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(ZKKnowledgeSettings *)describeKnowledgeSettings;
 
-// Describe a list of FlexiPage and their contents
+/** Describe a list of FlexiPage and their contents */
 -(NSArray *)describeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts;
 
-// Describe the items in an AppMenu
+/** Describe the items in an AppMenu */
 -(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId;
 
-// Describe Gloal and Themes
+/** Describe Gloal and Themes */
 -(ZKDescribeGlobalTheme *)describeGlobalTheme;
 
-// Describe Themes
+/** Describe Themes */
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType;
 
-// Describe the layout of the given sObject or the given actionable global page.
+/** Describe the layout of the given sObject or the given actionable global page. */
 -(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds;
 
-// Describe the layout of the SoftPhone
+/** Describe the layout of the SoftPhone */
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout;
 
-// Describe the search view of an sObject
+/** Describe the search view of an sObject */
 -(NSArray *)describeSearchLayouts:(NSArray *)sObjectType;
 
-// Describe a list of objects representing the order and scope of objects on a users search result page
+/** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(NSArray *)describeSearchScopeOrder;
 
-// Describe the compact layouts of the given sObject
+/** Describe the compact layouts of the given sObject */
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
 
-// Describe the Path Assistants for the given sObject and optionally RecordTypes
+/** Describe the Path Assistants for the given sObject and optionally RecordTypes */
 -(ZKDescribePathAssistantsResult *)describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds;
 
-// Describe the approval layouts of the given sObject
+/** Describe the approval layouts of the given sObject */
 -(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames;
 
-// Describe the ListViews as SOQL metadata for the generation of SOQL.
+/** Describe the ListViews as SOQL metadata for the generation of SOQL. */
 -(ZKDescribeSoqlListViewResult *)describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request;
 
-// Execute the specified list view and return the presentation-ready results.
+/** Execute the specified list view and return the presentation-ready results. */
 -(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request;
 
-// Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+/** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL. */
 -(ZKDescribeSoqlListViewResult *)describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset;
 
-// Describe the tabs that appear on a users page
+/** Describe the tabs that appear on a users page */
 -(NSArray *)describeTabs;
 
-// Describe all tabs available to a user
+/** Describe all tabs available to a user */
 -(NSArray *)describeAllTabs;
 
-// Describe the primary compact layouts for the sObjects requested
+/** Describe the primary compact layouts for the sObjects requested */
 -(NSArray *)describePrimaryCompactLayouts:(NSArray *)sObjectTypes;
 
-// Update or insert a set of sObjects based on object id
+/** Update or insert a set of sObjects based on object id */
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects;
 
-// Merge and update a set of sObjects based on object id
+/** Merge and update a set of sObjects based on object id */
 -(NSArray *)merge:(NSArray *)request;
 
-// Delete a set of sObjects
+/** Delete a set of sObjects */
 -(NSArray *)delete:(NSArray *)ids;
 
-// Undelete a set of sObjects
+/** Undelete a set of sObjects */
 -(NSArray *)undelete:(NSArray *)ids;
 
-// Empty a set of sObjects from the recycle bin
+/** Empty a set of sObjects from the recycle bin */
 -(NSArray *)emptyRecycleBin:(NSArray *)ids;
 
-// Submit an entity to a workflow process or process a workitem
+/** Submit an entity to a workflow process or process a workitem */
 -(NSArray *)process:(NSArray *)actions;
 
-// convert a set of leads
+/** convert a set of leads */
 -(NSArray *)convertLead:(NSArray *)leadConverts;
 
-// Logout the current user, invalidating the current session.
+/** Logout the current user, invalidating the current session. */
 -(void)logout;
 
-// Logs out and invalidates session ids
+/** Logs out and invalidates session ids */
 -(NSArray *)invalidateSessions:(NSArray *)sessionIds;
 
-// Get the IDs for deleted sObjects
+/** Get the IDs for deleted sObjects */
 -(ZKGetDeletedResult *)getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
-// Get the IDs for updated sObjects
+/** Get the IDs for updated sObjects */
 -(ZKGetUpdatedResult *)getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
-// Create a Query Cursor
+/** Create a Query Cursor */
 -(ZKQueryResult *)query:(NSString *)queryString;
 
-// Create a Query Cursor, including deleted sObjects
+/** Create a Query Cursor, including deleted sObjects */
 -(ZKQueryResult *)queryAll:(NSString *)queryString;
 
-// Gets the next batch of sObjects from a query
+/** Gets the next batch of sObjects from a query */
 -(ZKQueryResult *)queryMore:(NSString *)queryLocator;
 
-// Gets server timestamp
+/** Gets server timestamp */
 -(ZKGetServerTimestampResult *)getServerTimestamp;
 
-// Set a user's password
+/** Set a user's password */
 -(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password;
 
-// Reset a user's password
+/** Reset a user's password */
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId;
 
-// Returns standard information relevant to the current user
+/** Returns standard information relevant to the current user */
 -(ZKUserInfo *)getUserInfo;
 
-// Send existing draft EmailMessage
+/** Send existing draft EmailMessage */
 -(NSArray *)sendEmailMessage:(NSArray *)ids;
 
-// Send outbound email
+/** Send outbound email */
 -(NSArray *)sendEmail:(NSArray *)messages;
 
-// Perform a template merge on one or more blocks of text.  Optionally, just validate the template text.
+/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests;
 
-// Perform a series of predefined actions such as quick create or log a task
+/** Perform a series of predefined actions such as quick create or log a task */
 -(NSArray *)performQuickActions:(NSArray *)quickActions;
 
-// Describe the details of a series of quick actions
+/** Describe the details of a series of quick actions */
 -(NSArray *)describeQuickActions:(NSArray *)quickActions;
 
-// Describe the details of a series of quick actions available for the given contextType
+/** Describe the details of a series of quick actions available for the given contextType */
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType;
 
-// Retreive the template sobjects, if appropriate, for the given quick action names in a given context
+/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId;
 
-// Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+/** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields;
 
 @end
