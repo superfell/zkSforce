@@ -47,7 +47,7 @@ Login and create a new contact for Simon Fell, and check the result
 	        NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
         [sforce release];
 
-Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a version of all the calls that are asynchronous and use blocks to get completion/error callbacks.
+Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a version of all the calls that are asynchronous and use blocks to get completion/error callbacks. 
 
 		[client performQuery:query 
         	failBlock:^(NSException *ex) {
@@ -72,8 +72,16 @@ You'll need to store the refresh_token and authHost somewhere safe, like the key
 	[sforce loginWithRefreshToken:refreshToken authUrl:authHost oAuthConsumerKey:OAUTH_CLIENTID];
 	// use as normal
 	// See the OAuthDemo sample for more info.
-	
 
+Instances are ZKSforceClient are not safe to be called on multiple threads concurrently. If you want to use ZKSforceClient concurrently, you should use the -copyWithZone: method to create per thread instances. [or use the async/callback based API]	
+
+# Date/Time formats
+The way date/times are serialized changed in v35.0.2. The timestamp sent over the wire is now in UTC, whereas before the timestamp was sent in the users local timezone (with the correct offset applied). The exact same logical timestamp is sent, so there's no change in behavior in terms of how NSDates are mapped to dateTimes in salesforce, just a difference in the offset in the serialized dateTime. If for
+some reason you are calling the ZKSoapDate asString methods yourself, the resulting string is different. [Although i can't imagine why you're doing this].
+
+# Unit Tests
+The zkSforceTests directory contains a project with a number of tests in it, these tests are focused on the hand coded supporting classes, and generally don't test the classes that get code gen'd from the WSDL.
+ 
 # Updating from older versions
 v29 is a major update where a significant amount of the code is now code-generated from the partner WSDL, because of this there are a number of API changes that might affect an existing project that you're trying to update to this version of zkSforce.
 
