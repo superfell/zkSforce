@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -19,7 +19,19 @@
 // THE SOFTWARE.
 //
 
-#import "NSDateAsserts.h"
+#import <Foundation/Foundation.h>
 
-@interface ZKSoapDateTests : NSDateAsserts 
+/** defines helpers to deserialize common XSD simple types. */
+@interface NSString (ZKSimpleTypes)
+
+-(NSNumber *)ZKBoolean;
+-(NSDecimalNumber *)ZKDecimal;
+-(NSNumber *)ZKInteger;
+-(NSNumber *)ZKFloat;
+-(NSNumber *)ZKDouble;
+-(NSDate *)ZKDateTime;
+-(NSDate *)ZKTime;
+-(NSDate *)ZKDate;
+-(NSData *)ZKBase64Binary;
+
 @end

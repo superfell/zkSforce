@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2013,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -21,14 +21,17 @@
 #import <Foundation/Foundation.h>
 
 @interface ZKSoapDate : NSObject {
-    NSDateFormatter *dateFormatter, *dateTimeFormatter;
+    NSDateFormatter *dateFormatter, *dateTimeFormatter, *timeFormatter;
 }
 
 +(ZKSoapDate *)instance;
 
 -(NSString *)toDateString:(NSDate *)aDate;
 -(NSString *)toDateTimeString:(NSDate *)aDateTime;
+-(NSString *)toTimeString:(NSDate *)aTime;
+
 -(NSDate *)fromDateString:(NSString *)aDate;
 -(NSDate *)fromDateTimeString:(NSString *)aDateTime;
+-(NSDate *)fromTimeString:(NSString *)aTime;
 
 @end

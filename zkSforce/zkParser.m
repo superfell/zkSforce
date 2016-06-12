@@ -1,4 +1,4 @@
-// Copyright (c) 2008-2010 Simon Fell
+// Copyright (c) 2008-2010,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -20,6 +20,9 @@
 //
 
 #import "zkParser.h"
+
+NSString *const NS_URI_XSI = @"http://www.w3.org/2001/XMLSchema-instance";
+NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 
 @implementation zkElement
 
@@ -112,6 +115,26 @@
 	return [self childElements:nil ns:nil checkNs:NO all:YES];
 }
 
+- (ZKNamespacedName *)xsiType {
+    NSString *t = [self attributeValue:@"type" ns:NS_URI_XSI];
+    if ([t length] == 0) {
+        return nil;
+    }
+    NSArray *typeParts = [t componentsSeparatedByString:@":"];
+    xmlChar *prefix = NULL;
+    if ([typeParts count] == 2) {
+        prefix = (xmlChar *)[[typeParts objectAtIndex:0] UTF8String];
+    }
+    const xmlNsPtr ns = xmlSearchNs(node->doc, node, prefix);
+    NSString *uri = ns == NULL ? @"" : [NSString stringWithUTF8String:(const char *)ns->href];
+    return [ZKNamespacedName withName:[typeParts lastObject] uri:uri];
+}
+
+- (BOOL)isXsiNil {
+    NSString *n = [self attributeValue:@"nil" ns:NS_URI_XSI];
+    return n != nil && ([n caseInsensitiveCompare:@"true"] == NSOrderedSame || [n isEqualToString:@"1"]);
+}
+
 @end
 
 @implementation zkParser
@@ -123,4 +146,40 @@
 	return nil;
 }
 
+@end
+
+@implementation ZKNamespacedName
+
+-(id)initWithName:(NSString *)localName uri:(NSString *)nsuri {
+    self = [super init];
+    name = [localName retain];
+    uri = [nsuri retain];
+    return self;
+}
+
+-(void) dealloc {
+    [name autorelease];
+    [uri autorelease];
+    [super dealloc];
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    return [ZKNamespacedName withName:name uri:uri];
+}
+
++(ZKNamespacedName *)withName:(NSString*)localName uri:(NSString *)uri {
+    return [[ZKNamespacedName alloc] initWithName:localName uri:uri];
+}
+
+-(NSString *)namespaceURI {
+    return uri;
+}
+
+-(NSString *)localname {
+    return name;
+}
+
+-(NSString *)description {
+    return [NSString stringWithFormat:@"%@:%@", uri, name];
+}
 @end

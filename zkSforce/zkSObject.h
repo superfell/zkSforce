@@ -26,8 +26,6 @@
 @class ZKAddress;
 @class ZKLocation;
 
-FOUNDATION_EXPORT NSString *const NS_URI_XSI;
-
 /** ZKSObject represents a row of data in Salesforce [either already in salesforce, or one we're in
     the process of constructing to be sent to Salesforce */
 @interface ZKSObject : NSObject {

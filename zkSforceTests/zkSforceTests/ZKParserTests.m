@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2013,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -94,6 +94,51 @@
     [self assert:[c objectAtIndex:0] hasName:@"c" ns:@"urn:a" text:@"one"];
     [self assert:[c objectAtIndex:1] hasName:@"c" ns:@"urn:bb" text:@"two"];
     [self assert:[c objectAtIndex:2] hasName:@"c" ns:@"urn:bb" text:@"three"];
+}
+
+-(void)testXsiTypeWithNs {
+    NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xsi:type='xsd:date'>2016-05-31</root>";
+    zkElement *e = [self parse:doc];
+    ZKNamespacedName *t = [e xsiType];
+    XCTAssertEqualObjects(@"date", t.localname);
+    XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema", t.namespaceURI);
+    XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema:date", [t description]);
+}
+
+-(void)testXsiTypeWithDefaultNs {
+    NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://www.w3.org/2001/XMLSchema' xsi:type='date'>2016-05-31</root>";
+    zkElement *e = [self parse:doc];
+    ZKNamespacedName *t = [e xsiType];
+    XCTAssertEqualObjects(@"date", t.localname);
+    XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema", t.namespaceURI);
+    XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema:date", [t description]);
+}
+
+-(void)testXsiTypeNotExists {
+    NSString *doc = @"<root>2016-05-31</root>";
+    zkElement *e = [self parse:doc];
+    XCTAssertNil([e xsiType]);
+}
+
+-(void)testIsXsiNil {
+    NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:nil='true' />";
+    zkElement *e = [self parse:doc];
+    XCTAssertEqual(TRUE, [e isXsiNil]);
+}
+
+-(void)testIsNotXsiNil {
+    NSString *doc = @"<root />";
+    zkElement *e = [self parse:doc];
+    XCTAssertEqual(false, [e isXsiNil]);
+
+    doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:nil='false' />";
+    e = [self parse:doc];
+    XCTAssertEqual(false, [e isXsiNil]);
+
+    // note that the NS URI is not the schema-instance URI, so this should be false
+    doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema' xsi:nil='true' />";
+    e = [self parse:doc];
+    XCTAssertEqual(false, [e isXsiNil]);
 }
 
 @end

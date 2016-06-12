@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2013,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -24,30 +24,9 @@
 
 @implementation ZKSoapDateTests
 
--(void)setUp {
-    [super setUp];
-    cal = [[NSCalendar alloc] initWithCalendarIdentifier:(NSString *)kCFGregorianCalendar];
-    [cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-}
-
--(void)tearDown {
-    [cal release];
-    [super tearDown];
-}
-
--(void)assertDate:(NSDate *)date equalsYear:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day {
-    NSDateComponents *dc = [cal components:-1 fromDate:date];
-    XCTAssertEqual(yr, [dc year]);
-    XCTAssertEqual(month, [dc month]);
-    XCTAssertEqual(day, [dc day]);
-}
-
--(void)assertDateTime:(NSDate *)date equalsYears:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour mins:(NSInteger)mins seconds:(NSInteger)seconds {
-    [self assertDate:date equalsYear:yr month:month day:day];
-    NSDateComponents *dc = [cal components:-1 fromDate:date];
-    XCTAssertEqual(hour, [dc hour]);
-    XCTAssertEqual(mins, [dc minute]);
-    XCTAssertEqual(seconds, [dc second]);
+-(void)testTimeFromString {
+    NSDate *d = [[ZKSoapDate instance] fromTimeString:@"11:05:01.3Z"];
+    [self assertTime:d equalsHour:11 minute:5 seconds:1];
 }
 
 -(void)testDateFromString {
@@ -56,7 +35,7 @@
 }
 
 -(void)testDateTimeFromString {
-    NSDate *d = [[ZKSoapDate instance] fromDateTimeString:@"2013-11-24T23:12:49.000Z"];
+    NSDate *d = [[ZKSoapDate instance] fromDateTimeString:@"2013-11-24T23:12:49.1Z"];
     [self assertDateTime:d equalsYears:2013 month:11 day:24 hour:23 mins:12 seconds:49];
 }
 
@@ -81,4 +60,12 @@
     XCTAssertEqualObjects(@"2013-12-05T19:18:59.0000Z", [[ZKSoapDate instance] toDateTimeString:d]);
 }
 
+-(void)testToTimeString {
+    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
+    [c setHour:10];
+    [c setMinute:30];
+    [c setSecond:15];
+    NSDate *d = [cal dateFromComponents:c];
+    XCTAssertEqualObjects(@"10:30:15.0000Z", [[ZKSoapDate instance] toTimeString:d]);
+}
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2013,2014 Simon Fell
+// Copyright (c) 2006,2013,2014,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -23,6 +23,7 @@
 @class zkElement;
 @class ZKSObject;
 @class ZKQueryResult;
+@class ZKNamespacedName;
 
 @interface ZKXmlDeserializer : NSObject<NSCopying> {
 	zkElement *node;
@@ -43,5 +44,6 @@
 
 - (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement;
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type;
+- (Class) complexTypeClassForType:(ZKNamespacedName *)xsiType baseClass:(Class)base;
 
 @end
