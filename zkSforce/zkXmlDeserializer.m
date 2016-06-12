@@ -22,10 +22,10 @@
 #import "zkXmlDeserializer.h"
 #import "zkParser.h"
 #import "ZKBase64.h"
-#import "ZKSoapDate.h"
 #import "zkSObject.h"
 #import "zkQueryResult.h"
 #import "ZKSimpleTypes.h"
+#import "ZKXsdAnyType.h"
 
 @implementation ZKXmlDeserializer
 
@@ -66,12 +66,16 @@
 	return [[self string:elem] doubleValue];
 }
 
+- (NSDate *)time:(NSString *)elem {
+    return [[self string:elem] ZKTime];
+}
+
 - (NSDate *)date:(NSString *)elem {
-    return [[ZKSoapDate instance] fromDateString:[self string:elem]];
+    return [[self string:elem] ZKDate];
 }
 
 - (NSDate *)dateTime:(NSString *)elem {
-    return [[ZKSoapDate instance] fromDateTimeString:[self string:elem]];
+    return [[self string:elem] ZKDateTime];
 }
 
 - (ZKSObject *)sObject:(NSString *)elem {
@@ -80,6 +84,10 @@
 
 - (ZKQueryResult *)queryResult:(NSString *)elem {
     return [[self complexTypeArrayFromElements:elem cls:[ZKQueryResult class]] lastObject];
+}
+
+- (ZKXsdAnyType *)anyType:(NSString *)elem {
+    return [[[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]] autorelease];
 }
 
 - (NSData *)blob:(NSString *)elem {
