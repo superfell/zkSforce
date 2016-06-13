@@ -75,6 +75,24 @@ You'll need to store the refresh_token and authHost somewhere safe, like the key
 
 Instances are ZKSforceClient are not safe to be called on multiple threads concurrently. If you want to use ZKSforceClient concurrently, you should use the -copyWithZone: method to create per thread instances. [or use the async/callback based API]	
 
+# Application Transport Security
+
+If you're targeting ios9+ or OSX 10.11+ you'll need to setup [ATS configuration](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33) in your applications Info.plist in order to be able to successfully communicate with Salesforce.com. Add the following to your Info.plist. 
+
+	<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSExceptionDomains</key>
+			<dict>
+				<key>salesforce.com</key>
+				<dict>
+					<key>NSIncludesSubdomains</key>
+					<true/>
+					<key>NSExceptionRequiresForwardSecrecy</key>
+					<false/>
+				</dict>
+			</dict>
+		</dict>
+
 # Date/Time formats
 The way date/times are serialized changed in v35.0.2. The timestamp sent over the wire is now in UTC, whereas before the timestamp was sent in the users local timezone (with the correct offset applied). The exact same logical timestamp is sent, so there's no change in behavior in terms of how NSDates are mapped to dateTimes in salesforce, just a difference in the offset in the serialized dateTime. If for
 some reason you are calling the ZKSoapDate asString methods yourself, the resulting string is different. [Although i can't imagine why you're doing this].
