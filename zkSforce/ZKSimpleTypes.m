@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -19,7 +19,46 @@
 // THE SOFTWARE.
 //
 
-#import "NSDateAsserts.h"
+#import "ZKSimpleTypes.h"
+#import "ZKBase64.h"
+#import "ZKSoapDate.h"
 
-@interface ZKSoapDateTests : NSDateAsserts 
+@implementation NSString(ZKSimpleTypes)
+
+-(NSNumber *)ZKBoolean {
+    return [NSNumber numberWithBool:[self isEqualToString:@"true"] || [self isEqualToString:@"1"]];
+}
+
+-(NSDecimalNumber *)ZKDecimal {
+    return [NSDecimalNumber decimalNumberWithString:self locale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+}
+
+-(NSNumber *)ZKInteger {
+    return [NSNumber numberWithLongLong:[self longLongValue]];
+}
+
+-(NSNumber *)ZKFloat {
+    return [NSNumber numberWithFloat:[self floatValue]];
+}
+
+-(NSNumber *)ZKDouble {
+    return [NSNumber numberWithDouble:[self doubleValue]];
+}
+
+-(NSDate *)ZKDateTime {
+    return [[ZKSoapDate instance] fromDateTimeString:self];
+}
+
+-(NSDate *)ZKTime {
+    return [[ZKSoapDate instance] fromTimeString:self];
+}
+
+-(NSDate *)ZKDate {
+    return [[ZKSoapDate instance] fromDateString:self];
+}
+
+-(NSData *)ZKBase64Binary {
+    return [self ZKBase64Decode];
+}
+
 @end

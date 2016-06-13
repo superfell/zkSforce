@@ -31,13 +31,16 @@
   <sequence>
     <element nillable="true" type="xsd:string" name="client"/>
     <element nillable="true" type="xsd:string" name="defaultNamespace"/>
+    <element nillable="true" type="xsd:boolean" name="returnFieldDataTypes"/>
   </sequence>
 </complexType>
 */
 @interface ZKCallOptions : NSObject<ZKXMLSerializable> {
 	NSString  *client;
 	NSString  *defaultNamespace;
+	BOOL       returnFieldDataTypes;
 }
 @property (retain) NSString  *client; 
 @property (retain) NSString  *defaultNamespace; 
+@property (assign) BOOL       returnFieldDataTypes; 
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -19,7 +19,22 @@
 // THE SOFTWARE.
 //
 
-#import "NSDateAsserts.h"
+#import "zkXmlDeserializer.h"
 
-@interface ZKSoapDateTests : NSDateAsserts 
+@class ZKNamespacedName;
+
+@interface ZKXsdAnyType : ZKXmlDeserializer {
+    ZKNamespacedName *xsiType;
+    NSObject         *val;
+}
+
+/** @return the decoded value of this item */
+-(id)value;
+
+/** @return the xml namespace URI of the type of this item */
+-(NSString*)typeNamespaceURI;
+
+/** @return the xml localname of the type of this item */
+-(NSString*)typeName;
+
 @end

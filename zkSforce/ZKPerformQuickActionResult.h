@@ -35,6 +35,7 @@
     <element nillable="true" maxOccurs="unbounded" minOccurs="0" type="tns:ID" name="feedItemIds"/>
     <element nillable="true" maxOccurs="unbounded" minOccurs="0" type="tns:ID" name="ids"/>
     <element type="xsd:boolean" name="success"/>
+    <element nillable="true" minOccurs="0" type="xsd:string" name="successMessage"/>
   </sequence>
 </complexType>
 */
@@ -46,4 +47,5 @@
 @property (readonly) NSArray   *feedItemIds;  // of NSString
 @property (readonly) NSArray   *ids;  // of NSString
 @property (readonly) BOOL       success; 
+@property (readonly) NSString  *successMessage; 
 @end

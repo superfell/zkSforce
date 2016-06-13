@@ -28,6 +28,10 @@
 
 @implementation ZKActionOverride
 
+-(NSString *)formFactor {
+    return [self string:@"formFactor"];
+}
+			
 -(BOOL)isAvailableInTouch {
     return [self boolean:@"isAvailableInTouch"];
 }

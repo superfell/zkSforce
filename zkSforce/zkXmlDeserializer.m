@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2013,2014 Simon Fell
+// Copyright (c) 2006,2013,2014,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -22,11 +22,10 @@
 #import "zkXmlDeserializer.h"
 #import "zkParser.h"
 #import "ZKBase64.h"
-#import "ZKSoapDate.h"
 #import "zkSObject.h"
 #import "zkQueryResult.h"
-
-static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instance";
+#import "ZKSimpleTypes.h"
+#import "ZKXsdAnyType.h"
 
 @implementation ZKXmlDeserializer
 
@@ -56,7 +55,7 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 }
 
 - (BOOL)boolean:(NSString *)elem {
-	return [[self string:elem] isEqualToString:@"true"];
+    return [[[self string:elem] ZKBoolean] boolValue];
 }
 
 - (int)integer:(NSString *)elem {
@@ -67,12 +66,16 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 	return [[self string:elem] doubleValue];
 }
 
+- (NSDate *)time:(NSString *)elem {
+    return [[self string:elem] ZKTime];
+}
+
 - (NSDate *)date:(NSString *)elem {
-    return [[ZKSoapDate instance] fromDateString:[self string:elem]];
+    return [[self string:elem] ZKDate];
 }
 
 - (NSDate *)dateTime:(NSString *)elem {
-    return [[ZKSoapDate instance] fromDateTimeString:[self string:elem]];
+    return [[self string:elem] ZKDateTime];
 }
 
 - (ZKSObject *)sObject:(NSString *)elem {
@@ -81,6 +84,15 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 
 - (ZKQueryResult *)queryResult:(NSString *)elem {
     return [[self complexTypeArrayFromElements:elem cls:[ZKQueryResult class]] lastObject];
+}
+
+- (ZKXsdAnyType *)anyType:(NSString *)elem {
+    ZKXsdAnyType *cached = [values objectForKey:elem];
+    if (cached == nil) {
+        cached = [[[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]] autorelease];
+        [values setValue:cached forKey:elem];
+    }
+    return cached;
 }
 
 - (NSData *)blob:(NSString *)elem {
@@ -109,10 +121,9 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 	return [[xmlElement childElement:elemName] stringValue];
 }
 
--(Class)parseType:(NSString *)xsiType baseClass:(Class)base {
-    if ([xsiType length] == 0) return base;
-    NSString *typeName = [[xsiType componentsSeparatedByString:@":"] lastObject];
-    NSString *className = [NSString stringWithFormat:@"ZK%@%@", [[typeName substringToIndex:1] uppercaseString], [typeName substringFromIndex:1]];
+- (Class) complexTypeClassForType:(ZKNamespacedName *)xsiType baseClass:(Class)base {
+    if (xsiType == nil || [xsiType.localname length] == 0) return base;
+    NSString *className = [NSString stringWithFormat:@"ZK%@%@", [[xsiType.localname substringToIndex:1] uppercaseString], [xsiType.localname substringFromIndex:1]];
     Class cls = NSClassFromString(className);
     return cls != nil && [cls isSubclassOfClass:base] ? cls : base;
 }
@@ -123,8 +134,7 @@ static NSString *SCHEMA_INSTANCE_NS = @"http://www.w3.org/2001/XMLSchema-instanc
 		NSArray *elements = [node childElements:elemName];
 		NSMutableArray *results = [NSMutableArray arrayWithCapacity:[elements count]];
 		for(zkElement *childNode in elements) {
-            NSString *xsiType = [childNode attributeValue:@"type" ns:SCHEMA_INSTANCE_NS];
-            Class actualType = [self parseType:xsiType baseClass:(Class)type];
+            Class actualType = [self complexTypeClassForType:[childNode xsiType] baseClass:type];
 			NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
 			[results addObject:child];
 			[child release];

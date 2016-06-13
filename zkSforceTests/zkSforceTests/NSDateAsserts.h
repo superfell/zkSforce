@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -19,7 +19,16 @@
 // THE SOFTWARE.
 //
 
-#import "NSDateAsserts.h"
+#import <XCTest/XCTest.h>
 
-@interface ZKSoapDateTests : NSDateAsserts 
+@interface NSDateAsserts : XCTestCase {
+    NSCalendar *cal;
+}
+
+-(void)assertDate:(NSDate *)date equalsYear:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day;
+
+-(void)assertTime:(NSDate *)date equalsHour:(NSInteger)hours minute:(NSInteger)mins seconds:(NSInteger)secs;
+
+-(void)assertDateTime:(NSDate *)date equalsYears:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour mins:(NSInteger)mins seconds:(NSInteger)seconds;
+
 @end

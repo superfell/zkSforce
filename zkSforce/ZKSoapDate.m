@@ -31,20 +31,29 @@ static ZKSoapDate *INSTANCE;
 
 -(id)init {
     self = [super init];
+    NSLocale *posix =[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    NSTimeZone *utc =[NSTimeZone timeZoneForSecondsFromGMT:0];
 	dateTimeFormatter = [[NSDateFormatter alloc] init];
 	[dateTimeFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSZZZZZ"];
-    dateTimeFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    dateTimeFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    dateTimeFormatter.locale =posix;
+    dateTimeFormatter.timeZone =utc;
 
     dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.locale = posix;
+    
+    timeFormatter = [[NSDateFormatter alloc] init];
+    timeFormatter.locale = posix;
+    timeFormatter.timeZone =utc;
+    [timeFormatter setDateFormat:@"HH:mm:ss.SSSSZZZZZ"];
+    
     return self;
 }
 
 -(void)dealloc {
     [dateTimeFormatter release];
     [dateFormatter release];
+    [timeFormatter release];
     [super dealloc];
 }
 
@@ -57,7 +66,11 @@ static ZKSoapDate *INSTANCE;
 }
 
 -(NSString *)toDateTimeString:(NSDate *)aDateTime {
-    return [NSMutableString stringWithString:[dateTimeFormatter stringFromDate:aDateTime]];
+    return [dateTimeFormatter stringFromDate:aDateTime];
+}
+
+-(NSString *)toTimeString:(NSDate *)aTime {
+    return [timeFormatter stringFromDate:aTime];
 }
 
 -(NSDate *)fromDateString:(NSString *)aDate {
@@ -66,6 +79,10 @@ static ZKSoapDate *INSTANCE;
 
 -(NSDate *)fromDateTimeString:(NSString *)aDateTime {
 	return [dateTimeFormatter dateFromString:aDateTime];
+}
+
+-(NSDate *)fromTimeString:(NSString *)aTime {
+    return [timeFormatter dateFromString:aTime];
 }
 
 @end
