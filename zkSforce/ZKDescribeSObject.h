@@ -49,6 +49,7 @@
     <element type="xsd:boolean" name="mruEnabled"/>
     <element type="xsd:string" name="name"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:NamedLayoutInfo" name="namedLayoutInfos"/>
+    <element nillable="true" type="xsd:string" name="networkScopeFieldName"/>
     <element type="xsd:boolean" name="queryable"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:RecordTypeInfo" name="recordTypeInfos"/>
     <element type="xsd:boolean" name="replicateable"/>
@@ -75,6 +76,7 @@
 @property (readonly) NSArray   *fields;  // of ZKDescribeField
 @property (readonly) BOOL       mruEnabled; 
 @property (readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
+@property (readonly) NSString  *networkScopeFieldName; 
 @property (readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
 @property (readonly) BOOL       searchLayoutable; 
 @property (readonly) NSArray   *supportedScopes;  // of ZKScopeInfo

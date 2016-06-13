@@ -31,7 +31,7 @@
   <complexContent>
     <extension base="tns:SoqlWhereCondition">
       <sequence>
-        <element maxOccurs="unbounded" type="tns:SoqlWhereCondition" name="conditions"/>
+        <element maxOccurs="unbounded" minOccurs="0" type="tns:SoqlWhereCondition" name="conditions"/>
         <element type="tns:soqlConjunction" name="conjunction"/>
       </sequence>
     </extension>

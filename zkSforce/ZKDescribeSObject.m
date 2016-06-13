@@ -70,6 +70,10 @@
     return [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
 }
 			
+-(NSString *)networkScopeFieldName {
+    return [self string:@"networkScopeFieldName"];
+}
+			
 -(NSArray *)recordTypeInfos {
     return [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];
 }

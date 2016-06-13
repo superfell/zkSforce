@@ -87,7 +87,12 @@
 }
 
 - (ZKXsdAnyType *)anyType:(NSString *)elem {
-    return [[[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]] autorelease];
+    ZKXsdAnyType *cached = [values objectForKey:elem];
+    if (cached == nil) {
+        cached = [[[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]] autorelease];
+        [values setValue:cached forKey:elem];
+    }
+    return cached;
 }
 
 - (NSData *)blob:(NSString *)elem {

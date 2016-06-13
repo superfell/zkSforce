@@ -29,6 +29,7 @@
 #import "zkParser.h"
 #import "ZKFilteredLookupInfo.h"
 #import "ZKPicklistEntry.h"
+#import "ZKXsdAnyType.h"
 
 @implementation ZKDescribeField
 
@@ -54,6 +55,10 @@
 	return [node hash];
 }
 
+-(BOOL)aggregatable {
+    return [self boolean:@"aggregatable"];
+}
+			
 -(BOOL)autoNumber {
     return [self boolean:@"autoNumber"];
 }
@@ -88,6 +93,10 @@
 			
 -(BOOL)custom {
     return [self boolean:@"custom"];
+}
+			
+-(ZKXsdAnyType *)defaultValue {
+    return [self anyType:@"defaultValue"];
 }
 			
 -(NSString *)defaultValueFormula {

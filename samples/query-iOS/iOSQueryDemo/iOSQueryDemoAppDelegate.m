@@ -46,10 +46,10 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 
     // In a real app, at this point you'd save the refresh_token & authHost to the keychain
     // and on restart, initialize your client from that instead of doing the login flow again.
-    
     ZKSforceClient *client = [[ZKSforceClient alloc] init];
     [client loginFromOAuthCallbackUrl:u oAuthConsumerKey:OAUTH_CLIENTID];
-    ((RootViewController *)self.navigationController.topViewController).client =client;
+    RootViewController *rvc =((RootViewController *)self.navigationController.topViewController);
+    rvc.client = client;
     return TRUE;
 }
 

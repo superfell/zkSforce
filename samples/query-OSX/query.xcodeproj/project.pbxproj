@@ -200,6 +200,7 @@
 		F4BB7F7318B01BB500444797 /* ZKQuickActionTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F6E18B01BB500444797 /* ZKQuickActionTemplateResult.m */; };
 		F4C2983B1364A283009ACB8D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F4C2983A1364A283009ACB8D /* readme.md */; };
 		F4C2D25A1468EC8100C73F09 /* ZKDescribeTabSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */; };
+		F4EB23F01D0E328700AA9B46 /* ZKSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23EF1D0E328700AA9B46 /* ZKSimpleTypes.m */; };
 		F4F3ADF91CFA714B00638F0B /* ZKXsdAnyType.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F3ADF81CFA714B00638F0B /* ZKXsdAnyType.m */; };
 /* End PBXBuildFile section */
 
@@ -591,6 +592,8 @@
 		F4C2983A1364A283009ACB8D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 		F4C2D2581468EC8100C73F09 /* ZKDescribeTabSetResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeTabSetResult.h; path = ../../zkSforce/ZKDescribeTabSetResult.h; sourceTree = "<group>"; };
 		F4C2D2591468EC8100C73F09 /* ZKDescribeTabSetResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeTabSetResult.m; path = ../../zkSforce/ZKDescribeTabSetResult.m; sourceTree = "<group>"; };
+		F4EB23EE1D0E328700AA9B46 /* ZKSimpleTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSimpleTypes.h; path = ../../zkSforce/ZKSimpleTypes.h; sourceTree = "<group>"; };
+		F4EB23EF1D0E328700AA9B46 /* ZKSimpleTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSimpleTypes.m; path = ../../zkSforce/ZKSimpleTypes.m; sourceTree = "<group>"; };
 		F4F3ADF71CFA714B00638F0B /* ZKXsdAnyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKXsdAnyType.h; path = ../../zkSforce/ZKXsdAnyType.h; sourceTree = "<group>"; };
 		F4F3ADF81CFA714B00638F0B /* ZKXsdAnyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKXsdAnyType.m; path = ../../zkSforce/ZKXsdAnyType.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -734,6 +737,8 @@
 		F44CC01C12B588090052D468 /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4EB23EE1D0E328700AA9B46 /* ZKSimpleTypes.h */,
+				F4EB23EF1D0E328700AA9B46 /* ZKSimpleTypes.m */,
 				F4B76FBB1BB733C500681844 /* ZKCanvas.h */,
 				F4B76FBC1BB733C500681844 /* ZKCanvas.m */,
 				F4B76FBD1BB733C500681844 /* ZKDescribePathAssistant.h */,
@@ -1206,6 +1211,7 @@
 				F414BACC183FE85600322AC2 /* ZKRelatedList+Extras.m in Sources */,
 				F414BAD2183FEFF400322AC2 /* ZKUserInfo+Extras.m in Sources */,
 				F414BADD1840016400322AC2 /* ZKDescribeField+Extras.m in Sources */,
+				F4EB23F01D0E328700AA9B46 /* ZKSimpleTypes.m in Sources */,
 				F414BAE5184020FD00322AC2 /* ZKDescribeField.m in Sources */,
 				F4F3ADF91CFA714B00638F0B /* ZKXsdAnyType.m in Sources */,
 				F414BAE6184020FD00322AC2 /* ZKLoginResult.m in Sources */,

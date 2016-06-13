@@ -201,6 +201,8 @@
 		F4C298BA1364AA63009ACB8D /* zkSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298971364AA63009ACB8D /* zkSObject.m */; };
 		F4C298BB1364AA63009ACB8D /* zkUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C298991364AA63009ACB8D /* zkUserInfo.m */; };
 		F4C298BC1364AA63009ACB8D /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C2989B1364AA63009ACB8D /* zkXmlDeserializer.m */; };
+		F4EB23E61D0E2B4000AA9B46 /* ZKXsdAnyType.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23E41D0E2B4000AA9B46 /* ZKXsdAnyType.m */; };
+		F4EB23E71D0E2B4000AA9B46 /* ZKSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23E51D0E2B4000AA9B46 /* ZKSimpleTypes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -589,6 +591,10 @@
 		F4C298991364AA63009ACB8D /* zkUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkUserInfo.m; path = ../../../zkSforce/zkUserInfo.m; sourceTree = "<group>"; };
 		F4C2989A1364AA63009ACB8D /* zkXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zkXmlDeserializer.h; path = ../../../zkSforce/zkXmlDeserializer.h; sourceTree = "<group>"; };
 		F4C2989B1364AA63009ACB8D /* zkXmlDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = zkXmlDeserializer.m; path = ../../../zkSforce/zkXmlDeserializer.m; sourceTree = "<group>"; };
+		F4EB23E21D0E2B4000AA9B46 /* ZKSimpleTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSimpleTypes.h; path = ../../../zkSforce/ZKSimpleTypes.h; sourceTree = "<group>"; };
+		F4EB23E31D0E2B4000AA9B46 /* ZKXsdAnyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKXsdAnyType.h; path = ../../../zkSforce/ZKXsdAnyType.h; sourceTree = "<group>"; };
+		F4EB23E41D0E2B4000AA9B46 /* ZKXsdAnyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKXsdAnyType.m; path = ../../../zkSforce/ZKXsdAnyType.m; sourceTree = "<group>"; };
+		F4EB23E51D0E2B4000AA9B46 /* ZKSimpleTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSimpleTypes.m; path = ../../../zkSforce/ZKSimpleTypes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -671,6 +677,10 @@
 		F4C297C713649CC4009ACB8D /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4EB23E21D0E2B4000AA9B46 /* ZKSimpleTypes.h */,
+				F4EB23E51D0E2B4000AA9B46 /* ZKSimpleTypes.m */,
+				F4EB23E31D0E2B4000AA9B46 /* ZKXsdAnyType.h */,
+				F4EB23E41D0E2B4000AA9B46 /* ZKXsdAnyType.m */,
 				F4B770091BB7376D00681844 /* ZKCanvas.h */,
 				F4B7700A1BB7376D00681844 /* ZKCanvas.m */,
 				F4B7700B1BB7376D00681844 /* ZKDescribePathAssistant.h */,
@@ -1174,7 +1184,9 @@
 				F414BFA21845A48400322AC2 /* ZKDescribeAppMenuResult.m in Sources */,
 				F414BFA31845A48400322AC2 /* ZKDescribeAvailableQuickActionResult.m in Sources */,
 				F414BFA41845A48400322AC2 /* ZKDescribeColor.m in Sources */,
+				F4EB23E71D0E2B4000AA9B46 /* ZKSimpleTypes.m in Sources */,
 				F414BFA51845A48400322AC2 /* ZKDescribeColumn.m in Sources */,
+				F4EB23E61D0E2B4000AA9B46 /* ZKXsdAnyType.m in Sources */,
 				F414BFA61845A48400322AC2 /* ZKDescribeCompactLayout.m in Sources */,
 				F414BFA71845A48400322AC2 /* ZKDescribeCompactLayoutsResult.m in Sources */,
 				F402CBF0195544B200C6E1E2 /* ZKFilteredLookupInfo.m in Sources */,

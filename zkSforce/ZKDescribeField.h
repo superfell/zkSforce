@@ -27,10 +27,12 @@
 #import "zkXmlDeserializer.h"
 
 @class ZKDescribeSObject;
+@class ZKXsdAnyType;
 @class ZKFilteredLookupInfo;
 /*
 <complexType name="Field" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element type="xsd:boolean" name="aggregatable"/>
     <element type="xsd:boolean" name="autoNumber"/>
     <element type="xsd:int" name="byteLength"/>
     <element type="xsd:boolean" name="calculated"/>
@@ -40,6 +42,7 @@
     <element minOccurs="0" type="xsd:string" name="controllerName"/>
     <element type="xsd:boolean" name="createable"/>
     <element type="xsd:boolean" name="custom"/>
+    <element minOccurs="0" type="xsd:anyType" name="defaultValue"/>
     <element minOccurs="0" type="xsd:string" name="defaultValueFormula"/>
     <element type="xsd:boolean" name="defaultedOnCreate"/>
     <element minOccurs="0" type="xsd:boolean" name="dependentPicklist"/>
@@ -89,6 +92,7 @@
 }
 @property (assign) ZKDescribeSObject *sobject; // assign to stop a ref counting loop
 
+@property (readonly) BOOL                   aggregatable; 
 @property (readonly) BOOL                   autoNumber; 
 @property (readonly) NSInteger              byteLength; 
 @property (readonly) BOOL                   calculated; 
@@ -98,6 +102,7 @@
 @property (readonly) NSString              *controllerName; 
 @property (readonly) BOOL                   createable; 
 @property (readonly) BOOL                   custom; 
+@property (readonly) ZKXsdAnyType          *defaultValue; 
 @property (readonly) NSString              *defaultValueFormula; 
 @property (readonly) BOOL                   defaultedOnCreate; 
 @property (readonly) BOOL                   dependentPicklist; 

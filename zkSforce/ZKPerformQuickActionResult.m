@@ -53,4 +53,8 @@
     return [self boolean:@"success"];
 }
 			
+-(NSString *)successMessage {
+    return [self string:@"successMessage"];
+}
+			
 @end
