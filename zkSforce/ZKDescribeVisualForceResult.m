@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,20 +24,12 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKXMLSerializable.h"
+#import "ZKDescribeVisualForceResult.h"
 
-/*
-<complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
-  <sequence>
-    <element nillable="true" type="xsd:string" name="client"/>
-    <element nillable="true" type="xsd:string" name="defaultNamespace"/>
-  </sequence>
-</complexType>
-*/
-@interface ZKCallOptions : NSObject<ZKXMLSerializable> {
-	NSString  *client;
-	NSString  *defaultNamespace;
+@implementation ZKDescribeVisualForceResult
+
+-(NSString *)domain {
+    return [self string:@"domain"];
 }
-@property (retain) NSString  *client; 
-@property (retain) NSString  *defaultNamespace; 
+			
 @end

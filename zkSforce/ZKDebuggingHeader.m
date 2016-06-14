@@ -29,16 +29,18 @@
 
 @implementation ZKDebuggingHeader
 
-@synthesize debugLevel;
+@synthesize categories, debugLevel;
 
 -(void)dealloc {
+	[categories release];
 	[debugLevel release];
 	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"debugLevel" elemValue:self.debugLevel nillable:NO  optional:NO];
+	[env addElementArray:@"categories" elemValue:self.categories];
+	[env addElement:@"debugLevel"      elemValue:self.debugLevel nillable:NO  optional:NO];
 	[env endElement:elemName];
 }
 @end

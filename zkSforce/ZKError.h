@@ -29,6 +29,7 @@
 /*
 <complexType name="Error" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:ExtendedErrorDetails" name="extendedErrorDetails"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string" name="fields"/>
     <element type="xsd:string" name="message"/>
     <element type="tns:StatusCode" name="statusCode"/>
@@ -37,6 +38,7 @@
 */
 @interface ZKError : ZKXmlDeserializer {
 }
+@property (readonly) NSArray   *extendedErrorDetails;  // of ZKExtendedErrorDetails
 @property (readonly) NSArray   *fields;  // of NSString
 @property (readonly) NSString  *message; 
 @property (readonly) NSString  *statusCode; 

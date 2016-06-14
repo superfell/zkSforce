@@ -29,12 +29,15 @@
 /*
 <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <xsd:element type="tns:LogInfo" maxOccurs="unbounded" minOccurs="0" name="categories"/>
     <element type="tns:DebugLevel" name="debugLevel"/>
   </sequence>
 </complexType>
 */
 @interface ZKDebuggingHeader : NSObject<ZKXMLSerializable> {
+	NSArray   *categories;
 	NSString  *debugLevel;
 }
+@property (retain) NSArray   *categories;  // of ZKLogInfo
 @property (retain) NSString  *debugLevel; 
 @end

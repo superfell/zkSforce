@@ -74,7 +74,6 @@
 @property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
 @property (readonly) BOOL       compactLayoutable; 
 @property (readonly) NSArray   *fields;  // of ZKDescribeField
-@property (readonly) BOOL       mruEnabled; 
 @property (readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
 @property (readonly) NSString  *networkScopeFieldName; 
 @property (readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo

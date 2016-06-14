@@ -36,6 +36,7 @@
 @class ZKDescribeSoqlListViewResult;
 @class ZKDescribeSoqlListViewsRequest;
 @class ZKDescribeThemeResult;
+@class ZKDescribeVisualForceResult;
 @class ZKExecuteListViewRequest;
 @class ZKExecuteListViewResult;
 @class ZKGetDeletedResult;
@@ -80,6 +81,9 @@
 
 /** Describe the search view of an sObject */
 -(NSArray *)describeSearchLayouts:(NSArray *)sObjectType;
+
+/** Describe a list of entity names that reflects the current user's searchable entities */
+-(NSArray *)describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs;
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(NSArray *)describeSearchScopeOrder;
@@ -171,7 +175,7 @@
 /** Send outbound email */
 -(NSArray *)sendEmail:(NSArray *)messages;
 
-/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
+/** Perform a template merge on one or more blocks of text. */
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests;
 
 /** Perform a series of predefined actions such as quick create or log a task */
@@ -185,6 +189,9 @@
 
 /** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId;
+
+/** Describe visualforce for an org */
+-(ZKDescribeVisualForceResult *)describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix;
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields;

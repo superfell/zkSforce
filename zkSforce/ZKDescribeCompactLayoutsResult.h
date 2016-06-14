@@ -31,7 +31,7 @@
   <sequence>
     <element maxOccurs="unbounded" type="tns:DescribeCompactLayout" name="compactLayouts"/>
     <element type="tns:ID" name="defaultCompactLayoutId"/>
-    <element maxOccurs="unbounded" type="tns:RecordTypeCompactLayoutMapping" name="recordTypeCompactLayoutMappings"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:RecordTypeCompactLayoutMapping" name="recordTypeCompactLayoutMappings"/>
   </sequence>
 </complexType>
 */

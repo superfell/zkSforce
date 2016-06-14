@@ -44,12 +44,14 @@
 #import "ZKDescribeSObject.h"
 #import "ZKDescribeSearchLayoutResult.h"
 #import "ZKDescribeSearchScopeOrderResult.h"
+#import "ZKDescribeSearchableEntityResult.h"
 #import "ZKDescribeSoftphoneLayoutResult.h"
 #import "ZKDescribeSoqlListViewResult.h"
 #import "ZKDescribeSoqlListViewsRequest.h"
 #import "ZKDescribeTab.h"
 #import "ZKDescribeTabSetResult.h"
 #import "ZKDescribeThemeResult.h"
+#import "ZKDescribeVisualForceResult.h"
 #import "ZKEmail.h"
 #import "ZKEmptyRecycleBinResult.h"
 #import "ZKExecuteListViewRequest.h"
@@ -261,6 +263,22 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
+}
+
+/** Describe a list of entity names that reflects the current user's searchable entities */
+-(NSArray *)describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describeSearchableEntities"];
+	[env addBoolElement:@"includeOnlyEntitiesWithTabs" elemValue:includeOnlyEntitiesWithTabs];
+	[env endElement:@"describeSearchableEntities"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchableEntityResult class]];
 }
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
@@ -789,7 +807,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
-/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
+/** Perform a template merge on one or more blocks of text. */
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -881,6 +899,23 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
+}
+
+/** Describe visualforce for an org */
+-(ZKDescribeVisualForceResult *)describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[env moveToBody];
+	[env startElement:@"describeVisualForce"];
+	[env addBoolElement:@"includeAllDetails" elemValue:includeAllDetails];
+	[env addElement:@"namespacePrefix"       elemValue:namespacePrefix   nillable:YES optional:NO];
+	[env endElement:@"describeVisualForce"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeVisualForceResult class]] lastObject];
 }
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */

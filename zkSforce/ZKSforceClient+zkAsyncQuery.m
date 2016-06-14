@@ -299,6 +299,21 @@
 		}];
 }
 
+/** Describe a list of entity names that reflects the current user's searchable entities */
+-(void) performDescribeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs
+                                failBlock:(zkFailWithExceptionBlock)failBlock
+                            completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeSearchableEntities:includeOnlyEntitiesWithTabs];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(void) performDescribeSearchScopeOrderWithFailBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -804,7 +819,7 @@
 		}];
 }
 
-/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
+/** Perform a template merge on one or more blocks of text. */
 -(void) performRenderEmailTemplate:(NSArray *)renderRequests
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
@@ -876,6 +891,21 @@
 		    failBlock:failBlock
 		completeBlock:^(id r) {
 			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+/** Describe visualforce for an org */
+-(void) performDescribeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix
+                         failBlock:(zkFailWithExceptionBlock)failBlock
+                     completeBlock:(zkCompleteDescribeVisualForceResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeVisualForce:includeAllDetails namespacePrefix:namespacePrefix];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKDescribeVisualForceResult *)r);
 		}];
 }
 

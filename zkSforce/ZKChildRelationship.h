@@ -33,7 +33,7 @@
     <element type="xsd:string" name="childSObject"/>
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:string" name="field"/>
-    <element minOccurs="0" type="xsd:string" name="junctionIdListName"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string" name="junctionIdListNames"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string" name="junctionReferenceTo"/>
     <element minOccurs="0" type="xsd:string" name="relationshipName"/>
     <element minOccurs="0" type="xsd:boolean" name="restrictedDelete"/>
@@ -46,7 +46,7 @@
 @property (readonly) NSString  *childSObject; 
 @property (readonly) BOOL       deprecatedAndHidden; 
 @property (readonly) NSString  *field; 
-@property (readonly) NSString  *junctionIdListName; 
+@property (readonly) NSArray   *junctionIdListNames;  // of NSString
 @property (readonly) NSArray   *junctionReferenceTo;  // of NSString
 @property (readonly) NSString  *relationshipName; 
 @property (readonly) BOOL       restrictedDelete; 

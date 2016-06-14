@@ -80,6 +80,10 @@
     return [self boolean:@"mergeable"];
 }
 			
+-(BOOL)mruEnabled {
+    return [self boolean:@"mruEnabled"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
 }

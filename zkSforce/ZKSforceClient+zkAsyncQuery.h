@@ -38,6 +38,7 @@ typedef void (^zkCompleteGetUpdatedResultBlock)              (ZKGetUpdatedResult
 typedef void (^zkCompleteGetServerTimestampResultBlock)      (ZKGetServerTimestampResult *result);
 typedef void (^zkCompleteGetDeletedResultBlock)              (ZKGetDeletedResult *result);
 typedef void (^zkCompleteExecuteListViewResultBlock)         (ZKExecuteListViewResult *result);
+typedef void (^zkCompleteDescribeVisualForceResultBlock)     (ZKDescribeVisualForceResult *result);
 typedef void (^zkCompleteDescribeThemeResultBlock)           (ZKDescribeThemeResult *result);
 typedef void (^zkCompleteDescribeSoqlListViewResultBlock)    (ZKDescribeSoqlListViewResult *result);
 typedef void (^zkCompleteDescribeSoftphoneLayoutResultBlock) (ZKDescribeSoftphoneLayoutResult *result);
@@ -118,6 +119,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performDescribeSearchLayouts:(NSArray *)sObjectType
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+/** Describe a list of entity names that reflects the current user's searchable entities */
+-(void) performDescribeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs
+                                failBlock:(zkFailWithExceptionBlock)failBlock
+                            completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(void) performDescribeSearchScopeOrderWithFailBlock:(zkFailWithExceptionBlock)failBlock
@@ -283,7 +289,7 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteArrayBlock)completeBlock;
 
-/** Perform a template merge on one or more blocks of text.  Optionally, just validate the template text. */
+/** Perform a template merge on one or more blocks of text. */
 -(void) performRenderEmailTemplate:(NSArray *)renderRequests
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock;
@@ -307,6 +313,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performRetrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+/** Describe visualforce for an org */
+-(void) performDescribeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix
+                         failBlock:(zkFailWithExceptionBlock)failBlock
+                     completeBlock:(zkCompleteDescribeVisualForceResultBlock)completeBlock;
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(void) performDescribeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields

@@ -25,9 +25,14 @@
 //
 
 #import "ZKError.h"
+#import "ZKExtendedErrorDetails.h"
 
 @implementation ZKError
 
+-(NSArray *)extendedErrorDetails {
+    return [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
+}
+			
 -(NSArray *)fields {
     return [self strings:@"fields"];
 }

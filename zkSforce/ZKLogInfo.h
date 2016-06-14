@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -27,17 +27,17 @@
 #import "ZKXMLSerializable.h"
 
 /*
-<complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
-  <sequence>
-    <element nillable="true" type="xsd:string" name="client"/>
-    <element nillable="true" type="xsd:string" name="defaultNamespace"/>
-  </sequence>
-</complexType>
+<xsd:complexType name="LogInfo" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <xsd:sequence>
+    <xsd:element type="tns:LogCategory" name="category"/>
+    <xsd:element type="tns:LogCategoryLevel" name="level"/>
+  </xsd:sequence>
+</xsd:complexType>
 */
-@interface ZKCallOptions : NSObject<ZKXMLSerializable> {
-	NSString  *client;
-	NSString  *defaultNamespace;
+@interface ZKLogInfo : NSObject<ZKXMLSerializable> {
+	NSString  *category;
+	NSString  *level;
 }
-@property (retain) NSString  *client; 
-@property (retain) NSString  *defaultNamespace; 
+@property (retain) NSString  *category; 
+@property (retain) NSString  *level; 
 @end

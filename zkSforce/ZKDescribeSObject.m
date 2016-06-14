@@ -62,10 +62,6 @@
     return [self boolean:@"compactLayoutable"];
 }
 			
--(BOOL)mruEnabled {
-    return [self boolean:@"mruEnabled"];
-}
-			
 -(NSArray *)namedLayoutInfos {
     return [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
 }

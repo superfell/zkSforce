@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,20 +24,18 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKXMLSerializable.h"
+#import "zkXmlDeserializer.h"
 
 /*
-<complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="LabelsSearchMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element nillable="true" type="xsd:string" name="client"/>
-    <element nillable="true" type="xsd:string" name="defaultNamespace"/>
+    <element type="tns:NameValuePair" maxOccurs="unbounded" minOccurs="0" nillable="false" name="entityFieldLabels"/>
+    <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false" name="entityName"/>
   </sequence>
 </complexType>
 */
-@interface ZKCallOptions : NSObject<ZKXMLSerializable> {
-	NSString  *client;
-	NSString  *defaultNamespace;
+@interface ZKLabelsSearchMetadata : ZKXmlDeserializer {
 }
-@property (retain) NSString  *client; 
-@property (retain) NSString  *defaultNamespace; 
+@property (readonly) NSArray   *entityFieldLabels;  // of ZKNameValuePair
+@property (readonly) NSString  *entityName; 
 @end

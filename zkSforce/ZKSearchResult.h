@@ -26,16 +26,19 @@
 
 #import "zkXmlDeserializer.h"
 
+@class ZKSearchResultsMetadata;
 /*
 <complexType name="SearchResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element maxOccurs="1" minOccurs="1" nillable="false" type="xsd:string" name="queryId"/>
     <element type="tns:SearchRecord" maxOccurs="unbounded" minOccurs="0" name="searchRecords"/>
+    <element maxOccurs="1" minOccurs="0" nillable="true" type="tns:SearchResultsMetadata" name="searchResultsMetadata"/>
   </sequence>
 </complexType>
 */
 @interface ZKSearchResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *queryId; 
-@property (readonly) NSArray   *searchRecords;  // of ZKSearchRecord
+@property (readonly) NSString                 *queryId; 
+@property (readonly) NSArray                  *searchRecords;  // of ZKSearchRecord
+@property (readonly) ZKSearchResultsMetadata  *searchResultsMetadata; 
 @end

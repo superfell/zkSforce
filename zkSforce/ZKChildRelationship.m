@@ -44,8 +44,8 @@
     return [self string:@"field"];
 }
 			
--(NSString *)junctionIdListName {
-    return [self string:@"junctionIdListName"];
+-(NSArray *)junctionIdListNames {
+    return [self strings:@"junctionIdListNames"];
 }
 			
 -(NSArray *)junctionReferenceTo {

@@ -26,6 +26,7 @@
 
 #import "ZKSearchResult.h"
 #import "ZKSearchRecord.h"
+#import "ZKSearchResultsMetadata.h"
 
 @implementation ZKSearchResult
 
@@ -35,6 +36,10 @@
 			
 -(NSArray *)searchRecords {
     return [self complexTypeArrayFromElements:@"searchRecords" cls:[ZKSearchRecord class]];
+}
+			
+-(ZKSearchResultsMetadata *)searchResultsMetadata {
+    return [[self complexTypeArrayFromElements:@"searchResultsMetadata" cls:[ZKSearchResultsMetadata class]] lastObject];
 }
 			
 @end

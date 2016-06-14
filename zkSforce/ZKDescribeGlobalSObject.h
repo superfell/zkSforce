@@ -42,6 +42,7 @@
     <element type="xsd:string" name="labelPlural"/>
     <element type="xsd:boolean" name="layoutable"/>
     <element type="xsd:boolean" name="mergeable"/>
+    <element type="xsd:boolean" name="mruEnabled"/>
     <element type="xsd:string" name="name"/>
     <element type="xsd:boolean" name="queryable"/>
     <element type="xsd:boolean" name="replicateable"/>
@@ -68,6 +69,7 @@
 @property (readonly) NSString  *labelPlural; 
 @property (readonly) BOOL       layoutable; 
 @property (readonly) BOOL       mergeable; 
+@property (readonly) BOOL       mruEnabled; 
 @property (readonly) NSString  *name; 
 @property (readonly) BOOL       queryable; 
 @property (readonly) BOOL       replicateable; 

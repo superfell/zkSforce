@@ -35,6 +35,7 @@
         <element type="xsd:string" name="filter"/>
         <element type="xsd:string" name="height"/>
         <element type="xsd:boolean" name="hideOnError"/>
+        <element type="xsd:boolean" name="showSharing"/>
         <element type="xsd:boolean" name="showTitle"/>
         <element type="xsd:string" name="width"/>
       </sequence>
@@ -48,6 +49,7 @@
 @property (readonly) NSString  *filter; 
 @property (readonly) NSString  *height; 
 @property (readonly) BOOL       hideOnError; 
+@property (readonly) BOOL       showSharing; 
 @property (readonly) BOOL       showTitle; 
 @property (readonly) NSString  *width; 
 @end

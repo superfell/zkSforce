@@ -29,7 +29,7 @@
 
 @implementation ZKCallOptions
 
-@synthesize client, defaultNamespace, returnFieldDataTypes;
+@synthesize client, defaultNamespace;
 
 -(void)dealloc {
 	[client release];
@@ -39,9 +39,8 @@
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"client"                   elemValue:self.client               nillable:YES optional:NO];
-	[env addElement:@"defaultNamespace"         elemValue:self.defaultNamespace     nillable:YES optional:NO];
-	[env addBoolElement:@"returnFieldDataTypes" elemValue:self.returnFieldDataTypes];
+	[env addElement:@"client"           elemValue:self.client           nillable:YES optional:NO];
+	[env addElement:@"defaultNamespace" elemValue:self.defaultNamespace nillable:YES optional:NO];
 	[env endElement:elemName];
 }
 @end

@@ -44,6 +44,10 @@
     return [self boolean:@"hideOnError"];
 }
 			
+-(BOOL)showSharing {
+    return [self boolean:@"showSharing"];
+}
+			
 -(BOOL)showTitle {
     return [self boolean:@"showTitle"];
 }
