@@ -89,18 +89,22 @@ NSTimeInterval intervalFrom(uint64_t *start) {
 	// todo, support response compression
 	NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
     @try {
+        if (err) {
+            NSLog(@"Got error sending API request %@ : %@", request, err);
+            @throw [NSException exceptionWithName:@"Http error" reason:[NSString stringWithFormat:@"Unable to complete API request: %@", err] userInfo:nil];
+        }
         //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
         zkElement *root = [zkParser parseData:respPayload];
         if (root == nil) {
-            [self logInvalidResponse:resp payload:data note:@"Unable to parse XML"];
+            [self logInvalidResponse:resp payload:respPayload note:@"Unable to parse XML"];
             @throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
         }
         if (![[root name] isEqualToString:@"Envelope"]) {
-            [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", [root name]]];
+            [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", [root name]]];
             @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", [root name]] userInfo:nil];
         }
         if (![[root namespace] isEqualToString:SOAP_NS]) {
-            [self logInvalidResponse:resp payload:data note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
+            [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
             @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, [root namespace]] userInfo:nil];
         }
         zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
