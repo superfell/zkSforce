@@ -164,11 +164,11 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    return [ZKNamespacedName withName:name uri:uri];
+    return [[ZKNamespacedName withName:name uri:uri] retain];
 }
 
 +(ZKNamespacedName *)withName:(NSString*)localName uri:(NSString *)uri {
-    return [[ZKNamespacedName alloc] initWithName:localName uri:uri];
+    return [[[ZKNamespacedName alloc] initWithName:localName uri:uri] autorelease];
 }
 
 -(NSString *)namespaceURI {
