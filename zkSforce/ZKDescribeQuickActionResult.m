@@ -84,12 +84,28 @@
     return [[self complexTypeArrayFromElements:@"layout" cls:[ZKDescribeLayoutSection class]] lastObject];
 }
 			
+-(NSString *)lightningComponentBundleId {
+    return [self string:@"lightningComponentBundleId"];
+}
+			
+-(NSString *)lightningComponentBundleName {
+    return [self string:@"lightningComponentBundleName"];
+}
+			
+-(NSString *)lightningComponentQualifiedName {
+    return [self string:@"lightningComponentQualifiedName"];
+}
+			
 -(NSString *)miniIconUrl {
     return [self string:@"miniIconUrl"];
 }
 			
 -(NSString *)name {
     return [self string:@"name"];
+}
+			
+-(BOOL)showQuickActionLcHeader {
+    return [self boolean:@"showQuickActionLcHeader"];
 }
 			
 -(BOOL)showQuickActionVfHeader {

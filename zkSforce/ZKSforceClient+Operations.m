@@ -56,6 +56,7 @@
 #import "ZKEmptyRecycleBinResult.h"
 #import "ZKExecuteListViewRequest.h"
 #import "ZKExecuteListViewResult.h"
+#import "ZKFindDuplicatesResult.h"
 #import "ZKFlexipageContext.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKGetServerTimestampResult.h"
@@ -916,6 +917,23 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeVisualForceResult class]] lastObject];
+}
+
+/** Find duplicates for a set of sObjects */
+-(NSArray *)findDuplicates:(NSArray *)sObjects {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addDuplicateRuleHeader:env];
+	[env moveToBody];
+	[env startElement:@"findDuplicates"];
+	[env addElementArray:@"sObjects" elemValue:sObjects];
+	[env endElement:@"findDuplicates"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */

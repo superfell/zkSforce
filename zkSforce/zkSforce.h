@@ -120,6 +120,7 @@
 #import "ZKFieldDiff.h"
 #import "ZKFieldLayoutComponent.h"
 #import "ZKFilteredLookupInfo.h"
+#import "ZKFindDuplicatesResult.h"
 #import "ZKFlexipageContext.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKGetServerTimestampResult.h"

@@ -162,6 +162,7 @@
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
 		F46B68A81485E06F00493685 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */; };
+		F46DEA221D8F7C4900C7550B /* ZKFindDuplicatesResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DEA211D8F7C4800C7550B /* ZKFindDuplicatesResult.m */; };
 		F474CAC41D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CAB91D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.m */; };
 		F474CAC51D0FAE36000D3C13 /* ZKDescribeVisualForceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CABB1D0FAE36000D3C13 /* ZKDescribeVisualForceResult.m */; };
 		F474CAC61D0FAE36000D3C13 /* ZKExtendedErrorDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CABD1D0FAE36000D3C13 /* ZKExtendedErrorDetails.m */; };
@@ -522,6 +523,8 @@
 		F44CC09012B58BA40052D468 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
 		F46B68A61485E06F00493685 /* zkSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+zkAsyncQuery.h"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
 		F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
+		F46DEA201D8F7C4800C7550B /* ZKFindDuplicatesResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFindDuplicatesResult.h; path = ../../zkSforce/ZKFindDuplicatesResult.h; sourceTree = "<group>"; };
+		F46DEA211D8F7C4800C7550B /* ZKFindDuplicatesResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFindDuplicatesResult.m; path = ../../zkSforce/ZKFindDuplicatesResult.m; sourceTree = "<group>"; };
 		F474CAB81D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSearchableEntityResult.h; path = ../../zkSforce/ZKDescribeSearchableEntityResult.h; sourceTree = "<group>"; };
 		F474CAB91D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSearchableEntityResult.m; path = ../../zkSforce/ZKDescribeSearchableEntityResult.m; sourceTree = "<group>"; };
 		F474CABA1D0FAE36000D3C13 /* ZKDescribeVisualForceResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeVisualForceResult.h; path = ../../zkSforce/ZKDescribeVisualForceResult.h; sourceTree = "<group>"; };
@@ -755,6 +758,8 @@
 		F44CC01C12B588090052D468 /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F46DEA201D8F7C4800C7550B /* ZKFindDuplicatesResult.h */,
+				F46DEA211D8F7C4800C7550B /* ZKFindDuplicatesResult.m */,
 				F474CAB81D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.h */,
 				F474CAB91D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.m */,
 				F474CABA1D0FAE36000D3C13 /* ZKDescribeVisualForceResult.h */,
@@ -1281,6 +1286,7 @@
 				F414BB6D184183C500322AC2 /* ZKDescribeSoftphoneLayoutSection.m in Sources */,
 				F474CAC91D0FAE36000D3C13 /* ZKSearchResultsMetadata.m in Sources */,
 				F414BB6E184183C500322AC2 /* ZKDescribeThemeItem.m in Sources */,
+				F46DEA221D8F7C4900C7550B /* ZKFindDuplicatesResult.m in Sources */,
 				F414BB6F184183C500322AC2 /* ZKDescribeThemeResult.m in Sources */,
 				F414BB70184183C500322AC2 /* ZKGetServerTimestampResult.m in Sources */,
 				F414BB71184183C500322AC2 /* ZKGetUpdatedResult.m in Sources */,

@@ -56,6 +56,10 @@
     return [self boolean:@"feedEnabled"];
 }
 			
+-(BOOL)hasSubtypes {
+    return [self boolean:@"hasSubtypes"];
+}
+			
 -(BOOL)idEnabled {
     return [self boolean:@"idEnabled"];
 }

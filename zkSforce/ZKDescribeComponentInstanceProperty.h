@@ -32,6 +32,7 @@
   <sequence>
     <element type="xsd:string" name="name"/>
     <element minOccurs="0" nillable="true" type="tns:DescribeFlexiPageRegion" name="region"/>
+    <element nillable="true" type="tns:ComponentInstancePropertyTypeEnum" name="type"/>
     <element nillable="true" type="xsd:string" name="value"/>
   </sequence>
 </complexType>
@@ -40,5 +41,6 @@
 }
 @property (readonly) NSString                   *name; 
 @property (readonly) ZKDescribeFlexiPageRegion  *region; 
+@property (readonly) NSString                   *type; 
 @property (readonly) NSString                   *value; 
 @end

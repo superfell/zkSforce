@@ -30,12 +30,12 @@
 
 @implementation ZKMatchResult
 
--(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-}
-			
 -(NSString *)entityType {
     return [self string:@"entityType"];
+}
+			
+-(NSArray *)errors {
+    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }
 			
 -(NSString *)matchEngine {

@@ -193,6 +193,9 @@
 /** Describe visualforce for an org */
 -(ZKDescribeVisualForceResult *)describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix;
 
+/** Find duplicates for a set of sObjects */
+-(NSArray *)findDuplicates:(NSArray *)sObjects;
+
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields;
 

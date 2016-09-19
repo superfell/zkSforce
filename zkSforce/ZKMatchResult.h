@@ -29,8 +29,8 @@
 /*
 <complexType name="MatchResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
     <element type="xsd:string" name="entityType"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
     <element type="xsd:string" name="matchEngine"/>
     <element type="tns:MatchRecord" maxOccurs="unbounded" minOccurs="0" name="matchRecords"/>
     <element type="xsd:string" name="rule"/>
@@ -41,8 +41,8 @@
 */
 @interface ZKMatchResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *errors;  // of ZKError
 @property (readonly) NSString  *entityType; 
+@property (readonly) NSArray   *errors;  // of ZKError
 @property (readonly) NSString  *matchEngine; 
 @property (readonly) NSArray   *matchRecords;  // of ZKMatchRecord
 @property (readonly) NSString  *rule; 

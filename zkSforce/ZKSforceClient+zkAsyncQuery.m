@@ -909,6 +909,21 @@
 		}];
 }
 
+/** Find duplicates for a set of sObjects */
+-(void) performFindDuplicates:(NSArray *)sObjects
+                    failBlock:(zkFailWithExceptionBlock)failBlock
+                completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self findDuplicates:sObjects];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(void) performDescribeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
                    failBlock:(zkFailWithExceptionBlock)failBlock

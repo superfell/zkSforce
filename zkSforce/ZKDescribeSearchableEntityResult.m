@@ -28,8 +28,16 @@
 
 @implementation ZKDescribeSearchableEntityResult
 
+-(NSString *)label {
+    return [self string:@"label"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
+}
+			
+-(NSString *)pluralLabel {
+    return [self string:@"pluralLabel"];
 }
 			
 @end

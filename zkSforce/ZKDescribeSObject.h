@@ -40,6 +40,7 @@
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:boolean" name="feedEnabled"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:Field" name="fields"/>
+    <element type="xsd:boolean" name="hasSubtypes"/>
     <element type="xsd:boolean" name="idEnabled"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>

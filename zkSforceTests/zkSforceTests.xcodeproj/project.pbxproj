@@ -169,6 +169,7 @@
 		F425F9FD1A338D0F0055D8B8 /* ZKSoqlNotCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425F9E91A338D0F0055D8B8 /* ZKSoqlNotCondition.m */; };
 		F425F9FE1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425F9EB1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m */; };
 		F425F9FF1A338D0F0055D8B8 /* ZKSoqlWhereCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425F9ED1A338D0F0055D8B8 /* ZKSoqlWhereCondition.m */; };
+		F46DEA1F1D8F7C0600C7550B /* ZKFindDuplicatesResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DEA1E1D8F7C0600C7550B /* ZKFindDuplicatesResult.m */; };
 		F474CAA01D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CA951D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m */; };
 		F474CAA11D0FAD4D000D3C13 /* ZKDescribeVisualForceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CA971D0FAD4D000D3C13 /* ZKDescribeVisualForceResult.m */; };
 		F474CAA21D0FAD4D000D3C13 /* ZKExtendedErrorDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CA991D0FAD4D000D3C13 /* ZKExtendedErrorDetails.m */; };
@@ -543,6 +544,8 @@
 		F425F9EB1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlSubQueryCondition.m; path = ../zkSforce/ZKSoqlSubQueryCondition.m; sourceTree = "<group>"; };
 		F425F9EC1A338D0F0055D8B8 /* ZKSoqlWhereCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSoqlWhereCondition.h; path = ../zkSforce/ZKSoqlWhereCondition.h; sourceTree = "<group>"; };
 		F425F9ED1A338D0F0055D8B8 /* ZKSoqlWhereCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlWhereCondition.m; path = ../zkSforce/ZKSoqlWhereCondition.m; sourceTree = "<group>"; };
+		F46DEA1D1D8F7C0600C7550B /* ZKFindDuplicatesResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFindDuplicatesResult.h; path = ../zkSforce/ZKFindDuplicatesResult.h; sourceTree = "<group>"; };
+		F46DEA1E1D8F7C0600C7550B /* ZKFindDuplicatesResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFindDuplicatesResult.m; path = ../zkSforce/ZKFindDuplicatesResult.m; sourceTree = "<group>"; };
 		F474CA941D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSearchableEntityResult.h; path = ../zkSforce/ZKDescribeSearchableEntityResult.h; sourceTree = "<group>"; };
 		F474CA951D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSearchableEntityResult.m; path = ../zkSforce/ZKDescribeSearchableEntityResult.m; sourceTree = "<group>"; };
 		F474CA961D0FAD4D000D3C13 /* ZKDescribeVisualForceResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeVisualForceResult.h; path = ../zkSforce/ZKDescribeVisualForceResult.h; sourceTree = "<group>"; };
@@ -720,6 +723,8 @@
 		F414BC091842ECB100322AC2 /* zkSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F46DEA1D1D8F7C0600C7550B /* ZKFindDuplicatesResult.h */,
+				F46DEA1E1D8F7C0600C7550B /* ZKFindDuplicatesResult.m */,
 				F474CA941D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.h */,
 				F474CA951D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m */,
 				F474CA961D0FAD4D000D3C13 /* ZKDescribeVisualForceResult.h */,
@@ -1246,6 +1251,7 @@
 				F414BD171842ED0B00322AC2 /* ZKUserInfo.m in Sources */,
 				F414BD181842ED0B00322AC2 /* ZKDeletedRecord.m in Sources */,
 				F414BD191842ED0B00322AC2 /* ZKDeleteResult.m in Sources */,
+				F46DEA1F1D8F7C0600C7550B /* ZKFindDuplicatesResult.m in Sources */,
 				F414BD1A1842ED0B00322AC2 /* ZKDescribeAppMenuResult.m in Sources */,
 				F414BD1B1842ED0B00322AC2 /* ZKDescribeColor.m in Sources */,
 				F414BD1C1842ED0B00322AC2 /* ZKDescribeComponentInstanceProperty.m in Sources */,

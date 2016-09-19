@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,25 +24,22 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribeComponentInstanceProperty.h"
-#import "ZKDescribeFlexiPageRegion.h"
+#import "ZKFindDuplicatesResult.h"
+#import "ZKDuplicateResult.h"
+#import "ZKError.h"
 
-@implementation ZKDescribeComponentInstanceProperty
+@implementation ZKFindDuplicatesResult
 
--(NSString *)name {
-    return [self string:@"name"];
+-(NSArray *)duplicateResults {
+    return [self complexTypeArrayFromElements:@"duplicateResults" cls:[ZKDuplicateResult class]];
 }
 			
--(ZKDescribeFlexiPageRegion *)region {
-    return [[self complexTypeArrayFromElements:@"region" cls:[ZKDescribeFlexiPageRegion class]] lastObject];
+-(NSArray *)errors {
+    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }
 			
--(NSString *)type {
-    return [self string:@"type"];
-}
-			
--(NSString *)value {
-    return [self string:@"value"];
+-(BOOL)success {
+    return [self boolean:@"success"];
 }
 			
 @end

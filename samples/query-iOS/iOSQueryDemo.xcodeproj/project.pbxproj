@@ -124,6 +124,7 @@
 		F425FA9F1A339DDF0055D8B8 /* ZKSoqlNotCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA8B1A339DDF0055D8B8 /* ZKSoqlNotCondition.m */; };
 		F425FAA01A339DDF0055D8B8 /* ZKSoqlSubQueryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA8D1A339DDF0055D8B8 /* ZKSoqlSubQueryCondition.m */; };
 		F425FAA11A339DDF0055D8B8 /* ZKSoqlWhereCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA8F1A339DDF0055D8B8 /* ZKSoqlWhereCondition.m */; };
+		F46DEA281D8F7CA100C7550B /* ZKFindDuplicatesResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DEA271D8F7CA100C7550B /* ZKFindDuplicatesResult.m */; };
 		F474CAD61D0FAE63000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CACB1D0FAE63000D3C13 /* ZKDescribeSearchableEntityResult.m */; };
 		F474CAD71D0FAE63000D3C13 /* ZKDescribeVisualForceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CACD1D0FAE63000D3C13 /* ZKDescribeVisualForceResult.m */; };
 		F474CAD81D0FAE63000D3C13 /* ZKExtendedErrorDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CACF1D0FAE63000D3C13 /* ZKExtendedErrorDetails.m */; };
@@ -447,6 +448,8 @@
 		F425FA8D1A339DDF0055D8B8 /* ZKSoqlSubQueryCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlSubQueryCondition.m; path = ../../../zkSforce/ZKSoqlSubQueryCondition.m; sourceTree = "<group>"; };
 		F425FA8E1A339DDF0055D8B8 /* ZKSoqlWhereCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSoqlWhereCondition.h; path = ../../../zkSforce/ZKSoqlWhereCondition.h; sourceTree = "<group>"; };
 		F425FA8F1A339DDF0055D8B8 /* ZKSoqlWhereCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlWhereCondition.m; path = ../../../zkSforce/ZKSoqlWhereCondition.m; sourceTree = "<group>"; };
+		F46DEA261D8F7CA100C7550B /* ZKFindDuplicatesResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFindDuplicatesResult.h; path = ../../../zkSforce/ZKFindDuplicatesResult.h; sourceTree = "<group>"; };
+		F46DEA271D8F7CA100C7550B /* ZKFindDuplicatesResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFindDuplicatesResult.m; path = ../../../zkSforce/ZKFindDuplicatesResult.m; sourceTree = "<group>"; };
 		F474CACA1D0FAE63000D3C13 /* ZKDescribeSearchableEntityResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSearchableEntityResult.h; path = ../../../zkSforce/ZKDescribeSearchableEntityResult.h; sourceTree = "<group>"; };
 		F474CACB1D0FAE63000D3C13 /* ZKDescribeSearchableEntityResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeSearchableEntityResult.m; path = ../../../zkSforce/ZKDescribeSearchableEntityResult.m; sourceTree = "<group>"; };
 		F474CACC1D0FAE63000D3C13 /* ZKDescribeVisualForceResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeVisualForceResult.h; path = ../../../zkSforce/ZKDescribeVisualForceResult.h; sourceTree = "<group>"; };
@@ -695,6 +698,8 @@
 		F4C297C713649CC4009ACB8D /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F46DEA261D8F7CA100C7550B /* ZKFindDuplicatesResult.h */,
+				F46DEA271D8F7CA100C7550B /* ZKFindDuplicatesResult.m */,
 				F474CACA1D0FAE63000D3C13 /* ZKDescribeSearchableEntityResult.h */,
 				F474CACB1D0FAE63000D3C13 /* ZKDescribeSearchableEntityResult.m */,
 				F474CACC1D0FAE63000D3C13 /* ZKDescribeVisualForceResult.h */,
@@ -1254,6 +1259,7 @@
 				F414BFB81845A48400322AC2 /* ZKDescribeSoftphoneLayoutCallType.m in Sources */,
 				F474CADB1D0FAE63000D3C13 /* ZKSearchResultsMetadata.m in Sources */,
 				F414BFB91845A48400322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m in Sources */,
+				F46DEA281D8F7CA100C7550B /* ZKFindDuplicatesResult.m in Sources */,
 				F414BFBA1845A48400322AC2 /* ZKDescribeSoftphoneLayoutItem.m in Sources */,
 				F414BFBB1845A48400322AC2 /* ZKDescribeSoftphoneLayoutResult.m in Sources */,
 				F414BFBC1845A48400322AC2 /* ZKDescribeSoftphoneLayoutSection.m in Sources */,

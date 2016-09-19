@@ -32,6 +32,10 @@
     return [self string:@"field"];
 }
 			
+-(NSString *)fieldApiName {
+    return [self string:@"fieldApiName"];
+}
+			
 -(NSString *)format {
     return [self string:@"format"];
 }

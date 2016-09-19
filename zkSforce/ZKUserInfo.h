@@ -33,6 +33,7 @@
     <element nillable="true" type="xsd:string" name="currencySymbol"/>
     <element type="xsd:int" name="orgAttachmentFileSizeLimit"/>
     <element nillable="true" type="xsd:string" name="orgDefaultCurrencyIsoCode"/>
+    <element nillable="true" type="xsd:string" name="orgDefaultCurrencyLocale"/>
     <element type="xsd:boolean" name="orgDisallowHtmlAttachments"/>
     <element type="xsd:boolean" name="orgHasPersonAccounts"/>
     <element type="tns:ID" name="organizationId"/>
@@ -60,6 +61,7 @@
 @property (readonly) NSString  *currencySymbol; 
 @property (readonly) NSInteger  orgAttachmentFileSizeLimit; 
 @property (readonly) NSString  *orgDefaultCurrencyIsoCode; 
+@property (readonly) NSString  *orgDefaultCurrencyLocale; 
 @property (readonly) BOOL       orgDisallowHtmlAttachments; 
 @property (readonly) BOOL       orgHasPersonAccounts; 
 @property (readonly) NSString  *organizationId; 

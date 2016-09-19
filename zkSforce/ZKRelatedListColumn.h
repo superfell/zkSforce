@@ -30,6 +30,7 @@
 <complexType name="RelatedListColumn" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element nillable="true" type="xsd:string" name="field"/>
+    <element type="xsd:string" name="fieldApiName"/>
     <element nillable="true" type="xsd:string" name="format"/>
     <element type="xsd:string" name="label"/>
     <element minOccurs="0" nillable="true" type="xsd:string" name="lookupId"/>
@@ -40,6 +41,7 @@
 @interface ZKRelatedListColumn : ZKXmlDeserializer {
 }
 @property (readonly) NSString  *field; 
+@property (readonly) NSString  *fieldApiName; 
 @property (readonly) NSString  *format; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *lookupId; 

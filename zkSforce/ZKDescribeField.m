@@ -83,6 +83,10 @@
     return [self boolean:@"caseSensitive"];
 }
 			
+-(NSString *)compoundFieldName {
+    return [self string:@"compoundFieldName"];
+}
+			
 -(NSString *)controllerName {
     return [self string:@"controllerName"];
 }

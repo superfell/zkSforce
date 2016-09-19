@@ -29,9 +29,11 @@
 /*
 <complexType name="DescribeLayoutSection" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element type="xsd:boolean" name="collapsed"/>
     <element type="xsd:int" name="columns"/>
     <element nillable="true" type="xsd:string" name="heading"/>
     <element maxOccurs="unbounded" type="tns:DescribeLayoutRow" name="layoutRows"/>
+    <element type="tns:ID" name="layoutSectionId"/>
     <element type="tns:ID" name="parentLayoutId"/>
     <element type="xsd:int" name="rows"/>
     <element type="tns:TabOrderType" name="tabOrder"/>
@@ -42,9 +44,11 @@
 */
 @interface ZKDescribeLayoutSection : ZKXmlDeserializer {
 }
+@property (readonly) BOOL       collapsed; 
 @property (readonly) NSInteger  columns; 
 @property (readonly) NSString  *heading; 
 @property (readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
+@property (readonly) NSString  *layoutSectionId; 
 @property (readonly) NSString  *parentLayoutId; 
 @property (readonly) NSInteger  rows; 
 @property (readonly) NSString  *tabOrder; 

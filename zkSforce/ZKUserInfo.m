@@ -44,6 +44,10 @@
     return [self string:@"orgDefaultCurrencyIsoCode"];
 }
 			
+-(NSString *)orgDefaultCurrencyLocale {
+    return [self string:@"orgDefaultCurrencyLocale"];
+}
+			
 -(BOOL)orgDisallowHtmlAttachments {
     return [self boolean:@"orgDisallowHtmlAttachments"];
 }

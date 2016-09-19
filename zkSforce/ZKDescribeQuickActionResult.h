@@ -43,8 +43,12 @@
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeIcon" name="icons"/>
     <element type="xsd:string" name="label"/>
     <element nillable="true" type="tns:DescribeLayoutSection" name="layout"/>
+    <element nillable="true" type="tns:ID" name="lightningComponentBundleId"/>
+    <element nillable="true" type="xsd:string" name="lightningComponentBundleName"/>
+    <element nillable="true" type="xsd:string" name="lightningComponentQualifiedName"/>
     <element nillable="true" type="xsd:string" name="miniIconUrl"/>
     <element type="xsd:string" name="name"/>
+    <element type="xsd:boolean" name="showQuickActionLcHeader"/>
     <element type="xsd:boolean" name="showQuickActionVfHeader"/>
     <element nillable="true" type="xsd:string" name="targetParentField"/>
     <element nillable="true" type="tns:ID" name="targetRecordTypeId"/>
@@ -71,8 +75,12 @@
 @property (readonly) NSArray                  *icons;  // of ZKDescribeIcon
 @property (readonly) NSString                 *label; 
 @property (readonly) ZKDescribeLayoutSection  *layout; 
+@property (readonly) NSString                 *lightningComponentBundleId; 
+@property (readonly) NSString                 *lightningComponentBundleName; 
+@property (readonly) NSString                 *lightningComponentQualifiedName; 
 @property (readonly) NSString                 *miniIconUrl; 
 @property (readonly) NSString                 *name; 
+@property (readonly) BOOL                      showQuickActionLcHeader; 
 @property (readonly) BOOL                      showQuickActionVfHeader; 
 @property (readonly) NSString                 *targetParentField; 
 @property (readonly) NSString                 *targetRecordTypeId; 

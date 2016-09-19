@@ -29,6 +29,10 @@
 
 @implementation ZKDescribeLayoutSection
 
+-(BOOL)collapsed {
+    return [self boolean:@"collapsed"];
+}
+			
 -(NSInteger)columns {
     return [self integer:@"columns"];
 }
@@ -39,6 +43,10 @@
 			
 -(NSArray *)layoutRows {
     return [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
+}
+			
+-(NSString *)layoutSectionId {
+    return [self string:@"layoutSectionId"];
 }
 			
 -(NSString *)parentLayoutId {

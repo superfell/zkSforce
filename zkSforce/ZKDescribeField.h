@@ -39,6 +39,7 @@
     <element minOccurs="0" type="xsd:string" name="calculatedFormula"/>
     <element minOccurs="0" type="xsd:boolean" name="cascadeDelete"/>
     <element type="xsd:boolean" name="caseSensitive"/>
+    <element minOccurs="0" type="xsd:string" name="compoundFieldName"/>
     <element minOccurs="0" type="xsd:string" name="controllerName"/>
     <element type="xsd:boolean" name="createable"/>
     <element type="xsd:boolean" name="custom"/>
@@ -99,6 +100,7 @@
 @property (readonly) NSString              *calculatedFormula; 
 @property (readonly) BOOL                   cascadeDelete; 
 @property (readonly) BOOL                   caseSensitive; 
+@property (readonly) NSString              *compoundFieldName; 
 @property (readonly) NSString              *controllerName; 
 @property (readonly) BOOL                   createable; 
 @property (readonly) BOOL                   custom; 
