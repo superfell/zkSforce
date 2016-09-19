@@ -1,6 +1,6 @@
 {
   "name": "ZKSforce",
-  "version": "37.0.0",
+  "version": "38.0.0",
   "license": "MIT",
   "summary": "A Cocoa library for calling the Salesforce.com SOAP APIs.",
   "homepage": "https://github.com/superfell/zkSforce",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/superfell/zkSforce.git",
-    "tag": "v37.0.0"
+    "tag": "v38.0.0"
   },
   "source_files": "zkSforce",
   "private_header_files" : "zkSforce/zkParser.h",
