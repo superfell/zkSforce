@@ -63,6 +63,13 @@
     XCTAssertEqualObjects(expected, actual);
 }
 
+-(void)testMissingBlob {
+    NSString *doc = @"<root><c></c></root>";
+    ZKXmlDeserializer *d = [self deser:doc];
+    // check that asking for a blob that doesn't exist doesn't barf
+    XCTAssertNil([d blob:@"b"]);
+}
+
 -(void)testStrings {
     NSString *doc = @"<root><a>one</a><a>two</a></root>";
     ZKXmlDeserializer *d = [self deser:doc];
