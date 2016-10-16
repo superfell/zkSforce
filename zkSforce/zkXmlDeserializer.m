@@ -100,7 +100,9 @@
     if (cached == nil) {
         NSString *b64 = [self string:elem fromXmlElement:node];
         cached = [b64 ZKBase64Decode];
-        [values setObject:cached forKey:elem];
+
+        if (cached != nil)
+        	[values setObject:cached forKey:elem];
     }
     return cached;
 }
