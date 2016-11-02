@@ -33,8 +33,13 @@ enum envState {
 
 - (void)start:(NSString *)primaryNamespceUri {
 	[env release];
-	env = [NSMutableString stringWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='%@'>", primaryNamespceUri];
+	env = [[NSMutableString alloc] initWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='%@'>", primaryNamespceUri];
 	state = inEnvelope;
+}
+
+- (void)dealloc {
+    [super dealloc];
+    [env release];
 }
 
 - (void)moveToHeaders {
