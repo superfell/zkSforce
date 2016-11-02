@@ -38,8 +38,8 @@ enum envState {
 }
 
 - (void)dealloc {
-    [super dealloc];
     [env release];
+    [super dealloc];
 }
 
 - (void)moveToHeaders {
