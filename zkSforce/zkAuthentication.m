@@ -226,7 +226,12 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 -(ZKPartnerEnvelope *)newEnvelope {
     ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
-    [env writeCallOptionsHeader:clientId];
+    
+    if (clientId != nil)
+        [env writeCallOptionsHeader:clientId];
+    else
+        [env moveToHeaders];
+    
     [env startElement:@"LoginScopeHeader"];
     [env addElement:@"organizationId" elemValue:orgId];
     if ([portalId length] > 0)
