@@ -189,6 +189,7 @@
 		F4913EF81B113E85001CC650 /* ZKMatchRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EE91B113E85001CC650 /* ZKMatchRecord.m */; };
 		F4913EF91B113E85001CC650 /* ZKMatchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EEB1B113E85001CC650 /* ZKMatchResult.m */; };
 		F4913EFA1B113E85001CC650 /* ZKNameCaseValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EED1B113E85001CC650 /* ZKNameCaseValue.m */; };
+		F49918891DCAE119009CC5B0 /* ZKAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */; };
 		F4B7704A1BB737C100681844 /* ZKCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770311BB737C100681844 /* ZKCanvas.m */; };
 		F4B7704B1BB737C100681844 /* ZKDescribePathAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770331BB737C100681844 /* ZKDescribePathAssistant.m */; };
 		F4B7704C1BB737C100681844 /* ZKDescribePathAssistantField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770351BB737C100681844 /* ZKDescribePathAssistantField.m */; };
@@ -584,6 +585,7 @@
 		F4913EEB1B113E85001CC650 /* ZKMatchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKMatchResult.m; path = ../zkSforce/ZKMatchResult.m; sourceTree = "<group>"; };
 		F4913EEC1B113E85001CC650 /* ZKNameCaseValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKNameCaseValue.h; path = ../zkSforce/ZKNameCaseValue.h; sourceTree = "<group>"; };
 		F4913EED1B113E85001CC650 /* ZKNameCaseValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKNameCaseValue.m; path = ../zkSforce/ZKNameCaseValue.m; sourceTree = "<group>"; };
+		F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAuthenticationTests.m; sourceTree = "<group>"; };
 		F4B770301BB737C100681844 /* ZKCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKCanvas.h; path = ../zkSforce/ZKCanvas.h; sourceTree = "<group>"; };
 		F4B770311BB737C100681844 /* ZKCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKCanvas.m; path = ../zkSforce/ZKCanvas.m; sourceTree = "<group>"; };
 		F4B770321BB737C100681844 /* ZKDescribePathAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistant.h; path = ../zkSforce/ZKDescribePathAssistant.h; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 				F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */,
 				F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */,
 				F4F3ADFD1CFD4B9600638F0B /* ZKXsdAnyTypeTests.m */,
+				F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
 			);
 			name = UnitTests;
@@ -1364,6 +1367,7 @@
 				F414BFF51846BD1200322AC2 /* ZKReportChartComponent.m in Sources */,
 				F4913EF71B113E85001CC650 /* ZKFieldDiff.m in Sources */,
 				F414C0011846BDAD00322AC2 /* ZKEmailFileAttachment.m in Sources */,
+				F49918891DCAE119009CC5B0 /* ZKAuthenticationTests.m in Sources */,
 				F414C0021846BDAD00322AC2 /* ZKMassEmailMessage.m in Sources */,
 				F414C0031846BDAD00322AC2 /* ZKProcessSubmitRequest.m in Sources */,
 				F474CAA21D0FAD4D000D3C13 /* ZKExtendedErrorDetails.m in Sources */,

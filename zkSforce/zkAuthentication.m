@@ -1,4 +1,4 @@
-// Copyright (c) 2011 Simon Fell
+// Copyright (c) 2011,2016 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -226,6 +226,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 -(ZKPartnerEnvelope *)newEnvelope {
     ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
+    [env moveToHeaders];
     [env writeCallOptionsHeader:clientId];
     [env startElement:@"LoginScopeHeader"];
     [env addElement:@"organizationId" elemValue:orgId];
