@@ -174,7 +174,7 @@ enum envState {
     if (state == inBody)
         [self endElement:@"s:Body"];
     [self endElement:@"s:Envelope"];
-	return env;
+    return [[env retain] autorelease];
 }
 
 @end
