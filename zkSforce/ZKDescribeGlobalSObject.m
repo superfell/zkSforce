@@ -64,6 +64,10 @@
     return [self boolean:@"idEnabled"];
 }
 			
+-(BOOL)isSubtype {
+    return [self boolean:@"isSubtype"];
+}
+			
 -(NSString *)keyPrefix {
     return [self string:@"keyPrefix"];
 }

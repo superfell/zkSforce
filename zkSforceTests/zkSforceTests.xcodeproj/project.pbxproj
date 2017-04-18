@@ -169,6 +169,9 @@
 		F425F9FD1A338D0F0055D8B8 /* ZKSoqlNotCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425F9E91A338D0F0055D8B8 /* ZKSoqlNotCondition.m */; };
 		F425F9FE1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425F9EB1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m */; };
 		F425F9FF1A338D0F0055D8B8 /* ZKSoqlWhereCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425F9ED1A338D0F0055D8B8 /* ZKSoqlWhereCondition.m */; };
+		F44188961EA5C709009BE67D /* ZKFieldLevelSearchMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F44188901EA5C709009BE67D /* ZKFieldLevelSearchMetadata.m */; };
+		F44188971EA5C709009BE67D /* ZKEntitySearchMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F44188921EA5C709009BE67D /* ZKEntitySearchMetadata.m */; };
+		F44188981EA5C709009BE67D /* ZKDescribeLayoutSaveOption.m in Sources */ = {isa = PBXBuildFile; fileRef = F44188941EA5C709009BE67D /* ZKDescribeLayoutSaveOption.m */; };
 		F46DEA1F1D8F7C0600C7550B /* ZKFindDuplicatesResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DEA1E1D8F7C0600C7550B /* ZKFindDuplicatesResult.m */; };
 		F474CAA01D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CA951D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m */; };
 		F474CAA11D0FAD4D000D3C13 /* ZKDescribeVisualForceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CA971D0FAD4D000D3C13 /* ZKDescribeVisualForceResult.m */; };
@@ -545,6 +548,12 @@
 		F425F9EB1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlSubQueryCondition.m; path = ../zkSforce/ZKSoqlSubQueryCondition.m; sourceTree = "<group>"; };
 		F425F9EC1A338D0F0055D8B8 /* ZKSoqlWhereCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSoqlWhereCondition.h; path = ../zkSforce/ZKSoqlWhereCondition.h; sourceTree = "<group>"; };
 		F425F9ED1A338D0F0055D8B8 /* ZKSoqlWhereCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlWhereCondition.m; path = ../zkSforce/ZKSoqlWhereCondition.m; sourceTree = "<group>"; };
+		F44188901EA5C709009BE67D /* ZKFieldLevelSearchMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFieldLevelSearchMetadata.m; path = ../zkSforce/ZKFieldLevelSearchMetadata.m; sourceTree = "<group>"; };
+		F44188911EA5C709009BE67D /* ZKFieldLevelSearchMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFieldLevelSearchMetadata.h; path = ../zkSforce/ZKFieldLevelSearchMetadata.h; sourceTree = "<group>"; };
+		F44188921EA5C709009BE67D /* ZKEntitySearchMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEntitySearchMetadata.m; path = ../zkSforce/ZKEntitySearchMetadata.m; sourceTree = "<group>"; };
+		F44188931EA5C709009BE67D /* ZKEntitySearchMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKEntitySearchMetadata.h; path = ../zkSforce/ZKEntitySearchMetadata.h; sourceTree = "<group>"; };
+		F44188941EA5C709009BE67D /* ZKDescribeLayoutSaveOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeLayoutSaveOption.m; path = ../zkSforce/ZKDescribeLayoutSaveOption.m; sourceTree = "<group>"; };
+		F44188951EA5C709009BE67D /* ZKDescribeLayoutSaveOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeLayoutSaveOption.h; path = ../zkSforce/ZKDescribeLayoutSaveOption.h; sourceTree = "<group>"; };
 		F46DEA1D1D8F7C0600C7550B /* ZKFindDuplicatesResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFindDuplicatesResult.h; path = ../zkSforce/ZKFindDuplicatesResult.h; sourceTree = "<group>"; };
 		F46DEA1E1D8F7C0600C7550B /* ZKFindDuplicatesResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFindDuplicatesResult.m; path = ../zkSforce/ZKFindDuplicatesResult.m; sourceTree = "<group>"; };
 		F474CA941D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSearchableEntityResult.h; path = ../zkSforce/ZKDescribeSearchableEntityResult.h; sourceTree = "<group>"; };
@@ -726,6 +735,12 @@
 		F414BC091842ECB100322AC2 /* zkSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F44188901EA5C709009BE67D /* ZKFieldLevelSearchMetadata.m */,
+				F44188911EA5C709009BE67D /* ZKFieldLevelSearchMetadata.h */,
+				F44188921EA5C709009BE67D /* ZKEntitySearchMetadata.m */,
+				F44188931EA5C709009BE67D /* ZKEntitySearchMetadata.h */,
+				F44188941EA5C709009BE67D /* ZKDescribeLayoutSaveOption.m */,
+				F44188951EA5C709009BE67D /* ZKDescribeLayoutSaveOption.h */,
 				F46DEA1D1D8F7C0600C7550B /* ZKFindDuplicatesResult.h */,
 				F46DEA1E1D8F7C0600C7550B /* ZKFindDuplicatesResult.m */,
 				F474CA941D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.h */,
@@ -1211,6 +1226,7 @@
 				F4913EF01B113E85001CC650 /* ZKDescribeLayoutFeedFilter.m in Sources */,
 				F425F9FE1A338D0F0055D8B8 /* ZKSoqlSubQueryCondition.m in Sources */,
 				F414BCFB1842ED0B00322AC2 /* ZKDescribeGlobalTheme.m in Sources */,
+				F44188981EA5C709009BE67D /* ZKDescribeLayoutSaveOption.m in Sources */,
 				F414BCFC1842ED0B00322AC2 /* ZKDescribeQuickActionListResult.m in Sources */,
 				F414BCFD1842ED0B00322AC2 /* ZKDescribeRelatedContentItem.m in Sources */,
 				F414BCFE1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m in Sources */,
@@ -1316,6 +1332,7 @@
 				F414BD431842ED0B00322AC2 /* ZKRecordTypeMapping.m in Sources */,
 				F414BD441842ED0B00322AC2 /* ZKPicklistForRecordType.m in Sources */,
 				F414BD451842ED0B00322AC2 /* zkAuthentication.m in Sources */,
+				F44188971EA5C709009BE67D /* ZKEntitySearchMetadata.m in Sources */,
 				F414BD461842ED0B00322AC2 /* zkBaseClient.m in Sources */,
 				F4913EF31B113E85001CC650 /* ZKDuplicateError.m in Sources */,
 				F414BD471842ED0B00322AC2 /* ZKLimitInfoHeader.m in Sources */,
@@ -1331,6 +1348,7 @@
 				F402CC00195545AB00C6E1E2 /* ZKCustomLinkComponent.m in Sources */,
 				F414BD4E1842ED0B00322AC2 /* zkDescribeGlobalSObject.m in Sources */,
 				F414BD4F1842ED0B00322AC2 /* zkSoapException.m in Sources */,
+				F44188961EA5C709009BE67D /* ZKFieldLevelSearchMetadata.m in Sources */,
 				F414BD591842FD3800322AC2 /* ZKSoapDateTests.m in Sources */,
 				F425F9F01A338D0F0055D8B8 /* ZKDescribeSoqlListViewParams.m in Sources */,
 				F414BD5C184309D700322AC2 /* ZKParserTests.m in Sources */,
@@ -1454,7 +1472,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx10.12;
 			};
 			name = Debug;
 		};
@@ -1485,7 +1503,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.11;
+				SDKROOT = macosx10.12;
 			};
 			name = Release;
 		};

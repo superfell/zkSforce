@@ -32,7 +32,7 @@
     <element type="xsd:string" name="developerNameOrId"/>
     <element nillable="true" type="xsd:int" name="limit"/>
     <element nillable="true" type="xsd:int" name="offset"/>
-    <element maxOccurs="unbounded" type="tns:ListViewOrderBy" name="orderBy"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:ListViewOrderBy" name="orderBy"/>
     <element type="xsd:string" name="sobjectType"/>
   </sequence>
 </complexType>

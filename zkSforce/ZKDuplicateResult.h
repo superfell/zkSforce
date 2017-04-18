@@ -32,7 +32,7 @@
     <element type="xsd:boolean" name="allowSave"/>
     <element type="xsd:string" name="duplicateRule"/>
     <element type="xsd:string" name="duplicateRuleEntityType"/>
-    <element type="xsd:string" name="errorMessage"/>
+    <element nillable="true" type="xsd:string" name="errorMessage"/>
     <element type="tns:MatchResult" maxOccurs="unbounded" minOccurs="0" name="matchResults"/>
   </sequence>
 </complexType>

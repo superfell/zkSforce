@@ -32,7 +32,7 @@
     <element type="xsd:boolean" name="collapsed"/>
     <element type="xsd:int" name="columns"/>
     <element nillable="true" type="xsd:string" name="heading"/>
-    <element maxOccurs="unbounded" type="tns:DescribeLayoutRow" name="layoutRows"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:DescribeLayoutRow" name="layoutRows"/>
     <element type="tns:ID" name="layoutSectionId"/>
     <element type="tns:ID" name="parentLayoutId"/>
     <element type="xsd:int" name="rows"/>

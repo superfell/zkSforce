@@ -33,7 +33,7 @@
       <sequence>
         <element type="xsd:string" name="field"/>
         <element type="tns:soqlOperator" name="operator"/>
-        <element maxOccurs="unbounded" type="xsd:string" name="values"/>
+        <element maxOccurs="unbounded" minOccurs="1" type="xsd:string" name="values"/>
       </sequence>
     </extension>
   </complexContent>

@@ -24,8 +24,10 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkXmlDeserializer.h"
+#import "ZKXMLSerializable.h"
 
+@class ZKXmlDeserializer;
+@class zkElement;
 /*
 <complexType name="AdditionalInformationMap" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
@@ -34,8 +36,14 @@
   </sequence>
 </complexType>
 */
-@interface ZKAdditionalInformationMap : ZKXmlDeserializer {
+@interface ZKAdditionalInformationMap : NSObject<ZKXMLSerializable> {
+	NSString  *name;
+	NSString  *value;
 }
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *value; 
+-(id)init;
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
+-(id)initWithXmlElement:(zkElement *)e;
+
+@property (retain) NSString  *name; 
+@property (retain) NSString  *value; 
 @end

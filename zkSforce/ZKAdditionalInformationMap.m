@@ -25,15 +25,41 @@
 //
 
 #import "ZKAdditionalInformationMap.h"
+#import "zkEnvelope.h"
+#import "ZKXmlDeserializer.h"
+#import "zkParser.h"
 
 @implementation ZKAdditionalInformationMap
 
--(NSString *)name {
-    return [self string:@"name"];
+@synthesize name, value;
+
+-(id)init {
+    self = [super init];
+    return self;
 }
-			
--(NSString *)value {
-    return [self string:@"value"];
+
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+    self = [super init];
+	self.name = [d string:@"name"];
+	self.value = [d string:@"value"];
+    return self;
 }
-			
+
+-(id)initWithXmlElement:(zkElement *)e {
+    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+    return [self initWithZKXmlDeserializer:d];
+}
+
+-(void)dealloc {
+	[name release];
+	[value release];
+	[super dealloc];
+}
+
+-(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"name"  elemValue:self.name  nillable:NO  optional:NO];
+	[env addElement:@"value" elemValue:self.value nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

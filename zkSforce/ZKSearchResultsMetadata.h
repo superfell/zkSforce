@@ -30,10 +30,12 @@
 <complexType name="SearchResultsMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="tns:LabelsSearchMetadata" maxOccurs="unbounded" minOccurs="0" nillable="false" name="entityLabelMetadata"/>
+    <element type="tns:EntitySearchMetadata" maxOccurs="unbounded" minOccurs="0" nillable="false" name="entityMetadata"/>
   </sequence>
 </complexType>
 */
 @interface ZKSearchResultsMetadata : ZKXmlDeserializer {
 }
 @property (readonly) NSArray  *entityLabelMetadata;  // of ZKLabelsSearchMetadata
+@property (readonly) NSArray  *entityMetadata;  // of ZKEntitySearchMetadata
 @end

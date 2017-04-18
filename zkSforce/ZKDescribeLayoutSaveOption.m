@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Ron Hess
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,20 +24,32 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkXmlDeserializer.h"
+#import "ZKDescribeLayoutSaveOption.h"
 
-/*
-<complexType name="DescribeLayoutResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
-  <sequence>
-    <element maxOccurs="unbounded" minOccurs="1" type="tns:DescribeLayout" name="layouts"/>
-    <element maxOccurs="unbounded" minOccurs="0" type="tns:RecordTypeMapping" name="recordTypeMappings"/>
-    <element type="xsd:boolean" name="recordTypeSelectorRequired"/>
-  </sequence>
-</complexType>
-*/
-@interface ZKDescribeLayoutResult : ZKXmlDeserializer {
+@implementation ZKDescribeLayoutSaveOption
+
+-(BOOL)defaultValue {
+    return [self boolean:@"defaultValue"];
 }
-@property (readonly) NSArray  *layouts;  // of ZKDescribeLayout
-@property (readonly) NSArray  *recordTypeMappings;  // of ZKRecordTypeMapping
-@property (readonly) BOOL      recordTypeSelectorRequired; 
+			
+-(BOOL)isDisplayed {
+    return [self boolean:@"isDisplayed"];
+}
+			
+-(NSString *)label {
+    return [self string:@"label"];
+}
+			
+-(NSString *)name {
+    return [self string:@"name"];
+}
+			
+-(NSString *)restHeaderName {
+    return [self string:@"restHeaderName"];
+}
+			
+-(NSString *)soapHeaderName {
+    return [self string:@"soapHeaderName"];
+}
+			
 @end

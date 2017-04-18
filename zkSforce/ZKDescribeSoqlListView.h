@@ -30,9 +30,9 @@
 /*
 <complexType name="DescribeSoqlListView" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element maxOccurs="unbounded" type="tns:ListViewColumn" name="columns"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:ListViewColumn" name="columns"/>
     <element type="tns:ID" name="id"/>
-    <element maxOccurs="unbounded" type="tns:ListViewOrderBy" name="orderBy"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:ListViewOrderBy" name="orderBy"/>
     <element type="xsd:string" name="query"/>
     <element nillable="true" type="xsd:string" name="scope"/>
     <element type="xsd:string" name="sobjectType"/>

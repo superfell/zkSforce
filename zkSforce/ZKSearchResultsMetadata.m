@@ -25,12 +25,17 @@
 //
 
 #import "ZKSearchResultsMetadata.h"
+#import "ZKEntitySearchMetadata.h"
 #import "ZKLabelsSearchMetadata.h"
 
 @implementation ZKSearchResultsMetadata
 
 -(NSArray *)entityLabelMetadata {
     return [self complexTypeArrayFromElements:@"entityLabelMetadata" cls:[ZKLabelsSearchMetadata class]];
+}
+			
+-(NSArray *)entityMetadata {
+    return [self complexTypeArrayFromElements:@"entityMetadata" cls:[ZKEntitySearchMetadata class]];
 }
 			
 @end

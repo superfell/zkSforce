@@ -38,6 +38,7 @@
     <element type="xsd:boolean" name="feedEnabled"/>
     <element type="xsd:boolean" name="hasSubtypes"/>
     <element type="xsd:boolean" name="idEnabled"/>
+    <element type="xsd:boolean" name="isSubtype"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="labelPlural"/>
@@ -66,6 +67,7 @@
 @property (readonly) BOOL       feedEnabled; 
 @property (readonly) BOOL       hasSubtypes; 
 @property (readonly) BOOL       idEnabled; 
+@property (readonly) BOOL       isSubtype; 
 @property (readonly) NSString  *keyPrefix; 
 @property (readonly) NSString  *label; 
 @property (readonly) NSString  *labelPlural; 

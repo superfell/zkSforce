@@ -30,15 +30,18 @@
 /*
 <complexType name="MergeRequest" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element type="tns:AdditionalInformationMap" maxOccurs="unbounded" minOccurs="0" name="additionalInformationMap"/>
     <element type="ens:sObject" name="masterRecord"/>
     <element maxOccurs="unbounded" minOccurs="1" type="tns:ID" name="recordToMergeIds"/>
   </sequence>
 </complexType>
 */
 @interface ZKMergeRequest : NSObject<ZKXMLSerializable> {
+	NSArray    *additionalInformationMap;
 	ZKSObject  *masterRecord;
 	NSArray    *recordToMergeIds;
 }
+@property (retain) NSArray    *additionalInformationMap;  // of ZKAdditionalInformationMap
 @property (retain) ZKSObject  *masterRecord; 
 @property (retain) NSArray    *recordToMergeIds;  // of NSString
 @end

@@ -27,6 +27,7 @@
 #import "ZKDescribeLayout.h"
 #import "ZKDescribeLayoutButtonSection.h"
 #import "ZKDescribeLayoutFeedView.h"
+#import "ZKDescribeLayoutSaveOption.h"
 #import "ZKDescribeLayoutSection.h"
 #import "ZKDescribeQuickActionListResult.h"
 #import "ZKRelatedContent.h"
@@ -68,6 +69,10 @@
 			
 -(NSArray *)relatedLists {
     return [self complexTypeArrayFromElements:@"relatedLists" cls:[ZKRelatedList class]];
+}
+			
+-(NSArray *)saveOptions {
+    return [self complexTypeArrayFromElements:@"saveOptions" cls:[ZKDescribeLayoutSaveOption class]];
 }
 			
 @end

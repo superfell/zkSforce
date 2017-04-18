@@ -87,11 +87,6 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock;
 
-/** Describe a list of FlexiPage and their contents */
--(void) performDescribeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts
-                        failBlock:(zkFailWithExceptionBlock)failBlock
-                    completeBlock:(zkCompleteArrayBlock)completeBlock;
-
 /** Describe the items in an AppMenu */
 -(void) performDescribeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId
                      failBlock:(zkFailWithExceptionBlock)failBlock

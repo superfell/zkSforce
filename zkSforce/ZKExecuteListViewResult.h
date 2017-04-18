@@ -29,12 +29,12 @@
 /*
 <complexType name="ExecuteListViewResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element maxOccurs="unbounded" type="tns:ListViewColumn" name="columns"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:ListViewColumn" name="columns"/>
     <element type="xsd:string" name="developerName"/>
     <element type="xsd:boolean" name="done"/>
     <element type="tns:ID" name="id"/>
     <element type="xsd:string" name="label"/>
-    <element maxOccurs="unbounded" type="tns:ListViewRecord" name="records"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:ListViewRecord" name="records"/>
     <element type="xsd:int" name="size"/>
   </sequence>
 </complexType>

@@ -42,6 +42,7 @@
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:Field" name="fields"/>
     <element type="xsd:boolean" name="hasSubtypes"/>
     <element type="xsd:boolean" name="idEnabled"/>
+    <element type="xsd:boolean" name="isSubtype"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="labelPlural"/>

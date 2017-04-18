@@ -35,7 +35,6 @@
 #import "ZKDescribeCompactLayoutsResult.h"
 #import "ZKDescribeDataCategoryGroupResult.h"
 #import "ZKDescribeDataCategoryGroupStructureResult.h"
-#import "ZKDescribeFlexiPageResult.h"
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeNounResult.h"
@@ -57,7 +56,6 @@
 #import "ZKExecuteListViewRequest.h"
 #import "ZKExecuteListViewResult.h"
 #import "ZKFindDuplicatesResult.h"
-#import "ZKFlexipageContext.h"
 #import "ZKGetDeletedResult.h"
 #import "ZKGetServerTimestampResult.h"
 #import "ZKGetUpdatedResult.h"
@@ -150,23 +148,6 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKKnowledgeSettings class]] lastObject];
-}
-
-/** Describe a list of FlexiPage and their contents */
--(NSArray *)describeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts {
-	if (!authSource) return nil;
-	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeFlexiPages"];
-	[env addElementArray:@"flexiPages" elemValue:flexiPages];
-	[env addElementArray:@"contexts"   elemValue:contexts];
-	[env endElement:@"describeFlexiPages"];
-	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeFlexiPageResult class]];
 }
 
 /** Describe the items in an AppMenu */

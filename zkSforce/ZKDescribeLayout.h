@@ -43,6 +43,7 @@
     <element minOccurs="0" type="tns:DescribeQuickActionListResult" name="quickActionList"/>
     <element maxOccurs="1" minOccurs="0" type="tns:RelatedContent" name="relatedContent"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:RelatedList" name="relatedLists"/>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSaveOption" name="saveOptions"/>
   </sequence>
 </complexType>
 */
@@ -57,4 +58,5 @@
 @property (readonly) ZKDescribeQuickActionListResult  *quickActionList; 
 @property (readonly) ZKRelatedContent                 *relatedContent; 
 @property (readonly) NSArray                          *relatedLists;  // of ZKRelatedList
+@property (readonly) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
 @end

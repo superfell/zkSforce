@@ -31,7 +31,7 @@
   <sequence>
     <element type="tns:ID" name="id"/>
     <element type="xsd:string" name="label"/>
-    <element maxOccurs="unbounded" type="tns:DescribeLayoutItem" name="layoutItems"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:DescribeLayoutItem" name="layoutItems"/>
     <element type="xsd:string" name="name"/>
   </sequence>
 </complexType>

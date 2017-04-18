@@ -31,7 +31,7 @@
   <sequence>
     <element nillable="true" type="tns:ShareAccessLevel" name="accessLevelRequiredForCreate"/>
     <element nillable="true" minOccurs="0" maxOccurs="unbounded" type="tns:DescribeLayoutButton" name="buttons"/>
-    <element maxOccurs="unbounded" type="tns:RelatedListColumn" name="columns"/>
+    <element maxOccurs="unbounded" minOccurs="1" type="tns:RelatedListColumn" name="columns"/>
     <element type="xsd:boolean" name="custom"/>
     <element nillable="true" type="xsd:string" name="field"/>
     <element type="xsd:string" name="label"/>

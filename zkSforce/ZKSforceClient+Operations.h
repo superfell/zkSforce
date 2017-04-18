@@ -61,9 +61,6 @@
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(ZKKnowledgeSettings *)describeKnowledgeSettings;
 
-/** Describe a list of FlexiPage and their contents */
--(NSArray *)describeFlexiPages:(NSArray *)flexiPages contexts:(NSArray *)contexts;
-
 /** Describe the items in an AppMenu */
 -(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId;
 
