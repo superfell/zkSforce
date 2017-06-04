@@ -134,7 +134,7 @@
     @param username  the portal users username
     @param password  the portal users password
     @param orgId     OrgId is required, and should be the Id of the organization that owns the portal.
-    @param portalid  PortalId is required for new generation portals, can be null for old style self service portals.
+    @param portalId  PortalId is required for new generation portals, can be null for old style self service portals.
 */
 - (ZKLoginResult *)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId;
 
