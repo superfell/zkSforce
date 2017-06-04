@@ -24,7 +24,7 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKXMLSerializable.h"
+#import "zkXmlDeserializer.h"
 
 /*
 <complexType name="EmailFileAttachment" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
@@ -32,18 +32,16 @@
     <element type="xsd:base64Binary" minOccurs="0" nillable="true" name="body"/>
     <element type="xsd:string" minOccurs="0" nillable="true" name="contentType"/>
     <element type="xsd:string" name="fileName"/>
+    <element type="tns:ID" minOccurs="0" nillable="true" name="id"/>
     <element minOccurs="0" type="xsd:boolean" name="inline"/>
   </sequence>
 </complexType>
 */
-@interface ZKEmailFileAttachment : NSObject<ZKXMLSerializable> {
-	NSData    *body;
-	NSString  *contentType;
-	NSString  *fileName;
-	BOOL       _inline;
+@interface ZKEmailFileAttachment : ZKXmlDeserializer {
 }
-@property (retain) NSData    *body; 
-@property (retain) NSString  *contentType; 
-@property (retain) NSString  *fileName; 
-@property (assign) BOOL       _inline; 
+@property (readonly) NSData    *body; 
+@property (readonly) NSString  *contentType; 
+@property (readonly) NSString  *fileName; 
+@property (readonly) NSString  *id; 
+@property (readonly) BOOL       _inline; 
 @end

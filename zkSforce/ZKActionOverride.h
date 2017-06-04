@@ -33,7 +33,7 @@
     <element type="xsd:boolean" name="isAvailableInTouch"/>
     <element type="xsd:string" name="name"/>
     <element type="tns:ID" name="pageId"/>
-    <element type="xsd:string" name="url"/>
+    <element nillable="true" type="xsd:string" name="url"/>
   </sequence>
 </complexType>
 */

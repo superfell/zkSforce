@@ -55,41 +55,23 @@
 </complexType>
 */
 @interface ZKSingleEmailMessage : ZKEmail {
-	NSArray   *bccAddresses;
-	NSArray   *ccAddresses;
-	NSString  *charset;
-	NSArray   *documentAttachments;
-	NSArray   *entityAttachments;
-	NSArray   *fileAttachments;
-	NSString  *htmlBody;
-	NSString  *inReplyTo;
-	NSString  *optOutPolicy;
-	NSString  *orgWideEmailAddressId;
-	NSString  *plainTextBody;
-	NSString  *references;
-	NSString  *targetObjectId;
-	NSString  *templateId;
-	NSArray   *toAddresses;
-	BOOL       treatBodiesAsTemplate;
-	BOOL       treatTargetObjectAsRecipient;
-	NSString  *whatId;
 }
-@property (retain) NSArray   *bccAddresses;  // of NSString
-@property (retain) NSArray   *ccAddresses;  // of NSString
-@property (retain) NSString  *charset; 
-@property (retain) NSArray   *documentAttachments;  // of NSString
-@property (retain) NSArray   *entityAttachments;  // of NSString
-@property (retain) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
-@property (retain) NSString  *htmlBody; 
-@property (retain) NSString  *inReplyTo; 
-@property (retain) NSString  *optOutPolicy; 
-@property (retain) NSString  *orgWideEmailAddressId; 
-@property (retain) NSString  *plainTextBody; 
-@property (retain) NSString  *references; 
-@property (retain) NSString  *targetObjectId; 
-@property (retain) NSString  *templateId; 
-@property (retain) NSArray   *toAddresses;  // of NSString
-@property (assign) BOOL       treatBodiesAsTemplate; 
-@property (assign) BOOL       treatTargetObjectAsRecipient; 
-@property (retain) NSString  *whatId; 
+@property (readonly) NSArray   *bccAddresses;  // of NSString
+@property (readonly) NSArray   *ccAddresses;  // of NSString
+@property (readonly) NSString  *charset; 
+@property (readonly) NSArray   *documentAttachments;  // of NSString
+@property (readonly) NSArray   *entityAttachments;  // of NSString
+@property (readonly) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
+@property (readonly) NSString  *htmlBody; 
+@property (readonly) NSString  *inReplyTo; 
+@property (readonly) NSString  *optOutPolicy; 
+@property (readonly) NSString  *orgWideEmailAddressId; 
+@property (readonly) NSString  *plainTextBody; 
+@property (readonly) NSString  *references; 
+@property (readonly) NSString  *targetObjectId; 
+@property (readonly) NSString  *templateId; 
+@property (readonly) NSArray   *toAddresses;  // of NSString
+@property (readonly) BOOL       treatBodiesAsTemplate; 
+@property (readonly) BOOL       treatTargetObjectAsRecipient; 
+@property (readonly) NSString  *whatId; 
 @end

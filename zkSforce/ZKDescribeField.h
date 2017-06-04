@@ -70,6 +70,7 @@
     <element type="xsd:boolean" name="nillable"/>
     <element type="xsd:boolean" name="permissionable"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:PicklistEntry" name="picklistValues"/>
+    <element type="xsd:boolean" name="polymorphicForeignKey"/>
     <element type="xsd:int" name="precision"/>
     <element type="xsd:boolean" name="queryByDistance"/>
     <element minOccurs="0" type="xsd:string" name="referenceTargetField"/>
@@ -79,6 +80,7 @@
     <element minOccurs="0" type="xsd:boolean" name="restrictedDelete"/>
     <element type="xsd:boolean" name="restrictedPicklist"/>
     <element type="xsd:int" name="scale"/>
+    <element type="xsd:boolean" name="searchPrefilterable"/>
     <element type="tns:soapType" name="soapType"/>
     <element minOccurs="0" type="xsd:boolean" name="sortable"/>
     <element type="tns:fieldType" name="type"/>
@@ -131,6 +133,7 @@
 @property (readonly) BOOL                   nillable; 
 @property (readonly) BOOL                   permissionable; 
 @property (readonly) NSArray               *picklistValues;  // of ZKPicklistEntry
+@property (readonly) BOOL                   polymorphicForeignKey; 
 @property (readonly) NSInteger              precision; 
 @property (readonly) BOOL                   queryByDistance; 
 @property (readonly) NSString              *referenceTargetField; 
@@ -140,6 +143,7 @@
 @property (readonly) BOOL                   restrictedDelete; 
 @property (readonly) BOOL                   restrictedPicklist; 
 @property (readonly) NSInteger              scale; 
+@property (readonly) BOOL                   searchPrefilterable; 
 @property (readonly) NSString              *soapType; 
 @property (readonly) BOOL                   sortable; 
 @property (readonly) NSString              *type; 

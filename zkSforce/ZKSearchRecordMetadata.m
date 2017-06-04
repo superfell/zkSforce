@@ -1,4 +1,4 @@
-// Copyright (c) 2014 Simon Fell
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,12 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKLocation.h"
-#import "zkEnvelope.h"
+#import "ZKSearchRecordMetadata.h"
 
-@implementation ZKLocation
+@implementation ZKSearchRecordMetadata
 
-@synthesize latitude, longitude;
-
--(id)init {
-    self = [super init];
-    return self;
+-(BOOL)spellCorrected {
+    return [self boolean:@"spellCorrected"];
 }
-
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
-}
-
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
-    return [self initWithZKXmlDeserializer:d];
-}
-
--(void)dealloc {
-	[super dealloc];
-}
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
-	[env addDoubleElement:@"longitude" elemValue:self.longitude];
-	[env endElement:elemName];
-}
+			
 @end

@@ -28,31 +28,33 @@
 
 @interface ZKSforceClient (zkAsyncQuery)
 
-typedef void (^zkCompleteUserInfoBlock)                      (ZKUserInfo *result);
-typedef void (^zkCompleteSetPasswordResultBlock)             (ZKSetPasswordResult *result);
-typedef void (^zkCompleteResetPasswordResultBlock)           (ZKResetPasswordResult *result);
-typedef void (^zkCompleteQueryResultBlock)                   (ZKQueryResult *result);
-typedef void (^zkCompleteLoginResultBlock)                   (ZKLoginResult *result);
-typedef void (^zkCompleteKnowledgeSettingsBlock)             (ZKKnowledgeSettings *result);
-typedef void (^zkCompleteGetUpdatedResultBlock)              (ZKGetUpdatedResult *result);
-typedef void (^zkCompleteGetServerTimestampResultBlock)      (ZKGetServerTimestampResult *result);
-typedef void (^zkCompleteGetDeletedResultBlock)              (ZKGetDeletedResult *result);
-typedef void (^zkCompleteExecuteListViewResultBlock)         (ZKExecuteListViewResult *result);
-typedef void (^zkCompleteDescribeVisualForceResultBlock)     (ZKDescribeVisualForceResult *result);
-typedef void (^zkCompleteDescribeThemeResultBlock)           (ZKDescribeThemeResult *result);
-typedef void (^zkCompleteDescribeSoqlListViewResultBlock)    (ZKDescribeSoqlListViewResult *result);
-typedef void (^zkCompleteDescribeSoftphoneLayoutResultBlock) (ZKDescribeSoftphoneLayoutResult *result);
-typedef void (^zkCompleteDescribeSObjectBlock)               (ZKDescribeSObject *result);
-typedef void (^zkCompleteDescribePathAssistantsResultBlock)  (ZKDescribePathAssistantsResult *result);
-typedef void (^zkCompleteDescribeLayoutResultBlock)          (ZKDescribeLayoutResult *result);
-typedef void (^zkCompleteDescribeGlobalThemeBlock)           (ZKDescribeGlobalTheme *result);
-typedef void (^zkCompleteDescribeCompactLayoutsResultBlock)  (ZKDescribeCompactLayoutsResult *result);
-typedef void (^zkCompleteDescribeApprovalLayoutResultBlock)  (ZKDescribeApprovalLayoutResult *result);
-typedef void (^zkCompleteDescribeAppMenuResultBlock)         (ZKDescribeAppMenuResult *result);
-typedef void (^zkCompleteDictionaryBlock)                    (NSDictionary *result);
-typedef void (^zkCompleteArrayBlock)                         (NSArray *result);
-typedef void (^zkFailWithExceptionBlock)                     (NSException *result);
-typedef void (^zkCompleteVoidBlock)                          (void);
+typedef void (^zkCompleteUserInfoBlock)                        (ZKUserInfo *result);
+typedef void (^zkCompleteSetPasswordResultBlock)               (ZKSetPasswordResult *result);
+typedef void (^zkCompleteResetPasswordResultBlock)             (ZKResetPasswordResult *result);
+typedef void (^zkCompleteRenderStoredEmailTemplateResultBlock) (ZKRenderStoredEmailTemplateResult *result);
+typedef void (^zkCompleteQueryResultBlock)                     (ZKQueryResult *result);
+typedef void (^zkCompleteLoginResultBlock)                     (ZKLoginResult *result);
+typedef void (^zkCompleteKnowledgeSettingsBlock)               (ZKKnowledgeSettings *result);
+typedef void (^zkCompleteGetUpdatedResultBlock)                (ZKGetUpdatedResult *result);
+typedef void (^zkCompleteGetServerTimestampResultBlock)        (ZKGetServerTimestampResult *result);
+typedef void (^zkCompleteGetDeletedResultBlock)                (ZKGetDeletedResult *result);
+typedef void (^zkCompleteExecuteListViewResultBlock)           (ZKExecuteListViewResult *result);
+typedef void (^zkCompleteDescribeVisualForceResultBlock)       (ZKDescribeVisualForceResult *result);
+typedef void (^zkCompleteDescribeThemeResultBlock)             (ZKDescribeThemeResult *result);
+typedef void (^zkCompleteDescribeSoqlListViewResultBlock)      (ZKDescribeSoqlListViewResult *result);
+typedef void (^zkCompleteDescribeSoftphoneLayoutResultBlock)   (ZKDescribeSoftphoneLayoutResult *result);
+typedef void (^zkCompleteDescribeSObjectBlock)                 (ZKDescribeSObject *result);
+typedef void (^zkCompleteDescribePathAssistantsResultBlock)    (ZKDescribePathAssistantsResult *result);
+typedef void (^zkCompleteDescribeLayoutResultBlock)            (ZKDescribeLayoutResult *result);
+typedef void (^zkCompleteDescribeGlobalThemeBlock)             (ZKDescribeGlobalTheme *result);
+typedef void (^zkCompleteDescribeCompactLayoutsResultBlock)    (ZKDescribeCompactLayoutsResult *result);
+typedef void (^zkCompleteDescribeApprovalLayoutResultBlock)    (ZKDescribeApprovalLayoutResult *result);
+typedef void (^zkCompleteDescribeAppMenuResultBlock)           (ZKDescribeAppMenuResult *result);
+typedef void (^zkCompleteChangeOwnPasswordResultBlock)         (ZKChangeOwnPasswordResult *result);
+typedef void (^zkCompleteDictionaryBlock)                      (NSDictionary *result);
+typedef void (^zkCompleteArrayBlock)                           (NSArray *result);
+typedef void (^zkFailWithExceptionBlock)                       (NSException *result);
+typedef void (^zkCompleteVoidBlock)                            (void);
 
 /** Login to the Salesforce.com SOAP Api */
 -(void) performLogin:(NSString *)username password:(NSString *)password
@@ -265,6 +267,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteSetPasswordResultBlock)completeBlock;
 
+/** Change the current user's password */
+-(void) performChangeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+                       failBlock:(zkFailWithExceptionBlock)failBlock
+                   completeBlock:(zkCompleteChangeOwnPasswordResultBlock)completeBlock;
+
 /** Reset a user's password */
 -(void) performResetPassword:(NSString *)userId
                    failBlock:(zkFailWithExceptionBlock)failBlock
@@ -288,6 +295,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performRenderEmailTemplate:(NSArray *)renderRequests
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+/** Perform a template merge using an email template stored in the database. */
+-(void) performRenderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request
+                               failBlock:(zkFailWithExceptionBlock)failBlock
+                           completeBlock:(zkCompleteRenderStoredEmailTemplateResultBlock)completeBlock;
 
 /** Perform a series of predefined actions such as quick create or log a task */
 -(void) performPerformQuickActions:(NSArray *)quickActions
@@ -318,6 +330,11 @@ typedef void (^zkCompleteVoidBlock)                          (void);
 -(void) performFindDuplicates:(NSArray *)sObjects
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+/** Find duplicates for a set of ids */
+-(void) performFindDuplicatesByIds:(NSArray *)ids
+                         failBlock:(zkFailWithExceptionBlock)failBlock
+                     completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(void) performDescribeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields

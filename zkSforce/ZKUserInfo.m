@@ -32,6 +32,10 @@
     return [self boolean:@"accessibilityMode"];
 }
 			
+-(BOOL)chatterExternal {
+    return [self boolean:@"chatterExternal"];
+}
+			
 -(NSString *)currencySymbol {
     return [self string:@"currencySymbol"];
 }

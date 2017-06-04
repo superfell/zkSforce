@@ -26,8 +26,6 @@
 
 #import "ZKAdditionalInformationMap.h"
 #import "zkEnvelope.h"
-#import "ZKXmlDeserializer.h"
-#import "zkParser.h"
 
 @implementation ZKAdditionalInformationMap
 

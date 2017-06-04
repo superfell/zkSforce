@@ -27,17 +27,20 @@
 #import "zkXmlDeserializer.h"
 
 @class ZKSObject;
+@class ZKSearchRecordMetadata;
 @class ZKSearchSnippet;
 /*
 <complexType name="SearchRecord" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="ens:sObject" name="record"/>
+    <element type="tns:SearchRecordMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="searchRecordMetadata"/>
     <element type="tns:SearchSnippet" maxOccurs="1" minOccurs="0" nillable="true" name="snippet"/>
   </sequence>
 </complexType>
 */
 @interface ZKSearchRecord : ZKXmlDeserializer {
 }
-@property (readonly) ZKSObject        *record; 
-@property (readonly) ZKSearchSnippet  *snippet; 
+@property (readonly) ZKSObject               *record; 
+@property (readonly) ZKSearchRecordMetadata  *searchRecordMetadata; 
+@property (readonly) ZKSearchSnippet         *snippet; 
 @end

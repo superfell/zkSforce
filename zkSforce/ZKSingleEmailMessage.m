@@ -25,59 +25,80 @@
 //
 
 #import "ZKSingleEmailMessage.h"
-#import "zkEnvelope.h"
+#import "ZKEmailFileAttachment.h"
 
 @implementation ZKSingleEmailMessage
 
-@synthesize bccAddresses, ccAddresses, charset, documentAttachments, entityAttachments, fileAttachments, htmlBody, inReplyTo, optOutPolicy, orgWideEmailAddressId, plainTextBody, references, targetObjectId, templateId, toAddresses, treatBodiesAsTemplate, treatTargetObjectAsRecipient, whatId;
-
--(void)dealloc {
-	[bccAddresses release];
-	[ccAddresses release];
-	[charset release];
-	[documentAttachments release];
-	[entityAttachments release];
-	[fileAttachments release];
-	[htmlBody release];
-	[inReplyTo release];
-	[optOutPolicy release];
-	[orgWideEmailAddressId release];
-	[plainTextBody release];
-	[references release];
-	[targetObjectId release];
-	[templateId release];
-	[toAddresses release];
-	[whatId release];
-	[super dealloc];
+-(NSArray *)bccAddresses {
+    return [self strings:@"bccAddresses"];
 }
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName type:@"SingleEmailMessage"];
-	[env addBoolElement:@"bccSender"                    elemValue:self.bccSender];
-	[env addElement:@"emailPriority"                    elemValue:self.emailPriority                nillable:YES optional:NO];
-	[env addElement:@"replyTo"                          elemValue:self.replyTo                      nillable:YES optional:NO];
-	[env addBoolElement:@"saveAsActivity"               elemValue:self.saveAsActivity];
-	[env addElement:@"senderDisplayName"                elemValue:self.senderDisplayName            nillable:YES optional:NO];
-	[env addElement:@"subject"                          elemValue:self.subject                      nillable:YES optional:NO];
-	[env addBoolElement:@"useSignature"                 elemValue:self.useSignature];
-	[env addElementArray:@"bccAddresses"                elemValue:self.bccAddresses];
-	[env addElementArray:@"ccAddresses"                 elemValue:self.ccAddresses];
-	[env addElement:@"charset"                          elemValue:self.charset                      nillable:YES optional:NO];
-	[env addElementArray:@"documentAttachments"         elemValue:self.documentAttachments];
-	[env addElementArray:@"entityAttachments"           elemValue:self.entityAttachments];
-	[env addElementArray:@"fileAttachments"             elemValue:self.fileAttachments];
-	[env addElement:@"htmlBody"                         elemValue:self.htmlBody                     nillable:YES optional:NO];
-	[env addElement:@"inReplyTo"                        elemValue:self.inReplyTo                    nillable:YES optional:YES];
-	[env addElement:@"optOutPolicy"                     elemValue:self.optOutPolicy                 nillable:YES optional:NO];
-	[env addElement:@"orgWideEmailAddressId"            elemValue:self.orgWideEmailAddressId        nillable:YES optional:YES];
-	[env addElement:@"plainTextBody"                    elemValue:self.plainTextBody                nillable:YES optional:NO];
-	[env addElement:@"references"                       elemValue:self.references                   nillable:YES optional:YES];
-	[env addElement:@"targetObjectId"                   elemValue:self.targetObjectId               nillable:YES optional:NO];
-	[env addElement:@"templateId"                       elemValue:self.templateId                   nillable:YES optional:NO];
-	[env addElementArray:@"toAddresses"                 elemValue:self.toAddresses];
-	[env addBoolElement:@"treatBodiesAsTemplate"        elemValue:self.treatBodiesAsTemplate];
-	[env addBoolElement:@"treatTargetObjectAsRecipient" elemValue:self.treatTargetObjectAsRecipient];
-	[env addElement:@"whatId"                           elemValue:self.whatId                       nillable:YES optional:NO];
-	[env endElement:elemName];
+			
+-(NSArray *)ccAddresses {
+    return [self strings:@"ccAddresses"];
 }
+			
+-(NSString *)charset {
+    return [self string:@"charset"];
+}
+			
+-(NSArray *)documentAttachments {
+    return [self strings:@"documentAttachments"];
+}
+			
+-(NSArray *)entityAttachments {
+    return [self strings:@"entityAttachments"];
+}
+			
+-(NSArray *)fileAttachments {
+    return [self complexTypeArrayFromElements:@"fileAttachments" cls:[ZKEmailFileAttachment class]];
+}
+			
+-(NSString *)htmlBody {
+    return [self string:@"htmlBody"];
+}
+			
+-(NSString *)inReplyTo {
+    return [self string:@"inReplyTo"];
+}
+			
+-(NSString *)optOutPolicy {
+    return [self string:@"optOutPolicy"];
+}
+			
+-(NSString *)orgWideEmailAddressId {
+    return [self string:@"orgWideEmailAddressId"];
+}
+			
+-(NSString *)plainTextBody {
+    return [self string:@"plainTextBody"];
+}
+			
+-(NSString *)references {
+    return [self string:@"references"];
+}
+			
+-(NSString *)targetObjectId {
+    return [self string:@"targetObjectId"];
+}
+			
+-(NSString *)templateId {
+    return [self string:@"templateId"];
+}
+			
+-(NSArray *)toAddresses {
+    return [self strings:@"toAddresses"];
+}
+			
+-(BOOL)treatBodiesAsTemplate {
+    return [self boolean:@"treatBodiesAsTemplate"];
+}
+			
+-(BOOL)treatTargetObjectAsRecipient {
+    return [self boolean:@"treatTargetObjectAsRecipient"];
+}
+			
+-(NSString *)whatId {
+    return [self string:@"whatId"];
+}
+			
 @end

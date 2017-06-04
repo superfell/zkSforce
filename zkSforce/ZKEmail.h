@@ -26,6 +26,8 @@
 
 #import "ZKXMLSerializable.h"
 
+#import "ZKXmlDeserializer.h"
+#import "zkParser.h"
 /*
 <complexType name="Email" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
@@ -39,7 +41,7 @@
   </sequence>
 </complexType>
 */
-@interface ZKEmail : NSObject<ZKXMLSerializable> {
+@interface ZKEmail : ZKXmlDeserializer<ZKXMLSerializable> {
 	BOOL       bccSender;
 	NSString  *emailPriority;
 	NSString  *replyTo;
@@ -48,6 +50,10 @@
 	NSString  *subject;
 	BOOL       useSignature;
 }
+-(id)init;
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
+-(id)initWithXmlElement:(zkElement *)e;
+
 @property (assign) BOOL       bccSender; 
 @property (retain) NSString  *emailPriority; 
 @property (retain) NSString  *replyTo; 

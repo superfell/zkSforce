@@ -26,12 +26,17 @@
 
 #import "ZKSearchRecord.h"
 #import "ZKSObject.h"
+#import "ZKSearchRecordMetadata.h"
 #import "ZKSearchSnippet.h"
 
 @implementation ZKSearchRecord
 
 -(ZKSObject *)record {
     return [self sObject:@"record"];
+}
+			
+-(ZKSearchRecordMetadata *)searchRecordMetadata {
+    return [[self complexTypeArrayFromElements:@"searchRecordMetadata" cls:[ZKSearchRecordMetadata class]] lastObject];
 }
 			
 -(ZKSearchSnippet *)snippet {

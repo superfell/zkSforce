@@ -29,13 +29,14 @@
 
 @implementation ZKLeadConvert
 
-@synthesize accountId, contactId, convertedStatus, doNotCreateOpportunity, leadId, opportunityName, overwriteLeadSource, ownerId, sendNotificationEmail;
+@synthesize accountId, contactId, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, overwriteLeadSource, ownerId, sendNotificationEmail;
 
 -(void)dealloc {
 	[accountId release];
 	[contactId release];
 	[convertedStatus release];
 	[leadId release];
+	[opportunityId release];
 	[opportunityName release];
 	[ownerId release];
 	[super dealloc];
@@ -48,6 +49,7 @@
 	[env addElement:@"convertedStatus"            elemValue:self.convertedStatus        nillable:NO  optional:NO];
 	[env addBoolElement:@"doNotCreateOpportunity" elemValue:self.doNotCreateOpportunity];
 	[env addElement:@"leadId"                     elemValue:self.leadId                 nillable:NO  optional:NO];
+	[env addElement:@"opportunityId"              elemValue:self.opportunityId          nillable:YES optional:NO];
 	[env addElement:@"opportunityName"            elemValue:self.opportunityName        nillable:YES optional:NO];
 	[env addBoolElement:@"overwriteLeadSource"    elemValue:self.overwriteLeadSource];
 	[env addElement:@"ownerId"                    elemValue:self.ownerId                nillable:YES optional:NO];

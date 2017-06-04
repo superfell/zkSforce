@@ -1,4 +1,4 @@
-// Copyright (c) 2014 Simon Fell
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,21 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKLocation.h"
-#import "zkEnvelope.h"
+#import "zkXmlDeserializer.h"
 
-@implementation ZKLocation
-
-@synthesize latitude, longitude;
-
--(id)init {
-    self = [super init];
-    return self;
+@class ZKSingleEmailMessage;
+/*
+<complexType name="RenderStoredEmailTemplateResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
+    <element nillable="true" type="tns:SingleEmailMessage" name="renderedEmail"/>
+    <element type="xsd:boolean" name="success"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKRenderStoredEmailTemplateResult : ZKXmlDeserializer {
 }
-
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
-}
-
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
-    return [self initWithZKXmlDeserializer:d];
-}
-
--(void)dealloc {
-	[super dealloc];
-}
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
-	[env addDoubleElement:@"longitude" elemValue:self.longitude];
-	[env endElement:elemName];
-}
+@property (readonly) NSArray               *errors;  // of ZKError
+@property (readonly) ZKSingleEmailMessage  *renderedEmail; 
+@property (readonly) BOOL                   success; 
 @end

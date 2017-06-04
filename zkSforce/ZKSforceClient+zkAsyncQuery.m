@@ -745,6 +745,21 @@
 		}];
 }
 
+/** Change the current user's password */
+-(void) performChangeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+                       failBlock:(zkFailWithExceptionBlock)failBlock
+                   completeBlock:(zkCompleteChangeOwnPasswordResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self changeOwnPassword:oldPassword newPassword:newPassword];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKChangeOwnPasswordResult *)r);
+		}];
+}
+
 /** Reset a user's password */
 -(void) performResetPassword:(NSString *)userId
                    failBlock:(zkFailWithExceptionBlock)failBlock
@@ -816,6 +831,21 @@
 		    failBlock:failBlock
 		completeBlock:^(id r) {
 			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+/** Perform a template merge using an email template stored in the database. */
+-(void) performRenderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request
+                               failBlock:(zkFailWithExceptionBlock)failBlock
+                           completeBlock:(zkCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self renderStoredEmailTemplate:request];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((ZKRenderStoredEmailTemplateResult *)r);
 		}];
 }
 
@@ -901,6 +931,21 @@
 
 	[self performRequest:^id {
 			return [self findDuplicates:sObjects];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+/** Find duplicates for a set of ids */
+-(void) performFindDuplicatesByIds:(NSArray *)ids
+                         failBlock:(zkFailWithExceptionBlock)failBlock
+                     completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self findDuplicatesByIds:ids];
 		}
 		 checkSession:YES
 		    failBlock:failBlock

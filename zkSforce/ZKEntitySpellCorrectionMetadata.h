@@ -1,4 +1,4 @@
-// Copyright (c) 2014 Simon Fell
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,18 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKLocation.h"
-#import "zkEnvelope.h"
+#import "zkXmlDeserializer.h"
 
-@implementation ZKLocation
-
-@synthesize latitude, longitude;
-
--(id)init {
-    self = [super init];
-    return self;
+/*
+<complexType name="EntitySpellCorrectionMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false" name="correctedQuery"/>
+    <element type="xsd:boolean" maxOccurs="1" minOccurs="1" nillable="false" name="hasNonCorrectedResults"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKEntitySpellCorrectionMetadata : ZKXmlDeserializer {
 }
-
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
-}
-
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
-    return [self initWithZKXmlDeserializer:d];
-}
-
--(void)dealloc {
-	[super dealloc];
-}
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
-	[env addDoubleElement:@"longitude" elemValue:self.longitude];
-	[env endElement:elemName];
-}
+@property (readonly) NSString  *correctedQuery; 
+@property (readonly) BOOL       hasNonCorrectedResults; 
 @end

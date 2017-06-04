@@ -25,25 +25,27 @@
 //
 
 #import "ZKEmailFileAttachment.h"
-#import "zkEnvelope.h"
 
 @implementation ZKEmailFileAttachment
 
-@synthesize body, contentType, fileName, _inline;
-
--(void)dealloc {
-	[body release];
-	[contentType release];
-	[fileName release];
-	[super dealloc];
+-(NSData *)body {
+    return [self blob:@"body"];
 }
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addElement:@"body"        elemValue:self.body        nillable:YES optional:YES];
-	[env addElement:@"contentType" elemValue:self.contentType nillable:YES optional:YES];
-	[env addElement:@"fileName"    elemValue:self.fileName    nillable:NO  optional:NO];
-	[env addBoolElement:@"inline"  elemValue:self._inline];
-	[env endElement:elemName];
+			
+-(NSString *)contentType {
+    return [self string:@"contentType"];
 }
+			
+-(NSString *)fileName {
+    return [self string:@"fileName"];
+}
+			
+-(NSString *)id {
+    return [self string:@"id"];
+}
+			
+-(BOOL)_inline {
+    return [self boolean:@"inline"];
+}
+			
 @end

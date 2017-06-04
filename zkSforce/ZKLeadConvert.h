@@ -34,6 +34,7 @@
     <element type="xsd:string" name="convertedStatus"/>
     <element type="xsd:boolean" name="doNotCreateOpportunity"/>
     <element type="tns:ID" name="leadId"/>
+    <element nillable="true" type="tns:ID" name="opportunityId"/>
     <element nillable="true" type="xsd:string" name="opportunityName"/>
     <element type="xsd:boolean" name="overwriteLeadSource"/>
     <element nillable="true" type="tns:ID" name="ownerId"/>
@@ -47,6 +48,7 @@
 	NSString  *convertedStatus;
 	BOOL       doNotCreateOpportunity;
 	NSString  *leadId;
+	NSString  *opportunityId;
 	NSString  *opportunityName;
 	BOOL       overwriteLeadSource;
 	NSString  *ownerId;
@@ -57,6 +59,7 @@
 @property (retain) NSString  *convertedStatus; 
 @property (assign) BOOL       doNotCreateOpportunity; 
 @property (retain) NSString  *leadId; 
+@property (retain) NSString  *opportunityId; 
 @property (retain) NSString  *opportunityName; 
 @property (assign) BOOL       overwriteLeadSource; 
 @property (retain) NSString  *ownerId; 

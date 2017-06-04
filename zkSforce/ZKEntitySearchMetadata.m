@@ -25,6 +25,7 @@
 //
 
 #import "ZKEntitySearchMetadata.h"
+#import "ZKEntitySpellCorrectionMetadata.h"
 #import "ZKFieldLevelSearchMetadata.h"
 
 @implementation ZKEntitySearchMetadata
@@ -35,6 +36,10 @@
 			
 -(NSArray *)fieldMetadata {
     return [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
+}
+			
+-(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {
+    return [[self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]] lastObject];
 }
 			
 @end

@@ -31,6 +31,28 @@
 
 @synthesize bccSender, emailPriority, replyTo, saveAsActivity, senderDisplayName, subject, useSignature;
 
+-(id)init {
+    self = [super init];
+    return self;
+}
+
+-(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+    self = [super init];
+	self.bccSender = [d boolean:@"bccSender"];
+	self.emailPriority = [d string:@"emailPriority"];
+	self.replyTo = [d string:@"replyTo"];
+	self.saveAsActivity = [d boolean:@"saveAsActivity"];
+	self.senderDisplayName = [d string:@"senderDisplayName"];
+	self.subject = [d string:@"subject"];
+	self.useSignature = [d boolean:@"useSignature"];
+    return self;
+}
+
+-(id)initWithXmlElement:(zkElement *)e {
+    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+    return [self initWithZKXmlDeserializer:d];
+}
+
 -(void)dealloc {
 	[emailPriority release];
 	[replyTo release];

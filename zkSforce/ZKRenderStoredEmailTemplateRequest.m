@@ -1,4 +1,4 @@
-// Copyright (c) 2014 Simon Fell
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,27 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKLocation.h"
+#import "ZKRenderStoredEmailTemplateRequest.h"
 #import "zkEnvelope.h"
 
-@implementation ZKLocation
+@implementation ZKRenderStoredEmailTemplateRequest
 
-@synthesize latitude, longitude;
-
--(id)init {
-    self = [super init];
-    return self;
-}
-
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
-}
-
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
-    return [self initWithZKXmlDeserializer:d];
-}
+@synthesize attachmentRetrievalOption, templateId, whatId, whoId;
 
 -(void)dealloc {
+	[attachmentRetrievalOption release];
+	[templateId release];
+	[whatId release];
+	[whoId release];
 	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
-	[env addDoubleElement:@"longitude" elemValue:self.longitude];
+	[env addElement:@"attachmentRetrievalOption" elemValue:self.attachmentRetrievalOption nillable:YES optional:NO];
+	[env addElement:@"templateId"                elemValue:self.templateId                nillable:NO  optional:NO];
+	[env addElement:@"whatId"                    elemValue:self.whatId                    nillable:NO  optional:YES];
+	[env addElement:@"whoId"                     elemValue:self.whoId                     nillable:NO  optional:YES];
 	[env endElement:elemName];
 }
 @end

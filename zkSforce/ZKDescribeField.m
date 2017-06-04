@@ -207,6 +207,10 @@
     return [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
 }
 			
+-(BOOL)polymorphicForeignKey {
+    return [self boolean:@"polymorphicForeignKey"];
+}
+			
 -(NSInteger)precision {
     return [self integer:@"precision"];
 }
@@ -241,6 +245,10 @@
 			
 -(NSInteger)scale {
     return [self integer:@"scale"];
+}
+			
+-(BOOL)searchPrefilterable {
+    return [self boolean:@"searchPrefilterable"];
 }
 			
 -(NSString *)soapType {

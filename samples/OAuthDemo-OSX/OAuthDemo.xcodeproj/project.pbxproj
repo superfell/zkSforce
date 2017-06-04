@@ -210,6 +210,11 @@
 		F4BB7F9518B01C4A00444797 /* ZKQuickActionTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F8818B01C4A00444797 /* ZKQuickActionTemplateResult.m */; };
 		F4BB7F9618B01C4A00444797 /* ZKReportChartComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F8A18B01C4A00444797 /* ZKReportChartComponent.m */; };
 		F4BB7F9718B01C4A00444797 /* ZKSingleEmailMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F8C18B01C4A00444797 /* ZKSingleEmailMessage.m */; };
+		F4CCB8781EE4912C0028F213 /* ZKChangeOwnPasswordResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CCB86F1EE4912C0028F213 /* ZKChangeOwnPasswordResult.m */; };
+		F4CCB8791EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CCB8711EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.m */; };
+		F4CCB87A1EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CCB8731EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.m */; };
+		F4CCB87B1EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CCB8751EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.m */; };
+		F4CCB87C1EE4912C0028F213 /* ZKSearchRecordMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CCB8771EE4912C0028F213 /* ZKSearchRecordMetadata.m */; };
 		F4EB23EC1D0E319600AA9B46 /* ZKXsdAnyType.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23EA1D0E319600AA9B46 /* ZKXsdAnyType.m */; };
 		F4EB23ED1D0E319600AA9B46 /* ZKSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23EB1D0E319600AA9B46 /* ZKSimpleTypes.m */; };
 /* End PBXBuildFile section */
@@ -622,6 +627,16 @@
 		F4BB7F8A18B01C4A00444797 /* ZKReportChartComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKReportChartComponent.m; path = ../../../zkSforce/ZKReportChartComponent.m; sourceTree = "<group>"; };
 		F4BB7F8B18B01C4A00444797 /* ZKSingleEmailMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSingleEmailMessage.h; path = ../../../zkSforce/ZKSingleEmailMessage.h; sourceTree = "<group>"; };
 		F4BB7F8C18B01C4A00444797 /* ZKSingleEmailMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSingleEmailMessage.m; path = ../../../zkSforce/ZKSingleEmailMessage.m; sourceTree = "<group>"; };
+		F4CCB86E1EE4912C0028F213 /* ZKChangeOwnPasswordResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKChangeOwnPasswordResult.h; path = ../../../zkSforce/ZKChangeOwnPasswordResult.h; sourceTree = "<group>"; };
+		F4CCB86F1EE4912C0028F213 /* ZKChangeOwnPasswordResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKChangeOwnPasswordResult.m; path = ../../../zkSforce/ZKChangeOwnPasswordResult.m; sourceTree = "<group>"; };
+		F4CCB8701EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKEntitySpellCorrectionMetadata.h; path = ../../../zkSforce/ZKEntitySpellCorrectionMetadata.h; sourceTree = "<group>"; };
+		F4CCB8711EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEntitySpellCorrectionMetadata.m; path = ../../../zkSforce/ZKEntitySpellCorrectionMetadata.m; sourceTree = "<group>"; };
+		F4CCB8721EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderStoredEmailTemplateRequest.h; path = ../../../zkSforce/ZKRenderStoredEmailTemplateRequest.h; sourceTree = "<group>"; };
+		F4CCB8731EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRenderStoredEmailTemplateRequest.m; path = ../../../zkSforce/ZKRenderStoredEmailTemplateRequest.m; sourceTree = "<group>"; };
+		F4CCB8741EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderStoredEmailTemplateResult.h; path = ../../../zkSforce/ZKRenderStoredEmailTemplateResult.h; sourceTree = "<group>"; };
+		F4CCB8751EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKRenderStoredEmailTemplateResult.m; path = ../../../zkSforce/ZKRenderStoredEmailTemplateResult.m; sourceTree = "<group>"; };
+		F4CCB8761EE4912C0028F213 /* ZKSearchRecordMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSearchRecordMetadata.h; path = ../../../zkSforce/ZKSearchRecordMetadata.h; sourceTree = "<group>"; };
+		F4CCB8771EE4912C0028F213 /* ZKSearchRecordMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSearchRecordMetadata.m; path = ../../../zkSforce/ZKSearchRecordMetadata.m; sourceTree = "<group>"; };
 		F4EB23E81D0E319600AA9B46 /* ZKSimpleTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSimpleTypes.h; path = ../../../zkSforce/ZKSimpleTypes.h; sourceTree = "<group>"; };
 		F4EB23E91D0E319600AA9B46 /* ZKXsdAnyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKXsdAnyType.h; path = ../../../zkSforce/ZKXsdAnyType.h; sourceTree = "<group>"; };
 		F4EB23EA1D0E319600AA9B46 /* ZKXsdAnyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKXsdAnyType.m; path = ../../../zkSforce/ZKXsdAnyType.m; sourceTree = "<group>"; };
@@ -709,6 +724,16 @@
 		F49C1C9013637525000CDE02 /* ZKSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4CCB86E1EE4912C0028F213 /* ZKChangeOwnPasswordResult.h */,
+				F4CCB86F1EE4912C0028F213 /* ZKChangeOwnPasswordResult.m */,
+				F4CCB8701EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.h */,
+				F4CCB8711EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.m */,
+				F4CCB8721EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.h */,
+				F4CCB8731EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.m */,
+				F4CCB8741EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.h */,
+				F4CCB8751EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.m */,
+				F4CCB8761EE4912C0028F213 /* ZKSearchRecordMetadata.h */,
+				F4CCB8771EE4912C0028F213 /* ZKSearchRecordMetadata.m */,
 				F441887E1EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.m */,
 				F441887F1EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.h */,
 				F44188801EA5C57C009BE67D /* ZKEntitySearchMetadata.m */,
@@ -1212,6 +1237,7 @@
 				F49C1CEE13637547000CDE02 /* zkSoapException.m in Sources */,
 				F49C1CEF13637547000CDE02 /* zkSObject.m in Sources */,
 				F49C1CF013637547000CDE02 /* zkUserInfo.m in Sources */,
+				F4CCB87B1EE4912C0028F213 /* ZKRenderStoredEmailTemplateResult.m in Sources */,
 				F4B770011BB7371F00681844 /* ZKFlexipageContext.m in Sources */,
 				F49C1CF113637547000CDE02 /* zkXmlDeserializer.m in Sources */,
 				F425FA261A339D300055D8B8 /* ZKDescribeSoqlListViewParams.m in Sources */,
@@ -1266,6 +1292,7 @@
 				F474CAB41D0FADFD000D3C13 /* ZKExtendedErrorDetails.m in Sources */,
 				F414BEA41845A3BB00322AC2 /* ZKDescribeQuickActionDefaultValue.m in Sources */,
 				F4B76FFD1BB7371F00681844 /* ZKDescribePathAssistant.m in Sources */,
+				F4CCB8781EE4912C0028F213 /* ZKChangeOwnPasswordResult.m in Sources */,
 				F414BEA51845A3BB00322AC2 /* ZKDescribeQuickActionListItemResult.m in Sources */,
 				F425FA301A339D300055D8B8 /* ZKSearchSnippet.m in Sources */,
 				F414BEA61845A3BB00322AC2 /* ZKDescribeQuickActionListResult.m in Sources */,
@@ -1320,6 +1347,8 @@
 				F414BEC61845A3BB00322AC2 /* ZKPerformQuickActionResult.m in Sources */,
 				F4913F481B115171001CC650 /* ZKNameCaseValue.m in Sources */,
 				F414BEC71845A3BB00322AC2 /* ZKProcessRequest.m in Sources */,
+				F4CCB87A1EE4912C0028F213 /* ZKRenderStoredEmailTemplateRequest.m in Sources */,
+				F4CCB8791EE4912C0028F213 /* ZKEntitySpellCorrectionMetadata.m in Sources */,
 				F414BEC81845A3BB00322AC2 /* ZKProcessResult.m in Sources */,
 				F414BEC91845A3BB00322AC2 /* ZKQueryOptions.m in Sources */,
 				F4B76FFF1BB7371F00681844 /* ZKDescribePathAssistantsResult.m in Sources */,
@@ -1341,6 +1370,7 @@
 				F4913F451B115171001CC650 /* ZKFieldDiff.m in Sources */,
 				F414BED61845A3BB00322AC2 /* ZKUpsertResult.m in Sources */,
 				F414BED71845A3BB00322AC2 /* ZKUserTerritoryDeleteHeader.m in Sources */,
+				F4CCB87C1EE4912C0028F213 /* ZKSearchRecordMetadata.m in Sources */,
 				F44188841EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.m in Sources */,
 				F4913F3D1B115171001CC650 /* ZKAnalyticsCloudComponent.m in Sources */,
 				F414BED81845A3BB00322AC2 /* ZKMruHeader.m in Sources */,

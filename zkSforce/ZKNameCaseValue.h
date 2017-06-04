@@ -33,7 +33,7 @@
     <element type="tns:CaseType" nillable="true" name="caseType"/>
     <element type="tns:GrammaticalNumber" nillable="true" name="number"/>
     <element type="tns:Possessive" nillable="true" name="possessive"/>
-    <element type="xsd:string" name="value"/>
+    <element type="xsd:string" nillable="true" name="value"/>
   </sequence>
 </complexType>
 */

@@ -1,4 +1,4 @@
-// Copyright (c) 2014 Simon Fell
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,26 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKLocation.h"
-#import "zkEnvelope.h"
+#import "ZKXMLSerializable.h"
 
-@implementation ZKLocation
-
-@synthesize latitude, longitude;
-
--(id)init {
-    self = [super init];
-    return self;
+/*
+<complexType name="RenderStoredEmailTemplateRequest" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element nillable="true" type="tns:AttachmentRetrievalOption" name="attachmentRetrievalOption"/>
+    <element nillable="false" maxOccurs="1" minOccurs="1" type="tns:ID" name="templateId"/>
+    <element maxOccurs="1" minOccurs="0" type="tns:ID" name="whatId"/>
+    <element maxOccurs="1" minOccurs="0" type="tns:ID" name="whoId"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKRenderStoredEmailTemplateRequest : NSObject<ZKXMLSerializable> {
+	NSString  *attachmentRetrievalOption;
+	NSString  *templateId;
+	NSString  *whatId;
+	NSString  *whoId;
 }
-
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
-}
-
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
-    return [self initWithZKXmlDeserializer:d];
-}
-
--(void)dealloc {
-	[super dealloc];
-}
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
-	[env addDoubleElement:@"longitude" elemValue:self.longitude];
-	[env endElement:elemName];
-}
+@property (retain) NSString  *attachmentRetrievalOption; 
+@property (retain) NSString  *templateId; 
+@property (retain) NSString  *whatId; 
+@property (retain) NSString  *whoId; 
 @end

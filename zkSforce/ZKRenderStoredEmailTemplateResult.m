@@ -1,4 +1,4 @@
-// Copyright (c) 2014 Simon Fell
+// Copyright (c) 2017 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,38 +24,22 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKLocation.h"
-#import "zkEnvelope.h"
+#import "ZKRenderStoredEmailTemplateResult.h"
+#import "ZKError.h"
+#import "ZKSingleEmailMessage.h"
 
-@implementation ZKLocation
+@implementation ZKRenderStoredEmailTemplateResult
 
-@synthesize latitude, longitude;
-
--(id)init {
-    self = [super init];
-    return self;
+-(NSArray *)errors {
+    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }
-
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
+			
+-(ZKSingleEmailMessage *)renderedEmail {
+    return [[self complexTypeArrayFromElements:@"renderedEmail" cls:[ZKSingleEmailMessage class]] lastObject];
 }
-
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
-    return [self initWithZKXmlDeserializer:d];
+			
+-(BOOL)success {
+    return [self boolean:@"success"];
 }
-
--(void)dealloc {
-	[super dealloc];
-}
-
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
-	[env addDoubleElement:@"longitude" elemValue:self.longitude];
-	[env endElement:elemName];
-}
+			
 @end

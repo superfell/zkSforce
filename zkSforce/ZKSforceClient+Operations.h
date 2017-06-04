@@ -26,6 +26,7 @@
 
 #import "zkSforceClient.h"
 
+@class ZKChangeOwnPasswordResult;
 @class ZKDescribeAppMenuResult;
 @class ZKDescribeApprovalLayoutResult;
 @class ZKDescribeCompactLayoutsResult;
@@ -44,6 +45,8 @@
 @class ZKGetUpdatedResult;
 @class ZKKnowledgeSettings;
 @class ZKQueryResult;
+@class ZKRenderStoredEmailTemplateRequest;
+@class ZKRenderStoredEmailTemplateResult;
 @class ZKResetPasswordResult;
 @class ZKSetPasswordResult;
 @class ZKUserInfo;
@@ -160,6 +163,9 @@
 /** Set a user's password */
 -(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password;
 
+/** Change the current user's password */
+-(ZKChangeOwnPasswordResult *)changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword;
+
 /** Reset a user's password */
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId;
 
@@ -174,6 +180,9 @@
 
 /** Perform a template merge on one or more blocks of text. */
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests;
+
+/** Perform a template merge using an email template stored in the database. */
+-(ZKRenderStoredEmailTemplateResult *)renderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request;
 
 /** Perform a series of predefined actions such as quick create or log a task */
 -(NSArray *)performQuickActions:(NSArray *)quickActions;
@@ -192,6 +201,9 @@
 
 /** Find duplicates for a set of sObjects */
 -(NSArray *)findDuplicates:(NSArray *)sObjects;
+
+/** Find duplicates for a set of ids */
+-(NSArray *)findDuplicatesByIds:(NSArray *)ids;
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields;

@@ -26,6 +26,7 @@
 
 #import "ZKSforceClient+Operations.h"
 #import "ZKPartnerEnvelope.h"
+#import "ZKChangeOwnPasswordResult.h"
 #import "ZKDataCategoryGroupSobjectTypePair.h"
 #import "ZKDeleteResult.h"
 #import "ZKDescribeAppMenuResult.h"
@@ -73,6 +74,8 @@
 #import "ZKQuickActionTemplateResult.h"
 #import "ZKRenderEmailTemplateRequest.h"
 #import "ZKRenderEmailTemplateResult.h"
+#import "ZKRenderStoredEmailTemplateRequest.h"
+#import "ZKRenderStoredEmailTemplateResult.h"
 #import "ZKResetPasswordResult.h"
 #import "ZKSObject.h"
 #import "ZKSendEmailResult.h"
@@ -729,6 +732,22 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]] lastObject];
 }
 
+/** Change the current user's password */
+-(ZKChangeOwnPasswordResult *)changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
+	[env startElement:@"changeOwnPassword"];
+	[env addElement:@"oldPassword" elemValue:oldPassword nillable:NO  optional:NO];
+	[env addElement:@"newPassword" elemValue:newPassword nillable:NO  optional:NO];
+	[env endElement:@"changeOwnPassword"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKChangeOwnPasswordResult class]] lastObject];
+}
+
 /** Reset a user's password */
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId {
 	if (!authSource) return nil;
@@ -802,6 +821,21 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
+}
+
+/** Perform a template merge using an email template stored in the database. */
+-(ZKRenderStoredEmailTemplateResult *)renderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[env moveToBody];
+	[env startElement:@"renderStoredEmailTemplate"];
+	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
+	[env endElement:@"renderStoredEmailTemplate"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKRenderStoredEmailTemplateResult class]] lastObject];
 }
 
 /** Perform a series of predefined actions such as quick create or log a task */
@@ -912,6 +946,23 @@
 	[env startElement:@"findDuplicates"];
 	[env addElementArray:@"sObjects" elemValue:sObjects];
 	[env endElement:@"findDuplicates"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
+}
+
+/** Find duplicates for a set of ids */
+-(NSArray *)findDuplicatesByIds:(NSArray *)ids {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addDuplicateRuleHeader:env];
+	[env moveToBody];
+	[env startElement:@"findDuplicatesByIds"];
+	[env addElementArray:@"ids" elemValue:ids];
+	[env endElement:@"findDuplicatesByIds"];
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
