@@ -70,7 +70,7 @@
 #import "ZKPerformQuickActionResult.h"
 #import "ZKProcessRequest.h"
 #import "ZKProcessResult.h"
-#import "ZKQueryResult.h"
+#import "zkQueryResult.h"
 #import "ZKQuickActionTemplateResult.h"
 #import "ZKRenderEmailTemplateRequest.h"
 #import "ZKRenderEmailTemplateResult.h"
