@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkDescribeField.h"
+#import "ZKDescribeField.h"
 
 @interface ZKDescribeField (Extras)
 

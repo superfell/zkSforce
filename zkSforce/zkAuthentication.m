@@ -22,8 +22,8 @@
 #import "zkAuthentication.h"
 #import "ZKPartnerEnvelope.h"
 #import "zkParser.h"
-#import "zkLoginResult.h"
-#import "zkUserInfo.h"
+#import "ZKLoginResult.h"
+#import "ZKUserInfo.h"
 #import "zkBaseClient.h"
 
 static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
