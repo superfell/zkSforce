@@ -77,7 +77,7 @@
 #import "ZKRenderStoredEmailTemplateRequest.h"
 #import "ZKRenderStoredEmailTemplateResult.h"
 #import "ZKResetPasswordResult.h"
-#import "ZKSObject.h"
+#import "zkSObject.h"
 #import "ZKSendEmailResult.h"
 #import "ZKSetPasswordResult.h"
 #import "ZKUndeleteResult.h"
