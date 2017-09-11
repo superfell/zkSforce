@@ -27,7 +27,7 @@
 #import "ZKMatchRecord.h"
 #import "ZKAdditionalInformationMap.h"
 #import "ZKFieldDiff.h"
-#import "ZKSObject.h"
+#import "zkSObject.h"
 
 @implementation ZKMatchRecord
 

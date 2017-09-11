@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkUserInfo.h"
+#import "ZKUserInfo.h"
 
 /** These are all aliases added to be backwards compatibile with earlier versions */
 @interface ZKUserInfo (Extras)

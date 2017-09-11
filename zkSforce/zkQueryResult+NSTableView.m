@@ -20,7 +20,7 @@
 //
 
 #import "zkQueryResult+NSTableView.h"
-#import "ZKSObject.h"
+#import "zkSObject.h"
 
 // Only build on OSX
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED

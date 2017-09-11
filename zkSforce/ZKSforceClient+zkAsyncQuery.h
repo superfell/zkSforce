@@ -24,7 +24,7 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkSforceClient+Operations.h"
+#import "ZKSforceClient+Operations.h"
 
 @interface ZKSforceClient (zkAsyncQuery)
 

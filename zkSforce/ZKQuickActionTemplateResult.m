@@ -26,7 +26,7 @@
 
 #import "ZKQuickActionTemplateResult.h"
 #import "ZKError.h"
-#import "ZKSObject.h"
+#import "zkSObject.h"
 
 @implementation ZKQuickActionTemplateResult
 

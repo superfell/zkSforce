@@ -25,7 +25,7 @@
 //
 
 #import "ZKSearchRecord.h"
-#import "ZKSObject.h"
+#import "zkSObject.h"
 #import "ZKSearchRecordMetadata.h"
 #import "ZKSearchSnippet.h"
 
