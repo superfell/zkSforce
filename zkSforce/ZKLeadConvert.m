@@ -29,31 +29,39 @@
 
 @implementation ZKLeadConvert
 
-@synthesize accountId, contactId, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, overwriteLeadSource, ownerId, sendNotificationEmail;
+@synthesize accountId, accountRecord, bypassAccountDedupeCheck, bypassContactDedupeCheck, contactId, contactRecord, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, opportunityRecord, overwriteLeadSource, ownerId, sendNotificationEmail;
 
 -(void)dealloc {
 	[accountId release];
+	[accountRecord release];
 	[contactId release];
+	[contactRecord release];
 	[convertedStatus release];
 	[leadId release];
 	[opportunityId release];
 	[opportunityName release];
+	[opportunityRecord release];
 	[ownerId release];
 	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"accountId"                  elemValue:self.accountId              nillable:YES optional:NO];
-	[env addElement:@"contactId"                  elemValue:self.contactId              nillable:YES optional:NO];
-	[env addElement:@"convertedStatus"            elemValue:self.convertedStatus        nillable:NO  optional:NO];
-	[env addBoolElement:@"doNotCreateOpportunity" elemValue:self.doNotCreateOpportunity];
-	[env addElement:@"leadId"                     elemValue:self.leadId                 nillable:NO  optional:NO];
-	[env addElement:@"opportunityId"              elemValue:self.opportunityId          nillable:YES optional:NO];
-	[env addElement:@"opportunityName"            elemValue:self.opportunityName        nillable:YES optional:NO];
-	[env addBoolElement:@"overwriteLeadSource"    elemValue:self.overwriteLeadSource];
-	[env addElement:@"ownerId"                    elemValue:self.ownerId                nillable:YES optional:NO];
-	[env addBoolElement:@"sendNotificationEmail"  elemValue:self.sendNotificationEmail];
+	[env addElement:@"accountId"                    elemValue:self.accountId                nillable:YES optional:NO];
+	[env addElement:@"accountRecord"                elemValue:self.accountRecord            nillable:NO  optional:NO];
+	[env addBoolElement:@"bypassAccountDedupeCheck" elemValue:self.bypassAccountDedupeCheck];
+	[env addBoolElement:@"bypassContactDedupeCheck" elemValue:self.bypassContactDedupeCheck];
+	[env addElement:@"contactId"                    elemValue:self.contactId                nillable:YES optional:NO];
+	[env addElement:@"contactRecord"                elemValue:self.contactRecord            nillable:NO  optional:NO];
+	[env addElement:@"convertedStatus"              elemValue:self.convertedStatus          nillable:NO  optional:NO];
+	[env addBoolElement:@"doNotCreateOpportunity"   elemValue:self.doNotCreateOpportunity];
+	[env addElement:@"leadId"                       elemValue:self.leadId                   nillable:NO  optional:NO];
+	[env addElement:@"opportunityId"                elemValue:self.opportunityId            nillable:YES optional:NO];
+	[env addElement:@"opportunityName"              elemValue:self.opportunityName          nillable:YES optional:NO];
+	[env addElement:@"opportunityRecord"            elemValue:self.opportunityRecord        nillable:NO  optional:NO];
+	[env addBoolElement:@"overwriteLeadSource"      elemValue:self.overwriteLeadSource];
+	[env addElement:@"ownerId"                      elemValue:self.ownerId                  nillable:YES optional:NO];
+	[env addBoolElement:@"sendNotificationEmail"    elemValue:self.sendNotificationEmail];
 	[env endElement:elemName];
 }
 @end

@@ -29,7 +29,7 @@
 
 @implementation ZKRenderEmailTemplateRequest
 
-@synthesize templateBodies, whatId, whoId;
+@synthesize escapeHtmlInMergeFields, templateBodies, whatId, whoId;
 
 -(void)dealloc {
 	[templateBodies release];
@@ -40,9 +40,10 @@
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElementArray:@"templateBodies" elemValue:self.templateBodies];
-	[env addElement:@"whatId"              elemValue:self.whatId         nillable:NO  optional:YES];
-	[env addElement:@"whoId"               elemValue:self.whoId          nillable:NO  optional:YES];
+	[env addBoolElement:@"escapeHtmlInMergeFields" elemValue:self.escapeHtmlInMergeFields];
+	[env addElementArray:@"templateBodies"         elemValue:self.templateBodies];
+	[env addElement:@"whatId"                      elemValue:self.whatId                  nillable:NO  optional:YES];
+	[env addElement:@"whoId"                       elemValue:self.whoId                   nillable:NO  optional:YES];
 	[env endElement:elemName];
 }
 @end

@@ -26,16 +26,24 @@
 
 #import "ZKXMLSerializable.h"
 
+@class ZKSObject;
+@class ZKSObject;
+@class ZKSObject;
 /*
 <complexType name="LeadConvert" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element nillable="true" type="tns:ID" name="accountId"/>
+    <element type="ens:sObject" name="accountRecord"/>
+    <element nillable="true" type="xsd:boolean" name="bypassAccountDedupeCheck"/>
+    <element nillable="true" type="xsd:boolean" name="bypassContactDedupeCheck"/>
     <element nillable="true" type="tns:ID" name="contactId"/>
+    <element type="ens:sObject" name="contactRecord"/>
     <element type="xsd:string" name="convertedStatus"/>
     <element type="xsd:boolean" name="doNotCreateOpportunity"/>
     <element type="tns:ID" name="leadId"/>
     <element nillable="true" type="tns:ID" name="opportunityId"/>
     <element nillable="true" type="xsd:string" name="opportunityName"/>
+    <element type="ens:sObject" name="opportunityRecord"/>
     <element type="xsd:boolean" name="overwriteLeadSource"/>
     <element nillable="true" type="tns:ID" name="ownerId"/>
     <element type="xsd:boolean" name="sendNotificationEmail"/>
@@ -43,25 +51,35 @@
 </complexType>
 */
 @interface ZKLeadConvert : NSObject<ZKXMLSerializable> {
-	NSString  *accountId;
-	NSString  *contactId;
-	NSString  *convertedStatus;
-	BOOL       doNotCreateOpportunity;
-	NSString  *leadId;
-	NSString  *opportunityId;
-	NSString  *opportunityName;
-	BOOL       overwriteLeadSource;
-	NSString  *ownerId;
-	BOOL       sendNotificationEmail;
+	NSString   *accountId;
+	ZKSObject  *accountRecord;
+	BOOL        bypassAccountDedupeCheck;
+	BOOL        bypassContactDedupeCheck;
+	NSString   *contactId;
+	ZKSObject  *contactRecord;
+	NSString   *convertedStatus;
+	BOOL        doNotCreateOpportunity;
+	NSString   *leadId;
+	NSString   *opportunityId;
+	NSString   *opportunityName;
+	ZKSObject  *opportunityRecord;
+	BOOL        overwriteLeadSource;
+	NSString   *ownerId;
+	BOOL        sendNotificationEmail;
 }
-@property (retain) NSString  *accountId; 
-@property (retain) NSString  *contactId; 
-@property (retain) NSString  *convertedStatus; 
-@property (assign) BOOL       doNotCreateOpportunity; 
-@property (retain) NSString  *leadId; 
-@property (retain) NSString  *opportunityId; 
-@property (retain) NSString  *opportunityName; 
-@property (assign) BOOL       overwriteLeadSource; 
-@property (retain) NSString  *ownerId; 
-@property (assign) BOOL       sendNotificationEmail; 
+@property (retain) NSString   *accountId; 
+@property (retain) ZKSObject  *accountRecord; 
+@property (assign) BOOL        bypassAccountDedupeCheck; 
+@property (assign) BOOL        bypassContactDedupeCheck; 
+@property (retain) NSString   *contactId; 
+@property (retain) ZKSObject  *contactRecord; 
+@property (retain) NSString   *convertedStatus; 
+@property (assign) BOOL        doNotCreateOpportunity; 
+@property (retain) NSString   *leadId; 
+@property (retain) NSString   *opportunityId; 
+@property (retain) NSString   *opportunityName; 
+@property (retain) ZKSObject  *opportunityRecord; 
+@property (assign) BOOL        overwriteLeadSource; 
+@property (retain) NSString   *ownerId; 
+@property (assign) BOOL        sendNotificationEmail; 
 @end

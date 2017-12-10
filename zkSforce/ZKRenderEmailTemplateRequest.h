@@ -29,6 +29,7 @@
 /*
 <complexType name="RenderEmailTemplateRequest" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element maxOccurs="1" minOccurs="0" type="xsd:boolean" name="escapeHtmlInMergeFields"/>
     <element nillable="false" maxOccurs="10" minOccurs="1" type="xsd:string" name="templateBodies"/>
     <element maxOccurs="1" minOccurs="0" type="tns:ID" name="whatId"/>
     <element maxOccurs="1" minOccurs="0" type="tns:ID" name="whoId"/>
@@ -36,10 +37,12 @@
 </complexType>
 */
 @interface ZKRenderEmailTemplateRequest : NSObject<ZKXMLSerializable> {
+	BOOL       escapeHtmlInMergeFields;
 	NSArray   *templateBodies;
 	NSString  *whatId;
 	NSString  *whoId;
 }
+@property (assign) BOOL       escapeHtmlInMergeFields; 
 @property (retain) NSArray   *templateBodies;  // of NSString
 @property (retain) NSString  *whatId; 
 @property (retain) NSString  *whoId; 

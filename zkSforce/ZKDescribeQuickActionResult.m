@@ -60,6 +60,14 @@
     return [self complexTypeArrayFromElements:@"defaultValues" cls:[ZKDescribeQuickActionDefaultValue class]];
 }
 			
+-(NSString *)flowDevName {
+    return [self string:@"flowDevName"];
+}
+			
+-(NSString *)flowRecordIdVar {
+    return [self string:@"flowRecordIdVar"];
+}
+			
 -(NSInteger)height {
     return [self integer:@"height"];
 }

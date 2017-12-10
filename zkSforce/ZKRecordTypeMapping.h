@@ -29,6 +29,7 @@
 /*
 <complexType name="RecordTypeMapping" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element type="xsd:boolean" name="active"/>
     <element type="xsd:boolean" name="available"/>
     <element type="xsd:boolean" name="defaultRecordTypeMapping"/>
     <element type="tns:ID" name="layoutId"/>
@@ -41,6 +42,7 @@
 */
 @interface ZKRecordTypeMapping : ZKXmlDeserializer {
 }
+@property (readonly) BOOL       active; 
 @property (readonly) BOOL       available; 
 @property (readonly) BOOL       defaultRecordTypeMapping; 
 @property (readonly) NSString  *layoutId; 

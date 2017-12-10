@@ -37,6 +37,8 @@
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
     <element nillable="true" type="xsd:string" name="contextSobjectType"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:DescribeQuickActionDefaultValue" name="defaultValues"/>
+    <element nillable="true" type="xsd:string" name="flowDevName"/>
+    <element nillable="true" type="xsd:string" name="flowRecordIdVar"/>
     <element nillable="true" type="xsd:int" name="height"/>
     <element nillable="true" type="xsd:string" name="iconName"/>
     <element nillable="true" type="xsd:string" name="iconUrl"/>
@@ -69,6 +71,8 @@
 @property (readonly) NSArray                  *colors;  // of ZKDescribeColor
 @property (readonly) NSString                 *contextSobjectType; 
 @property (readonly) NSArray                  *defaultValues;  // of ZKDescribeQuickActionDefaultValue
+@property (readonly) NSString                 *flowDevName; 
+@property (readonly) NSString                 *flowRecordIdVar; 
 @property (readonly) NSInteger                 height; 
 @property (readonly) NSString                 *iconName; 
 @property (readonly) NSString                 *iconUrl; 

@@ -28,6 +28,10 @@
 
 @implementation ZKRecordTypeInfo
 
+-(BOOL)active {
+    return [self boolean:@"active"];
+}
+			
 -(BOOL)available {
     return [self boolean:@"available"];
 }
