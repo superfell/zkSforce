@@ -25,6 +25,7 @@
 //
 
 #import "ZKEntitySearchMetadata.h"
+#import "ZKEntitySearchPromotionMetadata.h"
 #import "ZKEntitySpellCorrectionMetadata.h"
 #import "ZKFieldLevelSearchMetadata.h"
 
@@ -36,6 +37,10 @@
 			
 -(NSArray *)fieldMetadata {
     return [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
+}
+			
+-(ZKEntitySearchPromotionMetadata *)searchPromotionMetadata {
+    return [[self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]] lastObject];
 }
 			
 -(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {

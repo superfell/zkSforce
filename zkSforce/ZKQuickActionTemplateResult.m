@@ -30,6 +30,10 @@
 
 @implementation ZKQuickActionTemplateResult
 
+-(NSString *)contextId {
+    return [self string:@"contextId"];
+}
+			
 -(ZKSObject *)defaultValueFormulas {
     return [self sObject:@"defaultValueFormulas"];
 }

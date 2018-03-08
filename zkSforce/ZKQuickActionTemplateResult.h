@@ -31,6 +31,7 @@
 /*
 <complexType name="QuickActionTemplateResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element nillable="true" type="xsd:string" name="contextId"/>
     <element nillable="true" type="ens:sObject" name="defaultValueFormulas"/>
     <element nillable="true" type="ens:sObject" name="defaultValues"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
@@ -40,6 +41,7 @@
 */
 @interface ZKQuickActionTemplateResult : ZKXmlDeserializer {
 }
+@property (readonly) NSString   *contextId; 
 @property (readonly) ZKSObject  *defaultValueFormulas; 
 @property (readonly) ZKSObject  *defaultValues; 
 @property (readonly) NSArray    *errors;  // of ZKError

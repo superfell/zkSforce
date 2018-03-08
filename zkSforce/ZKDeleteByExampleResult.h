@@ -1,4 +1,4 @@
-// Copyright (c) 2010 Ron Hess
+// Copyright (c) 2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -26,26 +26,21 @@
 
 #import "zkXmlDeserializer.h"
 
+@class ZKSObject;
 /*
-<complexType name="RelatedListColumn" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DeleteByExampleResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
-    <element nillable="true" type="xsd:string" name="field"/>
-    <element type="xsd:string" name="fieldApiName"/>
-    <element nillable="true" type="xsd:string" name="format"/>
-    <element type="xsd:string" name="label"/>
-    <element minOccurs="0" nillable="true" type="xsd:string" name="lookupId"/>
-    <element type="xsd:string" name="name"/>
-    <element type="xsd:boolean" name="sortable"/>
+    <element nillable="true" type="ens:sObject" name="entity"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:Error" name="errors"/>
+    <element nillable="false" type="xsd:long" name="rowCount"/>
+    <element type="xsd:boolean" name="success"/>
   </sequence>
 </complexType>
 */
-@interface ZKRelatedListColumn : ZKXmlDeserializer {
+@interface ZKDeleteByExampleResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *field; 
-@property (readonly) NSString  *fieldApiName; 
-@property (readonly) NSString  *format; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *lookupId; 
-@property (readonly) NSString  *name; 
-@property (readonly) BOOL       sortable; 
+@property (readonly) ZKSObject  *entity; 
+@property (readonly) NSArray    *errors;  // of ZKError
+@property (readonly) int64_t     rowCount; 
+@property (readonly) BOOL        success; 
 @end

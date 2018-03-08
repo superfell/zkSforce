@@ -789,6 +789,21 @@
 		}];
 }
 
+/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
+-(void) performDeleteByExample:(NSArray *)sObjects
+                     failBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self deleteByExample:sObjects];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
 /** Send existing draft EmailMessage */
 -(void) performSendEmailMessage:(NSArray *)ids
                       failBlock:(zkFailWithExceptionBlock)failBlock
@@ -894,13 +909,28 @@
 		}];
 }
 
-/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
 -(void) performRetrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
 	[self performRequest:^id {
 			return [self retrieveQuickActionTemplates:quickActionNames contextId:contextId];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
+-(void) performRetrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds
+                                      failBlock:(zkFailWithExceptionBlock)failBlock
+                                  completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self retrieveMassQuickActionTemplates:quickActionName contextIds:contextIds];
 		}
 		 checkSession:YES
 		    failBlock:failBlock

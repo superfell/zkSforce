@@ -26,12 +26,14 @@
 
 #import "zkXmlDeserializer.h"
 
+@class ZKEntitySearchPromotionMetadata;
 @class ZKEntitySpellCorrectionMetadata;
 /*
 <complexType name="EntitySearchMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false" name="entityName"/>
     <element type="tns:FieldLevelSearchMetadata" maxOccurs="unbounded" minOccurs="0" nillable="false" name="fieldMetadata"/>
+    <element type="tns:EntitySearchPromotionMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="searchPromotionMetadata"/>
     <element type="tns:EntitySpellCorrectionMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="spellCorrectionMetadata"/>
   </sequence>
 </complexType>
@@ -40,5 +42,6 @@
 }
 @property (readonly) NSString                         *entityName; 
 @property (readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
+@property (readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
 @property (readonly) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
 @end

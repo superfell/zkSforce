@@ -33,8 +33,8 @@
     <element type="xsd:boolean" name="closed"/>
     <element type="xsd:boolean" name="converted"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribePathAssistantField" name="fields"/>
-    <element type="xsd:string" name="info"/>
-    <element type="tns:DescribeLayoutSection" name="layoutSection"/>
+    <element nillable="true" type="xsd:string" name="info"/>
+    <element nillable="true" type="tns:DescribeLayoutSection" name="layoutSection"/>
     <element type="xsd:string" name="picklistLabel"/>
     <element type="xsd:string" name="picklistValue"/>
     <element type="xsd:boolean" name="won"/>

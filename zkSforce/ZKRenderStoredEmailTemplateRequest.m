@@ -29,7 +29,7 @@
 
 @implementation ZKRenderStoredEmailTemplateRequest
 
-@synthesize attachmentRetrievalOption, templateId, whatId, whoId;
+@synthesize attachmentRetrievalOption, templateId, updateTemplateUsage, whatId, whoId;
 
 -(void)dealloc {
 	[attachmentRetrievalOption release];
@@ -43,6 +43,7 @@
 	[env startElement:elemName];
 	[env addElement:@"attachmentRetrievalOption" elemValue:self.attachmentRetrievalOption nillable:YES optional:NO];
 	[env addElement:@"templateId"                elemValue:self.templateId                nillable:NO  optional:NO];
+	[env addBoolElement:@"updateTemplateUsage"   elemValue:self.updateTemplateUsage];
 	[env addElement:@"whatId"                    elemValue:self.whatId                    nillable:NO  optional:YES];
 	[env addElement:@"whoId"                     elemValue:self.whoId                     nillable:NO  optional:YES];
 	[env endElement:elemName];

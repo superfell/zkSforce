@@ -28,6 +28,10 @@
 
 @implementation ZKSearchRecordMetadata
 
+-(BOOL)searchPromoted {
+    return [self boolean:@"searchPromoted"];
+}
+			
 -(BOOL)spellCorrected {
     return [self boolean:@"spellCorrected"];
 }

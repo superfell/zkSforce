@@ -172,6 +172,9 @@
 /** Returns standard information relevant to the current user */
 -(ZKUserInfo *)getUserInfo;
 
+/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
+-(NSArray *)deleteByExample:(NSArray *)sObjects;
+
 /** Send existing draft EmailMessage */
 -(NSArray *)sendEmailMessage:(NSArray *)ids;
 
@@ -193,8 +196,11 @@
 /** Describe the details of a series of quick actions available for the given contextType */
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType;
 
-/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId;
+
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
+-(NSArray *)retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds;
 
 /** Describe visualforce for an org */
 -(ZKDescribeVisualForceResult *)describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix;

@@ -45,6 +45,7 @@
         <element nillable="true" type="xsd:string" minOccurs="0" name="references"/>
         <element nillable="true" type="tns:ID" name="targetObjectId"/>
         <element nillable="true" type="tns:ID" name="templateId"/>
+        <element nillable="true" type="xsd:string" minOccurs="0" name="templateName"/>
         <element nillable="true" type="xsd:string" maxOccurs="100" minOccurs="0" name="toAddresses"/>
         <element nillable="true" type="xsd:boolean" name="treatBodiesAsTemplate"/>
         <element nillable="true" type="xsd:boolean" name="treatTargetObjectAsRecipient"/>
@@ -70,6 +71,7 @@
 @property (readonly) NSString  *references; 
 @property (readonly) NSString  *targetObjectId; 
 @property (readonly) NSString  *templateId; 
+@property (readonly) NSString  *templateName; 
 @property (readonly) NSArray   *toAddresses;  // of NSString
 @property (readonly) BOOL       treatBodiesAsTemplate; 
 @property (readonly) BOOL       treatTargetObjectAsRecipient; 

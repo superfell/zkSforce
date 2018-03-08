@@ -193,6 +193,8 @@
 		F4913EF91B113E85001CC650 /* ZKMatchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EEB1B113E85001CC650 /* ZKMatchResult.m */; };
 		F4913EFA1B113E85001CC650 /* ZKNameCaseValue.m in Sources */ = {isa = PBXBuildFile; fileRef = F4913EED1B113E85001CC650 /* ZKNameCaseValue.m */; };
 		F49918891DCAE119009CC5B0 /* ZKAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */; };
+		F4A9CE622050F405000FAB0B /* ZKDeleteByExampleResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9CE5F2050F405000FAB0B /* ZKDeleteByExampleResult.m */; };
+		F4A9CE632050F405000FAB0B /* ZKEntitySearchPromotionMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9CE612050F405000FAB0B /* ZKEntitySearchPromotionMetadata.m */; };
 		F4B7704A1BB737C100681844 /* ZKCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770311BB737C100681844 /* ZKCanvas.m */; };
 		F4B7704B1BB737C100681844 /* ZKDescribePathAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770331BB737C100681844 /* ZKDescribePathAssistant.m */; };
 		F4B7704C1BB737C100681844 /* ZKDescribePathAssistantField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770351BB737C100681844 /* ZKDescribePathAssistantField.m */; };
@@ -600,6 +602,10 @@
 		F4913EEC1B113E85001CC650 /* ZKNameCaseValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKNameCaseValue.h; path = ../zkSforce/ZKNameCaseValue.h; sourceTree = "<group>"; };
 		F4913EED1B113E85001CC650 /* ZKNameCaseValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKNameCaseValue.m; path = ../zkSforce/ZKNameCaseValue.m; sourceTree = "<group>"; };
 		F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAuthenticationTests.m; sourceTree = "<group>"; };
+		F4A9CE5E2050F405000FAB0B /* ZKDeleteByExampleResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDeleteByExampleResult.h; path = ../zkSforce/ZKDeleteByExampleResult.h; sourceTree = "<group>"; };
+		F4A9CE5F2050F405000FAB0B /* ZKDeleteByExampleResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDeleteByExampleResult.m; path = ../zkSforce/ZKDeleteByExampleResult.m; sourceTree = "<group>"; };
+		F4A9CE602050F405000FAB0B /* ZKEntitySearchPromotionMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKEntitySearchPromotionMetadata.h; path = ../zkSforce/ZKEntitySearchPromotionMetadata.h; sourceTree = "<group>"; };
+		F4A9CE612050F405000FAB0B /* ZKEntitySearchPromotionMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEntitySearchPromotionMetadata.m; path = ../zkSforce/ZKEntitySearchPromotionMetadata.m; sourceTree = "<group>"; };
 		F4B770301BB737C100681844 /* ZKCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKCanvas.h; path = ../zkSforce/ZKCanvas.h; sourceTree = "<group>"; };
 		F4B770311BB737C100681844 /* ZKCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKCanvas.m; path = ../zkSforce/ZKCanvas.m; sourceTree = "<group>"; };
 		F4B770321BB737C100681844 /* ZKDescribePathAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistant.h; path = ../zkSforce/ZKDescribePathAssistant.h; sourceTree = "<group>"; };
@@ -750,6 +756,10 @@
 		F414BC091842ECB100322AC2 /* zkSforce */ = {
 			isa = PBXGroup;
 			children = (
+				F4A9CE5E2050F405000FAB0B /* ZKDeleteByExampleResult.h */,
+				F4A9CE5F2050F405000FAB0B /* ZKDeleteByExampleResult.m */,
+				F4A9CE602050F405000FAB0B /* ZKEntitySearchPromotionMetadata.h */,
+				F4A9CE612050F405000FAB0B /* ZKEntitySearchPromotionMetadata.m */,
 				F4CCB88C1EE491AA0028F213 /* ZKChangeOwnPasswordResult.h */,
 				F4CCB88D1EE491AA0028F213 /* ZKChangeOwnPasswordResult.m */,
 				F4CCB88E1EE491AA0028F213 /* ZKEntitySpellCorrectionMetadata.h */,
@@ -1253,6 +1263,7 @@
 				F414BCFB1842ED0B00322AC2 /* ZKDescribeGlobalTheme.m in Sources */,
 				F44188981EA5C709009BE67D /* ZKDescribeLayoutSaveOption.m in Sources */,
 				F414BCFC1842ED0B00322AC2 /* ZKDescribeQuickActionListResult.m in Sources */,
+				F4A9CE632050F405000FAB0B /* ZKEntitySearchPromotionMetadata.m in Sources */,
 				F414BCFD1842ED0B00322AC2 /* ZKDescribeRelatedContentItem.m in Sources */,
 				F414BCFE1842ED0B00322AC2 /* ZKDescribeSearchLayoutResult.m in Sources */,
 				F425F9F51A338D0F0055D8B8 /* ZKListViewColumn.m in Sources */,
@@ -1394,6 +1405,7 @@
 				F414BDBD18451D5200322AC2 /* ZKPackageVersion.m in Sources */,
 				F414BDBE18451D5200322AC2 /* ZKPackageVersionHeader.m in Sources */,
 				F474CAA01D0FAD4D000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */,
+				F4A9CE622050F405000FAB0B /* ZKDeleteByExampleResult.m in Sources */,
 				F414BDBF18451D5200322AC2 /* ZKQueryOptions.m in Sources */,
 				F414BDC018451D5200322AC2 /* ZKAllOrNoneHeader.m in Sources */,
 				F414BDC118451D5200322AC2 /* ZKAllowFieldTruncationHeader.m in Sources */,

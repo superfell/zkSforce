@@ -85,6 +85,10 @@
     return [self string:@"templateId"];
 }
 			
+-(NSString *)templateName {
+    return [self string:@"templateName"];
+}
+			
 -(NSArray *)toAddresses {
     return [self strings:@"toAddresses"];
 }

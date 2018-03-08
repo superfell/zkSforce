@@ -281,6 +281,11 @@ typedef void (^zkCompleteVoidBlock)                            (void);
 -(void) performGetUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteUserInfoBlock)completeBlock;
 
+/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
+-(void) performDeleteByExample:(NSArray *)sObjects
+                     failBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteArrayBlock)completeBlock;
+
 /** Send existing draft EmailMessage */
 -(void) performSendEmailMessage:(NSArray *)ids
                       failBlock:(zkFailWithExceptionBlock)failBlock
@@ -316,10 +321,15 @@ typedef void (^zkCompleteVoidBlock)                            (void);
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock;
 
-/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
 -(void) performRetrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock;
+
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
+-(void) performRetrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds
+                                      failBlock:(zkFailWithExceptionBlock)failBlock
+                                  completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 /** Describe visualforce for an org */
 -(void) performDescribeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix

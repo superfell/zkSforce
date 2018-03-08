@@ -29,11 +29,13 @@
 /*
 <complexType name="SearchRecordMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
+    <element type="xsd:boolean" maxOccurs="1" minOccurs="1" name="searchPromoted"/>
     <element type="xsd:boolean" maxOccurs="1" minOccurs="1" name="spellCorrected"/>
   </sequence>
 </complexType>
 */
 @interface ZKSearchRecordMetadata : ZKXmlDeserializer {
 }
+@property (readonly) BOOL searchPromoted; 
 @property (readonly) BOOL spellCorrected; 
 @end

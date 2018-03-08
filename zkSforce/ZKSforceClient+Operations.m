@@ -28,6 +28,7 @@
 #import "ZKPartnerEnvelope.h"
 #import "ZKChangeOwnPasswordResult.h"
 #import "ZKDataCategoryGroupSobjectTypePair.h"
+#import "ZKDeleteByExampleResult.h"
 #import "ZKDeleteResult.h"
 #import "ZKDescribeAppMenuResult.h"
 #import "ZKDescribeApprovalLayoutResult.h"
@@ -778,6 +779,31 @@
 	return [[deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]] lastObject];
 }
 
+/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
+-(NSArray *)deleteByExample:(NSArray *)sObjects {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addUserTerritoryDeleteHeader:env];
+	[self addEmailHeader:env];
+	[self addAllowFieldTruncationHeader:env];
+	[self addDisableFeedTrackingHeader:env];
+	[self addStreamingEnabledHeader:env];
+	[self addAllOrNoneHeader:env];
+	[self addDuplicateRuleHeader:env];
+	[self addLocaleOptions:env];
+	[self addDebuggingHeader:env];
+	[env moveToBody];
+	[env startElement:@"deleteByExample"];
+	[env addElementArray:@"sObjects" elemValue:sObjects];
+	[env endElement:@"deleteByExample"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteByExampleResult class]];
+}
+
 /** Send existing draft EmailMessage */
 -(NSArray *)sendEmailMessage:(NSArray *)ids {
 	if (!authSource) return nil;
@@ -899,7 +925,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
 }
 
-/** Retreive the template sobjects, if appropriate, for the given quick action names in a given context */
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId {
 	if (!authSource) return nil;
 	[self checkSession];
@@ -912,6 +938,24 @@
 	[env addElementArray:@"quickActionNames" elemValue:quickActionNames];
 	[env addElement:@"contextId"             elemValue:contextId        nillable:YES optional:NO];
 	[env endElement:@"retrieveQuickActionTemplates"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
+}
+
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
+-(NSArray *)retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
+	[env startElement:@"retrieveMassQuickActionTemplates"];
+	[env addElement:@"quickActionName" elemValue:quickActionName nillable:NO  optional:NO];
+	[env addElementArray:@"contextIds" elemValue:contextIds];
+	[env endElement:@"retrieveMassQuickActionTemplates"];
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];

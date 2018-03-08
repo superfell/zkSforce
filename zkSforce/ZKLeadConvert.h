@@ -33,17 +33,17 @@
 <complexType name="LeadConvert" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element nillable="true" type="tns:ID" name="accountId"/>
-    <element type="ens:sObject" name="accountRecord"/>
+    <element nillable="true" type="ens:sObject" name="accountRecord"/>
     <element nillable="true" type="xsd:boolean" name="bypassAccountDedupeCheck"/>
     <element nillable="true" type="xsd:boolean" name="bypassContactDedupeCheck"/>
     <element nillable="true" type="tns:ID" name="contactId"/>
-    <element type="ens:sObject" name="contactRecord"/>
+    <element nillable="true" type="ens:sObject" name="contactRecord"/>
     <element type="xsd:string" name="convertedStatus"/>
     <element type="xsd:boolean" name="doNotCreateOpportunity"/>
     <element type="tns:ID" name="leadId"/>
     <element nillable="true" type="tns:ID" name="opportunityId"/>
     <element nillable="true" type="xsd:string" name="opportunityName"/>
-    <element type="ens:sObject" name="opportunityRecord"/>
+    <element nillable="true" type="ens:sObject" name="opportunityRecord"/>
     <element type="xsd:boolean" name="overwriteLeadSource"/>
     <element nillable="true" type="tns:ID" name="ownerId"/>
     <element type="xsd:boolean" name="sendNotificationEmail"/>

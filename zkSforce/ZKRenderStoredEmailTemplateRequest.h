@@ -31,6 +31,7 @@
   <sequence>
     <element nillable="true" type="tns:AttachmentRetrievalOption" name="attachmentRetrievalOption"/>
     <element nillable="false" maxOccurs="1" minOccurs="1" type="tns:ID" name="templateId"/>
+    <element minOccurs="0" type="xsd:boolean" name="updateTemplateUsage"/>
     <element maxOccurs="1" minOccurs="0" type="tns:ID" name="whatId"/>
     <element maxOccurs="1" minOccurs="0" type="tns:ID" name="whoId"/>
   </sequence>
@@ -39,11 +40,13 @@
 @interface ZKRenderStoredEmailTemplateRequest : NSObject<ZKXMLSerializable> {
 	NSString  *attachmentRetrievalOption;
 	NSString  *templateId;
+	BOOL       updateTemplateUsage;
 	NSString  *whatId;
 	NSString  *whoId;
 }
 @property (retain) NSString  *attachmentRetrievalOption; 
 @property (retain) NSString  *templateId; 
+@property (assign) BOOL       updateTemplateUsage; 
 @property (retain) NSString  *whatId; 
 @property (retain) NSString  *whoId; 
 @end
