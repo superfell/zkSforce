@@ -33,6 +33,7 @@
 <complexType name="Field" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="xsd:boolean" name="aggregatable"/>
+    <element type="xsd:boolean" name="aiPredictionField"/>
     <element type="xsd:boolean" name="autoNumber"/>
     <element type="xsd:int" name="byteLength"/>
     <element type="xsd:boolean" name="calculated"/>
@@ -55,6 +56,7 @@
     <element minOccurs="0" type="xsd:string" name="extraTypeInfo"/>
     <element type="xsd:boolean" name="filterable"/>
     <element minOccurs="0" nillable="true" type="tns:FilteredLookupInfo" name="filteredLookupInfo"/>
+    <element minOccurs="0" type="xsd:boolean" name="formulaTreatNullNumberAsZero"/>
     <element type="xsd:boolean" name="groupable"/>
     <element minOccurs="0" type="xsd:boolean" name="highScaleNumber"/>
     <element minOccurs="0" type="xsd:boolean" name="htmlFormatted"/>
@@ -96,6 +98,7 @@
 @property (assign) ZKDescribeSObject *sobject; // assign to stop a ref counting loop
 
 @property (readonly) BOOL                   aggregatable; 
+@property (readonly) BOOL                   aiPredictionField; 
 @property (readonly) BOOL                   autoNumber; 
 @property (readonly) NSInteger              byteLength; 
 @property (readonly) BOOL                   calculated; 
@@ -118,6 +121,7 @@
 @property (readonly) NSString              *extraTypeInfo; 
 @property (readonly) BOOL                   filterable; 
 @property (readonly) ZKFilteredLookupInfo  *filteredLookupInfo; 
+@property (readonly) BOOL                   formulaTreatNullNumberAsZero; 
 @property (readonly) BOOL                   groupable; 
 @property (readonly) BOOL                   highScaleNumber; 
 @property (readonly) BOOL                   htmlFormatted; 

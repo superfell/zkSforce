@@ -193,6 +193,9 @@
 /** Describe the details of a series of quick actions */
 -(NSArray *)describeQuickActions:(NSArray *)quickActions;
 
+/** Describe the details of a series of quick actions in context of requested recordType id for Update actions */
+-(NSArray *)describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId;
+
 /** Describe the details of a series of quick actions available for the given contextType */
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType;
 

@@ -32,6 +32,7 @@
     <element type="xsd:boolean" name="active"/>
     <element type="xsd:boolean" name="available"/>
     <element type="xsd:boolean" name="defaultRecordTypeMapping"/>
+    <element type="xsd:string" name="developerName"/>
     <element type="xsd:boolean" name="master"/>
     <element type="xsd:string" name="name"/>
     <element nillable="true" type="tns:ID" name="recordTypeId"/>
@@ -43,6 +44,7 @@
 @property (readonly) BOOL       active; 
 @property (readonly) BOOL       available; 
 @property (readonly) BOOL       defaultRecordTypeMapping; 
+@property (readonly) NSString  *developerName; 
 @property (readonly) BOOL       master; 
 @property (readonly) NSString  *name; 
 @property (readonly) NSString  *recordTypeId; 

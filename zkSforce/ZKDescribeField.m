@@ -59,6 +59,10 @@
     return [self boolean:@"aggregatable"];
 }
 			
+-(BOOL)aiPredictionField {
+    return [self boolean:@"aiPredictionField"];
+}
+			
 -(BOOL)autoNumber {
     return [self boolean:@"autoNumber"];
 }
@@ -145,6 +149,10 @@
 			
 -(ZKFilteredLookupInfo *)filteredLookupInfo {
     return [[self complexTypeArrayFromElements:@"filteredLookupInfo" cls:[ZKFilteredLookupInfo class]] lastObject];
+}
+			
+-(BOOL)formulaTreatNullNumberAsZero {
+    return [self boolean:@"formulaTreatNullNumberAsZero"];
 }
 			
 -(BOOL)groupable {

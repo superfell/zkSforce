@@ -34,7 +34,9 @@
     <element type="tns:ID" name="id"/>
     <element maxOccurs="unbounded" minOccurs="1" type="tns:ListViewOrderBy" name="orderBy"/>
     <element type="xsd:string" name="query"/>
+    <element minOccurs="0" nillable="true" type="tns:ID" name="relatedEntityId"/>
     <element nillable="true" type="xsd:string" name="scope"/>
+    <element minOccurs="0" nillable="true" type="tns:ID" name="scopeEntityId"/>
     <element type="xsd:string" name="sobjectType"/>
     <element minOccurs="0" type="tns:SoqlWhereCondition" name="whereCondition"/>
   </sequence>
@@ -46,7 +48,9 @@
 @property (readonly) NSString              *id; 
 @property (readonly) NSArray               *orderBy;  // of ZKListViewOrderBy
 @property (readonly) NSString              *query; 
+@property (readonly) NSString              *relatedEntityId; 
 @property (readonly) NSString              *scope; 
+@property (readonly) NSString              *scopeEntityId; 
 @property (readonly) NSString              *sobjectType; 
 @property (readonly) ZKSoqlWhereCondition  *whereCondition; 
 @end

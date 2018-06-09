@@ -908,6 +908,24 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
 
+/** Describe the details of a series of quick actions in context of requested recordType id for Update actions */
+-(NSArray *)describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
+	[env startElement:@"describeQuickActionsForRecordType"];
+	[env addElementArray:@"quickActions" elemValue:quickActions];
+	[env addElement:@"recordTypeId"      elemValue:recordTypeId nillable:NO  optional:NO];
+	[env endElement:@"describeQuickActionsForRecordType"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
+}
+
 /** Describe the details of a series of quick actions available for the given contextType */
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType {
 	if (!authSource) return nil;

@@ -41,6 +41,10 @@
     return [self boolean:@"defaultRecordTypeMapping"];
 }
 			
+-(NSString *)developerName {
+    return [self string:@"developerName"];
+}
+			
 -(NSString *)layoutId {
     return [self string:@"layoutId"];
 }

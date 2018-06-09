@@ -894,6 +894,21 @@
 		}];
 }
 
+/** Describe the details of a series of quick actions in context of requested recordType id for Update actions */
+-(void) performDescribeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId
+                                       failBlock:(zkFailWithExceptionBlock)failBlock
+                                   completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeQuickActionsForRecordType:quickActions recordTypeId:recordTypeId];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
 /** Describe the details of a series of quick actions available for the given contextType */
 -(void) performDescribeAvailableQuickActions:(NSString *)contextType
                                    failBlock:(zkFailWithExceptionBlock)failBlock

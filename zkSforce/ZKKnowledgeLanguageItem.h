@@ -30,6 +30,7 @@
 <complexType name="KnowledgeLanguageItem" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="xsd:boolean" name="active"/>
+    <element nillable="true" type="xsd:string" name="assigneeId"/>
     <element type="xsd:string" name="name"/>
   </sequence>
 </complexType>
@@ -37,5 +38,6 @@
 @interface ZKKnowledgeLanguageItem : ZKXmlDeserializer {
 }
 @property (readonly) BOOL       active; 
+@property (readonly) NSString  *assigneeId; 
 @property (readonly) NSString  *name; 
 @end

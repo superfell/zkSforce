@@ -47,8 +47,16 @@
     return [self string:@"query"];
 }
 			
+-(NSString *)relatedEntityId {
+    return [self string:@"relatedEntityId"];
+}
+			
 -(NSString *)scope {
     return [self string:@"scope"];
+}
+			
+-(NSString *)scopeEntityId {
+    return [self string:@"scopeEntityId"];
 }
 			
 -(NSString *)sobjectType {

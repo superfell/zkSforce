@@ -32,6 +32,10 @@
     return [self boolean:@"active"];
 }
 			
+-(NSString *)assigneeId {
+    return [self string:@"assigneeId"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
 }
