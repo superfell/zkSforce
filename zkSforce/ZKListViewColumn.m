@@ -48,6 +48,10 @@
     return [self string:@"label"];
 }
 			
+-(BOOL)searchable {
+    return [self boolean:@"searchable"];
+}
+			
 -(NSString *)selectListItem {
     return [self string:@"selectListItem"];
 }

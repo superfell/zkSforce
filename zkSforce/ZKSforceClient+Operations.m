@@ -37,6 +37,7 @@
 #import "ZKDescribeCompactLayoutsResult.h"
 #import "ZKDescribeDataCategoryGroupResult.h"
 #import "ZKDescribeDataCategoryGroupStructureResult.h"
+#import "ZKDescribeDataCategoryMappingResult.h"
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeNounResult.h"
@@ -136,6 +137,22 @@
 	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
+}
+
+/** Describe your Data Category Mappings. */
+-(NSArray *)describeDataCategoryMappings {
+	if (!authSource) return nil;
+	[self checkSession];
+	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]] autorelease];
+	[self addCallOptions:env];
+	[self addPackageVersionHeader:env];
+	[self addLocaleOptions:env];
+	[env moveToBody];
+	[env startElement:@"describeDataCategoryMappings"];
+	[env endElement:@"describeDataCategoryMappings"];
+	zkElement *rn = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
+	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryMappingResult class]];
 }
 
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */

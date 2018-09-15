@@ -34,6 +34,7 @@
     <element type="xsd:string" name="fieldNameOrPath"/>
     <element type="xsd:boolean" name="hidden"/>
     <element type="xsd:string" name="label"/>
+    <element type="xsd:boolean" name="searchable"/>
     <element type="xsd:string" name="selectListItem"/>
     <element nillable="true" type="tns:orderByDirection" name="sortDirection"/>
     <element nillable="true" type="xsd:int" name="sortIndex"/>
@@ -49,6 +50,7 @@
 @property (readonly) NSString  *fieldNameOrPath; 
 @property (readonly) BOOL       hidden; 
 @property (readonly) NSString  *label; 
+@property (readonly) BOOL       searchable; 
 @property (readonly) NSString  *selectListItem; 
 @property (readonly) NSString  *sortDirection; 
 @property (readonly) NSInteger  sortIndex; 

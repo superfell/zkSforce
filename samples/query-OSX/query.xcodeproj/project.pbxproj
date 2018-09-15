@@ -164,6 +164,8 @@
 		F44CC07D12B5881D0052D468 /* zkXmlDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC05D12B5881D0052D468 /* zkXmlDeserializer.m */; };
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
+		F46B43D9214DB5BB0032D77D /* ZKEntityIntentQueryMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F46B43D5214DB5BA0032D77D /* ZKEntityIntentQueryMetadata.m */; };
+		F46B43DA214DB5BB0032D77D /* ZKDescribeDataCategoryMappingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F46B43D8214DB5BB0032D77D /* ZKDescribeDataCategoryMappingResult.m */; };
 		F46B68A81485E06F00493685 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */; };
 		F46DEA221D8F7C4900C7550B /* ZKFindDuplicatesResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DEA211D8F7C4800C7550B /* ZKFindDuplicatesResult.m */; };
 		F474CAC41D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F474CAB91D0FAE36000D3C13 /* ZKDescribeSearchableEntityResult.m */; };
@@ -537,6 +539,10 @@
 		F44CC08412B588AE0052D468 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F44CC08F12B58BA40052D468 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryController.h; sourceTree = "<group>"; };
 		F44CC09012B58BA40052D468 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
+		F46B43D5214DB5BA0032D77D /* ZKEntityIntentQueryMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEntityIntentQueryMetadata.m; path = ../../zkSforce/ZKEntityIntentQueryMetadata.m; sourceTree = "<group>"; };
+		F46B43D6214DB5BA0032D77D /* ZKDescribeDataCategoryMappingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeDataCategoryMappingResult.h; path = ../../zkSforce/ZKDescribeDataCategoryMappingResult.h; sourceTree = "<group>"; };
+		F46B43D7214DB5BA0032D77D /* ZKEntityIntentQueryMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKEntityIntentQueryMetadata.h; path = ../../zkSforce/ZKEntityIntentQueryMetadata.h; sourceTree = "<group>"; };
+		F46B43D8214DB5BB0032D77D /* ZKDescribeDataCategoryMappingResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeDataCategoryMappingResult.m; path = ../../zkSforce/ZKDescribeDataCategoryMappingResult.m; sourceTree = "<group>"; };
 		F46B68A61485E06F00493685 /* zkSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+zkAsyncQuery.h"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
 		F46B68A71485E06F00493685 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
 		F46DEA201D8F7C4800C7550B /* ZKFindDuplicatesResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFindDuplicatesResult.h; path = ../../zkSforce/ZKFindDuplicatesResult.h; sourceTree = "<group>"; };
@@ -788,6 +794,10 @@
 		F44CC01C12B588090052D468 /* zksforce */ = {
 			isa = PBXGroup;
 			children = (
+				F46B43D6214DB5BA0032D77D /* ZKDescribeDataCategoryMappingResult.h */,
+				F46B43D8214DB5BB0032D77D /* ZKDescribeDataCategoryMappingResult.m */,
+				F46B43D7214DB5BA0032D77D /* ZKEntityIntentQueryMetadata.h */,
+				F46B43D5214DB5BA0032D77D /* ZKEntityIntentQueryMetadata.m */,
 				F4A9CE6A2050F517000FAB0B /* ZKDeleteByExampleResult.h */,
 				F4A9CE6B2050F517000FAB0B /* ZKDeleteByExampleResult.m */,
 				F4A9CE6C2050F517000FAB0B /* ZKEntitySearchPromotionMetadata.h */,
@@ -1244,6 +1254,7 @@
 				F44CC06512B5881D0052D468 /* ZKDescribeLayoutComponent.m in Sources */,
 				F44CC06612B5881D0052D468 /* ZKDescribeLayoutItem.m in Sources */,
 				F4306CFB1EA46A210014742F /* ZKEntitySearchMetadata.m in Sources */,
+				F46B43D9214DB5BB0032D77D /* ZKEntityIntentQueryMetadata.m in Sources */,
 				F44CC06712B5881D0052D468 /* ZKDescribeLayoutResult.m in Sources */,
 				F474CAC51D0FAE36000D3C13 /* ZKDescribeVisualForceResult.m in Sources */,
 				F44CC06812B5881D0052D468 /* ZKDescribeLayoutRow.m in Sources */,
@@ -1318,6 +1329,7 @@
 				F414BB5F184183C500322AC2 /* ZKDescribeAppMenuItem.m in Sources */,
 				F4913F1F1B1150E6001CC650 /* ZKMatchRecord.m in Sources */,
 				F414BB60184183C500322AC2 /* ZKDescribeAvailableQuickActionResult.m in Sources */,
+				F46B43DA214DB5BB0032D77D /* ZKDescribeDataCategoryMappingResult.m in Sources */,
 				F414BB61184183C500322AC2 /* ZKDescribeColumn.m in Sources */,
 				F4B76FDB1BB733C500681844 /* ZKOwnerChangeOption.m in Sources */,
 				F4913F1D1B1150E6001CC650 /* ZKFieldComponent.m in Sources */,

@@ -85,6 +85,10 @@ typedef void (^zkCompleteVoidBlock)                            (void);
                                          failBlock:(zkFailWithExceptionBlock)failBlock
                                      completeBlock:(zkCompleteArrayBlock)completeBlock;
 
+/** Describe your Data Category Mappings. */
+-(void) performDescribeDataCategoryMappingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                              completeBlock:(zkCompleteArrayBlock)completeBlock;
+
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock;

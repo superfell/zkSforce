@@ -26,6 +26,7 @@
 
 #import "zkXmlDeserializer.h"
 
+@class ZKEntityIntentQueryMetadata;
 @class ZKEntitySearchPromotionMetadata;
 @class ZKEntitySpellCorrectionMetadata;
 /*
@@ -33,6 +34,7 @@
   <sequence>
     <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false" name="entityName"/>
     <element type="tns:FieldLevelSearchMetadata" maxOccurs="unbounded" minOccurs="0" nillable="false" name="fieldMetadata"/>
+    <element type="tns:EntityIntentQueryMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="intentQueryMetadata"/>
     <element type="tns:EntitySearchPromotionMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="searchPromotionMetadata"/>
     <element type="tns:EntitySpellCorrectionMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="spellCorrectionMetadata"/>
   </sequence>
@@ -42,6 +44,7 @@
 }
 @property (readonly) NSString                         *entityName; 
 @property (readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
+@property (readonly) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
 @property (readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
 @property (readonly) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
 @end

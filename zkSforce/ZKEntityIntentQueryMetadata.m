@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Simon Fell
+// Copyright (c) 2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,32 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKEntitySearchMetadata.h"
 #import "ZKEntityIntentQueryMetadata.h"
-#import "ZKEntitySearchPromotionMetadata.h"
-#import "ZKEntitySpellCorrectionMetadata.h"
-#import "ZKFieldLevelSearchMetadata.h"
 
-@implementation ZKEntitySearchMetadata
+@implementation ZKEntityIntentQueryMetadata
 
--(NSString *)entityName {
-    return [self string:@"entityName"];
+-(BOOL)intentQuery {
+    return [self boolean:@"intentQuery"];
 }
 			
--(NSArray *)fieldMetadata {
-    return [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
-}
-			
--(ZKEntityIntentQueryMetadata *)intentQueryMetadata {
-    return [[self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]] lastObject];
-}
-			
--(ZKEntitySearchPromotionMetadata *)searchPromotionMetadata {
-    return [[self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]] lastObject];
-}
-			
--(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {
-    return [[self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]] lastObject];
+-(NSString *)message {
+    return [self string:@"message"];
 }
 			
 @end

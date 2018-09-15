@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Simon Fell
+// Copyright (c) 2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,32 +24,44 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKEntitySearchMetadata.h"
-#import "ZKEntityIntentQueryMetadata.h"
-#import "ZKEntitySearchPromotionMetadata.h"
-#import "ZKEntitySpellCorrectionMetadata.h"
-#import "ZKFieldLevelSearchMetadata.h"
+#import "ZKDescribeDataCategoryMappingResult.h"
 
-@implementation ZKEntitySearchMetadata
+@implementation ZKDescribeDataCategoryMappingResult
 
--(NSString *)entityName {
-    return [self string:@"entityName"];
+-(NSString *)dataCategoryGroupId {
+    return [self string:@"dataCategoryGroupId"];
 }
 			
--(NSArray *)fieldMetadata {
-    return [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
+-(NSString *)dataCategoryGroupLabel {
+    return [self string:@"dataCategoryGroupLabel"];
 }
 			
--(ZKEntityIntentQueryMetadata *)intentQueryMetadata {
-    return [[self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]] lastObject];
+-(NSString *)dataCategoryGroupName {
+    return [self string:@"dataCategoryGroupName"];
 }
 			
--(ZKEntitySearchPromotionMetadata *)searchPromotionMetadata {
-    return [[self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]] lastObject];
+-(NSString *)dataCategoryId {
+    return [self string:@"dataCategoryId"];
 }
 			
--(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {
-    return [[self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]] lastObject];
+-(NSString *)dataCategoryLabel {
+    return [self string:@"dataCategoryLabel"];
+}
+			
+-(NSString *)dataCategoryName {
+    return [self string:@"dataCategoryName"];
+}
+			
+-(NSString *)id {
+    return [self string:@"id"];
+}
+			
+-(NSString *)mappedEntity {
+    return [self string:@"mappedEntity"];
+}
+			
+-(NSString *)mappedField {
+    return [self string:@"mappedField"];
 }
 			
 @end

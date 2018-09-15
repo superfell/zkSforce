@@ -182,6 +182,20 @@
 		}];
 }
 
+/** Describe your Data Category Mappings. */
+-(void) performDescribeDataCategoryMappingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                              completeBlock:(zkCompleteArrayBlock)completeBlock {
+
+	[self performRequest:^id {
+			return [self describeDataCategoryMappings];
+		}
+		 checkSession:YES
+		    failBlock:failBlock
+		completeBlock:^(id r) {
+			if (completeBlock) completeBlock((NSArray *)r);
+		}];
+}
+
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock {

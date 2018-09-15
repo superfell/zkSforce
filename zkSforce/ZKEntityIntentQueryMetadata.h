@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Simon Fell
+// Copyright (c) 2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -24,32 +24,18 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKEntitySearchMetadata.h"
-#import "ZKEntityIntentQueryMetadata.h"
-#import "ZKEntitySearchPromotionMetadata.h"
-#import "ZKEntitySpellCorrectionMetadata.h"
-#import "ZKFieldLevelSearchMetadata.h"
+#import "zkXmlDeserializer.h"
 
-@implementation ZKEntitySearchMetadata
-
--(NSString *)entityName {
-    return [self string:@"entityName"];
+/*
+<complexType name="EntityIntentQueryMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:boolean" maxOccurs="1" minOccurs="1" nillable="false" name="intentQuery"/>
+    <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="true" name="message"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKEntityIntentQueryMetadata : ZKXmlDeserializer {
 }
-			
--(NSArray *)fieldMetadata {
-    return [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
-}
-			
--(ZKEntityIntentQueryMetadata *)intentQueryMetadata {
-    return [[self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]] lastObject];
-}
-			
--(ZKEntitySearchPromotionMetadata *)searchPromotionMetadata {
-    return [[self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]] lastObject];
-}
-			
--(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {
-    return [[self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]] lastObject];
-}
-			
+@property (readonly) BOOL       intentQuery; 
+@property (readonly) NSString  *message; 
 @end

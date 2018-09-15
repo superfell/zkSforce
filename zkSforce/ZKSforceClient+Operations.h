@@ -61,6 +61,9 @@
 /** Describe the data category group structures for a given set of pair of types and data category group name */
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly;
 
+/** Describe your Data Category Mappings. */
+-(NSArray *)describeDataCategoryMappings;
+
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(ZKKnowledgeSettings *)describeKnowledgeSettings;
 
