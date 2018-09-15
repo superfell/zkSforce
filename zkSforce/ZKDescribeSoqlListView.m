@@ -64,7 +64,7 @@
 }
 			
 -(ZKSoqlWhereCondition *)whereCondition {
-    return [[self complexTypeArrayFromElements:@"whereCondition" cls:[ZKSoqlWhereCondition class]] lastObject];
+    return [self complexTypeArrayFromElements:@"whereCondition" cls:[ZKSoqlWhereCondition class]].lastObject;
 }
 			
 @end

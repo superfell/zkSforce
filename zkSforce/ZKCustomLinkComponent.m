@@ -30,7 +30,7 @@
 @implementation ZKCustomLinkComponent
 
 -(ZKDescribeLayoutButton *)customLink {
-    return [[self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]] lastObject];
+    return [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
 }
 			
 @end

@@ -22,25 +22,25 @@
 @class zkElement;
 
 @interface ZKQueryResult : NSObject <NSCopying> {
-	int size;
-	BOOL done;
-	NSString * queryLocator;
-	NSArray * records;
+    int size;
+    BOOL done;
+    NSString * queryLocator;
+    NSArray * records;
 }
 
-- (id)initWithXmlElement:(zkElement *)node;
-- (id)initWithRecords:(NSArray *)records size:(int)s done:(BOOL)d queryLocator:(NSString *)ql;
+- (instancetype)initWithXmlElement:(zkElement *)node NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRecords:(NSArray *)records size:(int)s done:(BOOL)d queryLocator:(NSString *)ql NS_DESIGNATED_INITIALIZER;
 
 /** @return the total size of the query results [if this is larger than one page, this is only a hint] */
-- (int)size;
+@property (NS_NONATOMIC_IOSONLY, readonly) int size;
 
 /** @return true if this is the last page of results for this query, or false if there are more pages available via QueryMore */
-- (BOOL)done;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL done;
 
 /** @return a queryLocator that can be used with QueryMore to fetch the next page of results */
-- (NSString *)queryLocator;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *queryLocator;
 
 /** @return the query result records that are in this page of results */
-- (NSArray *)records;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *records;
 
 @end

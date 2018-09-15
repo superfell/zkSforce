@@ -30,7 +30,7 @@
 @implementation ZKSoqlNotCondition
 
 -(ZKSoqlWhereCondition *)condition {
-    return [[self complexTypeArrayFromElements:@"condition" cls:[ZKSoqlWhereCondition class]] lastObject];
+    return [self complexTypeArrayFromElements:@"condition" cls:[ZKSoqlWhereCondition class]].lastObject;
 }
 			
 @end

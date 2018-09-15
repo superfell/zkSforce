@@ -44,7 +44,7 @@
 	if (fieldList == nil) {
 		NSArray *fa = [self complexTypeArrayFromElements:@"fields" cls:[ZKDescribeField class]];
 		for (ZKDescribeField *f in fa)
-			[f setSobject:self];
+			f.sobject = self;
 		fieldList = [fa retain];
 	}
 	return fieldList;

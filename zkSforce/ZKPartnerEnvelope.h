@@ -24,6 +24,6 @@
 @interface ZKPartnerEnvelope : ZKEnvelope {
 }
 
-- (id)initWithSessionHeader:(NSString *)sessionId;
+- (instancetype)initWithSessionHeader:(NSString *)sessionId NS_DESIGNATED_INITIALIZER;
 
 @end

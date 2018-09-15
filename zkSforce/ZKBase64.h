@@ -22,9 +22,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (ZKBase64)
--(NSData *)ZKBase64Decode;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSData *ZKBase64Decode;
 @end
 
 @interface NSData (ZKBase64)
--(NSString *)ZKBase64Encode;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *ZKBase64Encode;
 @end

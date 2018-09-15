@@ -52,25 +52,25 @@
 }
 
 -(void)testDouble {
-    XCTAssertEqualObjects([NSNumber numberWithDouble:1.0], [@"1.0" ZKDouble]);
-    XCTAssertEqualObjects([NSNumber numberWithDouble:-123.12], [@"-123.12" ZKDouble]);
-    XCTAssertEqualObjects([NSNumber numberWithDouble:42.42], [@"42.42" ZKDouble]);
+    XCTAssertEqualObjects(@1.0, [@"1.0" ZKDouble]);
+    XCTAssertEqualObjects(@-123.12, [@"-123.12" ZKDouble]);
+    XCTAssertEqualObjects(@42.42, [@"42.42" ZKDouble]);
 }
 
 -(void)testDateTime {
-    [self assertDateTime:[@"2016-06-29T20:21:22.0000Z" ZKDateTime] equalsYears:2016 month:06 day:29 hour:20 mins:21 seconds:22];
+    [self assertDateTime:(@"2016-06-29T20:21:22.0000Z").ZKDateTime equalsYears:2016 month:06 day:29 hour:20 mins:21 seconds:22];
 }
 
 -(void)testDate {
-    [self assertDate:[@"2016-11-12" ZKDate] equalsYear:2016 month:11 day:12];
+    [self assertDate:(@"2016-11-12").ZKDate equalsYear:2016 month:11 day:12];
 }
 
 -(void)testTime {
-    [self assertTime:[@"22:23:24.0000Z" ZKTime] equalsHour:22 minute:23 seconds:24];
+    [self assertTime:(@"22:23:24.0000Z").ZKTime equalsHour:22 minute:23 seconds:24];
 }
 
 -(void)testBase64Binary {
-    NSData *d = [@"Ym9iIQ==" ZKBase64Binary];
+    NSData *d = (@"Ym9iIQ==").ZKBase64Binary;
     NSString *ds = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
     XCTAssertEqualObjects(@"bob!", ds);
 }

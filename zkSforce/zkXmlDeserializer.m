@@ -29,17 +29,22 @@
 
 @implementation ZKXmlDeserializer
 
--(id)initWithXmlElement:(zkElement *)e {
-	self = [super init];
-	node = [e retain];
-	values = [[NSMutableDictionary alloc] init];
-	return self;
+-(instancetype)initWithXmlElement:(zkElement *)e {
+    self = [super init];
+    node = [e retain];
+    values = [[NSMutableDictionary alloc] init];
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    return self;
 }
 
 -(void)dealloc {
-	[node release];
-	[values release];
-	[super dealloc];
+    [node release];
+    [values release];
+    [super dealloc];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -47,51 +52,51 @@
 }
 
 - (NSString *)string:(NSString *)elem {
-	id cached = [values objectForKey:elem];
-	if (cached != nil) return cached == [NSNull null] ? nil : cached;
-	id v = [self string:elem fromXmlElement:node];
-	[values setObject:(v != nil ? v : [NSNull null]) forKey:elem];
-	return v;
+    id cached = values[elem];
+    if (cached != nil) return cached == [NSNull null] ? nil : cached;
+    id v = [self string:elem fromXmlElement:node];
+    values[elem] = (v != nil ? v : [NSNull null]);
+    return v;
 }
 
 - (BOOL)boolean:(NSString *)elem {
-    return [[[self string:elem] ZKBoolean] boolValue];
+    return [self string:elem].ZKBoolean.boolValue;
 }
 
 - (int)integer:(NSString *)elem {
-	return [[self string:elem] intValue];
+    return [self string:elem].intValue;
 }
 
 - (int64_t)int64:(NSString *)elem {
-    return [[self string:elem] longLongValue];
+    return [self string:elem].longLongValue;
 }
 
 - (double)double:(NSString *)elem {
-	return [[self string:elem] doubleValue];
+    return [self string:elem].doubleValue;
 }
 
 - (NSDate *)time:(NSString *)elem {
-    return [[self string:elem] ZKTime];
+    return [self string:elem].ZKTime;
 }
 
 - (NSDate *)date:(NSString *)elem {
-    return [[self string:elem] ZKDate];
+    return [self string:elem].ZKDate;
 }
 
 - (NSDate *)dateTime:(NSString *)elem {
-    return [[self string:elem] ZKDateTime];
+    return [self string:elem].ZKDateTime;
 }
 
 - (ZKSObject *)sObject:(NSString *)elem {
-    return [[self complexTypeArrayFromElements:elem cls:[ZKSObject class]] lastObject];
+    return [self complexTypeArrayFromElements:elem cls:[ZKSObject class]].lastObject;
 }
 
 - (ZKQueryResult *)queryResult:(NSString *)elem {
-    return [[self complexTypeArrayFromElements:elem cls:[ZKQueryResult class]] lastObject];
+    return [self complexTypeArrayFromElements:elem cls:[ZKQueryResult class]].lastObject;
 }
 
 - (ZKXsdAnyType *)anyType:(NSString *)elem {
-    ZKXsdAnyType *cached = [values objectForKey:elem];
+    ZKXsdAnyType *cached = values[elem];
     if (cached == nil) {
         cached = [[[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]] autorelease];
         [values setValue:cached forKey:elem];
@@ -100,55 +105,55 @@
 }
 
 - (NSData *)blob:(NSString *)elem {
-    NSData *cached = [values objectForKey:elem];
+    NSData *cached = values[elem];
     if (cached == nil) {
         NSString *b64 = [self string:elem fromXmlElement:node];
-        cached = [b64 ZKBase64Decode];
+        cached = b64.ZKBase64Decode;
 
         if (cached != nil)
-        	[values setObject:cached forKey:elem];
+            values[elem] = cached;
     }
     return cached;
 }
 
 - (NSArray *)strings:(NSString *)elem {
-	NSArray *cached = [values objectForKey:elem];
-	if (cached != nil) return cached;
-	NSArray *nodes = [node childElements:elem];
-	NSMutableArray *s = [NSMutableArray arrayWithCapacity:[nodes count]];
-	for (zkElement *e in nodes) 
-		[s addObject:[e stringValue]];
-	
-	[values setObject:s forKey:elem];
-	return s;
+    NSArray *cached = values[elem];
+    if (cached != nil) return cached;
+    NSArray *nodes = [node childElements:elem];
+    NSMutableArray *s = [NSMutableArray arrayWithCapacity:nodes.count];
+    for (zkElement *e in nodes) 
+        [s addObject:e.stringValue];
+    
+    values[elem] = s;
+    return s;
 }
 
 - (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement {
-	return [[xmlElement childElement:elemName] stringValue];
+    return [xmlElement childElement:elemName].stringValue;
 }
 
 - (Class) complexTypeClassForType:(ZKNamespacedName *)xsiType baseClass:(Class)base {
-    if (xsiType == nil || [xsiType.localname length] == 0) return base;
-    NSString *className = [NSString stringWithFormat:@"ZK%@%@", [[xsiType.localname substringToIndex:1] uppercaseString], [xsiType.localname substringFromIndex:1]];
+    if (xsiType == nil || (xsiType.localname).length == 0) return base;
+    NSString *className = [NSString stringWithFormat:@"ZK%@%@", [xsiType.localname substringToIndex:1].uppercaseString, [xsiType.localname substringFromIndex:1]];
     Class cls = NSClassFromString(className);
     return cls != nil && [cls isSubclassOfClass:base] ? cls : base;
 }
 
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type {
-	NSArray *cached = [values objectForKey:elemName];
-	if (cached == nil) {
-		NSArray *elements = [node childElements:elemName];
-		NSMutableArray *results = [NSMutableArray arrayWithCapacity:[elements count]];
-		for(zkElement *childNode in elements) {
-            Class actualType = [self complexTypeClassForType:[childNode xsiType] baseClass:type];
-			NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
-			[results addObject:child];
-			[child release];
-		}
-		[values setObject:results forKey:elemName];
-		cached = results;
-	}
-	return cached;
+    NSArray *cached = values[elemName];
+    if (cached == nil) {
+        NSArray *elements = [node childElements:elemName];
+        NSMutableArray *results = [NSMutableArray arrayWithCapacity:elements.count];
+        for(zkElement *childNode in elements) {
+            Class actualType = [self complexTypeClassForType:childNode.xsiType baseClass:type];
+            NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
+            [results addObject:child];
+            [child release];
+        }
+        values[elemName] = results;
+        cached = results;
+    }
+    return cached;
 }
 
 -(NSString *)description {

@@ -26,108 +26,108 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 
 @implementation zkElement
 
--(id)initWithDocument:(xmlDocPtr)d node:(xmlNodePtr)n parent:(zkElement *)p {
-	self = [super init];
-	parent = [p retain];
-	doc = d;
-	node = n;
-	return self;
+-(instancetype)initWithDocument:(xmlDocPtr)d node:(xmlNodePtr)n parent:(zkElement *)p {
+    self = [super init];
+    parent = [p retain];
+    doc = d;
+    node = n;
+    return self;
 }
 
--(id)initWithDocument:(xmlDocPtr)d {
-	return [self initWithDocument:d node:xmlDocGetRootElement(d) parent:nil];
+-(instancetype)initWithDocument:(xmlDocPtr)d {
+    return [self initWithDocument:d node:xmlDocGetRootElement(d) parent:nil];
 }
 
--(id)initWithNode:(xmlNodePtr)n parent:(zkElement *)p {
-	return [self initWithDocument:nil node:n parent:p];
+-(instancetype)initWithNode:(xmlNodePtr)n parent:(zkElement *)p {
+    return [self initWithDocument:nil node:n parent:p];
 }
 
 -(id)copyWithZone:(NSZone *)z {
-	return [[zkElement allocWithZone:z] initWithDocument:doc node:node parent:parent == nil ? self : parent];
+    return [[zkElement allocWithZone:z] initWithDocument:doc node:node parent:parent == nil ? self : parent];
 }
 
 -(void)dealloc {
-	[parent release];
-	xmlFreeDoc(doc);
-	[super dealloc];
+    [parent release];
+    xmlFreeDoc(doc);
+    [super dealloc];
 }
 
 - (NSString *)name {
-	return [NSString stringWithUTF8String:(const char *)node->name];
+    return @((const char *)node->name);
 }
 
 - (NSString *)namespace {
-	return [NSString stringWithUTF8String:(const char *)node->ns->href];
+    return @((const char *)node->ns->href);
 }
 
 - (NSString *)stringValue {
-	xmlChar *v = xmlNodeListGetString(doc, node->xmlChildrenNode, 1);
-	NSString *s = v == NULL ? nil : [NSString stringWithUTF8String:(const char *)v];
-	xmlFree(v);
-	return s;
+    xmlChar *v = xmlNodeListGetString(doc, node->xmlChildrenNode, 1);
+    NSString *s = v == NULL ? nil : @((const char *)v);
+    xmlFree(v);
+    return s;
 }
 
 - (NSString *)attributeValue:(NSString *)name ns:(NSString *)namespace {
-	const xmlChar * n = (const xmlChar *)[name UTF8String];
-	const xmlChar * ns = (const xmlChar *)[namespace UTF8String];
-	xmlChar *v = xmlGetNsProp(node, n, ns);
-	if (v == NULL) return nil;
-	NSString *sv = [NSString stringWithUTF8String:(const char *)v];
-	xmlFree(v);
-	return sv;
+    const xmlChar * n = (const xmlChar *)name.UTF8String;
+    const xmlChar * ns = (const xmlChar *)namespace.UTF8String;
+    xmlChar *v = xmlGetNsProp(node, n, ns);
+    if (v == NULL) return nil;
+    NSString *sv = @((const char *)v);
+    xmlFree(v);
+    return sv;
 }
 
 - (id)childElements:(NSString *)name ns:(NSString *)namespace checkNs:(BOOL)checkNs all:(BOOL)returnAll {
-	NSMutableArray *results = returnAll ? [NSMutableArray array] : nil;
-	const xmlChar * n = (const xmlChar *)[name UTF8String];
-	const xmlChar * ns = (const xmlChar *)[namespace UTF8String];
-	xmlNodePtr cur = node->xmlChildrenNode;
-	while (cur != NULL) {
-		if ((n == NULL) || (!xmlStrcmp(cur->name, n))) {
-			if((!checkNs) || (!xmlStrcmp(cur->ns->href, ns))) {
-				zkElement *e = [[[zkElement alloc] initWithNode:cur parent:self] autorelease]; 
-				if (!returnAll) return e;
-				[results addObject:e];
-			}
- 	    }
-		cur = cur->next;
-	}
-	return results;
+    NSMutableArray *results = returnAll ? [NSMutableArray array] : nil;
+    const xmlChar * n = (const xmlChar *)name.UTF8String;
+    const xmlChar * ns = (const xmlChar *)namespace.UTF8String;
+    xmlNodePtr cur = node->xmlChildrenNode;
+    while (cur != NULL) {
+        if ((n == NULL) || (!xmlStrcmp(cur->name, n))) {
+            if((!checkNs) || (!xmlStrcmp(cur->ns->href, ns))) {
+                zkElement *e = [[[zkElement alloc] initWithNode:cur parent:self] autorelease]; 
+                if (!returnAll) return e;
+                [results addObject:e];
+            }
+         }
+        cur = cur->next;
+    }
+    return results;
 }
 
 - (zkElement *)childElement:(NSString *)name ns:(NSString *)namespace {
-	return [self childElements:name ns:namespace checkNs:YES all:NO];
+    return [self childElements:name ns:namespace checkNs:YES all:NO];
 }
 
 - (zkElement *)childElement:(NSString *)name {
-	return [self childElements:name ns:nil checkNs:NO all:NO];
+    return [self childElements:name ns:nil checkNs:NO all:NO];
 }
 
 - (NSArray *)childElements:(NSString *)name ns:(NSString *)namespace {
-	return [self childElements:name ns:namespace checkNs:YES all:YES];
+    return [self childElements:name ns:namespace checkNs:YES all:YES];
 }
 
 - (NSArray *)childElements:(NSString *)name {
-	return [self childElements:name ns:nil checkNs:NO all:YES];
+    return [self childElements:name ns:nil checkNs:NO all:YES];
 }
 
 - (NSArray *)childElements {
-	return [self childElements:nil ns:nil checkNs:NO all:YES];
+    return [self childElements:nil ns:nil checkNs:NO all:YES];
 }
 
 - (ZKNamespacedName *)xsiType {
     NSString *t = [self attributeValue:@"type" ns:NS_URI_XSI];
-    if ([t length] == 0) {
+    if (t.length == 0) {
         return nil;
     }
     NSArray *typeParts = [t componentsSeparatedByString:@":"];
     xmlChar *prefix = NULL;
-    if ([typeParts count] == 2) {
-        prefix = (xmlChar *)[[typeParts objectAtIndex:0] UTF8String];
+    if (typeParts.count == 2) {
+        prefix = (xmlChar *)[typeParts[0] UTF8String];
     }
     const xmlNsPtr ns = xmlSearchNs(node->doc, node, prefix);
-    NSString *uri = ns == NULL ? @"" : [NSString stringWithUTF8String:(const char *)ns->href];
-    return [ZKNamespacedName withName:[typeParts lastObject] uri:uri];
+    NSString *uri = ns == NULL ? @"" : @((const char *)ns->href);
+    return [ZKNamespacedName withName:typeParts.lastObject uri:uri];
 }
 
 - (BOOL)isXsiNil {
@@ -140,17 +140,17 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 @implementation zkParser
 
 +(zkElement *)parseData:(NSData *)data {
-	xmlDocPtr doc = xmlReadMemory([data bytes], (int)[data length], "noname.xml", NULL, 0);
-	if (doc != nil)
-		return [[[zkElement alloc] initWithDocument:doc] autorelease];
-	return nil;
+    xmlDocPtr doc = xmlReadMemory(data.bytes, (int)data.length, "noname.xml", NULL, 0);
+    if (doc != nil)
+        return [[[zkElement alloc] initWithDocument:doc] autorelease];
+    return nil;
 }
 
 @end
 
 @implementation ZKNamespacedName
 
--(id)initWithName:(NSString *)localName uri:(NSString *)nsuri {
+-(instancetype)initWithName:(NSString *)localName uri:(NSString *)nsuri {
     self = [super init];
     name = [localName retain];
     uri = [nsuri retain];

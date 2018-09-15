@@ -23,11 +23,11 @@
 
 @implementation ZKPartnerEnvelope
 
-- (id)initWithSessionHeader:(NSString *)sessionId {
-	self = [super init];
-	[self start:@"urn:partner.soap.sforce.com"];
-	[self writeSessionHeader:sessionId];
-	return self;
+- (instancetype)initWithSessionHeader:(NSString *)sessionId {
+    self = [super init];
+    [self start:@"urn:partner.soap.sforce.com"];
+    [self writeSessionHeader:sessionId];
+    return self;
 }
 
 @end

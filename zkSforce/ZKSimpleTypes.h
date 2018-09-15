@@ -24,14 +24,14 @@
 /** defines helpers to deserialize common XSD simple types. */
 @interface NSString (ZKSimpleTypes)
 
--(NSNumber *)ZKBoolean;
--(NSDecimalNumber *)ZKDecimal;
--(NSNumber *)ZKInteger;
--(NSNumber *)ZKFloat;
--(NSNumber *)ZKDouble;
--(NSDate *)ZKDateTime;
--(NSDate *)ZKTime;
--(NSDate *)ZKDate;
--(NSData *)ZKBase64Binary;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *ZKBoolean;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDecimalNumber *ZKDecimal;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *ZKInteger;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *ZKFloat;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSNumber *ZKDouble;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *ZKDateTime;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *ZKTime;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *ZKDate;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSData *ZKBase64Binary;
 
 @end

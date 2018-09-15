@@ -26,65 +26,65 @@
 
 @implementation ZKQueryResult
 
-- (id)initWithXmlElement:(zkElement *)node {
-	self = [super init];
-	int i = 0;
-	size = [[[node childElement:@"size"] stringValue] intValue];
-	NSString * strDone = [[node childElement:@"done"] stringValue]; 
-	done = [strDone isEqualToString:@"true"];
-	if (done == NO)
-		queryLocator = [[[node childElement:@"queryLocator"] stringValue] copy];
-		
-	NSArray * nodes = [node childElements:@"records"];
-	NSMutableArray * recArray = [NSMutableArray arrayWithCapacity:[nodes count]];
-	ZKSObject * o;
-	for (i = 0; i < [nodes count]; i++)
-	{
-		zkElement * n = [nodes objectAtIndex:i];
-		NSString *xsiNil = [n attributeValue:@"nil" ns:NS_URI_XSI];
-		if (xsiNil != nil && [xsiNil isEqualToString:@"true"])
-			continue;
-		o = [[ZKSObject alloc] initWithXmlElement:n];
-		[recArray addObject:o];
-		[o release];
-	}	
-	records = [recArray retain];
-	return self;
+- (instancetype)initWithXmlElement:(zkElement *)node {
+    self = [super init];
+    int i = 0;
+    size = [node childElement:@"size"].stringValue.intValue;
+    NSString * strDone = [node childElement:@"done"].stringValue; 
+    done = [strDone isEqualToString:@"true"];
+    if (done == NO)
+        queryLocator = [[node childElement:@"queryLocator"].stringValue copy];
+        
+    NSArray * nodes = [node childElements:@"records"];
+    NSMutableArray * recArray = [NSMutableArray arrayWithCapacity:nodes.count];
+    ZKSObject * o;
+    for (i = 0; i < nodes.count; i++)
+    {
+        zkElement * n = nodes[i];
+        NSString *xsiNil = [n attributeValue:@"nil" ns:NS_URI_XSI];
+        if (xsiNil != nil && [xsiNil isEqualToString:@"true"])
+            continue;
+        o = [[ZKSObject alloc] initWithXmlElement:n];
+        [recArray addObject:o];
+        [o release];
+    }    
+    records = [recArray retain];
+    return self;
 }
 
-- (id)initWithRecords:(NSArray *)r size:(int)s done:(BOOL)d queryLocator:(NSString *)ql {
-	self = [super init];
-	records = [r retain];
-	done = d;
-	size = s;
-	queryLocator = [ql retain];
-	return self;
+- (instancetype)initWithRecords:(NSArray *)r size:(int)s done:(BOOL)d queryLocator:(NSString *)ql {
+    self = [super init];
+    records = [r retain];
+    done = d;
+    size = s;
+    queryLocator = [ql retain];
+    return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-	return [[ZKQueryResult alloc] initWithRecords:records size:size done:done queryLocator:queryLocator];
+    return [[ZKQueryResult alloc] initWithRecords:records size:size done:done queryLocator:queryLocator];
 }
 
 - (void)dealloc {
-	[queryLocator release];
-	[records release];
-	[super dealloc];
+    [queryLocator release];
+    [records release];
+    [super dealloc];
 }
 
 - (int)size {
-	return size;
+    return size;
 }
 
 - (BOOL)done {
-	return done;
+    return done;
 }
 
 - (NSString *)queryLocator {
-	return queryLocator;
+    return queryLocator;
 }
 
 - (NSArray *)records {
-	return records;
+    return records;
 }
 
 @end

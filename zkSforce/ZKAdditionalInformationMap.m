@@ -31,19 +31,19 @@
 
 @synthesize name, value;
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     return self;
 }
 
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
     self = [super init];
 	self.name = [d string:@"name"];
 	self.value = [d string:@"value"];
     return self;
 }
 
--(id)initWithXmlElement:(zkElement *)e {
+-(instancetype)initWithXmlElement:(zkElement *)e {
     ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
     return [self initWithZKXmlDeserializer:d];
 }

@@ -31,12 +31,12 @@
 
 @synthesize city, country, countryCode, geocodeAccuracy, postalCode, state, stateCode, street;
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     return self;
 }
 
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
     self = [super initWithZKXmlDeserializer:d];
 	self.city = [d string:@"city"];
 	self.country = [d string:@"country"];
@@ -49,7 +49,7 @@
     return self;
 }
 
--(id)initWithXmlElement:(zkElement *)e {
+-(instancetype)initWithXmlElement:(zkElement *)e {
     ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
     return [self initWithZKXmlDeserializer:d];
 }

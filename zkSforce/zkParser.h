@@ -27,17 +27,17 @@ FOUNDATION_EXPORT NSString *const NS_URI_XSD;
 @class ZKNamespacedName;
 
 @interface zkElement : NSObject <NSCopying> {
-	xmlDocPtr	doc;
-	xmlNodePtr	node;
-	zkElement	*parent;
+    xmlDocPtr    doc;
+    xmlNodePtr    node;
+    zkElement    *parent;
 }
 /** @return the name of this element */
-- (NSString *)name;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *name;
 /** @return the namespace URI of this element */
-- (NSString *)namespace;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *namespace;
 
 /** @return the stringValue of this element [i.e. its child text] */
-- (NSString *)stringValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringValue;
 
 /** @return the first child element with this local name */
 - (zkElement *)childElement:(NSString *)name;
@@ -52,16 +52,16 @@ FOUNDATION_EXPORT NSString *const NS_URI_XSD;
 - (NSArray *)childElements:(NSString *)name ns:(NSString *)namespace;
 
 /** @return all teh child elements */
-- (NSArray *)childElements;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *childElements;
 
 /** @return the value of the named attributed */
 - (NSString *)attributeValue:(NSString *)name ns:(NSString *)namespace;
 
 /** @return the namespace URI & localname of the xsi:type attribute if it exists, or nil otherwise */
-- (ZKNamespacedName *)xsiType;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) ZKNamespacedName *xsiType;
 
 /** @return TRUE if the element has an xsi:nil="true" attribute */
-- (BOOL)isXsiNil;
+@property (NS_NONATOMIC_IOSONLY, getter=isXsiNil, readonly) BOOL xsiNil;
 @end;
 
 @interface zkParser : NSObject {

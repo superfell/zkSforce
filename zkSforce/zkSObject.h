@@ -29,23 +29,21 @@
 /** ZKSObject represents a row of data in Salesforce [either already in salesforce, or one we're in
     the process of constructing to be sent to Salesforce */
 @interface ZKSObject : NSObject {
-	NSString 			*Id;
-	NSString 			*type;
-	NSMutableSet 		*fieldsToNull;
-	NSMutableDictionary *fields;
-	NSMutableArray		*fieldOrder;	// field names in the order they were added
+    NSString             *Id;
+    NSString             *type;
+    NSMutableSet         *fieldsToNull;
+    NSMutableDictionary *fields;
+    NSMutableArray        *fieldOrder;    // field names in the order they were added
 }
 
 + (id) withType:(NSString *)type;
 + (id) withTypeAndId:(NSString *)type sfId:(NSString *)sfId;
 + (id) fromXmlNode:(zkElement *)node;
 
-- (id) initWithXmlElement:(zkElement *)node;
-- (id) initWithType:(NSString *)type;
+- (instancetype) initWithXmlElement:(zkElement *)node NS_DESIGNATED_INITIALIZER;
+- (instancetype) initWithType:(NSString *)type NS_DESIGNATED_INITIALIZER;
 
 // setters
-- (void)setId:(NSString *)theId;
-- (void)setType:(NSString *)type;
 
 // setting a fieldValue to nil will automatically put it in the fieldsToNull collection
 // setting a fieldValue to non nil will automatically remove it from the fieldsToNull collection
@@ -55,10 +53,10 @@
 - (void)setFieldToNull:(NSString *)field;
 
 // basic getters
-- (NSString *)id;
-- (NSString *)type;
-- (NSArray *)fieldsToNull;
-- (NSDictionary *)fields;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *id;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *type;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *fieldsToNull;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDictionary *fields;
 - (id)fieldValue:(NSString *)field;
 - (BOOL)isFieldToNull:(NSString *)field;
 
@@ -74,5 +72,5 @@
 - (ZKLocation *)locationValue:(NSString *)field;
 
 // others
-- (NSArray *)orderedFieldNames;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *orderedFieldNames;
 @end

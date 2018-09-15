@@ -31,19 +31,19 @@
 
 @synthesize latitude, longitude;
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     return self;
 }
 
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
     self = [super init];
 	self.latitude = [d double:@"latitude"];
 	self.longitude = [d double:@"longitude"];
     return self;
 }
 
--(id)initWithXmlElement:(zkElement *)e {
+-(instancetype)initWithXmlElement:(zkElement *)e {
     ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
     return [self initWithZKXmlDeserializer:d];
 }

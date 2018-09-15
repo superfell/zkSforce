@@ -29,8 +29,8 @@
 }
 
 -(ZKLimitInfo *)limitInfoOfType:(NSString *)type {
-    for (ZKLimitInfo *i in [self limitInfos]) {
-        if ([[i type] isEqualToString:type])
+    for (ZKLimitInfo *i in self.limitInfos) {
+        if ([i.type isEqualToString:type])
             return i;
     }
     return nil;

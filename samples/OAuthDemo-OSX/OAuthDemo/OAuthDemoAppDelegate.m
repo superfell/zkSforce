@@ -50,9 +50,9 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 }
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-	NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSString *url = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
 
-	// Now you can parse the URL and perform whatever action is needed
+    // Now you can parse the URL and perform whatever action is needed
     
     ZKSforceClient *client = [[[ZKSforceClient alloc] init] autorelease];
     [client loginFromOAuthCallbackUrl:url oAuthConsumerKey:OAUTH_CLIENTID];
@@ -61,7 +61,7 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     // relaunch, try and intialize your client from that first, so that you can skip
     // the login step.
     
-    [controller setClient:client];
+    controller.client = client;
 }
 
 
@@ -71,13 +71,13 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 
     // in this case we're just going to get the token out of the existing client object, 
     // normally, you'd be storing this in the key chain so that is preserved across restarts.
-    ZKOAuthInfo *oauth = (ZKOAuthInfo *)[[controller client] authenticationInfo];
-    NSString *refreshToken = [oauth refreshToken];
-    NSURL *authHost = [oauth authHostUrl];
+    ZKOAuthInfo *oauth = (ZKOAuthInfo *)controller.client.authenticationInfo;
+    NSString *refreshToken = oauth.refreshToken;
+    NSURL *authHost = oauth.authHostUrl;
     
     ZKSforceClient *c = [[[ZKSforceClient alloc] init] autorelease];
     [c loginWithRefreshToken:refreshToken authUrl:authHost oAuthConsumerKey:OAUTH_CLIENTID];
-    [controller setClient:c];
+    controller.client = c;
 }
 
 

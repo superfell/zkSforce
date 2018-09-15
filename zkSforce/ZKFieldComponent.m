@@ -30,7 +30,7 @@
 @implementation ZKFieldComponent
 
 -(ZKDescribeField *)field {
-    return [[self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]] lastObject];
+    return [self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]].lastObject;
 }
 			
 @end

@@ -35,33 +35,33 @@
 @synthesize username, password, client, loginInProgress, result, apiLimitInfo;
 
 -(void)dealloc {
-	[username release];
-	[password release];
-	[client release];
-	[result release];
+    [username release];
+    [password release];
+    [client release];
+    [result release];
     [apiLimitInfo release];
-	[super dealloc];
+    [super dealloc];
 }
 
 // Helper function to show an error dialog/sheet from a soap exception
 -(void)showError:(NSException *)ex {
     NSString *txt = [ex isKindOfClass:[ZKSoapException class]] ? [(ZKSoapException *)ex faultCode] : @"Error";
-	NSAlert *a = [NSAlert	alertWithMessageText:txt
-							defaultButton:@"Close" 
-							alternateButton:nil 
-							otherButton:nil 
-							informativeTextWithFormat:@"%@", [ex reason]];
-	[a	beginSheetModalForWindow:window 
-		modalDelegate:nil 
-		didEndSelector:nil 
-		contextInfo:nil];
+    NSAlert *a = [NSAlert    alertWithMessageText:txt
+                            defaultButton:@"Close" 
+                            alternateButton:nil 
+                            otherButton:nil 
+                            informativeTextWithFormat:@"%@", ex.reason];
+    [a    beginSheetModalForWindow:window 
+        modalDelegate:nil 
+        didEndSelector:nil 
+        contextInfo:nil];
 }
 
 -(void)updateApiLimitInfo {
-    ZKLimitInfoHeader *h = [client lastLimitInfoHeader];
+    ZKLimitInfoHeader *h = client.lastLimitInfoHeader;
     ZKLimitInfo *i = [h limitInfoOfType:@"API REQUESTS"];
     if (i != nil)
-        self.apiLimitInfo = [i description];
+        self.apiLimitInfo = i.description;
 }
 
 // run the query on a background thread, and when we get the results, update the UI (from the main thread)
@@ -69,34 +69,34 @@
     NSString *query = @"select id, name from account order by SystemModStamp desc limit 20";
     [client performQuery:query 
             failBlock:^(NSException *ex) {
-				[self setLoginInProgress:NO];
-				[self showError:ex];
+                [self setLoginInProgress:NO];
+                [self showError:ex];
             } 
             completeBlock:^(ZKQueryResult *qr) {
-				[self setResult:qr];
-				[table setDataSource:qr];
-				[table reloadData];
-				[self setLoginInProgress:NO];
+                self.result = qr;
+                table.dataSource = qr;
+                [table reloadData];
+                [self setLoginInProgress:NO];
             }];
 }
 
 // Called when the user clicks the Login button, we call login, and if successful, we run the query to populate the table.
 -(IBAction)performLogin:(id)sender {
-	// zkSforceClient makes synchronous HTTP calls, you dont' really want to
-	// do them on the main UI thread, so we use blocks to have the login
-	// request happen on another thread, then switch back to the UI
-	// thread at the end to update the UI state.
-	[self setLoginInProgress:YES];
+    // zkSforceClient makes synchronous HTTP calls, you dont' really want to
+    // do them on the main UI thread, so we use blocks to have the login
+    // request happen on another thread, then switch back to the UI
+    // thread at the end to update the UI state.
+    [self setLoginInProgress:YES];
     // you can either do the blocks stuff yourself and use the methods in SforceClient / SforceClient(Operations)
     // or there's a blocks vesion available in SforceClient(zkAsyncQuery) that you can use.
     ZKSforceClient *theClient = [[[ZKSforceClient alloc] init] autorelease];
-    [theClient setDelegate:self];
+    theClient.delegate = self;
     [theClient performLogin:username password:password failBlock:^(NSException *res) {
         [self setLoginInProgress:NO];
         [self showError:res];
     } completeBlock:^(ZKLoginResult *result) {
         [self willChangeValueForKey:@"isLoggedIn"];
-        [self setClient:theClient];
+        self.client = theClient;
         [self didChangeValueForKey:@"isLoggedIn"];
         [self runQuery:self];
     }];
@@ -110,7 +110,7 @@
                          defaultButton:@"Close"
                        alternateButton:nil
                            otherButton:nil
-             informativeTextWithFormat:@"Server Time : %@", [str timestamp]] runModal];
+             informativeTextWithFormat:@"Server Time : %@", str.timestamp] runModal];
     }];
 }
 

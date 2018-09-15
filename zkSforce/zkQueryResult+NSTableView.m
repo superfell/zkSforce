@@ -28,20 +28,20 @@
 @implementation ZKQueryResult (NSTableViewAdditions)
 
 - (NSUInteger)numberOfRowsInTableView:(NSTableView *)v {
-	return [records count];
+    return records.count;
 }
 
 - (id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(int)rowIdx {
-	NSArray *path = [[tc identifier] componentsSeparatedByString:@"."];
-	NSObject *val = [records objectAtIndex:rowIdx];
-	for (NSString *step in path) {
+    NSArray *path = [tc.identifier componentsSeparatedByString:@"."];
+    NSObject *val = records[rowIdx];
+    for (NSString *step in path) {
         if ([val isKindOfClass:[ZKSObject class]]) {
             val = [(ZKSObject *)val fieldValue:step];
         } else {
             val = [val valueForKey:step];
         }
     }
-	return val;
+    return val;
 }
 
 @end

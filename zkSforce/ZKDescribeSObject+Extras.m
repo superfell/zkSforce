@@ -25,22 +25,22 @@
 @implementation ZKDescribeSObject (Extras)
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"SObject %@ (%@)", [self name], [self label]];
+    return [NSString stringWithFormat:@"SObject %@ (%@)", self.name, self.label];
 }
 
 -(void)makeFieldMap {
-	if (fieldsByName == nil) {
-		NSMutableDictionary *byName = [NSMutableDictionary dictionary];
-        for (ZKDescribeField *f in [self fields])
-            [byName setObject:f forKey:[[f name] lowercaseString]];
-		fieldsByName = [byName retain];
-	}
+    if (fieldsByName == nil) {
+        NSMutableDictionary *byName = [NSMutableDictionary dictionary];
+        for (ZKDescribeField *f in self.fields)
+            byName[f.name.lowercaseString] = f;
+        fieldsByName = [byName retain];
+    }
 }
 
 -(ZKDescribeField *)fieldWithName:(NSString *)name {
-	if (fieldsByName == nil)
-		[self makeFieldMap];
-	return [fieldsByName objectForKey:[name lowercaseString]];
+    if (fieldsByName == nil)
+        [self makeFieldMap];
+    return fieldsByName[name.lowercaseString];
 }
 
 @end

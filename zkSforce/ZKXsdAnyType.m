@@ -25,15 +25,15 @@
 
 @interface ZKXsdAnyType()
 
--(NSObject *)decodeValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSObject *decodeValue;
 
 @end
 
 @implementation ZKXsdAnyType
 
-- (id)initWithXmlElement:(zkElement *)e {
+- (instancetype)initWithXmlElement:(zkElement *)e {
     self = [super initWithXmlElement:e];
-    xsiType = [[node xsiType] retain];
+    xsiType = [node.xsiType retain];
     return self;
 }
 
@@ -45,7 +45,7 @@
 
 -(id)value {
     if (val == nil) {
-        val = [[self decodeValue] retain];
+        val = [self.decodeValue retain];
     }
     return val == [NSNull null] ? nil : val;
 }
@@ -59,11 +59,11 @@
 }
 
 -(NSObject *)decodeValue {
-    if ([node isXsiNil]) {
+    if (node.xsiNil) {
         return [NSNull null];
     }
-    if ([xsiType.namespaceURI length] == 0) {
-        return [node stringValue];
+    if ((xsiType.namespaceURI).length == 0) {
+        return node.stringValue;
     }
     if ([xsiType.namespaceURI isEqualToString:NS_URI_XSD]) {
         SEL standardType = NSSelectorFromString(xsiType.localname);
@@ -71,7 +71,7 @@
             return [self performSelector:standardType withObject:nil];
         } else {
             NSLog(@"xsd:anyType found element with standard type %@ with no deserializer registered, returning NSString*", xsiType.localname);
-            return [node stringValue];
+            return node.stringValue;
         }
     }
     Class complexType = [self complexTypeClassForType:xsiType baseClass:[NSObject class]];
@@ -84,45 +84,45 @@
 }
 
 -(NSString *)string {
-    return [node stringValue];
+    return node.stringValue;
 }
 
 -(NSNumber *)boolean {
-    return [[node stringValue] ZKBoolean];
+    return node.stringValue.ZKBoolean;
 }
 
 -(NSDecimalNumber *)decimal {
-    return [[node stringValue] ZKDecimal];
+    return node.stringValue.ZKDecimal;
 }
 
 -(NSNumber *)integer {
-    return [[node stringValue] ZKInteger];
+    return node.stringValue.ZKInteger;
 }
 
 -(NSNumber *)float {
-    return [[node stringValue] ZKFloat];
+    return node.stringValue.ZKFloat;
 }
 
 -(NSNumber *)double {
-    return [[node stringValue] ZKDouble];
+    return node.stringValue.ZKDouble;
 }
 
 // TODO duration
 
 -(NSDate *)dateTime {
-    return [[node stringValue] ZKDateTime];
+    return node.stringValue.ZKDateTime;
 }
 
 -(NSDate *)time {
-    return [[node stringValue] ZKTime];
+    return node.stringValue.ZKTime;
 }
 
 -(NSDate *)date {
-    return [[node stringValue] ZKDate];
+    return node.stringValue.ZKDate;
 }
 
 -(NSData *)base64Binary {
-    return [[node stringValue] ZKBase64Binary];
+    return node.stringValue.ZKBase64Binary;
 }
 
 

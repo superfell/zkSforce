@@ -148,7 +148,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testAddElementArray {
-    NSArray *vals = [NSArray arrayWithObjects:@"one", @"two", nil];
+    NSArray *vals = @[@"one", @"two"];
     [env addElementArray:@"bob" elemValue:vals];
     XCTAssertEqualObjects([self envWith:@"<bob>one</bob><bob>two</bob>"], [env end]);
     [self makeEnv];
@@ -212,7 +212,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testToString {
-    [env addElement:@"bob" elemValue:[NSNumber numberWithInt:42]];
+    [env addElement:@"bob" elemValue:@42];
     XCTAssertEqualObjects([self envWith:@"<bob>42</bob>"], [env end]);
 }
 

@@ -30,7 +30,7 @@
 @implementation ZKDuplicateError
 
 -(ZKDuplicateResult *)duplicateResult {
-    return [[self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]] lastObject];
+    return [self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]].lastObject;
 }
 			
 @end

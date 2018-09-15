@@ -36,7 +36,7 @@
 @implementation ZKDescribeLayout
 
 -(ZKDescribeLayoutButtonSection *)buttonLayoutSection {
-    return [[self complexTypeArrayFromElements:@"buttonLayoutSection" cls:[ZKDescribeLayoutButtonSection class]] lastObject];
+    return [self complexTypeArrayFromElements:@"buttonLayoutSection" cls:[ZKDescribeLayoutButtonSection class]].lastObject;
 }
 			
 -(NSArray *)detailLayoutSections {
@@ -48,11 +48,11 @@
 }
 			
 -(ZKDescribeLayoutFeedView *)feedView {
-    return [[self complexTypeArrayFromElements:@"feedView" cls:[ZKDescribeLayoutFeedView class]] lastObject];
+    return [self complexTypeArrayFromElements:@"feedView" cls:[ZKDescribeLayoutFeedView class]].lastObject;
 }
 			
 -(ZKDescribeLayoutSection *)highlightsPanelLayoutSection {
-    return [[self complexTypeArrayFromElements:@"highlightsPanelLayoutSection" cls:[ZKDescribeLayoutSection class]] lastObject];
+    return [self complexTypeArrayFromElements:@"highlightsPanelLayoutSection" cls:[ZKDescribeLayoutSection class]].lastObject;
 }
 			
 -(NSString *)id {
@@ -60,11 +60,11 @@
 }
 			
 -(ZKDescribeQuickActionListResult *)quickActionList {
-    return [[self complexTypeArrayFromElements:@"quickActionList" cls:[ZKDescribeQuickActionListResult class]] lastObject];
+    return [self complexTypeArrayFromElements:@"quickActionList" cls:[ZKDescribeQuickActionListResult class]].lastObject;
 }
 			
 -(ZKRelatedContent *)relatedContent {
-    return [[self complexTypeArrayFromElements:@"relatedContent" cls:[ZKRelatedContent class]] lastObject];
+    return [self complexTypeArrayFromElements:@"relatedContent" cls:[ZKRelatedContent class]].lastObject;
 }
 			
 -(NSArray *)relatedLists {

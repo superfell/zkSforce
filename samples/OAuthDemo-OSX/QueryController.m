@@ -32,19 +32,19 @@
 }
 
 -(BOOL)canQuery {
-    return [client loggedIn];
+    return client.loggedIn;
 }
 
 -(IBAction)runQuery:(id)sender {
     ZKQueryResult *qr = [client query:@"select id,name from account limit 25"];
     self.results = qr;
-    [table setDataSource:qr];
+    table.dataSource = qr;
     [table reloadData];
 }
 
 -(IBAction)refreshSid:(id)sender {
     // normally you wouldn't need to do this, but its handy to see how it works.
-    [[client authenticationInfo] refresh];
+    [client.authenticationInfo refresh];
 }
 
 

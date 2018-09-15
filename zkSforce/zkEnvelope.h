@@ -23,8 +23,8 @@
 #import "zkSObject.h"
 
 @interface ZKEnvelope : NSObject {
-	NSMutableString 	*env;
-	int					state;
+    NSMutableString     *env;
+    int                    state;
 }
 
 - (void)start:(NSString *)primaryNamespceUri;
@@ -45,7 +45,7 @@
 - (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
 - (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue;
 
-- (NSString *)end;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *end;
 
 - (void) addElementArray:(NSString *)elemName   elemValue:(NSArray *)elemValues;
 - (void) addElementSObject:(NSString *)elemName elemValue:(ZKSObject *)sobject;

@@ -26,13 +26,13 @@
 
 -(void)testToBase64 {
     NSData *d = [@"bob!" dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *enc = [d ZKBase64Encode];
+    NSString *enc = d.ZKBase64Encode;
     XCTAssertEqualObjects(@"Ym9iIQ==", enc);
 }
 
 -(void)testFromBase64 {
     NSString *enc = @"Ym9iIQ==";
-    NSData *d = [enc ZKBase64Decode];
+    NSData *d = enc.ZKBase64Decode;
     NSString *ds = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
     XCTAssertEqualObjects(@"bob!", ds);
 }

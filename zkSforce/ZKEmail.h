@@ -50,9 +50,9 @@
 	NSString  *subject;
 	BOOL       useSignature;
 }
--(id)init;
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
--(id)initWithXmlElement:(zkElement *)e;
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithXmlElement:(zkElement *)e;
 
 @property (assign) BOOL       bccSender; 
 @property (retain) NSString  *emailPriority; 

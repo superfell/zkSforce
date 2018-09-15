@@ -27,7 +27,7 @@
 -(void)setUp {
     [super setUp];
     cal = [[NSCalendar alloc] initWithCalendarIdentifier:(NSString *)kCFGregorianCalendar];
-    [cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    cal.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 }
 
 -(void)tearDown {

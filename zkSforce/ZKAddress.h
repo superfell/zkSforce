@@ -56,9 +56,9 @@
 	NSString  *stateCode;
 	NSString  *street;
 }
--(id)init;
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
--(id)initWithXmlElement:(zkElement *)e;
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithXmlElement:(zkElement *)e;
 
 @property (retain) NSString  *city; 
 @property (retain) NSString  *country; 

@@ -27,10 +27,11 @@
 @class ZKXsdAnyType;
 
 @interface ZKXmlDeserializer : NSObject<NSCopying> {
-	zkElement *node;
-	NSMutableDictionary *values;
+    zkElement *node;
+    NSMutableDictionary *values;
 }
-- (id)initWithXmlElement:(zkElement *)e;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithXmlElement:(zkElement *)e NS_DESIGNATED_INITIALIZER;
 
 - (NSString *)string:(NSString *)elem;
 - (BOOL)boolean:(NSString *)elem;

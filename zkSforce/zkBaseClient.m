@@ -32,9 +32,9 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 @synthesize endpointUrl, delegate;
 
 - (void)dealloc {
-	[endpointUrl release];
+    [endpointUrl release];
     [responseHeaders release];
-	[super dealloc];
+    [super dealloc];
 }
 
 - (zkElement *)lastResponseSoapHeaders {
@@ -47,12 +47,12 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 }
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
-	return [self sendRequest:payload name:name returnRoot:NO];
+    return [self sendRequest:payload name:name returnRoot:NO];
 }
 
 -(void)logInvalidResponse:(NSHTTPURLResponse *)resp payload:(NSData *)data note:(NSString *)note {
     NSString *payload = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, [[resp URL] absoluteString], (int)[resp statusCode], payload);
+    NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, resp.URL.absoluteString, (int)resp.statusCode, payload);
 }
 
 NSTimeInterval intervalFrom(uint64_t *start) {
@@ -73,21 +73,21 @@ NSTimeInterval intervalFrom(uint64_t *start) {
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)returnRoot {
     uint64_t start = mach_absolute_time();
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endpointUrl];
-	[request setHTTPMethod:@"POST"];
-	[request addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"content-type"];	
-	[request addValue:@"\"\"" forHTTPHeaderField:@"SOAPAction"];
-    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:endpointUrl];
+    request.HTTPMethod = @"POST";
+    [request addValue:@"text/xml; charset=UTF-8" forHTTPHeaderField:@"content-type"];    
+    [request addValue:@"\"\"" forHTTPHeaderField:@"SOAPAction"];
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     [request setHTTPShouldHandleCookies:NO];
 
-	NSData *data = [payload dataUsingEncoding:NSUTF8StringEncoding];
-	[request setHTTPBody:data];
-	
-	NSHTTPURLResponse *resp = nil;
-	NSError *err = nil;
-	// todo, support request compression
-	// todo, support response compression
-	NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
+    NSData *data = [payload dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPBody = data;
+    
+    NSHTTPURLResponse *resp = nil;
+    NSError *err = nil;
+    // todo, support request compression
+    // todo, support response compression
+    NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
     @try {
         if (err) {
             NSLog(@"Got error sending API request %@ : %@", request, err);
@@ -99,30 +99,30 @@ NSTimeInterval intervalFrom(uint64_t *start) {
             [self logInvalidResponse:resp payload:respPayload note:@"Unable to parse XML"];
             @throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
         }
-        if (![[root name] isEqualToString:@"Envelope"]) {
-            [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", [root name]]];
-            @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", [root name]] userInfo:nil];
+        if (![root.name isEqualToString:@"Envelope"]) {
+            [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", root.name]];
+            @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", root.name] userInfo:nil];
         }
-        if (![[root namespace] isEqualToString:SOAP_NS]) {
-            [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", [root namespace], SOAP_NS]];
-            @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, [root namespace]] userInfo:nil];
+        if (![root.namespace isEqualToString:SOAP_NS]) {
+            [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", root.namespace, SOAP_NS]];
+            @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, root.namespace] userInfo:nil];
         }
         zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
         [self setLastResponseSoapHeaders:header];
         [self handleResponseSoapHeaders:header];
         
         zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
-        if (500 == [resp statusCode]) {
+        if (500 == resp.statusCode) {
             zkElement *fault = [body childElement:@"Fault" ns:SOAP_NS];
             if (fault == nil)
                 @throw [NSException exceptionWithName:@"Xml error" reason:@"Fault status code returned, but unable to find soap:Fault element" userInfo:nil];
-            NSString *fc = [[fault childElement:@"faultcode"] stringValue];
-            NSString *fm = [[fault childElement:@"faultstring"] stringValue];
+            NSString *fc = [fault childElement:@"faultcode"].stringValue;
+            NSString *fm = [fault childElement:@"faultstring"].stringValue;
             @throw [ZKSoapException exceptionWithFaultCode:fc faultString:fm];
         }
         if (delegate != nil)
             [delegate client:self sentRequest:payload named:callName to:endpointUrl withResponse:root in:intervalFrom(&start)];
-        return returnRoot ? root : [[body childElements] objectAtIndex:0];
+        return returnRoot ? root : body.childElements[0];
 
     } @catch (NSException *ex) {
         if (delegate != nil)

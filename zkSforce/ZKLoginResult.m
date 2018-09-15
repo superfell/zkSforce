@@ -54,7 +54,7 @@
 }
 			
 -(ZKUserInfo *)userInfo {
-    return [[self complexTypeArrayFromElements:@"userInfo" cls:[ZKUserInfo class]] lastObject];
+    return [self complexTypeArrayFromElements:@"userInfo" cls:[ZKUserInfo class]].lastObject;
 }
 			
 @end

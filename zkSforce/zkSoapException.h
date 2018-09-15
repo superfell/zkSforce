@@ -21,12 +21,11 @@
 
 
 @interface ZKSoapException : NSException {
-	NSString * faultCode;
+    NSString * faultCode;
 }
 
-+ (id) exceptionWithFaultCode:(NSString *)fc faultString:(NSString *)fs;
++ (instancetype) exceptionWithFaultCode:(NSString *)fc faultString:(NSString *)fs;
 
-- (NSString *)faultCode;
-- (void)setFaultCode:(NSString *)faultCode;
+@property (NS_NONATOMIC_IOSONLY, copy) NSString *faultCode;
 
 @end
