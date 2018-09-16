@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Simon Fell
+// Copyright (c) 2016,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -24,9 +24,7 @@
 #import "ZKSimpleTypes.h"
 
 @interface ZKXsdAnyType()
-
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSObject *decodeValue;
-
+-(NSObject *)decodeValue;
 @end
 
 @implementation ZKXsdAnyType
@@ -37,7 +35,7 @@
     return self;
 }
 
--(id)value {
+-(NSObject *)value {
     if (val == nil) {
         val = self.decodeValue;
     }
@@ -60,9 +58,27 @@
         return node.stringValue;
     }
     if ([xsiType.namespaceURI isEqualToString:NS_URI_XSD]) {
-        SEL standardType = NSSelectorFromString(xsiType.localname);
-        if ([self respondsToSelector:standardType]) {
-            return [self performSelector:standardType withObject:nil];
+        NSString *ln = xsiType.localname;
+        if ([ln isEqualToString:@"string"]) {
+            return node.stringValue;
+        } else if ([ln isEqualToString:@"boolean"]) {
+            return node.stringValue.ZKBoolean;
+        } else if ([ln isEqualToString:@"decimal"]) {
+            return node.stringValue.ZKDecimal;
+        } else if ([ln isEqualToString:@"integer"]) {
+            return node.stringValue.ZKInteger;
+        } else if ([ln isEqualToString:@"float"]) {
+            return node.stringValue.ZKFloat;
+        } else if ([ln isEqualToString:@"double"]) {
+            return node.stringValue.ZKDouble;
+        } else if ([ln isEqualToString:@"dateTime"]) {
+            return node.stringValue.ZKDateTime;
+        } else if ([ln isEqualToString:@"time"]) {
+            return node.stringValue.ZKTime;
+        } else if ([ln isEqualToString:@"date"]) {
+            return node.stringValue.ZKDate;
+        } else if ([ln isEqualToString:@"base64Binary"]) {
+            return node.stringValue.ZKBase64Binary;
         } else {
             NSLog(@"xsd:anyType found element with standard type %@ with no deserializer registered, returning NSString*", xsiType.localname);
             return node.stringValue;
@@ -76,48 +92,5 @@
     }
     return [complexTypeInst initWithXmlElement:node];
 }
-
--(NSString *)string {
-    return node.stringValue;
-}
-
--(NSNumber *)boolean {
-    return node.stringValue.ZKBoolean;
-}
-
--(NSDecimalNumber *)decimal {
-    return node.stringValue.ZKDecimal;
-}
-
--(NSNumber *)integer {
-    return node.stringValue.ZKInteger;
-}
-
--(NSNumber *)float {
-    return node.stringValue.ZKFloat;
-}
-
--(NSNumber *)double {
-    return node.stringValue.ZKDouble;
-}
-
-// TODO duration
-
--(NSDate *)dateTime {
-    return node.stringValue.ZKDateTime;
-}
-
--(NSDate *)time {
-    return node.stringValue.ZKTime;
-}
-
--(NSDate *)date {
-    return node.stringValue.ZKDate;
-}
-
--(NSData *)base64Binary {
-    return node.stringValue.ZKBase64Binary;
-}
-
 
 @end
