@@ -28,6 +28,8 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 
 @implementation OAuthDemoAppDelegate
 
+@synthesize controller;
+
 -(IBAction)startLogin:(id)sender {
     // build the URL to the oauth page with our client_id & callback URL set.
     NSString *login = [NSString stringWithFormat:@"https://login.salesforce.com/services/oauth2/authorize?response_type=token&client_id=%@&redirect_uri=%@",
@@ -54,7 +56,7 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 
     // Now you can parse the URL and perform whatever action is needed
     
-    ZKSforceClient *client = [[[ZKSforceClient alloc] init] autorelease];
+    ZKSforceClient *client = [[ZKSforceClient alloc] init];
     [client loginFromOAuthCallbackUrl:url oAuthConsumerKey:OAUTH_CLIENTID];
 
     // in a real app, you'd save the refresh_token & auth host to the keychain, and on
@@ -75,7 +77,7 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     NSString *refreshToken = oauth.refreshToken;
     NSURL *authHost = oauth.authHostUrl;
     
-    ZKSforceClient *c = [[[ZKSforceClient alloc] init] autorelease];
+    ZKSforceClient *c = [[ZKSforceClient alloc] init];
     [c loginWithRefreshToken:refreshToken authUrl:authHost oAuthConsumerKey:OAUTH_CLIENTID];
     controller.client = c;
 }

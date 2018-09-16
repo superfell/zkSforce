@@ -153,7 +153,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 
 -(void)refresh {
-    self.login;
+    [self login];
 }
 
 -(ZKPartnerEnvelope *)newEnvelope {

@@ -32,9 +32,9 @@
     NSString            *lastSid;
 }
 
-@property (nonatomic, retain) ZKSforceClient *client;
+@property (nonatomic, strong) ZKSforceClient *client;
 @property (readonly) BOOL canQuery;
-@property (retain) ZKQueryResult *results;
+@property (strong) ZKQueryResult *results;
 
 -(IBAction)runQuery:(id)sender;
 -(IBAction)refreshSid:(id)sender;
