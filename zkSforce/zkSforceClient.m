@@ -150,7 +150,12 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
-    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:self.clientId delegate:delegate];
+    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un
+                                                  password:pwd
+                                                  authHost:[NSURL URLWithString:authEndpointUrl]
+                                                apiVersion:preferedApiVersion
+                                                  clientId:self.clientId
+                                                  delegate:delegate];
     return [self soapLogin:auth];
 }
 

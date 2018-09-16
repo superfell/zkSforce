@@ -38,13 +38,13 @@
 @end
 
 // base class with common auth code in.
-@interface ZKAuthInfoBase : NSObject <ZKAuthenticationInfo> {
+@interface ZKAuthInfoBase : NSObject {
 }
 
 @end
 
 // Impl of ZKAuthenticationInfo that uses an OAuth2 refresh token to generate new session Ids.
-@interface ZKOAuthInfo : ZKAuthInfoBase {
+@interface ZKOAuthInfo : ZKAuthInfoBase<ZKAuthenticationInfo> {
 }
 
 +(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid;
@@ -61,7 +61,7 @@
 
 
 // Impl of ZKAuthenticationInfo that uses Soap Login calls to generate new session Ids.
-@interface ZKSoapLogin : ZKAuthInfoBase {
+@interface ZKSoapLogin : ZKAuthInfoBase<ZKAuthenticationInfo> {
 }
 
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate;
