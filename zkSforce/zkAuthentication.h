@@ -27,33 +27,31 @@
 
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *sessionId;     // return an API Session ID.
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
--(void)refresh;             // force the sessionId to be refreshed.
-@property (NS_NONATOMIC_IOSONLY, readonly) BOOL refreshIfNeeded;     // refresh the sesion if its needed. (this gets called before every soap call)
-                            // return true if the session was refreshed.
+
+// force the sessionId to be refreshed.
+-(void)refresh;
+
+// refresh the sesion if its needed. (this gets called before every soap call)
+// returns true if the session was refreshed.
+-(BOOL)refreshIfNeeded;
 
 @end
 
 // base class with common auth code in.
 @interface ZKAuthInfoBase : NSObject <ZKAuthenticationInfo> {
-    NSURL  *instanceUrl;
-    NSDate *sessionExpiresAt;
-    NSString *sessionId;
-    NSString *clientId;
 }
 
 @end
 
 // Impl of ZKAuthenticationInfo that uses an OAuth2 refresh token to generate new session Ids.
 @interface ZKOAuthInfo : ZKAuthInfoBase {
-    NSString *refreshToken;
-    NSURL *authUrl;
-    int apiVersion;
 }
 
 +(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid;
 +(instancetype)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth clientId:(NSString *)cid;
 +(instancetype)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid;
 
+-(instancetype)init NS_UNAVAILABLE;
 -(instancetype)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)authUrl sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid NS_DESIGNATED_INITIALIZER;
 
 @property (assign) int apiVersion;
@@ -64,19 +62,17 @@
 
 // Impl of ZKAuthenticationInfo that uses Soap Login calls to generate new session Ids.
 @interface ZKSoapLogin : ZKAuthInfoBase {
-    NSString *username, *password;
-    ZKBaseClient *client;
 }
 
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate;
 
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) ZKLoginResult *login;
+-(ZKLoginResult *)login;
 
 @end
 
+
 // Impl of ZKAuthenticatioNInfo that uses Soap Login calls setup for portal users to generate new session Ids.
 @interface ZKSoapPortalLogin : ZKSoapLogin {
-    NSString *orgId, *portalId;
 }
 
 +(instancetype)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate orgId:(NSString *)orgId portalId:(NSString *)portalId;
