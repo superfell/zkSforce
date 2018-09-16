@@ -66,8 +66,8 @@
             } 
             completeBlock:^(ZKQueryResult *qr) {
                 self.result = qr;
-                table.dataSource = qr;
-                [table reloadData];
+                self->table.dataSource = qr;
+                [self->table reloadData];
                 [self setLoginInProgress:NO];
             }];
 }

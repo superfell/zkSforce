@@ -66,8 +66,8 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
     for (NSString *param in [params componentsSeparatedByString:@"&"]) {
         NSArray *paramParts = [param componentsSeparatedByString:@"="];
-        NSString *name = [paramParts[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *val = paramParts.count == 1 ? @"" : [paramParts[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *name = [paramParts[0] stringByRemovingPercentEncoding];
+        NSString *val = paramParts.count == 1 ? @"" : [paramParts[1] stringByRemovingPercentEncoding];
         results[name] = val;
     }
     if (results[@"error"] != nil)
@@ -118,8 +118,8 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:token];
     req.HTTPMethod = @"POST";
     NSString *params = [NSString stringWithFormat:@"grant_type=refresh_token&refresh_token=%@&client_id=%@&format=urlencoded",
-                      [self.refreshToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                      [self.clientId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                      [self.refreshToken stringByRemovingPercentEncoding],
+                      [self.clientId stringByRemovingPercentEncoding]];
     req.HTTPBody = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req addValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
 
