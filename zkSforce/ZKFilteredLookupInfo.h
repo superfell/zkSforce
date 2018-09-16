@@ -37,7 +37,7 @@
 */
 @interface ZKFilteredLookupInfo : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *controllingFields;  // of NSString
-@property (readonly) BOOL      dependent; 
-@property (readonly) BOOL      optionalFilter; 
+@property (weak, readonly) NSArray  *controllingFields;  // of NSString
+@property (readonly) BOOL            dependent; 
+@property (readonly) BOOL            optionalFilter; 
 @end

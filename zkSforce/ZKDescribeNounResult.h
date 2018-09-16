@@ -40,10 +40,10 @@
 */
 @interface ZKDescribeNounResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *caseValues;  // of ZKNameCaseValue
-@property (readonly) NSString  *developerName; 
-@property (readonly) NSString  *gender; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *pluralAlias; 
-@property (readonly) NSString  *startsWith; 
+@property (weak, readonly) NSArray   *caseValues;  // of ZKNameCaseValue
+@property (weak, readonly) NSString  *developerName; 
+@property (weak, readonly) NSString  *gender; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *pluralAlias; 
+@property (weak, readonly) NSString  *startsWith; 
 @end

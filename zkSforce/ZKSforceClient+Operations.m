@@ -91,7 +91,7 @@
 -(NSArray *)describeSObjects:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -100,7 +100,7 @@
 	[env addElementArray:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSObjects"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
 }
 
@@ -108,7 +108,7 @@
 -(NSArray *)describeDataCategoryGroups:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -117,7 +117,7 @@
 	[env addElementArray:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeDataCategoryGroups"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
 }
 
@@ -125,7 +125,7 @@
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -135,7 +135,7 @@
 	[env addBoolElement:@"topCategoriesOnly" elemValue:topCategoriesOnly];
 	[env endElement:@"describeDataCategoryGroupStructures"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
 }
 
@@ -143,7 +143,7 @@
 -(NSArray *)describeDataCategoryMappings {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -151,7 +151,7 @@
 	[env startElement:@"describeDataCategoryMappings"];
 	[env endElement:@"describeDataCategoryMappings"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryMappingResult class]];
 }
 
@@ -159,7 +159,7 @@
 -(ZKKnowledgeSettings *)describeKnowledgeSettings {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -167,7 +167,7 @@
 	[env startElement:@"describeKnowledgeSettings"];
 	[env endElement:@"describeKnowledgeSettings"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKKnowledgeSettings class]].lastObject;
 }
 
@@ -175,7 +175,7 @@
 -(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -184,7 +184,7 @@
 	[env addElement:@"networkId"   elemValue:networkId   nillable:YES optional:NO];
 	[env endElement:@"describeAppMenu"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAppMenuResult class]].lastObject;
 }
 
@@ -192,14 +192,14 @@
 -(ZKDescribeGlobalTheme *)describeGlobalTheme {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeGlobalTheme"];
 	[env endElement:@"describeGlobalTheme"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]].lastObject;
 }
 
@@ -207,7 +207,7 @@
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -215,7 +215,7 @@
 	[env addElementArray:@"sobjectType" elemValue:sobjectType];
 	[env endElement:@"describeTheme"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]].lastObject;
 }
 
@@ -223,7 +223,7 @@
 -(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -233,7 +233,7 @@
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeLayout"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]].lastObject;
 }
 
@@ -241,14 +241,14 @@
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeSoftphoneLayout"];
 	[env endElement:@"describeSoftphoneLayout"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]].lastObject;
 }
 
@@ -256,7 +256,7 @@
 -(NSArray *)describeSearchLayouts:(NSArray *)sObjectType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -264,7 +264,7 @@
 	[env addElementArray:@"sObjectType" elemValue:sObjectType];
 	[env endElement:@"describeSearchLayouts"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
 }
 
@@ -272,7 +272,7 @@
 -(NSArray *)describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -280,7 +280,7 @@
 	[env addBoolElement:@"includeOnlyEntitiesWithTabs" elemValue:includeOnlyEntitiesWithTabs];
 	[env endElement:@"describeSearchableEntities"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchableEntityResult class]];
 }
 
@@ -288,14 +288,14 @@
 -(NSArray *)describeSearchScopeOrder {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeSearchScopeOrder"];
 	[env endElement:@"describeSearchScopeOrder"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
 }
 
@@ -303,7 +303,7 @@
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -312,7 +312,7 @@
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describeCompactLayouts"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]].lastObject;
 }
 
@@ -320,7 +320,7 @@
 -(ZKDescribePathAssistantsResult *)describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -330,7 +330,7 @@
 	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
 	[env endElement:@"describePathAssistants"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribePathAssistantsResult class]].lastObject;
 }
 
@@ -338,7 +338,7 @@
 -(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -347,7 +347,7 @@
 	[env addElementArray:@"approvalProcessNames" elemValue:approvalProcessNames];
 	[env endElement:@"describeApprovalLayout"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeApprovalLayoutResult class]].lastObject;
 }
 
@@ -355,7 +355,7 @@
 -(ZKDescribeSoqlListViewResult *)describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -363,7 +363,7 @@
 	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
 	[env endElement:@"describeSoqlListViews"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]].lastObject;
 }
 
@@ -371,7 +371,7 @@
 -(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addMruHeader:env];
 	[env moveToBody];
@@ -379,7 +379,7 @@
 	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
 	[env endElement:@"executeListView"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKExecuteListViewResult class]].lastObject;
 }
 
@@ -387,7 +387,7 @@
 -(ZKDescribeSoqlListViewResult *)describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -399,7 +399,7 @@
 	[env addIntElement:@"offset"        elemValue:offset];
 	[env endElement:@"describeSObjectListViews"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]].lastObject;
 }
 
@@ -407,14 +407,14 @@
 -(NSArray *)describeTabs {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeTabs"];
 	[env endElement:@"describeTabs"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
 }
 
@@ -422,14 +422,14 @@
 -(NSArray *)describeAllTabs {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeAllTabs"];
 	[env endElement:@"describeAllTabs"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTab class]];
 }
 
@@ -437,7 +437,7 @@
 -(NSArray *)describePrimaryCompactLayouts:(NSArray *)sObjectTypes {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -445,7 +445,7 @@
 	[env addElementArray:@"sObjectTypes" elemValue:sObjectTypes];
 	[env endElement:@"describePrimaryCompactLayouts"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayout class]];
 }
 
@@ -453,7 +453,7 @@
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addAssignmentRuleHeader:env];
 	[self addMruHeader:env];
@@ -473,7 +473,7 @@
 	[env addElementArray:@"sObjects"       elemValue:sObjects];
 	[env endElement:@"upsert"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
 }
 
@@ -481,7 +481,7 @@
 -(NSArray *)merge:(NSArray *)request {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addAssignmentRuleHeader:env];
 	[self addMruHeader:env];
@@ -498,7 +498,7 @@
 	[env addElementArray:@"request" elemValue:request];
 	[env endElement:@"merge"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
 }
 
@@ -506,7 +506,7 @@
 -(NSArray *)delete:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addUserTerritoryDeleteHeader:env];
@@ -523,7 +523,7 @@
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"delete"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
 }
 
@@ -531,7 +531,7 @@
 -(NSArray *)undelete:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
@@ -546,7 +546,7 @@
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"undelete"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
 }
 
@@ -554,14 +554,14 @@
 -(NSArray *)emptyRecycleBin:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"emptyRecycleBin"];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"emptyRecycleBin"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
 }
 
@@ -569,7 +569,7 @@
 -(NSArray *)process:(NSArray *)actions {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
@@ -583,7 +583,7 @@
 	[env addElementArray:@"actions" elemValue:actions];
 	[env endElement:@"process"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
 }
 
@@ -591,7 +591,7 @@
 -(NSArray *)convertLead:(NSArray *)leadConverts {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addAllowFieldTruncationHeader:env];
 	[self addDisableFeedTrackingHeader:env];
@@ -605,7 +605,7 @@
 	[env addElementArray:@"leadConverts" elemValue:leadConverts];
 	[env endElement:@"convertLead"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
 }
 
@@ -613,7 +613,7 @@
 -(void)logout {
 	if (!authSource) return ;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"logout"];
@@ -625,14 +625,14 @@
 -(NSArray *)invalidateSessions:(NSArray *)sessionIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"invalidateSessions"];
 	[env addElementArray:@"sessionIds" elemValue:sessionIds];
 	[env endElement:@"invalidateSessions"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
 }
 
@@ -640,7 +640,7 @@
 -(ZKGetDeletedResult *)getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"getDeleted"];
@@ -649,7 +649,7 @@
 	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
 	[env endElement:@"getDeleted"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetDeletedResult class]].lastObject;
 }
 
@@ -657,7 +657,7 @@
 -(ZKGetUpdatedResult *)getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"getUpdated"];
@@ -666,7 +666,7 @@
 	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
 	[env endElement:@"getUpdated"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]].lastObject;
 }
 
@@ -674,7 +674,7 @@
 -(ZKQueryResult *)query:(NSString *)queryString {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addQueryOptions:env];
 	[self addMruHeader:env];
@@ -684,7 +684,7 @@
 	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
 	[env endElement:@"query"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser queryResult:@"result"];
 }
 
@@ -692,7 +692,7 @@
 -(ZKQueryResult *)queryAll:(NSString *)queryString {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addQueryOptions:env];
 	[env moveToBody];
@@ -700,7 +700,7 @@
 	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
 	[env endElement:@"queryAll"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser queryResult:@"result"];
 }
 
@@ -708,7 +708,7 @@
 -(ZKQueryResult *)queryMore:(NSString *)queryLocator {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addQueryOptions:env];
 	[env moveToBody];
@@ -716,7 +716,7 @@
 	[env addElement:@"queryLocator" elemValue:queryLocator nillable:NO  optional:NO];
 	[env endElement:@"queryMore"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser queryResult:@"result"];
 }
 
@@ -724,13 +724,13 @@
 -(ZKGetServerTimestampResult *)getServerTimestamp {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"getServerTimestamp"];
 	[env endElement:@"getServerTimestamp"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]].lastObject;
 }
 
@@ -738,7 +738,7 @@
 -(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"setPassword"];
@@ -746,7 +746,7 @@
 	[env addElement:@"password" elemValue:password nillable:NO  optional:NO];
 	[env endElement:@"setPassword"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]].lastObject;
 }
 
@@ -754,7 +754,7 @@
 -(ZKChangeOwnPasswordResult *)changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"changeOwnPassword"];
@@ -762,7 +762,7 @@
 	[env addElement:@"newPassword" elemValue:newPassword nillable:NO  optional:NO];
 	[env endElement:@"changeOwnPassword"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKChangeOwnPasswordResult class]].lastObject;
 }
 
@@ -770,7 +770,7 @@
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addEmailHeader:env];
 	[env moveToBody];
@@ -778,7 +778,7 @@
 	[env addElement:@"userId" elemValue:userId nillable:NO  optional:NO];
 	[env endElement:@"resetPassword"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]].lastObject;
 }
 
@@ -786,13 +786,13 @@
 -(ZKUserInfo *)getUserInfo {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"getUserInfo"];
 	[env endElement:@"getUserInfo"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]].lastObject;
 }
 
@@ -800,7 +800,7 @@
 -(NSArray *)deleteByExample:(NSArray *)sObjects {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addUserTerritoryDeleteHeader:env];
@@ -817,7 +817,7 @@
 	[env addElementArray:@"sObjects" elemValue:sObjects];
 	[env endElement:@"deleteByExample"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteByExampleResult class]];
 }
 
@@ -825,14 +825,14 @@
 -(NSArray *)sendEmailMessage:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"sendEmailMessage"];
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"sendEmailMessage"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
@@ -840,14 +840,14 @@
 -(NSArray *)sendEmail:(NSArray *)messages {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"sendEmail"];
 	[env addElementArray:@"messages" elemValue:messages];
 	[env endElement:@"sendEmail"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
@@ -855,14 +855,14 @@
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"renderEmailTemplate"];
 	[env addElementArray:@"renderRequests" elemValue:renderRequests];
 	[env endElement:@"renderEmailTemplate"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
 }
 
@@ -870,14 +870,14 @@
 -(ZKRenderStoredEmailTemplateResult *)renderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[env moveToBody];
 	[env startElement:@"renderStoredEmailTemplate"];
 	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
 	[env endElement:@"renderStoredEmailTemplate"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderStoredEmailTemplateResult class]].lastObject;
 }
 
@@ -885,7 +885,7 @@
 -(NSArray *)performQuickActions:(NSArray *)quickActions {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addAssignmentRuleHeader:env];
 	[self addMruHeader:env];
@@ -904,7 +904,7 @@
 	[env addElementArray:@"quickActions" elemValue:quickActions];
 	[env endElement:@"performQuickActions"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
 }
 
@@ -912,7 +912,7 @@
 -(NSArray *)describeQuickActions:(NSArray *)quickActions {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -921,7 +921,7 @@
 	[env addElementArray:@"quickActions" elemValue:quickActions];
 	[env endElement:@"describeQuickActions"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
 
@@ -929,7 +929,7 @@
 -(NSArray *)describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -939,7 +939,7 @@
 	[env addElement:@"recordTypeId"      elemValue:recordTypeId nillable:NO  optional:NO];
 	[env endElement:@"describeQuickActionsForRecordType"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
 
@@ -947,7 +947,7 @@
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -956,7 +956,7 @@
 	[env addElement:@"contextType" elemValue:contextType nillable:YES optional:NO];
 	[env endElement:@"describeAvailableQuickActions"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
 }
 
@@ -964,7 +964,7 @@
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -974,7 +974,7 @@
 	[env addElement:@"contextId"             elemValue:contextId        nillable:YES optional:NO];
 	[env endElement:@"retrieveQuickActionTemplates"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
 
@@ -982,7 +982,7 @@
 -(NSArray *)retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -992,7 +992,7 @@
 	[env addElementArray:@"contextIds" elemValue:contextIds];
 	[env endElement:@"retrieveMassQuickActionTemplates"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
 
@@ -1000,7 +1000,7 @@
 -(ZKDescribeVisualForceResult *)describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
@@ -1009,7 +1009,7 @@
 	[env addElement:@"namespacePrefix"       elemValue:namespacePrefix   nillable:YES optional:NO];
 	[env endElement:@"describeVisualForce"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeVisualForceResult class]].lastObject;
 }
 
@@ -1017,7 +1017,7 @@
 -(NSArray *)findDuplicates:(NSArray *)sObjects {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addDuplicateRuleHeader:env];
@@ -1026,7 +1026,7 @@
 	[env addElementArray:@"sObjects" elemValue:sObjects];
 	[env endElement:@"findDuplicates"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
 
@@ -1034,7 +1034,7 @@
 -(NSArray *)findDuplicatesByIds:(NSArray *)ids {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addDuplicateRuleHeader:env];
@@ -1043,7 +1043,7 @@
 	[env addElementArray:@"ids" elemValue:ids];
 	[env endElement:@"findDuplicatesByIds"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
 
@@ -1051,7 +1051,7 @@
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields {
 	if (!authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId] autorelease];
+	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
 	[self addCallOptions:env];
 	[self addPackageVersionHeader:env];
 	[self addLocaleOptions:env];
@@ -1062,7 +1062,7 @@
 	[env addBoolElement:@"includeFields" elemValue:includeFields];
 	[env endElement:@"describeNouns"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[[ZKXmlDeserializer alloc] initWithXmlElement:rn] autorelease];
+	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeNounResult class]];
 }
 

@@ -36,6 +36,6 @@
 */
 @interface ZKDeletedRecord : ZKXmlDeserializer {
 }
-@property (readonly) NSDate    *deletedDate; 
-@property (readonly) NSString  *id; 
+@property (weak, readonly) NSDate    *deletedDate; 
+@property (weak, readonly) NSString  *id; 
 @end

@@ -46,7 +46,7 @@
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithXmlElement:(zkElement *)e;
 
-@property (retain) NSString  *fieldNameOrPath; 
-@property (retain) NSString  *nullsPosition; 
-@property (retain) NSString  *sortDirection; 
+@property (strong) NSString  *fieldNameOrPath; 
+@property (strong) NSString  *nullsPosition; 
+@property (strong) NSString  *sortDirection; 
 @end

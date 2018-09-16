@@ -36,6 +36,6 @@
 */
 @interface ZKLabelsSearchMetadata : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *entityFieldLabels;  // of ZKNameValuePair
-@property (readonly) NSString  *entityName; 
+@property (weak, readonly) NSArray   *entityFieldLabels;  // of ZKNameValuePair
+@property (weak, readonly) NSString  *entityName; 
 @end

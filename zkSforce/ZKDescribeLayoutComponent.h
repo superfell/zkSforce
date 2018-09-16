@@ -38,8 +38,8 @@
 */
 @interface ZKDescribeLayoutComponent : ZKXmlDeserializer {
 }
-@property (readonly) NSInteger  displayLines; 
-@property (readonly) NSInteger  tabOrder; 
-@property (readonly) NSString  *type; 
-@property (readonly) NSString  *value; 
+@property (readonly) NSInteger        displayLines; 
+@property (readonly) NSInteger        tabOrder; 
+@property (weak, readonly) NSString  *type; 
+@property (weak, readonly) NSString  *value; 
 @end

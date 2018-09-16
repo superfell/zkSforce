@@ -41,11 +41,11 @@
 */
 @interface ZKRecordTypeInfo : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       active; 
-@property (readonly) BOOL       available; 
-@property (readonly) BOOL       defaultRecordTypeMapping; 
-@property (readonly) NSString  *developerName; 
-@property (readonly) BOOL       master; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *recordTypeId; 
+@property (readonly) BOOL             active; 
+@property (readonly) BOOL             available; 
+@property (readonly) BOOL             defaultRecordTypeMapping; 
+@property (weak, readonly) NSString  *developerName; 
+@property (readonly) BOOL             master; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *recordTypeId; 
 @end

@@ -31,12 +31,6 @@
 
 @synthesize dataCategoryGroupName, sobject;
 
--(void)dealloc {
-	[dataCategoryGroupName release];
-	[sobject release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"dataCategoryGroupName" elemValue:self.dataCategoryGroupName nillable:NO  optional:NO];

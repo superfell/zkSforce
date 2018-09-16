@@ -31,11 +31,6 @@
 
 @synthesize majorNumber, minorNumber, namespace;
 
--(void)dealloc {
-	[namespace release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addIntElement:@"majorNumber" elemValue:self.majorNumber];

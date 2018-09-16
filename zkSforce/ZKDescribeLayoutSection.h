@@ -44,14 +44,14 @@
 */
 @interface ZKDescribeLayoutSection : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       collapsed; 
-@property (readonly) NSInteger  columns; 
-@property (readonly) NSString  *heading; 
-@property (readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
-@property (readonly) NSString  *layoutSectionId; 
-@property (readonly) NSString  *parentLayoutId; 
-@property (readonly) NSInteger  rows; 
-@property (readonly) NSString  *tabOrder; 
-@property (readonly) BOOL       useCollapsibleSection; 
-@property (readonly) BOOL       useHeading; 
+@property (readonly) BOOL             collapsed; 
+@property (readonly) NSInteger        columns; 
+@property (weak, readonly) NSString  *heading; 
+@property (weak, readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
+@property (weak, readonly) NSString  *layoutSectionId; 
+@property (weak, readonly) NSString  *parentLayoutId; 
+@property (readonly) NSInteger        rows; 
+@property (weak, readonly) NSString  *tabOrder; 
+@property (readonly) BOOL             useCollapsibleSection; 
+@property (readonly) BOOL             useHeading; 
 @end

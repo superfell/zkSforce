@@ -45,15 +45,8 @@
 }
 
 -(instancetype)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
     return [self initWithZKXmlDeserializer:d];
-}
-
--(void)dealloc {
-	[fieldNameOrPath release];
-	[nullsPosition release];
-	[sortDirection release];
-	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {

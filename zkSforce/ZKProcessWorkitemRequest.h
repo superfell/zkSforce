@@ -42,6 +42,6 @@
 	NSString  *action;
 	NSString  *workitemId;
 }
-@property (retain) NSString  *action; 
-@property (retain) NSString  *workitemId; 
+@property (strong) NSString  *action; 
+@property (strong) NSString  *workitemId; 
 @end

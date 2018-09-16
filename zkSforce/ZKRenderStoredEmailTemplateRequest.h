@@ -44,9 +44,9 @@
 	NSString  *whatId;
 	NSString  *whoId;
 }
-@property (retain) NSString  *attachmentRetrievalOption; 
-@property (retain) NSString  *templateId; 
+@property (strong) NSString  *attachmentRetrievalOption; 
+@property (strong) NSString  *templateId; 
 @property (assign) BOOL       updateTemplateUsage; 
-@property (retain) NSString  *whatId; 
-@property (retain) NSString  *whoId; 
+@property (strong) NSString  *whatId; 
+@property (strong) NSString  *whoId; 
 @end

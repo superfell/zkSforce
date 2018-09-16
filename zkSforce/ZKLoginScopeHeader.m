@@ -31,12 +31,6 @@
 
 @synthesize organizationId, portalId;
 
--(void)dealloc {
-	[organizationId release];
-	[portalId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"organizationId" elemValue:self.organizationId nillable:NO  optional:NO];

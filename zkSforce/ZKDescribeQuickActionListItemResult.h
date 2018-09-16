@@ -43,13 +43,13 @@
 */
 @interface ZKDescribeQuickActionListItemResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *accessLevelRequired; 
-@property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) NSString  *iconUrl; 
-@property (readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *miniIconUrl; 
-@property (readonly) NSString  *quickActionName; 
-@property (readonly) NSString  *targetSobjectType; 
-@property (readonly) NSString  *type; 
+@property (weak, readonly) NSString  *accessLevelRequired; 
+@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
+@property (weak, readonly) NSString  *iconUrl; 
+@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *miniIconUrl; 
+@property (weak, readonly) NSString  *quickActionName; 
+@property (weak, readonly) NSString  *targetSobjectType; 
+@property (weak, readonly) NSString  *type; 
 @end

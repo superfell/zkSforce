@@ -55,10 +55,10 @@
 -(instancetype)initWithXmlElement:(zkElement *)e;
 
 @property (assign) BOOL       bccSender; 
-@property (retain) NSString  *emailPriority; 
-@property (retain) NSString  *replyTo; 
+@property (strong) NSString  *emailPriority; 
+@property (strong) NSString  *replyTo; 
 @property (assign) BOOL       saveAsActivity; 
-@property (retain) NSString  *senderDisplayName; 
-@property (retain) NSString  *subject; 
+@property (strong) NSString  *senderDisplayName; 
+@property (strong) NSString  *subject; 
 @property (assign) BOOL       useSignature; 
 @end

@@ -41,11 +41,11 @@
 */
 @interface ZKMatchResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *entityType; 
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSString  *matchEngine; 
-@property (readonly) NSArray   *matchRecords;  // of ZKMatchRecord
-@property (readonly) NSString  *rule; 
-@property (readonly) NSInteger  size; 
-@property (readonly) BOOL       success; 
+@property (weak, readonly) NSString  *entityType; 
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSString  *matchEngine; 
+@property (weak, readonly) NSArray   *matchRecords;  // of ZKMatchRecord
+@property (weak, readonly) NSString  *rule; 
+@property (readonly) NSInteger        size; 
+@property (readonly) BOOL             success; 
 @end

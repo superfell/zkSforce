@@ -35,5 +35,5 @@
 */
 @interface ZKRelatedContent : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *relatedContentItems;  // of ZKDescribeRelatedContentItem
+@property (weak, readonly) NSArray  *relatedContentItems;  // of ZKDescribeRelatedContentItem
 @end

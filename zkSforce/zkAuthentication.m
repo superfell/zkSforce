@@ -31,21 +31,14 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 @interface ZKAuthInfoBase()
 @property (NS_NONATOMIC_IOSONLY, readwrite, copy) NSString *sessionId;
 @property (NS_NONATOMIC_IOSONLY, readwrite, copy) NSURL *instanceUrl;
-@property (retain) NSDate *sessionExpiresAt;
-@property (retain) NSString *clientId;
+@property (strong) NSDate *sessionExpiresAt;
+@property (strong) NSString *clientId;
 @end
 
 @implementation ZKAuthInfoBase
 
 @synthesize sessionId, instanceUrl, sessionExpiresAt, clientId;
 
--(void)dealloc {
-    [sessionId release];
-    [instanceUrl release];
-    [sessionExpiresAt release];
-    [clientId release];
-    [super dealloc];
-}
 
 -(void)refresh {
     // override me!
@@ -93,29 +86,24 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 +(instancetype)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth clientId:(NSString *)cid {
-    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:nil instanceUrl:nil clientId:cid] autorelease];
+    return [[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:nil instanceUrl:nil clientId:cid];
 }
 
 +(instancetype)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid {
-    return [[[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:sid instanceUrl:inst clientId:cid] autorelease];
+    return [[ZKOAuthInfo alloc] initWithRefreshToken:tkn authHost:auth sessionId:sid instanceUrl:inst clientId:cid];
 }
 
 -(instancetype)initWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid {
     self = [super init];
-    clientId = [cid retain];
-    sessionId = [sid retain];
-    refreshToken = [tkn retain];
-    instanceUrl = [inst retain];
-    authUrl = [[NSURL URLWithString:@"/" relativeToURL:auth] retain];
+    clientId = cid;
+    sessionId = sid;
+    refreshToken = tkn;
+    instanceUrl = inst;
+    authUrl = [NSURL URLWithString:@"/" relativeToURL:auth];
     self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
     return self;
 }
 
--(void)dealloc {
-    [refreshToken release];
-    [authUrl release];
-    [super dealloc];
-}
 
 -(NSURL *)instanceUrl {
     return [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", apiVersion] relativeToURL:instanceUrl];
@@ -134,7 +122,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
      NSHTTPURLResponse *resp = nil;
     NSError *err = nil;
     NSData *respPayload = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err];
-    NSString *respBody = [[[NSString alloc] initWithBytes:respPayload.bytes length:respPayload.length encoding:NSUTF8StringEncoding] autorelease];
+    NSString *respBody = [[NSString alloc] initWithBytes:respPayload.bytes length:respPayload.length encoding:NSUTF8StringEncoding];
     NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
     
     self.sessionId = results[@"access_token"];
@@ -154,21 +142,15 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 -(instancetype)initWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate {
     self = [super init];
-    username = [un retain];
-    password = [pwd retain];
-    clientId = [cid retain];
+    username = un;
+    password = pwd;
+    clientId = cid;
     client = [[ZKBaseClient alloc] init];
     client.endpointUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", v] relativeToURL:auth];
     client.delegate = delegate;
     return self;
 }
 
--(void)dealloc {
-    [username release];
-    [password release];
-    [client release];
-    [super dealloc];
-}
 
 -(void)refresh {
     self.login;
@@ -188,11 +170,10 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     [env addElement:@"password" elemValue:password];
     [env endElement:@"login"];
     NSString *xml = env.end;
-    [env release];
     
     zkElement *resp = [client sendRequest:xml name:@"login"];
     zkElement *result = [resp childElements:@"result"][0];
-    ZKLoginResult *lr = [[[ZKLoginResult alloc] initWithXmlElement:result] autorelease];
+    ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
     
     self.instanceUrl = [NSURL URLWithString:lr.serverUrl];
     self.sessionId = lr.sessionId;
@@ -204,7 +185,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate {
-    return [[[ZKSoapLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid delegate:delegate] autorelease];
+    return [[ZKSoapLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid delegate:delegate];
 }
 
 @end
@@ -213,16 +194,11 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 -(instancetype)initWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate orgId:(NSString *)oid portalId:(NSString *)pid {
     self = [super initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid delegate:delegate];
-    orgId = [oid retain];
-    portalId = [pid retain];
+    orgId = oid;
+    portalId = pid;
     return self;
 }
 
--(void)dealloc {
-    [orgId release];
-    [portalId release];
-    [super dealloc];
-}
 
 -(ZKPartnerEnvelope *)newEnvelope {
     ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
@@ -238,7 +214,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 +(instancetype)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate orgId:(NSString *)orgId portalId:(NSString *)portalId {
-    return [[[ZKSoapPortalLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid delegate:delegate orgId:orgId portalId:portalId] autorelease];
+    return [[ZKSoapPortalLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid delegate:delegate orgId:orgId portalId:portalId];
 }
 
 @end

@@ -40,5 +40,5 @@
 */
 @interface ZKCustomLinkComponent : ZKDescribeLayoutComponent {
 }
-@property (readonly) ZKDescribeLayoutButton  *customLink; 
+@property (weak, readonly) ZKDescribeLayoutButton  *customLink; 
 @end

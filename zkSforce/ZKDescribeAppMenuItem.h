@@ -41,11 +41,11 @@
 */
 @interface ZKDescribeAppMenuItem : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) NSString  *content; 
-@property (readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *type; 
-@property (readonly) NSString  *url; 
+@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
+@property (weak, readonly) NSString  *content; 
+@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *type; 
+@property (weak, readonly) NSString  *url; 
 @end

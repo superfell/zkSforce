@@ -79,39 +79,15 @@ static const int SAVE_BATCH_SIZE = 25;
     return self;
 }
 
-- (void)dealloc {
-    [authEndpointUrl release];
-    [userInfo release];
-    [describes release];
-    [authSource release];
-    [limitInfo release];
-    self.callOptions = nil;
-    self.packageVersionHeader = nil;
-    self.localeOptions = nil;
-    self.assignmentRuleHeader = nil;
-    self.mruHeader = nil;
-    self.allowFieldTruncationHeader = nil;
-    self.disableFeedTrackingHeader = nil;
-    self.streamingEnabledHeader = nil;
-    self.allOrNoneHeader = nil;
-    self.debuggingHeader = nil;
-    self.emailHeader = nil;
-    self.ownerChangeOptions = nil;
-    self.userTerritoryDeleteHeader = nil;
-    self.queryOptions = nil;
-    self.duplicateRuleHeader = nil;
-    [super dealloc];
-}
 
 - (id)copyWithZone:(NSZone *)zone {
     ZKSforceClient *rhs = [[ZKSforceClient alloc] init];
-    [rhs->authEndpointUrl release];
     rhs->authEndpointUrl = [authEndpointUrl copy];
     rhs->endpointUrl = [endpointUrl copy];
-    rhs->userInfo = [userInfo retain];
+    rhs->userInfo = userInfo;
     rhs->preferedApiVersion = preferedApiVersion;
-    rhs->authSource = [authSource retain];
-    rhs->limitInfo = [limitInfo retain];
+    rhs->authSource = authSource;
+    rhs->limitInfo = limitInfo;
     rhs.cacheDescribes = cacheDescribes;
     rhs.callOptions = self.callOptions;
     rhs.packageVersionHeader = self.packageVersionHeader;
@@ -137,14 +113,12 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 -(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
-    [authSource autorelease];
-    authSource = [authenticationInfo retain];
+    authSource = authenticationInfo;
     self.endpointUrl = authSource.instanceUrl;
     self.userInfo = nil;
 }
 
 - (void)flushCachedDescribes {
-    [describes release];
     describes = nil;
     if (cacheDescribes)
         describes = [[NSMutableDictionary alloc] init];
@@ -155,13 +129,12 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version {
-    [authEndpointUrl release];
     // www.salesforce.com is no longer going to be support for login, so map requests for that
     // to login.salesforce.com
     NSString *www = @"://www.salesforce.com";
     NSString *login = @"://login.salesforce.com";
     protocolAndHost = [protocolAndHost stringByReplacingOccurrencesOfString:www withString:login options:NSCaseInsensitiveSearch range:NSMakeRange(0, protocolAndHost.length)];
-    authEndpointUrl = [[NSString stringWithFormat:@"%@/services/Soap/u/%d.0", protocolAndHost, version] retain];
+    authEndpointUrl = [NSString stringWithFormat:@"%@/services/Soap/u/%d.0", protocolAndHost, version];
     preferedApiVersion = version;
 }
 
@@ -188,7 +161,7 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid {
-    ZKOAuthInfo *auth = [[[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid] autorelease];
+    ZKOAuthInfo *auth = [[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid];
     auth.apiVersion = preferedApiVersion;
     self.authenticationInfo = auth;
     [self checkSession];
@@ -207,8 +180,7 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 -(void)setUserInfo:(ZKUserInfo *)ui {
-    [userInfo autorelease];
-    userInfo = [ui retain];
+    userInfo = ui;
 }
 
 - (BOOL)loggedIn {
@@ -222,7 +194,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (ZKUserInfo *)currentUserInfo {
     if (userInfo == nil)
-        userInfo = [[self getUserInfo] retain];
+        userInfo = [self getUserInfo];
     return userInfo;
 }
 
@@ -241,7 +213,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 -(void)setUpdateMru:(BOOL)mru {
     if (self.mruHeader == nil)
-        self.mruHeader = [[[ZKMruHeader alloc] init] autorelease];
+        self.mruHeader = [[ZKMruHeader alloc] init];
     self.mruHeader.updateMru = mru;
 }
 
@@ -251,7 +223,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 -(void)setClientId:(NSString *)newClientId {
     if (self.callOptions == nil)
-        self.callOptions = [[[ZKCallOptions alloc] init] autorelease];
+        self.callOptions = [[ZKCallOptions alloc] init];
     self.callOptions.client = newClientId;
 }
 
@@ -264,7 +236,7 @@ static const int SAVE_BATCH_SIZE = 25;
         self.queryOptions = nil;
     else {
         if (self.queryOptions == nil)
-            self.queryOptions = [[[ZKQueryOptions alloc] init] autorelease];
+            self.queryOptions = [[ZKQueryOptions alloc] init];
         self.queryOptions.batchSize = newBatchSize.integerValue;
     }
 }
@@ -366,9 +338,7 @@ static const int SAVE_BATCH_SIZE = 25;
     for (zkElement *res in results) {
         ZKDescribeGlobalSObject * d = [[ZKDescribeGlobalSObject alloc] initWithXmlElement:res];
         [types addObject:d];
-        [d release];
     }
-    [env release];
     if (cacheDescribes)
         describes[@"describe__global"] = types;
     return types;
@@ -393,8 +363,7 @@ static const int SAVE_BATCH_SIZE = 25;
     
     zkElement *dr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
     zkElement *descResult = [dr childElement:@"result"];
-    ZKDescribeSObject *desc = [[[ZKDescribeSObject alloc] initWithXmlElement:descResult] autorelease];
-    [env release];
+    ZKDescribeSObject *desc = [[ZKDescribeSObject alloc] initWithXmlElement:descResult];
     if (cacheDescribes) 
         describes[sobjectName.lowercaseString] = desc;
     return desc;
@@ -417,7 +386,6 @@ static const int SAVE_BATCH_SIZE = 25;
     NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
     for (zkElement *soNode in records)
         [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
-    [env release];
     return sobjects;
 }
 
@@ -469,9 +437,7 @@ static const int SAVE_BATCH_SIZE = 25;
     for (zkElement *cr in resultsArr) {
         ZKSaveResult * sr = [[ZKSaveResult alloc] initWithXmlElement:cr];
         [results addObject:sr];
-        [sr release];
     }
-    [env release];
     return results;
 }
 
@@ -501,9 +467,7 @@ static const int SAVE_BATCH_SIZE = 25;
     for (zkElement *res in results) {
         ZKSObject *o = [[ZKSObject alloc] initWithXmlElement:res];
         sobjects[o.id] = o;
-        [o release];
     }
-    [env release];
     return sobjects;
 }
 
@@ -511,7 +475,6 @@ static const int SAVE_BATCH_SIZE = 25;
     // this looks in the last response for a limit info header and if we got one, hangs onto it.
     zkElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
     if (liElem != nil) {
-        [limitInfo autorelease];
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
     }
 }

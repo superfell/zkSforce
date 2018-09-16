@@ -31,7 +31,7 @@
 
 -(instancetype)initWithXmlElement:(zkElement *)e {
     self = [super init];
-    node = [e retain];
+    node = e;
     values = [[NSMutableDictionary alloc] init];
     return self;
 }
@@ -41,11 +41,6 @@
     return self;
 }
 
--(void)dealloc {
-    [node release];
-    [values release];
-    [super dealloc];
-}
 
 - (id)copyWithZone:(NSZone *)zone {
     return [[[self class] allocWithZone:zone] initWithXmlElement:node];
@@ -98,7 +93,7 @@
 - (ZKXsdAnyType *)anyType:(NSString *)elem {
     ZKXsdAnyType *cached = values[elem];
     if (cached == nil) {
-        cached = [[[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]] autorelease];
+        cached = [[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]];
         [values setValue:cached forKey:elem];
     }
     return cached;
@@ -148,7 +143,6 @@
             Class actualType = [self complexTypeClassForType:childNode.xsiType baseClass:type];
             NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
             [results addObject:child];
-            [child release];
         }
         values[elemName] = results;
         cached = results;

@@ -72,16 +72,16 @@
 	NSArray 	 *fieldList;
 	NSDictionary *fieldsByName;
 }
-@property (readonly) NSArray   *actionOverrides;  // of ZKActionOverride
-@property (readonly) NSArray   *childRelationships;  // of ZKChildRelationship
-@property (readonly) BOOL       compactLayoutable; 
-@property (readonly) NSArray   *fields;  // of ZKDescribeField
-@property (readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
-@property (readonly) NSString  *networkScopeFieldName; 
-@property (readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
-@property (readonly) BOOL       searchLayoutable; 
-@property (readonly) NSArray   *supportedScopes;  // of ZKScopeInfo
-@property (readonly) NSString  *urlDetail; 
-@property (readonly) NSString  *urlEdit; 
-@property (readonly) NSString  *urlNew; 
+@property (weak, readonly) NSArray   *actionOverrides;  // of ZKActionOverride
+@property (weak, readonly) NSArray   *childRelationships;  // of ZKChildRelationship
+@property (readonly) BOOL             compactLayoutable; 
+@property (weak, readonly) NSArray   *fields;  // of ZKDescribeField
+@property (weak, readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
+@property (weak, readonly) NSString  *networkScopeFieldName; 
+@property (weak, readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
+@property (readonly) BOOL             searchLayoutable; 
+@property (weak, readonly) NSArray   *supportedScopes;  // of ZKScopeInfo
+@property (weak, readonly) NSString  *urlDetail; 
+@property (weak, readonly) NSString  *urlEdit; 
+@property (weak, readonly) NSString  *urlNew; 
 @end

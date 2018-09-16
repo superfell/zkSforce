@@ -81,9 +81,9 @@ FOUNDATION_EXPORT NSString *const NS_URI_XSD;
 +(ZKNamespacedName *)withName:(NSString*)localName uri:(NSString *)uri;
 
 /** @return the namespace URI of this value */
-@property (readonly) NSString *namespaceURI;
+@property (weak, readonly) NSString *namespaceURI;
 
 /** @return the localname of this value */
-@property (readonly) NSString *localname;
+@property (weak, readonly) NSString *localname;
 
 @end

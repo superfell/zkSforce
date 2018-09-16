@@ -33,7 +33,7 @@
         NSMutableDictionary *byName = [NSMutableDictionary dictionary];
         for (ZKDescribeField *f in self.fields)
             byName[f.name.lowercaseString] = f;
-        fieldsByName = [byName retain];
+        fieldsByName = byName;
     }
 }
 

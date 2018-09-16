@@ -36,5 +36,5 @@
 @interface ZKSessionHeader : NSObject<ZKXMLSerializable> {
 	NSString  *sessionId;
 }
-@property (retain) NSString  *sessionId; 
+@property (strong) NSString  *sessionId; 
 @end

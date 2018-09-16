@@ -36,6 +36,6 @@
 */
 @interface ZKSendEmailResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *errors;  // of ZKSendEmailError
-@property (readonly) BOOL      success; 
+@property (weak, readonly) NSArray  *errors;  // of ZKSendEmailError
+@property (readonly) BOOL            success; 
 @end

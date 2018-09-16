@@ -34,18 +34,12 @@
 
 @implementation ZKDescribeSObject
 
--(void)dealloc {
-	[fieldList release];
-	[fieldsByName release];
-	[super dealloc];
-}
-
 -(NSArray *)fields {
 	if (fieldList == nil) {
 		NSArray *fa = [self complexTypeArrayFromElements:@"fields" cls:[ZKDescribeField class]];
 		for (ZKDescribeField *f in fa)
 			f.sobject = self;
-		fieldList = [fa retain];
+		fieldList = fa;
 	}
 	return fieldList;
 }

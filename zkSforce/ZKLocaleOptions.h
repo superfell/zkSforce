@@ -38,6 +38,6 @@
 	NSString  *language;
 	BOOL       localizeErrors;
 }
-@property (retain) NSString  *language; 
+@property (strong) NSString  *language; 
 @property (assign) BOOL       localizeErrors; 
 @end

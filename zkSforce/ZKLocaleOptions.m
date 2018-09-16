@@ -31,11 +31,6 @@
 
 @synthesize language, localizeErrors;
 
--(void)dealloc {
-	[language release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"language"           elemValue:self.language       nillable:NO  optional:YES];

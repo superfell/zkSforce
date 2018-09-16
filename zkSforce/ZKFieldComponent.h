@@ -40,5 +40,5 @@
 */
 @interface ZKFieldComponent : ZKDescribeLayoutComponent {
 }
-@property (readonly) ZKDescribeField  *field; 
+@property (weak, readonly) ZKDescribeField  *field; 
 @end

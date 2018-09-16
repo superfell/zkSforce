@@ -31,11 +31,11 @@
 @interface ZKBaseClient : NSObject {
     NSURL                           *endpointUrl;
     zkElement                       *responseHeaders;
-    NSObject<ZKBaseClientDelegate>  *delegate;
+    NSObject<ZKBaseClientDelegate>  *__unsafe_unretained delegate;
 }
 
-@property (assign) NSObject<ZKBaseClientDelegate> *delegate;
-@property (retain) NSURL *endpointUrl;
+@property (unsafe_unretained) NSObject<ZKBaseClientDelegate> *delegate;
+@property (strong) NSURL *endpointUrl;
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;

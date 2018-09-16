@@ -44,14 +44,14 @@
 */
 @interface ZKRelatedList : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *accessLevelRequiredForCreate; 
-@property (readonly) NSArray   *buttons;  // of ZKDescribeLayoutButton
-@property (readonly) NSArray   *columns;  // of ZKRelatedListColumn
-@property (readonly) BOOL       custom; 
-@property (readonly) NSString  *field; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSInteger  limitRows; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *sobject; 
-@property (readonly) NSArray   *sort;  // of ZKRelatedListSort
+@property (weak, readonly) NSString  *accessLevelRequiredForCreate; 
+@property (weak, readonly) NSArray   *buttons;  // of ZKDescribeLayoutButton
+@property (weak, readonly) NSArray   *columns;  // of ZKRelatedListColumn
+@property (readonly) BOOL             custom; 
+@property (weak, readonly) NSString  *field; 
+@property (weak, readonly) NSString  *label; 
+@property (readonly) NSInteger        limitRows; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *sobject; 
+@property (weak, readonly) NSArray   *sort;  // of ZKRelatedListSort
 @end

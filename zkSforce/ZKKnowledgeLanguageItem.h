@@ -37,7 +37,7 @@
 */
 @interface ZKKnowledgeLanguageItem : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       active; 
-@property (readonly) NSString  *assigneeId; 
-@property (readonly) NSString  *name; 
+@property (readonly) BOOL             active; 
+@property (weak, readonly) NSString  *assigneeId; 
+@property (weak, readonly) NSString  *name; 
 @end

@@ -36,6 +36,6 @@
 */
 @interface ZKDescribeSoftphoneLayoutSection : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *entityApiName; 
-@property (readonly) NSArray   *items;  // of ZKDescribeSoftphoneLayoutItem
+@property (weak, readonly) NSString  *entityApiName; 
+@property (weak, readonly) NSArray   *items;  // of ZKDescribeSoftphoneLayoutItem
 @end

@@ -38,6 +38,6 @@
 	NSString  *comments;
 	NSArray   *nextApproverIds;
 }
-@property (retain) NSString  *comments; 
-@property (retain) NSArray   *nextApproverIds;  // of NSString
+@property (strong) NSString  *comments; 
+@property (strong) NSArray   *nextApproverIds;  // of NSString
 @end

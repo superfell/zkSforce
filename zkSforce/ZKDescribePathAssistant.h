@@ -41,11 +41,11 @@
 */
 @interface ZKDescribePathAssistant : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       active; 
-@property (readonly) NSString  *apiName; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *pathPicklistField; 
-@property (readonly) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
-@property (readonly) NSString  *recordTypeId; 
-@property (readonly) NSArray   *steps;  // of ZKDescribePathAssistantStep
+@property (readonly) BOOL             active; 
+@property (weak, readonly) NSString  *apiName; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *pathPicklistField; 
+@property (weak, readonly) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
+@property (weak, readonly) NSString  *recordTypeId; 
+@property (weak, readonly) NSArray   *steps;  // of ZKDescribePathAssistantStep
 @end

@@ -40,7 +40,7 @@
 	NSString  *quickActionName;
 	NSArray   *records;
 }
-@property (retain) NSString  *contextId; 
-@property (retain) NSString  *quickActionName; 
-@property (retain) NSArray   *records;  // of ZKSObject
+@property (strong) NSString  *contextId; 
+@property (strong) NSString  *quickActionName; 
+@property (strong) NSArray   *records;  // of ZKSObject
 @end

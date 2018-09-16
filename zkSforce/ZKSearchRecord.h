@@ -40,7 +40,7 @@
 */
 @interface ZKSearchRecord : ZKXmlDeserializer {
 }
-@property (readonly) ZKSObject               *record; 
-@property (readonly) ZKSearchRecordMetadata  *searchRecordMetadata; 
-@property (readonly) ZKSearchSnippet         *snippet; 
+@property (weak, readonly) ZKSObject               *record; 
+@property (weak, readonly) ZKSearchRecordMetadata  *searchRecordMetadata; 
+@property (weak, readonly) ZKSearchSnippet         *snippet; 
 @end

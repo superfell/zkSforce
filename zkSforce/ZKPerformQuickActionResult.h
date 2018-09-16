@@ -41,11 +41,11 @@
 */
 @interface ZKPerformQuickActionResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *contextId; 
-@property (readonly) BOOL       created; 
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSArray   *feedItemIds;  // of NSString
-@property (readonly) NSArray   *ids;  // of NSString
-@property (readonly) BOOL       success; 
-@property (readonly) NSString  *successMessage; 
+@property (weak, readonly) NSString  *contextId; 
+@property (readonly) BOOL             created; 
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSArray   *feedItemIds;  // of NSString
+@property (weak, readonly) NSArray   *ids;  // of NSString
+@property (readonly) BOOL             success; 
+@property (weak, readonly) NSString  *successMessage; 
 @end

@@ -35,5 +35,5 @@
 */
 @interface ZKResetPasswordResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *password; 
+@property (weak, readonly) NSString  *password; 
 @end

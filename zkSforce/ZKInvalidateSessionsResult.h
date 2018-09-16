@@ -36,6 +36,6 @@
 */
 @interface ZKInvalidateSessionsResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *errors;  // of ZKError
-@property (readonly) BOOL      success; 
+@property (weak, readonly) NSArray  *errors;  // of ZKError
+@property (readonly) BOOL            success; 
 @end

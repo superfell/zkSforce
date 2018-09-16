@@ -50,12 +50,6 @@ static ZKSoapDate *INSTANCE;
     return self;
 }
 
--(void)dealloc {
-    [dateTimeFormatter release];
-    [dateFormatter release];
-    [timeFormatter release];
-    [super dealloc];
-}
 
 +(ZKSoapDate *)instance {
     return INSTANCE;

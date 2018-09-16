@@ -31,11 +31,6 @@
 
 @synthesize sessionId;
 
--(void)dealloc {
-	[sessionId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"sessionId" elemValue:self.sessionId nillable:NO  optional:NO];

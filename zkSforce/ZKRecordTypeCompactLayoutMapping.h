@@ -39,9 +39,9 @@
 */
 @interface ZKRecordTypeCompactLayoutMapping : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       available; 
-@property (readonly) NSString  *compactLayoutId; 
-@property (readonly) NSString  *compactLayoutName; 
-@property (readonly) NSString  *recordTypeId; 
-@property (readonly) NSString  *recordTypeName; 
+@property (readonly) BOOL             available; 
+@property (weak, readonly) NSString  *compactLayoutId; 
+@property (weak, readonly) NSString  *compactLayoutName; 
+@property (weak, readonly) NSString  *recordTypeId; 
+@property (weak, readonly) NSString  *recordTypeName; 
 @end

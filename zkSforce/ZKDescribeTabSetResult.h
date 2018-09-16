@@ -41,11 +41,11 @@
 */
 @interface ZKDescribeTabSetResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *description; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *logoUrl; 
-@property (readonly) NSString  *namespace; 
-@property (readonly) BOOL       selected; 
-@property (readonly) NSString  *tabSetId; 
-@property (readonly) NSArray   *tabs;  // of ZKDescribeTab
+@property (weak, readonly) NSString  *description; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *logoUrl; 
+@property (weak, readonly) NSString  *namespace; 
+@property (readonly) BOOL             selected; 
+@property (weak, readonly) NSString  *tabSetId; 
+@property (weak, readonly) NSArray   *tabs;  // of ZKDescribeTab
 @end

@@ -38,6 +38,6 @@
 	NSString  *assignmentRuleId;
 	BOOL       useDefaultRule;
 }
-@property (retain) NSString  *assignmentRuleId; 
+@property (strong) NSString  *assignmentRuleId; 
 @property (assign) BOOL       useDefaultRule; 
 @end

@@ -43,7 +43,7 @@
 	NSString  *whoId;
 }
 @property (assign) BOOL       escapeHtmlInMergeFields; 
-@property (retain) NSArray   *templateBodies;  // of NSString
-@property (retain) NSString  *whatId; 
-@property (retain) NSString  *whoId; 
+@property (strong) NSArray   *templateBodies;  // of NSString
+@property (strong) NSString  *whatId; 
+@property (strong) NSString  *whoId; 
 @end

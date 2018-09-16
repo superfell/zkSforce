@@ -36,7 +36,7 @@
 @synthesize sobject;
 
 -(id)copyWithZone:(NSZone *)zone {
-    zkElement *e = [[node copyWithZone:zone] autorelease];
+    zkElement *e = [node copyWithZone:zone];
     ZKDescribeField *c = [[ZKDescribeField alloc] initWithXmlElement:e];
     c.sobject = self.sobject;
     return c;

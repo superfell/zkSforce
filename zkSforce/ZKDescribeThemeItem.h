@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeThemeItem : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
+@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
+@property (weak, readonly) NSString  *name; 
 @end

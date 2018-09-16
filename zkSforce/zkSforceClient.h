@@ -143,7 +143,7 @@
     Normally you'd just call login:password or loginFromOAuthCallbackUrl:
     which will create a ZKAuthenticationInfo object for you.
 */
-@property (retain) NSObject<ZKAuthenticationInfo> *authenticationInfo;
+@property (strong) NSObject<ZKAuthenticationInfo> *authenticationInfo;
 
 
 /** @name basic Web Service operations
@@ -239,26 +239,26 @@
 @property (assign) BOOL updateMru;
 
 /** If you have a clientId for a certifed partner application, you can set it here. */
-@property (retain) NSString *clientId;
+@property (strong) NSString *clientId;
 
 /** If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default) */
-@property (retain) NSNumber *queryBatchSize;
+@property (strong) NSNumber *queryBatchSize;
 
-@property (retain) ZKCallOptions                *callOptions;
-@property (retain) ZKPackageVersionHeader       *packageVersionHeader;
-@property (retain) ZKLocaleOptions              *localeOptions;
-@property (retain) ZKAssignmentRuleHeader       *assignmentRuleHeader;
-@property (retain) ZKMruHeader                  *mruHeader;
-@property (retain) ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
-@property (retain) ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
-@property (retain) ZKStreamingEnabledHeader     *streamingEnabledHeader;
-@property (retain) ZKAllOrNoneHeader            *allOrNoneHeader;
-@property (retain) ZKDebuggingHeader            *debuggingHeader;
-@property (retain) ZKEmailHeader                *emailHeader;
-@property (retain) ZKOwnerChangeOptions         *ownerChangeOptions;
-@property (retain) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
-@property (retain) ZKQueryOptions               *queryOptions;
-@property (retain) ZKDuplicateRuleHeader        *duplicateRuleHeader;
+@property (strong) ZKCallOptions                *callOptions;
+@property (strong) ZKPackageVersionHeader       *packageVersionHeader;
+@property (strong) ZKLocaleOptions              *localeOptions;
+@property (strong) ZKAssignmentRuleHeader       *assignmentRuleHeader;
+@property (strong) ZKMruHeader                  *mruHeader;
+@property (strong) ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
+@property (strong) ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
+@property (strong) ZKStreamingEnabledHeader     *streamingEnabledHeader;
+@property (strong) ZKAllOrNoneHeader            *allOrNoneHeader;
+@property (strong) ZKDebuggingHeader            *debuggingHeader;
+@property (strong) ZKEmailHeader                *emailHeader;
+@property (strong) ZKOwnerChangeOptions         *ownerChangeOptions;
+@property (strong) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
+@property (strong) ZKQueryOptions               *queryOptions;
+@property (strong) ZKDuplicateRuleHeader        *duplicateRuleHeader;
 
 /** describe caching support, if true, describeGlobal & describeSObject call results are cached. */
 @property (assign) BOOL cacheDescribes;

@@ -31,14 +31,6 @@
 
 @synthesize description, targetObjectIds, templateId, whatIds;
 
--(void)dealloc {
-	[description release];
-	[targetObjectIds release];
-	[templateId release];
-	[whatIds release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"MassEmailMessage"];
 	[env addBoolElement:@"bccSender"        elemValue:self.bccSender];

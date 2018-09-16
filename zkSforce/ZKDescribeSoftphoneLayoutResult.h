@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeSoftphoneLayoutResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *callTypes;  // of ZKDescribeSoftphoneLayoutCallType
-@property (readonly) NSString  *id; 
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSArray   *callTypes;  // of ZKDescribeSoftphoneLayoutCallType
+@property (weak, readonly) NSString  *id; 
+@property (weak, readonly) NSString  *name; 
 @end

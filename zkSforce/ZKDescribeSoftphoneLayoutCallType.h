@@ -39,9 +39,9 @@
 */
 @interface ZKDescribeSoftphoneLayoutCallType : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *infoFields;  // of ZKDescribeSoftphoneLayoutInfoField
-@property (readonly) NSString  *name; 
-@property (readonly) NSArray   *screenPopOptions;  // of ZKDescribeSoftphoneScreenPopOption
-@property (readonly) NSString  *screenPopsOpenWithin; 
-@property (readonly) NSArray   *sections;  // of ZKDescribeSoftphoneLayoutSection
+@property (weak, readonly) NSArray   *infoFields;  // of ZKDescribeSoftphoneLayoutInfoField
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSArray   *screenPopOptions;  // of ZKDescribeSoftphoneScreenPopOption
+@property (weak, readonly) NSString  *screenPopsOpenWithin; 
+@property (weak, readonly) NSArray   *sections;  // of ZKDescribeSoftphoneLayoutSection
 @end

@@ -32,15 +32,10 @@ enum envState {
 };
 
 - (void)start:(NSString *)primaryNamespceUri {
-    [env release];
     env = [[NSMutableString alloc] initWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='%@'>", primaryNamespceUri];
     state = inEnvelope;
 }
 
-- (void)dealloc {
-    [env release];
-    [super dealloc];
-}
 
 - (void)moveToHeaders {
     if (state == inBody)
@@ -174,7 +169,7 @@ enum envState {
     if (state == inBody)
         [self endElement:@"s:Body"];
     [self endElement:@"s:Envelope"];
-    return [[env retain] autorelease];
+    return env;
 }
 
 @end

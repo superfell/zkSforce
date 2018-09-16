@@ -49,14 +49,14 @@
 */
 @interface ZKDescribeLayout : ZKXmlDeserializer {
 }
-@property (readonly) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
-@property (readonly) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
-@property (readonly) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
-@property (readonly) ZKDescribeLayoutFeedView         *feedView; 
-@property (readonly) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
-@property (readonly) NSString                         *id; 
-@property (readonly) ZKDescribeQuickActionListResult  *quickActionList; 
-@property (readonly) ZKRelatedContent                 *relatedContent; 
-@property (readonly) NSArray                          *relatedLists;  // of ZKRelatedList
-@property (readonly) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
+@property (weak, readonly) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
+@property (weak, readonly) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
+@property (weak, readonly) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
+@property (weak, readonly) ZKDescribeLayoutFeedView         *feedView; 
+@property (weak, readonly) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
+@property (weak, readonly) NSString                         *id; 
+@property (weak, readonly) ZKDescribeQuickActionListResult  *quickActionList; 
+@property (weak, readonly) ZKRelatedContent                 *relatedContent; 
+@property (weak, readonly) NSArray                          *relatedLists;  // of ZKRelatedList
+@property (weak, readonly) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
 @end

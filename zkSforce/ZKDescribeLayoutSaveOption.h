@@ -40,10 +40,10 @@
 */
 @interface ZKDescribeLayoutSaveOption : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       defaultValue; 
-@property (readonly) BOOL       isDisplayed; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *restHeaderName; 
-@property (readonly) NSString  *soapHeaderName; 
+@property (readonly) BOOL             defaultValue; 
+@property (readonly) BOOL             isDisplayed; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *restHeaderName; 
+@property (weak, readonly) NSString  *soapHeaderName; 
 @end

@@ -64,33 +64,33 @@
 */
 @interface ZKDescribeQuickActionResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString                 *accessLevelRequired; 
-@property (readonly) NSString                 *actionEnumOrId; 
-@property (readonly) NSString                 *canvasApplicationId; 
-@property (readonly) NSString                 *canvasApplicationName; 
-@property (readonly) NSArray                  *colors;  // of ZKDescribeColor
-@property (readonly) NSString                 *contextSobjectType; 
-@property (readonly) NSArray                  *defaultValues;  // of ZKDescribeQuickActionDefaultValue
-@property (readonly) NSString                 *flowDevName; 
-@property (readonly) NSString                 *flowRecordIdVar; 
-@property (readonly) NSInteger                 height; 
-@property (readonly) NSString                 *iconName; 
-@property (readonly) NSString                 *iconUrl; 
-@property (readonly) NSArray                  *icons;  // of ZKDescribeIcon
-@property (readonly) NSString                 *label; 
-@property (readonly) ZKDescribeLayoutSection  *layout; 
-@property (readonly) NSString                 *lightningComponentBundleId; 
-@property (readonly) NSString                 *lightningComponentBundleName; 
-@property (readonly) NSString                 *lightningComponentQualifiedName; 
-@property (readonly) NSString                 *miniIconUrl; 
-@property (readonly) NSString                 *name; 
-@property (readonly) BOOL                      showQuickActionLcHeader; 
-@property (readonly) BOOL                      showQuickActionVfHeader; 
-@property (readonly) NSString                 *targetParentField; 
-@property (readonly) NSString                 *targetRecordTypeId; 
-@property (readonly) NSString                 *targetSobjectType; 
-@property (readonly) NSString                 *type; 
-@property (readonly) NSString                 *visualforcePageName; 
-@property (readonly) NSString                 *visualforcePageUrl; 
-@property (readonly) NSInteger                 width; 
+@property (weak, readonly) NSString                 *accessLevelRequired; 
+@property (weak, readonly) NSString                 *actionEnumOrId; 
+@property (weak, readonly) NSString                 *canvasApplicationId; 
+@property (weak, readonly) NSString                 *canvasApplicationName; 
+@property (weak, readonly) NSArray                  *colors;  // of ZKDescribeColor
+@property (weak, readonly) NSString                 *contextSobjectType; 
+@property (weak, readonly) NSArray                  *defaultValues;  // of ZKDescribeQuickActionDefaultValue
+@property (weak, readonly) NSString                 *flowDevName; 
+@property (weak, readonly) NSString                 *flowRecordIdVar; 
+@property (readonly) NSInteger                       height; 
+@property (weak, readonly) NSString                 *iconName; 
+@property (weak, readonly) NSString                 *iconUrl; 
+@property (weak, readonly) NSArray                  *icons;  // of ZKDescribeIcon
+@property (weak, readonly) NSString                 *label; 
+@property (weak, readonly) ZKDescribeLayoutSection  *layout; 
+@property (weak, readonly) NSString                 *lightningComponentBundleId; 
+@property (weak, readonly) NSString                 *lightningComponentBundleName; 
+@property (weak, readonly) NSString                 *lightningComponentQualifiedName; 
+@property (weak, readonly) NSString                 *miniIconUrl; 
+@property (weak, readonly) NSString                 *name; 
+@property (readonly) BOOL                            showQuickActionLcHeader; 
+@property (readonly) BOOL                            showQuickActionVfHeader; 
+@property (weak, readonly) NSString                 *targetParentField; 
+@property (weak, readonly) NSString                 *targetRecordTypeId; 
+@property (weak, readonly) NSString                 *targetSobjectType; 
+@property (weak, readonly) NSString                 *type; 
+@property (weak, readonly) NSString                 *visualforcePageName; 
+@property (weak, readonly) NSString                 *visualforcePageUrl; 
+@property (readonly) NSInteger                       width; 
 @end

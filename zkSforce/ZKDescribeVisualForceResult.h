@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeVisualForceResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *domain; 
+@property (weak, readonly) NSString  *domain; 
 @end

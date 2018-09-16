@@ -26,22 +26,14 @@
 #import "ZKLimitInfoHeader.h"
 
 @interface QueryController ()
-@property (retain) ZKSforceClient *client;
-@property (retain) ZKQueryResult *result;
+@property (strong) ZKSforceClient *client;
+@property (strong) ZKQueryResult *result;
 @end
 
 @implementation QueryController
 
 @synthesize username, password, client, loginInProgress, result, apiLimitInfo;
 
--(void)dealloc {
-    [username release];
-    [password release];
-    [client release];
-    [result release];
-    [apiLimitInfo release];
-    [super dealloc];
-}
 
 // Helper function to show an error dialog/sheet from a soap exception
 -(void)showError:(NSException *)ex {
@@ -89,7 +81,7 @@
     [self setLoginInProgress:YES];
     // you can either do the blocks stuff yourself and use the methods in SforceClient / SforceClient(Operations)
     // or there's a blocks vesion available in SforceClient(zkAsyncQuery) that you can use.
-    ZKSforceClient *theClient = [[[ZKSforceClient alloc] init] autorelease];
+    ZKSforceClient *theClient = [[ZKSforceClient alloc] init];
     theClient.delegate = self;
     [theClient performLogin:username password:password failBlock:^(NSException *res) {
         [self setLoginInProgress:NO];

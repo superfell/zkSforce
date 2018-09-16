@@ -35,5 +35,5 @@
 */
 @interface ZKListViewRecord : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *columns;  // of ZKListViewRecordColumn
+@property (weak, readonly) NSArray  *columns;  // of ZKListViewRecordColumn
 @end

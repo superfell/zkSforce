@@ -42,11 +42,11 @@
 */
 @interface ZKLoginResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString    *metadataServerUrl; 
-@property (readonly) BOOL         passwordExpired; 
-@property (readonly) BOOL         sandbox; 
-@property (readonly) NSString    *serverUrl; 
-@property (readonly) NSString    *sessionId; 
-@property (readonly) NSString    *userId; 
-@property (readonly) ZKUserInfo  *userInfo; 
+@property (weak, readonly) NSString    *metadataServerUrl; 
+@property (readonly) BOOL               passwordExpired; 
+@property (readonly) BOOL               sandbox; 
+@property (weak, readonly) NSString    *serverUrl; 
+@property (weak, readonly) NSString    *sessionId; 
+@property (weak, readonly) NSString    *userId; 
+@property (weak, readonly) ZKUserInfo  *userInfo; 
 @end

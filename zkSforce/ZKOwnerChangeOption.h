@@ -38,6 +38,6 @@
 	NSString  *type;
 	BOOL       execute;
 }
-@property (retain) NSString  *type; 
+@property (strong) NSString  *type; 
 @property (assign) BOOL       execute; 
 @end

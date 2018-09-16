@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeThemeResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *themeItems;  // of ZKDescribeThemeItem
+@property (weak, readonly) NSArray  *themeItems;  // of ZKDescribeThemeItem
 @end

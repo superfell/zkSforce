@@ -36,5 +36,5 @@
 */
 @interface ZKExtendedErrorDetails : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *extendedErrorCode; 
+@property (weak, readonly) NSString  *extendedErrorCode; 
 @end

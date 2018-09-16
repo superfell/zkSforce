@@ -40,10 +40,10 @@
 */
 @interface ZKLeadConvertResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *accountId; 
-@property (readonly) NSString  *contactId; 
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSString  *leadId; 
-@property (readonly) NSString  *opportunityId; 
-@property (readonly) BOOL       success; 
+@property (weak, readonly) NSString  *accountId; 
+@property (weak, readonly) NSString  *contactId; 
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSString  *leadId; 
+@property (weak, readonly) NSString  *opportunityId; 
+@property (readonly) BOOL             success; 
 @end

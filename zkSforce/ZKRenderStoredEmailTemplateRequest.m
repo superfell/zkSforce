@@ -31,14 +31,6 @@
 
 @synthesize attachmentRetrievalOption, templateId, updateTemplateUsage, whatId, whoId;
 
--(void)dealloc {
-	[attachmentRetrievalOption release];
-	[templateId release];
-	[whatId release];
-	[whoId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"attachmentRetrievalOption" elemValue:self.attachmentRetrievalOption nillable:YES optional:NO];

@@ -40,5 +40,5 @@
 */
 @interface ZKDuplicateError : ZKError {
 }
-@property (readonly) ZKDuplicateResult  *duplicateResult; 
+@property (weak, readonly) ZKDuplicateResult  *duplicateResult; 
 @end

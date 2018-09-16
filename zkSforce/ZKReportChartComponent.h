@@ -45,11 +45,11 @@
 */
 @interface ZKReportChartComponent : ZKDescribeLayoutComponent {
 }
-@property (readonly) BOOL       cacheData; 
-@property (readonly) NSString  *contextFilterableField; 
-@property (readonly) NSString  *error; 
-@property (readonly) BOOL       hideOnError; 
-@property (readonly) BOOL       includeContext; 
-@property (readonly) BOOL       showTitle; 
-@property (readonly) NSString  *size; 
+@property (readonly) BOOL             cacheData; 
+@property (weak, readonly) NSString  *contextFilterableField; 
+@property (weak, readonly) NSString  *error; 
+@property (readonly) BOOL             hideOnError; 
+@property (readonly) BOOL             includeContext; 
+@property (readonly) BOOL             showTitle; 
+@property (weak, readonly) NSString  *size; 
 @end

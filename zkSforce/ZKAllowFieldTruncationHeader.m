@@ -31,10 +31,6 @@
 
 @synthesize allowFieldTruncation;
 
--(void)dealloc {
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allowFieldTruncation" elemValue:self.allowFieldTruncation];

@@ -36,6 +36,6 @@
 */
 @interface ZKScopeInfo : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
 @end

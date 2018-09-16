@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeLayoutFeedView : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *feedFilters;  // of ZKDescribeLayoutFeedFilter
+@property (weak, readonly) NSArray  *feedFilters;  // of ZKDescribeLayoutFeedFilter
 @end

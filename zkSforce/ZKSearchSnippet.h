@@ -36,6 +36,6 @@
 */
 @interface ZKSearchSnippet : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *text; 
-@property (readonly) NSArray   *wholeFields;  // of ZKNameValuePair
+@property (weak, readonly) NSString  *text; 
+@property (weak, readonly) NSArray   *wholeFields;  // of ZKNameValuePair
 @end

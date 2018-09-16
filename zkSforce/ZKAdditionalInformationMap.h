@@ -44,6 +44,6 @@
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithXmlElement:(zkElement *)e;
 
-@property (retain) NSString  *name; 
-@property (retain) NSString  *value; 
+@property (strong) NSString  *name; 
+@property (strong) NSString  *value; 
 @end

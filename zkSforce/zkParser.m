@@ -1,21 +1,21 @@
 // Copyright (c) 2008-2010,2016 Simon Fell
 //
-// Permission is hereby granted, free of charge, to any person obtaining a 
-// copy of this software and associated documentation files (the "Software"), 
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-// and/or sell copies of the Software, and to permit persons to whom the 
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
 // Software is furnished to do so, subject to the following conditions:
 //
-// The above copyright notice and this permission notice shall be included 
+// The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
 
@@ -28,7 +28,7 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 
 -(instancetype)initWithDocument:(xmlDocPtr)d node:(xmlNodePtr)n parent:(zkElement *)p {
     self = [super init];
-    parent = [p retain];
+    parent = p;
     doc = d;
     node = n;
     return self;
@@ -47,9 +47,7 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 }
 
 -(void)dealloc {
-    [parent release];
     xmlFreeDoc(doc);
-    [super dealloc];
 }
 
 - (NSString *)name {
@@ -85,7 +83,7 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
     while (cur != NULL) {
         if ((n == NULL) || (!xmlStrcmp(cur->name, n))) {
             if((!checkNs) || (!xmlStrcmp(cur->ns->href, ns))) {
-                zkElement *e = [[[zkElement alloc] initWithNode:cur parent:self] autorelease]; 
+                zkElement *e = [[zkElement alloc] initWithNode:cur parent:self];
                 if (!returnAll) return e;
                 [results addObject:e];
             }
@@ -142,7 +140,7 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 +(zkElement *)parseData:(NSData *)data {
     xmlDocPtr doc = xmlReadMemory(data.bytes, (int)data.length, "noname.xml", NULL, 0);
     if (doc != nil)
-        return [[[zkElement alloc] initWithDocument:doc] autorelease];
+        return [[zkElement alloc] initWithDocument:doc];
     return nil;
 }
 
@@ -152,23 +150,17 @@ NSString *const NS_URI_XSD = @"http://www.w3.org/2001/XMLSchema";
 
 -(instancetype)initWithName:(NSString *)localName uri:(NSString *)nsuri {
     self = [super init];
-    name = [localName retain];
-    uri = [nsuri retain];
+    name = localName;
+    uri = nsuri;
     return self;
 }
 
--(void) dealloc {
-    [name autorelease];
-    [uri autorelease];
-    [super dealloc];
-}
-
 -(id)copyWithZone:(NSZone *)zone {
-    return [[ZKNamespacedName withName:name uri:uri] retain];
+    return [ZKNamespacedName withName:name uri:uri];
 }
 
 +(ZKNamespacedName *)withName:(NSString*)localName uri:(NSString *)uri {
-    return [[[ZKNamespacedName alloc] initWithName:localName uri:uri] autorelease];
+    return [[ZKNamespacedName alloc] initWithName:localName uri:uri];
 }
 
 -(NSString *)namespaceURI {

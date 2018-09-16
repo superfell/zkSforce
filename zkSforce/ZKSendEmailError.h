@@ -38,8 +38,8 @@
 */
 @interface ZKSendEmailError : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *fields;  // of NSString
-@property (readonly) NSString  *message; 
-@property (readonly) NSString  *statusCode; 
-@property (readonly) NSString  *targetObjectId; 
+@property (weak, readonly) NSArray   *fields;  // of NSString
+@property (weak, readonly) NSString  *message; 
+@property (weak, readonly) NSString  *statusCode; 
+@property (weak, readonly) NSString  *targetObjectId; 
 @end

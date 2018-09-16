@@ -39,9 +39,9 @@
 */
 @interface ZKDescribeSearchLayoutResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *errorMsg; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSInteger  limitRows; 
-@property (readonly) NSString  *objectType; 
-@property (readonly) NSArray   *searchColumns;  // of ZKDescribeColumn
+@property (weak, readonly) NSString  *errorMsg; 
+@property (weak, readonly) NSString  *label; 
+@property (readonly) NSInteger        limitRows; 
+@property (weak, readonly) NSString  *objectType; 
+@property (weak, readonly) NSArray   *searchColumns;  // of ZKDescribeColumn
 @end

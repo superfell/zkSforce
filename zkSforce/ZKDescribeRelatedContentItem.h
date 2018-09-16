@@ -36,5 +36,5 @@
 */
 @interface ZKDescribeRelatedContentItem : ZKXmlDeserializer {
 }
-@property (readonly) ZKDescribeLayoutItem  *describeLayoutItem; 
+@property (weak, readonly) ZKDescribeLayoutItem  *describeLayoutItem; 
 @end

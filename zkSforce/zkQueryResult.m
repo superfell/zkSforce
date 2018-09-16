@@ -46,18 +46,17 @@
             continue;
         o = [[ZKSObject alloc] initWithXmlElement:n];
         [recArray addObject:o];
-        [o release];
     }    
-    records = [recArray retain];
+    records = recArray;
     return self;
 }
 
 - (instancetype)initWithRecords:(NSArray *)r size:(int)s done:(BOOL)d queryLocator:(NSString *)ql {
     self = [super init];
-    records = [r retain];
+    records = r;
     done = d;
     size = s;
-    queryLocator = [ql retain];
+    queryLocator = ql;
     return self;
 }
 
@@ -65,11 +64,6 @@
     return [[ZKQueryResult alloc] initWithRecords:records size:size done:done queryLocator:queryLocator];
 }
 
-- (void)dealloc {
-    [queryLocator release];
-    [records release];
-    [super dealloc];
-}
 
 - (int)size {
     return size;

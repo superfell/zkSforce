@@ -38,6 +38,6 @@
 	NSString  *dataCategoryGroupName;
 	NSString  *sobject;
 }
-@property (retain) NSString  *dataCategoryGroupName; 
-@property (retain) NSString  *sobject; 
+@property (strong) NSString  *dataCategoryGroupName; 
+@property (strong) NSString  *sobject; 
 @end

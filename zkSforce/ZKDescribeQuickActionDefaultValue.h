@@ -36,6 +36,6 @@
 */
 @interface ZKDescribeQuickActionDefaultValue : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *defaultValue; 
-@property (readonly) NSString  *field; 
+@property (weak, readonly) NSString  *defaultValue; 
+@property (weak, readonly) NSString  *field; 
 @end

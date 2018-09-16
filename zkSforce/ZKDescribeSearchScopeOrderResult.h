@@ -36,6 +36,6 @@
 */
 @interface ZKDescribeSearchScopeOrderResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *keyPrefix; 
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSString  *keyPrefix; 
+@property (weak, readonly) NSString  *name; 
 @end

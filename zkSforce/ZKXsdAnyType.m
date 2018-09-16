@@ -33,19 +33,13 @@
 
 - (instancetype)initWithXmlElement:(zkElement *)e {
     self = [super initWithXmlElement:e];
-    xsiType = [node.xsiType retain];
+    xsiType = node.xsiType;
     return self;
-}
-
--(void)dealloc {
-    [xsiType autorelease];
-    [val autorelease];
-    [super dealloc];
 }
 
 -(id)value {
     if (val == nil) {
-        val = [self.decodeValue retain];
+        val = self.decodeValue;
     }
     return val == [NSNull null] ? nil : val;
 }
@@ -80,7 +74,7 @@
         NSLog(@"Unable to find a class for type %@ [mapped class was %@", xsiType, complexType);
         return node;
     }
-    return [[complexTypeInst initWithXmlElement:node] autorelease];
+    return [complexTypeInst initWithXmlElement:node];
 }
 
 -(NSString *)string {

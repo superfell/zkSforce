@@ -46,8 +46,8 @@
 	NSString  *templateId;
 	NSArray   *whatIds;
 }
-@property (retain) NSString  *description; 
-@property (retain) NSArray   *targetObjectIds;  // of NSString
-@property (retain) NSString  *templateId; 
-@property (retain) NSArray   *whatIds;  // of NSString
+@property (strong) NSString  *description; 
+@property (strong) NSArray   *targetObjectIds;  // of NSString
+@property (strong) NSString  *templateId; 
+@property (strong) NSArray   *whatIds;  // of NSString
 @end

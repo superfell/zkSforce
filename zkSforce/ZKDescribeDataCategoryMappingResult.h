@@ -43,13 +43,13 @@
 */
 @interface ZKDescribeDataCategoryMappingResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *dataCategoryGroupId; 
-@property (readonly) NSString  *dataCategoryGroupLabel; 
-@property (readonly) NSString  *dataCategoryGroupName; 
-@property (readonly) NSString  *dataCategoryId; 
-@property (readonly) NSString  *dataCategoryLabel; 
-@property (readonly) NSString  *dataCategoryName; 
-@property (readonly) NSString  *id; 
-@property (readonly) NSString  *mappedEntity; 
-@property (readonly) NSString  *mappedField; 
+@property (weak, readonly) NSString  *dataCategoryGroupId; 
+@property (weak, readonly) NSString  *dataCategoryGroupLabel; 
+@property (weak, readonly) NSString  *dataCategoryGroupName; 
+@property (weak, readonly) NSString  *dataCategoryId; 
+@property (weak, readonly) NSString  *dataCategoryLabel; 
+@property (weak, readonly) NSString  *dataCategoryName; 
+@property (weak, readonly) NSString  *id; 
+@property (weak, readonly) NSString  *mappedEntity; 
+@property (weak, readonly) NSString  *mappedField; 
 @end

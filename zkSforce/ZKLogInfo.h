@@ -38,6 +38,6 @@
 	NSString  *category;
 	NSString  *level;
 }
-@property (retain) NSString  *category; 
-@property (retain) NSString  *level; 
+@property (strong) NSString  *category; 
+@property (strong) NSString  *level; 
 @end

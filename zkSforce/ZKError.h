@@ -38,8 +38,8 @@
 */
 @interface ZKError : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *extendedErrorDetails;  // of ZKExtendedErrorDetails
-@property (readonly) NSArray   *fields;  // of NSString
-@property (readonly) NSString  *message; 
-@property (readonly) NSString  *statusCode; 
+@property (weak, readonly) NSArray   *extendedErrorDetails;  // of ZKExtendedErrorDetails
+@property (weak, readonly) NSArray   *fields;  // of NSString
+@property (weak, readonly) NSString  *message; 
+@property (weak, readonly) NSString  *statusCode; 
 @end

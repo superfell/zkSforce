@@ -44,9 +44,9 @@
 	NSArray   *orderBy;
 	NSString  *sobjectType;
 }
-@property (retain) NSString  *developerNameOrId; 
+@property (strong) NSString  *developerNameOrId; 
 @property (assign) NSInteger  limit; 
 @property (assign) NSInteger  offset; 
-@property (retain) NSArray   *orderBy;  // of ZKListViewOrderBy
-@property (retain) NSString  *sobjectType; 
+@property (strong) NSArray   *orderBy;  // of ZKListViewOrderBy
+@property (strong) NSString  *sobjectType; 
 @end

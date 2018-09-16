@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeLayoutResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *layouts;  // of ZKDescribeLayout
-@property (readonly) NSArray  *recordTypeMappings;  // of ZKRecordTypeMapping
-@property (readonly) BOOL      recordTypeSelectorRequired; 
+@property (weak, readonly) NSArray  *layouts;  // of ZKDescribeLayout
+@property (weak, readonly) NSArray  *recordTypeMappings;  // of ZKRecordTypeMapping
+@property (readonly) BOOL            recordTypeSelectorRequired; 
 @end

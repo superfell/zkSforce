@@ -43,13 +43,13 @@
 */
 @interface ZKDescribeTab : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) BOOL       custom; 
-@property (readonly) NSString  *iconUrl; 
-@property (readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *miniIconUrl; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *sobjectName; 
-@property (readonly) NSString  *url; 
+@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
+@property (readonly) BOOL             custom; 
+@property (weak, readonly) NSString  *iconUrl; 
+@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *miniIconUrl; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *sobjectName; 
+@property (weak, readonly) NSString  *url; 
 @end

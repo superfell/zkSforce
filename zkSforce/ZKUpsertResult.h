@@ -38,8 +38,8 @@
 */
 @interface ZKUpsertResult : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       created; 
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSString  *id; 
-@property (readonly) BOOL       success; 
+@property (readonly) BOOL             created; 
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSString  *id; 
+@property (readonly) BOOL             success; 
 @end

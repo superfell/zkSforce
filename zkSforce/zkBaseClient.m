@@ -31,19 +31,13 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
 @synthesize endpointUrl, delegate;
 
-- (void)dealloc {
-    [endpointUrl release];
-    [responseHeaders release];
-    [super dealloc];
-}
 
 - (zkElement *)lastResponseSoapHeaders {
     return responseHeaders;
 }
 
 -(void)setLastResponseSoapHeaders:(zkElement *)h {
-    [responseHeaders autorelease];
-    responseHeaders = [h retain];
+    responseHeaders = h;
 }
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
@@ -51,7 +45,7 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 }
 
 -(void)logInvalidResponse:(NSHTTPURLResponse *)resp payload:(NSData *)data note:(NSString *)note {
-    NSString *payload = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    NSString *payload = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, resp.URL.absoluteString, (int)resp.statusCode, payload);
 }
 

@@ -39,9 +39,9 @@
 */
 @interface ZKNameCaseValue : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *article; 
-@property (readonly) NSString  *caseType; 
-@property (readonly) NSString  *number; 
-@property (readonly) NSString  *possessive; 
-@property (readonly) NSString  *value; 
+@property (weak, readonly) NSString  *article; 
+@property (weak, readonly) NSString  *caseType; 
+@property (weak, readonly) NSString  *number; 
+@property (weak, readonly) NSString  *possessive; 
+@property (weak, readonly) NSString  *value; 
 @end

@@ -37,7 +37,7 @@
 */
 @interface ZKGetDeletedResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *deletedRecords;  // of ZKDeletedRecord
-@property (readonly) NSDate   *earliestDateAvailable; 
-@property (readonly) NSDate   *latestDateCovered; 
+@property (weak, readonly) NSArray  *deletedRecords;  // of ZKDeletedRecord
+@property (weak, readonly) NSDate   *earliestDateAvailable; 
+@property (weak, readonly) NSDate   *latestDateCovered; 
 @end

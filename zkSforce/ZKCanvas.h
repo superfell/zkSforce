@@ -44,10 +44,10 @@
 */
 @interface ZKCanvas : ZKDescribeLayoutComponent {
 }
-@property (readonly) NSString  *displayLocation; 
-@property (readonly) NSString  *referenceId; 
-@property (readonly) BOOL       showLabel; 
-@property (readonly) BOOL       showScrollbars; 
-@property (readonly) NSString  *suggestedHeight; 
-@property (readonly) NSString  *suggestedWidth; 
+@property (weak, readonly) NSString  *displayLocation; 
+@property (weak, readonly) NSString  *referenceId; 
+@property (readonly) BOOL             showLabel; 
+@property (readonly) BOOL             showScrollbars; 
+@property (weak, readonly) NSString  *suggestedHeight; 
+@property (weak, readonly) NSString  *suggestedWidth; 
 @end

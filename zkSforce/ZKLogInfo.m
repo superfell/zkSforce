@@ -31,12 +31,6 @@
 
 @synthesize category, level;
 
--(void)dealloc {
-	[category release];
-	[level release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"category" elemValue:self.category nillable:NO  optional:NO];

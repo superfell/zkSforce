@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeLayoutButtonSection : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *detailButtons;  // of ZKDescribeLayoutButton
+@property (weak, readonly) NSArray  *detailButtons;  // of ZKDescribeLayoutButton
 @end

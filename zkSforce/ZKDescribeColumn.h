@@ -38,8 +38,8 @@
 */
 @interface ZKDescribeColumn : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *field; 
-@property (readonly) NSString  *format; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSString  *field; 
+@property (weak, readonly) NSString  *format; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
 @end

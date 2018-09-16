@@ -31,13 +31,6 @@
 
 @synthesize additionalInformationMap, masterRecord, recordToMergeIds;
 
--(void)dealloc {
-	[additionalInformationMap release];
-	[masterRecord release];
-	[recordToMergeIds release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"additionalInformationMap" elemValue:self.additionalInformationMap];

@@ -38,8 +38,8 @@
 */
 @interface ZKDescribePathAssistantField : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *apiName; 
-@property (readonly) NSString  *label; 
-@property (readonly) BOOL       readOnly; 
-@property (readonly) BOOL       required; 
+@property (weak, readonly) NSString  *apiName; 
+@property (weak, readonly) NSString  *label; 
+@property (readonly) BOOL             readOnly; 
+@property (readonly) BOOL             required; 
 @end

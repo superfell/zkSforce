@@ -38,8 +38,8 @@
 */
 @interface ZKDescribeApprovalLayout : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *id; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSArray   *layoutItems;  // of ZKDescribeLayoutItem
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSString  *id; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSArray   *layoutItems;  // of ZKDescribeLayoutItem
+@property (weak, readonly) NSString  *name; 
 @end

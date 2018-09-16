@@ -54,24 +54,24 @@
 */
 @interface ZKDescribeLayoutButton : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *behavior; 
-@property (readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) NSString  *content; 
-@property (readonly) NSString  *contentSource; 
-@property (readonly) BOOL       custom; 
-@property (readonly) NSString  *encoding; 
-@property (readonly) NSInteger  height; 
-@property (readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (readonly) NSString  *label; 
-@property (readonly) BOOL       menubar; 
-@property (readonly) NSString  *name; 
-@property (readonly) BOOL       overridden; 
-@property (readonly) BOOL       resizeable; 
-@property (readonly) BOOL       scrollbars; 
-@property (readonly) BOOL       showsLocation; 
-@property (readonly) BOOL       showsStatus; 
-@property (readonly) BOOL       toolbar; 
-@property (readonly) NSString  *url; 
-@property (readonly) NSInteger  width; 
-@property (readonly) NSString  *windowPosition; 
+@property (weak, readonly) NSString  *behavior; 
+@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
+@property (weak, readonly) NSString  *content; 
+@property (weak, readonly) NSString  *contentSource; 
+@property (readonly) BOOL             custom; 
+@property (weak, readonly) NSString  *encoding; 
+@property (readonly) NSInteger        height; 
+@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
+@property (weak, readonly) NSString  *label; 
+@property (readonly) BOOL             menubar; 
+@property (weak, readonly) NSString  *name; 
+@property (readonly) BOOL             overridden; 
+@property (readonly) BOOL             resizeable; 
+@property (readonly) BOOL             scrollbars; 
+@property (readonly) BOOL             showsLocation; 
+@property (readonly) BOOL             showsStatus; 
+@property (readonly) BOOL             toolbar; 
+@property (weak, readonly) NSString  *url; 
+@property (readonly) NSInteger        width; 
+@property (weak, readonly) NSString  *windowPosition; 
 @end

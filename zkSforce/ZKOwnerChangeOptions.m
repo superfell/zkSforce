@@ -31,11 +31,6 @@
 
 @synthesize options;
 
--(void)dealloc {
-	[options release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"options" elemValue:self.options];

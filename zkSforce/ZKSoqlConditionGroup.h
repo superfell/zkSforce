@@ -40,6 +40,6 @@
 */
 @interface ZKSoqlConditionGroup : ZKSoqlWhereCondition {
 }
-@property (readonly) NSArray   *conditions;  // of ZKSoqlWhereCondition
-@property (readonly) NSString  *conjunction; 
+@property (weak, readonly) NSArray   *conditions;  // of ZKSoqlWhereCondition
+@property (weak, readonly) NSString  *conjunction; 
 @end

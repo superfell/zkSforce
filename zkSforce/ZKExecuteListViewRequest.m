@@ -31,13 +31,6 @@
 
 @synthesize developerNameOrId, limit, offset, orderBy, sobjectType;
 
--(void)dealloc {
-	[developerNameOrId release];
-	[orderBy release];
-	[sobjectType release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"developerNameOrId" elemValue:self.developerNameOrId nillable:NO  optional:NO];

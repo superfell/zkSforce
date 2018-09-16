@@ -38,6 +38,6 @@
 	NSString  *client;
 	NSString  *defaultNamespace;
 }
-@property (retain) NSString  *client; 
-@property (retain) NSString  *defaultNamespace; 
+@property (strong) NSString  *client; 
+@property (strong) NSString  *defaultNamespace; 
 @end

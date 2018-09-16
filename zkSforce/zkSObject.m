@@ -29,7 +29,7 @@
 @implementation ZKSObject
 
 + (id)withType:(NSString *)type {
-    return [[[ZKSObject alloc] initWithType:type] autorelease];
+    return [[ZKSObject alloc] initWithType:type];
 }
 
 + (id)withTypeAndId:(NSString *)type sfId:(NSString *)sfId {
@@ -39,12 +39,12 @@
 }
 
 + (id) fromXmlNode:(zkElement *)node {
-    return [[[ZKSObject alloc] initWithXmlElement:node] autorelease];
+    return [[ZKSObject alloc] initWithXmlElement:node];
 }
 
 - (instancetype) initWithType:(NSString *)aType {
     self = [super init];    
-    type = [aType retain];
+    type = aType;
     fieldsToNull = [[NSMutableSet alloc] init];
     fields = [[NSMutableDictionary alloc] init];
     fieldOrder = [[NSMutableArray alloc] init];
@@ -72,13 +72,13 @@
         else {
             NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
             if ([xsiType hasSuffix:@"QueryResult"]) 
-                fieldVal = [[[ZKQueryResult alloc] initWithXmlElement:f] autorelease];
+                fieldVal = [[ZKQueryResult alloc] initWithXmlElement:f];
             else if ([xsiType hasSuffix:@"sObject"])
-                fieldVal = [[[ZKSObject alloc] initWithXmlElement:f] autorelease];
+                fieldVal = [[ZKSObject alloc] initWithXmlElement:f];
             else if ([xsiType hasSuffix:@"address"])
-                fieldVal = [[[ZKAddress alloc] initWithXmlElement:f] autorelease];
+                fieldVal = [[ZKAddress alloc] initWithXmlElement:f];
             else if ([xsiType hasSuffix:@"location"])
-                fieldVal = [[[ZKLocation alloc] initWithXmlElement:f] autorelease];
+                fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
             else
                 fieldVal = f.stringValue;
         }
@@ -92,9 +92,9 @@
     self = [super init];
     Id = [anId copy];
     type = [t copy];
-    fieldsToNull = [[NSMutableSet setWithSet:ftn] retain];
-    fields = [[NSMutableDictionary dictionaryWithDictionary:f] retain];
-    fieldOrder = [[NSMutableArray arrayWithArray:fo] retain];
+    fieldsToNull = [NSMutableSet setWithSet:ftn];
+    fields = [NSMutableDictionary dictionaryWithDictionary:f];
+    fieldOrder = [NSMutableArray arrayWithArray:fo];
     return self;
 }
 
@@ -102,14 +102,6 @@
     return [[ZKSObject alloc] initWithId:Id type:type fieldsToNull:fieldsToNull fields:fields fieldOrder:fieldOrder];
 }
 
-- (void)dealloc {
-    [Id release];
-    [type release];
-    [fieldsToNull release];
-    [fields release];
-    [fieldOrder release];
-    [super dealloc];
-}
 
 - (id)description {
     return [NSString stringWithFormat:@"%@ %@ fields=%@ toNull=%@", type, Id, fields, fieldsToNull];
@@ -120,13 +112,11 @@
 }
 
 - (void)setId:(NSString *)theId {
-    [Id autorelease];
-    Id = [theId retain];
+    Id = theId;
 }
 
 - (void)setType:(NSString *)t {
-    [type autorelease];
-    type = [t retain];
+    type = t;
 }
 
 - (void)setFieldToNull:(NSString *)field {

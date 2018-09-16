@@ -39,8 +39,8 @@
 */
 @interface ZKMatchRecord : ZKXmlDeserializer {
 }
-@property (readonly) NSArray    *additionalInformation;  // of ZKAdditionalInformationMap
-@property (readonly) NSArray    *fieldDiffs;  // of ZKFieldDiff
-@property (readonly) double      matchConfidence; 
-@property (readonly) ZKSObject  *record; 
+@property (weak, readonly) NSArray    *additionalInformation;  // of ZKAdditionalInformationMap
+@property (weak, readonly) NSArray    *fieldDiffs;  // of ZKFieldDiff
+@property (readonly) double            matchConfidence; 
+@property (weak, readonly) ZKSObject  *record; 
 @end
