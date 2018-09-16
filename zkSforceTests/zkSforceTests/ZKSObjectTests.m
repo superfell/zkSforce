@@ -63,4 +63,39 @@
     XCTAssertEqualObjects([a street], @"Market St", @"street wrong");
 }
 
+-(void)testFieldOrder {
+    ZKSObject *o = [[ZKSObject alloc] initWithType:@"Account"];
+    [o setFieldValue:@"Bob" field:@"Bf"];
+    [o setFieldValue:@"Alice" field:@"Af"];
+    [o setFieldValue:@"Eve" field:@"Ef"];
+    // see http://www.openradar.me/14504007 for why the array literal is in ()
+    XCTAssertEqualObjects(o.orderedFieldNames, (@[@"Bf", @"Af", @"Ef"]));
+    [o setFieldValue:@"Alice2" field:@"Af"];
+    XCTAssertEqualObjects(o.orderedFieldNames, (@[@"Bf", @"Af", @"Ef"]));
+    [o setFieldValue:@"Mallory" field:@"Mf"];
+    XCTAssertEqualObjects(o.orderedFieldNames, (@[@"Bf", @"Af", @"Ef", @"Mf"]));
+    [o setFieldToNull:@"Ef"];
+    XCTAssertEqualObjects(o.orderedFieldNames, (@[@"Bf", @"Af", @"Mf"]));
+}
+
+-(void)testFields {
+    ZKSObject *o = [[ZKSObject alloc] initWithType:@"Account"];
+    [o setFieldValue:@"Alice" field:@"A"];
+    [o setFieldValue:@"Eve" field:@"E"];
+    XCTAssertEqualObjects(o.fields, (@{@"A": @"Alice", @"E": @"Eve"}));
+}
+
+-(void)testCopy {
+    ZKSObject *o = [[ZKSObject alloc] initWithType:@"Account"];
+    o.id = @"001123";
+    [o setFieldToNull:@"Name"];
+    [o setFieldValue:@"A" field:@"A"];
+    ZKSObject *c = [o copyWithZone:nil];
+    XCTAssertEqualObjects(o.type, c.type);
+    XCTAssertEqualObjects(o.id, c.id);
+    XCTAssertEqualObjects(o.fields, c.fields);
+    XCTAssertEqualObjects(o.orderedFieldNames, c.orderedFieldNames);
+    XCTAssertEqualObjects(o.fieldsToNull, c.fieldsToNull);
+}
+
 @end
