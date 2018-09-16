@@ -30,7 +30,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @interface ZKAuthInfoBase()
 @property (readwrite) NSString *sessionId;
-@property (readwrite) NSURL *instanceUrl;
+@property (readwrite) NSURL *url;
 @property (strong) NSDate *sessionExpiresAt;
 @property (strong) NSString *clientId;
 @end
@@ -102,7 +102,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     self.clientId = cid;
     self.sessionId = sid;
     self.refreshToken = tkn;
-    self.instanceUrl = inst;
+    self.url = inst;
     self.authHostUrl = [NSURL URLWithString:@"/" relativeToURL:auth];
     self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
     return self;
@@ -110,7 +110,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 
 -(NSURL *)instanceUrl {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", apiVersion] relativeToURL:self.instanceUrl];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", apiVersion] relativeToURL:self.url];
 }
 
 -(void)refresh {
@@ -130,7 +130,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
     
     self.sessionId = results[@"access_token"];
-    self.instanceUrl = [NSURL URLWithString:results[@"instance_url"]];
+    self.url = [NSURL URLWithString:results[@"instance_url"]];
     self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
 }
 
@@ -187,7 +187,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     zkElement *result = [resp childElements:@"result"][0];
     ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
     
-    self.instanceUrl = [NSURL URLWithString:lr.serverUrl];
+    self.url = [NSURL URLWithString:lr.serverUrl];
     self.sessionId = lr.sessionId;
 
     // if we have a sessionSecondsValid in the UserInfo, use that to control when we re-authenticate, otherwise take the default.
