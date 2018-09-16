@@ -31,7 +31,7 @@
 
 -(ZKXmlDeserializer *)deser:(NSString *)doc {
     zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    return [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+    return [[ZKXmlDeserializer alloc] initWithXmlElement:e];
 }
 
 -(void)testSimpleTypes {
@@ -121,13 +121,13 @@
 -(void)testNSCopying {
     NSString *doc = @"<root><field>f</field><format>fmt</format><label>lbl</label><name>n</name></root>";
     zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    ZKDescribeColumn *l = [[[ZKDescribeColumn alloc] initWithXmlElement:e] autorelease];
+    ZKDescribeColumn *l = [[ZKDescribeColumn alloc] initWithXmlElement:e];
     XCTAssertEqualObjects([ZKDescribeColumn class], [l class], @"original of wrong type");
     XCTAssertEqualObjects(@"f", [l field], @"field is wrong");
     XCTAssertEqualObjects(@"fmt", [l format],  @"format is wrong");
     XCTAssertEqualObjects(@"lbl", [l label],  @"label is wrong");
     XCTAssertEqualObjects(@"n", [l name],  @"name is wrong");
-    ZKDescribeColumn *copy = [[l copyWithZone:nil] autorelease];
+    ZKDescribeColumn *copy = [l copyWithZone:nil];
     XCTAssertNotNil(copy, @"copy was nil");
     XCTAssertEqualObjects([ZKDescribeColumn class], [copy class], @"copy of wrong type");
     XCTAssertEqualObjects(@"f", [copy field], @"field is wrong");

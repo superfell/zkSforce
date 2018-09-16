@@ -30,11 +30,6 @@
     cal.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 }
 
--(void)tearDown {
-    [cal release];
-    [super tearDown];
-}
-
 -(void)assertDate:(NSDate *)date equalsYear:(NSInteger)yr month:(NSInteger)month day:(NSInteger)day {
     NSDateComponents *dc = [cal components:-1 fromDate:date];
     XCTAssertEqual(yr, [dc year]);

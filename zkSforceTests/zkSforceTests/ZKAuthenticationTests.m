@@ -22,10 +22,16 @@
 
 #import <XCTest/XCTest.h>
 #import "zkAuthentication.h"
-#import "ZKEnvelope.h"
+#import "ZKPartnerEnvelope.h"
+
+@class ZKPartnerEnvelope;
 
 @interface ZKAuthenticationTests : XCTestCase
 
+@end
+
+@interface ZKSoapLogin ()
+-(ZKPartnerEnvelope *)newEnvelope;
 @end
 
 @implementation ZKAuthenticationTests
@@ -39,7 +45,7 @@
                                                                delegate:nil
                                                                   orgId:@"00D000000000001123"
                                                                portalId:@"123123123123123123"];
-    ZKEnvelope *env = [pl newEnvelope];
+    ZKPartnerEnvelope *env = [pl newEnvelope];
     NSString *soap =env.end;
     XCTAssertEqualObjects(soap, @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='urn:partner.soap.sforce.com'><s:Header><LoginScopeHeader><organizationId>00D000000000001123</organizationId><portalId>123123123123123123</portalId></LoginScopeHeader></s:Header><s:Body></s:Body></s:Envelope>");
 }

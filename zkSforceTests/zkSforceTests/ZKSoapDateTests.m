@@ -40,7 +40,7 @@
 }
 
 -(void)testToDateString {
-    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
+    NSDateComponents *c = [[NSDateComponents alloc] init];
     c.year = 2013;
     c.month = 11;
     c.day = 23;
@@ -49,7 +49,7 @@
 }
 
 -(void)testToDateTimeString {
-    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
+    NSDateComponents *c = [[NSDateComponents alloc] init];
     c.year = 2013;
     c.month = 12;
     c.day = 5;
@@ -61,7 +61,7 @@
 }
 
 -(void)testToTimeString {
-    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
+    NSDateComponents *c = [[NSDateComponents alloc] init];
     c.hour = 10;
     c.minute = 30;
     c.second = 15;
