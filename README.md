@@ -1,6 +1,6 @@
 # ZKSforce  [![Build Status](https://travis-ci.org/superfell/zkSforce.svg?branch=master)](https://travis-ci.org/superfell/zkSforce)
 
-zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.9+, iOS 7+)
+zkSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.9+, iOS 8+)
 
 zkSforce supports all of the partner web services API, including
 

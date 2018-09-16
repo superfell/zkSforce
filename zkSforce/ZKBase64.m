@@ -41,7 +41,7 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 // iOS 7
 -(NSData *)ZKBase64Decode {
-    return [[[NSData alloc] initWithBase64EncodedString:self options:0] autorelease];
+    return [[NSData alloc] initWithBase64EncodedString:self options:0];
 }
 #endif
 

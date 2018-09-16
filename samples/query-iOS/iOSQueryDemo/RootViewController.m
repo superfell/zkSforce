@@ -27,12 +27,11 @@
 @synthesize client=_client, results=_results;
 
 -(void)setClient:(ZKSforceClient *)newClient {
-    [_client autorelease];
-    _client = [newClient retain];
+    _client = newClient;
 
     // run the query in the background thread, when its done, update the ui.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^(void) {
-        ZKQueryResult *qr = [_client query:@"select id,name from account order by SystemModstamp desc LIMIT 50"];
+        ZKQueryResult *qr = [newClient query:@"select id,name from account order by SystemModstamp desc LIMIT 50"];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             self.results = qr;
             [self.tableView reloadData];
@@ -56,7 +55,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell.
     cell.textLabel.text = [(self.results).records[indexPath.row] fieldValue:@"Name"];
@@ -152,11 +151,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-}
-
-- (void)dealloc {
-    [_client release];
-    [super dealloc];
 }
 
 @end

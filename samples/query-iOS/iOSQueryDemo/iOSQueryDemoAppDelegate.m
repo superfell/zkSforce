@@ -95,10 +95,4 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
      */
 }
 
-- (void)dealloc {
-    [_window release];
-    [_navigationController release];
-    [super dealloc];
-}
-
 @end
