@@ -37,16 +37,12 @@
 
 // Helper function to show an error dialog/sheet from a soap exception
 -(void)showError:(NSException *)ex {
-    NSString *txt = [ex isKindOfClass:[ZKSoapException class]] ? [(ZKSoapException *)ex faultCode] : @"Error";
-    NSAlert *a = [NSAlert    alertWithMessageText:txt
-                            defaultButton:@"Close" 
-                            alternateButton:nil 
-                            otherButton:nil 
-                            informativeTextWithFormat:@"%@", ex.reason];
-    [a    beginSheetModalForWindow:window 
-        modalDelegate:nil 
-        didEndSelector:nil 
-        contextInfo:nil];
+    NSAlert *a = [[NSAlert alloc] init];
+    a.messageText = [ex isKindOfClass:[ZKSoapException class]] ? [(ZKSoapException *)ex faultCode] : @"Error";
+    a.informativeText = ex.reason;
+    [a addButtonWithTitle:@"Close"];
+    [a beginSheetModalForWindow:window completionHandler:^(NSModalResponse returnCode) {
+    }];
 }
 
 -(void)updateApiLimitInfo {
@@ -98,11 +94,12 @@
     [client performGetServerTimestampWithFailBlock:^(NSException *e) {
         NSLog(@"Error fetching timestamp : %@", e);
     } completeBlock:^(ZKGetServerTimestampResult *str) {
-        [[NSAlert alertWithMessageText:@"Server Timestamp"
-                         defaultButton:@"Close"
-                       alternateButton:nil
-                           otherButton:nil
-             informativeTextWithFormat:@"Server Time : %@", str.timestamp] runModal];
+        NSAlert *a  = [[NSAlert alloc] init];
+        a.messageText = @"Server Timestamp";
+        a.alertStyle = NSAlertStyleInformational;
+        [a addButtonWithTitle:@"Close"];
+        a.informativeText = [NSString stringWithFormat:@"Server Time : %@", str.timestamp];
+        [a runModal];
     }];
 }
 
