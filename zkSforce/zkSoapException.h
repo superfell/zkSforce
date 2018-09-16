@@ -26,6 +26,6 @@
 
 + (instancetype) exceptionWithFaultCode:(NSString *)fc faultString:(NSString *)fs;
 
-@property (NS_NONATOMIC_IOSONLY, copy) NSString *faultCode;
+@property (strong) NSString *faultCode;
 
 @end

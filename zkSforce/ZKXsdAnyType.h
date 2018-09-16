@@ -29,12 +29,12 @@
 }
 
 /** @return the decoded value of this item */
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSObject *value;
+@property (readonly) NSObject *value;
 
 /** @return the xml namespace URI of the type of this item */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *typeNamespaceURI;
+@property (readonly) NSString *typeNamespaceURI;
 
 /** @return the xml localname of the type of this item */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *typeName;
+@property (readonly) NSString *typeName;
 
 @end

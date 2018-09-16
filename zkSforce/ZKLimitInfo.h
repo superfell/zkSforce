@@ -25,8 +25,8 @@
 @interface ZKLimitInfo : ZKXmlDeserializer {
 }
 
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *type;
-@property (NS_NONATOMIC_IOSONLY, readonly) int limit;
-@property (NS_NONATOMIC_IOSONLY, readonly) int current;
+@property (readonly) NSString *type;
+@property (readonly) int limit;
+@property (readonly) int current;
 
 @end

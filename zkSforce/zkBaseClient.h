@@ -41,7 +41,7 @@
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
 
 /** @return the Soap:Header element from the response payload. */
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) zkElement *lastResponseSoapHeaders;
+@property (readonly) zkElement *lastResponseSoapHeaders;
 
 @end
 

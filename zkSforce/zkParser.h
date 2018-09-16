@@ -32,12 +32,12 @@ FOUNDATION_EXPORT NSString *const NS_URI_XSD;
     zkElement    *parent;
 }
 /** @return the name of this element */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *name;
+@property (readonly) NSString *name;
 /** @return the namespace URI of this element */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *namespace;
+@property (readonly) NSString *namespace;
 
 /** @return the stringValue of this element [i.e. its child text] */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringValue;
+@property (readonly) NSString *stringValue;
 
 /** @return the first child element with this local name */
 - (zkElement *)childElement:(NSString *)name;
@@ -51,17 +51,17 @@ FOUNDATION_EXPORT NSString *const NS_URI_XSD;
 /** @return all the child elements with this name */
 - (NSArray *)childElements:(NSString *)name ns:(NSString *)namespace;
 
-/** @return all teh child elements */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *childElements;
+/** @return all the child elements */
+@property (readonly) NSArray *childElements;
 
 /** @return the value of the named attributed */
 - (NSString *)attributeValue:(NSString *)name ns:(NSString *)namespace;
 
 /** @return the namespace URI & localname of the xsi:type attribute if it exists, or nil otherwise */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) ZKNamespacedName *xsiType;
+@property (readonly) ZKNamespacedName *xsiType;
 
 /** @return TRUE if the element has an xsi:nil="true" attribute */
-@property (NS_NONATOMIC_IOSONLY, getter=isXsiNil, readonly) BOOL xsiNil;
+@property (getter=isXsiNil, readonly) BOOL xsiNil;
 @end;
 
 @interface zkParser : NSObject {
@@ -81,9 +81,9 @@ FOUNDATION_EXPORT NSString *const NS_URI_XSD;
 +(ZKNamespacedName *)withName:(NSString*)localName uri:(NSString *)uri;
 
 /** @return the namespace URI of this value */
-@property (weak, readonly) NSString *namespaceURI;
+@property (readonly) NSString *namespaceURI;
 
 /** @return the localname of this value */
-@property (weak, readonly) NSString *localname;
+@property (readonly) NSString *localname;
 
 @end

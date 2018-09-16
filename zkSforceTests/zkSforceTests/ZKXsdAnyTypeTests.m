@@ -57,7 +57,7 @@
     XCTAssertEqualObjects(@"urn:partner.soap.sforce.com", [a typeNamespaceURI]);
     XCTAssertEqualObjects(@"QueryResult", [a typeName]);
     XCTAssertEqualObjects([ZKQueryResult class], [[a value] class]);
-    ZKQueryResult *qr = a.value;
+    ZKQueryResult *qr = (ZKQueryResult *)a.value;
     XCTAssertFalse([qr done]);
     XCTAssertEqual(42, [qr size]);
     XCTAssertEqualObjects(@"bob", [qr queryLocator]);

@@ -97,7 +97,7 @@
 -(void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version;
 
 /** returns an NSURL of where authentication will currently go. */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *authEndpointUrl;
+@property (readonly) NSURL *authEndpointUrl;
 
 
 /** @name Start an API session, need to call one of these before making any api call */
@@ -157,7 +157,7 @@
     if describeCaching is enabled, subsequent calls to this will use the locally cached
     copy.
 */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *describeGlobal;
+- (NSArray *)describeGlobal;
 
 /** make a describeSObject call and @return a ZKDescribeSObject instance, if describe
     caching is enabled, subsequent requests for the same sobject will return the locally
@@ -214,19 +214,19 @@
 /** @name SessionInfo - Information about the current session */
 
 /** @return true if we've performed a login request and it succeeded. */
-@property (NS_NONATOMIC_IOSONLY, readonly) BOOL loggedIn;
+@property (readonly) BOOL loggedIn;
 
 /** @return the UserInfo returned by the last call to login. */
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) ZKUserInfo *currentUserInfo;
+@property (readonly) ZKUserInfo *currentUserInfo;
 
 /** @return the current endpoint URL where requests are being sent. */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *serverUrl;
+@property (readonly) NSURL *serverUrl;
 
 /** @return the current API session Id being used to make requests */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *sessionId;
+@property (readonly) NSString *sessionId;
 
 /** @return the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed. */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *serverHostAbbriviation;
+@property (readonly) NSString *serverHostAbbriviation;
 
 /** @name SOAP Headers - properties that represent soap headers that are sent in conjuction with relevant requests. */
 

@@ -24,7 +24,7 @@
 
 @interface ZKEnvelope : NSObject {
     NSMutableString     *env;
-    int                    state;
+    int                 state;
 }
 
 - (void)start:(NSString *)primaryNamespceUri;
@@ -45,7 +45,7 @@
 - (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
 - (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue;
 
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *end;
+- (NSString *)end;
 
 - (void) addElementArray:(NSString *)elemName   elemValue:(NSArray *)elemValues;
 - (void) addElementSObject:(NSString *)elemName elemValue:(ZKSObject *)sobject;

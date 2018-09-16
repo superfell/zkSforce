@@ -29,8 +29,8 @@
 static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @interface ZKAuthInfoBase()
-@property (NS_NONATOMIC_IOSONLY, readwrite, copy) NSString *sessionId;
-@property (NS_NONATOMIC_IOSONLY, readwrite, copy) NSURL *instanceUrl;
+@property (readwrite) NSString *sessionId;
+@property (readwrite) NSURL *instanceUrl;
 @property (strong) NSDate *sessionExpiresAt;
 @property (strong) NSString *clientId;
 @end

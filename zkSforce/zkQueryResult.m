@@ -64,7 +64,6 @@
     return [[ZKQueryResult alloc] initWithRecords:records size:size done:done queryLocator:queryLocator];
 }
 
-
 - (int)size {
     return size;
 }

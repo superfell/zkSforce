@@ -25,8 +25,8 @@
 
 @protocol ZKAuthenticationInfo 
 
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *sessionId;     // return an API Session ID.
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
+@property (readonly) NSString *sessionId;     // return an API Session ID.
+@property (readonly) NSURL *instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
 
 // force the sessionId to be refreshed.
 -(void)refresh;

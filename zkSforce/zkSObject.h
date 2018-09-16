@@ -50,10 +50,10 @@
 - (void)setFieldToNull:(NSString *)field;
 
 // basic getters
-@property (NS_NONATOMIC_IOSONLY, strong) NSString *id;
-@property (NS_NONATOMIC_IOSONLY, strong) NSString *type;
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSArray *fieldsToNull;
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSDictionary *fields;
+@property (strong) NSString *id;
+@property (strong) NSString *type;
+@property (readonly, strong) NSArray *fieldsToNull;
+@property (readonly, strong) NSDictionary *fields;
 
 - (id)fieldValue:(NSString *)field;
 - (BOOL)isFieldToNull:(NSString *)field;
@@ -70,6 +70,6 @@
 - (ZKLocation *)locationValue:(NSString *)field;
 
 // others
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSArray *orderedFieldNames;
+@property (readonly) NSArray *orderedFieldNames;
 
 @end

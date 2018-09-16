@@ -24,9 +24,9 @@
 @interface ZKSaveResult (Extras)
 
 /** @return the statusCode of the first error in the errors collection, or nil if there's no error */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *statusCode;
+@property (readonly) NSString *statusCode;
 
 /** @return the message of the first error in the errors collection, or nil if there's no error */
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *message;
+@property (readonly) NSString *message;
 
 @end

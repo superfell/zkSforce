@@ -27,7 +27,8 @@
 @interface ZKLimitInfoHeader : ZKXmlDeserializer {
 }
 
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *limitInfos; // array of ZKLimitInfo
+@property (readonly) NSArray *limitInfos; // array of ZKLimitInfo
+
 -(ZKLimitInfo *)limitInfoOfType:(NSString *)type;  // returns this specific limitInfo if it exists, nil otherwise.
 
 @end

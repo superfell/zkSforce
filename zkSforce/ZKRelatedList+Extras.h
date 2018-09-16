@@ -23,7 +23,7 @@
 
 @interface ZKRelatedList (Extras)
 
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *columnsFieldNames ;
-@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *describe ;
+@property (readonly) NSString *columnsFieldNames ;
+@property (readonly) NSString *describe ;
 
 @end
