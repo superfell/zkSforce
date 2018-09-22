@@ -41,10 +41,6 @@
 </complexType>
 */
 @interface ZKMassEmailMessage : ZKEmail {
-	NSString  *description;
-	NSArray   *targetObjectIds;
-	NSString  *templateId;
-	NSArray   *whatIds;
 }
 @property (strong) NSString  *description; 
 @property (strong) NSArray   *targetObjectIds;  // of NSString

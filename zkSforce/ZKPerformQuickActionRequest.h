@@ -36,9 +36,6 @@
 </complexType>
 */
 @interface ZKPerformQuickActionRequest : NSObject<ZKXMLSerializable> {
-	NSString  *contextId;
-	NSString  *quickActionName;
-	NSArray   *records;
 }
 @property (strong) NSString  *contextId; 
 @property (strong) NSString  *quickActionName; 

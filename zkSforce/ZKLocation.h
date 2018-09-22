@@ -37,8 +37,6 @@
 </complexType>
 */
 @interface ZKLocation : ZKXmlDeserializer<ZKXMLSerializable> {
-	double latitude;
-	double longitude;
 }
 -(instancetype)init NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;

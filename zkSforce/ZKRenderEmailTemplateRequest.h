@@ -37,10 +37,6 @@
 </complexType>
 */
 @interface ZKRenderEmailTemplateRequest : NSObject<ZKXMLSerializable> {
-	BOOL       escapeHtmlInMergeFields;
-	NSArray   *templateBodies;
-	NSString  *whatId;
-	NSString  *whoId;
 }
 @property (assign) BOOL       escapeHtmlInMergeFields; 
 @property (strong) NSArray   *templateBodies;  // of NSString

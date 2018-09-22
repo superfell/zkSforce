@@ -39,8 +39,6 @@
 </complexType>
 */
 @interface ZKProcessWorkitemRequest : ZKProcessRequest {
-	NSString  *action;
-	NSString  *workitemId;
 }
 @property (strong) NSString  *action; 
 @property (strong) NSString  *workitemId; 

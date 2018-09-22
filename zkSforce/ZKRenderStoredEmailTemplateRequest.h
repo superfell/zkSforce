@@ -38,11 +38,6 @@
 </complexType>
 */
 @interface ZKRenderStoredEmailTemplateRequest : NSObject<ZKXMLSerializable> {
-	NSString  *attachmentRetrievalOption;
-	NSString  *templateId;
-	BOOL       updateTemplateUsage;
-	NSString  *whatId;
-	NSString  *whoId;
 }
 @property (strong) NSString  *attachmentRetrievalOption; 
 @property (strong) NSString  *templateId; 

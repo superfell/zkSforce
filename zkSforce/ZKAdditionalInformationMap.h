@@ -37,8 +37,6 @@
 </complexType>
 */
 @interface ZKAdditionalInformationMap : ZKXmlDeserializer<ZKXMLSerializable> {
-	NSString  *name;
-	NSString  *value;
 }
 -(instancetype)init NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;

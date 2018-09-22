@@ -35,8 +35,6 @@
 </complexType>
 */
 @interface ZKDebuggingHeader : NSObject<ZKXMLSerializable> {
-	NSArray   *categories;
-	NSString  *debugLevel;
 }
 @property (strong) NSArray   *categories;  // of ZKLogInfo
 @property (strong) NSString  *debugLevel; 

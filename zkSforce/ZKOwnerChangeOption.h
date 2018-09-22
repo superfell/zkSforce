@@ -35,8 +35,6 @@
 </complexType>
 */
 @interface ZKOwnerChangeOption : NSObject<ZKXMLSerializable> {
-	NSString  *type;
-	BOOL       execute;
 }
 @property (strong) NSString  *type; 
 @property (assign) BOOL       execute; 

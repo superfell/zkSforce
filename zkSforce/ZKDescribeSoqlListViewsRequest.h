@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKDescribeSoqlListViewsRequest : NSObject<ZKXMLSerializable> {
-	NSArray  *listViewParams;
 }
 @property (strong) NSArray  *listViewParams;  // of ZKDescribeSoqlListViewParams
 @end

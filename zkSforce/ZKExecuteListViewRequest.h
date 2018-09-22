@@ -38,11 +38,6 @@
 </complexType>
 */
 @interface ZKExecuteListViewRequest : NSObject<ZKXMLSerializable> {
-	NSString  *developerNameOrId;
-	NSInteger  limit;
-	NSInteger  offset;
-	NSArray   *orderBy;
-	NSString  *sobjectType;
 }
 @property (strong) NSString  *developerNameOrId; 
 @property (assign) NSInteger  limit; 

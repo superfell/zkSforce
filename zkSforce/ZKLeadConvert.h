@@ -51,21 +51,6 @@
 </complexType>
 */
 @interface ZKLeadConvert : NSObject<ZKXMLSerializable> {
-	NSString   *accountId;
-	ZKSObject  *accountRecord;
-	BOOL        bypassAccountDedupeCheck;
-	BOOL        bypassContactDedupeCheck;
-	NSString   *contactId;
-	ZKSObject  *contactRecord;
-	NSString   *convertedStatus;
-	BOOL        doNotCreateOpportunity;
-	NSString   *leadId;
-	NSString   *opportunityId;
-	NSString   *opportunityName;
-	ZKSObject  *opportunityRecord;
-	BOOL        overwriteLeadSource;
-	NSString   *ownerId;
-	BOOL        sendNotificationEmail;
 }
 @property (strong) NSString   *accountId; 
 @property (strong) ZKSObject  *accountRecord; 

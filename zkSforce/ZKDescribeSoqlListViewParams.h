@@ -35,8 +35,6 @@
 </complexType>
 */
 @interface ZKDescribeSoqlListViewParams : NSObject<ZKXMLSerializable> {
-	NSString  *developerNameOrId;
-	NSString  *sobjectType;
 }
 @property (strong) NSString  *developerNameOrId; 
 @property (strong) NSString  *sobjectType; 

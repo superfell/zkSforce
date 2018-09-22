@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKUserTerritoryDeleteHeader : NSObject<ZKXMLSerializable> {
-	NSString  *transferToUserId;
 }
 @property (strong) NSString  *transferToUserId; 
 @end

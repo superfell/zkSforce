@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKQueryOptions : NSObject<ZKXMLSerializable> {
-	NSInteger batchSize;
 }
 @property (assign) NSInteger batchSize; 
 @end

@@ -35,8 +35,6 @@
 </complexType>
 */
 @interface ZKDataCategoryGroupSobjectTypePair : NSObject<ZKXMLSerializable> {
-	NSString  *dataCategoryGroupName;
-	NSString  *sobject;
 }
 @property (strong) NSString  *dataCategoryGroupName; 
 @property (strong) NSString  *sobject; 

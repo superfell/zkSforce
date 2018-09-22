@@ -34,7 +34,6 @@
 </xsd:complexType>
 */
 @interface ZKPackageVersionHeader : NSObject<ZKXMLSerializable> {
-	NSArray  *packageVersions;
 }
 @property (strong) NSArray  *packageVersions;  // of ZKPackageVersion
 @end

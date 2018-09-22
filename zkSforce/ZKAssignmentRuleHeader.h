@@ -35,8 +35,6 @@
 </complexType>
 */
 @interface ZKAssignmentRuleHeader : NSObject<ZKXMLSerializable> {
-	NSString  *assignmentRuleId;
-	BOOL       useDefaultRule;
 }
 @property (strong) NSString  *assignmentRuleId; 
 @property (assign) BOOL       useDefaultRule; 

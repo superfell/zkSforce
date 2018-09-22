@@ -35,8 +35,6 @@
 </complexType>
 */
 @interface ZKLocaleOptions : NSObject<ZKXMLSerializable> {
-	NSString  *language;
-	BOOL       localizeErrors;
 }
 @property (strong) NSString  *language; 
 @property (assign) BOOL       localizeErrors; 

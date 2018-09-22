@@ -42,13 +42,6 @@
 </complexType>
 */
 @interface ZKEmail : ZKXmlDeserializer<ZKXMLSerializable> {
-	BOOL       bccSender;
-	NSString  *emailPriority;
-	NSString  *replyTo;
-	BOOL       saveAsActivity;
-	NSString  *senderDisplayName;
-	NSString  *subject;
-	BOOL       useSignature;
 }
 -(instancetype)init NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;

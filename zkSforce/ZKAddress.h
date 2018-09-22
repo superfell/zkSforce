@@ -47,14 +47,6 @@
 </complexType>
 */
 @interface ZKAddress : ZKLocation {
-	NSString  *city;
-	NSString  *country;
-	NSString  *countryCode;
-	NSString  *geocodeAccuracy;
-	NSString  *postalCode;
-	NSString  *state;
-	NSString  *stateCode;
-	NSString  *street;
 }
 -(instancetype)init NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;

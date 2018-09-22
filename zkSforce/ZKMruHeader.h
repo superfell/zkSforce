@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKMruHeader : NSObject<ZKXMLSerializable> {
-	BOOL updateMru;
 }
 @property (assign) BOOL updateMru; 
 @end
