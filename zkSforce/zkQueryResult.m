@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -28,7 +28,6 @@
 
 - (instancetype)initWithXmlElement:(zkElement *)node {
     self = [super init];
-    int i = 0;
     size = [node childElement:@"size"].stringValue.intValue;
     NSString * strDone = [node childElement:@"done"].stringValue; 
     done = [strDone isEqualToString:@"true"];
@@ -38,12 +37,11 @@
     NSArray * nodes = [node childElements:@"records"];
     NSMutableArray * recArray = [NSMutableArray arrayWithCapacity:nodes.count];
     ZKSObject * o;
-    for (i = 0; i < nodes.count; i++)
-    {
-        zkElement * n = nodes[i];
+    for (zkElement *n in nodes) {
         NSString *xsiNil = [n attributeValue:@"nil" ns:NS_URI_XSI];
-        if (xsiNil != nil && [xsiNil isEqualToString:@"true"])
+        if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) {
             continue;
+        }
         o = [[ZKSObject alloc] initWithXmlElement:n];
         [recArray addObject:o];
     }    
@@ -51,7 +49,7 @@
     return self;
 }
 
-- (instancetype)initWithRecords:(NSArray *)r size:(int)s done:(BOOL)d queryLocator:(NSString *)ql {
+- (instancetype)initWithRecords:(NSArray *)r size:(NSInteger)s done:(BOOL)d queryLocator:(NSString *)ql {
     self = [super init];
     records = r;
     done = d;
@@ -64,7 +62,7 @@
     return [[ZKQueryResult alloc] initWithRecords:records size:size done:done queryLocator:queryLocator];
 }
 
-- (int)size {
+- (NSInteger)size {
     return size;
 }
 
@@ -78,6 +76,19 @@
 
 - (NSArray *)records {
     return records;
+}
+
+- (NSObject *)valueForFieldPath:(NSString *)path row:(NSInteger)row {
+    NSArray *fieldPath = [path componentsSeparatedByString:@"."];
+    NSObject *val = records[row];
+    for (NSString *step in fieldPath) {
+        if ([val isKindOfClass:[ZKSObject class]]) {
+            val = [(ZKSObject *)val fieldValue:step];
+        } else {
+            val = [val valueForKey:step];
+        }
+    }
+    return val;
 }
 
 @end

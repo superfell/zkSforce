@@ -20,7 +20,6 @@
 //
 
 #import "zkQueryResult+NSTableView.h"
-#import "zkSObject.h"
 
 // Only build on OSX
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
@@ -31,17 +30,8 @@
     return records.count;
 }
 
-- (id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(int)rowIdx {
-    NSArray *path = [tc.identifier componentsSeparatedByString:@"."];
-    NSObject *val = records[rowIdx];
-    for (NSString *step in path) {
-        if ([val isKindOfClass:[ZKSObject class]]) {
-            val = [(ZKSObject *)val fieldValue:step];
-        } else {
-            val = [val valueForKey:step];
-        }
-    }
-    return val;
+- (id)tableView:(NSTableView *)view objectValueForTableColumn:(NSTableColumn *)tc row:(NSInteger)rowIdx {
+    return [self valueForFieldPath:tc.identifier row:rowIdx];
 }
 
 @end
