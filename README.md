@@ -29,7 +29,6 @@ Login and find the URL to the new Task UI Page.
         [sforce login:username password:password];
         ZKDescribeSObject *taskDescribe = [sforce describeSObject:@"Task"];
         NSLog(@"url for the new Task page is %@", [taskDescribe urlNew]);	
-        [sforce release];
 
 
 Login and create a new contact for Simon Fell, and check the result
@@ -45,7 +44,6 @@ Login and create a new contact for Simon Fell, and check the result
 	        NSLog(@"new contact id %@", [sr id]);
         else
 	        NSLog(@"error creating contact %@ %@", [sr statusCode], [sr message]);
-        [sforce release];
 
 Calls are made synchronously on the thread making the call (and therefore you shouldn't really call it directly from the UI thread), zkSforceClient+zkAsyncQuery.h has a version of all the calls that are asynchronous and use blocks to get completion/error callbacks. 
 
@@ -75,24 +73,6 @@ You'll need to store the refresh_token and authHost somewhere safe, like the key
 
 Instances are ZKSforceClient are not safe to be called on multiple threads concurrently. If you want to use ZKSforceClient concurrently, you should use the -copyWithZone: method to create per thread instances. [or use the async/callback based API]	
 
-# Application Transport Security
-
-If you're targeting ios9+ or OSX 10.11+ you'll need to setup [ATS configuration](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33) in your applications Info.plist in order to be able to successfully communicate with Salesforce.com. Add the following to your Info.plist. 
-
-	<key>NSAppTransportSecurity</key>
-		<dict>
-			<key>NSExceptionDomains</key>
-			<dict>
-				<key>salesforce.com</key>
-				<dict>
-					<key>NSIncludesSubdomains</key>
-					<true/>
-					<key>NSExceptionRequiresForwardSecrecy</key>
-					<false/>
-				</dict>
-			</dict>
-		</dict>
-
 # Date/Time formats
 The way date/times are serialized changed in v35.0.2. The timestamp sent over the wire is now in UTC, whereas before the timestamp was sent in the users local timezone (with the correct offset applied). The exact same logical timestamp is sent, so there's no change in behavior in terms of how NSDates are mapped to dateTimes in salesforce, just a difference in the offset in the serialized dateTime. If for
 some reason you are calling the ZKSoapDate asString methods yourself, the resulting string is different. [Although i can't imagine why you're doing this].
@@ -118,17 +98,21 @@ v29 is a major update where a significant amount of the code is now code-generat
  * on OSX you need to add Security framework to the list of frameworks to link against.
 
 
-
 ## Project setup (via CocoaPods)
 
 The easiest way to get ZKSforce integrated into your app is to use [CocoaPods](http://cocoapods.org/), the Cocoa dependency manager framework, simply create a Podfile, e.g.
 
     platform :osx
-	pod 'ZKSforce', '~> 40.0.0'
+	pod 'ZKSforce', '~> 44.0.0'
 	
 and run  `pod install myApp.xcodeproj`
 
 
 ## Project setup (manual)
 
-In order to support usage on both OSX & iOS, the library uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iOS. Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, and add libxml2.dylib to the linked frameworks section, and then you should be good to go. For OSX you'll also need to add Security framework to the list of linked Frameworks. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on these steps.
+In order to support usage on both OSX & iOS, the library uses libxml as its XML parser rather than NSXML, which isn't fully implemented on iOS. 
+Once you've added all the .h & .m files to your project, you'll need to goto the build settings and add /usr/include/libxml2 to the Header Search Paths, 
+and add libxml2.dylib to the linked frameworks section. Then you should be good to go. For OSX you'll also need to add Security framework to the list of 
+linked Frameworks. The [Wiki](https://github.com/superfell/zkSforce/wiki/Creating-a-new-project-that-uses-zkSforce) has a detailed write up on these steps.
+
+As of v44, zkSforce requires your project to use ARC.
