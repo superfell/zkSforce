@@ -36,11 +36,11 @@
 }
 			
 -(ZKSearchRecordMetadata *)searchRecordMetadata {
-    return [[self complexTypeArrayFromElements:@"searchRecordMetadata" cls:[ZKSearchRecordMetadata class]] lastObject];
+    return [self complexTypeArrayFromElements:@"searchRecordMetadata" cls:[ZKSearchRecordMetadata class]].lastObject;
 }
 			
 -(ZKSearchSnippet *)snippet {
-    return [[self complexTypeArrayFromElements:@"snippet" cls:[ZKSearchSnippet class]] lastObject];
+    return [self complexTypeArrayFromElements:@"snippet" cls:[ZKSearchSnippet class]].lastObject;
 }
 			
 @end

@@ -24,7 +24,7 @@
 @implementation ZKDescribeField (Extras)
 
 -(NSString *)description {
-    return [NSString stringWithFormat:@"Field %@ (%@)", [self name], [self label]];
+    return [NSString stringWithFormat:@"Field %@ (%@)", self.name, self.label];
 }
 
 @end

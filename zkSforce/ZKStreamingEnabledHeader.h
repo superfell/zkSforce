@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKStreamingEnabledHeader : NSObject<ZKXMLSerializable> {
-	BOOL streamingEnabled;
 }
 @property (assign) BOOL streamingEnabled; 
 @end

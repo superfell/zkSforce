@@ -31,13 +31,6 @@
 
 @synthesize objectId, submitterId, processDefinitionNameOrId, skipEntryCriteria;
 
--(void)dealloc {
-	[objectId release];
-	[submitterId release];
-	[processDefinitionNameOrId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"ProcessSubmitRequest"];
 	[env addElement:@"comments"                  elemValue:self.comments                  nillable:YES optional:NO];

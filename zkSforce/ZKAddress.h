@@ -47,25 +47,17 @@
 </complexType>
 */
 @interface ZKAddress : ZKLocation {
-	NSString  *city;
-	NSString  *country;
-	NSString  *countryCode;
-	NSString  *geocodeAccuracy;
-	NSString  *postalCode;
-	NSString  *state;
-	NSString  *stateCode;
-	NSString  *street;
 }
--(id)init;
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
--(id)initWithXmlElement:(zkElement *)e;
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithXmlElement:(zkElement *)e;
 
-@property (retain) NSString  *city; 
-@property (retain) NSString  *country; 
-@property (retain) NSString  *countryCode; 
-@property (retain) NSString  *geocodeAccuracy; 
-@property (retain) NSString  *postalCode; 
-@property (retain) NSString  *state; 
-@property (retain) NSString  *stateCode; 
-@property (retain) NSString  *street; 
+@property (strong) NSString  *city; 
+@property (strong) NSString  *country; 
+@property (strong) NSString  *countryCode; 
+@property (strong) NSString  *geocodeAccuracy; 
+@property (strong) NSString  *postalCode; 
+@property (strong) NSString  *state; 
+@property (strong) NSString  *stateCode; 
+@property (strong) NSString  *street; 
 @end

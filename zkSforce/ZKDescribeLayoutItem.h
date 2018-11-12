@@ -40,10 +40,10 @@
 */
 @interface ZKDescribeLayoutItem : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       editableForNew; 
-@property (readonly) BOOL       editableForUpdate; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSArray   *layoutComponents;  // of ZKDescribeLayoutComponent
-@property (readonly) BOOL       placeholder; 
-@property (readonly) BOOL       required; 
+@property (readonly) BOOL             editableForNew; 
+@property (readonly) BOOL             editableForUpdate; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSArray   *layoutComponents;  // of ZKDescribeLayoutComponent
+@property (readonly) BOOL             placeholder; 
+@property (readonly) BOOL             required; 
 @end

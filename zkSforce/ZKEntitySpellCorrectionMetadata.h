@@ -36,6 +36,6 @@
 */
 @interface ZKEntitySpellCorrectionMetadata : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *correctedQuery; 
-@property (readonly) BOOL       hasNonCorrectedResults; 
+@property (weak, readonly) NSString  *correctedQuery; 
+@property (readonly) BOOL             hasNonCorrectedResults; 
 @end

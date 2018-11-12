@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeColor : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *color; 
-@property (readonly) NSString  *context; 
-@property (readonly) NSString  *theme; 
+@property (weak, readonly) NSString  *color; 
+@property (weak, readonly) NSString  *context; 
+@property (weak, readonly) NSString  *theme; 
 @end

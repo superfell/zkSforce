@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKAllOrNoneHeader : NSObject<ZKXMLSerializable> {
-	BOOL allOrNone;
 }
 @property (assign) BOOL allOrNone; 
 @end

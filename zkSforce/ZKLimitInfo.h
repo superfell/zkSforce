@@ -25,8 +25,8 @@
 @interface ZKLimitInfo : ZKXmlDeserializer {
 }
 
--(NSString *)type;
--(int)limit;
--(int)current;
+@property (readonly) NSString *type;
+@property (readonly) int limit;
+@property (readonly) int current;
 
 @end

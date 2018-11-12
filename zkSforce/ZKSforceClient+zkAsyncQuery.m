@@ -29,7 +29,7 @@
 @implementation ZKSforceClient (zkAsyncQuery)
 
 -(BOOL)confirmLoggedIn {
-	if (![self loggedIn]) {
+	if (!self.loggedIn) {
 		NSLog(@"ZKSforceClient does not have a valid session. request not executed");
 		return NO;
 	}
@@ -41,7 +41,7 @@
 // it handles making the relevant call in any desired queue, 
 // and then calling the fail or complete block on the UI thread.
 //
--(void)performRequest:(id (^)())requestBlock
+-(void)performRequest:(id (^)(void))requestBlock
          checkSession:(BOOL)checkSession
             failBlock:(zkFailWithExceptionBlock)failBlock 
         completeBlock:(void (^)(id))completeBlock
@@ -81,7 +81,7 @@
 // Perform an asynchronous API call. 
 // Defaults to the default background global queue.
 //
--(void)performRequest:(id (^)())requestBlock
+-(void)performRequest:(id (^)(void))requestBlock
          checkSession:(BOOL)checkSession
             failBlock:(zkFailWithExceptionBlock)failBlock 
         completeBlock:(void (^)(id))completeBlock {

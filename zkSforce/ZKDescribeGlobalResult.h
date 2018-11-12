@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeGlobalResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *encoding; 
-@property (readonly) NSInteger  maxBatchSize; 
-@property (readonly) NSArray   *sobjects;  // of ZKDescribeGlobalSObject
+@property (weak, readonly) NSString  *encoding; 
+@property (readonly) NSInteger        maxBatchSize; 
+@property (weak, readonly) NSArray   *sobjects;  // of ZKDescribeGlobalSObject
 @end

@@ -31,7 +31,7 @@
 
 -(ZKXmlDeserializer *)deser:(NSString *)doc {
     zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    return [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+    return [[ZKXmlDeserializer alloc] initWithXmlElement:e];
 }
 
 -(void)testSimpleTypes {
@@ -46,7 +46,7 @@
     XCTAssertEqual((NSInteger)11, [c month]);
     XCTAssertEqual((NSInteger)25, [c day]);
     c = [[NSCalendar currentCalendar] components:-1 fromDate:[d dateTime:@"dateTime"]];
-    NSInteger offset = [[[NSCalendar currentCalendar] timeZone] secondsFromGMTForDate:[d dateTime:@"dateTime"]];
+    NSInteger offset = [[NSCalendar currentCalendar].timeZone secondsFromGMTForDate:[d dateTime:@"dateTime"]];
     XCTAssertEqual((NSInteger)2013, [c year]);
     XCTAssertEqual((NSInteger)11, [c month]);
     XCTAssertEqual((NSInteger)25, [c day]);
@@ -73,14 +73,14 @@
 -(void)testStrings {
     NSString *doc = @"<root><a>one</a><a>two</a></root>";
     ZKXmlDeserializer *d = [self deser:doc];
-    NSArray *exp = [NSArray arrayWithObjects:@"one", @"two", nil];
+    NSArray *exp = @[@"one", @"two"];
     XCTAssertEqualObjects(exp, [d strings:@"a"]);
 }
 
 -(void)testDeserializerType {
     NSString *doc = @"<root><comp><displayLines>4</displayLines><tabOrder>1</tabOrder><type>foo</type><value>bob</value></comp></root>";
     ZKXmlDeserializer *d = [self deser:doc];
-    ZKDescribeLayoutComponent *c = [[d complexTypeArrayFromElements:@"comp" cls:[ZKDescribeLayoutComponent class]] lastObject];
+    ZKDescribeLayoutComponent *c = [d complexTypeArrayFromElements:@"comp" cls:[ZKDescribeLayoutComponent class]].lastObject;
     XCTAssertEqual((NSInteger)4, c.displayLines);
     XCTAssertEqual((NSInteger)1, c.tabOrder);
     XCTAssertEqualObjects(@"foo", c.type);
@@ -90,7 +90,7 @@
 -(void)testExtensionDeserializerType {
     NSString *doc = @"<root xmlns:x='http://www.w3.org/2001/XMLSchema-instance'><comp x:type='s:ReportChartComponent'><displayLines>4</displayLines><tabOrder>1</tabOrder><type>foo</type><value>bob</value><cacheData>true</cacheData></comp></root>";
     ZKXmlDeserializer *d = [self deser:doc];
-    ZKReportChartComponent *c = [[d complexTypeArrayFromElements:@"comp" cls:[ZKDescribeLayoutComponent class]] lastObject];
+    ZKReportChartComponent *c = [d complexTypeArrayFromElements:@"comp" cls:[ZKDescribeLayoutComponent class]].lastObject;
     XCTAssertTrue([c isKindOfClass:[ZKReportChartComponent class]]);
     XCTAssertEqual((NSInteger)4, c.displayLines);
     XCTAssertEqual((NSInteger)1, c.tabOrder);
@@ -121,13 +121,13 @@
 -(void)testNSCopying {
     NSString *doc = @"<root><field>f</field><format>fmt</format><label>lbl</label><name>n</name></root>";
     zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    ZKDescribeColumn *l = [[[ZKDescribeColumn alloc] initWithXmlElement:e] autorelease];
+    ZKDescribeColumn *l = [[ZKDescribeColumn alloc] initWithXmlElement:e];
     XCTAssertEqualObjects([ZKDescribeColumn class], [l class], @"original of wrong type");
     XCTAssertEqualObjects(@"f", [l field], @"field is wrong");
     XCTAssertEqualObjects(@"fmt", [l format],  @"format is wrong");
     XCTAssertEqualObjects(@"lbl", [l label],  @"label is wrong");
     XCTAssertEqualObjects(@"n", [l name],  @"name is wrong");
-    ZKDescribeColumn *copy = [[l copyWithZone:nil] autorelease];
+    ZKDescribeColumn *copy = [l copyWithZone:nil];
     XCTAssertNotNil(copy, @"copy was nil");
     XCTAssertEqualObjects([ZKDescribeColumn class], [copy class], @"copy of wrong type");
     XCTAssertEqualObjects(@"f", [copy field], @"field is wrong");

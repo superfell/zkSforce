@@ -26,60 +26,55 @@
 @implementation ZKEnvelope
 
 enum envState {
-	inEnvelope = 1,
-	inHeaders = 2,
-	inBody = 3
+    inEnvelope = 1,
+    inHeaders = 2,
+    inBody = 3
 };
 
 - (void)start:(NSString *)primaryNamespceUri {
-	[env release];
-	env = [[NSMutableString alloc] initWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='%@'>", primaryNamespceUri];
-	state = inEnvelope;
+    env = [[NSMutableString alloc] initWithFormat:@"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='%@'>", primaryNamespceUri];
+    state = inEnvelope;
 }
 
-- (void)dealloc {
-    [env release];
-    [super dealloc];
-}
 
 - (void)moveToHeaders {
-	if (state == inBody)
-		@throw [NSException exceptionWithName:@"Illegal State Exception" reason:@"Unable to write headers once we've moved to the body" userInfo:nil];
-	if (state == inHeaders) return;
-	[self startElement:@"s:Header"];
-	state = inHeaders;
+    if (state == inBody)
+        @throw [NSException exceptionWithName:@"Illegal State Exception" reason:@"Unable to write headers once we've moved to the body" userInfo:nil];
+    if (state == inHeaders) return;
+    [self startElement:@"s:Header"];
+    state = inHeaders;
 }
 
 - (void)writeSessionHeader:(NSString *)sessionId {
-	if ([sessionId length] == 0) return;
-	[self moveToHeaders];
-	[self startElement:@"SessionHeader"];
-	[self addElement:@"sessionId" elemValue:sessionId];
-	[self endElement:@"SessionHeader"];
+    if (sessionId.length == 0) return;
+    [self moveToHeaders];
+    [self startElement:@"SessionHeader"];
+    [self addElement:@"sessionId" elemValue:sessionId];
+    [self endElement:@"SessionHeader"];
 }
 
 - (void)writeCallOptionsHeader:(NSString *)clientId {
-	if ([clientId length] == 0) return;
-	[self moveToHeaders];
-	[self startElement:@"CallOptions"];
-	[self addElement:@"client" elemValue:clientId];
-	[self endElement:@"CallOptions"];
+    if (clientId.length == 0) return;
+    [self moveToHeaders];
+    [self startElement:@"CallOptions"];
+    [self addElement:@"client" elemValue:clientId];
+    [self endElement:@"CallOptions"];
 }
 
 - (void)writeMruHeader:(BOOL)updateMru {
-	if (!updateMru) return;
-	[self moveToHeaders];
-	[self startElement:@"MruHeader"];
-	[self addElement:@"updateMru" elemValue:@"true"];
-	[self endElement:@"MruHeader"];
+    if (!updateMru) return;
+    [self moveToHeaders];
+    [self startElement:@"MruHeader"];
+    [self addElement:@"updateMru" elemValue:@"true"];
+    [self endElement:@"MruHeader"];
 }
 
 - (void) moveToBody {
-	if (state == inHeaders)
-		[self endElement:@"s:Header"];
-	if (state != inBody) 
-		[self startElement:@"s:Body"];
-	state = inBody;
+    if (state == inHeaders)
+        [self endElement:@"s:Header"];
+    if (state != inBody) 
+        [self startElement:@"s:Body"];
+    state = inBody;
 }
 
 - (void) addNullElement:(NSString *)elemName {
@@ -91,11 +86,11 @@ enum envState {
 }
 
 - (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue {
-    [self addElement:elemName elemValue:[NSNumber numberWithInteger:elemValue]];
+    [self addElement:elemName elemValue:@(elemValue)];
 }
 
 - (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue {
-    [self addElement:elemName elemValue:[NSNumber numberWithDouble:elemValue]];
+    [self addElement:elemName elemValue:@(elemValue)];
 }
 
 - (void) addElement:(NSString *)elemName elemValue:(id)elemValue {
@@ -108,56 +103,56 @@ enum envState {
         if (nillable) [self addNullElement:elemName];
         else [self addElementString:elemName elemValue:@""];
     } else if ([elemValue isKindOfClass:[NSString class]])    [self addElementString:elemName elemValue:elemValue];
-	else if ([elemValue isKindOfClass:[NSArray class]]) 	[self addElementArray:elemName elemValue:elemValue];
-	else if ([elemValue isKindOfClass:[ZKSObject class]]) 	[self addElementSObject:elemName elemValue:elemValue];
+    else if ([elemValue isKindOfClass:[NSArray class]])     [self addElementArray:elemName elemValue:elemValue];
+    else if ([elemValue isKindOfClass:[ZKSObject class]])     [self addElementSObject:elemName elemValue:elemValue];
     else if ([elemValue conformsToProtocol:@protocol(ZKXMLSerializable)]) [elemValue serializeToEnvelope:self elemName:elemName];
-	else [self addElementString:elemName elemValue:[elemValue stringValue]];
+    else [self addElementString:elemName elemValue:[elemValue stringValue]];
 }
 
 - (void) addElementArray:(NSString *)elemName elemValue:(NSArray *)elemValues {
     for (id o in elemValues)
-		[self addElement:elemName elemValue:o];
+        [self addElement:elemName elemValue:o];
 }
 
 - (void) addElementString:(NSString *)elemName elemValue:(NSString *)elemValue {
-	[self startElement:elemName];
-	[self writeText:elemValue];
-	[self endElement:elemName];
+    [self startElement:elemName];
+    [self writeText:elemValue];
+    [self endElement:elemName];
 }
 
 - (void) addElementSObject:(NSString *)elemName elemValue:(ZKSObject *)sobject {
-	[self startElement:elemName];
-	[self addElement:@"type" elemValue:[sobject type]];
-	[self addElement:@"fieldsToNull" elemValue:[sobject fieldsToNull]];
-	if ([sobject id]) 
-		[self addElement:@"Id" elemValue:[sobject id]];
+    [self startElement:elemName];
+    [self addElement:@"type" elemValue:sobject.type];
+    [self addElement:@"fieldsToNull" elemValue:sobject.fieldsToNull];
+    if (sobject.id) 
+        [self addElement:@"Id" elemValue:sobject.id];
     
-	NSEnumerator *e = [[sobject fields] keyEnumerator];
-	NSString *key;
-	while((key = [e nextObject])) {
-		[self addElement:key elemValue:[[sobject fields] valueForKey:key]];
-	}
-	[self endElement:elemName];
+    NSEnumerator *e = [sobject.fields keyEnumerator];
+    NSString *key;
+    while((key = [e nextObject])) {
+        [self addElement:key elemValue:[sobject.fields valueForKey:key]];
+    }
+    [self endElement:elemName];
 }
 
 - (void) writeText:(NSString *)text  {
-	unichar c;
-	NSUInteger i, len = [text length];
-	for (i = 0; i < len; i++)
-	{
-		c = [text characterAtIndex:i];
-		switch (c)
-		{
-			case '<' : [env appendString:@"&lt;"]; break;
-			case '>' : [env appendString:@"&gt;"]; break;
-			case '&' : [env appendString:@"&amp;"]; break;
-			default  : [env appendFormat:@"%C", c];
-		}
-	}
+    unichar c;
+    NSUInteger i, len = text.length;
+    for (i = 0; i < len; i++)
+    {
+        c = [text characterAtIndex:i];
+        switch (c)
+        {
+            case '<' : [env appendString:@"&lt;"]; break;
+            case '>' : [env appendString:@"&gt;"]; break;
+            case '&' : [env appendString:@"&amp;"]; break;
+            default  : [env appendFormat:@"%C", c];
+        }
+    }
 }
 
 - (void )startElement:(NSString *)elemName {
-	[env appendFormat:@"<%@>", elemName];
+    [env appendFormat:@"<%@>", elemName];
 }
 
 - (void) startElement:(NSString *)elemName type:(NSString *)xmlType {
@@ -165,7 +160,7 @@ enum envState {
 }
 
 - (void )endElement:(NSString *)elemName {
-	[env appendFormat:@"</%@>", elemName];
+    [env appendFormat:@"</%@>", elemName];
 }
 
 - (NSString *)end {
@@ -174,7 +169,7 @@ enum envState {
     if (state == inBody)
         [self endElement:@"s:Body"];
     [self endElement:@"s:Envelope"];
-    return [[env retain] autorelease];
+    return env;
 }
 
 @end

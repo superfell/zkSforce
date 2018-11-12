@@ -39,7 +39,7 @@
 }
 			
 -(ZKSearchResultsMetadata *)searchResultsMetadata {
-    return [[self complexTypeArrayFromElements:@"searchResultsMetadata" cls:[ZKSearchResultsMetadata class]] lastObject];
+    return [self complexTypeArrayFromElements:@"searchResultsMetadata" cls:[ZKSearchResultsMetadata class]].lastObject;
 }
 			
 @end

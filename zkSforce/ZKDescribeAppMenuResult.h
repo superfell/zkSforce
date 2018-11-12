@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeAppMenuResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *appMenuItems;  // of ZKDescribeAppMenuItem
+@property (weak, readonly) NSArray  *appMenuItems;  // of ZKDescribeAppMenuItem
 @end

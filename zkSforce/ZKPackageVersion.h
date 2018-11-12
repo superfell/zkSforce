@@ -36,11 +36,8 @@
 </xsd:complexType>
 */
 @interface ZKPackageVersion : NSObject<ZKXMLSerializable> {
-	NSInteger  majorNumber;
-	NSInteger  minorNumber;
-	NSString  *namespace;
 }
 @property (assign) NSInteger  majorNumber; 
 @property (assign) NSInteger  minorNumber; 
-@property (retain) NSString  *namespace; 
+@property (strong) NSString  *namespace; 
 @end

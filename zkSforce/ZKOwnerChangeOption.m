@@ -31,11 +31,6 @@
 
 @synthesize type, execute;
 
--(void)dealloc {
-	[type release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"type"        elemValue:self.type    nillable:NO  optional:NO];

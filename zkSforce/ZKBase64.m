@@ -41,7 +41,7 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 // iOS 7
 -(NSData *)ZKBase64Decode {
-    return [[[NSData alloc] initWithBase64EncodedString:self options:0] autorelease];
+    return [[NSData alloc] initWithBase64EncodedString:self options:0];
 }
 #endif
 
@@ -56,7 +56,7 @@
     SecTransformSetAttribute(b64transform, kSecTransformInputAttributeName, (CFTypeRef)self, NULL);
     CFDataRef output = SecTransformExecute(b64transform, NULL);
     CFRelease(b64transform);
-    return [[[NSString alloc] initWithData:(NSData *)CFBridgingRelease(output) encoding:NSASCIIStringEncoding] autorelease];
+    return [[NSString alloc] initWithData:(NSData *)CFBridgingRelease(output) encoding:NSASCIIStringEncoding];
 }
 #endif
 

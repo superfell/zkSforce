@@ -31,13 +31,6 @@
 
 @synthesize escapeHtmlInMergeFields, templateBodies, whatId, whoId;
 
--(void)dealloc {
-	[templateBodies release];
-	[whatId release];
-	[whoId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"escapeHtmlInMergeFields" elemValue:self.escapeHtmlInMergeFields];

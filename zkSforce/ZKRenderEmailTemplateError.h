@@ -38,8 +38,8 @@
 */
 @interface ZKRenderEmailTemplateError : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *fieldName; 
-@property (readonly) NSString  *message; 
-@property (readonly) NSInteger  offset; 
-@property (readonly) NSString  *statusCode; 
+@property (weak, readonly) NSString  *fieldName; 
+@property (weak, readonly) NSString  *message; 
+@property (readonly) NSInteger        offset; 
+@property (weak, readonly) NSString  *statusCode; 
 @end

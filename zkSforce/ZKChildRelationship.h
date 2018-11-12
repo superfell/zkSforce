@@ -42,12 +42,12 @@
 */
 @interface ZKChildRelationship : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       cascadeDelete; 
-@property (readonly) NSString  *childSObject; 
-@property (readonly) BOOL       deprecatedAndHidden; 
-@property (readonly) NSString  *field; 
-@property (readonly) NSArray   *junctionIdListNames;  // of NSString
-@property (readonly) NSArray   *junctionReferenceTo;  // of NSString
-@property (readonly) NSString  *relationshipName; 
-@property (readonly) BOOL       restrictedDelete; 
+@property (readonly) BOOL             cascadeDelete; 
+@property (weak, readonly) NSString  *childSObject; 
+@property (readonly) BOOL             deprecatedAndHidden; 
+@property (weak, readonly) NSString  *field; 
+@property (weak, readonly) NSArray   *junctionIdListNames;  // of NSString
+@property (weak, readonly) NSArray   *junctionReferenceTo;  // of NSString
+@property (weak, readonly) NSString  *relationshipName; 
+@property (readonly) BOOL             restrictedDelete; 
 @end

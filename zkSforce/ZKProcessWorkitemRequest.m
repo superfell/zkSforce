@@ -31,12 +31,6 @@
 
 @synthesize action, workitemId;
 
--(void)dealloc {
-	[action release];
-	[workitemId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"ProcessWorkitemRequest"];
 	[env addElement:@"comments"             elemValue:self.comments        nillable:YES optional:NO];

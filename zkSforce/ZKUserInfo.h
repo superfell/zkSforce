@@ -58,28 +58,28 @@
 */
 @interface ZKUserInfo : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       accessibilityMode; 
-@property (readonly) BOOL       chatterExternal; 
-@property (readonly) NSString  *currencySymbol; 
-@property (readonly) NSInteger  orgAttachmentFileSizeLimit; 
-@property (readonly) NSString  *orgDefaultCurrencyIsoCode; 
-@property (readonly) NSString  *orgDefaultCurrencyLocale; 
-@property (readonly) BOOL       orgDisallowHtmlAttachments; 
-@property (readonly) BOOL       orgHasPersonAccounts; 
-@property (readonly) NSString  *organizationId; 
-@property (readonly) BOOL       organizationMultiCurrency; 
-@property (readonly) NSString  *organizationName; 
-@property (readonly) NSString  *profileId; 
-@property (readonly) NSString  *roleId; 
-@property (readonly) NSInteger  sessionSecondsValid; 
-@property (readonly) NSString  *userDefaultCurrencyIsoCode; 
-@property (readonly) NSString  *userEmail; 
-@property (readonly) NSString  *userFullName; 
-@property (readonly) NSString  *userId; 
-@property (readonly) NSString  *userLanguage; 
-@property (readonly) NSString  *userLocale; 
-@property (readonly) NSString  *userName; 
-@property (readonly) NSString  *userTimeZone; 
-@property (readonly) NSString  *userType; 
-@property (readonly) NSString  *userUiSkin; 
+@property (readonly) BOOL             accessibilityMode; 
+@property (readonly) BOOL             chatterExternal; 
+@property (weak, readonly) NSString  *currencySymbol; 
+@property (readonly) NSInteger        orgAttachmentFileSizeLimit; 
+@property (weak, readonly) NSString  *orgDefaultCurrencyIsoCode; 
+@property (weak, readonly) NSString  *orgDefaultCurrencyLocale; 
+@property (readonly) BOOL             orgDisallowHtmlAttachments; 
+@property (readonly) BOOL             orgHasPersonAccounts; 
+@property (weak, readonly) NSString  *organizationId; 
+@property (readonly) BOOL             organizationMultiCurrency; 
+@property (weak, readonly) NSString  *organizationName; 
+@property (weak, readonly) NSString  *profileId; 
+@property (weak, readonly) NSString  *roleId; 
+@property (readonly) NSInteger        sessionSecondsValid; 
+@property (weak, readonly) NSString  *userDefaultCurrencyIsoCode; 
+@property (weak, readonly) NSString  *userEmail; 
+@property (weak, readonly) NSString  *userFullName; 
+@property (weak, readonly) NSString  *userId; 
+@property (weak, readonly) NSString  *userLanguage; 
+@property (weak, readonly) NSString  *userLocale; 
+@property (weak, readonly) NSString  *userName; 
+@property (weak, readonly) NSString  *userTimeZone; 
+@property (weak, readonly) NSString  *userType; 
+@property (weak, readonly) NSString  *userUiSkin; 
 @end

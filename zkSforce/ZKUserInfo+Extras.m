@@ -24,43 +24,43 @@
 @implementation ZKUserInfo (Extras)
 
 -(BOOL)organizationIsMultiCurrency {
-    return [self organizationMultiCurrency];
+    return self.organizationMultiCurrency;
 }
 
 -(NSString *)defaultCurrencyIsoCode {
-    return [self userDefaultCurrencyIsoCode];
+    return self.userDefaultCurrencyIsoCode;
 }
 
 -(NSString *)email {
-    return [self userEmail];
+    return self.userEmail;
 }
 
 -(NSString *)fullName {
-    return [self userFullName];
+    return self.userFullName;
 }
 
 -(NSString *)language {
-    return [self userLanguage];
+    return self.userLanguage;
 }
 
 -(NSString *)locale {
-    return [self userLocale];
+    return self.userLocale;
 }
 
 -(NSString *)timeZone {
-    return [self userTimeZone];
+    return self.userTimeZone;
 }
 
 -(NSString *)skin {
-    return [self userUiSkin];
+    return self.userUiSkin;
 }
 
 -(BOOL)disallowHtmlAttachments {
-    return [self orgDisallowHtmlAttachments];
+    return self.orgDisallowHtmlAttachments;
 }
 
 -(BOOL)hasPersonAccounts {
-    return [self orgHasPersonAccounts];
+    return self.orgHasPersonAccounts;
 }
 
 @end

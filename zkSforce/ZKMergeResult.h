@@ -39,9 +39,9 @@
 */
 @interface ZKMergeResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSString  *id; 
-@property (readonly) NSArray   *mergedRecordIds;  // of NSString
-@property (readonly) BOOL       success; 
-@property (readonly) NSArray   *updatedRelatedIds;  // of NSString
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSString  *id; 
+@property (weak, readonly) NSArray   *mergedRecordIds;  // of NSString
+@property (readonly) BOOL             success; 
+@property (weak, readonly) NSArray   *updatedRelatedIds;  // of NSString
 @end

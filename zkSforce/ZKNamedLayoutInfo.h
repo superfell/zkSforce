@@ -35,5 +35,5 @@
 */
 @interface ZKNamedLayoutInfo : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSString  *name; 
 @end

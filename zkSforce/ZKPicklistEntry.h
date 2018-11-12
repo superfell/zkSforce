@@ -39,9 +39,9 @@
 */
 @interface ZKPicklistEntry : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       active; 
-@property (readonly) BOOL       defaultValue; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSData    *validFor; 
-@property (readonly) NSString  *value; 
+@property (readonly) BOOL             active; 
+@property (readonly) BOOL             defaultValue; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSData    *validFor; 
+@property (weak, readonly) NSString  *value; 
 @end

@@ -38,7 +38,7 @@
 */
 @interface ZKSearchResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString                 *queryId; 
-@property (readonly) NSArray                  *searchRecords;  // of ZKSearchRecord
-@property (readonly) ZKSearchResultsMetadata  *searchResultsMetadata; 
+@property (weak, readonly) NSString                 *queryId; 
+@property (weak, readonly) NSArray                  *searchRecords;  // of ZKSearchRecord
+@property (weak, readonly) ZKSearchResultsMetadata  *searchResultsMetadata; 
 @end

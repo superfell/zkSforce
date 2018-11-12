@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeQuickActionListResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *quickActionListItems;  // of ZKDescribeQuickActionListItemResult
+@property (weak, readonly) NSArray  *quickActionListItems;  // of ZKDescribeQuickActionListItemResult
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2014 Simon Fell
+// Copyright (c) 2006-2014,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -29,23 +29,18 @@
 /** ZKSObject represents a row of data in Salesforce [either already in salesforce, or one we're in
     the process of constructing to be sent to Salesforce */
 @interface ZKSObject : NSObject {
-	NSString 			*Id;
-	NSString 			*type;
-	NSMutableSet 		*fieldsToNull;
-	NSMutableDictionary *fields;
-	NSMutableArray		*fieldOrder;	// field names in the order they were added
 }
 
-+ (id) withType:(NSString *)type;
-+ (id) withTypeAndId:(NSString *)type sfId:(NSString *)sfId;
-+ (id) fromXmlNode:(zkElement *)node;
++ (instancetype) withType:(NSString *)type;
++ (instancetype) withTypeAndId:(NSString *)type sfId:(NSString *)sfId;
++ (instancetype) fromXmlNode:(zkElement *)node;
 
-- (id) initWithXmlElement:(zkElement *)node;
-- (id) initWithType:(NSString *)type;
+- (instancetype) init NS_UNAVAILABLE;
+- (instancetype) initWithXmlElement:(zkElement *)node;
+- (instancetype) initWithType:(NSString *)type NS_DESIGNATED_INITIALIZER;
+- (instancetype) copyWithZone:(NSZone *)zone;
 
 // setters
-- (void)setId:(NSString *)theId;
-- (void)setType:(NSString *)type;
 
 // setting a fieldValue to nil will automatically put it in the fieldsToNull collection
 // setting a fieldValue to non nil will automatically remove it from the fieldsToNull collection
@@ -55,10 +50,11 @@
 - (void)setFieldToNull:(NSString *)field;
 
 // basic getters
-- (NSString *)id;
-- (NSString *)type;
-- (NSArray *)fieldsToNull;
-- (NSDictionary *)fields;
+@property (strong) NSString *id;
+@property (strong) NSString *type;
+@property (readonly, strong) NSArray *fieldsToNull;
+@property (readonly, strong) NSDictionary *fields;
+
 - (id)fieldValue:(NSString *)field;
 - (BOOL)isFieldToNull:(NSString *)field;
 
@@ -74,5 +70,6 @@
 - (ZKLocation *)locationValue:(NSString *)field;
 
 // others
-- (NSArray *)orderedFieldNames;
+@property (readonly) NSArray *orderedFieldNames;
+
 @end

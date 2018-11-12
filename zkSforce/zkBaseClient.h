@@ -31,17 +31,17 @@
 @interface ZKBaseClient : NSObject {
     NSURL                           *endpointUrl;
     zkElement                       *responseHeaders;
-    NSObject<ZKBaseClientDelegate>  *delegate;
+    NSObject<ZKBaseClientDelegate>  *__weak delegate;
 }
 
-@property (assign) NSObject<ZKBaseClientDelegate> *delegate;
-@property (retain) NSURL *endpointUrl;
+@property (weak) NSObject<ZKBaseClientDelegate> *delegate;
+@property (strong) NSURL *endpointUrl;
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
 
 /** @return the Soap:Header element from the response payload. */
-- (zkElement *)lastResponseSoapHeaders;
+@property (readonly) zkElement *lastResponseSoapHeaders;
 
 @end
 

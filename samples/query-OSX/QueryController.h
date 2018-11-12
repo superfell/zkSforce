@@ -24,22 +24,22 @@
 #import "zkSforce.h"
 
 @interface QueryController : NSObject<ZKBaseClientDelegate> {
-	IBOutlet NSWindow	 *window;
-	IBOutlet NSTableView *table;
+    IBOutlet NSWindow     *window;
+    IBOutlet NSTableView *table;
 
-	NSString			 *username, *password;
+    NSString             *username, *password;
 
-	ZKSforceClient		 *client;
-	BOOL				 loginInProgress;
-	ZKQueryResult		 *result;
+    ZKSforceClient         *client;
+    BOOL                 loginInProgress;
+    ZKQueryResult         *result;
     NSString             *apiLimitInfo;
 }
 
 // We use binding to have the UI automatically set these when they're edited.
-@property (retain) NSString *username;
-@property (retain) NSString *password;
+@property (strong) NSString *username;
+@property (strong) NSString *password;
 @property (assign) BOOL loginInProgress;
-@property (retain) NSString *apiLimitInfo;
+@property (strong) NSString *apiLimitInfo;
 
 // The Login button in the UI is wired up to call this method
 -(IBAction)performLogin:(id)sender;

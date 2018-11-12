@@ -36,6 +36,6 @@
 */
 @interface ZKNameValuePair : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *value; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *value; 
 @end

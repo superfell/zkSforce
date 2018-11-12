@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKOwnerChangeOptions : NSObject<ZKXMLSerializable> {
-	NSArray  *options;
 }
-@property (retain) NSArray  *options;  // of ZKOwnerChangeOption
+@property (strong) NSArray  *options;  // of ZKOwnerChangeOption
 @end

@@ -35,5 +35,5 @@
 */
 @interface ZKGetServerTimestampResult : ZKXmlDeserializer {
 }
-@property (readonly) NSDate  *timestamp; 
+@property (weak, readonly) NSDate  *timestamp; 
 @end

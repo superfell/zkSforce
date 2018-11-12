@@ -41,7 +41,7 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
 
 // When the oauth flow completes, this will get called.
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    NSString *u = [url absoluteString];
+    NSString *u = url.absoluteString;
     if (![u hasPrefix:OAUTH_CALLBACK]) return FALSE;
 
     // In a real app, at this point you'd save the refresh_token & authHost to the keychain
@@ -93,12 +93,6 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-}
-
-- (void)dealloc {
-    [_window release];
-    [_navigationController release];
-    [super dealloc];
 }
 
 @end

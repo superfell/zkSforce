@@ -43,9 +43,9 @@
 */
 @interface ZKVisualforcePage : ZKDescribeLayoutComponent {
 }
-@property (readonly) BOOL       showLabel; 
-@property (readonly) BOOL       showScrollbars; 
-@property (readonly) NSString  *suggestedHeight; 
-@property (readonly) NSString  *suggestedWidth; 
-@property (readonly) NSString  *url; 
+@property (readonly) BOOL             showLabel; 
+@property (readonly) BOOL             showScrollbars; 
+@property (weak, readonly) NSString  *suggestedHeight; 
+@property (weak, readonly) NSString  *suggestedWidth; 
+@property (weak, readonly) NSString  *url; 
 @end

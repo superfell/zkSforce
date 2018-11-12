@@ -39,8 +39,8 @@
 */
 @interface ZKDeleteByExampleResult : ZKXmlDeserializer {
 }
-@property (readonly) ZKSObject  *entity; 
-@property (readonly) NSArray    *errors;  // of ZKError
-@property (readonly) int64_t     rowCount; 
-@property (readonly) BOOL        success; 
+@property (weak, readonly) ZKSObject  *entity; 
+@property (weak, readonly) NSArray    *errors;  // of ZKError
+@property (readonly) int64_t           rowCount; 
+@property (readonly) BOOL              success; 
 @end

@@ -37,7 +37,7 @@
 */
 @interface ZKKnowledgeSettings : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *defaultLanguage; 
-@property (readonly) BOOL       knowledgeEnabled; 
-@property (readonly) NSArray   *languages;  // of ZKKnowledgeLanguageItem
+@property (weak, readonly) NSString  *defaultLanguage; 
+@property (readonly) BOOL             knowledgeEnabled; 
+@property (weak, readonly) NSArray   *languages;  // of ZKKnowledgeLanguageItem
 @end

@@ -45,11 +45,11 @@
 */
 @interface ZKAnalyticsCloudComponent : ZKDescribeLayoutComponent {
 }
-@property (readonly) NSString  *error; 
-@property (readonly) NSString  *filter; 
-@property (readonly) NSString  *height; 
-@property (readonly) BOOL       hideOnError; 
-@property (readonly) BOOL       showSharing; 
-@property (readonly) BOOL       showTitle; 
-@property (readonly) NSString  *width; 
+@property (weak, readonly) NSString  *error; 
+@property (weak, readonly) NSString  *filter; 
+@property (weak, readonly) NSString  *height; 
+@property (readonly) BOOL             hideOnError; 
+@property (readonly) BOOL             showSharing; 
+@property (readonly) BOOL             showTitle; 
+@property (weak, readonly) NSString  *width; 
 @end

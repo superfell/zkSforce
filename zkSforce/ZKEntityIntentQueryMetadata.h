@@ -36,6 +36,6 @@
 */
 @interface ZKEntityIntentQueryMetadata : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       intentQuery; 
-@property (readonly) NSString  *message; 
+@property (readonly) BOOL             intentQuery; 
+@property (weak, readonly) NSString  *message; 
 @end

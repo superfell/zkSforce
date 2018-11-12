@@ -36,6 +36,6 @@
 */
 @interface ZKSearchResultsMetadata : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *entityLabelMetadata;  // of ZKLabelsSearchMetadata
-@property (readonly) NSArray  *entityMetadata;  // of ZKEntitySearchMetadata
+@property (weak, readonly) NSArray  *entityLabelMetadata;  // of ZKLabelsSearchMetadata
+@property (weak, readonly) NSArray  *entityMetadata;  // of ZKEntitySearchMetadata
 @end

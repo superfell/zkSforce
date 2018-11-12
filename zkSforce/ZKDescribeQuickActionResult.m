@@ -89,7 +89,7 @@
 }
 			
 -(ZKDescribeLayoutSection *)layout {
-    return [[self complexTypeArrayFromElements:@"layout" cls:[ZKDescribeLayoutSection class]] lastObject];
+    return [self complexTypeArrayFromElements:@"layout" cls:[ZKDescribeLayoutSection class]].lastObject;
 }
 			
 -(NSString *)lightningComponentBundleId {

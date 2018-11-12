@@ -25,25 +25,20 @@
 
 @implementation ZKSoapException
 
-+ (id)exceptionWithFaultCode:(NSString *)fc faultString:(NSString *)fs {
-	id ex = [ZKSoapException exceptionWithName:fc reason:fs userInfo:nil];
-	[ex setFaultCode:fc];
-	return ex;
++ (instancetype)exceptionWithFaultCode:(NSString *)fc faultString:(NSString *)fs {
+    id ex = [ZKSoapException exceptionWithName:fc reason:fs userInfo:nil];
+    [ex setFaultCode:fc];
+    return ex;
 }
 
-- (void)dealloc {
-	[faultCode release];
-	[super dealloc];
-}
 
 - (NSString *)faultCode {
-	return faultCode;
+    return faultCode;
 }
 
 - (void)setFaultCode:(NSString *)fc {
-	if (faultCode == fc) return;
-	[faultCode release];
-	faultCode = [fc retain];
+    if (faultCode == fc) return;
+    faultCode = fc;
 }
 
 @end

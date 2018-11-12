@@ -31,11 +31,11 @@
 @implementation ZKDescribeGlobalTheme
 
 -(ZKDescribeGlobalResult *)global {
-    return [[self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]] lastObject];
+    return [self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]].lastObject;
 }
 			
 -(ZKDescribeThemeResult *)theme {
-    return [[self complexTypeArrayFromElements:@"theme" cls:[ZKDescribeThemeResult class]] lastObject];
+    return [self complexTypeArrayFromElements:@"theme" cls:[ZKDescribeThemeResult class]].lastObject;
 }
 			
 @end

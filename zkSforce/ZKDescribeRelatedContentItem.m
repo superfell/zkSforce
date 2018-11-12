@@ -30,7 +30,7 @@
 @implementation ZKDescribeRelatedContentItem
 
 -(ZKDescribeLayoutItem *)describeLayoutItem {
-    return [[self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]] lastObject];
+    return [self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]].lastObject;
 }
 			
 @end

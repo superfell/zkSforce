@@ -58,28 +58,28 @@
 */
 @interface ZKDescribeGlobalSObject : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       activateable; 
-@property (readonly) BOOL       createable; 
-@property (readonly) BOOL       custom; 
-@property (readonly) BOOL       customSetting; 
-@property (readonly) BOOL       deletable; 
-@property (readonly) BOOL       deprecatedAndHidden; 
-@property (readonly) BOOL       feedEnabled; 
-@property (readonly) BOOL       hasSubtypes; 
-@property (readonly) BOOL       idEnabled; 
-@property (readonly) BOOL       isSubtype; 
-@property (readonly) NSString  *keyPrefix; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *labelPlural; 
-@property (readonly) BOOL       layoutable; 
-@property (readonly) BOOL       mergeable; 
-@property (readonly) BOOL       mruEnabled; 
-@property (readonly) NSString  *name; 
-@property (readonly) BOOL       queryable; 
-@property (readonly) BOOL       replicateable; 
-@property (readonly) BOOL       retrieveable; 
-@property (readonly) BOOL       searchable; 
-@property (readonly) BOOL       triggerable; 
-@property (readonly) BOOL       undeletable; 
-@property (readonly) BOOL       updateable; 
+@property (readonly) BOOL             activateable; 
+@property (readonly) BOOL             createable; 
+@property (readonly) BOOL             custom; 
+@property (readonly) BOOL             customSetting; 
+@property (readonly) BOOL             deletable; 
+@property (readonly) BOOL             deprecatedAndHidden; 
+@property (readonly) BOOL             feedEnabled; 
+@property (readonly) BOOL             hasSubtypes; 
+@property (readonly) BOOL             idEnabled; 
+@property (readonly) BOOL             isSubtype; 
+@property (weak, readonly) NSString  *keyPrefix; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *labelPlural; 
+@property (readonly) BOOL             layoutable; 
+@property (readonly) BOOL             mergeable; 
+@property (readonly) BOOL             mruEnabled; 
+@property (weak, readonly) NSString  *name; 
+@property (readonly) BOOL             queryable; 
+@property (readonly) BOOL             replicateable; 
+@property (readonly) BOOL             retrieveable; 
+@property (readonly) BOOL             searchable; 
+@property (readonly) BOOL             triggerable; 
+@property (readonly) BOOL             undeletable; 
+@property (readonly) BOOL             updateable; 
 @end

@@ -40,31 +40,31 @@
 }
 
 -(void)testToDateString {
-    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
-    [c setYear:2013];
-    [c setMonth:11];
-    [c setDay:23];
+    NSDateComponents *c = [[NSDateComponents alloc] init];
+    c.year = 2013;
+    c.month = 11;
+    c.day = 23;
     NSDate *d = [[NSCalendar currentCalendar] dateFromComponents:c];
     XCTAssertEqualObjects(@"2013-11-23", [[ZKSoapDate instance] toDateString:d]);
 }
 
 -(void)testToDateTimeString {
-    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
-    [c setYear:2013];
-    [c setMonth:12];
-    [c setDay:5];
-    [c setHour:19];
-    [c setMinute:18];
-    [c setSecond:59];
+    NSDateComponents *c = [[NSDateComponents alloc] init];
+    c.year = 2013;
+    c.month = 12;
+    c.day = 5;
+    c.hour = 19;
+    c.minute = 18;
+    c.second = 59;
     NSDate *d = [cal dateFromComponents:c];
     XCTAssertEqualObjects(@"2013-12-05T19:18:59.0000Z", [[ZKSoapDate instance] toDateTimeString:d]);
 }
 
 -(void)testToTimeString {
-    NSDateComponents *c = [[[NSDateComponents alloc] init] autorelease];
-    [c setHour:10];
-    [c setMinute:30];
-    [c setSecond:15];
+    NSDateComponents *c = [[NSDateComponents alloc] init];
+    c.hour = 10;
+    c.minute = 30;
+    c.second = 15;
     NSDate *d = [cal dateFromComponents:c];
     XCTAssertEqualObjects(@"10:30:15.0000Z", [[ZKSoapDate instance] toTimeString:d]);
 }

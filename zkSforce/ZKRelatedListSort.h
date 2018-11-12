@@ -36,6 +36,6 @@
 */
 @interface ZKRelatedListSort : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       ascending; 
-@property (readonly) NSString  *column; 
+@property (readonly) BOOL             ascending; 
+@property (weak, readonly) NSString  *column; 
 @end

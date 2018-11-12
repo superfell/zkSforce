@@ -29,12 +29,8 @@
 		F414BE981845A3BB00322AC2 /* ZKDescribeColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDF51845A3BB00322AC2 /* ZKDescribeColumn.m */; };
 		F414BE991845A3BB00322AC2 /* ZKDescribeCompactLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDF71845A3BB00322AC2 /* ZKDescribeCompactLayout.m */; };
 		F414BE9A1845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDF91845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.m */; };
-		F414BE9B1845A3BB00322AC2 /* ZKDescribeComponentInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDFB1845A3BB00322AC2 /* ZKDescribeComponentInstance.m */; };
-		F414BE9C1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDFD1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.m */; };
 		F414BE9D1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BDFF1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.m */; };
 		F414BE9E1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE011845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.m */; };
-		F414BE9F1845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE031845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.m */; };
-		F414BEA01845A3BB00322AC2 /* ZKDescribeFlexiPageResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE051845A3BB00322AC2 /* ZKDescribeFlexiPageResult.m */; };
 		F414BEA11845A3BB00322AC2 /* ZKDescribeGlobalResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE071845A3BB00322AC2 /* ZKDescribeGlobalResult.m */; };
 		F414BEA21845A3BB00322AC2 /* ZKDescribeGlobalTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE091845A3BB00322AC2 /* ZKDescribeGlobalTheme.m */; };
 		F414BEA31845A3BB00322AC2 /* ZKDescribeIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE0B1845A3BB00322AC2 /* ZKDescribeIcon.m */; };
@@ -268,18 +264,10 @@
 		F414BDF71845A3BB00322AC2 /* ZKDescribeCompactLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeCompactLayout.m; path = ../../../zkSforce/ZKDescribeCompactLayout.m; sourceTree = "<group>"; };
 		F414BDF81845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeCompactLayoutsResult.h; path = ../../../zkSforce/ZKDescribeCompactLayoutsResult.h; sourceTree = "<group>"; };
 		F414BDF91845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeCompactLayoutsResult.m; path = ../../../zkSforce/ZKDescribeCompactLayoutsResult.m; sourceTree = "<group>"; };
-		F414BDFA1845A3BB00322AC2 /* ZKDescribeComponentInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeComponentInstance.h; path = ../../../zkSforce/ZKDescribeComponentInstance.h; sourceTree = "<group>"; };
-		F414BDFB1845A3BB00322AC2 /* ZKDescribeComponentInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeComponentInstance.m; path = ../../../zkSforce/ZKDescribeComponentInstance.m; sourceTree = "<group>"; };
-		F414BDFC1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeComponentInstanceProperty.h; path = ../../../zkSforce/ZKDescribeComponentInstanceProperty.h; sourceTree = "<group>"; };
-		F414BDFD1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeComponentInstanceProperty.m; path = ../../../zkSforce/ZKDescribeComponentInstanceProperty.m; sourceTree = "<group>"; };
 		F414BDFE1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeDataCategoryGroupResult.h; path = ../../../zkSforce/ZKDescribeDataCategoryGroupResult.h; sourceTree = "<group>"; };
 		F414BDFF1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeDataCategoryGroupResult.m; path = ../../../zkSforce/ZKDescribeDataCategoryGroupResult.m; sourceTree = "<group>"; };
 		F414BE001845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeDataCategoryGroupStructureResult.h; path = ../../../zkSforce/ZKDescribeDataCategoryGroupStructureResult.h; sourceTree = "<group>"; };
 		F414BE011845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeDataCategoryGroupStructureResult.m; path = ../../../zkSforce/ZKDescribeDataCategoryGroupStructureResult.m; sourceTree = "<group>"; };
-		F414BE021845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeFlexiPageRegion.h; path = ../../../zkSforce/ZKDescribeFlexiPageRegion.h; sourceTree = "<group>"; };
-		F414BE031845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeFlexiPageRegion.m; path = ../../../zkSforce/ZKDescribeFlexiPageRegion.m; sourceTree = "<group>"; };
-		F414BE041845A3BB00322AC2 /* ZKDescribeFlexiPageResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeFlexiPageResult.h; path = ../../../zkSforce/ZKDescribeFlexiPageResult.h; sourceTree = "<group>"; };
-		F414BE051845A3BB00322AC2 /* ZKDescribeFlexiPageResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeFlexiPageResult.m; path = ../../../zkSforce/ZKDescribeFlexiPageResult.m; sourceTree = "<group>"; };
 		F414BE061845A3BB00322AC2 /* ZKDescribeGlobalResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeGlobalResult.h; path = ../../../zkSforce/ZKDescribeGlobalResult.h; sourceTree = "<group>"; };
 		F414BE071845A3BB00322AC2 /* ZKDescribeGlobalResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribeGlobalResult.m; path = ../../../zkSforce/ZKDescribeGlobalResult.m; sourceTree = "<group>"; };
 		F414BE081845A3BB00322AC2 /* ZKDescribeGlobalTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeGlobalTheme.h; path = ../../../zkSforce/ZKDescribeGlobalTheme.h; sourceTree = "<group>"; };
@@ -932,18 +920,10 @@
 				F414BDF71845A3BB00322AC2 /* ZKDescribeCompactLayout.m */,
 				F414BDF81845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.h */,
 				F414BDF91845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.m */,
-				F414BDFA1845A3BB00322AC2 /* ZKDescribeComponentInstance.h */,
-				F414BDFB1845A3BB00322AC2 /* ZKDescribeComponentInstance.m */,
-				F414BDFC1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.h */,
-				F414BDFD1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.m */,
 				F414BDFE1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.h */,
 				F414BDFF1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.m */,
 				F414BE001845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.h */,
 				F414BE011845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.m */,
-				F414BE021845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.h */,
-				F414BE031845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.m */,
-				F414BE041845A3BB00322AC2 /* ZKDescribeFlexiPageResult.h */,
-				F414BE051845A3BB00322AC2 /* ZKDescribeFlexiPageResult.m */,
 				F414BE061845A3BB00322AC2 /* ZKDescribeGlobalResult.h */,
 				F414BE071845A3BB00322AC2 /* ZKDescribeGlobalResult.m */,
 				F414BE081845A3BB00322AC2 /* ZKDescribeGlobalTheme.h */,
@@ -1178,7 +1158,7 @@
 		F49C1C6013636C88000CDE02 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Salesforce.com;
 			};
 			buildConfigurationList = F49C1C6313636C88000CDE02 /* Build configuration list for PBXProject "OAuthDemo" */;
@@ -1294,15 +1274,11 @@
 				F414BE991845A3BB00322AC2 /* ZKDescribeCompactLayout.m in Sources */,
 				F4EB23EC1D0E319600AA9B46 /* ZKXsdAnyType.m in Sources */,
 				F414BE9A1845A3BB00322AC2 /* ZKDescribeCompactLayoutsResult.m in Sources */,
-				F414BE9B1845A3BB00322AC2 /* ZKDescribeComponentInstance.m in Sources */,
 				F402CBDE1955445B00C6E1E2 /* ZKFilteredLookupInfo.m in Sources */,
-				F414BE9C1845A3BB00322AC2 /* ZKDescribeComponentInstanceProperty.m in Sources */,
 				F414BE9D1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupResult.m in Sources */,
 				F425FA2E1A339D300055D8B8 /* ZKListViewRecordColumn.m in Sources */,
 				F414BE9E1845A3BB00322AC2 /* ZKDescribeDataCategoryGroupStructureResult.m in Sources */,
 				F4913F461B115171001CC650 /* ZKMatchRecord.m in Sources */,
-				F414BE9F1845A3BB00322AC2 /* ZKDescribeFlexiPageRegion.m in Sources */,
-				F414BEA01845A3BB00322AC2 /* ZKDescribeFlexiPageResult.m in Sources */,
 				F4B770021BB7371F00681844 /* ZKOwnerChangeOption.m in Sources */,
 				F4913F441B115171001CC650 /* ZKFieldComponent.m in Sources */,
 				F46B43E0214DB5F00032D77D /* ZKDescribeDataCategoryMappingResult.m in Sources */,
@@ -1460,13 +1436,36 @@
 		F49C1C8513636C88000CDE02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1477,10 +1476,32 @@
 		F49C1C8613636C88000CDE02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
@@ -1491,6 +1512,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1499,6 +1521,8 @@
 				GCC_PREFIX_HEADER = "OAuthDemo/OAuthDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "OAuthDemo/OAuthDemo-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1508,6 +1532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1516,6 +1541,8 @@
 				GCC_PREFIX_HEADER = "OAuthDemo/OAuthDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "OAuthDemo/OAuthDemo-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

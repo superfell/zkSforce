@@ -39,9 +39,9 @@
 */
 @interface ZKActionOverride : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *formFactor; 
-@property (readonly) BOOL       isAvailableInTouch; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *pageId; 
-@property (readonly) NSString  *url; 
+@property (weak, readonly) NSString  *formFactor; 
+@property (readonly) BOOL             isAvailableInTouch; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *pageId; 
+@property (weak, readonly) NSString  *url; 
 @end

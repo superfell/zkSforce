@@ -42,8 +42,8 @@
     XCTAssertNil([[self buildAndParseAny:@"xsi:nil='true'/>"] value]);
     XCTAssertEqualObjects([NSNumber numberWithBool:TRUE], [[self buildAndParseAny:@"xsi:type='x:boolean'>true</r>"] value]);
     XCTAssertEqualObjects([NSNumber numberWithLongLong:42], [[self buildAndParseAny:@"xsi:type='x:integer'>42</r>"] value]);
-    XCTAssertEqualObjects([NSNumber numberWithDouble:42.42], [[self buildAndParseAny:@"xsi:type='x:double'>42.42</r>"] value]);
-    [self assertDateTime:(NSDate *)[[self buildAndParseAny:@"xsi:type='x:dateTime'>2016-11-12T13:14:15.0000Z</r>"] value] equalsYears:2016 month:11 day:12 hour:13 mins:14 seconds:15];
+    XCTAssertEqualObjects(@42.42, [[self buildAndParseAny:@"xsi:type='x:double'>42.42</r>"] value]);
+    [self assertDateTime:(NSDate *)[self buildAndParseAny:@"xsi:type='x:dateTime'>2016-11-12T13:14:15.0000Z</r>"].value equalsYears:2016 month:11 day:12 hour:13 mins:14 seconds:15];
 }
 
 -(void)testXsiType {
@@ -57,12 +57,12 @@
     XCTAssertEqualObjects(@"urn:partner.soap.sforce.com", [a typeNamespaceURI]);
     XCTAssertEqualObjects(@"QueryResult", [a typeName]);
     XCTAssertEqualObjects([ZKQueryResult class], [[a value] class]);
-    ZKQueryResult *qr = [a value];
+    ZKQueryResult *qr = (ZKQueryResult *)a.value;
     XCTAssertFalse([qr done]);
     XCTAssertEqual(42, [qr size]);
     XCTAssertEqualObjects(@"bob", [qr queryLocator]);
     XCTAssertEqual(1, [[qr records] count]);
-    ZKSObject *acc = [[qr records] lastObject];
+    ZKSObject *acc = qr.records.lastObject;
     XCTAssertEqualObjects(@"Account", [acc type]);
     XCTAssertEqualObjects(@"123", [acc id]);
     XCTAssertEqualObjects(@"Foo", [acc fieldValue:@"Name"]);

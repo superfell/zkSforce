@@ -37,11 +37,8 @@
 </complexType>
 */
 @interface ZKMergeRequest : NSObject<ZKXMLSerializable> {
-	NSArray    *additionalInformationMap;
-	ZKSObject  *masterRecord;
-	NSArray    *recordToMergeIds;
 }
-@property (retain) NSArray    *additionalInformationMap;  // of ZKAdditionalInformationMap
-@property (retain) ZKSObject  *masterRecord; 
-@property (retain) NSArray    *recordToMergeIds;  // of NSString
+@property (strong) NSArray    *additionalInformationMap;  // of ZKAdditionalInformationMap
+@property (strong) ZKSObject  *masterRecord; 
+@property (strong) NSArray    *recordToMergeIds;  // of NSString
 @end

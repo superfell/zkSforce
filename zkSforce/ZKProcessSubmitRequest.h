@@ -41,13 +41,9 @@
 </complexType>
 */
 @interface ZKProcessSubmitRequest : ZKProcessRequest {
-	NSString  *objectId;
-	NSString  *submitterId;
-	NSString  *processDefinitionNameOrId;
-	BOOL       skipEntryCriteria;
 }
-@property (retain) NSString  *objectId; 
-@property (retain) NSString  *submitterId; 
-@property (retain) NSString  *processDefinitionNameOrId; 
+@property (strong) NSString  *objectId; 
+@property (strong) NSString  *submitterId; 
+@property (strong) NSString  *processDefinitionNameOrId; 
 @property (assign) BOOL       skipEntryCriteria; 
 @end

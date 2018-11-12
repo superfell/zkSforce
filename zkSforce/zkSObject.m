@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2014 Simon Fell
+// Copyright (c) 2006,2014,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -26,124 +26,108 @@
 #import "ZKSoapDate.h"
 #import "ZKAddress.h"
 
+@interface ZKSObject()
+@property (strong) NSMutableSet *fieldsToNullSet;
+@property (strong) NSMutableDictionary *fieldsDict;
+@property (strong) NSMutableArray *fieldOrder;
+@end
+
 @implementation ZKSObject
 
-+ (id)withType:(NSString *)type {
-	return [[[ZKSObject alloc] initWithType:type] autorelease];
+@synthesize fields, fieldOrder;
+
++ (instancetype)withType:(NSString *)type {
+    return [[ZKSObject alloc] initWithType:type];
 }
 
-+ (id)withTypeAndId:(NSString *)type sfId:(NSString *)sfId {
-	ZKSObject *s = [ZKSObject withType:type];
-	[s setId:sfId];
-	return s;
++ (instancetype)withTypeAndId:(NSString *)type sfId:(NSString *)sfId {
+    ZKSObject *s = [ZKSObject withType:type];
+    s.id = sfId;
+    return s;
 }
 
-+ (id) fromXmlNode:(zkElement *)node {
-	return [[[ZKSObject alloc] initWithXmlElement:node] autorelease];
++ (instancetype) fromXmlNode:(zkElement *)node {
+    return [[ZKSObject alloc] initWithXmlElement:node];
 }
 
-- (id) initWithType:(NSString *)aType {
-	self = [super init];	
-	type = [aType retain];
-	fieldsToNull = [[NSMutableSet alloc] init];
-	fields = [[NSMutableDictionary alloc] init];
-	fieldOrder = [[NSMutableArray alloc] init];
-	return self;
+- (instancetype) initWithType:(NSString *)aType {
+    self = [super init];    
+    self.type = aType;
+    self.fieldsToNullSet = [[NSMutableSet alloc] init];
+    self.fieldsDict = [[NSMutableDictionary alloc] init];
+    self.fieldOrder = [[NSMutableArray alloc] init];
+    return self;
 }
 
-- (id) initWithXmlElement:(zkElement *)node {
-	self = [super init];
-	NSUInteger i, childCount;
-	Id = [[[node childElement:@"Id"] stringValue] copy];
-	type = [[[node childElement:@"type"] stringValue] copy];
-	fields = [[NSMutableDictionary alloc] init];
-	fieldOrder = [[NSMutableArray alloc] init];
-	fieldsToNull = [[NSMutableSet alloc] init];
-	NSArray *children = [node childElements];
-	childCount = [children count];
-	// start at 2 to skip Id & Type
-	for (i = 2; i < childCount; i++)
-	{
-		zkElement *f = [children objectAtIndex:i];
-		NSString *xsiNil = [f attributeValue:@"nil" ns:NS_URI_XSI];
-		id fieldVal;
-		if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) 
-			fieldVal = [NSNull null];
-		else {
-			NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
-			if ([xsiType hasSuffix:@"QueryResult"]) 
-				fieldVal = [[[ZKQueryResult alloc] initWithXmlElement:f] autorelease];
-			else if ([xsiType hasSuffix:@"sObject"])
-				fieldVal = [[[ZKSObject alloc] initWithXmlElement:f] autorelease];
+- (instancetype) initWithXmlElement:(zkElement *)node {
+    NSString *type = [[node childElement:@"type"].stringValue copy];
+    self = [self initWithType:type];
+    self.id = [[node childElement:@"Id"].stringValue copy];
+    NSArray *children = node.childElements;
+    NSUInteger childCount = children.count;
+    // start at 2 to skip Id & Type
+    for (NSUInteger i = 2; i < childCount; i++)
+    {
+        zkElement *f = children[i];
+        NSString *xsiNil = [f attributeValue:@"nil" ns:NS_URI_XSI];
+        id fieldVal;
+        if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) 
+            fieldVal = [NSNull null];
+        else {
+            NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
+            if ([xsiType hasSuffix:@"QueryResult"]) 
+                fieldVal = [[ZKQueryResult alloc] initWithXmlElement:f];
+            else if ([xsiType hasSuffix:@"sObject"])
+                fieldVal = [[ZKSObject alloc] initWithXmlElement:f];
             else if ([xsiType hasSuffix:@"address"])
-                fieldVal = [[[ZKAddress alloc] initWithXmlElement:f] autorelease];
+                fieldVal = [[ZKAddress alloc] initWithXmlElement:f];
             else if ([xsiType hasSuffix:@"location"])
-                fieldVal = [[[ZKLocation alloc] initWithXmlElement:f] autorelease];
-			else
-				fieldVal = [f stringValue];
-		}
-		[fields setValue:fieldVal forKey:[f name]];
-		[fieldOrder addObject:[f name]];
-	}
-	return self;
+                fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
+            else
+                fieldVal = f.stringValue;
+        }
+        [self.fieldsDict setValue:fieldVal forKey:f.name];
+        [self.fieldOrder addObject:f.name];
+    }
+    return self;
 }
 
--(id)initWithId:(NSString *)anId type:(NSString *)t fieldsToNull:(NSSet *)ftn fields:(NSDictionary *)f fieldOrder:(NSArray *)fo {
-	self = [super init];
-	Id = [anId copy];
-	type = [t copy];
-	fieldsToNull = [[NSMutableSet setWithSet:ftn] retain];
-	fields = [[NSMutableDictionary dictionaryWithDictionary:f] retain];
-	fieldOrder = [[NSMutableArray arrayWithArray:fo] retain];
-	return self;
-}
-
--(id)copyWithZone:(NSZone *)zone {
-	return [[ZKSObject alloc] initWithId:Id type:type fieldsToNull:fieldsToNull fields:fields fieldOrder:fieldOrder];
-}
-
-- (void)dealloc {
-	[Id release];
-	[type release];
-	[fieldsToNull release];
-	[fields release];
-	[fieldOrder release];
-	[super dealloc];
+-(instancetype)copyWithZone:(NSZone *)zone {
+    ZKSObject *c = [[ZKSObject alloc] initWithType:self.type];
+    c.id = self.id;
+    c.fieldsToNullSet = self.fieldsToNull.mutableCopy;
+    c.fieldsDict = self.fieldsDict.mutableCopy;
+    c.fieldOrder = self.fieldOrder.mutableCopy;
+    return c;
 }
 
 - (id)description {
-	return [NSString stringWithFormat:@"%@ %@ fields=%@ toNull=%@", type, Id, fields, fieldsToNull];
+    return [NSString stringWithFormat:@"%@ %@ fields=%@ toNull=%@", self.type,self.id, self.fieldsDict, self.fieldsToNullSet];
 }
 
 - (NSArray *)orderedFieldNames {
-	return fieldOrder;
+    return [NSArray arrayWithArray:fieldOrder];
 }
 
-- (void)setId:(NSString *)theId {
-	[Id autorelease];
-	Id = [theId retain];
-}
-
-- (void)setType:(NSString *)t {
-	[type autorelease];
-	type = [t retain];
+- (NSDictionary *)fields {
+    return self.fieldsDict;
 }
 
 - (void)setFieldToNull:(NSString *)field {
-	[fieldsToNull addObject:field];
-	[fields removeObjectForKey:field];
-	[fieldOrder removeObject:field];
+    [self.fieldsToNullSet addObject:field];
+    [self.fieldsDict removeObjectForKey:field];
+    [self.fieldOrder removeObject:field];
 }
 
 - (void)setFieldValue:(NSObject *)value field:(NSString *)field {
-	if ((value == nil) || (value == [NSNull null]) || ([value isKindOfClass:[NSString class]] && [(NSString *)value length] == 0)) {
-		[self setFieldToNull:field];
-	} else {
-		[fieldsToNull removeObject:field];
-		[fields setObject:value forKey:field];
-		if (![fieldOrder containsObject:field])
-			[fieldOrder addObject:field];
-	}
+    if ((value == nil) || (value == [NSNull null]) || ([value isKindOfClass:[NSString class]] && ((NSString *)value).length == 0)) {
+        [self setFieldToNull:field];
+    } else {
+        [self.fieldsToNullSet removeObject:field];
+        self.fieldsDict[field] = value;
+        if (![self.fieldOrder containsObject:field])
+            [self.fieldOrder addObject:field];
+    }
 }
 
 - (void)setFieldDateTimeValue:(NSDate *)value field:(NSString *)field {
@@ -151,20 +135,20 @@
 }
 
 - (void)setFieldDateValue:(NSDate *)value field:(NSString *)field {
-	[self setFieldValue:[[ZKSoapDate instance] toDateString:value] field:field];
-}	
+    [self setFieldValue:[[ZKSoapDate instance] toDateString:value] field:field];
+}    
 
 - (id)fieldValue:(NSString *)field {
-	id v = [fields objectForKey:field];
-	return v == [NSNull null] ? nil : v;
+    id v = self.fieldsDict[field];
+    return v == [NSNull null] ? nil : v;
 }
 
 - (BOOL)isFieldToNull:(NSString *)field {
-	return [fieldsToNull containsObject:field];
+    return [self.fieldsToNullSet containsObject:field];
 }
 
 - (BOOL)boolValue:(NSString *)field {
-	return [[self fieldValue:field] isEqualToString:@"true"];
+    return [[self fieldValue:field] isEqualToString:@"true"];
 }
 
 - (NSDate *)dateTimeValue:(NSString *)field {
@@ -176,39 +160,27 @@
 }
 
 - (int)intValue:(NSString *)field {
-	return [[self fieldValue:field] intValue];
+    return [[self fieldValue:field] intValue];
 }
 
 - (double)doubleValue:(NSString *)field {
-	return [[self fieldValue:field] doubleValue];
+    return [[self fieldValue:field] doubleValue];
 }
 
 - (ZKQueryResult *)queryResultValue:(NSString *)field {
-	return [self fieldValue:field];
+    return [self fieldValue:field];
 }
 
 - (ZKAddress *)addressValue:(NSString *)field {
-	return [self fieldValue:field];
+    return [self fieldValue:field];
 }
 
 - (ZKLocation *)locationValue:(NSString *)field {
-	return [self fieldValue:field];
-}
-
-- (NSString *)id {
-	return Id;
-}
-
-- (NSString *)type {
-	return type;
+    return [self fieldValue:field];
 }
 
 - (NSArray *)fieldsToNull {
-	return [fieldsToNull allObjects];
-}
-
-- (NSDictionary *)fields {
-	return fields;
+    return self.fieldsToNullSet.allObjects;
 }
 
 @end

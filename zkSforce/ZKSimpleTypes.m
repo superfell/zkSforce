@@ -34,15 +34,15 @@
 }
 
 -(NSNumber *)ZKInteger {
-    return [NSNumber numberWithLongLong:[self longLongValue]];
+    return @(self.longLongValue);
 }
 
 -(NSNumber *)ZKFloat {
-    return [NSNumber numberWithFloat:[self floatValue]];
+    return @(self.floatValue);
 }
 
 -(NSNumber *)ZKDouble {
-    return [NSNumber numberWithDouble:[self doubleValue]];
+    return @(self.doubleValue);
 }
 
 -(NSDate *)ZKDateTime {
@@ -58,7 +58,7 @@
 }
 
 -(NSData *)ZKBase64Binary {
-    return [self ZKBase64Decode];
+    return self.ZKBase64Decode;
 }
 
 @end

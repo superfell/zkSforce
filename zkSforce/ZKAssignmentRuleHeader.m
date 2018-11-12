@@ -31,11 +31,6 @@
 
 @synthesize assignmentRuleId, useDefaultRule;
 
--(void)dealloc {
-	[assignmentRuleId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"assignmentRuleId"   elemValue:self.assignmentRuleId nillable:YES optional:NO];

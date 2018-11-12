@@ -36,6 +36,6 @@
 */
 @interface ZKPicklistForRecordType : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *picklistName; 
-@property (readonly) NSArray   *picklistValues;  // of ZKPicklistEntry
+@property (weak, readonly) NSString  *picklistName; 
+@property (weak, readonly) NSArray   *picklistValues;  // of ZKPicklistEntry
 @end

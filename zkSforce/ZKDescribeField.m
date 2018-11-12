@@ -36,7 +36,7 @@
 @synthesize sobject;
 
 -(id)copyWithZone:(NSZone *)zone {
-    zkElement *e = [[node copyWithZone:zone] autorelease];
+    zkElement *e = [node copyWithZone:zone];
     ZKDescribeField *c = [[ZKDescribeField alloc] initWithXmlElement:e];
     c.sobject = self.sobject;
     return c;
@@ -52,7 +52,7 @@
 }
 
 -(NSUInteger)hash {
-	return [node hash];
+	return node.hash;
 }
 
 -(BOOL)aggregatable {
@@ -148,7 +148,7 @@
 }
 			
 -(ZKFilteredLookupInfo *)filteredLookupInfo {
-    return [[self complexTypeArrayFromElements:@"filteredLookupInfo" cls:[ZKFilteredLookupInfo class]] lastObject];
+    return [self complexTypeArrayFromElements:@"filteredLookupInfo" cls:[ZKFilteredLookupInfo class]].lastObject;
 }
 			
 -(BOOL)formulaTreatNullNumberAsZero {

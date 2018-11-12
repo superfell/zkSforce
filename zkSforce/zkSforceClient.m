@@ -70,49 +70,25 @@ static const int SAVE_BATCH_SIZE = 25;
 @synthesize disableFeedTrackingHeader, streamingEnabledHeader, allOrNoneHeader, debuggingHeader, emailHeader, ownerChangeOptions;
 @synthesize userTerritoryDeleteHeader, queryOptions, duplicateRuleHeader;
 
-- (id)init {
-	self = [super init];
-	preferedApiVersion = 42;
-	[self setLoginProtocolAndHost:@"https://login.salesforce.com"];
-	cacheDescribes = NO;
-	describes = [[NSMutableDictionary alloc] init];
-	return self;
+- (instancetype)init {
+    self = [super init];
+    preferedApiVersion = 42;
+    [self setLoginProtocolAndHost:@"https://login.salesforce.com"];
+    cacheDescribes = NO;
+    describes = [[NSMutableDictionary alloc] init];
+    return self;
 }
 
-- (void)dealloc {
-	[authEndpointUrl release];
-	[userInfo release];
-	[describes release];
-    [authSource release];
-    [limitInfo release];
-    self.callOptions = nil;
-    self.packageVersionHeader = nil;
-    self.localeOptions = nil;
-    self.assignmentRuleHeader = nil;
-    self.mruHeader = nil;
-    self.allowFieldTruncationHeader = nil;
-    self.disableFeedTrackingHeader = nil;
-    self.streamingEnabledHeader = nil;
-    self.allOrNoneHeader = nil;
-    self.debuggingHeader = nil;
-    self.emailHeader = nil;
-    self.ownerChangeOptions = nil;
-    self.userTerritoryDeleteHeader = nil;
-    self.queryOptions = nil;
-    self.duplicateRuleHeader = nil;
-	[super dealloc];
-}
 
 - (id)copyWithZone:(NSZone *)zone {
-	ZKSforceClient *rhs = [[ZKSforceClient alloc] init];
-	[rhs->authEndpointUrl release];
-	rhs->authEndpointUrl = [authEndpointUrl copy];
-	rhs->endpointUrl = [endpointUrl copy];
-	rhs->userInfo = [userInfo retain];
-	rhs->preferedApiVersion = preferedApiVersion;
-    rhs->authSource = [authSource retain];
-    rhs->limitInfo = [limitInfo retain];
-	[rhs setCacheDescribes:cacheDescribes];
+    ZKSforceClient *rhs = [[ZKSforceClient alloc] init];
+    rhs->authEndpointUrl = [authEndpointUrl copy];
+    rhs->endpointUrl = [endpointUrl copy];
+    rhs->userInfo = userInfo;
+    rhs->preferedApiVersion = preferedApiVersion;
+    rhs->authSource = authSource;
+    rhs->limitInfo = limitInfo;
+    rhs.cacheDescribes = cacheDescribes;
     rhs.callOptions = self.callOptions;
     rhs.packageVersionHeader = self.packageVersionHeader;
     rhs.localeOptions = self.localeOptions;
@@ -129,7 +105,7 @@ static const int SAVE_BATCH_SIZE = 25;
     rhs.queryOptions = self.queryOptions;
     rhs.duplicateRuleHeader = self.duplicateRuleHeader;
     rhs.delegate = delegate;
-	return rhs;
+    return rhs;
 }
 
 -(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
@@ -137,60 +113,62 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 -(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
-    [authSource autorelease];
-    authSource = [authenticationInfo retain];
-    self.endpointUrl = [authSource instanceUrl];
+    authSource = authenticationInfo;
+    self.endpointUrl = authSource.instanceUrl;
     self.userInfo = nil;
 }
 
 - (void)flushCachedDescribes {
-	[describes release];
-	describes = nil;
-	if (cacheDescribes)
-		describes = [[NSMutableDictionary alloc] init];
+    describes = nil;
+    if (cacheDescribes)
+        describes = [[NSMutableDictionary alloc] init];
 }
 
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost {
-	[self setLoginProtocolAndHost:protocolAndHost andVersion:preferedApiVersion];
+    [self setLoginProtocolAndHost:protocolAndHost andVersion:preferedApiVersion];
 }
 
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version {
-	[authEndpointUrl release];
     // www.salesforce.com is no longer going to be support for login, so map requests for that
     // to login.salesforce.com
     NSString *www = @"://www.salesforce.com";
     NSString *login = @"://login.salesforce.com";
     protocolAndHost = [protocolAndHost stringByReplacingOccurrencesOfString:www withString:login options:NSCaseInsensitiveSearch range:NSMakeRange(0, protocolAndHost.length)];
-	authEndpointUrl = [[NSString stringWithFormat:@"%@/services/Soap/u/%d.0", protocolAndHost, version] retain];
+    authEndpointUrl = [NSString stringWithFormat:@"%@/services/Soap/u/%d.0", protocolAndHost, version];
     preferedApiVersion = version;
 }
 
 - (NSURL *)authEndpointUrl {
-	return [NSURL URLWithString:authEndpointUrl];
+    return [NSURL URLWithString:authEndpointUrl];
 }
 
 -(ZKLoginResult *)soapLogin:(ZKSoapLogin *)auth {
-	ZKLoginResult *lr = [auth login];
-    [self setAuthenticationInfo:auth];
+    ZKLoginResult *lr = auth.login;
+    self.authenticationInfo = auth;
     self.userInfo = lr.userInfo;
     return lr;
 }
 
 - (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
-    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un password:pwd authHost:[NSURL URLWithString:authEndpointUrl] apiVersion:preferedApiVersion clientId:self.clientId delegate:delegate];
+    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un
+                                                  password:pwd
+                                                  authHost:[NSURL URLWithString:authEndpointUrl]
+                                                apiVersion:preferedApiVersion
+                                                  clientId:self.clientId
+                                                  delegate:delegate];
     return [self soapLogin:auth];
 }
 
 - (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId{
     ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl] clientId:oauthClientId];
-    [auth setApiVersion:preferedApiVersion];
-    [self setAuthenticationInfo:auth];
+    auth.apiVersion = preferedApiVersion;
+    self.authenticationInfo = auth;
 }
 
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid {
-    ZKOAuthInfo *auth = [[[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid] autorelease];
-    [auth setApiVersion:preferedApiVersion];
-    [self setAuthenticationInfo:auth];
+    ZKOAuthInfo *auth = [[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid];
+    auth.apiVersion = preferedApiVersion;
+    self.authenticationInfo = auth;
     [self checkSession];
 }
 
@@ -207,32 +185,31 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 -(void)setUserInfo:(ZKUserInfo *)ui {
-    [userInfo autorelease];
-    userInfo = [ui retain];
+    userInfo = ui;
 }
 
 - (BOOL)loggedIn {
-	return [[authSource sessionId] length] > 0;
+    return authSource.sessionId.length > 0;
 }
 
 - (void)checkSession {
-    if ([authSource refreshIfNeeded])
-        self.endpointUrl = [authSource instanceUrl];
+    if (authSource.refreshIfNeeded)
+        self.endpointUrl = authSource.instanceUrl;
 }
 
 - (ZKUserInfo *)currentUserInfo {
     if (userInfo == nil)
-        userInfo = [[self getUserInfo] retain];
-	return userInfo;
+        userInfo = [self getUserInfo];
+    return userInfo;
 }
 
 - (NSURL *)serverUrl {
-	return endpointUrl;
+    return endpointUrl;
 }
 
 - (NSString *)sessionId {
-	[self checkSession];
-	return [authSource sessionId];
+    [self checkSession];
+    return authSource.sessionId;
 }
 
 -(BOOL)updateMru {
@@ -241,7 +218,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 -(void)setUpdateMru:(BOOL)mru {
     if (self.mruHeader == nil)
-        self.mruHeader = [[[ZKMruHeader alloc] init] autorelease];
+        self.mruHeader = [[ZKMruHeader alloc] init];
     self.mruHeader.updateMru = mru;
 }
 
@@ -251,12 +228,12 @@ static const int SAVE_BATCH_SIZE = 25;
 
 -(void)setClientId:(NSString *)newClientId {
     if (self.callOptions == nil)
-        self.callOptions = [[[ZKCallOptions alloc] init] autorelease];
+        self.callOptions = [[ZKCallOptions alloc] init];
     self.callOptions.client = newClientId;
 }
 
 -(NSNumber *)queryBatchSize {
-    return [NSNumber numberWithInteger:self.queryOptions.batchSize];
+    return @(self.queryOptions.batchSize);
 }
 
 -(void)setQueryBatchSize:(NSNumber *)newBatchSize {
@@ -264,21 +241,21 @@ static const int SAVE_BATCH_SIZE = 25;
         self.queryOptions = nil;
     else {
         if (self.queryOptions == nil)
-            self.queryOptions = [[[ZKQueryOptions alloc] init] autorelease];
-        self.queryOptions.batchSize = [newBatchSize integerValue];
+            self.queryOptions = [[ZKQueryOptions alloc] init];
+        self.queryOptions.batchSize = newBatchSize.integerValue;
     }
 }
 
 - (NSString *)serverHostAbbriviation {
-    NSString *host = [endpointUrl host];
-    NSString *hostLower = [host lowercaseString];
-    NSArray *suffixes = [NSArray arrayWithObjects:@".salesforce.com", @".force.com", nil];
+    NSString *host = endpointUrl.host;
+    NSString *hostLower = host.lowercaseString;
+    NSArray *suffixes = @[@".salesforce.com", @".force.com"];
     for (NSString *suffix in suffixes) {
         if ([hostLower hasSuffix:suffix]) {
             // remove the expected suffix from the host name.
-            host = [host substringToIndex:[host length] - [suffix length]];
+            host = [host substringToIndex:host.length - suffix.length];
             // remove the trailing -api if there is one.
-            return [[host lowercaseString] hasSuffix:@"-api"] ? [host substringToIndex:[host length] - 4] : host;
+            return [host.lowercaseString hasSuffix:@"-api"] ? [host substringToIndex:host.length - 4] : host;
         }
     }
     return host;
@@ -345,106 +322,102 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSArray *)describeGlobal {
-	if(!authSource) return NULL;
-	[self checkSession];
-	if (cacheDescribes) {
-		NSArray *dg = [describes objectForKey:@"describe__global"];	// won't be an sfdc object ever called this.
-		if (dg != nil) return dg;
-	}
-	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]];
+    if(!authSource) return NULL;
+    [self checkSession];
+    if (cacheDescribes) {
+        NSArray *dg = describes[@"describe__global"];    // won't be an sfdc object ever called this.
+        if (dg != nil) return dg;
+    }
+    
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
     [self addCallOptions:env];
     [self addPackageVersionHeader:env];
     [self addLocaleOptions:env];
     [env moveToBody];
-	[env startElement:@"describeGlobal"];
-	[env endElement:@"describeGlobal"];
-	
-    zkElement * rr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
-	NSArray *results = [[rr childElement:@"result"] childElements:@"sobjects"];
-	NSMutableArray *types = [NSMutableArray arrayWithCapacity:[results count]];
+    [env startElement:@"describeGlobal"];
+    [env endElement:@"describeGlobal"];
+    
+    zkElement * rr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
+    NSArray *results = [[rr childElement:@"result"] childElements:@"sobjects"];
+    NSMutableArray *types = [NSMutableArray arrayWithCapacity:results.count];
     for (zkElement *res in results) {
-		ZKDescribeGlobalSObject * d = [[ZKDescribeGlobalSObject alloc] initWithXmlElement:res];
-		[types addObject:d];
-		[d release];
-	}
-	[env release];
-	if (cacheDescribes)
-		[describes setObject:types forKey:@"describe__global"];
-	return types;
+        ZKDescribeGlobalSObject * d = [[ZKDescribeGlobalSObject alloc] initWithXmlElement:res];
+        [types addObject:d];
+    }
+    if (cacheDescribes)
+        describes[@"describe__global"] = types;
+    return types;
 }
 
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName {
-	if (!authSource) return NULL;
-	if (cacheDescribes) {
-		ZKDescribeSObject * desc = [describes objectForKey:[sobjectName lowercaseString]];
-		if (desc != nil) return desc;
-	}
-	[self checkSession];
-	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]];
+    if (!authSource) return NULL;
+    if (cacheDescribes) {
+        ZKDescribeSObject * desc = describes[sobjectName.lowercaseString];
+        if (desc != nil) return desc;
+    }
+    [self checkSession];
+    
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
     [self addCallOptions:env];
     [self addPackageVersionHeader:env];
     [self addLocaleOptions:env];
     [env moveToBody];
-	[env startElement:@"describeSObject"];
-	[env addElement:@"SobjectType" elemValue:sobjectName];
-	[env endElement:@"describeSObject"];
-	
-	zkElement *dr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
-	zkElement *descResult = [dr childElement:@"result"];
-	ZKDescribeSObject *desc = [[[ZKDescribeSObject alloc] initWithXmlElement:descResult] autorelease];
-	[env release];
-	if (cacheDescribes) 
-		[describes setObject:desc forKey:[sobjectName lowercaseString]];
-	return desc;
+    [env startElement:@"describeSObject"];
+    [env addElement:@"SobjectType" elemValue:sobjectName];
+    [env endElement:@"describeSObject"];
+    
+    zkElement *dr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
+    zkElement *descResult = [dr childElement:@"result"];
+    ZKDescribeSObject *desc = [[ZKDescribeSObject alloc] initWithXmlElement:descResult];
+    if (cacheDescribes) 
+        describes[sobjectName.lowercaseString] = desc;
+    return desc;
 }
 
 - (NSArray *)search:(NSString *)sosl {
-	if (!authSource) return NULL;
-	[self checkSession];
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]];
+    if (!authSource) return NULL;
+    [self checkSession];
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
     [self addCallOptions:env];
     [self addPackageVersionHeader:env];
     [env moveToBody];
-	[env startElement:@"search"];
-	[env addElement:@"searchString" elemValue:sosl];
-	[env endElement:@"search"];
-	
-	zkElement *sr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
-	zkElement *searchResult = [sr childElement:@"result"];
-	NSArray *records = [searchResult childElements:@"searchRecords"];
-	NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:[records count]];
-	for (zkElement *soNode in records)
-		[sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
-	[env release];
-	return sobjects;
+    [env startElement:@"search"];
+    [env addElement:@"searchString" elemValue:sosl];
+    [env endElement:@"search"];
+    
+    zkElement *sr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
+    zkElement *searchResult = [sr childElement:@"result"];
+    NSArray *records = [searchResult childElements:@"searchRecords"];
+    NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
+    for (zkElement *soNode in records)
+        [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
+    return sobjects;
 }
 
 - (NSArray *)create:(NSArray *)objects {
-	return [self sobjectsImpl:objects name:@"create"];
+    return [self sobjectsImpl:objects name:@"create"];
 }
 
 - (NSArray *)update:(NSArray *)objects {
-	return [self sobjectsImpl:objects name:@"update"];
+    return [self sobjectsImpl:objects name:@"update"];
 }
 
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName {
-	if(!authSource) return NULL;
-	[self checkSession];
-	
-	// if more than we can do in one go, break it up.
-	if ([objects count] > SAVE_BATCH_SIZE) {
-		NSMutableArray *allResults = [NSMutableArray arrayWithCapacity:[objects count]];
-		NSRange rng = {0, MIN(SAVE_BATCH_SIZE, [objects count])};
-		while (rng.location < [objects count]) {
-			[allResults addObjectsFromArray:[self sobjectsImpl:[objects subarrayWithRange:rng] name:elemName]];
-			rng.location += rng.length;
-			rng.length = MIN(SAVE_BATCH_SIZE, [objects count] - rng.location);
-		}
-		return allResults;
-	}
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]];
+    if(!authSource) return NULL;
+    [self checkSession];
+    
+    // if more than we can do in one go, break it up.
+    if (objects.count > SAVE_BATCH_SIZE) {
+        NSMutableArray *allResults = [NSMutableArray arrayWithCapacity:objects.count];
+        NSRange rng = {0, MIN(SAVE_BATCH_SIZE, [objects count])};
+        while (rng.location < objects.count) {
+            [allResults addObjectsFromArray:[self sobjectsImpl:[objects subarrayWithRange:rng] name:elemName]];
+            rng.location += rng.length;
+            rng.length = MIN(SAVE_BATCH_SIZE, [objects count] - rng.location);
+        }
+        return allResults;
+    }
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
     [self addCallOptions:env];
     [self addAssignmentRuleHeader:env];
     [self addMruHeader:env];
@@ -458,21 +431,19 @@ static const int SAVE_BATCH_SIZE = 25;
     if ([elemName isEqualToString:@"update"])
         [self addOwnerChangeOptions:env];
     [env moveToBody];
-	[env startElement:elemName];
+    [env startElement:elemName];
     for (ZKSObject *o in objects) 
-		[env addElement:@"sobject" elemValue:o];
-	[env endElement:elemName];
+        [env addElement:@"sobject" elemValue:o];
+    [env endElement:elemName];
 
-	zkElement *cr = [self sendRequest:[env end] name:[NSString stringWithFormat:@"%@:", elemName]];
-	NSArray *resultsArr = [cr childElements:@"result"];
-	NSMutableArray *results = [NSMutableArray arrayWithCapacity:[resultsArr count]];
-	for (zkElement *cr in resultsArr) {
-		ZKSaveResult * sr = [[ZKSaveResult alloc] initWithXmlElement:cr];
-		[results addObject:sr];
-		[sr release];
-	}
-	[env release];
-	return results;
+    zkElement *cr = [self sendRequest:env.end name:[NSString stringWithFormat:@"%@:", elemName]];
+    NSArray *resultsArr = [cr childElements:@"result"];
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:resultsArr.count];
+    for (zkElement *cr in resultsArr) {
+        ZKSaveResult * sr = [[ZKSaveResult alloc] initWithXmlElement:cr];
+        [results addObject:sr];
+    }
+    return results;
 }
 
 - (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids {
@@ -480,38 +451,35 @@ static const int SAVE_BATCH_SIZE = 25;
 }
 
 - (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids {
-	if(!authSource) return NULL;
-	[self checkSession];
-	
-	ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:[authSource sessionId]];
+    if(!authSource) return NULL;
+    [self checkSession];
+    
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
     [self addCallOptions:env];
     [self addQueryOptions:env];
     [self addMruHeader:env];
     [self addPackageVersionHeader:env];
     [env moveToBody];
-	[env startElement:@"retrieve"];
-	[env addElement:@"fieldList" elemValue:fields];
-	[env addElement:@"sObjectType" elemValue:sobjectType];
-	[env addElementArray:@"ids" elemValue:ids];
-	[env endElement:@"retrieve"];
-	
-	zkElement *rr = [self sendRequest:[env end] name:NSStringFromSelector(_cmd)];
-	NSMutableDictionary *sobjects = [NSMutableDictionary dictionary]; 
-	NSArray *results = [rr childElements:@"result"];
-	for (zkElement *res in results) {
-		ZKSObject *o = [[ZKSObject alloc] initWithXmlElement:res];
-		[sobjects setObject:o forKey:[o id]];
-		[o release];
-	}
-	[env release];
-	return sobjects;
+    [env startElement:@"retrieve"];
+    [env addElement:@"fieldList" elemValue:fields];
+    [env addElement:@"sObjectType" elemValue:sobjectType];
+    [env addElementArray:@"ids" elemValue:ids];
+    [env endElement:@"retrieve"];
+    
+    zkElement *rr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
+    NSMutableDictionary *sobjects = [NSMutableDictionary dictionary]; 
+    NSArray *results = [rr childElements:@"result"];
+    for (zkElement *res in results) {
+        ZKSObject *o = [[ZKSObject alloc] initWithXmlElement:res];
+        sobjects[o.id] = o;
+    }
+    return sobjects;
 }
 
 -(void)updateLimitInfo:(zkElement *)soapHeaders {
     // this looks in the last response for a limit info header and if we got one, hangs onto it.
     zkElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
     if (liElem != nil) {
-        [limitInfo autorelease];
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
     }
 }

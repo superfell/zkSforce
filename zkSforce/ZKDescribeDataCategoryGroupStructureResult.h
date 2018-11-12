@@ -39,9 +39,9 @@
 */
 @interface ZKDescribeDataCategoryGroupStructureResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *description; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *sobject; 
-@property (readonly) NSArray   *topCategories;  // of ZKDataCategory
+@property (weak, readonly) NSString  *description; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *sobject; 
+@property (weak, readonly) NSArray   *topCategories;  // of ZKDataCategory
 @end

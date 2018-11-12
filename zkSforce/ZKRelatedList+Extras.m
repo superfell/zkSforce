@@ -25,33 +25,33 @@
 @implementation ZKRelatedList (Extras)
 
 - (NSString *) describe {
-	return [NSString stringWithFormat:@"%@ %@ %@ %@ %@",
-			[self sobject],
-			[self name],
-			[self label],
-			[self field],
-            [self custom] ? @"custom" : @"standard"
+    return [NSString stringWithFormat:@"%@ %@ %@ %@ %@",
+            self.sobject,
+            self.name,
+            self.label,
+            self.field,
+            self.custom ? @"custom" : @"standard"
             ];
 }
 
 - (NSString *) removeLastComma:(NSString *) str {
-	NSRange myRange = {[str length]-1,1};	// remove last comma
-	return [str stringByReplacingOccurrencesOfString:@"," withString:@"" options:0 range:myRange ];
+    NSRange myRange = {str.length-1,1};    // remove last comma
+    return [str stringByReplacingOccurrencesOfString:@"," withString:@"" options:0 range:myRange ];
 }
 
 -(NSString *) normalName:(NSString *) str {
-	NSRange myRange = {0,[str length]};
-	str = [str stringByReplacingOccurrencesOfString:@"toLabel(" withString:@"" options:0 range:myRange ];
-	NSRange bRange = {0,[str length]};
-	return [str stringByReplacingOccurrencesOfString:@")" withString:@"" options:0 range:bRange ];
+    NSRange myRange = {0,str.length};
+    str = [str stringByReplacingOccurrencesOfString:@"toLabel(" withString:@"" options:0 range:myRange ];
+    NSRange bRange = {0,str.length};
+    return [str stringByReplacingOccurrencesOfString:@")" withString:@"" options:0 range:bRange ];
 }
 
 -(NSString *) columnsFieldNames {
-	NSString *ret = @"";
-	for (ZKRelatedListColumn *col in [self columns] ) {
-		ret = [ret stringByAppendingFormat:@"%@,", [self normalName:[col name]]];
-	}
-	return [self removeLastComma:ret];
+    NSString *ret = @"";
+    for (ZKRelatedListColumn *col in self.columns ) {
+        ret = [ret stringByAppendingFormat:@"%@,", [self normalName:col.name]];
+    }
+    return [self removeLastComma:ret];
 }
 
 @end

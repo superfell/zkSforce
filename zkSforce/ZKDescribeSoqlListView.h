@@ -44,13 +44,13 @@
 */
 @interface ZKDescribeSoqlListView : ZKXmlDeserializer {
 }
-@property (readonly) NSArray               *columns;  // of ZKListViewColumn
-@property (readonly) NSString              *id; 
-@property (readonly) NSArray               *orderBy;  // of ZKListViewOrderBy
-@property (readonly) NSString              *query; 
-@property (readonly) NSString              *relatedEntityId; 
-@property (readonly) NSString              *scope; 
-@property (readonly) NSString              *scopeEntityId; 
-@property (readonly) NSString              *sobjectType; 
-@property (readonly) ZKSoqlWhereCondition  *whereCondition; 
+@property (weak, readonly) NSArray               *columns;  // of ZKListViewColumn
+@property (weak, readonly) NSString              *id; 
+@property (weak, readonly) NSArray               *orderBy;  // of ZKListViewOrderBy
+@property (weak, readonly) NSString              *query; 
+@property (weak, readonly) NSString              *relatedEntityId; 
+@property (weak, readonly) NSString              *scope; 
+@property (weak, readonly) NSString              *scopeEntityId; 
+@property (weak, readonly) NSString              *sobjectType; 
+@property (weak, readonly) ZKSoqlWhereCondition  *whereCondition; 
 @end

@@ -53,11 +53,11 @@
  
 */
 @interface ZKSforceClient : ZKBaseClient <NSCopying> {
-	NSString	*authEndpointUrl;
-	ZKUserInfo	*userInfo;
-	BOOL		cacheDescribes;
-	NSMutableDictionary	*describes;
-	int			preferedApiVersion;
+    NSString    *authEndpointUrl;
+    ZKUserInfo    *userInfo;
+    BOOL        cacheDescribes;
+    NSMutableDictionary    *describes;
+    int            preferedApiVersion;
 
     NSObject<ZKAuthenticationInfo>  *authSource;
     ZKLimitInfoHeader *limitInfo;
@@ -97,7 +97,7 @@
 -(void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version;
 
 /** returns an NSURL of where authentication will currently go. */
--(NSURL *)authEndpointUrl;
+@property (readonly) NSURL *authEndpointUrl;
 
 
 /** @name Start an API session, need to call one of these before making any api call */
@@ -143,7 +143,7 @@
     Normally you'd just call login:password or loginFromOAuthCallbackUrl:
     which will create a ZKAuthenticationInfo object for you.
 */
-@property (retain) NSObject<ZKAuthenticationInfo> *authenticationInfo;
+@property (strong) NSObject<ZKAuthenticationInfo> *authenticationInfo;
 
 
 /** @name basic Web Service operations
@@ -214,19 +214,19 @@
 /** @name SessionInfo - Information about the current session */
 
 /** @return true if we've performed a login request and it succeeded. */
-- (BOOL)loggedIn;
+@property (readonly) BOOL loggedIn;
 
 /** @return the UserInfo returned by the last call to login. */
-- (ZKUserInfo *)currentUserInfo;
+@property (readonly) ZKUserInfo *currentUserInfo;
 
 /** @return the current endpoint URL where requests are being sent. */
-- (NSURL *)serverUrl;
+@property (readonly) NSURL *serverUrl;
 
 /** @return the current API session Id being used to make requests */
-- (NSString *)sessionId;
+@property (readonly) NSString *sessionId;
 
 /** @return the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed. */
-- (NSString *)serverHostAbbriviation;
+@property (readonly) NSString *serverHostAbbriviation;
 
 /** @name SOAP Headers - properties that represent soap headers that are sent in conjuction with relevant requests. */
 
@@ -239,26 +239,26 @@
 @property (assign) BOOL updateMru;
 
 /** If you have a clientId for a certifed partner application, you can set it here. */
-@property (retain) NSString *clientId;
+@property (strong) NSString *clientId;
 
 /** If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default) */
-@property (retain) NSNumber *queryBatchSize;
+@property (strong) NSNumber *queryBatchSize;
 
-@property (retain) ZKCallOptions                *callOptions;
-@property (retain) ZKPackageVersionHeader       *packageVersionHeader;
-@property (retain) ZKLocaleOptions              *localeOptions;
-@property (retain) ZKAssignmentRuleHeader       *assignmentRuleHeader;
-@property (retain) ZKMruHeader                  *mruHeader;
-@property (retain) ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
-@property (retain) ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
-@property (retain) ZKStreamingEnabledHeader     *streamingEnabledHeader;
-@property (retain) ZKAllOrNoneHeader            *allOrNoneHeader;
-@property (retain) ZKDebuggingHeader            *debuggingHeader;
-@property (retain) ZKEmailHeader                *emailHeader;
-@property (retain) ZKOwnerChangeOptions         *ownerChangeOptions;
-@property (retain) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
-@property (retain) ZKQueryOptions               *queryOptions;
-@property (retain) ZKDuplicateRuleHeader        *duplicateRuleHeader;
+@property (strong) ZKCallOptions                *callOptions;
+@property (strong) ZKPackageVersionHeader       *packageVersionHeader;
+@property (strong) ZKLocaleOptions              *localeOptions;
+@property (strong) ZKAssignmentRuleHeader       *assignmentRuleHeader;
+@property (strong) ZKMruHeader                  *mruHeader;
+@property (strong) ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
+@property (strong) ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
+@property (strong) ZKStreamingEnabledHeader     *streamingEnabledHeader;
+@property (strong) ZKAllOrNoneHeader            *allOrNoneHeader;
+@property (strong) ZKDebuggingHeader            *debuggingHeader;
+@property (strong) ZKEmailHeader                *emailHeader;
+@property (strong) ZKOwnerChangeOptions         *ownerChangeOptions;
+@property (strong) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
+@property (strong) ZKQueryOptions               *queryOptions;
+@property (strong) ZKDuplicateRuleHeader        *duplicateRuleHeader;
 
 /** describe caching support, if true, describeGlobal & describeSObject call results are cached. */
 @property (assign) BOOL cacheDescribes;

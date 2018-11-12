@@ -41,11 +41,11 @@
 */
 @interface ZKProcessResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *actorIds;  // of NSString
-@property (readonly) NSString  *entityId; 
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSString  *instanceId; 
-@property (readonly) NSString  *instanceStatus; 
-@property (readonly) NSArray   *newWorkitemIds NS_RETURNS_NOT_RETAINED;  // of NSString; returns an autoreleased object, doesn't follow cocoa rules for properties/method starting with 'new'
-@property (readonly) BOOL       success; 
+@property (weak, readonly) NSArray   *actorIds;  // of NSString
+@property (weak, readonly) NSString  *entityId; 
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSString  *instanceId; 
+@property (weak, readonly) NSString  *instanceStatus; 
+@property (weak, readonly) NSArray   *newWorkitemIds NS_RETURNS_NOT_RETAINED;  // of NSString; returns an autoreleased object, doesn't follow cocoa rules for properties/method starting with 'new'
+@property (readonly) BOOL             success; 
 @end

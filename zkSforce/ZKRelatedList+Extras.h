@@ -23,7 +23,7 @@
 
 @interface ZKRelatedList (Extras)
 
-- (NSString *) columnsFieldNames ;
-- (NSString *) describe ;
+@property (readonly) NSString *columnsFieldNames ;
+@property (readonly) NSString *describe ;
 
 @end

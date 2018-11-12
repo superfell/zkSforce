@@ -24,8 +24,10 @@
 @class QueryController;
 
 @interface OAuthDemoAppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet QueryController *controller;
+    IBOutlet QueryController *__weak controller;
 }
+
+@property (weak) IBOutlet QueryController *controller;
 
 -(IBAction)startLogin:(id)sender;
 -(IBAction)createNewClient:(id)sender;

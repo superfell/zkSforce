@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeSoftphoneScreenPopOption : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *matchType; 
-@property (readonly) NSString  *screenPopData; 
-@property (readonly) NSString  *screenPopType; 
+@property (weak, readonly) NSString  *matchType; 
+@property (weak, readonly) NSString  *screenPopData; 
+@property (weak, readonly) NSString  *screenPopType; 
 @end

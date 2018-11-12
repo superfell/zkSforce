@@ -41,11 +41,11 @@
 */
 @interface ZKExecuteListViewResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *columns;  // of ZKListViewColumn
-@property (readonly) NSString  *developerName; 
-@property (readonly) BOOL       done; 
-@property (readonly) NSString  *id; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSArray   *records;  // of ZKListViewRecord
-@property (readonly) NSInteger  size; 
+@property (weak, readonly) NSArray   *columns;  // of ZKListViewColumn
+@property (weak, readonly) NSString  *developerName; 
+@property (readonly) BOOL             done; 
+@property (weak, readonly) NSString  *id; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSArray   *records;  // of ZKListViewRecord
+@property (readonly) NSInteger        size; 
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2013 Simon Fell
+// Copyright (c) 2006,2013,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -20,13 +20,24 @@
 //
 
 #import "ZKSaveResult.h"
+#import "ZKDeleteResult.h"
 
 @interface ZKSaveResult (Extras)
 
 /** @return the statusCode of the first error in the errors collection, or nil if there's no error */
-- (NSString *)statusCode;
+@property (readonly) NSString *statusCode;
 
 /** @return the message of the first error in the errors collection, or nil if there's no error */
-- (NSString *)message;
+@property (readonly) NSString *message;
+
+@end
+
+@interface ZKDeleteResult (Extras)
+
+/** @return the statusCode of the first error in the errors collection, or nil if there's no error */
+@property (readonly) NSString *statusCode;
+
+/** @return the message of the first error in the errors collection, or nil if there's no error */
+@property (readonly) NSString *message;
 
 @end

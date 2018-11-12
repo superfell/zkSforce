@@ -41,11 +41,11 @@
 */
 @interface ZKDescribeCompactLayout : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *actions;  // of ZKDescribeLayoutButton
-@property (readonly) NSArray   *fieldItems;  // of ZKDescribeLayoutItem
-@property (readonly) NSString  *id; 
-@property (readonly) NSArray   *imageItems;  // of ZKDescribeLayoutItem
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *objectType; 
+@property (weak, readonly) NSArray   *actions;  // of ZKDescribeLayoutButton
+@property (weak, readonly) NSArray   *fieldItems;  // of ZKDescribeLayoutItem
+@property (weak, readonly) NSString  *id; 
+@property (weak, readonly) NSArray   *imageItems;  // of ZKDescribeLayoutItem
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *objectType; 
 @end

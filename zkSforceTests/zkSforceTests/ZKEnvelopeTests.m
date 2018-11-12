@@ -38,7 +38,6 @@
 NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envelope/' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' xmlns='urn:test'>";
 
 -(void)makeEnv {
-    [env release];
     env = [[ZKEnvelope alloc] init];
     [env start:@"urn:test"];
 }
@@ -46,11 +45,6 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 -(void)setUp {
     [super setUp];
     [self makeEnv];
-}
-
--(void)tearDown {
-    [env release];
-    [super tearDown];
 }
 
 -(NSString *)envWith:(NSString *)content {
@@ -148,7 +142,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testAddElementArray {
-    NSArray *vals = [NSArray arrayWithObjects:@"one", @"two", nil];
+    NSArray *vals = @[@"one", @"two"];
     [env addElementArray:@"bob" elemValue:vals];
     XCTAssertEqualObjects([self envWith:@"<bob>one</bob><bob>two</bob>"], [env end]);
     [self makeEnv];
@@ -167,7 +161,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testAddElementSObject {
-    ZKSObject *o = [[[ZKSObject alloc] initWithType:@"Account"] autorelease];
+    ZKSObject *o = [[ZKSObject alloc] initWithType:@"Account"];
     [o setFieldValue:@"Lost" field:@"status"];
     [o setFieldToNull:@"IsWon"];
     [o setFieldToNull:@"Bob__c"];
@@ -181,7 +175,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testSObjectAddress {
-    ZKSObject *o = [[[ZKSObject alloc] initWithType:@"Account"] autorelease];
+    ZKSObject *o = [[ZKSObject alloc] initWithType:@"Account"];
     ZKAddress * a = [[ZKAddress alloc] init];
     a.longitude = 10;
     a.latitude = 11;
@@ -198,13 +192,13 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testSerializable {
-    ZKTestSerialize *s = [[[ZKTestSerialize alloc] init] autorelease];
+    ZKTestSerialize *s = [[ZKTestSerialize alloc] init];
     [env addElement:@"bob" elemValue:s];
     XCTAssertEqualObjects([self envWith:@"<bob>Hello World</bob>"], [env end]);
 }
 
 -(void)testExtentsionTypeSerializable {
-    ZKProcessSubmitRequest *r = [[[ZKProcessSubmitRequest alloc] init] autorelease];
+    ZKProcessSubmitRequest *r = [[ZKProcessSubmitRequest alloc] init];
     r.objectId = @"obj";
     r.comments = @"comment";
     [env addElement:@"p" elemValue:r];
@@ -212,7 +206,7 @@ NSString *ENV_TAG = @"<s:Envelope xmlns:s='http://schemas.xmlsoap.org/soap/envel
 }
 
 -(void)testToString {
-    [env addElement:@"bob" elemValue:[NSNumber numberWithInt:42]];
+    [env addElement:@"bob" elemValue:@42];
     XCTAssertEqualObjects([self envWith:@"<bob>42</bob>"], [env end]);
 }
 

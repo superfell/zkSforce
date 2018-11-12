@@ -31,20 +31,6 @@
 
 @synthesize accountId, accountRecord, bypassAccountDedupeCheck, bypassContactDedupeCheck, contactId, contactRecord, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, opportunityRecord, overwriteLeadSource, ownerId, sendNotificationEmail;
 
--(void)dealloc {
-	[accountId release];
-	[accountRecord release];
-	[contactId release];
-	[contactRecord release];
-	[convertedStatus release];
-	[leadId release];
-	[opportunityId release];
-	[opportunityName release];
-	[opportunityRecord release];
-	[ownerId release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accountId"                    elemValue:self.accountId                nillable:YES optional:NO];

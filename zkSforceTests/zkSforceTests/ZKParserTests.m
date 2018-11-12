@@ -60,8 +60,8 @@
     zkElement *e = [self parse:doc];
     NSArray *c = [e childElements:@"c"];
     XCTAssertEqual((NSUInteger)2, [c count]);
-    [self assert:[c objectAtIndex:0] hasName:@"c" text:@"one"];
-    [self assert:[c objectAtIndex:1] hasName:@"c" text:@"two"];
+    [self assert:c[0] hasName:@"c" text:@"one"];
+    [self assert:c[1] hasName:@"c" text:@"two"];
 }
 
 -(void)testAttributeValue {
@@ -82,24 +82,24 @@
     zkElement *e = [self parse:doc];
     NSArray *bc = [e childElements:@"c" ns:@"urn:bb"];
     XCTAssertEqual((NSUInteger)2, [bc count]);
-    [self assert:[bc objectAtIndex:0] hasName:@"c" ns:@"urn:bb" text:@"two"];
-    [self assert:[bc objectAtIndex:1] hasName:@"c" ns:@"urn:bb" text:@"three"];
+    [self assert:bc[0] hasName:@"c" ns:@"urn:bb" text:@"two"];
+    [self assert:bc[1] hasName:@"c" ns:@"urn:bb" text:@"three"];
 
     NSArray *ac = [e childElements:@"c" ns:@"urn:a"];
     XCTAssertEqual((NSUInteger)1, [ac count]);
-    [self assert:[ac objectAtIndex:0] hasName:@"c" ns:@"urn:a" text:@"one"];
+    [self assert:ac[0] hasName:@"c" ns:@"urn:a" text:@"one"];
     
     NSArray *c = [e childElements:@"c"];
     XCTAssertEqual((NSUInteger)3, [c count]);
-    [self assert:[c objectAtIndex:0] hasName:@"c" ns:@"urn:a" text:@"one"];
-    [self assert:[c objectAtIndex:1] hasName:@"c" ns:@"urn:bb" text:@"two"];
-    [self assert:[c objectAtIndex:2] hasName:@"c" ns:@"urn:bb" text:@"three"];
+    [self assert:c[0] hasName:@"c" ns:@"urn:a" text:@"one"];
+    [self assert:c[1] hasName:@"c" ns:@"urn:bb" text:@"two"];
+    [self assert:c[2] hasName:@"c" ns:@"urn:bb" text:@"three"];
 }
 
 -(void)testXsiTypeWithNs {
     NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xsi:type='xsd:date'>2016-05-31</root>";
     zkElement *e = [self parse:doc];
-    ZKNamespacedName *t = [e xsiType];
+    ZKNamespacedName *t = e.xsiType;
     XCTAssertEqualObjects(@"date", t.localname);
     XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema", t.namespaceURI);
     XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema:date", [t description]);
@@ -108,7 +108,7 @@
 -(void)testXsiTypeWithDefaultNs {
     NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://www.w3.org/2001/XMLSchema' xsi:type='date'>2016-05-31</root>";
     zkElement *e = [self parse:doc];
-    ZKNamespacedName *t = [e xsiType];
+    ZKNamespacedName *t = e.xsiType;
     XCTAssertEqualObjects(@"date", t.localname);
     XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema", t.namespaceURI);
     XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema:date", [t description]);

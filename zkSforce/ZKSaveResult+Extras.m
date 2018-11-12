@@ -25,23 +25,47 @@
 @implementation ZKSaveResult (Extras)
 
 - (ZKError *)firstError {
-    return [[self errors] objectAtIndex:0];
+    return self.errors[0];
 }
 
 - (NSString *)statusCode {
-	if ([self success]) return nil;
-    return [[self firstError] statusCode];
+    if (self.success) return nil;
+    return [self firstError].statusCode;
 }
 
 - (NSString *)message {
-	if ([self success]) return nil;
-    return [[self firstError] message];
+    if (self.success) return nil;
+    return [self firstError].message;
 }
 
 - (NSString *)description {
-	if ([self success])
-		return [self id];
-	return [NSString stringWithFormat:@"%@ - %@", [self statusCode], [self message]];
+    if (self.success)
+        return self.id;
+    return [NSString stringWithFormat:@"%@ - %@", self.statusCode, self.message];
+}
+
+@end
+
+@implementation ZKDeleteResult (Extras)
+
+- (ZKError *)firstError {
+    return self.errors[0];
+}
+
+- (NSString *)statusCode {
+    if (self.success) return nil;
+    return [self firstError].statusCode;
+}
+
+- (NSString *)message {
+    if (self.success) return nil;
+    return [self firstError].message;
+}
+
+- (NSString *)description {
+    if (self.success)
+        return self.id;
+    return [NSString stringWithFormat:@"%@ - %@", self.statusCode, self.message];
 }
 
 @end

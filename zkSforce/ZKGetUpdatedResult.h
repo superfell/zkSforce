@@ -36,6 +36,6 @@
 */
 @interface ZKGetUpdatedResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *ids;  // of NSString
-@property (readonly) NSDate   *latestDateCovered; 
+@property (weak, readonly) NSArray  *ids;  // of NSString
+@property (weak, readonly) NSDate   *latestDateCovered; 
 @end

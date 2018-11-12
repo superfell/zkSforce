@@ -40,5 +40,5 @@
 */
 @interface ZKSoqlNotCondition : ZKSoqlWhereCondition {
 }
-@property (readonly) ZKSoqlWhereCondition  *condition; 
+@property (weak, readonly) ZKSoqlWhereCondition  *condition; 
 @end

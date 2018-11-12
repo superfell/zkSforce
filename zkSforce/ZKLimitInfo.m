@@ -36,7 +36,7 @@
 }
 
 -(NSString *)description {
-    return [NSString stringWithFormat:@"%@ %d/%d", [self type], [self current], [self limit]];
+    return [NSString stringWithFormat:@"%@ %d/%d", self.type, self.current, self.limit];
 }
 
 @end

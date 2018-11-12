@@ -31,12 +31,6 @@
 
 @synthesize comments, nextApproverIds;
 
--(void)dealloc {
-	[comments release];
-	[nextApproverIds release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"comments"             elemValue:self.comments        nillable:YES optional:NO];

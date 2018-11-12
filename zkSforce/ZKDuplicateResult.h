@@ -39,9 +39,9 @@
 */
 @interface ZKDuplicateResult : ZKXmlDeserializer {
 }
-@property (readonly) BOOL       allowSave; 
-@property (readonly) NSString  *duplicateRule; 
-@property (readonly) NSString  *duplicateRuleEntityType; 
-@property (readonly) NSString  *errorMessage; 
-@property (readonly) NSArray   *matchResults;  // of ZKMatchResult
+@property (readonly) BOOL             allowSave; 
+@property (weak, readonly) NSString  *duplicateRule; 
+@property (weak, readonly) NSString  *duplicateRuleEntityType; 
+@property (weak, readonly) NSString  *errorMessage; 
+@property (weak, readonly) NSArray   *matchResults;  // of ZKMatchResult
 @end

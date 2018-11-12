@@ -38,15 +38,12 @@
 </complexType>
 */
 @interface ZKListViewOrderBy : ZKXmlDeserializer<ZKXMLSerializable> {
-	NSString  *fieldNameOrPath;
-	NSString  *nullsPosition;
-	NSString  *sortDirection;
 }
--(id)init;
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d;
--(id)initWithXmlElement:(zkElement *)e;
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
+-(instancetype)initWithXmlElement:(zkElement *)e;
 
-@property (retain) NSString  *fieldNameOrPath; 
-@property (retain) NSString  *nullsPosition; 
-@property (retain) NSString  *sortDirection; 
+@property (strong) NSString  *fieldNameOrPath; 
+@property (strong) NSString  *nullsPosition; 
+@property (strong) NSString  *sortDirection; 
 @end

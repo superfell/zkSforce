@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeCompactLayoutsResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *compactLayouts;  // of ZKDescribeCompactLayout
-@property (readonly) NSString  *defaultCompactLayoutId; 
-@property (readonly) NSArray   *recordTypeCompactLayoutMappings;  // of ZKRecordTypeCompactLayoutMapping
+@property (weak, readonly) NSArray   *compactLayouts;  // of ZKDescribeCompactLayout
+@property (weak, readonly) NSString  *defaultCompactLayoutId; 
+@property (weak, readonly) NSArray   *recordTypeCompactLayoutMappings;  // of ZKRecordTypeCompactLayoutMapping
 @end

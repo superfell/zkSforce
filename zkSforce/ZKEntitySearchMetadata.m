@@ -41,15 +41,15 @@
 }
 			
 -(ZKEntityIntentQueryMetadata *)intentQueryMetadata {
-    return [[self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]] lastObject];
+    return [self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]].lastObject;
 }
 			
 -(ZKEntitySearchPromotionMetadata *)searchPromotionMetadata {
-    return [[self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]] lastObject];
+    return [self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]].lastObject;
 }
 			
 -(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {
-    return [[self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]] lastObject];
+    return [self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]].lastObject;
 }
 			
 @end

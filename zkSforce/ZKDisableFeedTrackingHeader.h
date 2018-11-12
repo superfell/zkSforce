@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKDisableFeedTrackingHeader : NSObject<ZKXMLSerializable> {
-	BOOL disableFeedTracking;
 }
 @property (assign) BOOL disableFeedTracking; 
 @end

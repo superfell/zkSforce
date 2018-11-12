@@ -36,6 +36,6 @@
 */
 @interface ZKFieldDiff : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *difference; 
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSString  *difference; 
+@property (weak, readonly) NSString  *name; 
 @end

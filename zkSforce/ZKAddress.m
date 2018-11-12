@@ -31,12 +31,12 @@
 
 @synthesize city, country, countryCode, geocodeAccuracy, postalCode, state, stateCode, street;
 
--(id)init {
+-(instancetype)init {
     self = [super init];
     return self;
 }
 
--(id)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
+-(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
     self = [super initWithZKXmlDeserializer:d];
 	self.city = [d string:@"city"];
 	self.country = [d string:@"country"];
@@ -49,21 +49,9 @@
     return self;
 }
 
--(id)initWithXmlElement:(zkElement *)e {
-    ZKXmlDeserializer *d = [[[ZKXmlDeserializer alloc] initWithXmlElement:e] autorelease];
+-(instancetype)initWithXmlElement:(zkElement *)e {
+    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
     return [self initWithZKXmlDeserializer:d];
-}
-
--(void)dealloc {
-	[city release];
-	[country release];
-	[countryCode release];
-	[geocodeAccuracy release];
-	[postalCode release];
-	[state release];
-	[stateCode release];
-	[street release];
-	[super dealloc];
 }
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {

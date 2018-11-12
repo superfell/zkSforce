@@ -36,6 +36,6 @@
 */
 @interface ZKDescribeLayoutRow : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *layoutItems;  // of ZKDescribeLayoutItem
-@property (readonly) NSInteger numItems; 
+@property (weak, readonly) NSArray  *layoutItems;  // of ZKDescribeLayoutItem
+@property (readonly) NSInteger       numItems; 
 @end

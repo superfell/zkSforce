@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeApprovalLayoutResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *approvalLayouts;  // of ZKDescribeApprovalLayout
+@property (weak, readonly) NSArray  *approvalLayouts;  // of ZKDescribeApprovalLayout
 @end

@@ -38,8 +38,8 @@
 */
 @interface ZKDescribeAvailableQuickActionResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *actionEnumOrId; 
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *type; 
+@property (weak, readonly) NSString  *actionEnumOrId; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *type; 
 @end

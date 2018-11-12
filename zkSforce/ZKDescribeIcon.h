@@ -39,9 +39,9 @@
 */
 @interface ZKDescribeIcon : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *contentType; 
-@property (readonly) NSInteger  height; 
-@property (readonly) NSString  *theme; 
-@property (readonly) NSString  *url; 
-@property (readonly) NSInteger  width; 
+@property (weak, readonly) NSString  *contentType; 
+@property (readonly) NSInteger        height; 
+@property (weak, readonly) NSString  *theme; 
+@property (weak, readonly) NSString  *url; 
+@property (readonly) NSInteger        width; 
 @end

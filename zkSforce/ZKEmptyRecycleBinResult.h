@@ -37,7 +37,7 @@
 */
 @interface ZKEmptyRecycleBinResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *errors;  // of ZKError
-@property (readonly) NSString  *id; 
-@property (readonly) BOOL       success; 
+@property (weak, readonly) NSArray   *errors;  // of ZKError
+@property (weak, readonly) NSString  *id; 
+@property (readonly) BOOL             success; 
 @end

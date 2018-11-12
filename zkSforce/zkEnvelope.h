@@ -23,8 +23,8 @@
 #import "zkSObject.h"
 
 @interface ZKEnvelope : NSObject {
-	NSMutableString 	*env;
-	int					state;
+    NSMutableString     *env;
+    int                 state;
 }
 
 - (void)start:(NSString *)primaryNamespceUri;

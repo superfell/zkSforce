@@ -35,9 +35,7 @@
 </complexType>
 */
 @interface ZKLoginScopeHeader : NSObject<ZKXMLSerializable> {
-	NSString  *organizationId;
-	NSString  *portalId;
 }
-@property (retain) NSString  *organizationId; 
-@property (retain) NSString  *portalId; 
+@property (strong) NSString  *organizationId; 
+@property (strong) NSString  *portalId; 
 @end

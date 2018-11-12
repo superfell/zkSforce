@@ -37,7 +37,7 @@
 */
 @interface ZKDescribeSearchableEntityResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
-@property (readonly) NSString  *pluralLabel; 
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
+@property (weak, readonly) NSString  *pluralLabel; 
 @end

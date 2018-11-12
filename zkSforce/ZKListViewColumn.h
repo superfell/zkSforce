@@ -45,15 +45,15 @@
 */
 @interface ZKListViewColumn : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *ascendingLabel; 
-@property (readonly) NSString  *descendingLabel; 
-@property (readonly) NSString  *fieldNameOrPath; 
-@property (readonly) BOOL       hidden; 
-@property (readonly) NSString  *label; 
-@property (readonly) BOOL       searchable; 
-@property (readonly) NSString  *selectListItem; 
-@property (readonly) NSString  *sortDirection; 
-@property (readonly) NSInteger  sortIndex; 
-@property (readonly) BOOL       sortable; 
-@property (readonly) NSString  *type; 
+@property (weak, readonly) NSString  *ascendingLabel; 
+@property (weak, readonly) NSString  *descendingLabel; 
+@property (weak, readonly) NSString  *fieldNameOrPath; 
+@property (readonly) BOOL             hidden; 
+@property (weak, readonly) NSString  *label; 
+@property (readonly) BOOL             searchable; 
+@property (weak, readonly) NSString  *selectListItem; 
+@property (weak, readonly) NSString  *sortDirection; 
+@property (readonly) NSInteger        sortIndex; 
+@property (readonly) BOOL             sortable; 
+@property (weak, readonly) NSString  *type; 
 @end

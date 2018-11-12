@@ -36,9 +36,6 @@
 </complexType>
 */
 @interface ZKEmailHeader : NSObject<ZKXMLSerializable> {
-	BOOL triggerAutoResponseEmail;
-	BOOL triggerOtherEmail;
-	BOOL triggerUserEmail;
 }
 @property (assign) BOOL triggerAutoResponseEmail; 
 @property (assign) BOOL triggerOtherEmail; 

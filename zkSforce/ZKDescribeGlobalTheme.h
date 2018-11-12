@@ -38,6 +38,6 @@
 */
 @interface ZKDescribeGlobalTheme : ZKXmlDeserializer {
 }
-@property (readonly) ZKDescribeGlobalResult  *global; 
-@property (readonly) ZKDescribeThemeResult   *theme; 
+@property (weak, readonly) ZKDescribeGlobalResult  *global; 
+@property (weak, readonly) ZKDescribeThemeResult   *theme; 
 @end

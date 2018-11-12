@@ -47,7 +47,7 @@
 }
 			
 -(ZKDescribeLayoutSection *)layoutSection {
-    return [[self complexTypeArrayFromElements:@"layoutSection" cls:[ZKDescribeLayoutSection class]] lastObject];
+    return [self complexTypeArrayFromElements:@"layoutSection" cls:[ZKDescribeLayoutSection class]].lastObject;
 }
 			
 -(NSString *)picklistLabel {

@@ -41,9 +41,9 @@
 */
 @interface ZKQuickActionTemplateResult : ZKXmlDeserializer {
 }
-@property (readonly) NSString   *contextId; 
-@property (readonly) ZKSObject  *defaultValueFormulas; 
-@property (readonly) ZKSObject  *defaultValues; 
-@property (readonly) NSArray    *errors;  // of ZKError
-@property (readonly) BOOL        success; 
+@property (weak, readonly) NSString   *contextId; 
+@property (weak, readonly) ZKSObject  *defaultValueFormulas; 
+@property (weak, readonly) ZKSObject  *defaultValues; 
+@property (weak, readonly) NSArray    *errors;  // of ZKError
+@property (readonly) BOOL              success; 
 @end

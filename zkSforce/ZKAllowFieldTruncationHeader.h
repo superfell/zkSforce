@@ -34,7 +34,6 @@
 </complexType>
 */
 @interface ZKAllowFieldTruncationHeader : NSObject<ZKXMLSerializable> {
-	BOOL allowFieldTruncation;
 }
 @property (assign) BOOL allowFieldTruncation; 
 @end

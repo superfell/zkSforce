@@ -37,7 +37,7 @@
 */
 @interface ZKRenderEmailTemplateResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *bodyResults;  // of ZKRenderEmailTemplateBodyResult
-@property (readonly) NSArray  *errors;  // of ZKError
-@property (readonly) BOOL      success; 
+@property (weak, readonly) NSArray  *bodyResults;  // of ZKRenderEmailTemplateBodyResult
+@property (weak, readonly) NSArray  *errors;  // of ZKError
+@property (readonly) BOOL            success; 
 @end

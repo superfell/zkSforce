@@ -36,9 +36,6 @@
 </complexType>
 */
 @interface ZKDuplicateRuleHeader : NSObject<ZKXMLSerializable> {
-	BOOL allowSave;
-	BOOL includeRecordDetails;
-	BOOL runAsCurrentUser;
 }
 @property (assign) BOOL allowSave; 
 @property (assign) BOOL includeRecordDetails; 

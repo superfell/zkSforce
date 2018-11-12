@@ -1,4 +1,4 @@
-// Copyright (c) 2006 Simon Fell
+// Copyright (c) 2006,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -22,25 +22,29 @@
 @class zkElement;
 
 @interface ZKQueryResult : NSObject <NSCopying> {
-	int size;
-	BOOL done;
-	NSString * queryLocator;
-	NSArray * records;
+    NSInteger   size;
+    BOOL        done;
+    NSString    *queryLocator;
+    NSArray     *records;
 }
 
-- (id)initWithXmlElement:(zkElement *)node;
-- (id)initWithRecords:(NSArray *)records size:(int)s done:(BOOL)d queryLocator:(NSString *)ql;
+- (instancetype)initWithXmlElement:(zkElement *)node NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRecords:(NSArray *)records size:(NSInteger)s done:(BOOL)d queryLocator:(NSString *)ql NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 
 /** @return the total size of the query results [if this is larger than one page, this is only a hint] */
-- (int)size;
+@property (readonly) NSInteger size;
 
 /** @return true if this is the last page of results for this query, or false if there are more pages available via QueryMore */
-- (BOOL)done;
+@property (readonly) BOOL done;
 
 /** @return a queryLocator that can be used with QueryMore to fetch the next page of results */
-- (NSString *)queryLocator;
+@property (readonly, strong) NSString *queryLocator;
 
 /** @return the query result records that are in this page of results */
-- (NSArray *)records;
+@property (readonly, strong) NSArray *records;
+
+/** @return the value for a dotted path of field name at a particular index in records. e.g. valueForFieldPath:@"Contact.Name" row:0 */
+- (NSObject *)valueForFieldPath:(NSString *)path row:(NSInteger)row;
 
 @end

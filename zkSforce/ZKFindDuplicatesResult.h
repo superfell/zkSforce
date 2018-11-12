@@ -37,7 +37,7 @@
 */
 @interface ZKFindDuplicatesResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *duplicateResults;  // of ZKDuplicateResult
-@property (readonly) NSArray  *errors;  // of ZKError
-@property (readonly) BOOL      success; 
+@property (weak, readonly) NSArray  *duplicateResults;  // of ZKDuplicateResult
+@property (weak, readonly) NSArray  *errors;  // of ZKError
+@property (readonly) BOOL            success; 
 @end

@@ -35,7 +35,7 @@
 }
 			
 -(ZKSingleEmailMessage *)renderedEmail {
-    return [[self complexTypeArrayFromElements:@"renderedEmail" cls:[ZKSingleEmailMessage class]] lastObject];
+    return [self complexTypeArrayFromElements:@"renderedEmail" cls:[ZKSingleEmailMessage class]].lastObject;
 }
 			
 -(BOOL)success {

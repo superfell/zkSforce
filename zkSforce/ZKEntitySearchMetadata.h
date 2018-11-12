@@ -42,9 +42,9 @@
 */
 @interface ZKEntitySearchMetadata : ZKXmlDeserializer {
 }
-@property (readonly) NSString                         *entityName; 
-@property (readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
-@property (readonly) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
-@property (readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
-@property (readonly) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
+@property (weak, readonly) NSString                         *entityName; 
+@property (weak, readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
+@property (weak, readonly) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
+@property (weak, readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
+@property (weak, readonly) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
 @end

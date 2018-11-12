@@ -40,6 +40,6 @@
 */
 @interface ZKFieldLayoutComponent : ZKDescribeLayoutComponent {
 }
-@property (readonly) NSArray   *components;  // of ZKDescribeLayoutComponent
-@property (readonly) NSString  *fieldType; 
+@property (weak, readonly) NSArray   *components;  // of ZKDescribeLayoutComponent
+@property (weak, readonly) NSString  *fieldType; 
 @end

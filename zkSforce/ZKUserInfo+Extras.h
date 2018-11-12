@@ -24,15 +24,15 @@
 /** These are all aliases added to be backwards compatibile with earlier versions */
 @interface ZKUserInfo (Extras)
 
--(BOOL)organizationIsMultiCurrency;
--(NSString *)defaultCurrencyIsoCode;
--(NSString *)email;
--(NSString *)fullName;
--(NSString *)language;
--(NSString *)locale;
--(NSString *)timeZone;
--(NSString *)skin;
--(BOOL)disallowHtmlAttachments;
--(BOOL)hasPersonAccounts;
+@property (readonly) BOOL organizationIsMultiCurrency;
+@property (readonly) NSString *defaultCurrencyIsoCode;
+@property (readonly) NSString *email;
+@property (readonly) NSString *fullName;
+@property (readonly) NSString *language;
+@property (readonly) NSString *locale;
+@property (readonly) NSString *timeZone;
+@property (readonly) NSString *skin;
+@property (readonly) BOOL disallowHtmlAttachments;
+@property (readonly) BOOL hasPersonAccounts;
 
 @end

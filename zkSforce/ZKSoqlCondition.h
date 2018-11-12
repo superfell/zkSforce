@@ -41,7 +41,7 @@
 */
 @interface ZKSoqlCondition : ZKSoqlWhereCondition {
 }
-@property (readonly) NSString  *field; 
-@property (readonly) NSString  *operator; 
-@property (readonly) NSArray   *values;  // of NSString
+@property (weak, readonly) NSString  *field; 
+@property (weak, readonly) NSString  *operator; 
+@property (weak, readonly) NSArray   *values;  // of NSString
 @end

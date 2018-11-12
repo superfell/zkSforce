@@ -51,35 +51,20 @@
 </complexType>
 */
 @interface ZKLeadConvert : NSObject<ZKXMLSerializable> {
-	NSString   *accountId;
-	ZKSObject  *accountRecord;
-	BOOL        bypassAccountDedupeCheck;
-	BOOL        bypassContactDedupeCheck;
-	NSString   *contactId;
-	ZKSObject  *contactRecord;
-	NSString   *convertedStatus;
-	BOOL        doNotCreateOpportunity;
-	NSString   *leadId;
-	NSString   *opportunityId;
-	NSString   *opportunityName;
-	ZKSObject  *opportunityRecord;
-	BOOL        overwriteLeadSource;
-	NSString   *ownerId;
-	BOOL        sendNotificationEmail;
 }
-@property (retain) NSString   *accountId; 
-@property (retain) ZKSObject  *accountRecord; 
+@property (strong) NSString   *accountId; 
+@property (strong) ZKSObject  *accountRecord; 
 @property (assign) BOOL        bypassAccountDedupeCheck; 
 @property (assign) BOOL        bypassContactDedupeCheck; 
-@property (retain) NSString   *contactId; 
-@property (retain) ZKSObject  *contactRecord; 
-@property (retain) NSString   *convertedStatus; 
+@property (strong) NSString   *contactId; 
+@property (strong) ZKSObject  *contactRecord; 
+@property (strong) NSString   *convertedStatus; 
 @property (assign) BOOL        doNotCreateOpportunity; 
-@property (retain) NSString   *leadId; 
-@property (retain) NSString   *opportunityId; 
-@property (retain) NSString   *opportunityName; 
-@property (retain) ZKSObject  *opportunityRecord; 
+@property (strong) NSString   *leadId; 
+@property (strong) NSString   *opportunityId; 
+@property (strong) NSString   *opportunityName; 
+@property (strong) ZKSObject  *opportunityRecord; 
 @property (assign) BOOL        overwriteLeadSource; 
-@property (retain) NSString   *ownerId; 
+@property (strong) NSString   *ownerId; 
 @property (assign) BOOL        sendNotificationEmail; 
 @end

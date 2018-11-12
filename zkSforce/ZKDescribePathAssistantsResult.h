@@ -35,5 +35,5 @@
 */
 @interface ZKDescribePathAssistantsResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *pathAssistants;  // of ZKDescribePathAssistant
+@property (weak, readonly) NSArray  *pathAssistants;  // of ZKDescribePathAssistant
 @end

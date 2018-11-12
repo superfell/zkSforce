@@ -43,12 +43,12 @@
 */
 @interface ZKDescribePathAssistantStep : ZKXmlDeserializer {
 }
-@property (readonly) BOOL                      closed; 
-@property (readonly) BOOL                      converted; 
-@property (readonly) NSArray                  *fields;  // of ZKDescribePathAssistantField
-@property (readonly) NSString                 *info; 
-@property (readonly) ZKDescribeLayoutSection  *layoutSection; 
-@property (readonly) NSString                 *picklistLabel; 
-@property (readonly) NSString                 *picklistValue; 
-@property (readonly) BOOL                      won; 
+@property (readonly) BOOL                            closed; 
+@property (readonly) BOOL                            converted; 
+@property (weak, readonly) NSArray                  *fields;  // of ZKDescribePathAssistantField
+@property (weak, readonly) NSString                 *info; 
+@property (weak, readonly) ZKDescribeLayoutSection  *layoutSection; 
+@property (weak, readonly) NSString                 *picklistLabel; 
+@property (weak, readonly) NSString                 *picklistValue; 
+@property (readonly) BOOL                            won; 
 @end

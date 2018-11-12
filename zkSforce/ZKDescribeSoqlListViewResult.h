@@ -35,5 +35,5 @@
 */
 @interface ZKDescribeSoqlListViewResult : ZKXmlDeserializer {
 }
-@property (readonly) NSArray  *describeSoqlListViews;  // of ZKDescribeSoqlListView
+@property (weak, readonly) NSArray  *describeSoqlListViews;  // of ZKDescribeSoqlListView
 @end

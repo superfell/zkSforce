@@ -57,23 +57,23 @@
 */
 @interface ZKSingleEmailMessage : ZKEmail {
 }
-@property (readonly) NSArray   *bccAddresses;  // of NSString
-@property (readonly) NSArray   *ccAddresses;  // of NSString
-@property (readonly) NSString  *charset; 
-@property (readonly) NSArray   *documentAttachments;  // of NSString
-@property (readonly) NSArray   *entityAttachments;  // of NSString
-@property (readonly) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
-@property (readonly) NSString  *htmlBody; 
-@property (readonly) NSString  *inReplyTo; 
-@property (readonly) NSString  *optOutPolicy; 
-@property (readonly) NSString  *orgWideEmailAddressId; 
-@property (readonly) NSString  *plainTextBody; 
-@property (readonly) NSString  *references; 
-@property (readonly) NSString  *targetObjectId; 
-@property (readonly) NSString  *templateId; 
-@property (readonly) NSString  *templateName; 
-@property (readonly) NSArray   *toAddresses;  // of NSString
-@property (readonly) BOOL       treatBodiesAsTemplate; 
-@property (readonly) BOOL       treatTargetObjectAsRecipient; 
-@property (readonly) NSString  *whatId; 
+@property (weak, readonly) NSArray   *bccAddresses;  // of NSString
+@property (weak, readonly) NSArray   *ccAddresses;  // of NSString
+@property (weak, readonly) NSString  *charset; 
+@property (weak, readonly) NSArray   *documentAttachments;  // of NSString
+@property (weak, readonly) NSArray   *entityAttachments;  // of NSString
+@property (weak, readonly) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
+@property (weak, readonly) NSString  *htmlBody; 
+@property (weak, readonly) NSString  *inReplyTo; 
+@property (weak, readonly) NSString  *optOutPolicy; 
+@property (weak, readonly) NSString  *orgWideEmailAddressId; 
+@property (weak, readonly) NSString  *plainTextBody; 
+@property (weak, readonly) NSString  *references; 
+@property (weak, readonly) NSString  *targetObjectId; 
+@property (weak, readonly) NSString  *templateId; 
+@property (weak, readonly) NSString  *templateName; 
+@property (weak, readonly) NSArray   *toAddresses;  // of NSString
+@property (readonly) BOOL             treatBodiesAsTemplate; 
+@property (readonly) BOOL             treatTargetObjectAsRecipient; 
+@property (weak, readonly) NSString  *whatId; 
 @end

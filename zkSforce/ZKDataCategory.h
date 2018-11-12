@@ -37,7 +37,7 @@
 */
 @interface ZKDataCategory : ZKXmlDeserializer {
 }
-@property (readonly) NSArray   *childCategories;  // of ZKDataCategory
-@property (readonly) NSString  *label; 
-@property (readonly) NSString  *name; 
+@property (weak, readonly) NSArray   *childCategories;  // of ZKDataCategory
+@property (weak, readonly) NSString  *label; 
+@property (weak, readonly) NSString  *name; 
 @end

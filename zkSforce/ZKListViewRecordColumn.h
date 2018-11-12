@@ -36,6 +36,6 @@
 */
 @interface ZKListViewRecordColumn : ZKXmlDeserializer {
 }
-@property (readonly) NSString  *fieldNameOrPath; 
-@property (readonly) NSString  *value; 
+@property (weak, readonly) NSString  *fieldNameOrPath; 
+@property (weak, readonly) NSString  *value; 
 @end

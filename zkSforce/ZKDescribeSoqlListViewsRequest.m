@@ -31,11 +31,6 @@
 
 @synthesize listViewParams;
 
--(void)dealloc {
-	[listViewParams release];
-	[super dealloc];
-}
-
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"listViewParams" elemValue:self.listViewParams];

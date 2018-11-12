@@ -39,9 +39,9 @@
 */
 @interface ZKEmailFileAttachment : ZKXmlDeserializer {
 }
-@property (readonly) NSData    *body; 
-@property (readonly) NSString  *contentType; 
-@property (readonly) NSString  *fileName; 
-@property (readonly) NSString  *id; 
-@property (readonly) BOOL       _inline; 
+@property (weak, readonly) NSData    *body; 
+@property (weak, readonly) NSString  *contentType; 
+@property (weak, readonly) NSString  *fileName; 
+@property (weak, readonly) NSString  *id; 
+@property (readonly) BOOL             _inline; 
 @end

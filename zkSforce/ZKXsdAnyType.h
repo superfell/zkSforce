@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Simon Fell
+// Copyright (c) 2016,2018 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -29,12 +29,12 @@
 }
 
 /** @return the decoded value of this item */
--(id)value;
+@property (readonly) NSObject *value;
 
 /** @return the xml namespace URI of the type of this item */
--(NSString*)typeNamespaceURI;
+@property (readonly) NSString *typeNamespaceURI;
 
 /** @return the xml localname of the type of this item */
--(NSString*)typeName;
+@property (readonly) NSString *typeName;
 
 @end
