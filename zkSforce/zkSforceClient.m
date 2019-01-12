@@ -56,6 +56,7 @@
 #import "ZKXMLSerializable.h"
 
 static const int SAVE_BATCH_SIZE = 25;
+static const int DEFAULT_API_VERSION = 45;
 
 @interface ZKSforceClient(Private)
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
@@ -72,7 +73,7 @@ static const int SAVE_BATCH_SIZE = 25;
 
 - (instancetype)init {
     self = [super init];
-    preferedApiVersion = 42;
+    preferedApiVersion = DEFAULT_API_VERSION;
     [self setLoginProtocolAndHost:@"https://login.salesforce.com"];
     cacheDescribes = NO;
     describes = [[NSMutableDictionary alloc] init];

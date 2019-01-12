@@ -314,11 +314,12 @@
 }
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
--(void) performDescribeSearchScopeOrderWithFailBlock:(zkFailWithExceptionBlock)failBlock
+-(void) performDescribeSearchScopeOrder:(BOOL)includeRealTimeEntities
+                              failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
 	[self performRequest:^id {
-			return [self describeSearchScopeOrder];
+			return [self describeSearchScopeOrder:includeRealTimeEntities];
 		}
 		 checkSession:YES
 		    failBlock:failBlock

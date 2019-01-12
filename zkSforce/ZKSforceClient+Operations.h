@@ -89,7 +89,7 @@
 -(NSArray *)describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs;
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
--(NSArray *)describeSearchScopeOrder;
+-(NSArray *)describeSearchScopeOrder:(BOOL)includeRealTimeEntities;
 
 /** Describe the compact layouts of the given sObject */
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;

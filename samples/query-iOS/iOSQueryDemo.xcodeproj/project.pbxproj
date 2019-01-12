@@ -156,7 +156,6 @@
 		F4B770251BB7376D00681844 /* ZKDescribePathAssistantField.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B7700E1BB7376D00681844 /* ZKDescribePathAssistantField.m */; };
 		F4B770261BB7376D00681844 /* ZKDescribePathAssistantsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770101BB7376D00681844 /* ZKDescribePathAssistantsResult.m */; };
 		F4B770271BB7376D00681844 /* ZKDescribePathAssistantStep.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770121BB7376D00681844 /* ZKDescribePathAssistantStep.m */; };
-		F4B770281BB7376D00681844 /* ZKFlexipageContext.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770141BB7376D00681844 /* ZKFlexipageContext.m */; };
 		F4B770291BB7376D00681844 /* ZKOwnerChangeOption.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770161BB7376D00681844 /* ZKOwnerChangeOption.m */; };
 		F4B7702A1BB7376D00681844 /* ZKRenderEmailTemplateBodyResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B770181BB7376D00681844 /* ZKRenderEmailTemplateBodyResult.m */; };
 		F4B7702B1BB7376D00681844 /* ZKRenderEmailTemplateError.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B7701A1BB7376D00681844 /* ZKRenderEmailTemplateError.m */; };
@@ -520,8 +519,6 @@
 		F4B770101BB7376D00681844 /* ZKDescribePathAssistantsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribePathAssistantsResult.m; path = ../../../zkSforce/ZKDescribePathAssistantsResult.m; sourceTree = "<group>"; };
 		F4B770111BB7376D00681844 /* ZKDescribePathAssistantStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribePathAssistantStep.h; path = ../../../zkSforce/ZKDescribePathAssistantStep.h; sourceTree = "<group>"; };
 		F4B770121BB7376D00681844 /* ZKDescribePathAssistantStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKDescribePathAssistantStep.m; path = ../../../zkSforce/ZKDescribePathAssistantStep.m; sourceTree = "<group>"; };
-		F4B770131BB7376D00681844 /* ZKFlexipageContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFlexipageContext.h; path = ../../../zkSforce/ZKFlexipageContext.h; sourceTree = "<group>"; };
-		F4B770141BB7376D00681844 /* ZKFlexipageContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFlexipageContext.m; path = ../../../zkSforce/ZKFlexipageContext.m; sourceTree = "<group>"; };
 		F4B770151BB7376D00681844 /* ZKOwnerChangeOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKOwnerChangeOption.h; path = ../../../zkSforce/ZKOwnerChangeOption.h; sourceTree = "<group>"; };
 		F4B770161BB7376D00681844 /* ZKOwnerChangeOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKOwnerChangeOption.m; path = ../../../zkSforce/ZKOwnerChangeOption.m; sourceTree = "<group>"; };
 		F4B770171BB7376D00681844 /* ZKRenderEmailTemplateBodyResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKRenderEmailTemplateBodyResult.h; path = ../../../zkSforce/ZKRenderEmailTemplateBodyResult.h; sourceTree = "<group>"; };
@@ -774,8 +771,6 @@
 				F4B770101BB7376D00681844 /* ZKDescribePathAssistantsResult.m */,
 				F4B770111BB7376D00681844 /* ZKDescribePathAssistantStep.h */,
 				F4B770121BB7376D00681844 /* ZKDescribePathAssistantStep.m */,
-				F4B770131BB7376D00681844 /* ZKFlexipageContext.h */,
-				F4B770141BB7376D00681844 /* ZKFlexipageContext.m */,
 				F4B770151BB7376D00681844 /* ZKOwnerChangeOption.h */,
 				F4B770161BB7376D00681844 /* ZKOwnerChangeOption.m */,
 				F4B770171BB7376D00681844 /* ZKRenderEmailTemplateBodyResult.h */,
@@ -1238,7 +1233,6 @@
 				F4A9CE752050F551000FAB0B /* ZKEntitySearchPromotionMetadata.m in Sources */,
 				F4C298B91364AA63009ACB8D /* zkSoapException.m in Sources */,
 				F4CCB88A1EE4915B0028F213 /* ZKRenderStoredEmailTemplateResult.m in Sources */,
-				F4B770281BB7376D00681844 /* ZKFlexipageContext.m in Sources */,
 				F4C298BA1364AA63009ACB8D /* zkSObject.m in Sources */,
 				F425FA921A339DDF0055D8B8 /* ZKDescribeSoqlListViewParams.m in Sources */,
 				F4C298BB1364AA63009ACB8D /* zkUserInfo.m in Sources */,

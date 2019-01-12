@@ -285,7 +285,7 @@
 }
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
--(NSArray *)describeSearchScopeOrder {
+-(NSArray *)describeSearchScopeOrder:(BOOL)includeRealTimeEntities {
 	if (!authSource) return nil;
 	[self checkSession];
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
@@ -293,6 +293,7 @@
 	[self addPackageVersionHeader:env];
 	[env moveToBody];
 	[env startElement:@"describeSearchScopeOrder"];
+	[env addBoolElement:@"includeRealTimeEntities" elemValue:includeRealTimeEntities];
 	[env endElement:@"describeSearchScopeOrder"];
 	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];

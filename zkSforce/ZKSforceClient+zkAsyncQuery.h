@@ -127,7 +127,8 @@ typedef void (^zkCompleteVoidBlock)                            (void);
                             completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
--(void) performDescribeSearchScopeOrderWithFailBlock:(zkFailWithExceptionBlock)failBlock
+-(void) performDescribeSearchScopeOrder:(BOOL)includeRealTimeEntities
+                              failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock;
 
 /** Describe the compact layouts of the given sObject */
