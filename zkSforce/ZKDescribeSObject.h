@@ -36,6 +36,7 @@
     <element type="xsd:boolean" name="createable"/>
     <element type="xsd:boolean" name="custom"/>
     <element type="xsd:boolean" name="customSetting"/>
+    <element minOccurs="0" type="xsd:boolean" name="dataTranslationEnabled"/>
     <element type="xsd:boolean" name="deletable"/>
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:boolean" name="feedEnabled"/>

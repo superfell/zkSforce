@@ -56,7 +56,7 @@
 #import "ZKXMLSerializable.h"
 
 static const int SAVE_BATCH_SIZE = 25;
-static const int DEFAULT_API_VERSION = 45;
+static const int DEFAULT_API_VERSION = 46;
 
 @interface ZKSforceClient(Private)
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
@@ -130,7 +130,7 @@ static const int DEFAULT_API_VERSION = 45;
 }
 
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost andVersion:(int)version {
-    // www.salesforce.com is no longer going to be support for login, so map requests for that
+    // www.salesforce.com is no longer going to be supported for login, so map requests for that
     // to login.salesforce.com
     NSString *www = @"://www.salesforce.com";
     NSString *login = @"://login.salesforce.com";
