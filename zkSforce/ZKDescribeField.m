@@ -103,6 +103,10 @@
     return [self boolean:@"custom"];
 }
 			
+-(BOOL)dataTranslationEnabled {
+    return [self boolean:@"dataTranslationEnabled"];
+}
+			
 -(ZKXsdAnyType *)defaultValue {
     return [self anyType:@"defaultValue"];
 }

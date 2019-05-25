@@ -44,6 +44,7 @@
     <element minOccurs="0" type="xsd:string" name="controllerName"/>
     <element type="xsd:boolean" name="createable"/>
     <element type="xsd:boolean" name="custom"/>
+    <element minOccurs="0" type="xsd:boolean" name="dataTranslationEnabled"/>
     <element minOccurs="0" type="xsd:anyType" name="defaultValue"/>
     <element minOccurs="0" type="xsd:string" name="defaultValueFormula"/>
     <element type="xsd:boolean" name="defaultedOnCreate"/>
@@ -109,6 +110,7 @@
 @property (weak, readonly) NSString              *controllerName; 
 @property (readonly) BOOL                         createable; 
 @property (readonly) BOOL                         custom; 
+@property (readonly) BOOL                         dataTranslationEnabled; 
 @property (weak, readonly) ZKXsdAnyType          *defaultValue; 
 @property (weak, readonly) NSString              *defaultValueFormula; 
 @property (readonly) BOOL                         defaultedOnCreate; 

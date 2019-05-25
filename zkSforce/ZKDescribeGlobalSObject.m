@@ -44,6 +44,10 @@
     return [self boolean:@"customSetting"];
 }
 			
+-(BOOL)dataTranslationEnabled {
+    return [self boolean:@"dataTranslationEnabled"];
+}
+			
 -(BOOL)deletable {
     return [self boolean:@"deletable"];
 }
