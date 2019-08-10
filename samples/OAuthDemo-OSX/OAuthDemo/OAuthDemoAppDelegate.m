@@ -41,8 +41,7 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
--(void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // tell the event manager what to do when it gets asked to open a URL (the oauth completion callback) 
     // this callback URL is registered to this app in the info.plist file
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self 
@@ -62,17 +61,19 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     // in a real app, you'd save the refresh_token & auth host to the keychain, and on
     // relaunch, try and intialize your client from that first, so that you can skip
     // the login step.
-    
+    // In order for you to get a refresh token, your OAuth consumer config needs to
+    // include the scope "Perform requests on your behalf at any time".
+    // Call client.authenitcationInfo to access the refresh token and other items
+    // from the oauth process (like the target URL)
     controller.client = client;
 }
-
 
 -(IBAction)createNewClient:(id)sender {
     // if you've saved the refresh token & auth host away, you can
     // build a new client from that, and it'll get a sessionId as needed.
 
-    // in this case we're just going to get the token out of the existing client object, 
-    // normally, you'd be storing this in the key chain so that is preserved across restarts.
+    // in this case we're just going to get the token out of the existing client object,
+    // normally, you'd be storing this in the keychain so that is preserved across restarts.
     ZKOAuthInfo *oauth = (ZKOAuthInfo *)controller.client.authenticationInfo;
     NSString *refreshToken = oauth.refreshToken;
     NSURL *authHost = oauth.authHostUrl;
