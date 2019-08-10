@@ -25,14 +25,14 @@
 
 @interface QueryController : NSObject<ZKBaseClientDelegate> {
     IBOutlet NSWindow     *window;
-    IBOutlet NSTableView *table;
+    IBOutlet NSTableView  *table;
 
-    NSString             *username, *password;
+    NSString              *username, *password;
 
-    ZKSforceClient         *client;
-    BOOL                 loginInProgress;
+    ZKSforceClient        *client;
+    BOOL                  loginInProgress;
     ZKQueryResult         *result;
-    NSString             *apiLimitInfo;
+    NSString              *apiLimitInfo;
 }
 
 // We use binding to have the UI automatically set these when they're edited.
