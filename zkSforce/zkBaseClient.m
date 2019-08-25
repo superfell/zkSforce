@@ -29,7 +29,7 @@
 
 static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
-@synthesize endpointUrl, delegate;
+@synthesize endpointUrl, delegate, urlSession;
 
 - (zkElement *)lastResponseSoapHeaders {
     return responseHeaders;
@@ -48,8 +48,8 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
     NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, resp.URL.absoluteString, (int)resp.statusCode, payload);
 }
 
-NSTimeInterval intervalFrom(uint64_t *start) {
-    uint64_t elapsed = mach_absolute_time() - (*start);
+NSTimeInterval intervalFrom(uint64_t start) {
+    uint64_t elapsed = mach_absolute_time() - start;
     
     // If this is the first time we've run, get the timebase.
     // We can use denom == 0 to indicate that sTimebaseInfo is
@@ -74,7 +74,7 @@ NSTimeInterval intervalFrom(uint64_t *start) {
     @try {
         zkElement *root = [self processResponse:resp data:respPayload error:err fromRequest:request name:callName];
         if (delegate != nil) {
-            [delegate client:self sentRequest:payload named:callName to:endpointUrl withResponse:root in:intervalFrom(&start)];
+            [delegate client:self sentRequest:payload named:callName to:endpointUrl withResponse:root in:intervalFrom(start)];
         }
         if (returnRoot) {
             return root;
@@ -84,10 +84,39 @@ NSTimeInterval intervalFrom(uint64_t *start) {
         
     } @catch (NSException *ex) {
         if (delegate != nil) {
-            [delegate client:self sentRequest:payload named:callName to:endpointUrl withException:ex in:intervalFrom(&start)];
+            [delegate client:self sentRequest:payload named:callName to:endpointUrl withException:ex in:intervalFrom(start)];
         }
         @throw;
     }
+}
+
+-(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSException *ex))handler {
+    uint64_t start = mach_absolute_time();
+    NSURLSession *s = urlSession;
+    if (s == nil) s = [NSURLSession sharedSession];
+    NSMutableURLRequest *request = [self createRequest:payload name:callName];
+    NSURLSessionDataTask *t = [s dataTaskWithRequest:request
+                                   completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable err) {
+       @try {
+           zkElement *root = [self processResponse:(NSHTTPURLResponse *)response data:data error:err fromRequest:request name:callName];
+           if (self.delegate != nil) {
+               [self.delegate client:self sentRequest:payload named:callName to:self.endpointUrl withResponse:root in:intervalFrom(start)];
+           }
+           handler(root, nil);
+           
+       } @catch (NSException *ex) {
+           if (self.delegate != nil) {
+               [self.delegate client:self
+                         sentRequest:payload
+                               named:callName
+                                  to:self.endpointUrl
+                       withException:ex
+                                  in:intervalFrom(start)];
+           }
+           handler(nil, ex);
+       }
+    }];
+    [t resume];
 }
 
 /** Process this Response that was generated from the Request. Should return the root element of the response, or throw an exception */

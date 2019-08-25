@@ -37,12 +37,21 @@
 
 @property (weak) NSObject<ZKBaseClientDelegate> *delegate;
 @property (strong) NSURL *endpointUrl;
+@property (strong) NSURLSession *urlSession;
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
 
 /** @return the Soap:Header element from the response payload. */
 @property (readonly) zkElement *lastResponseSoapHeaders;
+
+@end
+
+@interface ZKBaseClient (ASync)
+
+/** Starts the HTTP request for the supplied payload, the handler will get called once a response is available.
+    The handler will be called on a random GCD thread. The delegate if set will be called before the handler. */
+-(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSException *ex))handler;
 
 @end
 
