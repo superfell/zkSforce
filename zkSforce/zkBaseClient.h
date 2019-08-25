@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2008,2013 Simon Fell
+// Copyright (c) 2006-2008,2013,2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -25,6 +25,7 @@
 
 @protocol ZKBaseClientDelegate
 -(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withResponse:(zkElement *)response in:(NSTimeInterval)time;
+
 -(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withException:(NSException *)ex    in:(NSTimeInterval)time;
 @end
 
@@ -45,10 +46,24 @@
 
 @end
 
-/** Your ZKBaseClient can override this to do any processing it wants on the response soap headers, this is called before the client:sentRequest:named:... delegate is fired. */
+/** Your ZKBaseClient can override this to do any processing it wants on the response soap headers,
+    this is called before the client:sentRequest:named:... delegate is fired. */
 @interface ZKBaseClient (ZKHeaders)
 
 /** soapHeaders can be nil if there's no soap:Header element in the response */
 -(void)handleResponseSoapHeaders:(zkElement *)soapHeaders;
 
+@end
+
+/** Your ZKBaseClient can override this to do any customization it wants to do on either genering the HTTP request,
+    or in processing the results */
+@interface ZKBaseClient(RequestProcessing)
+
+-(NSMutableURLRequest *)createRequest:(NSString *)payload name:(NSString *)callName;
+
+-(zkElement *)processResponse:(NSHTTPURLResponse *)resp
+                         data:(NSData *)respPayload
+                        error:(NSError *)err
+                  fromRequest:(NSMutableURLRequest *)request
+                         name:(NSString *)callName;
 @end
