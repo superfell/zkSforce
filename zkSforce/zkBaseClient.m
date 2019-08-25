@@ -65,29 +65,29 @@ NSTimeInterval intervalFrom(uint64_t start) {
 }
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)returnRoot {
-    uint64_t start = mach_absolute_time();
-    NSMutableURLRequest *request = [self createRequest:payload name:callName];
-    
-    NSHTTPURLResponse *resp = nil;
-    NSError *err = nil;
-    NSData *respPayload = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
-    @try {
-        zkElement *root = [self processResponse:resp data:respPayload error:err fromRequest:request name:callName];
-        if (delegate != nil) {
-            [delegate client:self sentRequest:payload named:callName to:endpointUrl withResponse:root in:intervalFrom(start)];
-        }
-        if (returnRoot) {
-            return root;
-        }
-        zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
-        return body.childElements[0];
-        
-    } @catch (NSException *ex) {
-        if (delegate != nil) {
-            [delegate client:self sentRequest:payload named:callName to:endpointUrl withException:ex in:intervalFrom(start)];
-        }
-        @throw;
+    NSCondition *cond = [[NSCondition alloc] init];
+    zkElement __block *result = nil;
+    NSException __block *err = nil;
+    [self startRequest:payload name:callName handler:^(zkElement *root, NSException *ex) {
+        [cond lock];
+        result = root;
+        err = ex;
+        [cond broadcast];
+        [cond unlock];
+    }];
+    [cond lock];
+    while (result == nil && err == nil) {
+        [cond wait];
     }
+    [cond unlock];
+    if (err != nil) {
+        @throw err;
+    }
+    if (returnRoot) {
+        return result;
+    }
+    zkElement *body = [result childElement:@"Body" ns:SOAP_NS];
+    return body.childElements[0];
 }
 
 -(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSException *ex))handler {

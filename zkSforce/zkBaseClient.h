@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 //
 
+#import <AvailabilityMacros.h>
 
 @class zkElement;
 @class ZKBaseClient;
@@ -39,8 +40,8 @@
 @property (strong) NSURL *endpointUrl;
 @property (strong) NSURLSession *urlSession;
 
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root;
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName                        DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root  DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
 
 /** @return the Soap:Header element from the response payload. */
 @property (readonly) zkElement *lastResponseSoapHeaders;
