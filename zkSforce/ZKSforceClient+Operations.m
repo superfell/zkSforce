@@ -38,6 +38,7 @@
 #import "ZKDescribeDataCategoryGroupResult.h"
 #import "ZKDescribeDataCategoryGroupStructureResult.h"
 #import "ZKDescribeDataCategoryMappingResult.h"
+#import "ZKDescribeGlobalSObject.h"
 #import "ZKDescribeGlobalTheme.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeNounResult.h"
@@ -87,13 +88,41 @@
 #import "ZKUserInfo.h"
 
 @implementation ZKSforceClient (Operations)
+
+/** Describe an sObject */
+-(ZKDescribeSObject *)describeSObject:(NSString *)sObjectType {
+	if (!self.authSource) return nil;
+	[self checkSession];
+	ZKDescribeSObject *shortcut = [self preHook_describeSObject:sObjectType];
+	if (shortcut != nil) return shortcut;
+	NSString *payload = [self makeDescribeSObjectEnv:sObjectType];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	ZKDescribeSObject *result = [self makeDescribeSObjectResult:root];
+	result = [self postHook_describeSObject:result];
+	return result;
+}
+
 /** Describe multiple sObjects (upto 100) */
 -(NSArray *)describeSObjects:(NSArray *)sObjectType {
 	if (!self.authSource) return nil;
 	[self checkSession];
 	NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSObjectsResult:root];
+	NSArray *result = [self makeDescribeSObjectsResult:root];
+	return result;
+}
+
+/** Describe the Global state */
+-(NSArray *)describeGlobal {
+	if (!self.authSource) return nil;
+	[self checkSession];
+	NSArray *shortcut = [self preHook_describeGlobal];
+	if (shortcut != nil) return shortcut;
+	NSString *payload = [self makeDescribeGlobalEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	NSArray *result = [self makeDescribeGlobalResult:root];
+	result = [self postHook_describeGlobal:result];
+	return result;
 }
 
 /** Describe all the data category groups available for a given set of types */
@@ -102,7 +131,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeDataCategoryGroupsResult:root];
+	NSArray *result = [self makeDescribeDataCategoryGroupsResult:root];
+	return result;
 }
 
 /** Describe the data category group structures for a given set of pair of types and data category group name */
@@ -111,7 +141,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeDataCategoryGroupStructuresResult:root];
+	NSArray *result = [self makeDescribeDataCategoryGroupStructuresResult:root];
+	return result;
 }
 
 /** Describe your Data Category Mappings. */
@@ -120,7 +151,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeDataCategoryMappingsResult:root];
+	NSArray *result = [self makeDescribeDataCategoryMappingsResult:root];
+	return result;
 }
 
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
@@ -129,7 +161,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeKnowledgeSettingsResult:root];
+	ZKKnowledgeSettings *result = [self makeDescribeKnowledgeSettingsResult:root];
+	return result;
 }
 
 /** Describe the items in an AppMenu */
@@ -138,7 +171,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeAppMenuResult:root];
+	ZKDescribeAppMenuResult *result = [self makeDescribeAppMenuResult:root];
+	return result;
 }
 
 /** Describe Gloal and Themes */
@@ -147,7 +181,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeGlobalThemeEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeGlobalThemeResult:root];
+	ZKDescribeGlobalTheme *result = [self makeDescribeGlobalThemeResult:root];
+	return result;
 }
 
 /** Describe Themes */
@@ -156,7 +191,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeThemeEnv:sobjectType];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeThemeResult:root];
+	ZKDescribeThemeResult *result = [self makeDescribeThemeResult:root];
+	return result;
 }
 
 /** Describe the layout of the given sObject or the given actionable global page. */
@@ -165,7 +201,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeLayoutResult:root];
+	ZKDescribeLayoutResult *result = [self makeDescribeLayoutResult:root];
+	return result;
 }
 
 /** Describe the layout of the SoftPhone */
@@ -174,7 +211,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSoftphoneLayoutResult:root];
+	ZKDescribeSoftphoneLayoutResult *result = [self makeDescribeSoftphoneLayoutResult:root];
+	return result;
 }
 
 /** Describe the search view of an sObject */
@@ -183,7 +221,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSearchLayoutsResult:root];
+	NSArray *result = [self makeDescribeSearchLayoutsResult:root];
+	return result;
 }
 
 /** Describe a list of entity names that reflects the current user's searchable entities */
@@ -192,7 +231,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSearchableEntitiesResult:root];
+	NSArray *result = [self makeDescribeSearchableEntitiesResult:root];
+	return result;
 }
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
@@ -201,7 +241,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSearchScopeOrderResult:root];
+	NSArray *result = [self makeDescribeSearchScopeOrderResult:root];
+	return result;
 }
 
 /** Describe the compact layouts of the given sObject */
@@ -210,7 +251,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeCompactLayoutsResult:root];
+	ZKDescribeCompactLayoutsResult *result = [self makeDescribeCompactLayoutsResult:root];
+	return result;
 }
 
 /** Describe the Path Assistants for the given sObject and optionally RecordTypes */
@@ -219,7 +261,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribePathAssistantsResult:root];
+	ZKDescribePathAssistantsResult *result = [self makeDescribePathAssistantsResult:root];
+	return result;
 }
 
 /** Describe the approval layouts of the given sObject */
@@ -228,7 +271,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeApprovalLayoutResult:root];
+	ZKDescribeApprovalLayoutResult *result = [self makeDescribeApprovalLayoutResult:root];
+	return result;
 }
 
 /** Describe the ListViews as SOQL metadata for the generation of SOQL. */
@@ -237,7 +281,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSoqlListViewsResult:root];
+	ZKDescribeSoqlListViewResult *result = [self makeDescribeSoqlListViewsResult:root];
+	return result;
 }
 
 /** Execute the specified list view and return the presentation-ready results. */
@@ -246,7 +291,8 @@
 	[self checkSession];
 	NSString *payload = [self makeExecuteListViewEnv:request];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeExecuteListViewResult:root];
+	ZKExecuteListViewResult *result = [self makeExecuteListViewResult:root];
+	return result;
 }
 
 /** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL. */
@@ -255,7 +301,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeSObjectListViewsResult:root];
+	ZKDescribeSoqlListViewResult *result = [self makeDescribeSObjectListViewsResult:root];
+	return result;
 }
 
 /** Describe the tabs that appear on a users page */
@@ -264,7 +311,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeTabsEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeTabsResult:root];
+	NSArray *result = [self makeDescribeTabsResult:root];
+	return result;
 }
 
 /** Describe all tabs available to a user */
@@ -273,7 +321,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeAllTabsEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeAllTabsResult:root];
+	NSArray *result = [self makeDescribeAllTabsResult:root];
+	return result;
 }
 
 /** Describe the primary compact layouts for the sObjects requested */
@@ -282,7 +331,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribePrimaryCompactLayoutsResult:root];
+	NSArray *result = [self makeDescribePrimaryCompactLayoutsResult:root];
+	return result;
 }
 
 /** Update or insert a set of sObjects based on object id */
@@ -291,7 +341,8 @@
 	[self checkSession];
 	NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeUpsertResult:root];
+	NSArray *result = [self makeUpsertResult:root];
+	return result;
 }
 
 /** Merge and update a set of sObjects based on object id */
@@ -300,7 +351,8 @@
 	[self checkSession];
 	NSString *payload = [self makeMergeEnv:request];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeMergeResult:root];
+	NSArray *result = [self makeMergeResult:root];
+	return result;
 }
 
 /** Delete a set of sObjects */
@@ -309,7 +361,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDeleteEnv:ids];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDeleteResult:root];
+	NSArray *result = [self makeDeleteResult:root];
+	return result;
 }
 
 /** Undelete a set of sObjects */
@@ -318,7 +371,8 @@
 	[self checkSession];
 	NSString *payload = [self makeUndeleteEnv:ids];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeUndeleteResult:root];
+	NSArray *result = [self makeUndeleteResult:root];
+	return result;
 }
 
 /** Empty a set of sObjects from the recycle bin */
@@ -327,7 +381,8 @@
 	[self checkSession];
 	NSString *payload = [self makeEmptyRecycleBinEnv:ids];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeEmptyRecycleBinResult:root];
+	NSArray *result = [self makeEmptyRecycleBinResult:root];
+	return result;
 }
 
 /** Get a set of sObjects */
@@ -336,7 +391,8 @@
 	[self checkSession];
 	NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeRetrieveResult:root];
+	NSDictionary *result = [self makeRetrieveResult:root];
+	return result;
 }
 
 /** Submit an entity to a workflow process or process a workitem */
@@ -345,7 +401,8 @@
 	[self checkSession];
 	NSString *payload = [self makeProcessEnv:actions];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeProcessResult:root];
+	NSArray *result = [self makeProcessResult:root];
+	return result;
 }
 
 /** convert a set of leads */
@@ -354,7 +411,8 @@
 	[self checkSession];
 	NSString *payload = [self makeConvertLeadEnv:leadConverts];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeConvertLeadResult:root];
+	NSArray *result = [self makeConvertLeadResult:root];
+	return result;
 }
 
 /** Logout the current user, invalidating the current session. */
@@ -370,7 +428,8 @@
 	[self checkSession];
 	NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeInvalidateSessionsResult:root];
+	NSArray *result = [self makeInvalidateSessionsResult:root];
+	return result;
 }
 
 /** Get the IDs for deleted sObjects */
@@ -379,7 +438,8 @@
 	[self checkSession];
 	NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeGetDeletedResult:root];
+	ZKGetDeletedResult *result = [self makeGetDeletedResult:root];
+	return result;
 }
 
 /** Get the IDs for updated sObjects */
@@ -388,7 +448,8 @@
 	[self checkSession];
 	NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeGetUpdatedResult:root];
+	ZKGetUpdatedResult *result = [self makeGetUpdatedResult:root];
+	return result;
 }
 
 /** Create a Query Cursor */
@@ -397,7 +458,8 @@
 	[self checkSession];
 	NSString *payload = [self makeQueryEnv:queryString];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeQueryResult:root];
+	ZKQueryResult *result = [self makeQueryResult:root];
+	return result;
 }
 
 /** Create a Query Cursor, including deleted sObjects */
@@ -406,7 +468,8 @@
 	[self checkSession];
 	NSString *payload = [self makeQueryAllEnv:queryString];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeQueryAllResult:root];
+	ZKQueryResult *result = [self makeQueryAllResult:root];
+	return result;
 }
 
 /** Gets the next batch of sObjects from a query */
@@ -415,7 +478,8 @@
 	[self checkSession];
 	NSString *payload = [self makeQueryMoreEnv:queryLocator];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeQueryMoreResult:root];
+	ZKQueryResult *result = [self makeQueryMoreResult:root];
+	return result;
 }
 
 /** Gets server timestamp */
@@ -424,7 +488,8 @@
 	[self checkSession];
 	NSString *payload = [self makeGetServerTimestampEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeGetServerTimestampResult:root];
+	ZKGetServerTimestampResult *result = [self makeGetServerTimestampResult:root];
+	return result;
 }
 
 /** Set a user's password */
@@ -433,7 +498,8 @@
 	[self checkSession];
 	NSString *payload = [self makeSetPasswordEnv:userId password:password];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeSetPasswordResult:root];
+	ZKSetPasswordResult *result = [self makeSetPasswordResult:root];
+	return result;
 }
 
 /** Change the current user's password */
@@ -442,7 +508,8 @@
 	[self checkSession];
 	NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeChangeOwnPasswordResult:root];
+	ZKChangeOwnPasswordResult *result = [self makeChangeOwnPasswordResult:root];
+	return result;
 }
 
 /** Reset a user's password */
@@ -451,7 +518,8 @@
 	[self checkSession];
 	NSString *payload = [self makeResetPasswordEnv:userId];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeResetPasswordResult:root];
+	ZKResetPasswordResult *result = [self makeResetPasswordResult:root];
+	return result;
 }
 
 /** Returns standard information relevant to the current user */
@@ -460,7 +528,8 @@
 	[self checkSession];
 	NSString *payload = [self makeGetUserInfoEnv];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeGetUserInfoResult:root];
+	ZKUserInfo *result = [self makeGetUserInfoResult:root];
+	return result;
 }
 
 /** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
@@ -469,7 +538,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDeleteByExampleEnv:sObjects];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDeleteByExampleResult:root];
+	NSArray *result = [self makeDeleteByExampleResult:root];
+	return result;
 }
 
 /** Send existing draft EmailMessage */
@@ -478,7 +548,8 @@
 	[self checkSession];
 	NSString *payload = [self makeSendEmailMessageEnv:ids];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeSendEmailMessageResult:root];
+	NSArray *result = [self makeSendEmailMessageResult:root];
+	return result;
 }
 
 /** Send outbound email */
@@ -487,7 +558,8 @@
 	[self checkSession];
 	NSString *payload = [self makeSendEmailEnv:messages];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeSendEmailResult:root];
+	NSArray *result = [self makeSendEmailResult:root];
+	return result;
 }
 
 /** Perform a template merge on one or more blocks of text. */
@@ -496,7 +568,8 @@
 	[self checkSession];
 	NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeRenderEmailTemplateResult:root];
+	NSArray *result = [self makeRenderEmailTemplateResult:root];
+	return result;
 }
 
 /** Perform a template merge using an email template stored in the database. */
@@ -505,7 +578,8 @@
 	[self checkSession];
 	NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeRenderStoredEmailTemplateResult:root];
+	ZKRenderStoredEmailTemplateResult *result = [self makeRenderStoredEmailTemplateResult:root];
+	return result;
 }
 
 /** Perform a series of predefined actions such as quick create or log a task */
@@ -514,7 +588,8 @@
 	[self checkSession];
 	NSString *payload = [self makePerformQuickActionsEnv:quickActions];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makePerformQuickActionsResult:root];
+	NSArray *result = [self makePerformQuickActionsResult:root];
+	return result;
 }
 
 /** Describe the details of a series of quick actions */
@@ -523,7 +598,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeQuickActionsResult:root];
+	NSArray *result = [self makeDescribeQuickActionsResult:root];
+	return result;
 }
 
 /** Describe the details of a series of quick actions in context of requested recordType id for Update actions */
@@ -532,7 +608,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeQuickActionsForRecordTypeResult:root];
+	NSArray *result = [self makeDescribeQuickActionsForRecordTypeResult:root];
+	return result;
 }
 
 /** Describe the details of a series of quick actions available for the given contextType */
@@ -541,7 +618,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeAvailableQuickActionsResult:root];
+	NSArray *result = [self makeDescribeAvailableQuickActionsResult:root];
+	return result;
 }
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
@@ -550,7 +628,8 @@
 	[self checkSession];
 	NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeRetrieveQuickActionTemplatesResult:root];
+	NSArray *result = [self makeRetrieveQuickActionTemplatesResult:root];
+	return result;
 }
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
@@ -559,7 +638,8 @@
 	[self checkSession];
 	NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeRetrieveMassQuickActionTemplatesResult:root];
+	NSArray *result = [self makeRetrieveMassQuickActionTemplatesResult:root];
+	return result;
 }
 
 /** Describe visualforce for an org */
@@ -568,7 +648,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeVisualForceResult:root];
+	ZKDescribeVisualForceResult *result = [self makeDescribeVisualForceResult:root];
+	return result;
 }
 
 /** Find duplicates for a set of sObjects */
@@ -577,7 +658,8 @@
 	[self checkSession];
 	NSString *payload = [self makeFindDuplicatesEnv:sObjects];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeFindDuplicatesResult:root];
+	NSArray *result = [self makeFindDuplicatesResult:root];
+	return result;
 }
 
 /** Find duplicates for a set of ids */
@@ -586,7 +668,8 @@
 	[self checkSession];
 	NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeFindDuplicatesByIdsResult:root];
+	NSArray *result = [self makeFindDuplicatesByIdsResult:root];
+	return result;
 }
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
@@ -595,7 +678,8 @@
 	[self checkSession];
 	NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	return [self makeDescribeNounsResult:root];
+	NSArray *result = [self makeDescribeNounsResult:root];
+	return result;
 }
 
 @end

@@ -33,6 +33,7 @@
 @class ZKDescribeGlobalTheme;
 @class ZKDescribeLayoutResult;
 @class ZKDescribePathAssistantsResult;
+@class ZKDescribeSObject;
 @class ZKDescribeSoftphoneLayoutResult;
 @class ZKDescribeSoqlListViewResult;
 @class ZKDescribeSoqlListViewsRequest;
@@ -52,8 +53,15 @@
 @class ZKUserInfo;
 
 @interface ZKSforceClient (Operations)
+
+/** Describe an sObject */
+-(ZKDescribeSObject *)describeSObject:(NSString *)sObjectType;
+
 /** Describe multiple sObjects (upto 100) */
 -(NSArray *)describeSObjects:(NSArray *)sObjectType;
+
+/** Describe the Global state */
+-(NSArray *)describeGlobal;
 
 /** Describe all the data category groups available for a given set of types */
 -(NSArray *)describeDataCategoryGroups:(NSArray *)sObjectType;

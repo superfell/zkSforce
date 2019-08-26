@@ -30,6 +30,7 @@
 
 typedef void (^zkCompleteUserInfoBlock)                        (ZKUserInfo *result);
 typedef void (^zkCompleteSetPasswordResultBlock)               (ZKSetPasswordResult *result);
+typedef void (^zkCompleteSearchResultBlock)                    (ZKSearchResult *result);
 typedef void (^zkCompleteResetPasswordResultBlock)             (ZKResetPasswordResult *result);
 typedef void (^zkCompleteRenderStoredEmailTemplateResultBlock) (ZKRenderStoredEmailTemplateResult *result);
 typedef void (^zkCompleteQueryResultBlock)                     (ZKQueryResult *result);
@@ -261,7 +262,7 @@ typedef void (^zkCompleteVoidBlock)                            (void);
 /** Search for sObjects */
 -(void) performSearch:(NSString *)searchString
             failBlock:(zkFailWithExceptionBlock)failBlock
-        completeBlock:(zkCompleteArrayBlock)completeBlock;
+        completeBlock:(zkCompleteSearchResultBlock)completeBlock;
 
 /** Gets server timestamp */
 -(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock

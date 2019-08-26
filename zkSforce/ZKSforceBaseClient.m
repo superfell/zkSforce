@@ -85,6 +85,7 @@
 #import "ZKResetPasswordResult.h"
 #import "zkSObject.h"
 #import "ZKSaveResult.h"
+#import "ZKSearchResult.h"
 #import "ZKSendEmailResult.h"
 #import "ZKSetPasswordResult.h"
 #import "ZKUndeleteResult.h"
@@ -880,10 +881,10 @@
 	[env endElement:@"search"];
 	return env.end;
 }
--(NSArray *)makeSearchResult:(zkElement *)root {
+-(ZKSearchResult *)makeSearchResult:(zkElement *)root {
 	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSObject class]];
+	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSearchResult class]].lastObject;
 }
 
 -(NSString *)makeGetServerTimestampEnv {

@@ -70,6 +70,7 @@
 @class ZKRenderStoredEmailTemplateRequest;
 @class ZKRenderStoredEmailTemplateResult;
 @class ZKResetPasswordResult;
+@class ZKSearchResult;
 @class ZKSetPasswordResult;
 @class ZKUserInfo;
 
@@ -222,7 +223,7 @@
 -(ZKQueryResult *)makeQueryMoreResult:(zkElement *)root;
 
 -(NSString *)makeSearchEnv:(NSString *)searchString;
--(NSArray *)makeSearchResult:(zkElement *)root;
+-(ZKSearchResult *)makeSearchResult:(zkElement *)root;
 
 -(NSString *)makeGetServerTimestampEnv;
 -(ZKGetServerTimestampResult *)makeGetServerTimestampResult:(zkElement *)root;

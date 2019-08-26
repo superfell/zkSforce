@@ -240,38 +240,32 @@ static const int DEFAULT_API_VERSION = 46;
     return host;
 }
 
-- (NSArray *)describeGlobal {
-    if(!self.authSource) return NULL;
-    [self checkSession];
+-(NSArray *)preHook_describeGlobal {
     if (cacheDescribes) {
-        NSArray *dg = describes[@"describe__global"];    // won't be an sfdc object ever called this.
-        if (dg != nil) return dg;
+        return describes[@"describe__global"];    // won't be an sfdc object ever called this.
     }
-    
-    NSString *payload = [self makeDescribeGlobalEnv];
-    zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-    NSArray *types = [self makeDescribeGlobalResult:root];
-
-    if (cacheDescribes)
-        describes[@"describe__global"] = types;
-    return types;
+    return nil;
 }
 
-- (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName {
-    if (!self.authSource) return NULL;
+-(NSArray *)postHook_describeGlobal:(NSArray *)r {
     if (cacheDescribes) {
-        ZKDescribeSObject * desc = describes[sobjectName.lowercaseString];
-        if (desc != nil) return desc;
+        describes[@"describe__global"] = r;
     }
-    [self checkSession];
-    
-    NSString *payload = [self makeDescribeSObjectEnv:sobjectName];
-    zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-    ZKDescribeSObject *desc = [self makeDescribeSObjectResult:root];
+    return r;
+}
 
-    if (cacheDescribes)
-        describes[sobjectName.lowercaseString] = desc;
-    return desc;
+-(ZKDescribeSObject *)preHook_describeSObject:(NSString *)sobjectName {
+    if (cacheDescribes) {
+        return describes[sobjectName.lowercaseString];
+    }
+    return nil;
+}
+
+-(ZKDescribeSObject *)postHook_describeSObject:(ZKDescribeSObject *)r {
+    if (cacheDescribes) {
+        describes[r.name.lowercaseString] = r;
+    }
+    return r;
 }
 
 - (NSArray *)search:(NSString *)sosl {

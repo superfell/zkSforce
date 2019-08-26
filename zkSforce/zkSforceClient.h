@@ -137,18 +137,6 @@
 */
 
 
-/** make a desribeGlobal call and @return an array of ZKDescribeGlobalSobject instances.
-    if describeCaching is enabled, subsequent calls to this will use the locally cached
-    copy.
-*/
-- (NSArray *)describeGlobal;
-
-/** make a describeSObject call and @return a ZKDescribeSObject instance, if describe
-    caching is enabled, subsequent requests for the same sobject will return the locally
-    cached copy.
-*/
-- (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName;
-
 /** make a search call with the passed in SOSL expression, @return an array of ZKSObject instances.*/
 - (NSArray *)search:(NSString *)sosl;
 
@@ -231,3 +219,13 @@
 -(void)updateLimitInfo;
 @end
 
+/** These methods allow the generated operation code to be customized */
+@interface ZKSforceClient (Hooks)
+
+-(NSArray *)preHook_describeGlobal;
+-(NSArray *)postHook_describeGlobal:(NSArray *)r;
+
+-(ZKDescribeSObject *)preHook_describeSObject:(NSString *)sobjectName;
+-(ZKDescribeSObject *)postHook_describeSObject:(ZKDescribeSObject *)r;
+
+@end
