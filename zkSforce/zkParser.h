@@ -23,6 +23,7 @@
 
 FOUNDATION_EXPORT NSString *const NS_URI_XSI;
 FOUNDATION_EXPORT NSString *const NS_URI_XSD;
+FOUNDATION_EXPORT NSString *const NS_SOAP_ENV;
 
 @class ZKNamespacedName;
 
