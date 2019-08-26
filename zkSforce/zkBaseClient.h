@@ -30,7 +30,7 @@
 -(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withException:(NSException *)ex    in:(NSTimeInterval)time;
 @end
 
-@interface ZKBaseClient : NSObject {
+@interface ZKBaseClient : NSObject <NSCopying> {
     NSURL                           *endpointUrl;
     zkElement                       *responseHeaders;
     NSObject<ZKBaseClientDelegate>  *__weak delegate;

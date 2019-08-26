@@ -84,13 +84,10 @@ static const int DEFAULT_API_VERSION = 46;
 - (id)copyWithZone:(NSZone *)zone {
     ZKSforceClient *rhs = [super copyWithZone:zone];
     rhs->authEndpointUrl = [authEndpointUrl copy];
-    rhs->endpointUrl = [endpointUrl copy];
     rhs->userInfo = userInfo;
     rhs->preferedApiVersion = preferedApiVersion;
     rhs->limitInfo = limitInfo;
     rhs.cacheDescribes = cacheDescribes;
-    rhs.callOptions = self.callOptions;
-    rhs.delegate = delegate;
     return rhs;
 }
 

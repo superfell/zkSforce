@@ -31,6 +31,14 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
 @synthesize endpointUrl, delegate, urlSession;
 
+-(id)copyWithZone:(NSZone *)z {
+    ZKBaseClient *c = [[[self class] alloc] init];
+    c.endpointUrl = self.endpointUrl;
+    c.delegate = self.delegate;
+    c.urlSession = self.urlSession;
+    return c;
+}
+
 - (zkElement *)lastResponseSoapHeaders {
     return responseHeaders;
 }

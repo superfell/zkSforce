@@ -53,15 +53,15 @@
  
 */
 @interface ZKSforceClient : ZKSforceBaseClient <NSCopying> {
-    NSString    *authEndpointUrl;
-    ZKUserInfo    *userInfo;
-    BOOL        cacheDescribes;
-    NSMutableDictionary    *describes;
-    int            preferedApiVersion;
+    NSString            *authEndpointUrl;
+    ZKUserInfo          *userInfo;
+    BOOL                cacheDescribes;
+    NSMutableDictionary *describes;
+    int                 preferedApiVersion;
 
-    ZKLimitInfoHeader *limitInfo;
+    ZKLimitInfoHeader   *limitInfo;
     
-    // Soap Headers were, are now in ZKSforceBaseClient
+    // Soap Headers were here, are now in ZKSforceBaseClient
 }
 
 /** @name configuration for where to connect to and what api version to use */
