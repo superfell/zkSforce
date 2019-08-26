@@ -20,22 +20,9 @@
 //
 
 #import "zkBaseClient.h"
+#import "ZKAuthenticationInfo.h"
 
 @class ZKLoginResult;
-
-@protocol ZKAuthenticationInfo 
-
-@property (readonly) NSString *sessionId;     // return an API Session ID.
-@property (readonly) NSURL *instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
-
-// force the sessionId to be refreshed.
--(void)refresh;
-
-// refresh the sesion if its needed. (this gets called before every soap call)
-// returns true if the session was refreshed.
--(BOOL)refreshIfNeeded;
-
-@end
 
 // base class with common auth code in.
 @interface ZKAuthInfoBase : NSObject {
