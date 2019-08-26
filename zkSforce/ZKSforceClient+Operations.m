@@ -330,6 +330,15 @@
 	return [self makeEmptyRecycleBinResult:root];
 }
 
+/** Get a set of sObjects */
+-(NSDictionary *)retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids {
+	if (!self.authSource) return nil;
+	[self checkSession];
+	NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeRetrieveResult:root];
+}
+
 /** Submit an entity to a workflow process or process a workitem */
 -(NSArray *)process:(NSArray *)actions {
 	if (!self.authSource) return nil;

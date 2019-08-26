@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2015 Simon Fell
+// Copyright (c) 2006-2015,2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -61,15 +61,11 @@ static const int DEFAULT_API_VERSION = 46;
 @interface ZKSforceClient(Private)
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 @property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
--(void)addHeader:(NSObject<ZKXMLSerializable> *)header name:(NSString *)headerName toEnvelope:(ZKEnvelope *)env;
 @end
 
 @implementation ZKSforceClient
 
 @synthesize preferedApiVersion, cacheDescribes, lastLimitInfoHeader=limitInfo;
-@synthesize callOptions, packageVersionHeader, localeOptions, assignmentRuleHeader, mruHeader, allowFieldTruncationHeader;
-@synthesize disableFeedTrackingHeader, streamingEnabledHeader, allOrNoneHeader, debuggingHeader, emailHeader, ownerChangeOptions;
-@synthesize userTerritoryDeleteHeader, queryOptions, duplicateRuleHeader;
 
 - (instancetype)init {
     self = [super init];
@@ -252,21 +248,10 @@ static const int DEFAULT_API_VERSION = 46;
         if (dg != nil) return dg;
     }
     
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
-    [self addCallOptions:env];
-    [self addPackageVersionHeader:env];
-    [self addLocaleOptions:env];
-    [env moveToBody];
-    [env startElement:@"describeGlobal"];
-    [env endElement:@"describeGlobal"];
-    
-    zkElement * rr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-    NSArray *results = [[rr childElement:@"result"] childElements:@"sobjects"];
-    NSMutableArray *types = [NSMutableArray arrayWithCapacity:results.count];
-    for (zkElement *res in results) {
-        ZKDescribeGlobalSObject * d = [[ZKDescribeGlobalSObject alloc] initWithXmlElement:res];
-        [types addObject:d];
-    }
+    NSString *payload = [self makeDescribeGlobalEnv];
+    zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+    NSArray *types = [self makeDescribeGlobalResult:root];
+
     if (cacheDescribes)
         describes[@"describe__global"] = types;
     return types;
@@ -280,19 +265,11 @@ static const int DEFAULT_API_VERSION = 46;
     }
     [self checkSession];
     
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
-    [self addCallOptions:env];
-    [self addPackageVersionHeader:env];
-    [self addLocaleOptions:env];
-    [env moveToBody];
-    [env startElement:@"describeSObject"];
-    [env addElement:@"SobjectType" elemValue:sobjectName];
-    [env endElement:@"describeSObject"];
-    
-    zkElement *dr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-    zkElement *descResult = [dr childElement:@"result"];
-    ZKDescribeSObject *desc = [[ZKDescribeSObject alloc] initWithXmlElement:descResult];
-    if (cacheDescribes) 
+    NSString *payload = [self makeDescribeSObjectEnv:sobjectName];
+    zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+    ZKDescribeSObject *desc = [self makeDescribeSObjectResult:root];
+
+    if (cacheDescribes)
         describes[sobjectName.lowercaseString] = desc;
     return desc;
 }
@@ -300,20 +277,17 @@ static const int DEFAULT_API_VERSION = 46;
 - (NSArray *)search:(NSString *)sosl {
     if (!self.authSource) return NULL;
     [self checkSession];
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
-    [self addCallOptions:env];
-    [self addPackageVersionHeader:env];
-    [env moveToBody];
-    [env startElement:@"search"];
-    [env addElement:@"searchString" elemValue:sosl];
-    [env endElement:@"search"];
     
-    zkElement *sr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-    zkElement *searchResult = [sr childElement:@"result"];
-    NSArray *records = [searchResult childElements:@"searchRecords"];
-    NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
-    for (zkElement *soNode in records)
-        [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
+    NSString *payload = [self makeSearchEnv:sosl];
+    zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+    NSArray *sobjects = [self makeSearchResult:root];
+
+//    zkElement *sr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
+//    zkElement *searchResult = [sr childElement:@"result"];
+//    NSArray *records = [searchResult childElements:@"searchRecords"];
+//    NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
+//    for (zkElement *soNode in records)
+//        [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
     return sobjects;
 }
 
@@ -340,32 +314,14 @@ static const int DEFAULT_API_VERSION = 46;
         }
         return allResults;
     }
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
-    [self addCallOptions:env];
-    [self addAssignmentRuleHeader:env];
-    [self addMruHeader:env];
-    [self addAllowFieldTruncationHeader:env];
-    [self addDisableFeedTrackingHeader:env];
-    [self addStreamingEnabledHeader:env];
-    [self addAllOrNoneHeader:env];
-    [self addDebuggingHeader:env];
-    [self addPackageVersionHeader:env];
-    [self addEmailHeader:env];
-    if ([elemName isEqualToString:@"update"])
-        [self addOwnerChangeOptions:env];
-    [env moveToBody];
-    [env startElement:elemName];
-    for (ZKSObject *o in objects) 
-        [env addElement:@"sobject" elemValue:o];
-    [env endElement:elemName];
-
-    zkElement *cr = [self sendRequest:env.end name:[NSString stringWithFormat:@"%@:", elemName]];
-    NSArray *resultsArr = [cr childElements:@"result"];
-    NSMutableArray *results = [NSMutableArray arrayWithCapacity:resultsArr.count];
-    for (zkElement *cr in resultsArr) {
-        ZKSaveResult * sr = [[ZKSaveResult alloc] initWithXmlElement:cr];
-        [results addObject:sr];
+    NSString *payload = nil;
+    if ([elemName isEqualToString:@"update"]) {
+        payload = [self makeUpdateEnv:objects];
+    } else {
+        payload = [self makeCreateEnv:objects];
     }
+    zkElement *root = [self sendRequest:payload name:[NSString stringWithFormat:@"%@:", elemName] returnRoot:YES];
+    NSArray *results = [self makeCreateResult:root];
     return results;
 }
 
@@ -373,27 +329,11 @@ static const int DEFAULT_API_VERSION = 46;
     return [self retrieve:fields sObjectType:sobjectType ids:ids];
 }
 
-- (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids {
-    if(!self.authSource) return NULL;
-    [self checkSession];
-    
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
-    [self addCallOptions:env];
-    [self addQueryOptions:env];
-    [self addMruHeader:env];
-    [self addPackageVersionHeader:env];
-    [env moveToBody];
-    [env startElement:@"retrieve"];
-    [env addElement:@"fieldList" elemValue:fields];
-    [env addElement:@"sObjectType" elemValue:sobjectType];
-    [env addElementArray:@"ids" elemValue:ids];
-    [env endElement:@"retrieve"];
-    
-    zkElement *rr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-    NSMutableDictionary *sobjects = [NSMutableDictionary dictionary]; 
-    NSArray *results = [rr childElements:@"result"];
-    for (zkElement *res in results) {
-        ZKSObject *o = [[ZKSObject alloc] initWithXmlElement:res];
+-(NSDictionary *)makeRetrieveResult:(zkElement *)root {
+    zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+    ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
+    NSMutableDictionary *sobjects = [NSMutableDictionary dictionary];
+    for (ZKSObject *o in [deser complexTypeArrayFromElements:@"result" cls:[ZKSObject class]]) {
         sobjects[o.id] = o;
     }
     return sobjects;

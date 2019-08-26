@@ -94,7 +94,7 @@
 @implementation ZKSforceBaseClient
 
 -(id)copyWithZone:(nullable NSZone *)zone {
-	ZKSforceBaseClient* c = [[self class] alloc];
+	ZKSforceBaseClient *c = [super copyWithZone:zone];
 	c.authSource = self.authSource;
 	c.allOrNoneHeader = self.allOrNoneHeader;
 	c.allowFieldTruncationHeader = self.allowFieldTruncationHeader;

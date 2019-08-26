@@ -152,17 +152,6 @@
 /** make a search call with the passed in SOSL expression, @return an array of ZKSObject instances.*/
 - (NSArray *)search:(NSString *)sosl;
 
-/** retreives a set of records, 
- 
-    @param fields       is a comma separated list of fields to fetch values for
-    @param sobjectType  is the API name of the SObject type that we're fetching records for
-    @param ids          is an array of record Ids, can be upto 200.
- 
-    @return a diction of record Id -> ZKSObject instance. If a specified record doesn't exist
-    it won't appear in the returned dictionary
- */
-- (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids;
-
 /** retreives a set of records,
  
  @param fields       is a comma separated list of fields to fetch values for
@@ -172,7 +161,7 @@
  @return a diction of record Id -> ZKSObject instance. If a specified record doesn't exist
  it won't appear in the returned dictionary
  */
-- (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids;
+- (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids DEPRECATED_MSG_ATTRIBUTE("Please use performRetrieve:sObjectType:ids instead");
 
 /** create 1 or more new records in Salseforce.
  
@@ -228,22 +217,6 @@
 /** If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default) */
 @property (strong) NSNumber *queryBatchSize;
 
-@property (strong) ZKCallOptions                *callOptions;
-@property (strong) ZKPackageVersionHeader       *packageVersionHeader;
-@property (strong) ZKLocaleOptions              *localeOptions;
-@property (strong) ZKAssignmentRuleHeader       *assignmentRuleHeader;
-@property (strong) ZKMruHeader                  *mruHeader;
-@property (strong) ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
-@property (strong) ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
-@property (strong) ZKStreamingEnabledHeader     *streamingEnabledHeader;
-@property (strong) ZKAllOrNoneHeader            *allOrNoneHeader;
-@property (strong) ZKDebuggingHeader            *debuggingHeader;
-@property (strong) ZKEmailHeader                *emailHeader;
-@property (strong) ZKOwnerChangeOptions         *ownerChangeOptions;
-@property (strong) ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
-@property (strong) ZKQueryOptions               *queryOptions;
-@property (strong) ZKDuplicateRuleHeader        *duplicateRuleHeader;
-
 /** describe caching support, if true, describeGlobal & describeSObject call results are cached. */
 @property (assign) BOOL cacheDescribes;
  
@@ -252,25 +225,9 @@
 
 @end
 
-
 /** These are helper methods used by the Operations category, you shouldn't need to call these directly */
 @interface ZKSforceClient (Helpers)
 -(void)checkSession;
 -(void)updateLimitInfo;
--(void)addCallOptions:(ZKEnvelope *)env;
--(void)addPackageVersionHeader:(ZKEnvelope *)env;
--(void)addLocaleOptions:(ZKEnvelope *)env;
--(void)addAssignmentRuleHeader:(ZKEnvelope *)env;
--(void)addMruHeader:(ZKEnvelope *)env;
--(void)addAllowFieldTruncationHeader:(ZKEnvelope *)env;
--(void)addDisableFeedTrackingHeader:(ZKEnvelope *)env;
--(void)addStreamingEnabledHeader:(ZKEnvelope *)env;
--(void)addAllOrNoneHeader:(ZKEnvelope *)env;
--(void)addDebuggingHeader:(ZKEnvelope *)env;
--(void)addEmailHeader:(ZKEnvelope *)env;
--(void)addOwnerChangeOptions:(ZKEnvelope *)env;
--(void)addUserTerritoryDeleteHeader:(ZKEnvelope *)env;
--(void)addQueryOptions:(ZKEnvelope *)env;
--(void)addDuplicateRuleHeader:(ZKEnvelope *)env;
 @end
 
