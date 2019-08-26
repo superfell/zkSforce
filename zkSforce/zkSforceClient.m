@@ -279,15 +279,12 @@ static const int DEFAULT_API_VERSION = 46;
     [self checkSession];
     
     NSString *payload = [self makeSearchEnv:sosl];
-    zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-    NSArray *sobjects = [self makeSearchResult:root];
-
-//    zkElement *sr = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-//    zkElement *searchResult = [sr childElement:@"result"];
-//    NSArray *records = [searchResult childElements:@"searchRecords"];
-//    NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
-//    for (zkElement *soNode in records)
-//        [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
+    zkElement *sr = [self sendRequest:payload name:NSStringFromSelector(_cmd)];
+    zkElement *searchResult = [sr childElement:@"result"];
+    NSArray *records = [searchResult childElements:@"searchRecords"];
+    NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
+    for (zkElement *soNode in records)
+        [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
     return sobjects;
 }
 
@@ -349,11 +346,6 @@ static const int DEFAULT_API_VERSION = 46;
 
 -(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
     [self updateLimitInfo:soapHeaders];
-}
-
--(void)addHeader:(NSObject<ZKXMLSerializable> *)header name:(NSString *)headerName toEnvelope:(ZKEnvelope *)env {
-    if (header != nil)
-        [header serializeToEnvelope:env elemName:headerName];
 }
 
 @end
