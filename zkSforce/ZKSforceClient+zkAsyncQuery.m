@@ -36,61 +36,16 @@
 	return YES;
 }
 
-
-// This method implements the meat of all the perform* calls,
-// it handles making the relevant call in any desired queue, 
-// and then calling the fail or complete block on the UI thread.
-//
--(void)performRequest:(id (^)(void))requestBlock
-         checkSession:(BOOL)checkSession
-            failBlock:(zkFailWithExceptionBlock)failBlock 
-        completeBlock:(void (^)(id))completeBlock
-                queue:(dispatch_queue_t)queue {
-
-    if (!requestBlock) return;
-
-    // sanity check that we're actually logged in and ready to go.
-    if (checkSession && (![self confirmLoggedIn])) return;
-
-    // run this block async on the desired queue
-    dispatch_async(queue, ^{
-        id result;
-				
-        @try {
-            result = requestBlock();
-        } @catch (NSException *ex) {
-            // run the failBlock on the main thread.
-            if (failBlock) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    failBlock(ex);
-                });
-            }
-
-            return;
-        }
-
-        // run the completeBlock on the main thread.
-        if (completeBlock) {
-            dispatch_async(dispatch_get_main_queue(), ^{            
-                completeBlock(result);
-            });
-        }
-    });
-}
-
-// Perform an asynchronous API call. 
-// Defaults to the default background global queue.
-//
--(void)performRequest:(id (^)(void))requestBlock
-         checkSession:(BOOL)checkSession
-            failBlock:(zkFailWithExceptionBlock)failBlock 
-        completeBlock:(void (^)(id))completeBlock {
-
-    [self performRequest:requestBlock
-            checkSession:checkSession
-               failBlock:failBlock
-           completeBlock:completeBlock
-                   queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)];
+-(BOOL)handledError:(NSException *)ex failBlock:(zkFailWithExceptionBlock)failBlock {
+	if (ex == nil) {
+		return NO;
+	}
+	if (failBlock != nil) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			failBlock(ex);
+		});
+	}
+	return YES;
 }
 
 /** Login to the Salesforce.com SOAP Api */
@@ -98,14 +53,15 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteLoginResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self login:username password:password];
+	NSString *payload = [self makeLoginEnv:username password:password];
+	[self startRequest:payload name:@"login" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKLoginResult * result = [self makeLoginResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:NO
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKLoginResult *)r);
-		}];
+	}];
 }
 
 /** Describe an sObject */
@@ -113,14 +69,15 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeSObjectBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSObject:sObjectType];
+	NSString *payload = [self makeDescribeSObjectEnv:sObjectType];
+	[self startRequest:payload name:@"describeSObject" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeSObject * result = [self makeDescribeSObjectResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeSObject *)r);
-		}];
+	}];
 }
 
 /** Describe multiple sObjects (upto 100) */
@@ -128,28 +85,30 @@
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSObjects:sObjectType];
+	NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
+	[self startRequest:payload name:@"describeSObjects" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeSObjectsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the Global state */
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeGlobal];
+	NSString *payload = [self makeDescribeGlobalEnv];
+	[self startRequest:payload name:@"describeGlobal" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeGlobalResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe all the data category groups available for a given set of types */
@@ -157,14 +116,15 @@
                                 failBlock:(zkFailWithExceptionBlock)failBlock
                             completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeDataCategoryGroups:sObjectType];
+	NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
+	[self startRequest:payload name:@"describeDataCategoryGroups" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeDataCategoryGroupsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the data category group structures for a given set of pair of types and data category group name */
@@ -172,42 +132,45 @@
                                          failBlock:(zkFailWithExceptionBlock)failBlock
                                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeDataCategoryGroupStructures:pairs topCategoriesOnly:topCategoriesOnly];
+	NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
+	[self startRequest:payload name:@"describeDataCategoryGroupStructures" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeDataCategoryGroupStructuresResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe your Data Category Mappings. */
 -(void) performDescribeDataCategoryMappingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeDataCategoryMappings];
+	NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
+	[self startRequest:payload name:@"describeDataCategoryMappings" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeDataCategoryMappingsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeKnowledgeSettings];
+	NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
+	[self startRequest:payload name:@"describeKnowledgeSettings" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKKnowledgeSettings * result = [self makeDescribeKnowledgeSettingsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKKnowledgeSettings *)r);
-		}];
+	}];
 }
 
 /** Describe the items in an AppMenu */
@@ -215,28 +178,30 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeAppMenuResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeAppMenu:appMenuType networkId:networkId];
+	NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
+	[self startRequest:payload name:@"describeAppMenu" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeAppMenuResult * result = [self makeDescribeAppMenuResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeAppMenuResult *)r);
-		}];
+	}];
 }
 
 /** Describe Gloal and Themes */
 -(void) performDescribeGlobalThemeWithFailBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteDescribeGlobalThemeBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeGlobalTheme];
+	NSString *payload = [self makeDescribeGlobalThemeEnv];
+	[self startRequest:payload name:@"describeGlobalTheme" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeGlobalTheme * result = [self makeDescribeGlobalThemeResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeGlobalTheme *)r);
-		}];
+	}];
 }
 
 /** Describe Themes */
@@ -244,14 +209,15 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteDescribeThemeResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeTheme:sobjectType];
+	NSString *payload = [self makeDescribeThemeEnv:sobjectType];
+	[self startRequest:payload name:@"describeTheme" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeThemeResult * result = [self makeDescribeThemeResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeThemeResult *)r);
-		}];
+	}];
 }
 
 /** Describe the layout of the given sObject or the given actionable global page. */
@@ -259,28 +225,30 @@
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteDescribeLayoutResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeLayout:sObjectType layoutName:layoutName  recordTypeIds:recordTypeIds];
+	NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
+	[self startRequest:payload name:@"describeLayout" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeLayoutResult * result = [self makeDescribeLayoutResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeLayoutResult *)r);
-		}];
+	}];
 }
 
 /** Describe the layout of the SoftPhone */
 -(void) performDescribeSoftphoneLayoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
                          completeBlock:(zkCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSoftphoneLayout];
+	NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
+	[self startRequest:payload name:@"describeSoftphoneLayout" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeSoftphoneLayoutResult * result = [self makeDescribeSoftphoneLayoutResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeSoftphoneLayoutResult *)r);
-		}];
+	}];
 }
 
 /** Describe the search view of an sObject */
@@ -288,14 +256,15 @@
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSearchLayouts:sObjectType];
+	NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
+	[self startRequest:payload name:@"describeSearchLayouts" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeSearchLayoutsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe a list of entity names that reflects the current user's searchable entities */
@@ -303,14 +272,15 @@
                                 failBlock:(zkFailWithExceptionBlock)failBlock
                             completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSearchableEntities:includeOnlyEntitiesWithTabs];
+	NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
+	[self startRequest:payload name:@"describeSearchableEntities" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeSearchableEntitiesResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
@@ -318,14 +288,15 @@
                               failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSearchScopeOrder:includeRealTimeEntities];
+	NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
+	[self startRequest:payload name:@"describeSearchScopeOrder" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeSearchScopeOrderResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the compact layouts of the given sObject */
@@ -333,14 +304,15 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeCompactLayoutsResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeCompactLayouts:sObjectType recordTypeIds:recordTypeIds];
+	NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
+	[self startRequest:payload name:@"describeCompactLayouts" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeCompactLayoutsResult * result = [self makeDescribeCompactLayoutsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeCompactLayoutsResult *)r);
-		}];
+	}];
 }
 
 /** Describe the Path Assistants for the given sObject and optionally RecordTypes */
@@ -348,14 +320,15 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribePathAssistantsResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describePathAssistants:sObjectType picklistValue:picklistValue  recordTypeIds:recordTypeIds];
+	NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
+	[self startRequest:payload name:@"describePathAssistants" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribePathAssistantsResult * result = [self makeDescribePathAssistantsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribePathAssistantsResult *)r);
-		}];
+	}];
 }
 
 /** Describe the approval layouts of the given sObject */
@@ -363,14 +336,15 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeApprovalLayoutResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeApprovalLayout:sObjectType approvalProcessNames:approvalProcessNames];
+	NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
+	[self startRequest:payload name:@"describeApprovalLayout" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeApprovalLayoutResult * result = [self makeDescribeApprovalLayoutResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeApprovalLayoutResult *)r);
-		}];
+	}];
 }
 
 /** Describe the ListViews as SOQL metadata for the generation of SOQL. */
@@ -378,14 +352,15 @@
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSoqlListViews:request];
+	NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
+	[self startRequest:payload name:@"describeSoqlListViews" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeSoqlListViewResult * result = [self makeDescribeSoqlListViewsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeSoqlListViewResult *)r);
-		}];
+	}];
 }
 
 /** Execute the specified list view and return the presentation-ready results. */
@@ -393,14 +368,15 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteExecuteListViewResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self executeListView:request];
+	NSString *payload = [self makeExecuteListViewEnv:request];
+	[self startRequest:payload name:@"executeListView" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKExecuteListViewResult * result = [self makeExecuteListViewResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKExecuteListViewResult *)r);
-		}];
+	}];
 }
 
 /** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL. */
@@ -408,42 +384,45 @@
                               failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeSObjectListViews:sObjectType recentsOnly:recentsOnly  isSoqlCompatible:isSoqlCompatible  limit:limit  offset:offset];
+	NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
+	[self startRequest:payload name:@"describeSObjectListViews" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeSoqlListViewResult * result = [self makeDescribeSObjectListViewsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeSoqlListViewResult *)r);
-		}];
+	}];
 }
 
 /** Describe the tabs that appear on a users page */
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeTabs];
+	NSString *payload = [self makeDescribeTabsEnv];
+	[self startRequest:payload name:@"describeTabs" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeTabsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe all tabs available to a user */
 -(void) performDescribeAllTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeAllTabs];
+	NSString *payload = [self makeDescribeAllTabsEnv];
+	[self startRequest:payload name:@"describeAllTabs" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeAllTabsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the primary compact layouts for the sObjects requested */
@@ -451,14 +430,15 @@
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describePrimaryCompactLayouts:sObjectTypes];
+	NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
+	[self startRequest:payload name:@"describePrimaryCompactLayouts" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribePrimaryCompactLayoutsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Create a set of new sObjects */
@@ -466,14 +446,15 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self create:sObjects];
+	NSString *payload = [self makeCreateEnv:sObjects];
+	[self startRequest:payload name:@"create" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeCreateResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Update a set of sObjects */
@@ -481,14 +462,15 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self update:sObjects];
+	NSString *payload = [self makeUpdateEnv:sObjects];
+	[self startRequest:payload name:@"update" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeUpdateResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Update or insert a set of sObjects based on object id */
@@ -496,14 +478,15 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self upsert:externalIDFieldName sObjects:sObjects];
+	NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
+	[self startRequest:payload name:@"upsert" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeUpsertResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Merge and update a set of sObjects based on object id */
@@ -511,14 +494,15 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self merge:request];
+	NSString *payload = [self makeMergeEnv:request];
+	[self startRequest:payload name:@"merge" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeMergeResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Delete a set of sObjects */
@@ -526,14 +510,15 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self delete:ids];
+	NSString *payload = [self makeDeleteEnv:ids];
+	[self startRequest:payload name:@"delete" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDeleteResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Undelete a set of sObjects */
@@ -541,14 +526,15 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self undelete:ids];
+	NSString *payload = [self makeUndeleteEnv:ids];
+	[self startRequest:payload name:@"undelete" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeUndeleteResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Empty a set of sObjects from the recycle bin */
@@ -556,14 +542,15 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self emptyRecycleBin:ids];
+	NSString *payload = [self makeEmptyRecycleBinEnv:ids];
+	[self startRequest:payload name:@"emptyRecycleBin" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeEmptyRecycleBinResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Get a set of sObjects */
@@ -571,14 +558,15 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteDictionaryBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self retrieve:fieldList sObjectType:sObjectType  ids:ids];
+	NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
+	[self startRequest:payload name:@"retrieve" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSDictionary * result = [self makeRetrieveResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSDictionary *)r);
-		}];
+	}];
 }
 
 /** Submit an entity to a workflow process or process a workitem */
@@ -586,14 +574,15 @@
              failBlock:(zkFailWithExceptionBlock)failBlock
          completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self process:actions];
+	NSString *payload = [self makeProcessEnv:actions];
+	[self startRequest:payload name:@"process" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeProcessResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** convert a set of leads */
@@ -601,29 +590,30 @@
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self convertLead:leadConverts];
+	NSString *payload = [self makeConvertLeadEnv:leadConverts];
+	[self startRequest:payload name:@"convertLead" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeConvertLeadResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Logout the current user, invalidating the current session. */
 -(void) performLogoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteVoidBlock)completeBlock {
 
-	[self performRequest:^id {
-			[self logout];
-			return nil;
+	NSString *payload = [self makeLogoutEnv];
+	[self startRequest:payload name:@"logout" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock();
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock();
-		}];
+	}];
 }
 
 /** Logs out and invalidates session ids */
@@ -631,14 +621,15 @@
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self invalidateSessions:sessionIds];
+	NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
+	[self startRequest:payload name:@"invalidateSessions" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeInvalidateSessionsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Get the IDs for deleted sObjects */
@@ -646,14 +637,15 @@
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetDeletedResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self getDeleted:sObjectType startDate:startDate  endDate:endDate];
+	NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
+	[self startRequest:payload name:@"getDeleted" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKGetDeletedResult * result = [self makeGetDeletedResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKGetDeletedResult *)r);
-		}];
+	}];
 }
 
 /** Get the IDs for updated sObjects */
@@ -661,14 +653,15 @@
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetUpdatedResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self getUpdated:sObjectType startDate:startDate  endDate:endDate];
+	NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
+	[self startRequest:payload name:@"getUpdated" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKGetUpdatedResult * result = [self makeGetUpdatedResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKGetUpdatedResult *)r);
-		}];
+	}];
 }
 
 /** Create a Query Cursor */
@@ -676,14 +669,15 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self query:queryString];
+	NSString *payload = [self makeQueryEnv:queryString];
+	[self startRequest:payload name:@"query" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKQueryResult * result = [self makeQueryResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKQueryResult *)r);
-		}];
+	}];
 }
 
 /** Create a Query Cursor, including deleted sObjects */
@@ -691,14 +685,15 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self queryAll:queryString];
+	NSString *payload = [self makeQueryAllEnv:queryString];
+	[self startRequest:payload name:@"queryAll" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKQueryResult * result = [self makeQueryAllResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKQueryResult *)r);
-		}];
+	}];
 }
 
 /** Gets the next batch of sObjects from a query */
@@ -706,14 +701,15 @@
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self queryMore:queryLocator];
+	NSString *payload = [self makeQueryMoreEnv:queryLocator];
+	[self startRequest:payload name:@"queryMore" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKQueryResult * result = [self makeQueryMoreResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKQueryResult *)r);
-		}];
+	}];
 }
 
 /** Search for sObjects */
@@ -721,28 +717,30 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self search:searchString];
+	NSString *payload = [self makeSearchEnv:searchString];
+	[self startRequest:payload name:@"search" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeSearchResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Gets server timestamp */
 -(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteGetServerTimestampResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self getServerTimestamp];
+	NSString *payload = [self makeGetServerTimestampEnv];
+	[self startRequest:payload name:@"getServerTimestamp" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKGetServerTimestampResult * result = [self makeGetServerTimestampResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKGetServerTimestampResult *)r);
-		}];
+	}];
 }
 
 /** Set a user's password */
@@ -750,14 +748,15 @@
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteSetPasswordResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self setPassword:userId password:password];
+	NSString *payload = [self makeSetPasswordEnv:userId password:password];
+	[self startRequest:payload name:@"setPassword" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKSetPasswordResult * result = [self makeSetPasswordResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKSetPasswordResult *)r);
-		}];
+	}];
 }
 
 /** Change the current user's password */
@@ -765,14 +764,15 @@
                        failBlock:(zkFailWithExceptionBlock)failBlock
                    completeBlock:(zkCompleteChangeOwnPasswordResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self changeOwnPassword:oldPassword newPassword:newPassword];
+	NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
+	[self startRequest:payload name:@"changeOwnPassword" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKChangeOwnPasswordResult * result = [self makeChangeOwnPasswordResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKChangeOwnPasswordResult *)r);
-		}];
+	}];
 }
 
 /** Reset a user's password */
@@ -780,28 +780,30 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteResetPasswordResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self resetPassword:userId];
+	NSString *payload = [self makeResetPasswordEnv:userId];
+	[self startRequest:payload name:@"resetPassword" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKResetPasswordResult * result = [self makeResetPasswordResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKResetPasswordResult *)r);
-		}];
+	}];
 }
 
 /** Returns standard information relevant to the current user */
 -(void) performGetUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteUserInfoBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self getUserInfo];
+	NSString *payload = [self makeGetUserInfoEnv];
+	[self startRequest:payload name:@"getUserInfo" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKUserInfo * result = [self makeGetUserInfoResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKUserInfo *)r);
-		}];
+	}];
 }
 
 /** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
@@ -809,14 +811,15 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self deleteByExample:sObjects];
+	NSString *payload = [self makeDeleteByExampleEnv:sObjects];
+	[self startRequest:payload name:@"deleteByExample" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDeleteByExampleResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Send existing draft EmailMessage */
@@ -824,14 +827,15 @@
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self sendEmailMessage:ids];
+	NSString *payload = [self makeSendEmailMessageEnv:ids];
+	[self startRequest:payload name:@"sendEmailMessage" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeSendEmailMessageResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Send outbound email */
@@ -839,14 +843,15 @@
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self sendEmail:messages];
+	NSString *payload = [self makeSendEmailEnv:messages];
+	[self startRequest:payload name:@"sendEmail" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeSendEmailResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Perform a template merge on one or more blocks of text. */
@@ -854,14 +859,15 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self renderEmailTemplate:renderRequests];
+	NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
+	[self startRequest:payload name:@"renderEmailTemplate" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeRenderEmailTemplateResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Perform a template merge using an email template stored in the database. */
@@ -869,14 +875,15 @@
                                failBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self renderStoredEmailTemplate:request];
+	NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
+	[self startRequest:payload name:@"renderStoredEmailTemplate" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKRenderStoredEmailTemplateResult * result = [self makeRenderStoredEmailTemplateResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKRenderStoredEmailTemplateResult *)r);
-		}];
+	}];
 }
 
 /** Perform a series of predefined actions such as quick create or log a task */
@@ -884,14 +891,15 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self performQuickActions:quickActions];
+	NSString *payload = [self makePerformQuickActionsEnv:quickActions];
+	[self startRequest:payload name:@"performQuickActions" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makePerformQuickActionsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the details of a series of quick actions */
@@ -899,14 +907,15 @@
                           failBlock:(zkFailWithExceptionBlock)failBlock
                       completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeQuickActions:quickActions];
+	NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
+	[self startRequest:payload name:@"describeQuickActions" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeQuickActionsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the details of a series of quick actions in context of requested recordType id for Update actions */
@@ -914,14 +923,15 @@
                                        failBlock:(zkFailWithExceptionBlock)failBlock
                                    completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeQuickActionsForRecordType:quickActions recordTypeId:recordTypeId];
+	NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
+	[self startRequest:payload name:@"describeQuickActionsForRecordType" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeQuickActionsForRecordTypeResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe the details of a series of quick actions available for the given contextType */
@@ -929,14 +939,15 @@
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeAvailableQuickActions:contextType];
+	NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
+	[self startRequest:payload name:@"describeAvailableQuickActions" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeAvailableQuickActionsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
@@ -944,14 +955,15 @@
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self retrieveQuickActionTemplates:quickActionNames contextId:contextId];
+	NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
+	[self startRequest:payload name:@"retrieveQuickActionTemplates" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeRetrieveQuickActionTemplatesResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
@@ -959,14 +971,15 @@
                                       failBlock:(zkFailWithExceptionBlock)failBlock
                                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self retrieveMassQuickActionTemplates:quickActionName contextIds:contextIds];
+	NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
+	[self startRequest:payload name:@"retrieveMassQuickActionTemplates" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeRetrieveMassQuickActionTemplatesResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Describe visualforce for an org */
@@ -974,14 +987,15 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteDescribeVisualForceResultBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeVisualForce:includeAllDetails namespacePrefix:namespacePrefix];
+	NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
+	[self startRequest:payload name:@"describeVisualForce" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			ZKDescribeVisualForceResult * result = [self makeDescribeVisualForceResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((ZKDescribeVisualForceResult *)r);
-		}];
+	}];
 }
 
 /** Find duplicates for a set of sObjects */
@@ -989,14 +1003,15 @@
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self findDuplicates:sObjects];
+	NSString *payload = [self makeFindDuplicatesEnv:sObjects];
+	[self startRequest:payload name:@"findDuplicates" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeFindDuplicatesResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Find duplicates for a set of ids */
@@ -1004,14 +1019,15 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self findDuplicatesByIds:ids];
+	NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
+	[self startRequest:payload name:@"findDuplicatesByIds" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeFindDuplicatesByIdsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
@@ -1019,14 +1035,15 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
-	[self performRequest:^id {
-			return [self describeNouns:nouns onlyRenamed:onlyRenamed  includeFields:includeFields];
+	NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
+	[self startRequest:payload name:@"describeNouns" handler:^(zkElement *root, NSException *ex) {
+		if (![self handledError:ex failBlock:failBlock]) {
+			NSArray * result = [self makeDescribeNounsResult:root];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				completeBlock(result);
+			});
 		}
-		 checkSession:YES
-		    failBlock:failBlock
-		completeBlock:^(id r) {
-			if (completeBlock) completeBlock((NSArray *)r);
-		}];
+	}];
 }
 
 @end

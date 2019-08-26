@@ -20,7 +20,7 @@
 //
 
 
-#import "zkBaseClient.h"
+#import "ZKSforceBaseClient.h"
 #import "zkAuthentication.h"
 
 @class ZKUserInfo;
@@ -52,32 +52,16 @@
   kept alive, and login will be called again for you if needed.
  
 */
-@interface ZKSforceClient : ZKBaseClient <NSCopying> {
+@interface ZKSforceClient : ZKSforceBaseClient <NSCopying> {
     NSString    *authEndpointUrl;
     ZKUserInfo    *userInfo;
     BOOL        cacheDescribes;
     NSMutableDictionary    *describes;
     int            preferedApiVersion;
 
-    NSObject<ZKAuthenticationInfo>  *authSource;
     ZKLimitInfoHeader *limitInfo;
     
-    // Soap Headers on requests
-    ZKCallOptions           *callOptions;
-    ZKPackageVersionHeader  *packageVersionHeader;
-    ZKLocaleOptions         *localeOptions;
-    ZKAssignmentRuleHeader  *assignmentRuleHeader;
-    ZKMruHeader             *mruHeader;
-    ZKAllowFieldTruncationHeader *allowFieldTruncationHeader;
-    ZKDisableFeedTrackingHeader  *disableFeedTrackingHeader;
-    ZKStreamingEnabledHeader     *streamingEnabledHeader;
-    ZKAllOrNoneHeader            *allOrNoneHeader;
-    ZKDebuggingHeader            *debuggingHeader;
-    ZKEmailHeader                *emailHeader;
-    ZKOwnerChangeOptions         *ownerChangeOptions;
-    ZKUserTerritoryDeleteHeader  *userTerritoryDeleteHeader;
-    ZKQueryOptions               *queryOptions;
-    ZKDuplicateRuleHeader        *duplicateRuleHeader;
+    // Soap Headers were, are now in ZKSforceBaseClient
 }
 
 /** @name configuration for where to connect to and what api version to use */

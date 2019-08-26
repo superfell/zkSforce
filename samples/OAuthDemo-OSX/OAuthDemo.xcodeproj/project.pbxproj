@@ -90,7 +90,6 @@
 		F414BED91845A3BB00322AC2 /* ZKDescribeSObject+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE771845A3BB00322AC2 /* ZKDescribeSObject+Extras.m */; };
 		F414BEDA1845A3BB00322AC2 /* ZKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE781845A3BB00322AC2 /* ZKBase64.m */; };
 		F414BEDB1845A3BB00322AC2 /* ZKSoapDate.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE791845A3BB00322AC2 /* ZKSoapDate.m */; };
-		F414BEDC1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE7B1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.m */; };
 		F414BEDD1845A3BB00322AC2 /* ZKDescribeField+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE7E1845A3BB00322AC2 /* ZKDescribeField+Extras.m */; };
 		F414BEDE1845A3BB00322AC2 /* ZKUserInfo+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE811845A3BB00322AC2 /* ZKUserInfo+Extras.m */; };
 		F414BEDF1845A3BB00322AC2 /* ZKRelatedList+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE821845A3BB00322AC2 /* ZKRelatedList+Extras.m */; };
@@ -98,6 +97,8 @@
 		F414BEE11845A3BB00322AC2 /* ZKLimitInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE891845A3BB00322AC2 /* ZKLimitInfoHeader.m */; };
 		F414BEE21845A3BB00322AC2 /* ZKLimitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE8A1845A3BB00322AC2 /* ZKLimitInfo.m */; };
 		F414BEE41845A40B00322AC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BEE31845A40B00322AC2 /* Security.framework */; };
+		F41F708F23134D290008A2C2 /* ZKSforceBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F708D23134D290008A2C2 /* ZKSforceBaseClient.m */; };
+		F41F70932313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F70912313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m */; };
 		F425FA241A339D300055D8B8 /* ZKActionOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA011A339D300055D8B8 /* ZKActionOverride.m */; };
 		F425FA251A339D300055D8B8 /* ZKDescribeSoqlListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA031A339D300055D8B8 /* ZKDescribeSoqlListView.m */; };
 		F425FA261A339D300055D8B8 /* ZKDescribeSoqlListViewParams.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA051A339D300055D8B8 /* ZKDescribeSoqlListViewParams.m */; };
@@ -383,8 +384,6 @@
 		F414BE771845A3BB00322AC2 /* ZKDescribeSObject+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKDescribeSObject+Extras.m"; path = "../../../zkSforce/ZKDescribeSObject+Extras.m"; sourceTree = "<group>"; };
 		F414BE781845A3BB00322AC2 /* ZKBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKBase64.m; path = ../../../zkSforce/ZKBase64.m; sourceTree = "<group>"; };
 		F414BE791845A3BB00322AC2 /* ZKSoapDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoapDate.m; path = ../../../zkSforce/ZKSoapDate.m; sourceTree = "<group>"; };
-		F414BE7A1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "zkSforceClient+zkAsyncQuery.h"; path = "../../../zkSforce/zkSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
-		F414BE7B1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "zkSforceClient+zkAsyncQuery.m"; path = "../../../zkSforce/zkSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
 		F414BE7C1845A3BB00322AC2 /* ZKSoapDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSoapDate.h; path = ../../../zkSforce/ZKSoapDate.h; sourceTree = "<group>"; };
 		F414BE7D1845A3BB00322AC2 /* ZKBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKBase64.h; path = ../../../zkSforce/ZKBase64.h; sourceTree = "<group>"; };
 		F414BE7E1845A3BB00322AC2 /* ZKDescribeField+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKDescribeField+Extras.m"; path = "../../../zkSforce/ZKDescribeField+Extras.m"; sourceTree = "<group>"; };
@@ -401,6 +400,11 @@
 		F414BE891845A3BB00322AC2 /* ZKLimitInfoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLimitInfoHeader.m; path = ../../../zkSforce/ZKLimitInfoHeader.m; sourceTree = "<group>"; };
 		F414BE8A1845A3BB00322AC2 /* ZKLimitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKLimitInfo.m; path = ../../../zkSforce/ZKLimitInfo.m; sourceTree = "<group>"; };
 		F414BEE31845A40B00322AC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F41F708D23134D290008A2C2 /* ZKSforceBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSforceBaseClient.m; path = ../../../zkSforce/ZKSforceBaseClient.m; sourceTree = "<group>"; };
+		F41F708E23134D290008A2C2 /* ZKSforceBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSforceBaseClient.h; path = ../../../zkSforce/ZKSforceBaseClient.h; sourceTree = "<group>"; };
+		F41F7090231350530008A2C2 /* ZKAuthenticationInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZKAuthenticationInfo.h; path = ../../../zkSforce/ZKAuthenticationInfo.h; sourceTree = "<group>"; };
+		F41F70912313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKSforceClient+zkAsyncQuery.m"; path = "../../../zkSforce/ZKSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
+		F41F70922313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKSforceClient+zkAsyncQuery.h"; path = "../../../zkSforce/ZKSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
 		F425FA001A339D300055D8B8 /* ZKActionOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKActionOverride.h; path = ../../../zkSforce/ZKActionOverride.h; sourceTree = "<group>"; };
 		F425FA011A339D300055D8B8 /* ZKActionOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKActionOverride.m; path = ../../../zkSforce/ZKActionOverride.m; sourceTree = "<group>"; };
 		F425FA021A339D300055D8B8 /* ZKDescribeSoqlListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSoqlListView.h; path = ../../../zkSforce/ZKDescribeSoqlListView.h; sourceTree = "<group>"; };
@@ -1019,8 +1023,16 @@
 				F414BE671845A3BB00322AC2 /* ZKSessionHeader.m */,
 				F414BE681845A3BB00322AC2 /* ZKSetPasswordResult.h */,
 				F414BE691845A3BB00322AC2 /* ZKSetPasswordResult.m */,
+				F49C1C9113637547000CDE02 /* zkBaseClient.h */,
+				F49C1C9213637547000CDE02 /* zkBaseClient.m */,
+				F41F708E23134D290008A2C2 /* ZKSforceBaseClient.h */,
+				F41F708D23134D290008A2C2 /* ZKSforceBaseClient.m */,
+				F49C1CC813637547000CDE02 /* zkSforceClient.h */,
+				F49C1CC913637547000CDE02 /* zkSforceClient.m */,
 				F414BE6A1845A3BB00322AC2 /* ZKSforceClient+Operations.h */,
 				F414BE6B1845A3BB00322AC2 /* ZKSforceClient+Operations.m */,
+				F41F70922313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.h */,
+				F41F70912313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m */,
 				F414BE6C1845A3BB00322AC2 /* ZKStreamingEnabledHeader.h */,
 				F414BE6D1845A3BB00322AC2 /* ZKStreamingEnabledHeader.m */,
 				F414BE6E1845A3BB00322AC2 /* ZKUndeleteResult.h */,
@@ -1035,8 +1047,6 @@
 				F414BE771845A3BB00322AC2 /* ZKDescribeSObject+Extras.m */,
 				F414BE781845A3BB00322AC2 /* ZKBase64.m */,
 				F414BE791845A3BB00322AC2 /* ZKSoapDate.m */,
-				F414BE7A1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.h */,
-				F414BE7B1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.m */,
 				F414BE7C1845A3BB00322AC2 /* ZKSoapDate.h */,
 				F414BE7D1845A3BB00322AC2 /* ZKBase64.h */,
 				F414BE7E1845A3BB00322AC2 /* ZKDescribeField+Extras.m */,
@@ -1058,8 +1068,6 @@
 				F48F13E2157DC54600CB2A50 /* ZKDescribeTabSetResult.m */,
 				F48F13DC157DC52100CB2A50 /* zkQueryResult+NSTableView.h */,
 				F48F13DD157DC52100CB2A50 /* zkQueryResult+NSTableView.m */,
-				F49C1C9113637547000CDE02 /* zkBaseClient.h */,
-				F49C1C9213637547000CDE02 /* zkBaseClient.m */,
 				F49C1C9313637547000CDE02 /* zkChildRelationship.h */,
 				F49C1C9413637547000CDE02 /* zkChildRelationship.m */,
 				F49C1C9513637547000CDE02 /* zkDescribeField.h */,
@@ -1111,8 +1119,6 @@
 				F49C1CC513637547000CDE02 /* zkSaveResult.h */,
 				F49C1CC613637547000CDE02 /* zkSaveResult.m */,
 				F49C1CC713637547000CDE02 /* zkSforce.h */,
-				F49C1CC813637547000CDE02 /* zkSforceClient.h */,
-				F49C1CC913637547000CDE02 /* zkSforceClient.m */,
 				F49C1CCA13637547000CDE02 /* zkSoapException.h */,
 				F49C1CCB13637547000CDE02 /* zkSoapException.m */,
 				F49C1CCC13637547000CDE02 /* zkSObject.h */,
@@ -1123,6 +1129,7 @@
 				F49C1CD113637547000CDE02 /* zkXmlDeserializer.m */,
 				F49C1D0013637932000CDE02 /* zkAuthentication.h */,
 				F49C1D0113637932000CDE02 /* zkAuthentication.m */,
+				F41F7090231350530008A2C2 /* ZKAuthenticationInfo.h */,
 			);
 			name = ZKSforce;
 			sourceTree = "<group>";
@@ -1161,6 +1168,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = F49C1C5E13636C88000CDE02;
@@ -1355,6 +1363,7 @@
 				F414BECF1845A3BB00322AC2 /* ZKSendEmailError.m in Sources */,
 				F414BED01845A3BB00322AC2 /* ZKSendEmailResult.m in Sources */,
 				F414BED11845A3BB00322AC2 /* ZKSessionHeader.m in Sources */,
+				F41F708F23134D290008A2C2 /* ZKSforceBaseClient.m in Sources */,
 				F4913F3C1B115171001CC650 /* ZKAdditionalInformationMap.m in Sources */,
 				F414BED21845A3BB00322AC2 /* ZKSetPasswordResult.m in Sources */,
 				F474CAB21D0FADFD000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */,
@@ -1371,7 +1380,6 @@
 				F414BED91845A3BB00322AC2 /* ZKDescribeSObject+Extras.m in Sources */,
 				F414BEDA1845A3BB00322AC2 /* ZKBase64.m in Sources */,
 				F414BEDB1845A3BB00322AC2 /* ZKSoapDate.m in Sources */,
-				F414BEDC1845A3BB00322AC2 /* zkSforceClient+zkAsyncQuery.m in Sources */,
 				F414BEDD1845A3BB00322AC2 /* ZKDescribeField+Extras.m in Sources */,
 				F414BEDE1845A3BB00322AC2 /* ZKUserInfo+Extras.m in Sources */,
 				F414BEDF1845A3BB00322AC2 /* ZKRelatedList+Extras.m in Sources */,
@@ -1389,6 +1397,7 @@
 				F4BB7F9118B01C4A00444797 /* ZKProcessSubmitRequest.m in Sources */,
 				F4BB7F9218B01C4A00444797 /* ZKProcessWorkitemRequest.m in Sources */,
 				F4BB7F9318B01C4A00444797 /* ZKAddress.m in Sources */,
+				F41F70932313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m in Sources */,
 				F4BB7F9418B01C4A00444797 /* ZKLocation.m in Sources */,
 				F4BB7F9518B01C4A00444797 /* ZKQuickActionTemplateResult.m in Sources */,
 				F4BB7F9618B01C4A00444797 /* ZKReportChartComponent.m in Sources */,

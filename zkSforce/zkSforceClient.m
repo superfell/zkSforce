@@ -82,40 +82,25 @@ static const int DEFAULT_API_VERSION = 46;
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    ZKSforceClient *rhs = [[ZKSforceClient alloc] init];
+    ZKSforceClient *rhs = [super copyWithZone:zone];
     rhs->authEndpointUrl = [authEndpointUrl copy];
     rhs->endpointUrl = [endpointUrl copy];
     rhs->userInfo = userInfo;
     rhs->preferedApiVersion = preferedApiVersion;
-    rhs->authSource = authSource;
     rhs->limitInfo = limitInfo;
     rhs.cacheDescribes = cacheDescribes;
     rhs.callOptions = self.callOptions;
-    rhs.packageVersionHeader = self.packageVersionHeader;
-    rhs.localeOptions = self.localeOptions;
-    rhs.assignmentRuleHeader = self.assignmentRuleHeader;
-    rhs.mruHeader = self.mruHeader;
-    rhs.allowFieldTruncationHeader = self.allowFieldTruncationHeader;
-    rhs.disableFeedTrackingHeader = self.disableFeedTrackingHeader;
-    rhs.streamingEnabledHeader = self.streamingEnabledHeader;
-    rhs.allOrNoneHeader = self.allOrNoneHeader;
-    rhs.debuggingHeader = self.debuggingHeader;
-    rhs.emailHeader = self.emailHeader;
-    rhs.ownerChangeOptions = self.ownerChangeOptions;
-    rhs.userTerritoryDeleteHeader = self.userTerritoryDeleteHeader;
-    rhs.queryOptions = self.queryOptions;
-    rhs.duplicateRuleHeader = self.duplicateRuleHeader;
     rhs.delegate = delegate;
     return rhs;
 }
 
 -(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
-    return authSource;
+    return self.authSource;
 }
 
 -(void)setAuthenticationInfo:(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
-    authSource = authenticationInfo;
-    self.endpointUrl = authSource.instanceUrl;
+    self.authSource = authenticationInfo;
+    self.endpointUrl = self.authSource.instanceUrl;
     self.userInfo = nil;
 }
 
@@ -190,12 +175,12 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (BOOL)loggedIn {
-    return authSource.sessionId.length > 0;
+    return self.authSource.sessionId.length > 0;
 }
 
 - (void)checkSession {
-    if (authSource.refreshIfNeeded)
-        self.endpointUrl = authSource.instanceUrl;
+    if (self.authSource.refreshIfNeeded)
+        self.endpointUrl = self.authSource.instanceUrl;
 }
 
 - (ZKUserInfo *)currentUserInfo {
@@ -210,7 +195,7 @@ static const int DEFAULT_API_VERSION = 46;
 
 - (NSString *)sessionId {
     [self checkSession];
-    return authSource.sessionId;
+    return self.authSource.sessionId;
 }
 
 -(BOOL)updateMru {
@@ -262,75 +247,15 @@ static const int DEFAULT_API_VERSION = 46;
     return host;
 }
 
--(void)addCallOptions:(ZKEnvelope *)env {
-    [self addHeader:self.callOptions name:@"CallOptions" toEnvelope:env];
-}
-
--(void)addPackageVersionHeader:(ZKEnvelope *)env {
-    [self addHeader:self.packageVersionHeader name:@"PackageVersionHeader" toEnvelope:env];
-}
-
--(void)addLocaleOptions:(ZKEnvelope *)env {
-    [self addHeader:self.localeOptions name:@"LocaleHeader" toEnvelope:env];
-}
-
--(void)addAssignmentRuleHeader:(ZKEnvelope *)env {
-    [self addHeader:self.assignmentRuleHeader name:@"AssignmentRuleHeader" toEnvelope:env];
-}
-
--(void)addMruHeader:(ZKEnvelope *)env {
-    [self addHeader:self.mruHeader name:@"MruHeader" toEnvelope:env];
-}
-
--(void)addAllowFieldTruncationHeader:(ZKEnvelope *)env {
-    [self addHeader:self.allowFieldTruncationHeader name:@"AllowFieldTruncationHeader" toEnvelope:env];
-}
-
--(void)addDisableFeedTrackingHeader:(ZKEnvelope *)env {
-    [self addHeader:self.disableFeedTrackingHeader name:@"DisableFeedTrackingHeader" toEnvelope:env];
-}
-
--(void)addStreamingEnabledHeader:(ZKEnvelope *)env {
-    [self addHeader:self.streamingEnabledHeader name:@"StreamingEnabledHeader" toEnvelope:env];
-}
-
--(void)addAllOrNoneHeader:(ZKEnvelope *)env {
-    [self addHeader:self.allOrNoneHeader name:@"AllOrNoneHeader" toEnvelope:env];
-}
-
--(void)addDebuggingHeader:(ZKEnvelope *)env {
-    [self addHeader:self.debuggingHeader name:@"DebuggingHeader" toEnvelope:env];
-}
-
--(void)addEmailHeader:(ZKEnvelope *)env {
-    [self addHeader:self.emailHeader name:@"EmailHeader" toEnvelope:env];
-}
-
--(void)addOwnerChangeOptions:(ZKEnvelope *)env {
-    [self addHeader:self.ownerChangeOptions name:@"OwnerChangeOptions" toEnvelope:env];
-}
-
--(void)addUserTerritoryDeleteHeader:(ZKEnvelope *)env {
-    [self addHeader:self.userTerritoryDeleteHeader name:@"UserTerritoryDeleteHeader" toEnvelope:env];
-}
-
--(void)addQueryOptions:(ZKEnvelope *)env {
-    [self addHeader:self.queryOptions name:@"QueryOptions" toEnvelope:env];
-}
-
--(void)addDuplicateRuleHeader:(ZKEnvelope *)env {
-    [self addHeader:self.duplicateRuleHeader name:@"DuplicateRuleHeader" toEnvelope:env];
-}
-
 - (NSArray *)describeGlobal {
-    if(!authSource) return NULL;
+    if(!self.authSource) return NULL;
     [self checkSession];
     if (cacheDescribes) {
         NSArray *dg = describes[@"describe__global"];    // won't be an sfdc object ever called this.
         if (dg != nil) return dg;
     }
     
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
     [self addCallOptions:env];
     [self addPackageVersionHeader:env];
     [self addLocaleOptions:env];
@@ -351,14 +276,14 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (ZKDescribeSObject *)describeSObject:(NSString *)sobjectName {
-    if (!authSource) return NULL;
+    if (!self.authSource) return NULL;
     if (cacheDescribes) {
         ZKDescribeSObject * desc = describes[sobjectName.lowercaseString];
         if (desc != nil) return desc;
     }
     [self checkSession];
     
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
     [self addCallOptions:env];
     [self addPackageVersionHeader:env];
     [self addLocaleOptions:env];
@@ -376,9 +301,9 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (NSArray *)search:(NSString *)sosl {
-    if (!authSource) return NULL;
+    if (!self.authSource) return NULL;
     [self checkSession];
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
     [self addCallOptions:env];
     [self addPackageVersionHeader:env];
     [env moveToBody];
@@ -404,7 +329,7 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName {
-    if(!authSource) return NULL;
+    if(!self.authSource) return NULL;
     [self checkSession];
     
     // if more than we can do in one go, break it up.
@@ -418,7 +343,7 @@ static const int DEFAULT_API_VERSION = 46;
         }
         return allResults;
     }
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
     [self addCallOptions:env];
     [self addAssignmentRuleHeader:env];
     [self addMruHeader:env];
@@ -452,10 +377,10 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (NSDictionary *)retrieve:(NSString *)fields sObjectType:(NSString *)sobjectType ids:(NSArray *)ids {
-    if(!authSource) return NULL;
+    if(!self.authSource) return NULL;
     [self checkSession];
     
-    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
+    ZKEnvelope * env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
     [self addCallOptions:env];
     [self addQueryOptions:env];
     [self addMruHeader:env];

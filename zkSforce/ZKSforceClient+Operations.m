@@ -89,982 +89,504 @@
 @implementation ZKSforceClient (Operations)
 /** Describe multiple sObjects (upto 100) */
 -(NSArray *)describeSObjects:(NSArray *)sObjectType {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeSObjects"];
-	[env addElementArray:@"sObjectType" elemValue:sObjectType];
-	[env endElement:@"describeSObjects"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
+	NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSObjectsResult:root];
 }
 
 /** Describe all the data category groups available for a given set of types */
 -(NSArray *)describeDataCategoryGroups:(NSArray *)sObjectType {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeDataCategoryGroups"];
-	[env addElementArray:@"sObjectType" elemValue:sObjectType];
-	[env endElement:@"describeDataCategoryGroups"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
+	NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeDataCategoryGroupsResult:root];
 }
 
 /** Describe the data category group structures for a given set of pair of types and data category group name */
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeDataCategoryGroupStructures"];
-	[env addElementArray:@"pairs"            elemValue:pairs];
-	[env addBoolElement:@"topCategoriesOnly" elemValue:topCategoriesOnly];
-	[env endElement:@"describeDataCategoryGroupStructures"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
+	NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeDataCategoryGroupStructuresResult:root];
 }
 
 /** Describe your Data Category Mappings. */
 -(NSArray *)describeDataCategoryMappings {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeDataCategoryMappings"];
-	[env endElement:@"describeDataCategoryMappings"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryMappingResult class]];
+	NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeDataCategoryMappingsResult:root];
 }
 
 /** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages */
 -(ZKKnowledgeSettings *)describeKnowledgeSettings {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeKnowledgeSettings"];
-	[env endElement:@"describeKnowledgeSettings"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKKnowledgeSettings class]].lastObject;
+	NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeKnowledgeSettingsResult:root];
 }
 
 /** Describe the items in an AppMenu */
 -(ZKDescribeAppMenuResult *)describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeAppMenu"];
-	[env addElement:@"appMenuType" elemValue:appMenuType nillable:NO  optional:NO];
-	[env addElement:@"networkId"   elemValue:networkId   nillable:YES optional:NO];
-	[env endElement:@"describeAppMenu"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAppMenuResult class]].lastObject;
+	NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeAppMenuResult:root];
 }
 
 /** Describe Gloal and Themes */
 -(ZKDescribeGlobalTheme *)describeGlobalTheme {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeGlobalTheme"];
-	[env endElement:@"describeGlobalTheme"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]].lastObject;
+	NSString *payload = [self makeDescribeGlobalThemeEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeGlobalThemeResult:root];
 }
 
 /** Describe Themes */
 -(ZKDescribeThemeResult *)describeTheme:(NSArray *)sobjectType {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeTheme"];
-	[env addElementArray:@"sobjectType" elemValue:sobjectType];
-	[env endElement:@"describeTheme"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]].lastObject;
+	NSString *payload = [self makeDescribeThemeEnv:sobjectType];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeThemeResult:root];
 }
 
 /** Describe the layout of the given sObject or the given actionable global page. */
 -(ZKDescribeLayoutResult *)describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeLayout"];
-	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
-	[env addElement:@"layoutName"         elemValue:layoutName    nillable:YES optional:NO];
-	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
-	[env endElement:@"describeLayout"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]].lastObject;
+	NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeLayoutResult:root];
 }
 
 /** Describe the layout of the SoftPhone */
 -(ZKDescribeSoftphoneLayoutResult *)describeSoftphoneLayout {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeSoftphoneLayout"];
-	[env endElement:@"describeSoftphoneLayout"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]].lastObject;
+	NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSoftphoneLayoutResult:root];
 }
 
 /** Describe the search view of an sObject */
 -(NSArray *)describeSearchLayouts:(NSArray *)sObjectType {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeSearchLayouts"];
-	[env addElementArray:@"sObjectType" elemValue:sObjectType];
-	[env endElement:@"describeSearchLayouts"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
+	NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSearchLayoutsResult:root];
 }
 
 /** Describe a list of entity names that reflects the current user's searchable entities */
 -(NSArray *)describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeSearchableEntities"];
-	[env addBoolElement:@"includeOnlyEntitiesWithTabs" elemValue:includeOnlyEntitiesWithTabs];
-	[env endElement:@"describeSearchableEntities"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchableEntityResult class]];
+	NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSearchableEntitiesResult:root];
 }
 
 /** Describe a list of objects representing the order and scope of objects on a users search result page */
 -(NSArray *)describeSearchScopeOrder:(BOOL)includeRealTimeEntities {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeSearchScopeOrder"];
-	[env addBoolElement:@"includeRealTimeEntities" elemValue:includeRealTimeEntities];
-	[env endElement:@"describeSearchScopeOrder"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
+	NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSearchScopeOrderResult:root];
 }
 
 /** Describe the compact layouts of the given sObject */
 -(ZKDescribeCompactLayoutsResult *)describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeCompactLayouts"];
-	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
-	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
-	[env endElement:@"describeCompactLayouts"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]].lastObject;
+	NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeCompactLayoutsResult:root];
 }
 
 /** Describe the Path Assistants for the given sObject and optionally RecordTypes */
 -(ZKDescribePathAssistantsResult *)describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describePathAssistants"];
-	[env addElement:@"sObjectType"        elemValue:sObjectType   nillable:NO  optional:NO];
-	[env addElement:@"picklistValue"      elemValue:picklistValue nillable:YES optional:NO];
-	[env addElementArray:@"recordTypeIds" elemValue:recordTypeIds];
-	[env endElement:@"describePathAssistants"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribePathAssistantsResult class]].lastObject;
+	NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribePathAssistantsResult:root];
 }
 
 /** Describe the approval layouts of the given sObject */
 -(ZKDescribeApprovalLayoutResult *)describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeApprovalLayout"];
-	[env addElement:@"sObjectType"               elemValue:sObjectType          nillable:NO  optional:NO];
-	[env addElementArray:@"approvalProcessNames" elemValue:approvalProcessNames];
-	[env endElement:@"describeApprovalLayout"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeApprovalLayoutResult class]].lastObject;
+	NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeApprovalLayoutResult:root];
 }
 
 /** Describe the ListViews as SOQL metadata for the generation of SOQL. */
 -(ZKDescribeSoqlListViewResult *)describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeSoqlListViews"];
-	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
-	[env endElement:@"describeSoqlListViews"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]].lastObject;
+	NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSoqlListViewsResult:root];
 }
 
 /** Execute the specified list view and return the presentation-ready results. */
 -(ZKExecuteListViewResult *)executeListView:(ZKExecuteListViewRequest *)request {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addMruHeader:env];
-	[env moveToBody];
-	[env startElement:@"executeListView"];
-	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
-	[env endElement:@"executeListView"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKExecuteListViewResult class]].lastObject;
+	NSString *payload = [self makeExecuteListViewEnv:request];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeExecuteListViewResult:root];
 }
 
 /** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL. */
 -(ZKDescribeSoqlListViewResult *)describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeSObjectListViews"];
-	[env addElement:@"sObjectType"      elemValue:sObjectType      nillable:NO  optional:NO];
-	[env addBoolElement:@"recentsOnly"  elemValue:recentsOnly];
-	[env addElement:@"isSoqlCompatible" elemValue:isSoqlCompatible nillable:NO  optional:NO];
-	[env addIntElement:@"limit"         elemValue:limit];
-	[env addIntElement:@"offset"        elemValue:offset];
-	[env endElement:@"describeSObjectListViews"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]].lastObject;
+	NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeSObjectListViewsResult:root];
 }
 
 /** Describe the tabs that appear on a users page */
 -(NSArray *)describeTabs {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeTabs"];
-	[env endElement:@"describeTabs"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
+	NSString *payload = [self makeDescribeTabsEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeTabsResult:root];
 }
 
 /** Describe all tabs available to a user */
 -(NSArray *)describeAllTabs {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeAllTabs"];
-	[env endElement:@"describeAllTabs"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTab class]];
+	NSString *payload = [self makeDescribeAllTabsEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeAllTabsResult:root];
 }
 
 /** Describe the primary compact layouts for the sObjects requested */
 -(NSArray *)describePrimaryCompactLayouts:(NSArray *)sObjectTypes {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describePrimaryCompactLayouts"];
-	[env addElementArray:@"sObjectTypes" elemValue:sObjectTypes];
-	[env endElement:@"describePrimaryCompactLayouts"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayout class]];
+	NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribePrimaryCompactLayoutsResult:root];
 }
 
 /** Update or insert a set of sObjects based on object id */
 -(NSArray *)upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addAssignmentRuleHeader:env];
-	[self addMruHeader:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addAllOrNoneHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[self addPackageVersionHeader:env];
-	[self addEmailHeader:env];
-	[self addOwnerChangeOptions:env];
-	[env moveToBody];
-	[env startElement:@"upsert"];
-	[env addElement:@"externalIDFieldName" elemValue:externalIDFieldName nillable:NO  optional:NO];
-	[env addElementArray:@"sObjects"       elemValue:sObjects];
-	[env endElement:@"upsert"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
+	NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeUpsertResult:root];
 }
 
 /** Merge and update a set of sObjects based on object id */
 -(NSArray *)merge:(NSArray *)request {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addAssignmentRuleHeader:env];
-	[self addMruHeader:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[self addPackageVersionHeader:env];
-	[self addEmailHeader:env];
-	[env moveToBody];
-	[env startElement:@"merge"];
-	[env addElementArray:@"request" elemValue:request];
-	[env endElement:@"merge"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
+	NSString *payload = [self makeMergeEnv:request];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeMergeResult:root];
 }
 
 /** Delete a set of sObjects */
 -(NSArray *)delete:(NSArray *)ids {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addUserTerritoryDeleteHeader:env];
-	[self addEmailHeader:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addAllOrNoneHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[env moveToBody];
-	[env startElement:@"delete"];
-	[env addElementArray:@"ids" elemValue:ids];
-	[env endElement:@"delete"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
+	NSString *payload = [self makeDeleteEnv:ids];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDeleteResult:root];
 }
 
 /** Undelete a set of sObjects */
 -(NSArray *)undelete:(NSArray *)ids {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addAllOrNoneHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"undelete"];
-	[env addElementArray:@"ids" elemValue:ids];
-	[env endElement:@"undelete"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
+	NSString *payload = [self makeUndeleteEnv:ids];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeUndeleteResult:root];
 }
 
 /** Empty a set of sObjects from the recycle bin */
 -(NSArray *)emptyRecycleBin:(NSArray *)ids {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"emptyRecycleBin"];
-	[env addElementArray:@"ids" elemValue:ids];
-	[env endElement:@"emptyRecycleBin"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
+	NSString *payload = [self makeEmptyRecycleBinEnv:ids];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeEmptyRecycleBinResult:root];
 }
 
 /** Submit an entity to a workflow process or process a workitem */
 -(NSArray *)process:(NSArray *)actions {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"process"];
-	[env addElementArray:@"actions" elemValue:actions];
-	[env endElement:@"process"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
+	NSString *payload = [self makeProcessEnv:actions];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeProcessResult:root];
 }
 
 /** convert a set of leads */
 -(NSArray *)convertLead:(NSArray *)leadConverts {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"convertLead"];
-	[env addElementArray:@"leadConverts" elemValue:leadConverts];
-	[env endElement:@"convertLead"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
+	NSString *payload = [self makeConvertLeadEnv:leadConverts];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeConvertLeadResult:root];
 }
 
 /** Logout the current user, invalidating the current session. */
 -(void)logout {
-	if (!authSource) return ;
+	if (!self.authSource) return ;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"logout"];
-	[env endElement:@"logout"];
-	[self sendRequest:env.end name:NSStringFromSelector(_cmd)];
+	NSString *payload = [self makeLogoutEnv];
+	[self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
 }
-
 /** Logs out and invalidates session ids */
 -(NSArray *)invalidateSessions:(NSArray *)sessionIds {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"invalidateSessions"];
-	[env addElementArray:@"sessionIds" elemValue:sessionIds];
-	[env endElement:@"invalidateSessions"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
+	NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeInvalidateSessionsResult:root];
 }
 
 /** Get the IDs for deleted sObjects */
 -(ZKGetDeletedResult *)getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"getDeleted"];
-	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
-	[env addElement:@"startDate"   elemValue:startDate   nillable:NO  optional:NO];
-	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
-	[env endElement:@"getDeleted"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetDeletedResult class]].lastObject;
+	NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeGetDeletedResult:root];
 }
 
 /** Get the IDs for updated sObjects */
 -(ZKGetUpdatedResult *)getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"getUpdated"];
-	[env addElement:@"sObjectType" elemValue:sObjectType nillable:NO  optional:NO];
-	[env addElement:@"startDate"   elemValue:startDate   nillable:NO  optional:NO];
-	[env addElement:@"endDate"     elemValue:endDate     nillable:NO  optional:NO];
-	[env endElement:@"getUpdated"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]].lastObject;
+	NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeGetUpdatedResult:root];
 }
 
 /** Create a Query Cursor */
 -(ZKQueryResult *)query:(NSString *)queryString {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addQueryOptions:env];
-	[self addMruHeader:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"query"];
-	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
-	[env endElement:@"query"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser queryResult:@"result"];
+	NSString *payload = [self makeQueryEnv:queryString];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeQueryResult:root];
 }
 
 /** Create a Query Cursor, including deleted sObjects */
 -(ZKQueryResult *)queryAll:(NSString *)queryString {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addQueryOptions:env];
-	[env moveToBody];
-	[env startElement:@"queryAll"];
-	[env addElement:@"queryString" elemValue:queryString nillable:NO  optional:NO];
-	[env endElement:@"queryAll"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser queryResult:@"result"];
+	NSString *payload = [self makeQueryAllEnv:queryString];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeQueryAllResult:root];
 }
 
 /** Gets the next batch of sObjects from a query */
 -(ZKQueryResult *)queryMore:(NSString *)queryLocator {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addQueryOptions:env];
-	[env moveToBody];
-	[env startElement:@"queryMore"];
-	[env addElement:@"queryLocator" elemValue:queryLocator nillable:NO  optional:NO];
-	[env endElement:@"queryMore"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser queryResult:@"result"];
+	NSString *payload = [self makeQueryMoreEnv:queryLocator];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeQueryMoreResult:root];
 }
 
 /** Gets server timestamp */
 -(ZKGetServerTimestampResult *)getServerTimestamp {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"getServerTimestamp"];
-	[env endElement:@"getServerTimestamp"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]].lastObject;
+	NSString *payload = [self makeGetServerTimestampEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeGetServerTimestampResult:root];
 }
 
 /** Set a user's password */
 -(ZKSetPasswordResult *)setPassword:(NSString *)userId password:(NSString *)password {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"setPassword"];
-	[env addElement:@"userId"   elemValue:userId   nillable:NO  optional:NO];
-	[env addElement:@"password" elemValue:password nillable:NO  optional:NO];
-	[env endElement:@"setPassword"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]].lastObject;
+	NSString *payload = [self makeSetPasswordEnv:userId password:password];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeSetPasswordResult:root];
 }
 
 /** Change the current user's password */
 -(ZKChangeOwnPasswordResult *)changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"changeOwnPassword"];
-	[env addElement:@"oldPassword" elemValue:oldPassword nillable:NO  optional:NO];
-	[env addElement:@"newPassword" elemValue:newPassword nillable:NO  optional:NO];
-	[env endElement:@"changeOwnPassword"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKChangeOwnPasswordResult class]].lastObject;
+	NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeChangeOwnPasswordResult:root];
 }
 
 /** Reset a user's password */
 -(ZKResetPasswordResult *)resetPassword:(NSString *)userId {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addEmailHeader:env];
-	[env moveToBody];
-	[env startElement:@"resetPassword"];
-	[env addElement:@"userId" elemValue:userId nillable:NO  optional:NO];
-	[env endElement:@"resetPassword"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]].lastObject;
+	NSString *payload = [self makeResetPasswordEnv:userId];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeResetPasswordResult:root];
 }
 
 /** Returns standard information relevant to the current user */
 -(ZKUserInfo *)getUserInfo {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"getUserInfo"];
-	[env endElement:@"getUserInfo"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]].lastObject;
+	NSString *payload = [self makeGetUserInfoEnv];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeGetUserInfoResult:root];
 }
 
 /** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete */
 -(NSArray *)deleteByExample:(NSArray *)sObjects {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addUserTerritoryDeleteHeader:env];
-	[self addEmailHeader:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addAllOrNoneHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[env moveToBody];
-	[env startElement:@"deleteByExample"];
-	[env addElementArray:@"sObjects" elemValue:sObjects];
-	[env endElement:@"deleteByExample"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteByExampleResult class]];
+	NSString *payload = [self makeDeleteByExampleEnv:sObjects];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDeleteByExampleResult:root];
 }
 
 /** Send existing draft EmailMessage */
 -(NSArray *)sendEmailMessage:(NSArray *)ids {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"sendEmailMessage"];
-	[env addElementArray:@"ids" elemValue:ids];
-	[env endElement:@"sendEmailMessage"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
+	NSString *payload = [self makeSendEmailMessageEnv:ids];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeSendEmailMessageResult:root];
 }
 
 /** Send outbound email */
 -(NSArray *)sendEmail:(NSArray *)messages {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"sendEmail"];
-	[env addElementArray:@"messages" elemValue:messages];
-	[env endElement:@"sendEmail"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
+	NSString *payload = [self makeSendEmailEnv:messages];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeSendEmailResult:root];
 }
 
 /** Perform a template merge on one or more blocks of text. */
 -(NSArray *)renderEmailTemplate:(NSArray *)renderRequests {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"renderEmailTemplate"];
-	[env addElementArray:@"renderRequests" elemValue:renderRequests];
-	[env endElement:@"renderEmailTemplate"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
+	NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeRenderEmailTemplateResult:root];
 }
 
 /** Perform a template merge using an email template stored in the database. */
 -(ZKRenderStoredEmailTemplateResult *)renderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[env moveToBody];
-	[env startElement:@"renderStoredEmailTemplate"];
-	[env addElement:@"request" elemValue:request nillable:NO  optional:NO];
-	[env endElement:@"renderStoredEmailTemplate"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderStoredEmailTemplateResult class]].lastObject;
+	NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeRenderStoredEmailTemplateResult:root];
 }
 
 /** Perform a series of predefined actions such as quick create or log a task */
 -(NSArray *)performQuickActions:(NSArray *)quickActions {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addAssignmentRuleHeader:env];
-	[self addMruHeader:env];
-	[self addAllowFieldTruncationHeader:env];
-	[self addDisableFeedTrackingHeader:env];
-	[self addStreamingEnabledHeader:env];
-	[self addAllOrNoneHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[self addLocaleOptions:env];
-	[self addDebuggingHeader:env];
-	[self addPackageVersionHeader:env];
-	[self addEmailHeader:env];
-	[self addOwnerChangeOptions:env];
-	[env moveToBody];
-	[env startElement:@"performQuickActions"];
-	[env addElementArray:@"quickActions" elemValue:quickActions];
-	[env endElement:@"performQuickActions"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
+	NSString *payload = [self makePerformQuickActionsEnv:quickActions];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makePerformQuickActionsResult:root];
 }
 
 /** Describe the details of a series of quick actions */
 -(NSArray *)describeQuickActions:(NSArray *)quickActions {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeQuickActions"];
-	[env addElementArray:@"quickActions" elemValue:quickActions];
-	[env endElement:@"describeQuickActions"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
+	NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeQuickActionsResult:root];
 }
 
 /** Describe the details of a series of quick actions in context of requested recordType id for Update actions */
 -(NSArray *)describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeQuickActionsForRecordType"];
-	[env addElementArray:@"quickActions" elemValue:quickActions];
-	[env addElement:@"recordTypeId"      elemValue:recordTypeId nillable:NO  optional:NO];
-	[env endElement:@"describeQuickActionsForRecordType"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
+	NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeQuickActionsForRecordTypeResult:root];
 }
 
 /** Describe the details of a series of quick actions available for the given contextType */
 -(NSArray *)describeAvailableQuickActions:(NSString *)contextType {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeAvailableQuickActions"];
-	[env addElement:@"contextType" elemValue:contextType nillable:YES optional:NO];
-	[env endElement:@"describeAvailableQuickActions"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
+	NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeAvailableQuickActionsResult:root];
 }
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context */
 -(NSArray *)retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"retrieveQuickActionTemplates"];
-	[env addElementArray:@"quickActionNames" elemValue:quickActionNames];
-	[env addElement:@"contextId"             elemValue:contextId        nillable:YES optional:NO];
-	[env endElement:@"retrieveQuickActionTemplates"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
+	NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeRetrieveQuickActionTemplatesResult:root];
 }
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action */
 -(NSArray *)retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"retrieveMassQuickActionTemplates"];
-	[env addElement:@"quickActionName" elemValue:quickActionName nillable:NO  optional:NO];
-	[env addElementArray:@"contextIds" elemValue:contextIds];
-	[env endElement:@"retrieveMassQuickActionTemplates"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
+	NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeRetrieveMassQuickActionTemplatesResult:root];
 }
 
 /** Describe visualforce for an org */
 -(ZKDescribeVisualForceResult *)describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[env moveToBody];
-	[env startElement:@"describeVisualForce"];
-	[env addBoolElement:@"includeAllDetails" elemValue:includeAllDetails];
-	[env addElement:@"namespacePrefix"       elemValue:namespacePrefix   nillable:YES optional:NO];
-	[env endElement:@"describeVisualForce"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeVisualForceResult class]].lastObject;
+	NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeVisualForceResult:root];
 }
 
 /** Find duplicates for a set of sObjects */
 -(NSArray *)findDuplicates:(NSArray *)sObjects {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[env moveToBody];
-	[env startElement:@"findDuplicates"];
-	[env addElementArray:@"sObjects" elemValue:sObjects];
-	[env endElement:@"findDuplicates"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
+	NSString *payload = [self makeFindDuplicatesEnv:sObjects];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeFindDuplicatesResult:root];
 }
 
 /** Find duplicates for a set of ids */
 -(NSArray *)findDuplicatesByIds:(NSArray *)ids {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addDuplicateRuleHeader:env];
-	[env moveToBody];
-	[env startElement:@"findDuplicatesByIds"];
-	[env addElementArray:@"ids" elemValue:ids];
-	[env endElement:@"findDuplicatesByIds"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
+	NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeFindDuplicatesByIdsResult:root];
 }
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine */
 -(NSArray *)describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields {
-	if (!authSource) return nil;
+	if (!self.authSource) return nil;
 	[self checkSession];
-	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:authSource.sessionId];
-	[self addCallOptions:env];
-	[self addPackageVersionHeader:env];
-	[self addLocaleOptions:env];
-	[env moveToBody];
-	[env startElement:@"describeNouns"];
-	[env addElementArray:@"nouns"        elemValue:nouns];
-	[env addBoolElement:@"onlyRenamed"   elemValue:onlyRenamed];
-	[env addBoolElement:@"includeFields" elemValue:includeFields];
-	[env endElement:@"describeNouns"];
-	zkElement *rn = [self sendRequest:env.end name:NSStringFromSelector(_cmd)];
-	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:rn];
-	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeNounResult class]];
+	NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
+	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
+	return [self makeDescribeNounsResult:root];
 }
 
 @end
