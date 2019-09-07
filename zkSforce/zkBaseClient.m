@@ -25,15 +25,11 @@
 #import "zkSoapException.h"
 #import "zkParser.h"
 
-@interface ZKBaseClient ()
-@property (readwrite) zkElement *lastResponseSoapHeaders;
-@end
-
 @implementation ZKBaseClient
 
 static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
-@synthesize endpointUrl, delegate, urlSession, lastResponseSoapHeaders;
+@synthesize endpointUrl, delegate, urlSession;
 
 -(id)copyWithZone:(NSZone *)z {
     ZKBaseClient *c = [[[self class] alloc] init];
@@ -148,7 +144,6 @@ NSTimeInterval intervalFrom(uint64_t start) {
         @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, root.namespace] userInfo:nil];
     }
     zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
-    [self setLastResponseSoapHeaders:header];
     [self handleResponseSoapHeaders:header];
     
     zkElement *body = [root childElement:@"Body" ns:SOAP_NS];

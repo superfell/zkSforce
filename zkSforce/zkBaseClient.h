@@ -42,9 +42,6 @@
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;                       // DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root; // DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
 
-/** @return the Soap:Header element from the response payload. */
-@property (readonly) zkElement *lastResponseSoapHeaders;
-
 @end
 
 @interface ZKBaseClient (ASync)
