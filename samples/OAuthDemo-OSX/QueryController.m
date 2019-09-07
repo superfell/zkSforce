@@ -36,10 +36,20 @@
 }
 
 -(IBAction)runQuery:(id)sender {
-    ZKQueryResult *qr = [client query:@"select id,name from account limit 25"];
-    self.results = qr;
-    table.dataSource = qr;
-    [table reloadData];
+    [client performQuery:@"select id,name from account limit 25"
+               failBlock:^(NSException *ex) {
+                   NSAlert *a = [NSAlert alertWithMessageText:ex.reason
+                                                defaultButton:@"Close"
+                                              alternateButton:nil
+                                                  otherButton:nil
+                                    informativeTextWithFormat:@""];
+                   [a runModal];
+               }
+           completeBlock:^(ZKQueryResult *qr) {
+               self.results = qr;
+               self->table.dataSource = qr;
+               [self->table reloadData];
+           }];
 }
 
 -(IBAction)refreshSid:(id)sender {
