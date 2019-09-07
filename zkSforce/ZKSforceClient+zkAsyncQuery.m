@@ -29,11 +29,7 @@
 @implementation ZKSforceBaseClient (zkAsyncQuery)
 
 -(BOOL)confirmLoggedIn {
-	//if (!self.loggedIn) {
-	//	NSLog(@"ZKSforceClient does not have a valid session. request not executed");
-	//	return NO;
-	//}
-	return YES;
+	return YES; // concrete impl in subclass
 }
 
 -(BOOL)handledError:(NSException *)ex failBlock:(zkFailWithExceptionBlock)failBlock {
@@ -72,6 +68,11 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeSObjectBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	ZKDescribeSObject *shortcut = [self preHook_describeSObject:sObjectType];
 	if (shortcut != nil) {
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -95,6 +96,11 @@
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
 	[self startRequest:payload name:@"describeSObjects" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -113,6 +119,11 @@
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSArray *shortcut = [self preHook_describeGlobal];
 	if (shortcut != nil) {
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -136,6 +147,11 @@
                                 failBlock:(zkFailWithExceptionBlock)failBlock
                             completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
 	[self startRequest:payload name:@"describeDataCategoryGroups" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -152,6 +168,11 @@
                                          failBlock:(zkFailWithExceptionBlock)failBlock
                                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
 	[self startRequest:payload name:@"describeDataCategoryGroupStructures" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -167,6 +188,11 @@
 -(void) performDescribeDataCategoryMappingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
 	[self startRequest:payload name:@"describeDataCategoryMappings" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -182,6 +208,11 @@
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteKnowledgeSettingsBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
 	[self startRequest:payload name:@"describeKnowledgeSettings" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -198,6 +229,11 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteDescribeAppMenuResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
 	[self startRequest:payload name:@"describeAppMenu" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -213,6 +249,11 @@
 -(void) performDescribeGlobalThemeWithFailBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteDescribeGlobalThemeBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeGlobalThemeEnv];
 	[self startRequest:payload name:@"describeGlobalTheme" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -229,6 +270,11 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteDescribeThemeResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeThemeEnv:sobjectType];
 	[self startRequest:payload name:@"describeTheme" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -245,6 +291,11 @@
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteDescribeLayoutResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
 	[self startRequest:payload name:@"describeLayout" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -260,6 +311,11 @@
 -(void) performDescribeSoftphoneLayoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
                          completeBlock:(zkCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
 	[self startRequest:payload name:@"describeSoftphoneLayout" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -276,6 +332,11 @@
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
 	[self startRequest:payload name:@"describeSearchLayouts" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -292,6 +353,11 @@
                                 failBlock:(zkFailWithExceptionBlock)failBlock
                             completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
 	[self startRequest:payload name:@"describeSearchableEntities" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -308,6 +374,11 @@
                               failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
 	[self startRequest:payload name:@"describeSearchScopeOrder" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -324,6 +395,11 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeCompactLayoutsResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
 	[self startRequest:payload name:@"describeCompactLayouts" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -340,6 +416,11 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribePathAssistantsResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
 	[self startRequest:payload name:@"describePathAssistants" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -356,6 +437,11 @@
                             failBlock:(zkFailWithExceptionBlock)failBlock
                         completeBlock:(zkCompleteDescribeApprovalLayoutResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
 	[self startRequest:payload name:@"describeApprovalLayout" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -372,6 +458,11 @@
                            failBlock:(zkFailWithExceptionBlock)failBlock
                        completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
 	[self startRequest:payload name:@"describeSoqlListViews" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -388,6 +479,11 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteExecuteListViewResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeExecuteListViewEnv:request];
 	[self startRequest:payload name:@"executeListView" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -404,6 +500,11 @@
                               failBlock:(zkFailWithExceptionBlock)failBlock
                           completeBlock:(zkCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
 	[self startRequest:payload name:@"describeSObjectListViews" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -419,6 +520,11 @@
 -(void) performDescribeTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeTabsEnv];
 	[self startRequest:payload name:@"describeTabs" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -434,6 +540,11 @@
 -(void) performDescribeAllTabsWithFailBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeAllTabsEnv];
 	[self startRequest:payload name:@"describeAllTabs" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -450,6 +561,11 @@
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
 	[self startRequest:payload name:@"describePrimaryCompactLayouts" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -466,6 +582,11 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeCreateEnv:sObjects];
 	[self startRequest:payload name:@"create" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -482,6 +603,11 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeUpdateEnv:sObjects];
 	[self startRequest:payload name:@"update" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -498,6 +624,11 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
 	[self startRequest:payload name:@"upsert" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -514,6 +645,11 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeMergeEnv:request];
 	[self startRequest:payload name:@"merge" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -530,6 +666,11 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDeleteEnv:ids];
 	[self startRequest:payload name:@"delete" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -546,6 +687,11 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeUndeleteEnv:ids];
 	[self startRequest:payload name:@"undelete" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -562,6 +708,11 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeEmptyRecycleBinEnv:ids];
 	[self startRequest:payload name:@"emptyRecycleBin" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -578,6 +729,11 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteDictionaryBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
 	[self startRequest:payload name:@"retrieve" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -594,6 +750,11 @@
              failBlock:(zkFailWithExceptionBlock)failBlock
          completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeProcessEnv:actions];
 	[self startRequest:payload name:@"process" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -610,6 +771,11 @@
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeConvertLeadEnv:leadConverts];
 	[self startRequest:payload name:@"convertLead" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -625,6 +791,11 @@
 -(void) performLogoutWithFailBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteVoidBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeLogoutEnv];
 	[self startRequest:payload name:@"logout" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -641,6 +812,11 @@
                         failBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
 	[self startRequest:payload name:@"invalidateSessions" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -657,6 +833,11 @@
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetDeletedResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
 	[self startRequest:payload name:@"getDeleted" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -673,6 +854,11 @@
                 failBlock:(zkFailWithExceptionBlock)failBlock
             completeBlock:(zkCompleteGetUpdatedResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
 	[self startRequest:payload name:@"getUpdated" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -689,6 +875,11 @@
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeQueryEnv:queryString];
 	[self startRequest:payload name:@"query" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -705,6 +896,11 @@
               failBlock:(zkFailWithExceptionBlock)failBlock
           completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeQueryAllEnv:queryString];
 	[self startRequest:payload name:@"queryAll" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -721,6 +917,11 @@
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteQueryResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeQueryMoreEnv:queryLocator];
 	[self startRequest:payload name:@"queryMore" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -737,6 +938,11 @@
             failBlock:(zkFailWithExceptionBlock)failBlock
         completeBlock:(zkCompleteSearchResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeSearchEnv:searchString];
 	[self startRequest:payload name:@"search" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -752,6 +958,11 @@
 -(void) performGetServerTimestampWithFailBlock:(zkFailWithExceptionBlock)failBlock
                     completeBlock:(zkCompleteGetServerTimestampResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeGetServerTimestampEnv];
 	[self startRequest:payload name:@"getServerTimestamp" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -768,6 +979,11 @@
                  failBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteSetPasswordResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeSetPasswordEnv:userId password:password];
 	[self startRequest:payload name:@"setPassword" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -784,6 +1000,11 @@
                        failBlock:(zkFailWithExceptionBlock)failBlock
                    completeBlock:(zkCompleteChangeOwnPasswordResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
 	[self startRequest:payload name:@"changeOwnPassword" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -800,6 +1021,11 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteResetPasswordResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeResetPasswordEnv:userId];
 	[self startRequest:payload name:@"resetPassword" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -815,6 +1041,11 @@
 -(void) performGetUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
              completeBlock:(zkCompleteUserInfoBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeGetUserInfoEnv];
 	[self startRequest:payload name:@"getUserInfo" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -831,6 +1062,11 @@
                      failBlock:(zkFailWithExceptionBlock)failBlock
                  completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDeleteByExampleEnv:sObjects];
 	[self startRequest:payload name:@"deleteByExample" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -847,6 +1083,11 @@
                       failBlock:(zkFailWithExceptionBlock)failBlock
                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeSendEmailMessageEnv:ids];
 	[self startRequest:payload name:@"sendEmailMessage" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -863,6 +1104,11 @@
                failBlock:(zkFailWithExceptionBlock)failBlock
            completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeSendEmailEnv:messages];
 	[self startRequest:payload name:@"sendEmail" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -879,6 +1125,11 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
 	[self startRequest:payload name:@"renderEmailTemplate" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -895,6 +1146,11 @@
                                failBlock:(zkFailWithExceptionBlock)failBlock
                            completeBlock:(zkCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
 	[self startRequest:payload name:@"renderStoredEmailTemplate" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -911,6 +1167,11 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makePerformQuickActionsEnv:quickActions];
 	[self startRequest:payload name:@"performQuickActions" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -927,6 +1188,11 @@
                           failBlock:(zkFailWithExceptionBlock)failBlock
                       completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
 	[self startRequest:payload name:@"describeQuickActions" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -943,6 +1209,11 @@
                                        failBlock:(zkFailWithExceptionBlock)failBlock
                                    completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
 	[self startRequest:payload name:@"describeQuickActionsForRecordType" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -959,6 +1230,11 @@
                                    failBlock:(zkFailWithExceptionBlock)failBlock
                                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
 	[self startRequest:payload name:@"describeAvailableQuickActions" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -975,6 +1251,11 @@
                                   failBlock:(zkFailWithExceptionBlock)failBlock
                               completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
 	[self startRequest:payload name:@"retrieveQuickActionTemplates" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -991,6 +1272,11 @@
                                       failBlock:(zkFailWithExceptionBlock)failBlock
                                   completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
 	[self startRequest:payload name:@"retrieveMassQuickActionTemplates" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -1007,6 +1293,11 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteDescribeVisualForceResultBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
 	[self startRequest:payload name:@"describeVisualForce" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -1023,6 +1314,11 @@
                     failBlock:(zkFailWithExceptionBlock)failBlock
                 completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeFindDuplicatesEnv:sObjects];
 	[self startRequest:payload name:@"findDuplicates" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -1039,6 +1335,11 @@
                          failBlock:(zkFailWithExceptionBlock)failBlock
                      completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
 	[self startRequest:payload name:@"findDuplicatesByIds" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {
@@ -1055,6 +1356,11 @@
                    failBlock:(zkFailWithExceptionBlock)failBlock
                completeBlock:(zkCompleteArrayBlock)completeBlock {
 
+	if (![self confirmLoggedIn]) {
+		[self handledError:[NSException exceptionWithName:@"Unauthorized" reason:@"This method requires authentication, which hasn't been performed yet." userInfo:nil]
+				failBlock:failBlock];
+		return;
+	}
 	NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
 	[self startRequest:payload name:@"describeNouns" handler:^(zkElement *root, NSException *ex) {
 		if (![self handledError:ex failBlock:failBlock]) {

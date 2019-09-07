@@ -86,6 +86,7 @@ static const int DEFAULT_API_VERSION = 46;
     rhs->preferedApiVersion = preferedApiVersion;
     rhs->limitInfo = limitInfo;
     rhs.cacheDescribes = cacheDescribes;
+    rhs->describes = [[NSMutableDictionary alloc] init];
     return rhs;
 }
 
@@ -124,10 +125,18 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 -(ZKLoginResult *)soapLogin:(ZKSoapLogin *)auth {
-    ZKLoginResult *lr = auth.login;
+    ZKLoginResult *lr = [auth login];
     self.authenticationInfo = auth;
     self.userInfo = lr.userInfo;
     return lr;
+}
+
+/** TODO: Login to the Salesforce.com SOAP Api */
+-(void) performLogin:(NSString *)username password:(NSString *)password
+           failBlock:(zkFailWithExceptionBlock)failBlock
+       completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+    
+    failBlock([NSException exceptionWithName:@"NotImplemented" reason:@"" userInfo:nil]);
 }
 
 - (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
@@ -178,10 +187,19 @@ static const int DEFAULT_API_VERSION = 46;
         self.endpointUrl = self.authSource.instanceUrl;
 }
 
-- (ZKUserInfo *)currentUserInfo {
-    if (userInfo == nil)
-        userInfo = [self getUserInfo];
-    return userInfo;
+-(void)currentUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                      completeBlock:(zkCompleteUserInfoBlock)completeBlock {
+    ZKUserInfo *i = self.userInfo;
+    if (i != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completeBlock(i);
+        });
+        return;
+    }
+    [self performGetUserInfoWithFailBlock:failBlock completeBlock:^(ZKUserInfo *result) {
+        self.userInfo = result;
+        completeBlock(result);
+    }];
 }
 
 - (NSURL *)serverUrl {
@@ -191,6 +209,15 @@ static const int DEFAULT_API_VERSION = 46;
 - (NSString *)sessionId {
     [self checkSession];
     return self.authSource.sessionId;
+}
+
+// Override method in ZKSforceBaseClient
+-(BOOL)confirmLoggedIn {
+    if (![self loggedIn]) {
+        NSLog(@"ZKSforceClient does not have a valid session. request not executed");
+        return NO;
+    }
+    return YES;
 }
 
 -(BOOL)updateMru {
@@ -384,16 +411,12 @@ static const int DEFAULT_API_VERSION = 46;
     return sobjects;
 }
 
--(void)updateLimitInfo:(zkElement *)soapHeaders {
-    // this looks in the last response for a limit info header and if we got one, hangs onto it.
+-(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
+    // this looks in the supplied headers for a limit info header and if we got one, hangs onto it.
     zkElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
     if (liElem != nil) {
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
     }
-}
-
--(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
-    [self updateLimitInfo:soapHeaders];
 }
 
 @end

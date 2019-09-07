@@ -20,7 +20,7 @@
 //
 
 
-#import "ZKSforceBaseClient.h"
+#import "ZKSforceClient+zkAsyncQuery.h"
 #import "zkAuthentication.h"
 #import <AvailabilityMacros.h>
 
@@ -151,7 +151,9 @@
  @return a diction of record Id -> ZKSObject instance. If a specified record doesn't exist
  it won't appear in the returned dictionary
  */
-- (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids DEPRECATED_MSG_ATTRIBUTE("Please use performRetrieve:sObjectType:ids instead");
+- (NSDictionary *)retrieve:(NSString *)fields
+                   sobject:(NSString *)sobjectType
+                       ids:(NSArray *)ids DEPRECATED_MSG_ATTRIBUTE("Please use performRetrieve:sObjectType:ids instead");
 
 /** create 1 or more new records in Salseforce.
  
@@ -179,8 +181,10 @@
 /** @return true if we've performed a login request and it succeeded. */
 @property (readonly) BOOL loggedIn;
 
-/** @return the UserInfo returned by the last call to login. */
-@property (readonly) ZKUserInfo *currentUserInfo;
+/** @return the UserInfo returned by the last call to login. If login was via OAuth
+    will call getUserInfo if needed. */
+-(void)currentUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
+                                completeBlock:(zkCompleteUserInfoBlock)completeBlock;
 
 /** @return the current endpoint URL where requests are being sent. */
 @property (readonly) NSURL *serverUrl;

@@ -50,3 +50,8 @@ Making everything async complicates a few things.
   async. As they're already exposed by the delegate, perhaps that can go away.
   
 - A bunch of changes are in the generated code, see the async branch of the WSDL2ZKSforce repo.
+
+- ZKSforceClient API changes
+    - lastResponseSoapHeaders is removed. If you need to example headers, override the handleResponseSoapHeaders method
+    - currentUserInfo now takes a callback block
+    - performXXX would log if called before auth, will now call the failBlock
