@@ -99,6 +99,7 @@
 		F414BEE41845A40B00322AC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BEE31845A40B00322AC2 /* Security.framework */; };
 		F41F708F23134D290008A2C2 /* ZKSforceBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F708D23134D290008A2C2 /* ZKSforceBaseClient.m */; };
 		F41F70932313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F70912313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m */; };
+		F41F70A2231396A20008A2C2 /* NSArray+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F41F70A1231396A20008A2C2 /* NSArray+Extras.m */; };
 		F425FA241A339D300055D8B8 /* ZKActionOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA011A339D300055D8B8 /* ZKActionOverride.m */; };
 		F425FA251A339D300055D8B8 /* ZKDescribeSoqlListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA031A339D300055D8B8 /* ZKDescribeSoqlListView.m */; };
 		F425FA261A339D300055D8B8 /* ZKDescribeSoqlListViewParams.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA051A339D300055D8B8 /* ZKDescribeSoqlListViewParams.m */; };
@@ -405,6 +406,8 @@
 		F41F7090231350530008A2C2 /* ZKAuthenticationInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZKAuthenticationInfo.h; path = ../../../zkSforce/ZKAuthenticationInfo.h; sourceTree = "<group>"; };
 		F41F70912313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKSforceClient+zkAsyncQuery.m"; path = "../../../zkSforce/ZKSforceClient+zkAsyncQuery.m"; sourceTree = "<group>"; };
 		F41F70922313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKSforceClient+zkAsyncQuery.h"; path = "../../../zkSforce/ZKSforceClient+zkAsyncQuery.h"; sourceTree = "<group>"; };
+		F41F70A0231396A20008A2C2 /* NSArray+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSArray+Extras.h"; path = "../../../zkSforce/NSArray+Extras.h"; sourceTree = "<group>"; };
+		F41F70A1231396A20008A2C2 /* NSArray+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Extras.m"; path = "../../../zkSforce/NSArray+Extras.m"; sourceTree = "<group>"; };
 		F425FA001A339D300055D8B8 /* ZKActionOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKActionOverride.h; path = ../../../zkSforce/ZKActionOverride.h; sourceTree = "<group>"; };
 		F425FA011A339D300055D8B8 /* ZKActionOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKActionOverride.m; path = ../../../zkSforce/ZKActionOverride.m; sourceTree = "<group>"; };
 		F425FA021A339D300055D8B8 /* ZKDescribeSoqlListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKDescribeSoqlListView.h; path = ../../../zkSforce/ZKDescribeSoqlListView.h; sourceTree = "<group>"; };
@@ -1130,6 +1133,8 @@
 				F49C1D0013637932000CDE02 /* zkAuthentication.h */,
 				F49C1D0113637932000CDE02 /* zkAuthentication.m */,
 				F41F7090231350530008A2C2 /* ZKAuthenticationInfo.h */,
+				F41F70A0231396A20008A2C2 /* NSArray+Extras.h */,
+				F41F70A1231396A20008A2C2 /* NSArray+Extras.m */,
 			);
 			name = ZKSforce;
 			sourceTree = "<group>";
@@ -1354,6 +1359,7 @@
 				F414BEC81845A3BB00322AC2 /* ZKProcessResult.m in Sources */,
 				F414BEC91845A3BB00322AC2 /* ZKQueryOptions.m in Sources */,
 				F4B76FFF1BB7371F00681844 /* ZKDescribePathAssistantsResult.m in Sources */,
+				F41F70A2231396A20008A2C2 /* NSArray+Extras.m in Sources */,
 				F414BECA1845A3BB00322AC2 /* ZKRecordTypeCompactLayoutMapping.m in Sources */,
 				F4B770081BB7371F00681844 /* ZKVisualforcePage.m in Sources */,
 				F414BECB1845A3BB00322AC2 /* ZKRelatedContent.m in Sources */,
