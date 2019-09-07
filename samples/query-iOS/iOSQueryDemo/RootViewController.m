@@ -30,13 +30,19 @@
     _client = newClient;
 
     // run the query in the background thread, when its done, update the ui.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^(void) {
-        ZKQueryResult *qr = [newClient query:@"select id,name from account order by SystemModstamp desc LIMIT 50"];
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            self.results = qr;
-            [self.tableView reloadData];
-        });
-    });
+    [newClient performQuery:@"select id,name from account order by SystemModstamp desc LIMIT 50"
+                  failBlock:^(NSException *ex) {
+                      UIAlertView *a = [[UIAlertView alloc] initWithTitle:ex.name
+                                                                  message:ex.reason
+                                                                 delegate:nil
+                                                        cancelButtonTitle:@"Close"
+                                                        otherButtonTitles:nil];
+                      [a show];
+                  }
+              completeBlock:^(ZKQueryResult *qr) {
+                  self.results = qr;
+                  [self.tableView reloadData];
+              }];
 }
 
 // Customize the number of sections in the table view.

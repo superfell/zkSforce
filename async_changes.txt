@@ -29,6 +29,8 @@ Making everything async complicates a few things.
 
 - checkSession is called in a lot of places, but may need to make an API request, so this
   needs reworking.
+
+- performLogin doesn't do any of the login specific behavour
   
 - In general the auth flows also need updating to be async.
 
