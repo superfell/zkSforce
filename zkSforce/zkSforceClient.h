@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2013 Simon Fell
+// Copyright (c) 2006-2013,2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -22,6 +22,7 @@
 
 #import "ZKSforceBaseClient.h"
 #import "zkAuthentication.h"
+#import <AvailabilityMacros.h>
 
 @class ZKUserInfo;
 @class ZKDescribeSObject;
@@ -66,7 +67,7 @@
 
 /** @name configuration for where to connect to and what api version to use */
 
-/** Set the default API version to connect to. (defaults to v35.0)
+/** Set the default API version to connect to. (defaults to v46.0)
  login will detect if the endpoint doesn't have this
  version and automatically retry on a lower API version.
 */
@@ -83,6 +84,7 @@
 /** returns an NSURL of where authentication will currently go. */
 @property (readonly) NSURL *authEndpointUrl;
 
+// TODO async version of auth setup
 
 /** @name Start an API session, need to call one of these before making any api call */
 
@@ -138,7 +140,7 @@
 
 
 /** make a search call with the passed in SOSL expression, @return an array of ZKSObject instances.*/
-- (NSArray *)search:(NSString *)sosl;
+- (NSArray *)search:(NSString *)sosl DEPRECATED_MSG_ATTRIBUTE("Please use performSearch instead");
 
 /** retreives a set of records,
  
@@ -156,14 +158,14 @@
     @param objects an array of ZKSObject's to create.
     @return a matching array of ZKSaveResults
 */
-- (NSArray *)create:(NSArray *)objects;
+- (NSArray *)create:(NSArray *)objects DEPRECATED_MSG_ATTRIBUTE("Please use performCreate instead");
 
 /** update 1 or more records in Salseforce.
  
  @param objects an array of ZKSObject's to update.
  @return a matching array of ZKSaveResults
  */
-- (NSArray *)update:(NSArray *)objects;
+- (NSArray *)update:(NSArray *)objects DEPRECATED_MSG_ATTRIBUTE("Please use performCreate instead");
 
 
 //////////////////////////////////////////////////////////////////////////////////////
