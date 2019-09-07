@@ -24,9 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKSforceClient+Operations.h"
+#import "ZKSforceBaseClient.h"
 
-@interface ZKSforceClient (zkAsyncQuery)
+@interface ZKSforceBaseClient (zkAsyncQuery)
 
 typedef void (^zkCompleteUserInfoBlock)                        (ZKUserInfo *result);
 typedef void (^zkCompleteSetPasswordResultBlock)               (ZKSetPasswordResult *result);

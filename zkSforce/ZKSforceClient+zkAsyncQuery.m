@@ -26,13 +26,13 @@
 
 #import "ZKSforceClient+zkAsyncQuery.h"
 
-@implementation ZKSforceClient (zkAsyncQuery)
+@implementation ZKSforceBaseClient (zkAsyncQuery)
 
 -(BOOL)confirmLoggedIn {
-	if (!self.loggedIn) {
-		NSLog(@"ZKSforceClient does not have a valid session. request not executed");
-		return NO;
-	}
+//    if (!self.loggedIn) {
+//        NSLog(@"ZKSforceClient does not have a valid session. request not executed");
+//        return NO;
+//    }
 	return YES;
 }
 
@@ -63,6 +63,9 @@
 		}
 	}];
 }
+
+-(ZKDescribeSObject *)preHook_describeSObject:(NSString *)sObjectType { return nil; }
+-(ZKDescribeSObject *)postHook_describeSObject:(ZKDescribeSObject *)r { return r; }
 
 /** Describe an sObject */
 -(void) performDescribeSObject:(NSString *)sObjectType
@@ -102,6 +105,9 @@
 		}
 	}];
 }
+
+-(NSArray *)preHook_describeGlobal { return nil; }
+-(NSArray *)postHook_describeGlobal:(NSArray *)r { return r; }
 
 /** Describe the Global state */
 -(void) performDescribeGlobalWithFailBlock:(zkFailWithExceptionBlock)failBlock

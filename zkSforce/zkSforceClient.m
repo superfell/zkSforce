@@ -54,6 +54,8 @@
 #import "ZKQueryOptions.h"
 #import "ZKDuplicateRuleHeader.h"
 #import "ZKXMLSerializable.h"
+#import "NSArray+Extras.h"
+#import "ZKSforceClient+zkAsyncQuery.h"
 
 static const int SAVE_BATCH_SIZE = 25;
 static const int DEFAULT_API_VERSION = 46;
@@ -134,7 +136,7 @@ static const int DEFAULT_API_VERSION = 46;
                                                   authHost:[NSURL URLWithString:authEndpointUrl]
                                                 apiVersion:preferedApiVersion
                                                   clientId:self.clientId
-                                                  delegate:delegate];
+                                                  delegate:self.delegate];
     return [self soapLogin:auth];
 }
 
@@ -157,7 +159,7 @@ static const int DEFAULT_API_VERSION = 46;
                                                                     authHost:[NSURL URLWithString:authEndpointUrl]
                                                                   apiVersion:preferedApiVersion
                                                                     clientId:self.clientId
-                                                                    delegate:delegate
+                                                                    delegate:self.delegate
                                                                        orgId:orgId
                                                                     portalId:portalId];
     return [self soapLogin:auth];
@@ -183,7 +185,7 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (NSURL *)serverUrl {
-    return endpointUrl;
+    return self.endpointUrl;
 }
 
 - (NSString *)sessionId {
@@ -226,7 +228,7 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (NSString *)serverHostAbbriviation {
-    NSString *host = endpointUrl.host;
+    NSString *host = self.endpointUrl.host;
     NSString *hostLower = host.lowercaseString;
     NSArray *suffixes = @[@".salesforce.com", @".force.com"];
     for (NSString *suffix in suffixes) {
@@ -290,18 +292,16 @@ static const int DEFAULT_API_VERSION = 46;
     return [self sobjectsImpl:objects name:@"update"];
 }
 
-- (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName {
+-(NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName {
     if(!self.authSource) return NULL;
     [self checkSession];
     
     // if more than we can do in one go, break it up.
     if (objects.count > SAVE_BATCH_SIZE) {
+        NSArray *chunks = [objects ZKPartitionWithSize:SAVE_BATCH_SIZE];
         NSMutableArray *allResults = [NSMutableArray arrayWithCapacity:objects.count];
-        NSRange rng = {0, MIN(SAVE_BATCH_SIZE, [objects count])};
-        while (rng.location < objects.count) {
-            [allResults addObjectsFromArray:[self sobjectsImpl:[objects subarrayWithRange:rng] name:elemName]];
-            rng.location += rng.length;
-            rng.length = MIN(SAVE_BATCH_SIZE, [objects count] - rng.location);
+        for (NSArray *chunk in chunks) {
+            [allResults addObjectsFromArray:[self sobjectsImpl:chunk name:elemName]];
         }
         return allResults;
     }
@@ -314,6 +314,60 @@ static const int DEFAULT_API_VERSION = 46;
     zkElement *root = [self sendRequest:payload name:[NSString stringWithFormat:@"%@:", elemName] returnRoot:YES];
     NSArray *results = [self makeCreateResult:root];
     return results;
+}
+
+/** Update a set of sObjects, chunks in SAVE_BATCH_SIZE chunks if needed */
+-(void) performUpdate:(NSArray *)sObjects
+            failBlock:(zkFailWithExceptionBlock)failBlock
+        completeBlock:(zkCompleteArrayBlock)completeBlock {
+    
+    if (sObjects.count <= SAVE_BATCH_SIZE) {
+        [super performUpdate:sObjects failBlock:failBlock completeBlock:completeBlock];
+        return;
+    }
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:sObjects.count];
+    NSArray *chunks = [sObjects ZKPartitionWithSize:SAVE_BATCH_SIZE];
+    NSUInteger __block idx = 0;
+    
+    zkCompleteArrayBlock cb;
+    cb = ^void(NSArray *result) {
+        [results addObjectsFromArray:result];
+        idx++;
+        if (idx >= chunks.count) {
+            completeBlock(results);
+        } else {
+            // next chunk
+            [super performUpdate:chunks[idx] failBlock:failBlock completeBlock:cb];
+        }
+    };
+    [super performUpdate:chunks[0] failBlock:failBlock completeBlock:cb];
+}
+
+/** Create a set of sObjects, chunks in SAVE_BATCH_SIZE chunks if needed */
+-(void) performCreate:(NSArray *)sObjects
+            failBlock:(zkFailWithExceptionBlock)failBlock
+        completeBlock:(zkCompleteArrayBlock)completeBlock {
+    
+    if (sObjects.count <= SAVE_BATCH_SIZE) {
+        [super performCreate:sObjects failBlock:failBlock completeBlock:completeBlock];
+        return;
+    }
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:sObjects.count];
+    NSArray *chunks = [sObjects ZKPartitionWithSize:SAVE_BATCH_SIZE];
+    NSUInteger __block idx = 0;
+    
+    zkCompleteArrayBlock cb;
+    cb = ^void(NSArray *result) {
+        [results addObjectsFromArray:result];
+        idx++;
+        if (idx >= chunks.count) {
+            completeBlock(results);
+        } else {
+            // next chunk
+            [super performCreate:chunks[idx] failBlock:failBlock completeBlock:cb];
+        }
+    };
+    [super performCreate:chunks[0] failBlock:failBlock completeBlock:cb];
 }
 
 - (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids {
