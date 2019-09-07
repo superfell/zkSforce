@@ -25,11 +25,15 @@
 #import "zkSoapException.h"
 #import "zkParser.h"
 
+@interface ZKBaseClient ()
+@property (readwrite) zkElement *lastResponseSoapHeaders;
+@end
+
 @implementation ZKBaseClient
 
 static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
-@synthesize endpointUrl, delegate, urlSession;
+@synthesize endpointUrl, delegate, urlSession, lastResponseSoapHeaders;
 
 -(id)copyWithZone:(NSZone *)z {
     ZKBaseClient *c = [[[self class] alloc] init];
@@ -37,14 +41,6 @@ static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
     c.delegate = self.delegate;
     c.urlSession = self.urlSession;
     return c;
-}
-
-- (zkElement *)lastResponseSoapHeaders {
-    return responseHeaders;
-}
-
--(void)setLastResponseSoapHeaders:(zkElement *)h {
-    responseHeaders = h;
 }
 
 - (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
@@ -62,7 +58,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
     // If this is the first time we've run, get the timebase.
     // We can use denom == 0 to indicate that sTimebaseInfo is
     // uninitialised because it makes no sense to have a zero
-    // denominator is a fraction.
+    // denominator in a fraction.
     static mach_timebase_info_data_t sTimebaseInfo;
     if ( sTimebaseInfo.denom == 0 ) {
         (void) mach_timebase_info(&sTimebaseInfo);

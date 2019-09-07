@@ -30,18 +30,17 @@
 -(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withException:(NSException *)ex    in:(NSTimeInterval)time;
 @end
 
-@interface ZKBaseClient : NSObject <NSCopying> {
-    NSURL                           *endpointUrl;
-    zkElement                       *responseHeaders;
-    NSObject<ZKBaseClientDelegate>  *__weak delegate;
-}
+@interface ZKBaseClient : NSObject <NSCopying>
 
 @property (weak) NSObject<ZKBaseClientDelegate> *delegate;
 @property (strong) NSURL *endpointUrl;
 @property (strong) NSURLSession *urlSession;
 
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName                        DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root  DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
+// These 2 are deprecated. They are not marked as deprecated yet to the compiler as we still call
+// these methods from the sync versions of the client operations. Those sync operations are marked
+// deprecated.
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;                       // DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
+- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root; // DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
 
 /** @return the Soap:Header element from the response payload. */
 @property (readonly) zkElement *lastResponseSoapHeaders;
@@ -65,7 +64,7 @@
 
 @end
 
-/** Your ZKBaseClient can override this to do any customization it wants to do on either genering the HTTP request,
+/** Your ZKBaseClient can override this to do any customization it wants to do on either generating the HTTP request,
     or in processing the results */
 @interface ZKBaseClient(RequestProcessing)
 
