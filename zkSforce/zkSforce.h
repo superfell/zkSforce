@@ -205,6 +205,7 @@
 #import "ZKUserInfo.h"
 #import "ZKUserTerritoryDeleteHeader.h"
 #import "ZKVisualforcePage.h"
+#import "NSArray+Extras.h"
 #import "ZKDescribeField+Extras.h"
 #import "ZKDescribeSObject+Extras.h"
 #import "zkQueryResult+NSTableView.h"

@@ -29,10 +29,10 @@
 @implementation ZKSforceBaseClient (zkAsyncQuery)
 
 -(BOOL)confirmLoggedIn {
-//    if (!self.loggedIn) {
-//        NSLog(@"ZKSforceClient does not have a valid session. request not executed");
-//        return NO;
-//    }
+	//if (!self.loggedIn) {
+	//	NSLog(@"ZKSforceClient does not have a valid session. request not executed");
+	//	return NO;
+	//}
 	return YES;
 }
 
