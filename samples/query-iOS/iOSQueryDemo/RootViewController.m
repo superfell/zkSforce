@@ -30,10 +30,10 @@
     _client = newClient;
 
     // run the query in the background thread, when its done, update the ui.
-    [newClient performQuery:@"select id,name from account order by SystemModstamp desc LIMIT 50"
-                  failBlock:^(NSException *ex) {
-                      UIAlertView *a = [[UIAlertView alloc] initWithTitle:ex.name
-                                                                  message:ex.reason
+    [newClient query:@"select id,name from account order by SystemModstamp desc LIMIT 50"
+                  failBlock:^(NSError *ex) {
+                      UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Query Failed"
+                                                                  message:ex.localizedDescription
                                                                  delegate:nil
                                                         cancelButtonTitle:@"Close"
                                                         otherButtonTitles:nil];
