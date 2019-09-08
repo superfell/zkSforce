@@ -53,7 +53,6 @@
 		F414BEB41845A3BB00322AC2 /* ZKEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE2D1845A3BB00322AC2 /* ZKEmail.m */; };
 		F414BEB51845A3BB00322AC2 /* ZKEmailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE2F1845A3BB00322AC2 /* ZKEmailHeader.m */; };
 		F414BEB61845A3BB00322AC2 /* ZKEmptyRecycleBinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE311845A3BB00322AC2 /* ZKEmptyRecycleBinResult.m */; };
-		F414BEB71845A3BB00322AC2 /* ZKError.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE331845A3BB00322AC2 /* ZKError.m */; };
 		F414BEB81845A3BB00322AC2 /* ZKGetDeletedResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE351845A3BB00322AC2 /* ZKGetDeletedResult.m */; };
 		F414BEB91845A3BB00322AC2 /* ZKGetServerTimestampResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE371845A3BB00322AC2 /* ZKGetServerTimestampResult.m */; };
 		F414BEBA1845A3BB00322AC2 /* ZKGetUpdatedResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE391845A3BB00322AC2 /* ZKGetUpdatedResult.m */; };
@@ -81,7 +80,6 @@
 		F414BED01845A3BB00322AC2 /* ZKSendEmailResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE651845A3BB00322AC2 /* ZKSendEmailResult.m */; };
 		F414BED11845A3BB00322AC2 /* ZKSessionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE671845A3BB00322AC2 /* ZKSessionHeader.m */; };
 		F414BED21845A3BB00322AC2 /* ZKSetPasswordResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE691845A3BB00322AC2 /* ZKSetPasswordResult.m */; };
-		F414BED31845A3BB00322AC2 /* ZKSforceClient+Operations.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE6B1845A3BB00322AC2 /* ZKSforceClient+Operations.m */; };
 		F414BED41845A3BB00322AC2 /* ZKStreamingEnabledHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE6D1845A3BB00322AC2 /* ZKStreamingEnabledHeader.m */; };
 		F414BED51845A3BB00322AC2 /* ZKUndeleteResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE6F1845A3BB00322AC2 /* ZKUndeleteResult.m */; };
 		F414BED61845A3BB00322AC2 /* ZKUpsertResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F414BE711845A3BB00322AC2 /* ZKUpsertResult.m */; };
@@ -119,6 +117,7 @@
 		F425FA341A339D300055D8B8 /* ZKSoqlSubQueryCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA211A339D300055D8B8 /* ZKSoqlSubQueryCondition.m */; };
 		F425FA351A339D300055D8B8 /* ZKSoqlWhereCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = F425FA231A339D300055D8B8 /* ZKSoqlWhereCondition.m */; };
 		F42EBC7523246FA800C5DC05 /* ZKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EBC7423246FA800C5DC05 /* ZKConstants.m */; };
+		F42EBC782324840F00C5DC05 /* ZKError.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EBC772324840F00C5DC05 /* ZKError.m */; };
 		F44188841EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F441887E1EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.m */; };
 		F44188851EA5C57C009BE67D /* ZKEntitySearchMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F44188801EA5C57C009BE67D /* ZKEntitySearchMetadata.m */; };
 		F44188861EA5C57C009BE67D /* ZKDescribeLayoutSaveOption.m in Sources */ = {isa = PBXBuildFile; fileRef = F44188821EA5C57C009BE67D /* ZKDescribeLayoutSaveOption.m */; };
@@ -314,8 +313,6 @@
 		F414BE2F1845A3BB00322AC2 /* ZKEmailHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEmailHeader.m; path = ../../../zkSforce/ZKEmailHeader.m; sourceTree = "<group>"; };
 		F414BE301845A3BB00322AC2 /* ZKEmptyRecycleBinResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKEmptyRecycleBinResult.h; path = ../../../zkSforce/ZKEmptyRecycleBinResult.h; sourceTree = "<group>"; };
 		F414BE311845A3BB00322AC2 /* ZKEmptyRecycleBinResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEmptyRecycleBinResult.m; path = ../../../zkSforce/ZKEmptyRecycleBinResult.m; sourceTree = "<group>"; };
-		F414BE321845A3BB00322AC2 /* ZKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKError.h; path = ../../../zkSforce/ZKError.h; sourceTree = "<group>"; };
-		F414BE331845A3BB00322AC2 /* ZKError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKError.m; path = ../../../zkSforce/ZKError.m; sourceTree = "<group>"; };
 		F414BE341845A3BB00322AC2 /* ZKGetDeletedResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKGetDeletedResult.h; path = ../../../zkSforce/ZKGetDeletedResult.h; sourceTree = "<group>"; };
 		F414BE351845A3BB00322AC2 /* ZKGetDeletedResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKGetDeletedResult.m; path = ../../../zkSforce/ZKGetDeletedResult.m; sourceTree = "<group>"; };
 		F414BE361845A3BB00322AC2 /* ZKGetServerTimestampResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKGetServerTimestampResult.h; path = ../../../zkSforce/ZKGetServerTimestampResult.h; sourceTree = "<group>"; };
@@ -370,8 +367,6 @@
 		F414BE671845A3BB00322AC2 /* ZKSessionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSessionHeader.m; path = ../../../zkSforce/ZKSessionHeader.m; sourceTree = "<group>"; };
 		F414BE681845A3BB00322AC2 /* ZKSetPasswordResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSetPasswordResult.h; path = ../../../zkSforce/ZKSetPasswordResult.h; sourceTree = "<group>"; };
 		F414BE691845A3BB00322AC2 /* ZKSetPasswordResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSetPasswordResult.m; path = ../../../zkSforce/ZKSetPasswordResult.m; sourceTree = "<group>"; };
-		F414BE6A1845A3BB00322AC2 /* ZKSforceClient+Operations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ZKSforceClient+Operations.h"; path = "../../../zkSforce/ZKSforceClient+Operations.h"; sourceTree = "<group>"; };
-		F414BE6B1845A3BB00322AC2 /* ZKSforceClient+Operations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ZKSforceClient+Operations.m"; path = "../../../zkSforce/ZKSforceClient+Operations.m"; sourceTree = "<group>"; };
 		F414BE6C1845A3BB00322AC2 /* ZKStreamingEnabledHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKStreamingEnabledHeader.h; path = ../../../zkSforce/ZKStreamingEnabledHeader.h; sourceTree = "<group>"; };
 		F414BE6D1845A3BB00322AC2 /* ZKStreamingEnabledHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKStreamingEnabledHeader.m; path = ../../../zkSforce/ZKStreamingEnabledHeader.m; sourceTree = "<group>"; };
 		F414BE6E1845A3BB00322AC2 /* ZKUndeleteResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKUndeleteResult.h; path = ../../../zkSforce/ZKUndeleteResult.h; sourceTree = "<group>"; };
@@ -447,6 +442,8 @@
 		F425FA231A339D300055D8B8 /* ZKSoqlWhereCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSoqlWhereCondition.m; path = ../../../zkSforce/ZKSoqlWhereCondition.m; sourceTree = "<group>"; };
 		F42EBC7323246F2600C5DC05 /* ZKConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZKConstants.h; path = ../../../zkSforce/ZKConstants.h; sourceTree = "<group>"; };
 		F42EBC7423246FA800C5DC05 /* ZKConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZKConstants.m; path = ../../../zkSforce/ZKConstants.m; sourceTree = "<group>"; };
+		F42EBC762324840F00C5DC05 /* ZKError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZKError.h; path = ../../../zkSforce/ZKError.h; sourceTree = "<group>"; };
+		F42EBC772324840F00C5DC05 /* ZKError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZKError.m; path = ../../../zkSforce/ZKError.m; sourceTree = "<group>"; };
 		F441887E1EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKFieldLevelSearchMetadata.m; path = ../../../zkSforce/ZKFieldLevelSearchMetadata.m; sourceTree = "<group>"; };
 		F441887F1EA5C57C009BE67D /* ZKFieldLevelSearchMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKFieldLevelSearchMetadata.h; path = ../../../zkSforce/ZKFieldLevelSearchMetadata.h; sourceTree = "<group>"; };
 		F44188801EA5C57C009BE67D /* ZKEntitySearchMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKEntitySearchMetadata.m; path = ../../../zkSforce/ZKEntitySearchMetadata.m; sourceTree = "<group>"; };
@@ -973,8 +970,6 @@
 				F414BE2F1845A3BB00322AC2 /* ZKEmailHeader.m */,
 				F414BE301845A3BB00322AC2 /* ZKEmptyRecycleBinResult.h */,
 				F414BE311845A3BB00322AC2 /* ZKEmptyRecycleBinResult.m */,
-				F414BE321845A3BB00322AC2 /* ZKError.h */,
-				F414BE331845A3BB00322AC2 /* ZKError.m */,
 				F414BE341845A3BB00322AC2 /* ZKGetDeletedResult.h */,
 				F414BE351845A3BB00322AC2 /* ZKGetDeletedResult.m */,
 				F414BE361845A3BB00322AC2 /* ZKGetServerTimestampResult.h */,
@@ -1035,8 +1030,6 @@
 				F41F708D23134D290008A2C2 /* ZKSforceBaseClient.m */,
 				F49C1CC813637547000CDE02 /* zkSforceClient.h */,
 				F49C1CC913637547000CDE02 /* zkSforceClient.m */,
-				F414BE6A1845A3BB00322AC2 /* ZKSforceClient+Operations.h */,
-				F414BE6B1845A3BB00322AC2 /* ZKSforceClient+Operations.m */,
 				F41F70922313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.h */,
 				F41F70912313631D0008A2C2 /* ZKSforceClient+zkAsyncQuery.m */,
 				F414BE6C1845A3BB00322AC2 /* ZKStreamingEnabledHeader.h */,
@@ -1140,6 +1133,8 @@
 				F41F70A1231396A20008A2C2 /* NSArray+Extras.m */,
 				F42EBC7323246F2600C5DC05 /* ZKConstants.h */,
 				F42EBC7423246FA800C5DC05 /* ZKConstants.m */,
+				F42EBC762324840F00C5DC05 /* ZKError.h */,
+				F42EBC772324840F00C5DC05 /* ZKError.m */,
 			);
 			name = ZKSforce;
 			sourceTree = "<group>";
@@ -1314,6 +1309,7 @@
 				F414BEA91845A3BB00322AC2 /* ZKDescribeSearchLayoutResult.m in Sources */,
 				F414BEAA1845A3BB00322AC2 /* ZKDescribeSearchScopeOrderResult.m in Sources */,
 				F414BEAB1845A3BB00322AC2 /* ZKDescribeSoftphoneLayoutCallType.m in Sources */,
+				F42EBC782324840F00C5DC05 /* ZKError.m in Sources */,
 				F4B770061BB7371F00681844 /* ZKRenderEmailTemplateResult.m in Sources */,
 				F414BEAC1845A3BB00322AC2 /* ZKDescribeSoftphoneLayoutInfoField.m in Sources */,
 				F474CAB71D0FADFD000D3C13 /* ZKSearchResultsMetadata.m in Sources */,
@@ -1330,7 +1326,6 @@
 				F414BEB41845A3BB00322AC2 /* ZKEmail.m in Sources */,
 				F414BEB51845A3BB00322AC2 /* ZKEmailHeader.m in Sources */,
 				F414BEB61845A3BB00322AC2 /* ZKEmptyRecycleBinResult.m in Sources */,
-				F414BEB71845A3BB00322AC2 /* ZKError.m in Sources */,
 				F402CBDC1955445B00C6E1E2 /* ZKCustomLinkComponent.m in Sources */,
 				F414BEB81845A3BB00322AC2 /* ZKGetDeletedResult.m in Sources */,
 				F414BEB91845A3BB00322AC2 /* ZKGetServerTimestampResult.m in Sources */,
@@ -1378,7 +1373,6 @@
 				F4913F3C1B115171001CC650 /* ZKAdditionalInformationMap.m in Sources */,
 				F414BED21845A3BB00322AC2 /* ZKSetPasswordResult.m in Sources */,
 				F474CAB21D0FADFD000D3C13 /* ZKDescribeSearchableEntityResult.m in Sources */,
-				F414BED31845A3BB00322AC2 /* ZKSforceClient+Operations.m in Sources */,
 				F414BED41845A3BB00322AC2 /* ZKStreamingEnabledHeader.m in Sources */,
 				F414BED51845A3BB00322AC2 /* ZKUndeleteResult.m in Sources */,
 				F4913F451B115171001CC650 /* ZKFieldDiff.m in Sources */,

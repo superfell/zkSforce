@@ -25,30 +25,33 @@
 @class ZKBaseClient;
 
 @protocol ZKBaseClientDelegate
--(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withResponse:(zkElement *)response in:(NSTimeInterval)time;
 
--(void)client:(ZKBaseClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)destination withException:(NSException *)ex    in:(NSTimeInterval)time;
+// Called after each request has been sent and the response parsed, but before
+// any of the callbacks fire.
+-(void)client:(ZKBaseClient *)client
+  sentRequest:(NSString *)payload
+        named:(NSString *)callName
+           to:(NSURL *)destination
+ withResponse:(zkElement *)response
+      orError:(NSError *)error
+           in:(NSTimeInterval)time;
+
 @end
 
-@interface ZKBaseClient : NSObject <NSCopying>
+@interface ZKBaseClient : NSObject
 
 @property (weak) NSObject<ZKBaseClientDelegate> *delegate;
 @property (strong) NSURL *endpointUrl;
 @property (strong) NSURLSession *urlSession;
 
-// These 2 are deprecated. They are not marked as deprecated yet to the compiler as we still call
-// these methods from the sync versions of the client operations. Those sync operations are marked
-// deprecated.
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName;                       // DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)root; // DEPRECATED_MSG_ATTRIBUTE("Please use startRequest instead");
-
-@end
-
-@interface ZKBaseClient (ASync)
-
-/** Starts the HTTP request for the supplied payload, the handler will get called once a response is available.
-    The handler will be called on a random GCD thread. The delegate if set will be called before the handler. */
--(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSException *ex))handler;
+/** Starts the HTTP request for the supplied payload, and parse the response.
+    The handler will get called once a response is available.
+    The delegate if set will be called before the handler.
+    The handler (and delegate if called) will be called on a random GCD thread.
+    If there was an error after parsing was succesfully completed, then both
+    root and err will be set
+*/
+-(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSError *err))handler;
 
 @end
 
@@ -69,7 +72,8 @@
 
 -(zkElement *)processResponse:(NSHTTPURLResponse *)resp
                          data:(NSData *)respPayload
-                        error:(NSError *)err
                   fromRequest:(NSMutableURLRequest *)request
-                         name:(NSString *)callName;
+                         name:(NSString *)callName
+                        // err might be set by the caller of this, or by the callee to report an error it found
+                        error:(NSError **)err;
 @end

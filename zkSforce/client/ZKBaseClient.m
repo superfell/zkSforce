@@ -30,18 +30,6 @@
 
 @synthesize endpointUrl, delegate, urlSession;
 
--(id)copyWithZone:(NSZone *)z {
-    ZKBaseClient *c = [[[self class] alloc] init];
-    c.endpointUrl = self.endpointUrl;
-    c.delegate = self.delegate;
-    c.urlSession = self.urlSession;
-    return c;
-}
-
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)name {
-    return [self sendRequest:payload name:name returnRoot:NO];
-}
-
 -(void)logInvalidResponse:(NSHTTPURLResponse *)resp payload:(NSData *)data note:(NSString *)note {
     NSString *payload = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Got invalid API response: %@\r\nRequestURL: %@\r\nHTTP StatusCode: %d\r\nresponseData:\r\n%@", note, resp.URL.absoluteString, (int)resp.statusCode, payload);
@@ -63,33 +51,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
     return duration;
 }
 
-- (zkElement *)sendRequest:(NSString *)payload name:(NSString *)callName returnRoot:(BOOL)returnRoot {
-    NSCondition *cond = [[NSCondition alloc] init];
-    zkElement __block *result = nil;
-    NSException __block *err = nil;
-    [self startRequest:payload name:callName handler:^(zkElement *root, NSException *ex) {
-        [cond lock];
-        result = root;
-        err = ex;
-        [cond broadcast];
-        [cond unlock];
-    }];
-    [cond lock];
-    while (result == nil && err == nil) {
-        [cond wait];
-    }
-    [cond unlock];
-    if (err != nil) {
-        @throw err;
-    }
-    if (returnRoot) {
-        return result;
-    }
-    zkElement *body = [result childElement:@"Body" ns:NS_SOAP_ENV];
-    return body.childElements[0];
-}
-
--(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSException *ex))handler {
+-(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSError *err))handler {
     uint64_t start = mach_absolute_time();
     NSURLSession *s = urlSession;
     if (s == nil) s = [NSURLSession sharedSession];
@@ -121,11 +83,12 @@ NSTimeInterval intervalFrom(uint64_t start) {
 /** Process this Response that was generated from the Request. Should return the root element of the response, or throw an exception */
 -(zkElement *)processResponse:(NSHTTPURLResponse *)resp
                          data:(NSData *)respPayload
-                        error:(NSError *)err
                   fromRequest:(NSMutableURLRequest *)request
-                         name:(NSString *)callName {
-    if (err) {
-        NSLog(@"Got error sending API request %@ : %@", request, err);
+                         name:(NSString *)callName
+                        error:(NSError **)err {
+    if (err && *err) {
+        NSLog(@"Got error sending API request %@ : %@", request, *err);
+        *err = [N]
         @throw [NSException exceptionWithName:@"Http error" reason:[NSString stringWithFormat:@"Unable to complete API request: %@", err] userInfo:nil];
     }
     //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
