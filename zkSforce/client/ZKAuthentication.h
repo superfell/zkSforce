@@ -19,8 +19,8 @@
 // THE SOFTWARE.
 //
 
-#import "ZKSforceClient+zkAsyncQuery.h"
 #import "ZKAuthenticationInfo.h"
+#import "ZKSforceBaseClient+Operations.h"
 
 @class ZKLoginResult;
 

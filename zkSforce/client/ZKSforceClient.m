@@ -55,7 +55,6 @@
 #import "ZKDuplicateRuleHeader.h"
 #import "ZKXMLSerializable.h"
 #import "NSArray+Extras.h"
-#import "ZKSforceClient+zkAsyncQuery.h"
 
 static const int SAVE_BATCH_SIZE = 25;
 static const int DEFAULT_API_VERSION = 46;

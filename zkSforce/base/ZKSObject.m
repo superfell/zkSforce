@@ -21,7 +21,7 @@
 
 
 #import "ZKSObject.h"
-#import "zkQueryResult.h"
+#import "ZKQueryResult.h"
 #import "ZKParser.h"
 #import "ZKSoapDate.h"
 #import "ZKAddress.h"

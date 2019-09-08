@@ -20,7 +20,7 @@
 //
 
 #import "OAuthDemoAppDelegate.h"
-#import "zkSforceClient.h"
+#import "ZKSforce.h"
 #import "QueryController.h"
 
 static NSString *OAUTH_CLIENTID = @"3MVG99OxTyEMCQ3hP1_9.Mh8dF9TWo9xz6pJ7Hn_6m5irZ1id.xk4XR89yKEuRufdqMbJuBobXTVOqnD0xri_";

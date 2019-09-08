@@ -24,9 +24,8 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkSforceClient.h"
-#import "zkSObject.h"
-#import "zkSoapException.h"
+#import "ZKSforceClient.h"
+#import "ZKSObject.h"
 #import "ZKLimitInfoHeader.h"
 #import "ZKLimitInfo.h"
 #import "ZKActionOverride.h"
@@ -211,5 +210,4 @@
 #import "zkQueryResult+NSTableView.h"
 #import "ZKRelatedList+Extras.h"
 #import "ZKSaveResult+Extras.h"
-#import "ZKSforceClient+zkAsyncQuery.h"
 #import "ZKUserInfo+Extras.h"

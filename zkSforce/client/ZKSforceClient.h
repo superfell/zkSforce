@@ -20,7 +20,6 @@
 //
 
 
-#import "ZKSforceClient+zkAsyncQuery.h"
 #import "ZKAuthentication.h"
 #import <AvailabilityMacros.h>
 

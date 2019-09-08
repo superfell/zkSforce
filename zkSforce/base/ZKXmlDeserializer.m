@@ -23,7 +23,7 @@
 #import "ZKParser.h"
 #import "ZKBase64.h"
 #import "ZKSObject.h"
-#import "zkQueryResult.h"
+#import "ZKQueryResult.h"
 #import "ZKSimpleTypes.h"
 #import "ZKXsdAnyType.h"
 

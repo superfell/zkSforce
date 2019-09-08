@@ -20,7 +20,7 @@
 //
 
 #import "QueryController.h"
-#import "zkSforce.h"
+#import "ZKSforce.h"
 
 @implementation QueryController
 
