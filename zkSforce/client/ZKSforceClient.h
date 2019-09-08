@@ -133,9 +133,12 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
 /** @name SessionInfo - Information about the current session */
 
+/** @return the currently cached userInfo. May be nil if there's yet to be an API
+    interaction that would generate a userInfo response */
+-(ZKUserInfo *)cachedUserInfo;
 
-/** @return the last cached UserInfo result, either from a LoginResult or from
-    an explict getUserInfo call. */
+/** @return the last cached UserInfo result, either from a LoginResult or by calling
+    getUserInfo to get a copy to cache. */
 -(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteUserInfoBlock)completeBlock;
 

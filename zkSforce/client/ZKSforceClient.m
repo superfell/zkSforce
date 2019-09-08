@@ -36,10 +36,6 @@
 static const int SAVE_BATCH_SIZE = 25;
 static const int DEFAULT_API_VERSION = 46;
 
-@interface ZKSforceClient(Private)
-@property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
-@end
-
 @implementation ZKSforceClient
 
 @synthesize preferedApiVersion, lastLimitInfoHeader=limitInfo;
@@ -185,9 +181,13 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     userInfo = ui;
 }
 
+-(ZKUserInfo *)cachedUserInfo {
+    return userInfo;
+}
+
 -(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
-    ZKUserInfo *i = self.userInfo;
+    ZKUserInfo *i = self->userInfo;
     if (i != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completeBlock(i);
