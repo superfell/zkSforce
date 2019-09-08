@@ -21,7 +21,7 @@
 
 #import "ZKEnvelopeTests.h"
 #import "ZKEnvelope.h"
-#import "zkSObject.h"
+#import "ZKSObject.h"
 #import "ZKProcessSubmitRequest.h"
 #import "ZKAddress.h"
 

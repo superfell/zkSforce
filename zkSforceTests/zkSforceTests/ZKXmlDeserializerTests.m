@@ -30,7 +30,7 @@
 @implementation ZKXmlDeserializerTests
 
 -(ZKXmlDeserializer *)deser:(NSString *)doc {
-    zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKElement *e = [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
     return [[ZKXmlDeserializer alloc] initWithXmlElement:e];
 }
 
@@ -120,7 +120,7 @@
 
 -(void)testNSCopying {
     NSString *doc = @"<root><field>f</field><format>fmt</format><label>lbl</label><name>n</name></root>";
-    zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKElement *e = [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
     ZKDescribeColumn *l = [[ZKDescribeColumn alloc] initWithXmlElement:e];
     XCTAssertEqualObjects([ZKDescribeColumn class], [l class], @"original of wrong type");
     XCTAssertEqualObjects(@"f", [l field], @"field is wrong");

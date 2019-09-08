@@ -24,6 +24,7 @@
 #import "zkParser.h"
 #import "ZKQueryResult.h"
 #import "ZKSObject.h"
+#import "ZKConstants.h"
 
 @interface ZKXsdAnyTypeTests : NSDateAsserts
 
@@ -33,7 +34,7 @@
 
 -(ZKXsdAnyType*)buildAndParseAny:(NSString *)xmlTrailer {
     NSString *doc = [NSString stringWithFormat:@"<r xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:x='http://www.w3.org/2001/XMLSchema' %@", xmlTrailer];
-    zkElement *e = [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKElement *e = [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
     ZKXsdAnyType *any = [[ZKXsdAnyType alloc] initWithXmlElement:e];
     return any;
 }
