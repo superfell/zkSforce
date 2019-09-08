@@ -20,7 +20,7 @@
 //
 
 
-#import "zkSObject.h"
+#import "ZKSObject.h"
 
 @interface ZKEnvelope : NSObject {
     NSMutableString     *env;

@@ -20,9 +20,9 @@
 //
 
 
-#import "zkSObject.h"
+#import "ZKSObject.h"
 #import "zkQueryResult.h"
-#import "zkParser.h"
+#import "ZKParser.h"
 #import "ZKSoapDate.h"
 #import "ZKAddress.h"
 #import "ZKConstants.h"

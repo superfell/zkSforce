@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkParser.h"
+#import "ZKParser.h"
 #import "ZKConstants.h"
 
 @implementation zkElement

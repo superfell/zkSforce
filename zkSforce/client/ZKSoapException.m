@@ -20,7 +20,7 @@
 //
 
 
-#import "zkSoapException.h"
+#import "ZKSoapException.h"
 
 
 @implementation ZKSoapException

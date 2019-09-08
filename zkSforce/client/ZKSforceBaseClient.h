@@ -25,7 +25,7 @@
 //
 
 
-#import "zkBaseClient.h"
+#import "ZKBaseClient.h"
 
 @protocol ZKAuthenticationInfo;
 @class zkElement;

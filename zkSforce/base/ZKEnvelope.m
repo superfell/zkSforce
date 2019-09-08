@@ -20,7 +20,7 @@
 //
 
 
-#import "zkEnvelope.h"
+#import "ZKEnvelope.h"
 #import "ZKXMLSerializable.h"
 
 @implementation ZKEnvelope

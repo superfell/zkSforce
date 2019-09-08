@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkEnvelope.h"
+#import "ZKEnvelope.h"
 
 @interface ZKPartnerEnvelope : ZKEnvelope {
 }

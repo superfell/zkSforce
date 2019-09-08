@@ -19,10 +19,10 @@
 // THE SOFTWARE.
 //
 
-#import "zkXmlDeserializer.h"
-#import "zkParser.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 #import "ZKBase64.h"
-#import "zkSObject.h"
+#import "ZKSObject.h"
 #import "zkQueryResult.h"
 #import "ZKSimpleTypes.h"
 #import "ZKXsdAnyType.h"

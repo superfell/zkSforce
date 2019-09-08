@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkQueryResult+NSTableView.h"
+#import "ZKQueryResult+NSTableView.h"
 
 // Only build on OSX
 #ifdef __MAC_OS_X_VERSION_MAX_ALLOWED

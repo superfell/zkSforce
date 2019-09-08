@@ -19,12 +19,12 @@
 // THE SOFTWARE.
 //
 
-#import "zkSforceClient.h"
+#import "ZKSforceClient.h"
 #import "ZKPartnerEnvelope.h"
 #import "zkQueryResult.h"
 #import "ZKSaveResult.h"
-#import "zkSObject.h"
-#import "zkSoapException.h"
+#import "ZKSObject.h"
+#import "ZKSoapException.h"
 #import "ZKUserInfo.h"
 #import "ZKDescribeSObject.h"
 #import "ZKLoginResult.h"
@@ -37,8 +37,7 @@
 #import "ZKLeadConvert.h"
 #import "ZKLeadConvertResult.h"
 #import "ZKXMLSerializable.h"
-#import "zkXmlDeserializer.h"
-#import "ZKSforceClient+Operations.h"
+#import "ZKXmlDeserializer.h"
 #import "ZKCallOptions.h"
 #import "ZKPackageVersionHeader.h"
 #import "ZKLocaleOptions.h"

@@ -20,7 +20,7 @@
 //
 
 
-#import "zkQueryResult.h"
+#import "ZKQueryResult.h"
 #import "zkSObject.h"
 #import "zkParser.h"
 #import "ZKConstants.h"

@@ -21,7 +21,7 @@
 
 
 #import "ZKSforceClient+zkAsyncQuery.h"
-#import "zkAuthentication.h"
+#import "ZKAuthentication.h"
 #import <AvailabilityMacros.h>
 
 @class ZKUserInfo;

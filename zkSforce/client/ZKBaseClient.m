@@ -21,8 +21,8 @@
 
 #include <mach/mach.h>
 #include <mach/mach_time.h>
-#import "zkBaseClient.h"
-#import "zkSoapException.h"
+#import "ZKBaseClient.h"
+#import "ZKSoapException.h"
 #import "zkParser.h"
 #import "ZKConstants.h"
 

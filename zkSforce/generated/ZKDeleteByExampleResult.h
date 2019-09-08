@@ -24,7 +24,7 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "zkXmlDeserializer.h"
+#import "ZKXmlDeserializer.h"
 
 @class ZKSObject;
 /*
