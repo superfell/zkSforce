@@ -30,11 +30,11 @@
 // Force the sessionId to be refreshed. The callback will be called when completed.
 // If there was an error, it will be in the exception, otherwise it'll be nil.
 // Callback will be executed on a random GCD queue.
--(void)refresh:(void(^)(NSException *ex))cb;
+-(void)refresh:(void(^)(NSError *ex))cb;
 
 // Refresh the session if its needed. (this gets called before every soap call)
 // The callback will include if the session was refreshed.
 // Callback will be executed on a random GCD queue.
--(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSException *ex))cb;
+-(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSError *ex))cb;
 
 @end
