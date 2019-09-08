@@ -22,9 +22,8 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #import "ZKBaseClient.h"
-#import "ZKSoapException.h"
-#import "zkParser.h"
-#import "ZKConstants.h"
+#import "ZKParser.h"
+#import "ZKErrors.h"
 
 @implementation ZKBaseClient
 
@@ -58,24 +57,13 @@ NSTimeInterval intervalFrom(uint64_t start) {
     NSMutableURLRequest *request = [self createRequest:payload name:callName];
     NSURLSessionDataTask *t = [s dataTaskWithRequest:request
                                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable err) {
-       @try {
-           zkElement *root = [self processResponse:(NSHTTPURLResponse *)response data:data error:err fromRequest:request name:callName];
-           if (self.delegate != nil) {
-               [self.delegate client:self sentRequest:payload named:callName to:self.endpointUrl withResponse:root in:intervalFrom(start)];
-           }
-           handler(root, nil);
-           
-       } @catch (NSException *ex) {
-           if (self.delegate != nil) {
-               [self.delegate client:self
-                         sentRequest:payload
-                               named:callName
-                                  to:self.endpointUrl
-                       withException:ex
-                                  in:intervalFrom(start)];
-           }
-           handler(nil, ex);
-       }
+
+        NSError *error = err;
+        zkElement *root = [self processResponse:(NSHTTPURLResponse *)response data:data fromRequest:request name:callName error:&error];
+        if (self.delegate != nil) {
+            [self.delegate client:self sentRequest:payload named:callName to:self.endpointUrl withResponse:root error:error in:intervalFrom(start)];
+        }
+        handler(root, error);
     }];
     [t resume];
 }
@@ -88,34 +76,38 @@ NSTimeInterval intervalFrom(uint64_t start) {
                         error:(NSError **)err {
     if (err && *err) {
         NSLog(@"Got error sending API request %@ : %@", request, *err);
-        *err = [N]
-        @throw [NSException exceptionWithName:@"Http error" reason:[NSString stringWithFormat:@"Unable to complete API request: %@", err] userInfo:nil];
+        return nil;
     }
     //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
     zkElement *root = [zkParser parseData:respPayload];
     if (root == nil) {
         [self logInvalidResponse:resp payload:respPayload note:@"Unable to parse XML"];
-        @throw [NSException exceptionWithName:@"Xml error" reason:@"Unable to parse XML returned by server" userInfo:nil];
+        *err = [ZKErrors errorWithCode:kInvalidXml message:@"Unable to parse XML returned by server"];
+        return nil;
     }
     if (![root.name isEqualToString:@"Envelope"]) {
         [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", root.name]];
-        @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", root.name] userInfo:nil];
+        *err = [ZKErrors errorWithCode:kNotSoapEnvelope message:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", root.name]];
+        return root;
     }
     if (![root.namespace isEqualToString:NS_SOAP_ENV]) {
         [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", root.namespace, NS_SOAP_ENV]];
-        @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", NS_SOAP_ENV, root.namespace] userInfo:nil];
+        *err = [ZKErrors errorWithCode:kNotSoapEnvelope message:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", NS_SOAP_ENV, root.namespace]];
+        return root;
     }
     zkElement *header = [root childElement:@"Header" ns:NS_SOAP_ENV];
     [self handleResponseSoapHeaders:header];
     
-    zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
     if (500 == resp.statusCode) {
+        zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
         zkElement *fault = [body childElement:@"Fault" ns:NS_SOAP_ENV];
-        if (fault == nil)
-            @throw [NSException exceptionWithName:@"Xml error" reason:@"Fault status code returned, but unable to find soap:Fault element" userInfo:nil];
-        NSString *fc = [fault childElement:@"faultcode"].stringValue;
-        NSString *fm = [fault childElement:@"faultstring"].stringValue;
-        @throw [ZKSoapException exceptionWithFaultCode:fc faultString:fm];
+        if (fault == nil) {
+            *err = [ZKErrors errorWithCode:kSoapFaultMissingFault message:@"Fault status code returned, but unable to find soap:Fault element"];
+        } else {
+            NSString *fc = [fault childElement:@"faultcode"].stringValue;
+            NSString *fm = [fault childElement:@"faultstring"].stringValue;
+            *err = [ZKErrors errorWithSoapFault:fc message:fm];
+        }
     }
     return root;
 }

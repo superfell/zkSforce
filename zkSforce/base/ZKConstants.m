@@ -24,3 +24,7 @@
 NSString *const NS_URI_XSI  = @"http://www.w3.org/2001/XMLSchema-instance";
 NSString *const NS_URI_XSD  = @"http://www.w3.org/2001/XMLSchema";
 NSString *const NS_SOAP_ENV = @"http://schemas.xmlsoap.org/soap/envelope/";
+
+NSString *const ZKErrorDomain = @"pocketsoap.com";
+
+NSString *const ZKSoapFaultCodeKey = "SoapFaultCode";

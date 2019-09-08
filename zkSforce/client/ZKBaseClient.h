@@ -33,7 +33,7 @@
         named:(NSString *)callName
            to:(NSURL *)destination
  withResponse:(zkElement *)response
-      orError:(NSError *)error
+        error:(NSError *)error
            in:(NSTimeInterval)time;
 
 @end

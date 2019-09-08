@@ -22,8 +22,28 @@
 #ifndef ZKConstants_h
 #define ZKConstants_h
 
+// XML Namespace URIs
 FOUNDATION_EXPORT NSString *const NS_URI_XSI;
 FOUNDATION_EXPORT NSString *const NS_URI_XSD;
 FOUNDATION_EXPORT NSString *const NS_SOAP_ENV;
+
+// Our domain for NSErrors
+FOUNDATION_EXPORT NSString *const ZKErrorDomain;
+
+// NSError user Info keys
+FOUNDATION_EXPORT NSString *const ZKSoapFaultCodeKey;
+
+// Our NSError error codes
+const NSInteger kInvalidXml             = -100;
+
+// The HTTP response should be a SOAP 1.1 Envelope, but we received something else
+const NSInteger kNotSoapEnvelope        = -101;
+
+// the HTTP status code said the response should be a soap fault
+// but there was no soap:Fault element in the response message.
+const NSInteger kSoapFaultMissingFault  = -102;
+
+// the Server returned a SOAP Fault message
+const NSInteger kSoapFault              = -103;
 
 #endif /* ZKConstants_h */
