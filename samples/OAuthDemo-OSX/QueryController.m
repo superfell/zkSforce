@@ -37,13 +37,8 @@
 
 -(IBAction)runQuery:(id)sender {
     [client performQuery:@"select id,name from account limit 25"
-               failBlock:^(NSException *ex) {
-                   NSAlert *a = [NSAlert alertWithMessageText:ex.reason
-                                                defaultButton:@"Close"
-                                              alternateButton:nil
-                                                  otherButton:nil
-                                    informativeTextWithFormat:@""];
-                   [a runModal];
+               failBlock:^(NSError *err) {
+                   [[NSAlert alertWithError:err] runModal];
                }
            completeBlock:^(ZKQueryResult *qr) {
                self.results = qr;
@@ -54,7 +49,13 @@
 
 -(IBAction)refreshSid:(id)sender {
     // normally you wouldn't need to do this, but its handy to see how it works.
-    [client.authenticationInfo refresh];
+    [client.authenticationInfo refresh:^(NSError *err) {
+        if (err != nil) {
+            [[NSAlert alertWithError:err] runModal];
+            return;
+        }
+        NSLog(@"SID Refreshed, now %@", self.client.sessionId);
+    }];
 }
 
 

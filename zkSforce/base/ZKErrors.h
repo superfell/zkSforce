@@ -28,4 +28,6 @@
 +(NSError *)errorWithCode:(NSInteger)code message:(NSString *)localalizedMessage userInfo:(NSDictionary *)dict;
 +(NSError *)errorWithSoapFault:(NSString *)faultCode message:(NSString *)faultMessage;
 
++(NSError *)authenticationRequiredError;
+
 @end

@@ -21,11 +21,11 @@
 
 #import "ZKAuthentication.h"
 #import "ZKPartnerEnvelope.h"
-#import "zkParser.h"
+#import "ZKParser.h"
 #import "ZKLoginResult.h"
 #import "ZKUserInfo.h"
 #import "ZKBaseClient.h"
-#import "ZKConstants.h"
+#import "ZKErrors.h"
 
 static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
@@ -39,14 +39,14 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @synthesize sessionId, sessionExpiresAt;
 
--(void)refresh:(void(^)(NSException *ex))cb {
+-(void)refresh:(void(^)(NSError *ex))cb {
     // override me!
     cb(nil);
 }
 
--(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSException *ex))cb {
+-(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSError *ex))cb {
     if ((sessionExpiresAt.timeIntervalSinceNow < 0) || (sessionId == nil)) {
-        [self refresh:^(NSException *ex) {
+        [self refresh:^(NSError *ex) {
             cb(ex == nil, ex);
         }];
     } else {
@@ -67,7 +67,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @synthesize apiVersion, refreshToken, authHostUrl;
 
-+(NSDictionary *)decodeParams:(NSString *)params {
++(NSDictionary *)decodeParams:(NSString *)params error:(NSError **)error {
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
     for (NSString *param in [params componentsSeparatedByString:@"&"]) {
         NSArray *paramParts = [param componentsSeparatedByString:@"="];
@@ -75,18 +75,24 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
         NSString *val = paramParts.count == 1 ? @"" : [paramParts[1] stringByRemovingPercentEncoding];
         results[name] = val;
     }
-    if (results[@"error"] != nil)
-        @throw [NSException exceptionWithName:@"OAuth Error" 
-                                       reason:[NSString stringWithFormat:@"%@ : %@", results[@"error"], results[@"error_description"]]
-                                     userInfo:results];
+    if (results[@"error"] != nil && error != nil) {
+        *error = [ZKErrors errorWithCode:kOAuthParsingError
+                                 message:[NSString stringWithFormat:@"%@ : %@", results[@"error"], results[@"error_description"]]];
+    }
     return results;
 }
 
-+(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid {
++(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid error:(NSError **)err {
     // callbackUrl will be something:///blah/blah#p=1&q=2&foo=bar
     // we need to get our params out of the callback fragment
-    NSDictionary *params = [self decodeParams:callbackUrl.fragment];
-
+    NSError *error = nil;
+    NSDictionary *params = [self decodeParams:callbackUrl.fragment error:&error];
+    if (error != nil) {
+        if (*err !=nil) {
+            *err = error;
+        }
+        return nil;
+    }
     return [ZKOAuthInfo oauthInfoWithRefreshToken:params[@"refresh_token"]
                                          authHost:[NSURL URLWithString:params[@"id"]]
                                         sessionId:params[@"access_token"]
@@ -117,7 +123,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", apiVersion] relativeToURL:self.url];
 }
 
--(void)refresh:(void(^)(NSException *ex))cb {
+-(void)refresh:(void(^)(NSError *ex))cb {
     NSURL *token = [NSURL URLWithString:@"/services/oauth2/token" relativeToURL:self.authHostUrl];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:token];
     req.HTTPMethod = @"POST";
@@ -131,29 +137,30 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     if (s == nil) {
         s = [NSURLSession sharedSession];
     }
-    NSURLSessionDataTask *t = [s dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *t = [s dataTaskWithRequest:req
+                                   completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error != nil) {
-            cb([NSException exceptionWithName:@"Http error"
-                                       reason:[NSString stringWithFormat:@"Unable to complete OAuth token refresh request: %@", error]
-                                     userInfo:nil]);
+            NSError *err = [ZKErrors errorWithCode:kHttpError message:@"Unable to complete OAuth token refresh request" userInfo:@{NSUnderlyingErrorKey:error}];
+            cb(err);
             return;
         }
         NSString *respBody = [[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding];
-        @try {
-            NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
+        NSError *err = nil;
+        NSDictionary *results = [ZKOAuthInfo decodeParams:respBody error:&err];
+        if (err != nil) {
+            cb(err);
+        } else {
             self.sessionId = results[@"access_token"];
             self.url = [NSURL URLWithString:results[@"instance_url"]];
             self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
             cb(nil);
-        } @catch (NSException *ex) {
-            cb(ex);
         }
     }];
     [t resume];
 }
 
--(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSException *ex))cb {
-    [super refreshIfNeeded:^(BOOL refreshed, NSException *ex) {
+-(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSError *ex))cb {
+    [super refreshIfNeeded:^(BOOL refreshed, NSError *ex) {
         if (refreshed) {
             self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
         }
@@ -187,15 +194,15 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 
--(void)refresh:(void(^)(NSException *ex))cb {
-    [self startLoginWithFailBlock:^(NSException *result) {
+-(void)refresh:(void(^)(NSError *ex))cb {
+    [self startLoginWithFailBlock:^(NSError *result) {
         cb(result);
     } completeBlock:^(ZKLoginResult *result) {
         cb(nil);
     }];
 }
 
-- (void)refreshIfNeeded:(void (^)(BOOL, NSException *))cb {
+- (void)refreshIfNeeded:(void (^)(BOOL, NSError *))cb {
     [super refreshIfNeeded:cb];
 }
 
@@ -207,7 +214,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return env;
 }
 
--(void)startLoginWithFailBlock:(zkFailWithExceptionBlock)failBlock completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+-(void)startLoginWithFailBlock:(ZKFailWithErrorBlock)failBlock completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     ZKEnvelope *env = [self newEnvelope];
     [env startElement:@"login"];
     [env addElement:@"username" elemValue:username];
@@ -216,7 +223,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     NSString *xml = env.end;
 
     client.urlSession = self.urlSession;
-    [client startRequest:xml name:@"login" handler:^(zkElement *root, NSException *ex) {
+    [client startRequest:xml name:@"login" handler:^(zkElement *root, NSError *ex) {
         if (ex != nil) {
             failBlock(ex);
             return;

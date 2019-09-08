@@ -79,8 +79,15 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     NSURL *authHost = oauth.authHostUrl;
     
     ZKSforceClient *c = [[ZKSforceClient alloc] init];
-    [c loginWithRefreshToken:refreshToken authUrl:authHost oAuthConsumerKey:OAUTH_CLIENTID];
-    controller.client = c;
+    [c loginWithRefreshToken:refreshToken
+                     authUrl:authHost
+            oAuthConsumerKey:OAUTH_CLIENTID
+                   failBlock:^(NSError *err) {
+                       [[NSAlert alertWithError:err] runModal];;
+                   } completeBlock:^{
+                       self.controller.client = c;
+                       NSLog(@"new client is %@", c);
+                   }];
 }
 
 

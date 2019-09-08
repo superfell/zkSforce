@@ -20,40 +20,17 @@
 //
 
 #import "ZKSforceClient.h"
-#import "ZKPartnerEnvelope.h"
-#import "zkQueryResult.h"
-#import "ZKSaveResult.h"
 #import "ZKSObject.h"
-#import "ZKSoapException.h"
-#import "ZKUserInfo.h"
 #import "ZKDescribeSObject.h"
 #import "ZKLoginResult.h"
-#import "ZKDescribeGlobalSObject.h"
-#import "zkParser.h"
+#import "ZKParser.h"
 #import "ZKConstants.h"
-#import "ZKDescribeLayoutResult.h"
-#import "ZKDescribeTabSetResult.h"
 #import "ZKLimitInfoHeader.h"
-#import "ZKLeadConvert.h"
-#import "ZKLeadConvertResult.h"
 #import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKCallOptions.h"
-#import "ZKPackageVersionHeader.h"
-#import "ZKLocaleOptions.h"
-#import "ZKAssignmentRuleHeader.h"
 #import "ZKMruHeader.h"
-#import "ZKAllowFieldTruncationHeader.h"
-#import "ZKDisableFeedTrackingHeader.h"
-#import "ZKStreamingEnabledHeader.h"
-#import "ZKAllOrNoneHeader.h"
-#import "ZKDebuggingHeader.h"
-#import "ZKEmailHeader.h"
-#import "ZKOwnerChangeOptions.h"
-#import "ZKUserTerritoryDeleteHeader.h"
 #import "ZKQueryOptions.h"
-#import "ZKDuplicateRuleHeader.h"
-#import "ZKXMLSerializable.h"
 #import "NSArray+Extras.h"
 
 static const int SAVE_BATCH_SIZE = 25;
@@ -75,18 +52,6 @@ static const int DEFAULT_API_VERSION = 46;
     cacheDescribes = NO;
     describes = [[NSMutableDictionary alloc] init];
     return self;
-}
-
-
-- (id)copyWithZone:(NSZone *)zone {
-    ZKSforceClient *rhs = [super copyWithZone:zone];
-    rhs->authEndpointUrl = [authEndpointUrl copy];
-    rhs->userInfo = userInfo;
-    rhs->preferedApiVersion = preferedApiVersion;
-    rhs->limitInfo = limitInfo;
-    rhs.cacheDescribes = cacheDescribes;
-    rhs->describes = [[NSMutableDictionary alloc] init];
-    return rhs;
 }
 
 -(NSObject<ZKAuthenticationInfo> *)authenticationInfo {
@@ -139,8 +104,8 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 -(void)soapLogin:(ZKSoapLogin *)auth
-       failBlock:(zkFailWithExceptionBlock)failBlock
-   completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+       failBlock:(ZKFailWithErrorBlock)failBlock
+   completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     
     [auth startLoginWithFailBlock:failBlock completeBlock:^(ZKLoginResult *result) {
         self.authenticationInfo = auth;
@@ -151,8 +116,8 @@ static const int DEFAULT_API_VERSION = 46;
 
 /** Login to the Salesforce API with username & password */
 -(void) performLogin:(NSString *)username password:(NSString *)password
-           failBlock:(zkFailWithExceptionBlock)failBlock
-       completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+           failBlock:(ZKFailWithErrorBlock)failBlock
+       completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
 
     ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:username
                                                   password:password
@@ -163,19 +128,24 @@ static const int DEFAULT_API_VERSION = 46;
     [self soapLogin:auth failBlock:failBlock completeBlock:completeBlock];
 }
 
-- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId{
-    ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl] clientId:oauthClientId];
+- (NSError *)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId {
+    NSError *err = nil;
+    ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl] clientId:oauthClientId error:&err];
+    if (err != nil) {
+        return err;
+    }
     auth.apiVersion = preferedApiVersion;
     self.authenticationInfo = auth;
+    return nil;
 }
 
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid
-                    failBlock:(zkFailWithExceptionBlock)failBlock
-                completeBlock:(zkCompleteVoidBlock)completeBlock {
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteVoidBlock)completeBlock {
     
     ZKOAuthInfo *auth = [[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid];
     auth.apiVersion = preferedApiVersion;
-    [auth refresh:^(NSException *ex) {
+    [auth refresh:^(NSError *ex) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (ex != nil) {
                 failBlock(ex);
@@ -191,8 +161,8 @@ static const int DEFAULT_API_VERSION = 46;
                       password:(NSString *)password
                          orgId:(NSString *)orgId
                       portalId:(NSString *)portalId
-                     failBlock:(zkFailWithExceptionBlock)failBlock
-                 completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+                     failBlock:(ZKFailWithErrorBlock)failBlock
+                 completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     
     ZKSoapPortalLogin *auth = [ZKSoapPortalLogin soapPortalLoginWithUsername:username
                                                                     password:password
@@ -214,8 +184,8 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 // refresh the session if needed, then call the supplied block.
-- (void)checkSession:(void(^)(NSException *ex))cb {
-    [self.authSource refreshIfNeeded:^(BOOL refreshed, NSException *ex) {
+- (void)checkSession:(void(^)(NSError *ex))cb {
+    [self.authSource refreshIfNeeded:^(BOOL refreshed, NSError *ex) {
         if (refreshed) {
             self.endpointUrl = self.authSource.instanceUrl;
         }
@@ -223,8 +193,8 @@ static const int DEFAULT_API_VERSION = 46;
     }];
 }
 
--(void)currentUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
-                      completeBlock:(zkCompleteUserInfoBlock)completeBlock {
+-(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
+                      completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
     ZKUserInfo *i = self.userInfo;
     if (i != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -243,7 +213,6 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 - (NSString *)sessionId {
-    [self checkSession];
     return self.authSource.sessionId;
 }
 
@@ -335,56 +304,10 @@ static const int DEFAULT_API_VERSION = 46;
     return r;
 }
 
-- (NSArray *)search:(NSString *)sosl {
-    if (!self.authSource) return NULL;
-    [self checkSession];
-    
-    NSString *payload = [self makeSearchEnv:sosl];
-    zkElement *sr = [self sendRequest:payload name:NSStringFromSelector(_cmd)];
-    zkElement *searchResult = [sr childElement:@"result"];
-    NSArray *records = [searchResult childElements:@"searchRecords"];
-    NSMutableArray *sobjects = [NSMutableArray arrayWithCapacity:records.count];
-    for (zkElement *soNode in records)
-        [sobjects addObject:[ZKSObject fromXmlNode:[soNode childElement:@"record"]]];
-    return sobjects;
-}
-
-- (NSArray *)create:(NSArray *)objects {
-    return [self sobjectsImpl:objects name:@"create"];
-}
-
-- (NSArray *)update:(NSArray *)objects {
-    return [self sobjectsImpl:objects name:@"update"];
-}
-
--(NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName {
-    if(!self.authSource) return NULL;
-    [self checkSession];
-    
-    // if more than we can do in one go, break it up.
-    if (objects.count > SAVE_BATCH_SIZE) {
-        NSArray *chunks = [objects ZKPartitionWithSize:SAVE_BATCH_SIZE];
-        NSMutableArray *allResults = [NSMutableArray arrayWithCapacity:objects.count];
-        for (NSArray *chunk in chunks) {
-            [allResults addObjectsFromArray:[self sobjectsImpl:chunk name:elemName]];
-        }
-        return allResults;
-    }
-    NSString *payload = nil;
-    if ([elemName isEqualToString:@"update"]) {
-        payload = [self makeUpdateEnv:objects];
-    } else {
-        payload = [self makeCreateEnv:objects];
-    }
-    zkElement *root = [self sendRequest:payload name:[NSString stringWithFormat:@"%@:", elemName] returnRoot:YES];
-    NSArray *results = [self makeCreateResult:root];
-    return results;
-}
-
 /** Update a set of sObjects, chunks in SAVE_BATCH_SIZE chunks if needed */
 -(void) performUpdate:(NSArray *)sObjects
-            failBlock:(zkFailWithExceptionBlock)failBlock
-        completeBlock:(zkCompleteArrayBlock)completeBlock {
+            failBlock:(ZKFailWithErrorBlock)failBlock
+        completeBlock:(ZKCompleteArrayBlock)completeBlock {
     
     if (sObjects.count <= SAVE_BATCH_SIZE) {
         [super performUpdate:sObjects failBlock:failBlock completeBlock:completeBlock];
@@ -394,7 +317,7 @@ static const int DEFAULT_API_VERSION = 46;
     NSArray *chunks = [sObjects ZKPartitionWithSize:SAVE_BATCH_SIZE];
     NSUInteger __block idx = 0;
     
-    zkCompleteArrayBlock cb;
+    ZKCompleteArrayBlock cb;
     cb = ^void(NSArray *result) {
         [results addObjectsFromArray:result];
         idx++;
@@ -410,8 +333,8 @@ static const int DEFAULT_API_VERSION = 46;
 
 /** Create a set of sObjects, chunks in SAVE_BATCH_SIZE chunks if needed */
 -(void) performCreate:(NSArray *)sObjects
-            failBlock:(zkFailWithExceptionBlock)failBlock
-        completeBlock:(zkCompleteArrayBlock)completeBlock {
+            failBlock:(ZKFailWithErrorBlock)failBlock
+        completeBlock:(ZKCompleteArrayBlock)completeBlock {
     
     if (sObjects.count <= SAVE_BATCH_SIZE) {
         [super performCreate:sObjects failBlock:failBlock completeBlock:completeBlock];
@@ -421,7 +344,7 @@ static const int DEFAULT_API_VERSION = 46;
     NSArray *chunks = [sObjects ZKPartitionWithSize:SAVE_BATCH_SIZE];
     NSUInteger __block idx = 0;
     
-    zkCompleteArrayBlock cb;
+    ZKCompleteArrayBlock cb;
     cb = ^void(NSArray *result) {
         [results addObjectsFromArray:result];
         idx++;
@@ -433,10 +356,6 @@ static const int DEFAULT_API_VERSION = 46;
         }
     };
     [super performCreate:chunks[0] failBlock:failBlock completeBlock:cb];
-}
-
-- (NSDictionary *)retrieve:(NSString *)fields sobject:(NSString *)sobjectType ids:(NSArray *)ids {
-    return [self retrieve:fields sObjectType:sobjectType ids:ids];
 }
 
 -(NSDictionary *)makeRetrieveResult:(zkElement *)root {

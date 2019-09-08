@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkQueryResult.h"
+#import "ZKQueryResult.h"
 
 // This category on ZKQueryResult makes it a NSTableView data source.
 

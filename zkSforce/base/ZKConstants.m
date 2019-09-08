@@ -27,4 +27,14 @@ NSString *const NS_SOAP_ENV = @"http://schemas.xmlsoap.org/soap/envelope/";
 
 NSString *const ZKErrorDomain = @"pocketsoap.com";
 
-NSString *const ZKSoapFaultCodeKey = "SoapFaultCode";
+NSString *const ZKSoapFaultCodeKey = @"SoapFaultCode";
+
+const NSInteger kHttpError              = -42;
+
+const NSInteger kInvalidXml             = -100;
+const NSInteger kNotSoapEnvelope        = -101;
+const NSInteger kSoapFaultMissingFault  = -102;
+const NSInteger kSoapFault              = -103;
+
+const NSInteger kAuthenticationRequired = -200;
+const NSInteger kOAuthParsingError      = -201;

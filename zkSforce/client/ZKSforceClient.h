@@ -20,31 +20,13 @@
 //
 
 
+#import "ZKSforceBaseClient.h"
+#import "ZKSforceBaseClient+Operations.h"
 #import "ZKAuthentication.h"
 #import <AvailabilityMacros.h>
 
-@class ZKUserInfo;
-@class ZKDescribeSObject;
-@class ZKQueryResult;
-@class ZKLoginResult;
-@class ZKDescribeLayoutResult;
-@class ZKLimitInfoHeader;
 @class ZKEnvelope;
-@class ZKCallOptions;
-@class ZKPackageVersionHeader;
-@class ZKLocaleOptions;
-@class ZKAssignmentRuleHeader;
-@class ZKMruHeader;
-@class ZKAllowFieldTruncationHeader;
-@class ZKDisableFeedTrackingHeader;
-@class ZKStreamingEnabledHeader;
-@class ZKAllOrNoneHeader;
-@class ZKDebuggingHeader;
-@class ZKEmailHeader;
-@class ZKOwnerChangeOptions;
-@class ZKUserTerritoryDeleteHeader;
-@class ZKQueryOptions;
-@class ZKDuplicateRuleHeader;
+@class ZKLimitInfoHeader;
 
 /**
   This is the primary entry point into the library, you'd create one of these
@@ -52,7 +34,7 @@
   kept alive, and login will be called again for you if needed.
  
 */
-@interface ZKSforceClient : ZKSforceBaseClient <NSCopying> {
+@interface ZKSforceClient : ZKSforceBaseClient {
     NSString            *authEndpointUrl;
     ZKUserInfo          *userInfo;
     BOOL                cacheDescribes;
@@ -83,7 +65,6 @@
 /** returns an NSURL of where authentication will currently go. */
 @property (readonly) NSURL *authEndpointUrl;
 
-// TODO async version of auth setup
 
 /** @name Start an API session, need to call one of these before making any api call */
 
@@ -95,8 +76,8 @@
     @param password the password [and possibly api security token] of the user
 */
 -(void) performLogin:(NSString *)username password:(NSString *)password
-           failBlock:(zkFailWithExceptionBlock)failBlock
-       completeBlock:(zkCompleteLoginResultBlock)completeBlock;
+           failBlock:(ZKFailWithErrorBlock)failBlock
+       completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
 /** Initialize the authentication info from the parameters contained in the OAuth
     completion callback Uri passed in. Call this when the oauth flow is complete,
@@ -104,8 +85,9 @@
 
     @param callbackUrl the oauth callback URL received from the OS
     @param oauthClientId the oauth consumerKey for your applications oauth configuration
+    @return an error if it can't parse the callback fragment, or it indicates an error
  */
-- (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId;
+- (NSError *)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId;
 
 /** Login by making a refresh token request with this refresh Token to the specifed
     authentication host. oAuthConsumerKey is the oauth client_id / consumer key
@@ -116,8 +98,8 @@
     @param oauthClientId the OAuth consumer key for your applications oauth configuration
  */
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId
-                    failBlock:(zkFailWithExceptionBlock)failBlock
-                completeBlock:(zkCompleteVoidBlock)completeBlock;
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteVoidBlock)completeBlock;
 
 
 /** Attempt a login for a portal User.
@@ -132,8 +114,8 @@
     @param portalId  PortalId is required for new generation portals, can be null for old style self service portals.
 */
 - (void)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId
-          failBlock:(zkFailWithExceptionBlock)failBlock
-      completeBlock:(zkCompleteLoginResultBlock)completeBlock;
+          failBlock:(ZKFailWithErrorBlock)failBlock
+      completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
 
 /** Authentication Management
@@ -144,47 +126,9 @@
 @property (strong) NSObject<ZKAuthenticationInfo> *authenticationInfo;
 
 
-/** @name basic Web Service operations
-    
-    these set of methods pretty much map directly onto their Web Services counterparts.
-    These methods will throw a ZKSoapException if there's an error.
-*/
-
-
-/** make a search call with the passed in SOSL expression, @return an array of ZKSObject instances.*/
-- (NSArray *)search:(NSString *)sosl DEPRECATED_MSG_ATTRIBUTE("Please use performSearch instead");
-
-/** retreives a set of records,
- 
- @param fields       is a comma separated list of fields to fetch values for
- @param sobjectType  is the API name of the SObject type that we're fetching records for
- @param ids          is an array of record Ids, can be upto 200.
- 
- @return a diction of record Id -> ZKSObject instance. If a specified record doesn't exist
- it won't appear in the returned dictionary
- */
-- (NSDictionary *)retrieve:(NSString *)fields
-                   sobject:(NSString *)sobjectType
-                       ids:(NSArray *)ids DEPRECATED_MSG_ATTRIBUTE("Please use performRetrieve:sObjectType:ids instead");
-
-/** create 1 or more new records in Salseforce.
- 
-    @param objects an array of ZKSObject's to create.
-    @return a matching array of ZKSaveResults
-*/
-- (NSArray *)create:(NSArray *)objects DEPRECATED_MSG_ATTRIBUTE("Please use performCreate instead");
-
-/** update 1 or more records in Salseforce.
- 
- @param objects an array of ZKSObject's to update.
- @return a matching array of ZKSaveResults
- */
-- (NSArray *)update:(NSArray *)objects DEPRECATED_MSG_ATTRIBUTE("Please use performCreate instead");
-
-
 //////////////////////////////////////////////////////////////////////////////////////
-// Other methods from the WSDL such as delete, query, merge, etc are all declared in
-// ZKSforceClient+Operations.h
+// Methods from the WSDL such as delete, query, merge, etc are all declared in
+// ZKSforceBaseClient+Operations.h
 //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -195,13 +139,14 @@
 
 /** @return the UserInfo returned by the last call to login. If login was via OAuth
     will call getUserInfo if needed. */
--(void)currentUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
-                                completeBlock:(zkCompleteUserInfoBlock)completeBlock;
+-(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
+                      completeBlock:(ZKCompleteUserInfoBlock)completeBlock;
 
 /** @return the current endpoint URL where requests are being sent. */
 @property (readonly) NSURL *serverUrl;
 
-/** @return the current API session Id being used to make requests */
+/** @return the current API session Id being used to make requests,
+    nil if we don't currently have one */
 @property (readonly) NSString *sessionId;
 
 /** @return the short name of the current serverUrl, e.g. na1, eu0, cs5 etc, if the short name ends in -api, the -api part will be removed. */
@@ -211,6 +156,7 @@
 
 /** contains the last received LimitInfoHeader we got from the server. */
 @property (readonly) ZKLimitInfoHeader *lastLimitInfoHeader;
+
 
 // These 3 are for backwards compat, they will update the relevant header property
 
@@ -233,7 +179,7 @@
 
 /** These are helper methods used by the Operations category, you shouldn't need to call these directly */
 @interface ZKSforceClient (Helpers)
--(void)checkSession;
+-(void)checkSession:(void(^)(NSError *))cb;
 @end
 
 /** These methods allow the generated operation code to be customized */

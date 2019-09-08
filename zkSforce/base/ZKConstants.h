@@ -23,27 +23,36 @@
 #define ZKConstants_h
 
 // XML Namespace URIs
-FOUNDATION_EXPORT NSString *const NS_URI_XSI;
-FOUNDATION_EXPORT NSString *const NS_URI_XSD;
-FOUNDATION_EXPORT NSString *const NS_SOAP_ENV;
+extern NSString *const NS_URI_XSI;
+extern NSString *const NS_URI_XSD;
+extern NSString *const NS_SOAP_ENV;
 
 // Our domain for NSErrors
-FOUNDATION_EXPORT NSString *const ZKErrorDomain;
+extern NSString *const ZKErrorDomain;
 
 // NSError user Info keys
-FOUNDATION_EXPORT NSString *const ZKSoapFaultCodeKey;
+extern NSString *const ZKSoapFaultCodeKey;
 
 // Our NSError error codes
-const NSInteger kInvalidXml             = -100;
+extern const NSInteger kHttpError;
+
+extern const NSInteger kInvalidXml;
 
 // The HTTP response should be a SOAP 1.1 Envelope, but we received something else
-const NSInteger kNotSoapEnvelope        = -101;
+extern const NSInteger kNotSoapEnvelope;
 
 // the HTTP status code said the response should be a soap fault
 // but there was no soap:Fault element in the response message.
-const NSInteger kSoapFaultMissingFault  = -102;
+extern const NSInteger kSoapFaultMissingFault;
 
 // the Server returned a SOAP Fault message
-const NSInteger kSoapFault              = -103;
+extern const NSInteger kSoapFault;
+
+// Authentication must be performed before this call can be made.
+// i.e. you can call create without logging in.
+extern const NSInteger kAuthenticationRequired;
+
+// Failed to parse the parameters from an OAuth callback.
+extern const NSInteger kOAuthParsingError;
 
 #endif /* ZKConstants_h */

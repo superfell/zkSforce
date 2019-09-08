@@ -78,6 +78,10 @@ NSTimeInterval intervalFrom(uint64_t start) {
         NSLog(@"Got error sending API request %@ : %@", request, *err);
         return nil;
     }
+    if (!err) {
+        NSError __autoreleasing *dummy = nil;
+        err = &dummy;
+    }
     //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
     zkElement *root = [zkParser parseData:respPayload];
     if (root == nil) {

@@ -31,6 +31,10 @@
     return [self errorWithCode:kSoapFault message:faultMessage userInfo:@{ZKSoapFaultCodeKey : faultCode}];
 }
 
++(NSError *)authenticationRequiredError {
+    return [self errorWithCode:kAuthenticationRequired message:@"This method requires authentication, which hasn't been performed yet."];
+}
+
 +(NSError *)errorWithCode:(NSInteger)code message:(NSString *)localalizedMessage userInfo:(NSDictionary *)dict {
     NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] initWithCapacity:1 + dict.count];
     if (dict != nil) {

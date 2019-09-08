@@ -28,6 +28,7 @@
 #import "ZKParser.h"
 #import "ZKPartnerEnvelope.h"
 #import "ZKAuthenticationInfo.h"
+#import "ZKConstants.h"
 #import "ZKChangeOwnPasswordResult.h"
 #import "ZKDataCategoryGroupSobjectTypePair.h"
 #import "ZKDeleteByExampleResult.h"

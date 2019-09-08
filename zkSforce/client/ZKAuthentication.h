@@ -20,7 +20,8 @@
 //
 
 #import "ZKAuthenticationInfo.h"
-#import "ZKSforceBaseClient+Operations.h"
+#import "ZKBlockTypes.h"
+#import "ZKBaseClient.h"
 
 @class ZKLoginResult;
 
@@ -34,7 +35,7 @@
 @interface ZKOAuthInfo : ZKAuthInfoBase<ZKAuthenticationInfo> {
 }
 
-+(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid;
++(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid error:(NSError **)err;
 +(instancetype)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth clientId:(NSString *)cid;
 +(instancetype)oauthInfoWithRefreshToken:(NSString *)tkn authHost:(NSURL *)auth sessionId:(NSString *)sid instanceUrl:(NSURL *)inst clientId:(NSString *)cid;
 
@@ -54,7 +55,7 @@
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate;
 
 // Starts a login request. Callbacks will be on a random GCD queue
--(void)startLoginWithFailBlock:(zkFailWithExceptionBlock)failBlock completeBlock:(zkCompleteLoginResultBlock)cb;
+-(void)startLoginWithFailBlock:(ZKFailWithErrorBlock)failBlock completeBlock:(ZKCompleteLoginResultBlock)cb;
 
 @end
 
