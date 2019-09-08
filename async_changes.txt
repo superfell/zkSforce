@@ -43,15 +43,18 @@ Making everything async complicates a few things.
   to make that viable.
   
 - Random sync method methods that might need to make an HTTP request
-  checkSession
-  currentUserInfo
+  refreshSession
+  currentUserInfo   [DONE changed to callback version]
   
 - That baseClient keeps hold of the last set of headers is much less useful with it being
-  async. As they're already exposed by the delegate, perhaps that can go away.
+  async. As they're already exposed by the delegate, perhaps that can go away. [DONE removed]
   
 - A bunch of changes are in the generated code, see the async branch of the WSDL2ZKSforce repo.
+
+- rename ZKSforceClient+Async now that its ZKBaseSforceClient? move block typedefs to own file.
 
 - ZKSforceClient API changes
     - lastResponseSoapHeaders is removed. If you need to example headers, override the handleResponseSoapHeaders method
     - currentUserInfo now takes a callback block
     - performXXX would log if called before auth, will now call the failBlock
+    

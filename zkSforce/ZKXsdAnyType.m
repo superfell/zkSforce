@@ -22,6 +22,7 @@
 #import "ZKXsdAnyType.h"
 #import "zkParser.h"
 #import "ZKSimpleTypes.h"
+#import "ZKConstants.h"
 
 @interface ZKXsdAnyType()
 -(NSObject *)decodeValue;

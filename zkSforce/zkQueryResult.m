@@ -23,6 +23,7 @@
 #import "zkQueryResult.h"
 #import "zkSObject.h"
 #import "zkParser.h"
+#import "ZKConstants.h"
 
 @implementation ZKQueryResult
 

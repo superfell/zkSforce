@@ -1,4 +1,4 @@
-// Copyright (c) 2011,2016,2018 Simon Fell
+// Copyright (c) 2011,2016,2018,2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -25,28 +25,33 @@
 #import "ZKLoginResult.h"
 #import "ZKUserInfo.h"
 #import "zkBaseClient.h"
+#import "ZKConstants.h"
 
 static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @interface ZKAuthInfoBase()
-@property (readwrite) NSString *sessionId;
-@property (strong) NSDate *sessionExpiresAt;
+@property NSString *sessionId;
+@property NSDate *sessionExpiresAt;
+@property NSURLSession *urlSession;
 @end
 
 @implementation ZKAuthInfoBase
 
 @synthesize sessionId, sessionExpiresAt;
 
--(void)refresh {
+-(void)refresh:(void(^)(NSException *ex))cb {
     // override me!
+    cb(nil);
 }
 
--(BOOL)refreshIfNeeded {
+-(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSException *ex))cb {
     if ((sessionExpiresAt.timeIntervalSinceNow < 0) || (sessionId == nil)) {
-        [self refresh];    
-        return TRUE;
+        [self refresh:^(NSException *ex) {
+            cb(ex == nil, ex);
+        }];
+    } else {
+        cb(FALSE, nil);
     }
-    return FALSE;
 }
 
 @end
@@ -112,31 +117,48 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return [NSURL URLWithString:[NSString stringWithFormat:@"/services/Soap/u/%d.0", apiVersion] relativeToURL:self.url];
 }
 
--(void)refresh {
+-(void)refresh:(void(^)(NSException *ex))cb {
     NSURL *token = [NSURL URLWithString:@"/services/oauth2/token" relativeToURL:self.authHostUrl];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:token];
     req.HTTPMethod = @"POST";
     NSString *params = [NSString stringWithFormat:@"grant_type=refresh_token&refresh_token=%@&client_id=%@&format=urlencoded",
-                      [self.refreshToken stringByRemovingPercentEncoding],
-                      [self.clientId stringByRemovingPercentEncoding]];
+                      [self.refreshToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                      [self.clientId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     req.HTTPBody = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req addValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
 
-    NSHTTPURLResponse *resp = nil;
-    NSError *err = nil;
-    NSData *respPayload = [NSURLConnection sendSynchronousRequest:req returningResponse:&resp error:&err];
-    NSString *respBody = [[NSString alloc] initWithBytes:respPayload.bytes length:respPayload.length encoding:NSUTF8StringEncoding];
-    NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
-    
-    self.sessionId = results[@"access_token"];
-    self.url = [NSURL URLWithString:results[@"instance_url"]];
-    self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
+    NSURLSession *s = self.urlSession;
+    if (s == nil) {
+        s = [NSURLSession sharedSession];
+    }
+    NSURLSessionDataTask *t = [s dataTaskWithRequest:req completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error != nil) {
+            cb([NSException exceptionWithName:@"Http error"
+                                       reason:[NSString stringWithFormat:@"Unable to complete OAuth token refresh request: %@", error]
+                                     userInfo:nil]);
+            return;
+        }
+        NSString *respBody = [[NSString alloc] initWithBytes:data.bytes length:data.length encoding:NSUTF8StringEncoding];
+        @try {
+            NSDictionary *results = [ZKOAuthInfo decodeParams:respBody];
+            self.sessionId = results[@"access_token"];
+            self.url = [NSURL URLWithString:results[@"instance_url"]];
+            self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
+            cb(nil);
+        } @catch (NSException *ex) {
+            cb(ex);
+        }
+    }];
+    [t resume];
 }
 
--(BOOL)refreshIfNeeded {
-    BOOL r = super.refreshIfNeeded;
-    self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
-    return r;
+-(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSException *ex))cb {
+    [super refreshIfNeeded:^(BOOL refreshed, NSException *ex) {
+        if (refreshed) {
+            self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:DEFAULT_MAX_SESSION_AGE];
+        }
+        cb(refreshed, ex);
+    }];
 }
 
 @end
@@ -165,13 +187,18 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 
--(void)refresh {
-    [self login];
+-(void)refresh:(void(^)(NSException *ex))cb {
+    [self startLoginWithFailBlock:^(NSException *result) {
+        cb(result);
+    } completeBlock:^(ZKLoginResult *result) {
+        cb(nil);
+    }];
 }
 
-- (BOOL)refreshIfNeeded {
-    return [super refreshIfNeeded];
+- (void)refreshIfNeeded:(void (^)(BOOL, NSException *))cb {
+    [super refreshIfNeeded:cb];
 }
+
 
 -(ZKPartnerEnvelope *)newEnvelope {
     ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
@@ -180,25 +207,32 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return env;
 }
 
--(ZKLoginResult *)login {
+-(void)startLoginWithFailBlock:(zkFailWithExceptionBlock)failBlock completeBlock:(zkCompleteLoginResultBlock)completeBlock {
     ZKEnvelope *env = [self newEnvelope];
     [env startElement:@"login"];
     [env addElement:@"username" elemValue:username];
     [env addElement:@"password" elemValue:password];
     [env endElement:@"login"];
     NSString *xml = env.end;
-    
-    zkElement *resp = [client sendRequest:xml name:@"login"];
-    zkElement *result = [resp childElements:@"result"][0];
-    ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
-    
-    self.instanceUrl = [NSURL URLWithString:lr.serverUrl];
-    self.sessionId = lr.sessionId;
 
-    // if we have a sessionSecondsValid in the UserInfo, use that to control when we re-authenticate, otherwise take the default.
-    NSInteger sessionAge = lr.userInfo.sessionSecondsValid > 0 ? lr.userInfo.sessionSecondsValid - 60 : DEFAULT_MAX_SESSION_AGE;
-    self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:sessionAge];
-    return lr;
+    client.urlSession = self.urlSession;
+    [client startRequest:xml name:@"login" handler:^(zkElement *root, NSException *ex) {
+        if (ex != nil) {
+            failBlock(ex);
+            return;
+        }
+        zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+        zkElement *result = [body childElements:@"result"][0];
+        ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
+        
+        self.instanceUrl = [NSURL URLWithString:lr.serverUrl];
+        self.sessionId = lr.sessionId;
+        
+        // if we have a sessionSecondsValid in the UserInfo, use that to control when we re-authenticate, otherwise take the default.
+        NSInteger sessionAge = lr.userInfo.sessionSecondsValid > 0 ? lr.userInfo.sessionSecondsValid - 60 : DEFAULT_MAX_SESSION_AGE;
+        self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:sessionAge];
+        completeBlock(lr);
+    }];
 }
 
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate {
@@ -223,7 +257,6 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return self;
 }
 
-
 -(ZKPartnerEnvelope *)newEnvelope {
     ZKPartnerEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:nil];
     [env moveToHeaders];
@@ -238,6 +271,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 }
 
 +(instancetype)soapPortalLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate orgId:(NSString *)orgId portalId:(NSString *)portalId {
+    
     return [[ZKSoapPortalLogin alloc] initWithUsername:un password:pwd authHost:auth apiVersion:v clientId:cid delegate:delegate orgId:orgId portalId:portalId];
 }
 

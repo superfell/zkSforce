@@ -90,14 +90,19 @@
 
 /** Attempt a login request. If a security token is required to be used you need to
     append it to the password parameter.
+    The callbacks will be executed on the main queue
+
     @param username the salesforce username to try and authenticate
     @param password the password [and possibly api security token] of the user
 */
-- (ZKLoginResult *)login:(NSString *)username password:(NSString *)password;
+-(void) performLogin:(NSString *)username password:(NSString *)password
+           failBlock:(zkFailWithExceptionBlock)failBlock
+       completeBlock:(zkCompleteLoginResultBlock)completeBlock;
 
 /** Initialize the authentication info from the parameters contained in the OAuth
-    completion callback Uri passed in.
-    call this when the oauth flow is complete, this doesn't start the oauth flow.
+    completion callback Uri passed in. Call this when the oauth flow is complete,
+    this doesn't start the oauth flow.
+
     @param callbackUrl the oauth callback URL received from the OS
     @param oauthClientId the oauth consumerKey for your applications oauth configuration
  */
@@ -105,24 +110,32 @@
 
 /** Login by making a refresh token request with this refresh Token to the specifed
     authentication host. oAuthConsumerKey is the oauth client_id / consumer key
+    The callbacks will be executed on the main queue
  
     @param refreshToken  a refresh token previously obtained from the oauth login flow
     @param authUrl       the URL to the token service to send the refresh token to
     @param oauthClientId the OAuth consumer key for your applications oauth configuration
  */
-- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId;
+- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId
+                    failBlock:(zkFailWithExceptionBlock)failBlock
+                completeBlock:(zkCompleteVoidBlock)completeBlock;
+
 
 /** Attempt a login for a portal User.
  
     In the case of self service portals, you can ony authenticate users, they don't have access
     to the rest of the API, attempts to call other API methods will return an error.
- 
+    The callbacks will be executed on the main queue
+
     @param username  the portal users username
     @param password  the portal users password
     @param orgId     OrgId is required, and should be the Id of the organization that owns the portal.
     @param portalId  PortalId is required for new generation portals, can be null for old style self service portals.
 */
-- (ZKLoginResult *)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId;
+- (void)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId
+          failBlock:(zkFailWithExceptionBlock)failBlock
+      completeBlock:(zkCompleteLoginResultBlock)completeBlock;
+
 
 /** Authentication Management
     This lets you manage different authentication schemes, like oauth
@@ -222,7 +235,6 @@
 /** These are helper methods used by the Operations category, you shouldn't need to call these directly */
 @interface ZKSforceClient (Helpers)
 -(void)checkSession;
--(void)updateLimitInfo;
 @end
 
 /** These methods allow the generated operation code to be customized */

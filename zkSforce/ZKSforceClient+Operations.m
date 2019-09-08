@@ -138,11 +138,41 @@
 /** Describe the data category group structures for a given set of pair of types and data category group name */
 -(NSArray *)describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
 	if (!self.authSource) return nil;
-	[self checkSession];
-	NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
-	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
-	NSArray *result = [self makeDescribeDataCategoryGroupStructuresResult:root];
-	return result;
+    NSCondition *cond = [[NSCondition alloc] init];
+    NSException __block *err = nil;
+    NSArray __block *result = nil;
+    [self checkSession:^(NSException *ex) {
+        if (ex != nil) {
+            [cond lock];
+            err = ex;
+            [cond broadcast];
+            [cond unlock];
+            return;
+        }
+        [self performDescribeDataCategoryGroupStructures:pairs
+                                       topCategoriesOnly:topCategoriesOnly
+                                               failBlock:^(NSException *result) {
+                                                   [cond lock];
+                                                   err = result;
+                                                   [cond broadcast];
+                                                   [cond unlock];
+                                               }
+                                           completeBlock:^(NSArray *r) {
+                                               [cond lock];
+                                               result = r;
+                                               [cond broadcast];
+                                               [cond unlock];
+                                           }];
+    }];
+    [cond lock];
+    while (result == nil && err == nil) {
+        [cond wait];
+    }
+    [cond unlock];
+    if (err != nil) {
+        @throw err;
+    }
+    return result;
 }
 
 /** Describe your Data Category Mappings. */
@@ -228,7 +258,7 @@
 /** Describe a list of entity names that reflects the current user's searchable entities */
 -(NSArray *)describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs {
 	if (!self.authSource) return nil;
-	[self checkSession];
+    [self checkSession
 	NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
 	zkElement *root = [self sendRequest:payload name:NSStringFromSelector(_cmd) returnRoot:YES];
 	NSArray *result = [self makeDescribeSearchableEntitiesResult:root];

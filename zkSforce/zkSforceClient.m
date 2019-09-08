@@ -30,6 +30,7 @@
 #import "ZKLoginResult.h"
 #import "ZKDescribeGlobalSObject.h"
 #import "zkParser.h"
+#import "ZKConstants.h"
 #import "ZKDescribeLayoutResult.h"
 #import "ZKDescribeTabSetResult.h"
 #import "ZKLimitInfoHeader.h"
@@ -67,7 +68,7 @@ static const int DEFAULT_API_VERSION = 46;
 
 @implementation ZKSforceClient
 
-@synthesize preferedApiVersion, cacheDescribes, lastLimitInfoHeader=limitInfo;
+@synthesize preferedApiVersion, lastLimitInfoHeader=limitInfo;
 
 - (instancetype)init {
     self = [super init];
@@ -100,10 +101,25 @@ static const int DEFAULT_API_VERSION = 46;
     self.userInfo = nil;
 }
 
+-(BOOL)cacheDescribes {
+    @synchronized (describes) {
+        return cacheDescribes;
+    }
+}
+
+-(void)setCacheDescribes:(BOOL)shouldCache {
+    @synchronized (describes) {
+        cacheDescribes = shouldCache;
+        if (!shouldCache) {
+            [describes removeAllObjects];
+        }
+    }
+}
+
 - (void)flushCachedDescribes {
-    describes = nil;
-    if (cacheDescribes)
-        describes = [[NSMutableDictionary alloc] init];
+    @synchronized (describes) {
+        [describes removeAllObjects];
+    }
 }
 
 - (void)setLoginProtocolAndHost:(NSString *)protocolAndHost {
@@ -124,29 +140,29 @@ static const int DEFAULT_API_VERSION = 46;
     return [NSURL URLWithString:authEndpointUrl];
 }
 
--(ZKLoginResult *)soapLogin:(ZKSoapLogin *)auth {
-    ZKLoginResult *lr = [auth login];
-    self.authenticationInfo = auth;
-    self.userInfo = lr.userInfo;
-    return lr;
+-(void)soapLogin:(ZKSoapLogin *)auth
+       failBlock:(zkFailWithExceptionBlock)failBlock
+   completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+    
+    [auth startLoginWithFailBlock:failBlock completeBlock:^(ZKLoginResult *result) {
+        self.authenticationInfo = auth;
+        self.userInfo = result.userInfo;
+        completeBlock(result);
+    }];
 }
 
-/** TODO: Login to the Salesforce.com SOAP Api */
+/** Login to the Salesforce API with username & password */
 -(void) performLogin:(NSString *)username password:(NSString *)password
            failBlock:(zkFailWithExceptionBlock)failBlock
        completeBlock:(zkCompleteLoginResultBlock)completeBlock {
-    
-    failBlock([NSException exceptionWithName:@"NotImplemented" reason:@"" userInfo:nil]);
-}
 
-- (ZKLoginResult *)login:(NSString *)un password:(NSString *)pwd {
-    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:un
-                                                  password:pwd
+    ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:username
+                                                  password:password
                                                   authHost:[NSURL URLWithString:authEndpointUrl]
                                                 apiVersion:preferedApiVersion
                                                   clientId:self.clientId
                                                   delegate:self.delegate];
-    return [self soapLogin:auth];
+    [self soapLogin:auth failBlock:failBlock completeBlock:completeBlock];
 }
 
 - (void)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId{
@@ -155,14 +171,31 @@ static const int DEFAULT_API_VERSION = 46;
     self.authenticationInfo = auth;
 }
 
-- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid {
+- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid
+                    failBlock:(zkFailWithExceptionBlock)failBlock
+                completeBlock:(zkCompleteVoidBlock)completeBlock {
+    
     ZKOAuthInfo *auth = [[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid];
     auth.apiVersion = preferedApiVersion;
-    self.authenticationInfo = auth;
-    [self checkSession];
+    [auth refresh:^(NSException *ex) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (ex != nil) {
+                failBlock(ex);
+            } else {
+                self.authenticationInfo = auth;
+                completeBlock();
+            }
+        });
+    }];
 }
 
-- (ZKLoginResult *)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId {
+- (void)portalLogin:(NSString *)username
+                      password:(NSString *)password
+                         orgId:(NSString *)orgId
+                      portalId:(NSString *)portalId
+                     failBlock:(zkFailWithExceptionBlock)failBlock
+                 completeBlock:(zkCompleteLoginResultBlock)completeBlock {
+    
     ZKSoapPortalLogin *auth = [ZKSoapPortalLogin soapPortalLoginWithUsername:username
                                                                     password:password
                                                                     authHost:[NSURL URLWithString:authEndpointUrl]
@@ -171,7 +204,7 @@ static const int DEFAULT_API_VERSION = 46;
                                                                     delegate:self.delegate
                                                                        orgId:orgId
                                                                     portalId:portalId];
-    return [self soapLogin:auth];
+    [self soapLogin:auth failBlock:failBlock completeBlock:completeBlock];
 }
 
 -(void)setUserInfo:(ZKUserInfo *)ui {
@@ -182,9 +215,14 @@ static const int DEFAULT_API_VERSION = 46;
     return self.authSource.sessionId.length > 0;
 }
 
-- (void)checkSession {
-    if (self.authSource.refreshIfNeeded)
-        self.endpointUrl = self.authSource.instanceUrl;
+// refresh the session if needed, then call the supplied block.
+- (void)checkSession:(void(^)(NSException *ex))cb {
+    [self.authSource refreshIfNeeded:^(BOOL refreshed, NSException *ex) {
+        if (refreshed) {
+            self.endpointUrl = self.authSource.instanceUrl;
+        }
+        cb(ex);
+    }];
 }
 
 -(void)currentUserInfoWithFailBlock:(zkFailWithExceptionBlock)failBlock
@@ -270,29 +308,31 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 -(NSArray *)preHook_describeGlobal {
-    if (cacheDescribes) {
+    @synchronized (describes) {
         return describes[@"describe__global"];    // won't be an sfdc object ever called this.
     }
-    return nil;
 }
 
 -(NSArray *)postHook_describeGlobal:(NSArray *)r {
-    if (cacheDescribes) {
-        describes[@"describe__global"] = r;
+    @synchronized (describes) {
+        if (cacheDescribes) {
+            describes[@"describe__global"] = r;
+        }
     }
     return r;
 }
 
 -(ZKDescribeSObject *)preHook_describeSObject:(NSString *)sobjectName {
-    if (cacheDescribes) {
+    @synchronized (describes) {
         return describes[sobjectName.lowercaseString];
     }
-    return nil;
 }
 
 -(ZKDescribeSObject *)postHook_describeSObject:(ZKDescribeSObject *)r {
-    if (cacheDescribes) {
-        describes[r.name.lowercaseString] = r;
+    @synchronized (describes) {
+        if (cacheDescribes) {
+            describes[r.name.lowercaseString] = r;
+        }
     }
     return r;
 }

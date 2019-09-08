@@ -24,10 +24,9 @@
 #import "zkBaseClient.h"
 #import "zkSoapException.h"
 #import "zkParser.h"
+#import "ZKConstants.h"
 
 @implementation ZKBaseClient
-
-static NSString *SOAP_NS = @"http://schemas.xmlsoap.org/soap/envelope/";
 
 @synthesize endpointUrl, delegate, urlSession;
 
@@ -86,7 +85,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
     if (returnRoot) {
         return result;
     }
-    zkElement *body = [result childElement:@"Body" ns:SOAP_NS];
+    zkElement *body = [result childElement:@"Body" ns:NS_SOAP_ENV];
     return body.childElements[0];
 }
 
@@ -139,16 +138,16 @@ NSTimeInterval intervalFrom(uint64_t start) {
         [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element was %@, but should be Envelope", root.name]];
         @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root element should be Envelope, but was %@", root.name] userInfo:nil];
     }
-    if (![root.namespace isEqualToString:SOAP_NS]) {
-        [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", root.namespace, SOAP_NS]];
-        @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", SOAP_NS, root.namespace] userInfo:nil];
+    if (![root.namespace isEqualToString:NS_SOAP_ENV]) {
+        [self logInvalidResponse:resp payload:respPayload note:[NSString stringWithFormat:@"Root element namespace was %@, but should be %@", root.namespace, NS_SOAP_ENV]];
+        @throw [NSException exceptionWithName:@"Xml error" reason:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", NS_SOAP_ENV, root.namespace] userInfo:nil];
     }
-    zkElement *header = [root childElement:@"Header" ns:SOAP_NS];
+    zkElement *header = [root childElement:@"Header" ns:NS_SOAP_ENV];
     [self handleResponseSoapHeaders:header];
     
-    zkElement *body = [root childElement:@"Body" ns:SOAP_NS];
+    zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
     if (500 == resp.statusCode) {
-        zkElement *fault = [body childElement:@"Fault" ns:SOAP_NS];
+        zkElement *fault = [body childElement:@"Fault" ns:NS_SOAP_ENV];
         if (fault == nil)
             @throw [NSException exceptionWithName:@"Xml error" reason:@"Fault status code returned, but unable to find soap:Fault element" userInfo:nil];
         NSString *fc = [fault childElement:@"faultcode"].stringValue;

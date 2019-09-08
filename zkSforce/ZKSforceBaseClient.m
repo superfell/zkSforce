@@ -26,6 +26,7 @@
 
 #import "ZKSforceBaseClient.h"
 #import "zkParser.h"
+#import "ZKConstants.h"
 #import "ZKPartnerEnvelope.h"
 #import "ZKAuthenticationInfo.h"
 #import "ZKChangeOwnPasswordResult.h"

@@ -1,4 +1,4 @@
-// Copyright (c) 2011,2018 Simon Fell
+// Copyright (c) 2011,2018,2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-#import "zkBaseClient.h"
+#import "ZKSforceClient+zkAsyncQuery.h"
 #import "ZKAuthenticationInfo.h"
 
 @class ZKLoginResult;
@@ -53,12 +53,13 @@
 
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate;
 
--(ZKLoginResult *)login;
+// Starts a login request. Callbacks will be on a random GCD queue
+-(void)startLoginWithFailBlock:(zkFailWithExceptionBlock)failBlock completeBlock:(zkCompleteLoginResultBlock)cb;
 
 @end
 
 
-// Impl of ZKAuthenticatioNInfo that uses Soap Login calls setup for portal users to generate new session Ids.
+// Impl of ZKAuthenticationInfo that uses Soap Login calls setup for portal users to generate new session Ids.
 @interface ZKSoapPortalLogin : ZKSoapLogin {
 }
 

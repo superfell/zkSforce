@@ -1,4 +1,4 @@
-// Copyright (c) 2011,2018,2019 Simon Fell
+// Copyright (c) 2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -19,22 +19,8 @@
 // THE SOFTWARE.
 //
 
+#import "ZKConstants.h"
 
-@protocol ZKAuthenticationInfo
-
-@property (readonly) NSString *sessionId;     // return an API Session ID.
-@property (readonly) NSURL *instanceUrl;      // return the full URL to the soap endpoint for the authentication user.
-@property (readwrite) NSURLSession *urlSession; // Any HTTP requests that are made will use this session, if nil
-                                                // will use the default one.
-
-// Force the sessionId to be refreshed. The callback will be called when completed.
-// If there was an error, it will be in the exception, otherwise it'll be nil.
-// Callback will be executed on a random GCD queue.
--(void)refresh:(void(^)(NSException *ex))cb;
-
-// Refresh the session if its needed. (this gets called before every soap call)
-// The callback will include if the session was refreshed.
-// Callback will be executed on a random GCD queue.
--(void)refreshIfNeeded:(void(^)(BOOL refreshed, NSException *ex))cb;
-
-@end
+NSString *const NS_URI_XSI  = @"http://www.w3.org/2001/XMLSchema-instance";
+NSString *const NS_URI_XSD  = @"http://www.w3.org/2001/XMLSchema";
+NSString *const NS_SOAP_ENV = @"http://schemas.xmlsoap.org/soap/envelope/";

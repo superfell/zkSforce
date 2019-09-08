@@ -25,6 +25,7 @@
 #import "zkParser.h"
 #import "ZKSoapDate.h"
 #import "ZKAddress.h"
+#import "ZKConstants.h"
 
 @interface ZKSObject()
 @property (strong) NSMutableSet *fieldsToNullSet;
