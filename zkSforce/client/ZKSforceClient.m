@@ -37,7 +37,6 @@ static const int SAVE_BATCH_SIZE = 25;
 static const int DEFAULT_API_VERSION = 46;
 
 @interface ZKSforceClient(Private)
-- (NSArray *)sobjectsImpl:(NSArray *)objects name:(NSString *)elemName;
 @property (retain, getter=currentUserInfo) ZKUserInfo *userInfo;
 @end
 
@@ -188,7 +187,7 @@ static const int DEFAULT_API_VERSION = 46;
         });
         return;
     }
-    [self performGetUserInfoWithFailBlock:failBlock completeBlock:^(ZKUserInfo *result) {
+    [self getUserInfoWithFailBlock:failBlock completeBlock:^(ZKUserInfo *result) {
         self.userInfo = result;
         completeBlock(result);
     }];
@@ -203,7 +202,7 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 -(BOOL)updateMru {
-    return self.mruHeader == nil ? FALSE : self.mruHeader.updateMru;
+    return [self.mruHeader updateMru];
 }
 
 -(void)setUpdateMru:(BOOL)mru {
@@ -282,12 +281,12 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 /** Update a set of sObjects, chunks in SAVE_BATCH_SIZE chunks if needed */
--(void) performUpdate:(NSArray *)sObjects
-            failBlock:(ZKFailWithErrorBlock)failBlock
-        completeBlock:(ZKCompleteArrayBlock)completeBlock {
+-(void) update:(NSArray *)sObjects
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
     
     if (sObjects.count <= SAVE_BATCH_SIZE) {
-        [super performUpdate:sObjects failBlock:failBlock completeBlock:completeBlock];
+        [super update:sObjects failBlock:failBlock completeBlock:completeBlock];
         return;
     }
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:sObjects.count];
@@ -302,19 +301,19 @@ static const int DEFAULT_API_VERSION = 46;
             completeBlock(results);
         } else {
             // next chunk
-            [super performUpdate:chunks[idx] failBlock:failBlock completeBlock:cb];
+            [super update:chunks[idx] failBlock:failBlock completeBlock:cb];
         }
     };
-    [super performUpdate:chunks[0] failBlock:failBlock completeBlock:cb];
+    [super update:chunks[0] failBlock:failBlock completeBlock:cb];
 }
 
 /** Create a set of sObjects, chunks in SAVE_BATCH_SIZE chunks if needed */
--(void) performCreate:(NSArray *)sObjects
-            failBlock:(ZKFailWithErrorBlock)failBlock
-        completeBlock:(ZKCompleteArrayBlock)completeBlock {
+-(void) create:(NSArray *)sObjects
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
     
     if (sObjects.count <= SAVE_BATCH_SIZE) {
-        [super performCreate:sObjects failBlock:failBlock completeBlock:completeBlock];
+        [super create:sObjects failBlock:failBlock completeBlock:completeBlock];
         return;
     }
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:sObjects.count];
@@ -329,10 +328,10 @@ static const int DEFAULT_API_VERSION = 46;
             completeBlock(results);
         } else {
             // next chunk
-            [super performCreate:chunks[idx] failBlock:failBlock completeBlock:cb];
+            [super create:chunks[idx] failBlock:failBlock completeBlock:cb];
         }
     };
-    [super performCreate:chunks[0] failBlock:failBlock completeBlock:cb];
+    [super create:chunks[0] failBlock:failBlock completeBlock:cb];
 }
 
 -(NSDictionary *)makeRetrieveResult:(ZKElement *)root {

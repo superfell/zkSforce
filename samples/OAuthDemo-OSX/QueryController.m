@@ -36,11 +36,11 @@
 }
 
 -(IBAction)runQuery:(id)sender {
-    [client performQuery:@"select id,name from account limit 25"
-               failBlock:^(NSError *err) {
-                   [[NSAlert alertWithError:err] runModal];
-               }
-           completeBlock:^(ZKQueryResult *qr) {
+    [client query:@"select id,name from account limit 25"
+        failBlock:^(NSError *err) {
+               [[NSAlert alertWithError:err] runModal];
+           }
+    completeBlock:^(ZKQueryResult *qr) {
                self.results = qr;
                self->table.dataSource = qr;
                [self->table reloadData];
