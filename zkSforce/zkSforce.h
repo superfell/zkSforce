@@ -29,6 +29,7 @@
 #import "ZKSObject.h"
 #import "ZKLimitInfoHeader.h"
 #import "ZKLimitInfo.h"
+#import "ZKConstants.h"
 #import "ZKActionOverride.h"
 #import "ZKAdditionalInformationMap.h"
 #import "ZKAddress.h"
