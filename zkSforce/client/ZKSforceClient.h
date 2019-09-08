@@ -74,9 +74,9 @@
     @param username the salesforce username to try and authenticate
     @param password the password [and possibly api security token] of the user
 */
--(void) performLogin:(NSString *)username password:(NSString *)password
-           failBlock:(ZKFailWithErrorBlock)failBlock
-       completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
+-(void) login:(NSString *)username password:(NSString *)password
+    failBlock:(ZKFailWithErrorBlock)failBlock
+completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
 /** Initialize the authentication info from the parameters contained in the OAuth
     completion callback Uri passed in. Call this when the oauth flow is complete,

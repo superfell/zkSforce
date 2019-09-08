@@ -106,17 +106,24 @@ static const int DEFAULT_API_VERSION = 46;
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     
-    [auth startLoginWithFailBlock:failBlock completeBlock:^(ZKLoginResult *result) {
-        self.authenticationInfo = auth;
-        self.userInfo = result.userInfo;
-        completeBlock(result);
+    [auth startLoginWithFailBlock:^(NSError *err) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failBlock(err);
+            });
+        }
+        completeBlock:^(ZKLoginResult *result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.authenticationInfo = auth;
+                self.userInfo = result.userInfo;
+                completeBlock(result);
+            });
     }];
 }
 
 /** Login to the Salesforce API with username & password */
--(void) performLogin:(NSString *)username password:(NSString *)password
-           failBlock:(ZKFailWithErrorBlock)failBlock
-       completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
+-(void) login:(NSString *)username password:(NSString *)password
+    failBlock:(ZKFailWithErrorBlock)failBlock
+completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
 
     ZKSoapLogin *auth = [ZKSoapLogin soapLoginWithUsername:username
                                                   password:password

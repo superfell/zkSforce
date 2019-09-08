@@ -128,8 +128,8 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:token];
     req.HTTPMethod = @"POST";
     NSString *params = [NSString stringWithFormat:@"grant_type=refresh_token&refresh_token=%@&client_id=%@&format=urlencoded",
-                      [self.refreshToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                      [self.clientId stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                      [self.refreshToken stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]],
+                      [self.clientId stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     req.HTTPBody = [params dataUsingEncoding:NSUTF8StringEncoding];
     [req addValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
 
@@ -229,8 +229,8 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
             return;
         }
         ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
-        ZKElement *result = [body childElements:@"result"][0];
-        ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
+        ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
+        ZKLoginResult *lr = [deser complexTypeArrayFromElements:@"result" cls:[ZKLoginResult class]].lastObject;
         
         self.instanceUrl = [NSURL URLWithString:lr.serverUrl];
         self.sessionId = lr.sessionId;
