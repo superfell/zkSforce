@@ -56,8 +56,11 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     // Now you can parse the URL and perform whatever action is needed
     
     ZKSforceClient *client = [[ZKSforceClient alloc] init];
-    [client loginFromOAuthCallbackUrl:url oAuthConsumerKey:OAUTH_CLIENTID];
-
+    NSError *err = [client loginFromOAuthCallbackUrl:url oAuthConsumerKey:OAUTH_CLIENTID];
+    if (err != nil) {
+        [[NSAlert alertWithError:err] runModal];
+        return;
+    }
     // in a real app, you'd save the refresh_token & auth host to the keychain, and on
     // relaunch, try and intialize your client from that first, so that you can skip
     // the login step.

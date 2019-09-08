@@ -29,6 +29,9 @@
 
 @interface ZKSforceBaseClient (AsyncOperations)
 
+/** @return true if we've performed a login request and it succeeded. */
+@property (readonly) BOOL loggedIn;
+
 /** Login to the Salesforce.com SOAP Api */
 -(void) performLogin:(NSString *)username password:(NSString *)password
            failBlock:(ZKFailWithErrorBlock)failBlock

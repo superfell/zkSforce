@@ -54,7 +54,6 @@
 -(NSUInteger)hash {
 	return node.hash;
 }
-
 -(BOOL)aggregatable {
     return [self boolean:@"aggregatable"];
 }

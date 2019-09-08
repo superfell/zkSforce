@@ -179,20 +179,6 @@ static const int DEFAULT_API_VERSION = 46;
     userInfo = ui;
 }
 
-- (BOOL)loggedIn {
-    return self.authSource.sessionId.length > 0;
-}
-
-// refresh the session if needed, then call the supplied block.
-- (void)checkSession:(void(^)(NSError *ex))cb {
-    [self.authSource refreshIfNeeded:^(BOOL refreshed, NSError *ex) {
-        if (refreshed) {
-            self.endpointUrl = self.authSource.instanceUrl;
-        }
-        cb(ex);
-    }];
-}
-
 -(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
     ZKUserInfo *i = self.userInfo;
@@ -214,15 +200,6 @@ static const int DEFAULT_API_VERSION = 46;
 
 - (NSString *)sessionId {
     return self.authSource.sessionId;
-}
-
-// Override method in ZKSforceBaseClient
--(BOOL)confirmLoggedIn {
-    if (![self loggedIn]) {
-        NSLog(@"ZKSforceClient does not have a valid session. request not executed");
-        return NO;
-    }
-    return YES;
 }
 
 -(BOOL)updateMru {

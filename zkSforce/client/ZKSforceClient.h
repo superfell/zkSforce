@@ -23,7 +23,6 @@
 #import "ZKSforceBaseClient.h"
 #import "ZKSforceBaseClient+Operations.h"
 #import "ZKAuthentication.h"
-#import <AvailabilityMacros.h>
 
 @class ZKEnvelope;
 @class ZKLimitInfoHeader;
@@ -119,7 +118,7 @@
 
 
 /** Authentication Management
-    This lets you manage different authentication schemes, like oauth
+    This lets you manage different authentication schemes, like OAuth.
     Normally you'd just call login:password or loginFromOAuthCallbackUrl:
     which will create a ZKAuthenticationInfo object for you.
 */
@@ -134,11 +133,9 @@
 
 /** @name SessionInfo - Information about the current session */
 
-/** @return true if we've performed a login request and it succeeded. */
-@property (readonly) BOOL loggedIn;
 
-/** @return the UserInfo returned by the last call to login. If login was via OAuth
-    will call getUserInfo if needed. */
+/** @return the last cached UserInfo result, either from a LoginResult or from
+    an explict getUserInfo call. */
 -(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteUserInfoBlock)completeBlock;
 
@@ -169,17 +166,15 @@
 /** If you want to change the batch size for queries, you can set this to 200-2000, the default is null. (uses the server side default) */
 @property (strong) NSNumber *queryBatchSize;
 
+
+/** @name Caching for describeSObject/describeGlobal results. **/
+
 /** describe caching support, if true, describeGlobal & describeSObject call results are cached. */
 @property (assign) BOOL cacheDescribes;
  
 /** will discard any current cached describes, any future describe request will fetch fresh info from salesforce */
 - (void)flushCachedDescribes;
 
-@end
-
-/** These are helper methods used by the Operations category, you shouldn't need to call these directly */
-@interface ZKSforceClient (Helpers)
--(void)checkSession:(void(^)(NSError *))cb;
 @end
 
 /** These methods allow the generated operation code to be customized */

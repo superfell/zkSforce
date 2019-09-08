@@ -25,26 +25,37 @@
 //
 
 #import "ZKSforceBaseClient+Operations.h"
+#import "ZKAuthenticationInfo.h"
 #import "ZKErrors.h"
 
 @implementation ZKSforceBaseClient (AsyncOperations)
 
--(BOOL)confirmLoggedIn {
-	return YES; // concrete impl in subclass
+-(BOOL)loggedIn {
+	return self.authSource.sessionId.length > 0;
+}
+
+-(void)execWithSession:(void(^)(NSError *sessionError))cb {
+	if (![self loggedIn]) {
+		cb([ZKErrors authenticationRequiredError]);
+		return;
+	}
+	[self.authSource refreshIfNeeded:^(BOOL refreshed, NSError *ex) {
+		if (refreshed) {
+			self.endpointUrl = self.authSource.instanceUrl;
+		}
+		cb(ex);
+	}];
 }
 
 -(BOOL)handledError:(NSError *)ex failBlock:(ZKFailWithErrorBlock)failBlock {
 	if (ex == nil) {
 		return NO;
 	}
-	if (failBlock != nil) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			failBlock(ex);
-		});
-	}
+	dispatch_async(dispatch_get_main_queue(), ^{
+		failBlock(ex);
+	});
 	return YES;
 }
-
 /** Login to the Salesforce.com SOAP Api */
 -(void) performLogin:(NSString *)username password:(NSString *)password
            failBlock:(ZKFailWithErrorBlock)failBlock
@@ -69,25 +80,26 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeSObjectBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	ZKDescribeSObject *shortcut = [self preHook_describeSObject:sObjectType];
-	if (shortcut != nil) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(shortcut);
-		});
-		return;
-	}
-	NSString *payload = [self makeDescribeSObjectEnv:sObjectType];
-	[self startRequest:payload name:@"describeSObject" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeSObject *result = [self postHook_describeSObject:[self makeDescribeSObjectResult:root]];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		ZKDescribeSObject *shortcut = [self preHook_describeSObject:sObjectType];
+		if (shortcut != nil) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(shortcut);
+			});
+			return;
+		}
+		NSString *payload = [self makeDescribeSObjectEnv:sObjectType];
+		[self startRequest:payload name:@"describeSObject" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeSObject *result = [self postHook_describeSObject:[self makeDescribeSObjectResult:root]];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -96,18 +108,19 @@
                       failBlock:(ZKFailWithErrorBlock)failBlock
                   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
-	[self startRequest:payload name:@"describeSObjects" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeSObjectsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
+		[self startRequest:payload name:@"describeSObjects" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeSObjectsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -118,25 +131,26 @@
 -(void) performDescribeGlobalWithFailBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSArray *shortcut = [self preHook_describeGlobal];
-	if (shortcut != nil) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(shortcut);
-		});
-		return;
-	}
-	NSString *payload = [self makeDescribeGlobalEnv];
-	[self startRequest:payload name:@"describeGlobal" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self postHook_describeGlobal:[self makeDescribeGlobalResult:root]];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSArray *shortcut = [self preHook_describeGlobal];
+		if (shortcut != nil) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(shortcut);
+			});
+			return;
+		}
+		NSString *payload = [self makeDescribeGlobalEnv];
+		[self startRequest:payload name:@"describeGlobal" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self postHook_describeGlobal:[self makeDescribeGlobalResult:root]];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -145,18 +159,19 @@
                                 failBlock:(ZKFailWithErrorBlock)failBlock
                             completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
-	[self startRequest:payload name:@"describeDataCategoryGroups" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeDataCategoryGroupsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
+		[self startRequest:payload name:@"describeDataCategoryGroups" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeDataCategoryGroupsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -165,18 +180,19 @@
                                          failBlock:(ZKFailWithErrorBlock)failBlock
                                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
-	[self startRequest:payload name:@"describeDataCategoryGroupStructures" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeDataCategoryGroupStructuresResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
+		[self startRequest:payload name:@"describeDataCategoryGroupStructures" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeDataCategoryGroupStructuresResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -184,18 +200,19 @@
 -(void) performDescribeDataCategoryMappingsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
-	[self startRequest:payload name:@"describeDataCategoryMappings" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeDataCategoryMappingsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
+		[self startRequest:payload name:@"describeDataCategoryMappings" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeDataCategoryMappingsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -203,18 +220,19 @@
 -(void) performDescribeKnowledgeSettingsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteKnowledgeSettingsBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
-	[self startRequest:payload name:@"describeKnowledgeSettings" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKKnowledgeSettings *result = [self makeDescribeKnowledgeSettingsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
+		[self startRequest:payload name:@"describeKnowledgeSettings" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKKnowledgeSettings *result = [self makeDescribeKnowledgeSettingsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -223,18 +241,19 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeAppMenuResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
-	[self startRequest:payload name:@"describeAppMenu" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeAppMenuResult *result = [self makeDescribeAppMenuResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
+		[self startRequest:payload name:@"describeAppMenu" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeAppMenuResult *result = [self makeDescribeAppMenuResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -242,18 +261,19 @@
 -(void) performDescribeGlobalThemeWithFailBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteDescribeGlobalThemeBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeGlobalThemeEnv];
-	[self startRequest:payload name:@"describeGlobalTheme" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeGlobalTheme *result = [self makeDescribeGlobalThemeResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeGlobalThemeEnv];
+		[self startRequest:payload name:@"describeGlobalTheme" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeGlobalTheme *result = [self makeDescribeGlobalThemeResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -262,18 +282,19 @@
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteDescribeThemeResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeThemeEnv:sobjectType];
-	[self startRequest:payload name:@"describeTheme" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeThemeResult *result = [self makeDescribeThemeResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeThemeEnv:sobjectType];
+		[self startRequest:payload name:@"describeTheme" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeThemeResult *result = [self makeDescribeThemeResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -282,18 +303,19 @@
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteDescribeLayoutResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
-	[self startRequest:payload name:@"describeLayout" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeLayoutResult *result = [self makeDescribeLayoutResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
+		[self startRequest:payload name:@"describeLayout" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeLayoutResult *result = [self makeDescribeLayoutResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -301,18 +323,19 @@
 -(void) performDescribeSoftphoneLayoutWithFailBlock:(ZKFailWithErrorBlock)failBlock
                          completeBlock:(ZKCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
-	[self startRequest:payload name:@"describeSoftphoneLayout" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeSoftphoneLayoutResult *result = [self makeDescribeSoftphoneLayoutResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
+		[self startRequest:payload name:@"describeSoftphoneLayout" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeSoftphoneLayoutResult *result = [self makeDescribeSoftphoneLayoutResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -321,18 +344,19 @@
                            failBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
-	[self startRequest:payload name:@"describeSearchLayouts" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeSearchLayoutsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
+		[self startRequest:payload name:@"describeSearchLayouts" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeSearchLayoutsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -341,18 +365,19 @@
                                 failBlock:(ZKFailWithErrorBlock)failBlock
                             completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
-	[self startRequest:payload name:@"describeSearchableEntities" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeSearchableEntitiesResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
+		[self startRequest:payload name:@"describeSearchableEntities" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeSearchableEntitiesResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -361,18 +386,19 @@
                               failBlock:(ZKFailWithErrorBlock)failBlock
                           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
-	[self startRequest:payload name:@"describeSearchScopeOrder" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeSearchScopeOrderResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
+		[self startRequest:payload name:@"describeSearchScopeOrder" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeSearchScopeOrderResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -381,18 +407,19 @@
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteDescribeCompactLayoutsResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
-	[self startRequest:payload name:@"describeCompactLayouts" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeCompactLayoutsResult *result = [self makeDescribeCompactLayoutsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
+		[self startRequest:payload name:@"describeCompactLayouts" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeCompactLayoutsResult *result = [self makeDescribeCompactLayoutsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -401,18 +428,19 @@
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteDescribePathAssistantsResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
-	[self startRequest:payload name:@"describePathAssistants" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribePathAssistantsResult *result = [self makeDescribePathAssistantsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
+		[self startRequest:payload name:@"describePathAssistants" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribePathAssistantsResult *result = [self makeDescribePathAssistantsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -421,18 +449,19 @@
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteDescribeApprovalLayoutResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
-	[self startRequest:payload name:@"describeApprovalLayout" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeApprovalLayoutResult *result = [self makeDescribeApprovalLayoutResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
+		[self startRequest:payload name:@"describeApprovalLayout" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeApprovalLayoutResult *result = [self makeDescribeApprovalLayoutResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -441,18 +470,19 @@
                            failBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
-	[self startRequest:payload name:@"describeSoqlListViews" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeSoqlListViewResult *result = [self makeDescribeSoqlListViewsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
+		[self startRequest:payload name:@"describeSoqlListViews" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeSoqlListViewResult *result = [self makeDescribeSoqlListViewsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -461,18 +491,19 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteExecuteListViewResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeExecuteListViewEnv:request];
-	[self startRequest:payload name:@"executeListView" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKExecuteListViewResult *result = [self makeExecuteListViewResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeExecuteListViewEnv:request];
+		[self startRequest:payload name:@"executeListView" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKExecuteListViewResult *result = [self makeExecuteListViewResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -481,18 +512,19 @@
                               failBlock:(ZKFailWithErrorBlock)failBlock
                           completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
-	[self startRequest:payload name:@"describeSObjectListViews" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeSoqlListViewResult *result = [self makeDescribeSObjectListViewsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
+		[self startRequest:payload name:@"describeSObjectListViews" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeSoqlListViewResult *result = [self makeDescribeSObjectListViewsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -500,18 +532,19 @@
 -(void) performDescribeTabsWithFailBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeTabsEnv];
-	[self startRequest:payload name:@"describeTabs" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeTabsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeTabsEnv];
+		[self startRequest:payload name:@"describeTabs" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeTabsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -519,18 +552,19 @@
 -(void) performDescribeAllTabsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeAllTabsEnv];
-	[self startRequest:payload name:@"describeAllTabs" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeAllTabsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeAllTabsEnv];
+		[self startRequest:payload name:@"describeAllTabs" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeAllTabsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -539,18 +573,19 @@
                                    failBlock:(ZKFailWithErrorBlock)failBlock
                                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
-	[self startRequest:payload name:@"describePrimaryCompactLayouts" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribePrimaryCompactLayoutsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
+		[self startRequest:payload name:@"describePrimaryCompactLayouts" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribePrimaryCompactLayoutsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -559,18 +594,19 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeCreateEnv:sObjects];
-	[self startRequest:payload name:@"create" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeCreateResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeCreateEnv:sObjects];
+		[self startRequest:payload name:@"create" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeCreateResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -579,18 +615,19 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeUpdateEnv:sObjects];
-	[self startRequest:payload name:@"update" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeUpdateResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeUpdateEnv:sObjects];
+		[self startRequest:payload name:@"update" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeUpdateResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -599,18 +636,19 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
-	[self startRequest:payload name:@"upsert" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeUpsertResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
+		[self startRequest:payload name:@"upsert" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeUpsertResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -619,18 +657,19 @@
            failBlock:(ZKFailWithErrorBlock)failBlock
        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeMergeEnv:request];
-	[self startRequest:payload name:@"merge" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeMergeResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeMergeEnv:request];
+		[self startRequest:payload name:@"merge" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeMergeResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -639,18 +678,19 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDeleteEnv:ids];
-	[self startRequest:payload name:@"delete" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDeleteResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDeleteEnv:ids];
+		[self startRequest:payload name:@"delete" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDeleteResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -659,18 +699,19 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeUndeleteEnv:ids];
-	[self startRequest:payload name:@"undelete" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeUndeleteResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeUndeleteEnv:ids];
+		[self startRequest:payload name:@"undelete" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeUndeleteResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -679,18 +720,19 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeEmptyRecycleBinEnv:ids];
-	[self startRequest:payload name:@"emptyRecycleBin" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeEmptyRecycleBinResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeEmptyRecycleBinEnv:ids];
+		[self startRequest:payload name:@"emptyRecycleBin" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeEmptyRecycleBinResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -699,18 +741,19 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteDictionaryBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
-	[self startRequest:payload name:@"retrieve" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSDictionary *result = [self makeRetrieveResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
+		[self startRequest:payload name:@"retrieve" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSDictionary *result = [self makeRetrieveResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -719,18 +762,19 @@
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeProcessEnv:actions];
-	[self startRequest:payload name:@"process" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeProcessResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeProcessEnv:actions];
+		[self startRequest:payload name:@"process" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeProcessResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -739,18 +783,19 @@
                  failBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeConvertLeadEnv:leadConverts];
-	[self startRequest:payload name:@"convertLead" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeConvertLeadResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeConvertLeadEnv:leadConverts];
+		[self startRequest:payload name:@"convertLead" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeConvertLeadResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -758,18 +803,19 @@
 -(void) performLogoutWithFailBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteVoidBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeLogoutEnv];
-	[self startRequest:payload name:@"logout" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock();
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeLogoutEnv];
+		[self startRequest:payload name:@"logout" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock();
+				});
+			}
+		}];
 	}];
 }
 
@@ -778,18 +824,19 @@
                         failBlock:(ZKFailWithErrorBlock)failBlock
                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
-	[self startRequest:payload name:@"invalidateSessions" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeInvalidateSessionsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
+		[self startRequest:payload name:@"invalidateSessions" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeInvalidateSessionsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -798,18 +845,19 @@
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteGetDeletedResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
-	[self startRequest:payload name:@"getDeleted" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKGetDeletedResult *result = [self makeGetDeletedResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
+		[self startRequest:payload name:@"getDeleted" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKGetDeletedResult *result = [self makeGetDeletedResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -818,18 +866,19 @@
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteGetUpdatedResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
-	[self startRequest:payload name:@"getUpdated" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKGetUpdatedResult *result = [self makeGetUpdatedResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
+		[self startRequest:payload name:@"getUpdated" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKGetUpdatedResult *result = [self makeGetUpdatedResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -838,18 +887,19 @@
            failBlock:(ZKFailWithErrorBlock)failBlock
        completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeQueryEnv:queryString];
-	[self startRequest:payload name:@"query" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKQueryResult *result = [self makeQueryResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeQueryEnv:queryString];
+		[self startRequest:payload name:@"query" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKQueryResult *result = [self makeQueryResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -858,18 +908,19 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeQueryAllEnv:queryString];
-	[self startRequest:payload name:@"queryAll" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKQueryResult *result = [self makeQueryAllResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeQueryAllEnv:queryString];
+		[self startRequest:payload name:@"queryAll" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKQueryResult *result = [self makeQueryAllResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -878,18 +929,19 @@
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeQueryMoreEnv:queryLocator];
-	[self startRequest:payload name:@"queryMore" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKQueryResult *result = [self makeQueryMoreResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeQueryMoreEnv:queryLocator];
+		[self startRequest:payload name:@"queryMore" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKQueryResult *result = [self makeQueryMoreResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -898,18 +950,19 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteSearchResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeSearchEnv:searchString];
-	[self startRequest:payload name:@"search" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKSearchResult *result = [self makeSearchResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeSearchEnv:searchString];
+		[self startRequest:payload name:@"search" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKSearchResult *result = [self makeSearchResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -917,18 +970,19 @@
 -(void) performGetServerTimestampWithFailBlock:(ZKFailWithErrorBlock)failBlock
                     completeBlock:(ZKCompleteGetServerTimestampResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeGetServerTimestampEnv];
-	[self startRequest:payload name:@"getServerTimestamp" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKGetServerTimestampResult *result = [self makeGetServerTimestampResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeGetServerTimestampEnv];
+		[self startRequest:payload name:@"getServerTimestamp" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKGetServerTimestampResult *result = [self makeGetServerTimestampResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -937,18 +991,19 @@
                  failBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteSetPasswordResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeSetPasswordEnv:userId password:password];
-	[self startRequest:payload name:@"setPassword" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKSetPasswordResult *result = [self makeSetPasswordResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeSetPasswordEnv:userId password:password];
+		[self startRequest:payload name:@"setPassword" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKSetPasswordResult *result = [self makeSetPasswordResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -957,18 +1012,19 @@
                        failBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
-	[self startRequest:payload name:@"changeOwnPassword" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKChangeOwnPasswordResult *result = [self makeChangeOwnPasswordResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
+		[self startRequest:payload name:@"changeOwnPassword" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKChangeOwnPasswordResult *result = [self makeChangeOwnPasswordResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -977,18 +1033,19 @@
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteResetPasswordResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeResetPasswordEnv:userId];
-	[self startRequest:payload name:@"resetPassword" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKResetPasswordResult *result = [self makeResetPasswordResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeResetPasswordEnv:userId];
+		[self startRequest:payload name:@"resetPassword" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKResetPasswordResult *result = [self makeResetPasswordResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -996,18 +1053,19 @@
 -(void) performGetUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeGetUserInfoEnv];
-	[self startRequest:payload name:@"getUserInfo" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKUserInfo *result = [self makeGetUserInfoResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeGetUserInfoEnv];
+		[self startRequest:payload name:@"getUserInfo" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKUserInfo *result = [self makeGetUserInfoResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1016,18 +1074,19 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDeleteByExampleEnv:sObjects];
-	[self startRequest:payload name:@"deleteByExample" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDeleteByExampleResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDeleteByExampleEnv:sObjects];
+		[self startRequest:payload name:@"deleteByExample" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDeleteByExampleResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1036,18 +1095,19 @@
                       failBlock:(ZKFailWithErrorBlock)failBlock
                   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeSendEmailMessageEnv:ids];
-	[self startRequest:payload name:@"sendEmailMessage" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeSendEmailMessageResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeSendEmailMessageEnv:ids];
+		[self startRequest:payload name:@"sendEmailMessage" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeSendEmailMessageResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1056,18 +1116,19 @@
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeSendEmailEnv:messages];
-	[self startRequest:payload name:@"sendEmail" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeSendEmailResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeSendEmailEnv:messages];
+		[self startRequest:payload name:@"sendEmail" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeSendEmailResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1076,18 +1137,19 @@
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
-	[self startRequest:payload name:@"renderEmailTemplate" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeRenderEmailTemplateResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
+		[self startRequest:payload name:@"renderEmailTemplate" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeRenderEmailTemplateResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1096,18 +1158,19 @@
                                failBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
-	[self startRequest:payload name:@"renderStoredEmailTemplate" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKRenderStoredEmailTemplateResult *result = [self makeRenderStoredEmailTemplateResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
+		[self startRequest:payload name:@"renderStoredEmailTemplate" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKRenderStoredEmailTemplateResult *result = [self makeRenderStoredEmailTemplateResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1116,18 +1179,19 @@
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makePerformQuickActionsEnv:quickActions];
-	[self startRequest:payload name:@"performQuickActions" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makePerformQuickActionsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makePerformQuickActionsEnv:quickActions];
+		[self startRequest:payload name:@"performQuickActions" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makePerformQuickActionsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1136,18 +1200,19 @@
                           failBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
-	[self startRequest:payload name:@"describeQuickActions" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeQuickActionsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
+		[self startRequest:payload name:@"describeQuickActions" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeQuickActionsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1156,18 +1221,19 @@
                                        failBlock:(ZKFailWithErrorBlock)failBlock
                                    completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
-	[self startRequest:payload name:@"describeQuickActionsForRecordType" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeQuickActionsForRecordTypeResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
+		[self startRequest:payload name:@"describeQuickActionsForRecordType" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeQuickActionsForRecordTypeResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1176,18 +1242,19 @@
                                    failBlock:(ZKFailWithErrorBlock)failBlock
                                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
-	[self startRequest:payload name:@"describeAvailableQuickActions" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeAvailableQuickActionsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
+		[self startRequest:payload name:@"describeAvailableQuickActions" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeAvailableQuickActionsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1196,18 +1263,19 @@
                                   failBlock:(ZKFailWithErrorBlock)failBlock
                               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
-	[self startRequest:payload name:@"retrieveQuickActionTemplates" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeRetrieveQuickActionTemplatesResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
+		[self startRequest:payload name:@"retrieveQuickActionTemplates" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeRetrieveQuickActionTemplatesResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1216,18 +1284,19 @@
                                       failBlock:(ZKFailWithErrorBlock)failBlock
                                   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
-	[self startRequest:payload name:@"retrieveMassQuickActionTemplates" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeRetrieveMassQuickActionTemplatesResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
+		[self startRequest:payload name:@"retrieveMassQuickActionTemplates" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeRetrieveMassQuickActionTemplatesResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1236,18 +1305,19 @@
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteDescribeVisualForceResultBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
-	[self startRequest:payload name:@"describeVisualForce" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			ZKDescribeVisualForceResult *result = [self makeDescribeVisualForceResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
+		[self startRequest:payload name:@"describeVisualForce" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				ZKDescribeVisualForceResult *result = [self makeDescribeVisualForceResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1256,18 +1326,19 @@
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeFindDuplicatesEnv:sObjects];
-	[self startRequest:payload name:@"findDuplicates" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeFindDuplicatesResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeFindDuplicatesEnv:sObjects];
+		[self startRequest:payload name:@"findDuplicates" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeFindDuplicatesResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1276,18 +1347,19 @@
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
-	[self startRequest:payload name:@"findDuplicatesByIds" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeFindDuplicatesByIdsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
+		[self startRequest:payload name:@"findDuplicatesByIds" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeFindDuplicatesByIdsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 
@@ -1296,18 +1368,19 @@
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	if (![self confirmLoggedIn]) {
-		[self handledError:[ZKErrors authenticationRequiredError] failBlock:failBlock];
-		return;
-	}
-	NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
-	[self startRequest:payload name:@"describeNouns" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
-			NSArray *result = [self makeDescribeNounsResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+	[self execWithSession:^(NSError *err) {
+		if ([self handledError:err failBlock:failBlock]) {
+			return;
 		}
+		NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
+		[self startRequest:payload name:@"describeNouns" handler:^(ZKElement *root, NSError *err) {
+			if (![self handledError:err failBlock:failBlock]) {
+				NSArray *result = [self makeDescribeNounsResult:root];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					completeBlock(result);
+				});
+			}
+		}];
 	}];
 }
 

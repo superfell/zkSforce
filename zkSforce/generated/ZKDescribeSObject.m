@@ -43,7 +43,6 @@
 	}
 	return fieldList;
 }
-
 -(NSArray *)actionOverrides {
     return [self complexTypeArrayFromElements:@"actionOverrides" cls:[ZKActionOverride class]];
 }
