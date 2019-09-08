@@ -27,6 +27,8 @@ extern NSString *const NS_URI_XSI;
 extern NSString *const NS_URI_XSD;
 extern NSString *const NS_SOAP_ENV;
 
+extern NSString *const NS_SFORCE_PARTNER;
+
 // Our domain for NSErrors
 extern NSString *const ZKErrorDomain;
 

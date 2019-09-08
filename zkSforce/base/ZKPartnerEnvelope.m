@@ -20,6 +20,7 @@
 //
 
 #import "ZKPartnerEnvelope.h"
+#import "ZKConstants.h"
 
 @implementation ZKPartnerEnvelope
 
@@ -29,7 +30,7 @@
 
 - (instancetype)initWithSessionHeader:(NSString *)sessionId {
     self = [super init];
-    [self start:@"urn:partner.soap.sforce.com"];
+    [self start:NS_SFORCE_PARTNER];
     [self writeSessionHeader:sessionId];
     return self;
 }

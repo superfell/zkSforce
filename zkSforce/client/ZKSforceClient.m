@@ -346,7 +346,7 @@ static const int DEFAULT_API_VERSION = 46;
 
 -(void)handleResponseSoapHeaders:(ZKElement *)soapHeaders {
     // this looks in the supplied headers for a limit info header and if we got one, hangs onto it.
-    ZKElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
+    ZKElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:NS_SFORCE_PARTNER];
     if (liElem != nil) {
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
     }
