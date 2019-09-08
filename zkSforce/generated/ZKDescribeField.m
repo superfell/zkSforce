@@ -36,13 +36,13 @@
 @synthesize sobject;
 
 -(id)copyWithZone:(NSZone *)zone {
-    zkElement *e = [node copyWithZone:zone];
+    ZKElement *e = [node copyWithZone:zone];
     ZKDescribeField *c = [[ZKDescribeField alloc] initWithXmlElement:e];
     c.sobject = self.sobject;
     return c;
 }
 
--(zkElement *)node {
+-(ZKElement *)node {
 	return node;
 }
 

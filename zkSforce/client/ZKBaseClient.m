@@ -50,7 +50,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
     return duration;
 }
 
--(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSError *err))handler {
+-(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(ZKElement *root, NSError *err))handler {
     uint64_t start = mach_absolute_time();
     NSURLSession *s = urlSession;
     if (s == nil) s = [NSURLSession sharedSession];
@@ -59,7 +59,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
                                    completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable err) {
 
         NSError *error = err;
-        zkElement *root = [self processResponse:(NSHTTPURLResponse *)response data:data fromRequest:request name:callName error:&error];
+        ZKElement *root = [self processResponse:(NSHTTPURLResponse *)response data:data fromRequest:request name:callName error:&error];
         if (self.delegate != nil) {
             [self.delegate client:self sentRequest:payload named:callName to:self.endpointUrl withResponse:root error:error in:intervalFrom(start)];
         }
@@ -69,7 +69,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
 }
 
 /** Process this Response that was generated from the Request. Should return the root element of the response, or throw an exception */
--(zkElement *)processResponse:(NSHTTPURLResponse *)resp
+-(ZKElement *)processResponse:(NSHTTPURLResponse *)resp
                          data:(NSData *)respPayload
                   fromRequest:(NSMutableURLRequest *)request
                          name:(NSString *)callName
@@ -83,7 +83,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
         err = &dummy;
     }
     //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
-    zkElement *root = [zkParser parseData:respPayload];
+    ZKElement *root = [ZKParser parseData:respPayload];
     if (root == nil) {
         [self logInvalidResponse:resp payload:respPayload note:@"Unable to parse XML"];
         *err = [ZKErrors errorWithCode:kInvalidXml message:@"Unable to parse XML returned by server"];
@@ -99,12 +99,12 @@ NSTimeInterval intervalFrom(uint64_t start) {
         *err = [ZKErrors errorWithCode:kNotSoapEnvelope message:[NSString stringWithFormat:@"response XML not valid SOAP, root namespace should be %@ but was %@", NS_SOAP_ENV, root.namespace]];
         return root;
     }
-    zkElement *header = [root childElement:@"Header" ns:NS_SOAP_ENV];
+    ZKElement *header = [root childElement:@"Header" ns:NS_SOAP_ENV];
     [self handleResponseSoapHeaders:header];
     
     if (500 == resp.statusCode) {
-        zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
-        zkElement *fault = [body childElement:@"Fault" ns:NS_SOAP_ENV];
+        ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+        ZKElement *fault = [body childElement:@"Fault" ns:NS_SOAP_ENV];
         if (fault == nil) {
             *err = [ZKErrors errorWithCode:kSoapFaultMissingFault message:@"Fault status code returned, but unable to find soap:Fault element"];
         } else {
@@ -129,7 +129,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
     return request;
 }
 
--(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
+-(void)handleResponseSoapHeaders:(ZKElement *)soapHeaders {
 }
 
 @end

@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 
-@class zkElement;
+@class ZKElement;
 
 @interface ZKQueryResult : NSObject <NSCopying> {
     NSInteger   size;
@@ -28,7 +28,7 @@
     NSArray     *records;
 }
 
-- (instancetype)initWithXmlElement:(zkElement *)node NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithXmlElement:(ZKElement *)node NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithRecords:(NSArray *)records size:(NSInteger)s done:(BOOL)d queryLocator:(NSString *)ql NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 

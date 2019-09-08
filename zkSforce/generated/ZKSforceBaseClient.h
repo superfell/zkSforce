@@ -28,7 +28,7 @@
 #import "ZKBaseClient.h"
 
 @protocol ZKAuthenticationInfo;
-@class zkElement;
+@class ZKElement;
 @class ZKAllOrNoneHeader;
 @class ZKAllowFieldTruncationHeader;
 @class ZKAssignmentRuleHeader;
@@ -97,192 +97,192 @@
 @property (strong) ZKUserTerritoryDeleteHeader   *userTerritoryDeleteHeader; 
 
 -(NSString *)makeLoginEnv:(NSString *)username password:(NSString *)password;
--(ZKLoginResult *)makeLoginResult:(zkElement *)root;
+-(ZKLoginResult *)makeLoginResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSObjectEnv:(NSString *)sObjectType;
--(ZKDescribeSObject *)makeDescribeSObjectResult:(zkElement *)root;
+-(ZKDescribeSObject *)makeDescribeSObjectResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSObjectsEnv:(NSArray *)sObjectType;
--(NSArray *)makeDescribeSObjectsResult:(zkElement *)root;
+-(NSArray *)makeDescribeSObjectsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeGlobalEnv;
--(NSArray *)makeDescribeGlobalResult:(zkElement *)root;
+-(NSArray *)makeDescribeGlobalResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeDataCategoryGroupsEnv:(NSArray *)sObjectType;
--(NSArray *)makeDescribeDataCategoryGroupsResult:(zkElement *)root;
+-(NSArray *)makeDescribeDataCategoryGroupsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeDataCategoryGroupStructuresEnv:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly;
--(NSArray *)makeDescribeDataCategoryGroupStructuresResult:(zkElement *)root;
+-(NSArray *)makeDescribeDataCategoryGroupStructuresResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeDataCategoryMappingsEnv;
--(NSArray *)makeDescribeDataCategoryMappingsResult:(zkElement *)root;
+-(NSArray *)makeDescribeDataCategoryMappingsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeKnowledgeSettingsEnv;
--(ZKKnowledgeSettings *)makeDescribeKnowledgeSettingsResult:(zkElement *)root;
+-(ZKKnowledgeSettings *)makeDescribeKnowledgeSettingsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeAppMenuEnv:(NSString *)appMenuType networkId:(NSString *)networkId;
--(ZKDescribeAppMenuResult *)makeDescribeAppMenuResult:(zkElement *)root;
+-(ZKDescribeAppMenuResult *)makeDescribeAppMenuResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeGlobalThemeEnv;
--(ZKDescribeGlobalTheme *)makeDescribeGlobalThemeResult:(zkElement *)root;
+-(ZKDescribeGlobalTheme *)makeDescribeGlobalThemeResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeThemeEnv:(NSArray *)sobjectType;
--(ZKDescribeThemeResult *)makeDescribeThemeResult:(zkElement *)root;
+-(ZKDescribeThemeResult *)makeDescribeThemeResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeLayoutEnv:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds;
--(ZKDescribeLayoutResult *)makeDescribeLayoutResult:(zkElement *)root;
+-(ZKDescribeLayoutResult *)makeDescribeLayoutResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSoftphoneLayoutEnv;
--(ZKDescribeSoftphoneLayoutResult *)makeDescribeSoftphoneLayoutResult:(zkElement *)root;
+-(ZKDescribeSoftphoneLayoutResult *)makeDescribeSoftphoneLayoutResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSearchLayoutsEnv:(NSArray *)sObjectType;
--(NSArray *)makeDescribeSearchLayoutsResult:(zkElement *)root;
+-(NSArray *)makeDescribeSearchLayoutsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSearchableEntitiesEnv:(BOOL)includeOnlyEntitiesWithTabs;
--(NSArray *)makeDescribeSearchableEntitiesResult:(zkElement *)root;
+-(NSArray *)makeDescribeSearchableEntitiesResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSearchScopeOrderEnv:(BOOL)includeRealTimeEntities;
--(NSArray *)makeDescribeSearchScopeOrderResult:(zkElement *)root;
+-(NSArray *)makeDescribeSearchScopeOrderResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeCompactLayoutsEnv:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds;
--(ZKDescribeCompactLayoutsResult *)makeDescribeCompactLayoutsResult:(zkElement *)root;
+-(ZKDescribeCompactLayoutsResult *)makeDescribeCompactLayoutsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribePathAssistantsEnv:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds;
--(ZKDescribePathAssistantsResult *)makeDescribePathAssistantsResult:(zkElement *)root;
+-(ZKDescribePathAssistantsResult *)makeDescribePathAssistantsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeApprovalLayoutEnv:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames;
--(ZKDescribeApprovalLayoutResult *)makeDescribeApprovalLayoutResult:(zkElement *)root;
+-(ZKDescribeApprovalLayoutResult *)makeDescribeApprovalLayoutResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSoqlListViewsEnv:(ZKDescribeSoqlListViewsRequest *)request;
--(ZKDescribeSoqlListViewResult *)makeDescribeSoqlListViewsResult:(zkElement *)root;
+-(ZKDescribeSoqlListViewResult *)makeDescribeSoqlListViewsResult:(ZKElement *)root;
 
 -(NSString *)makeExecuteListViewEnv:(ZKExecuteListViewRequest *)request;
--(ZKExecuteListViewResult *)makeExecuteListViewResult:(zkElement *)root;
+-(ZKExecuteListViewResult *)makeExecuteListViewResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeSObjectListViewsEnv:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset;
--(ZKDescribeSoqlListViewResult *)makeDescribeSObjectListViewsResult:(zkElement *)root;
+-(ZKDescribeSoqlListViewResult *)makeDescribeSObjectListViewsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeTabsEnv;
--(NSArray *)makeDescribeTabsResult:(zkElement *)root;
+-(NSArray *)makeDescribeTabsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeAllTabsEnv;
--(NSArray *)makeDescribeAllTabsResult:(zkElement *)root;
+-(NSArray *)makeDescribeAllTabsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribePrimaryCompactLayoutsEnv:(NSArray *)sObjectTypes;
--(NSArray *)makeDescribePrimaryCompactLayoutsResult:(zkElement *)root;
+-(NSArray *)makeDescribePrimaryCompactLayoutsResult:(ZKElement *)root;
 
 -(NSString *)makeCreateEnv:(NSArray *)sObjects;
--(NSArray *)makeCreateResult:(zkElement *)root;
+-(NSArray *)makeCreateResult:(ZKElement *)root;
 
 -(NSString *)makeUpdateEnv:(NSArray *)sObjects;
--(NSArray *)makeUpdateResult:(zkElement *)root;
+-(NSArray *)makeUpdateResult:(ZKElement *)root;
 
 -(NSString *)makeUpsertEnv:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects;
--(NSArray *)makeUpsertResult:(zkElement *)root;
+-(NSArray *)makeUpsertResult:(ZKElement *)root;
 
 -(NSString *)makeMergeEnv:(NSArray *)request;
--(NSArray *)makeMergeResult:(zkElement *)root;
+-(NSArray *)makeMergeResult:(ZKElement *)root;
 
 -(NSString *)makeDeleteEnv:(NSArray *)ids;
--(NSArray *)makeDeleteResult:(zkElement *)root;
+-(NSArray *)makeDeleteResult:(ZKElement *)root;
 
 -(NSString *)makeUndeleteEnv:(NSArray *)ids;
--(NSArray *)makeUndeleteResult:(zkElement *)root;
+-(NSArray *)makeUndeleteResult:(ZKElement *)root;
 
 -(NSString *)makeEmptyRecycleBinEnv:(NSArray *)ids;
--(NSArray *)makeEmptyRecycleBinResult:(zkElement *)root;
+-(NSArray *)makeEmptyRecycleBinResult:(ZKElement *)root;
 
 -(NSString *)makeRetrieveEnv:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids;
--(NSDictionary *)makeRetrieveResult:(zkElement *)root;
+-(NSDictionary *)makeRetrieveResult:(ZKElement *)root;
 
 -(NSString *)makeProcessEnv:(NSArray *)actions;
--(NSArray *)makeProcessResult:(zkElement *)root;
+-(NSArray *)makeProcessResult:(ZKElement *)root;
 
 -(NSString *)makeConvertLeadEnv:(NSArray *)leadConverts;
--(NSArray *)makeConvertLeadResult:(zkElement *)root;
+-(NSArray *)makeConvertLeadResult:(ZKElement *)root;
 
 -(NSString *)makeLogoutEnv;
--(void)makeLogoutResult:(zkElement *)root;
+-(void)makeLogoutResult:(ZKElement *)root;
 
 -(NSString *)makeInvalidateSessionsEnv:(NSArray *)sessionIds;
--(NSArray *)makeInvalidateSessionsResult:(zkElement *)root;
+-(NSArray *)makeInvalidateSessionsResult:(ZKElement *)root;
 
 -(NSString *)makeGetDeletedEnv:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
--(ZKGetDeletedResult *)makeGetDeletedResult:(zkElement *)root;
+-(ZKGetDeletedResult *)makeGetDeletedResult:(ZKElement *)root;
 
 -(NSString *)makeGetUpdatedEnv:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
--(ZKGetUpdatedResult *)makeGetUpdatedResult:(zkElement *)root;
+-(ZKGetUpdatedResult *)makeGetUpdatedResult:(ZKElement *)root;
 
 -(NSString *)makeQueryEnv:(NSString *)queryString;
--(ZKQueryResult *)makeQueryResult:(zkElement *)root;
+-(ZKQueryResult *)makeQueryResult:(ZKElement *)root;
 
 -(NSString *)makeQueryAllEnv:(NSString *)queryString;
--(ZKQueryResult *)makeQueryAllResult:(zkElement *)root;
+-(ZKQueryResult *)makeQueryAllResult:(ZKElement *)root;
 
 -(NSString *)makeQueryMoreEnv:(NSString *)queryLocator;
--(ZKQueryResult *)makeQueryMoreResult:(zkElement *)root;
+-(ZKQueryResult *)makeQueryMoreResult:(ZKElement *)root;
 
 -(NSString *)makeSearchEnv:(NSString *)searchString;
--(ZKSearchResult *)makeSearchResult:(zkElement *)root;
+-(ZKSearchResult *)makeSearchResult:(ZKElement *)root;
 
 -(NSString *)makeGetServerTimestampEnv;
--(ZKGetServerTimestampResult *)makeGetServerTimestampResult:(zkElement *)root;
+-(ZKGetServerTimestampResult *)makeGetServerTimestampResult:(ZKElement *)root;
 
 -(NSString *)makeSetPasswordEnv:(NSString *)userId password:(NSString *)password;
--(ZKSetPasswordResult *)makeSetPasswordResult:(zkElement *)root;
+-(ZKSetPasswordResult *)makeSetPasswordResult:(ZKElement *)root;
 
 -(NSString *)makeChangeOwnPasswordEnv:(NSString *)oldPassword newPassword:(NSString *)newPassword;
--(ZKChangeOwnPasswordResult *)makeChangeOwnPasswordResult:(zkElement *)root;
+-(ZKChangeOwnPasswordResult *)makeChangeOwnPasswordResult:(ZKElement *)root;
 
 -(NSString *)makeResetPasswordEnv:(NSString *)userId;
--(ZKResetPasswordResult *)makeResetPasswordResult:(zkElement *)root;
+-(ZKResetPasswordResult *)makeResetPasswordResult:(ZKElement *)root;
 
 -(NSString *)makeGetUserInfoEnv;
--(ZKUserInfo *)makeGetUserInfoResult:(zkElement *)root;
+-(ZKUserInfo *)makeGetUserInfoResult:(ZKElement *)root;
 
 -(NSString *)makeDeleteByExampleEnv:(NSArray *)sObjects;
--(NSArray *)makeDeleteByExampleResult:(zkElement *)root;
+-(NSArray *)makeDeleteByExampleResult:(ZKElement *)root;
 
 -(NSString *)makeSendEmailMessageEnv:(NSArray *)ids;
--(NSArray *)makeSendEmailMessageResult:(zkElement *)root;
+-(NSArray *)makeSendEmailMessageResult:(ZKElement *)root;
 
 -(NSString *)makeSendEmailEnv:(NSArray *)messages;
--(NSArray *)makeSendEmailResult:(zkElement *)root;
+-(NSArray *)makeSendEmailResult:(ZKElement *)root;
 
 -(NSString *)makeRenderEmailTemplateEnv:(NSArray *)renderRequests;
--(NSArray *)makeRenderEmailTemplateResult:(zkElement *)root;
+-(NSArray *)makeRenderEmailTemplateResult:(ZKElement *)root;
 
 -(NSString *)makeRenderStoredEmailTemplateEnv:(ZKRenderStoredEmailTemplateRequest *)request;
--(ZKRenderStoredEmailTemplateResult *)makeRenderStoredEmailTemplateResult:(zkElement *)root;
+-(ZKRenderStoredEmailTemplateResult *)makeRenderStoredEmailTemplateResult:(ZKElement *)root;
 
 -(NSString *)makePerformQuickActionsEnv:(NSArray *)quickActions;
--(NSArray *)makePerformQuickActionsResult:(zkElement *)root;
+-(NSArray *)makePerformQuickActionsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeQuickActionsEnv:(NSArray *)quickActions;
--(NSArray *)makeDescribeQuickActionsResult:(zkElement *)root;
+-(NSArray *)makeDescribeQuickActionsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeQuickActionsForRecordTypeEnv:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId;
--(NSArray *)makeDescribeQuickActionsForRecordTypeResult:(zkElement *)root;
+-(NSArray *)makeDescribeQuickActionsForRecordTypeResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeAvailableQuickActionsEnv:(NSString *)contextType;
--(NSArray *)makeDescribeAvailableQuickActionsResult:(zkElement *)root;
+-(NSArray *)makeDescribeAvailableQuickActionsResult:(ZKElement *)root;
 
 -(NSString *)makeRetrieveQuickActionTemplatesEnv:(NSArray *)quickActionNames contextId:(NSString *)contextId;
--(NSArray *)makeRetrieveQuickActionTemplatesResult:(zkElement *)root;
+-(NSArray *)makeRetrieveQuickActionTemplatesResult:(ZKElement *)root;
 
 -(NSString *)makeRetrieveMassQuickActionTemplatesEnv:(NSString *)quickActionName contextIds:(NSArray *)contextIds;
--(NSArray *)makeRetrieveMassQuickActionTemplatesResult:(zkElement *)root;
+-(NSArray *)makeRetrieveMassQuickActionTemplatesResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeVisualForceEnv:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix;
--(ZKDescribeVisualForceResult *)makeDescribeVisualForceResult:(zkElement *)root;
+-(ZKDescribeVisualForceResult *)makeDescribeVisualForceResult:(ZKElement *)root;
 
 -(NSString *)makeFindDuplicatesEnv:(NSArray *)sObjects;
--(NSArray *)makeFindDuplicatesResult:(zkElement *)root;
+-(NSArray *)makeFindDuplicatesResult:(ZKElement *)root;
 
 -(NSString *)makeFindDuplicatesByIdsEnv:(NSArray *)ids;
--(NSArray *)makeFindDuplicatesByIdsResult:(zkElement *)root;
+-(NSArray *)makeFindDuplicatesByIdsResult:(ZKElement *)root;
 
 -(NSString *)makeDescribeNounsEnv:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields;
--(NSArray *)makeDescribeNounsResult:(zkElement *)root;
+-(NSArray *)makeDescribeNounsResult:(ZKElement *)root;
 
 @end

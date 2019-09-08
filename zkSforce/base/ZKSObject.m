@@ -47,7 +47,7 @@
     return s;
 }
 
-+ (instancetype) fromXmlNode:(zkElement *)node {
++ (instancetype) fromXmlNode:(ZKElement *)node {
     return [[ZKSObject alloc] initWithXmlElement:node];
 }
 
@@ -60,7 +60,7 @@
     return self;
 }
 
-- (instancetype) initWithXmlElement:(zkElement *)node {
+- (instancetype) initWithXmlElement:(ZKElement *)node {
     NSString *type = [[node childElement:@"type"].stringValue copy];
     self = [self initWithType:type];
     self.id = [[node childElement:@"Id"].stringValue copy];
@@ -69,7 +69,7 @@
     // start at 2 to skip Id & Type
     for (NSUInteger i = 2; i < childCount; i++)
     {
-        zkElement *f = children[i];
+        ZKElement *f = children[i];
         NSString *xsiNil = [f attributeValue:@"nil" ns:NS_URI_XSI];
         id fieldVal;
         if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) 

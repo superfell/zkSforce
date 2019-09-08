@@ -29,7 +29,7 @@
 
 @implementation ZKXmlDeserializer
 
--(instancetype)initWithXmlElement:(zkElement *)e {
+-(instancetype)initWithXmlElement:(ZKElement *)e {
     self = [super init];
     node = e;
     values = [[NSMutableDictionary alloc] init];
@@ -116,14 +116,14 @@
     if (cached != nil) return cached;
     NSArray *nodes = [node childElements:elem];
     NSMutableArray *s = [NSMutableArray arrayWithCapacity:nodes.count];
-    for (zkElement *e in nodes) 
+    for (ZKElement *e in nodes) 
         [s addObject:e.stringValue];
     
     values[elem] = s;
     return s;
 }
 
-- (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement {
+- (NSString *)string:(NSString *)elemName fromXmlElement:(ZKElement*)xmlElement {
     return [xmlElement childElement:elemName].stringValue;
 }
 
@@ -139,7 +139,7 @@
     if (cached == nil) {
         NSArray *elements = [node childElements:elemName];
         NSMutableArray *results = [NSMutableArray arrayWithCapacity:elements.count];
-        for(zkElement *childNode in elements) {
+        for(ZKElement *childNode in elements) {
             Class actualType = [self complexTypeClassForType:childNode.xsiType baseClass:type];
             NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
             [results addObject:child];

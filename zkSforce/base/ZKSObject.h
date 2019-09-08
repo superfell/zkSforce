@@ -21,7 +21,7 @@
 
 #import "ZKXmlDeserializer.h"
 
-@class zkElement;
+@class ZKElement;
 @class ZKQueryResult;
 @class ZKAddress;
 @class ZKLocation;
@@ -33,10 +33,10 @@
 
 + (instancetype) withType:(NSString *)type;
 + (instancetype) withTypeAndId:(NSString *)type sfId:(NSString *)sfId;
-+ (instancetype) fromXmlNode:(zkElement *)node;
++ (instancetype) fromXmlNode:(ZKElement *)node;
 
 - (instancetype) init NS_UNAVAILABLE;
-- (instancetype) initWithXmlElement:(zkElement *)node;
+- (instancetype) initWithXmlElement:(ZKElement *)node;
 - (instancetype) initWithType:(NSString *)type NS_DESIGNATED_INITIALIZER;
 - (instancetype) copyWithZone:(NSZone *)zone;
 

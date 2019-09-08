@@ -23,10 +23,10 @@
 
 @class ZKNamespacedName;
 
-@interface zkElement : NSObject <NSCopying> {
+@interface ZKElement : NSObject <NSCopying> {
     xmlDocPtr    doc;
     xmlNodePtr    node;
-    zkElement    *parent;
+    ZKElement    *parent;
 }
 /** @return the name of this element */
 @property (readonly) NSString *name;
@@ -37,10 +37,10 @@
 @property (readonly) NSString *stringValue;
 
 /** @return the first child element with this local name */
-- (zkElement *)childElement:(NSString *)name;
+- (ZKElement *)childElement:(NSString *)name;
 
 /** @return the first child element with this name */
-- (zkElement *)childElement:(NSString *)name ns:(NSString *)namespace;
+- (ZKElement *)childElement:(NSString *)name ns:(NSString *)namespace;
 
 /** @return all the child elements with this local name */
 - (NSArray *)childElements:(NSString *)name;
@@ -61,10 +61,10 @@
 @property (getter=isXsiNil, readonly) BOOL xsiNil;
 @end;
 
-@interface zkParser : NSObject {
+@interface ZKParser : NSObject {
 }
 /** @return the root element of the parsed XML Data */
-+(zkElement *)parseData:(NSData *)data;
++(ZKElement *)parseData:(NSData *)data;
 @end
 
 /** ZKNamespacedName is represented a namesapce name, 

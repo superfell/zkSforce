@@ -30,7 +30,7 @@
 
 @implementation ZKXsdAnyType
 
-- (instancetype)initWithXmlElement:(zkElement *)e {
+- (instancetype)initWithXmlElement:(ZKElement *)e {
     self = [super initWithXmlElement:e];
     xsiType = node.xsiType;
     return self;

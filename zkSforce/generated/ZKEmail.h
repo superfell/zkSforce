@@ -45,7 +45,7 @@
 }
 -(instancetype)init NS_DESIGNATED_INITIALIZER;
 -(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithXmlElement:(zkElement *)e;
+-(instancetype)initWithXmlElement:(ZKElement *)e;
 
 @property (assign) BOOL       bccSender; 
 @property (strong) NSString  *emailPriority; 

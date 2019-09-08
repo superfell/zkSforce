@@ -20,18 +20,18 @@
 //
 
 
-@class zkElement;
+@class ZKElement;
 @class ZKSObject;
 @class ZKQueryResult;
 @class ZKNamespacedName;
 @class ZKXsdAnyType;
 
 @interface ZKXmlDeserializer : NSObject<NSCopying> {
-    zkElement *node;
+    ZKElement *node;
     NSMutableDictionary *values;
 }
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithXmlElement:(zkElement *)e NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithXmlElement:(ZKElement *)e NS_DESIGNATED_INITIALIZER;
 
 - (NSString *)string:(NSString *)elem;
 - (BOOL)boolean:(NSString *)elem;
@@ -47,7 +47,7 @@
 - (ZKQueryResult *)queryResult:(NSString *)elem;
 - (ZKXsdAnyType *)anyType:(NSString *)elem;
 
-- (NSString *)string:(NSString *)elemName fromXmlElement:(zkElement*)xmlElement;
+- (NSString *)string:(NSString *)elemName fromXmlElement:(ZKElement*)xmlElement;
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type;
 - (Class) complexTypeClassForType:(ZKNamespacedName *)xsiType baseClass:(Class)base;
 

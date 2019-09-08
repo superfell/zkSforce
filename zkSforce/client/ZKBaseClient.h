@@ -21,7 +21,7 @@
 
 #import <AvailabilityMacros.h>
 
-@class zkElement;
+@class ZKElement;
 @class ZKBaseClient;
 
 @protocol ZKBaseClientDelegate
@@ -32,7 +32,7 @@
   sentRequest:(NSString *)payload
         named:(NSString *)callName
            to:(NSURL *)destination
- withResponse:(zkElement *)response
+ withResponse:(ZKElement *)response
         error:(NSError *)error
            in:(NSTimeInterval)time;
 
@@ -51,7 +51,7 @@
     If there was an error after parsing was succesfully completed, then both
     root and err will be set
 */
--(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(zkElement *root, NSError *err))handler;
+-(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(ZKElement *root, NSError *err))handler;
 
 @end
 
@@ -60,7 +60,7 @@
 @interface ZKBaseClient (ZKHeaders)
 
 /** soapHeaders can be nil if there's no soap:Header element in the response */
--(void)handleResponseSoapHeaders:(zkElement *)soapHeaders;
+-(void)handleResponseSoapHeaders:(ZKElement *)soapHeaders;
 
 @end
 
@@ -70,7 +70,7 @@
 
 -(NSMutableURLRequest *)createRequest:(NSString *)payload name:(NSString *)callName;
 
--(zkElement *)processResponse:(NSHTTPURLResponse *)resp
+-(ZKElement *)processResponse:(NSHTTPURLResponse *)resp
                          data:(NSData *)respPayload
                   fromRequest:(NSMutableURLRequest *)request
                          name:(NSString *)callName

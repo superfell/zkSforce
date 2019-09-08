@@ -358,8 +358,8 @@ static const int DEFAULT_API_VERSION = 46;
     [super performCreate:chunks[0] failBlock:failBlock completeBlock:cb];
 }
 
--(NSDictionary *)makeRetrieveResult:(zkElement *)root {
-    zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSDictionary *)makeRetrieveResult:(ZKElement *)root {
+    ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
     ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
     NSMutableDictionary *sobjects = [NSMutableDictionary dictionary];
     for (ZKSObject *o in [deser complexTypeArrayFromElements:@"result" cls:[ZKSObject class]]) {
@@ -368,9 +368,9 @@ static const int DEFAULT_API_VERSION = 46;
     return sobjects;
 }
 
--(void)handleResponseSoapHeaders:(zkElement *)soapHeaders {
+-(void)handleResponseSoapHeaders:(ZKElement *)soapHeaders {
     // this looks in the supplied headers for a limit info header and if we got one, hangs onto it.
-    zkElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
+    ZKElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:@"urn:partner.soap.sforce.com"];
     if (liElem != nil) {
         limitInfo = [[ZKLimitInfoHeader alloc] initWithXmlElement:liElem];
     }

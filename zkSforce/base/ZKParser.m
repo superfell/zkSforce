@@ -22,9 +22,9 @@
 #import "ZKParser.h"
 #import "ZKConstants.h"
 
-@implementation zkElement
+@implementation ZKElement
 
--(instancetype)initWithDocument:(xmlDocPtr)d node:(xmlNodePtr)n parent:(zkElement *)p {
+-(instancetype)initWithDocument:(xmlDocPtr)d node:(xmlNodePtr)n parent:(ZKElement *)p {
     self = [super init];
     parent = p;
     doc = d;
@@ -36,12 +36,12 @@
     return [self initWithDocument:d node:xmlDocGetRootElement(d) parent:nil];
 }
 
--(instancetype)initWithNode:(xmlNodePtr)n parent:(zkElement *)p {
+-(instancetype)initWithNode:(xmlNodePtr)n parent:(ZKElement *)p {
     return [self initWithDocument:nil node:n parent:p];
 }
 
 -(id)copyWithZone:(NSZone *)z {
-    return [[zkElement allocWithZone:z] initWithDocument:doc node:node parent:parent == nil ? self : parent];
+    return [[ZKElement allocWithZone:z] initWithDocument:doc node:node parent:parent == nil ? self : parent];
 }
 
 -(void)dealloc {
@@ -81,7 +81,7 @@
     while (cur != NULL) {
         if ((n == NULL) || (!xmlStrcmp(cur->name, n))) {
             if((!checkNs) || (!xmlStrcmp(cur->ns->href, ns))) {
-                zkElement *e = [[zkElement alloc] initWithNode:cur parent:self];
+                ZKElement *e = [[ZKElement alloc] initWithNode:cur parent:self];
                 if (!returnAll) return e;
                 [results addObject:e];
             }
@@ -91,11 +91,11 @@
     return results;
 }
 
-- (zkElement *)childElement:(NSString *)name ns:(NSString *)namespace {
+- (ZKElement *)childElement:(NSString *)name ns:(NSString *)namespace {
     return [self childElements:name ns:namespace checkNs:YES all:NO];
 }
 
-- (zkElement *)childElement:(NSString *)name {
+- (ZKElement *)childElement:(NSString *)name {
     return [self childElements:name ns:nil checkNs:NO all:NO];
 }
 
@@ -133,12 +133,12 @@
 
 @end
 
-@implementation zkParser
+@implementation ZKParser
 
-+(zkElement *)parseData:(NSData *)data {
++(ZKElement *)parseData:(NSData *)data {
     xmlDocPtr doc = xmlReadMemory(data.bytes, (int)data.length, "noname.xml", NULL, 0);
     if (doc != nil)
-        return [[zkElement alloc] initWithDocument:doc];
+        return [[ZKElement alloc] initWithDocument:doc];
     return nil;
 }
 

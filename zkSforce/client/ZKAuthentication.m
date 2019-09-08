@@ -223,13 +223,13 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     NSString *xml = env.end;
 
     client.urlSession = self.urlSession;
-    [client startRequest:xml name:@"login" handler:^(zkElement *root, NSError *ex) {
+    [client startRequest:xml name:@"login" handler:^(ZKElement *root, NSError *ex) {
         if (ex != nil) {
             failBlock(ex);
             return;
         }
-        zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
-        zkElement *result = [body childElements:@"result"][0];
+        ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+        ZKElement *result = [body childElements:@"result"][0];
         ZKLoginResult *lr = [[ZKLoginResult alloc] initWithXmlElement:result];
         
         self.instanceUrl = [NSURL URLWithString:lr.serverUrl];

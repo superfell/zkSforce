@@ -106,8 +106,8 @@
 	[env endElement:@"login"];
 	return env.end;
 }
--(ZKLoginResult *)makeLoginResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKLoginResult *)makeLoginResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLoginResult class]].lastObject;
 }
@@ -123,8 +123,8 @@
 	[env endElement:@"describeSObject"];
 	return env.end;
 }
--(ZKDescribeSObject *)makeDescribeSObjectResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeSObject *)makeDescribeSObjectResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]].lastObject;
 }
@@ -140,8 +140,8 @@
 	[env endElement:@"describeSObjects"];
 	return env.end;
 }
--(NSArray *)makeDescribeSObjectsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeSObjectsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
 }
@@ -155,8 +155,8 @@
 	[env endElement:@"describeGlobal"];
 	return env.end;
 }
--(NSArray *)makeDescribeGlobalResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeGlobalResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalSObject class]];
 }
@@ -172,8 +172,8 @@
 	[env endElement:@"describeDataCategoryGroups"];
 	return env.end;
 }
--(NSArray *)makeDescribeDataCategoryGroupsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeDataCategoryGroupsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
 }
@@ -190,8 +190,8 @@
 	[env endElement:@"describeDataCategoryGroupStructures"];
 	return env.end;
 }
--(NSArray *)makeDescribeDataCategoryGroupStructuresResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeDataCategoryGroupStructuresResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
 }
@@ -206,8 +206,8 @@
 	[env endElement:@"describeDataCategoryMappings"];
 	return env.end;
 }
--(NSArray *)makeDescribeDataCategoryMappingsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeDataCategoryMappingsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryMappingResult class]];
 }
@@ -222,8 +222,8 @@
 	[env endElement:@"describeKnowledgeSettings"];
 	return env.end;
 }
--(ZKKnowledgeSettings *)makeDescribeKnowledgeSettingsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKKnowledgeSettings *)makeDescribeKnowledgeSettingsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKKnowledgeSettings class]].lastObject;
 }
@@ -239,8 +239,8 @@
 	[env endElement:@"describeAppMenu"];
 	return env.end;
 }
--(ZKDescribeAppMenuResult *)makeDescribeAppMenuResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeAppMenuResult *)makeDescribeAppMenuResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAppMenuResult class]].lastObject;
 }
@@ -254,8 +254,8 @@
 	[env endElement:@"describeGlobalTheme"];
 	return env.end;
 }
--(ZKDescribeGlobalTheme *)makeDescribeGlobalThemeResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeGlobalTheme *)makeDescribeGlobalThemeResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]].lastObject;
 }
@@ -270,8 +270,8 @@
 	[env endElement:@"describeTheme"];
 	return env.end;
 }
--(ZKDescribeThemeResult *)makeDescribeThemeResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeThemeResult *)makeDescribeThemeResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]].lastObject;
 }
@@ -288,8 +288,8 @@
 	[env endElement:@"describeLayout"];
 	return env.end;
 }
--(ZKDescribeLayoutResult *)makeDescribeLayoutResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeLayoutResult *)makeDescribeLayoutResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeLayoutResult class]].lastObject;
 }
@@ -303,8 +303,8 @@
 	[env endElement:@"describeSoftphoneLayout"];
 	return env.end;
 }
--(ZKDescribeSoftphoneLayoutResult *)makeDescribeSoftphoneLayoutResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeSoftphoneLayoutResult *)makeDescribeSoftphoneLayoutResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]].lastObject;
 }
@@ -319,8 +319,8 @@
 	[env endElement:@"describeSearchLayouts"];
 	return env.end;
 }
--(NSArray *)makeDescribeSearchLayoutsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeSearchLayoutsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
 }
@@ -335,8 +335,8 @@
 	[env endElement:@"describeSearchableEntities"];
 	return env.end;
 }
--(NSArray *)makeDescribeSearchableEntitiesResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeSearchableEntitiesResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchableEntityResult class]];
 }
@@ -351,8 +351,8 @@
 	[env endElement:@"describeSearchScopeOrder"];
 	return env.end;
 }
--(NSArray *)makeDescribeSearchScopeOrderResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeSearchScopeOrderResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
 }
@@ -368,8 +368,8 @@
 	[env endElement:@"describeCompactLayouts"];
 	return env.end;
 }
--(ZKDescribeCompactLayoutsResult *)makeDescribeCompactLayoutsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeCompactLayoutsResult *)makeDescribeCompactLayoutsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]].lastObject;
 }
@@ -386,8 +386,8 @@
 	[env endElement:@"describePathAssistants"];
 	return env.end;
 }
--(ZKDescribePathAssistantsResult *)makeDescribePathAssistantsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribePathAssistantsResult *)makeDescribePathAssistantsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribePathAssistantsResult class]].lastObject;
 }
@@ -403,8 +403,8 @@
 	[env endElement:@"describeApprovalLayout"];
 	return env.end;
 }
--(ZKDescribeApprovalLayoutResult *)makeDescribeApprovalLayoutResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeApprovalLayoutResult *)makeDescribeApprovalLayoutResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeApprovalLayoutResult class]].lastObject;
 }
@@ -419,8 +419,8 @@
 	[env endElement:@"describeSoqlListViews"];
 	return env.end;
 }
--(ZKDescribeSoqlListViewResult *)makeDescribeSoqlListViewsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeSoqlListViewResult *)makeDescribeSoqlListViewsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]].lastObject;
 }
@@ -435,8 +435,8 @@
 	[env endElement:@"executeListView"];
 	return env.end;
 }
--(ZKExecuteListViewResult *)makeExecuteListViewResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKExecuteListViewResult *)makeExecuteListViewResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKExecuteListViewResult class]].lastObject;
 }
@@ -455,8 +455,8 @@
 	[env endElement:@"describeSObjectListViews"];
 	return env.end;
 }
--(ZKDescribeSoqlListViewResult *)makeDescribeSObjectListViewsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeSoqlListViewResult *)makeDescribeSObjectListViewsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoqlListViewResult class]].lastObject;
 }
@@ -470,8 +470,8 @@
 	[env endElement:@"describeTabs"];
 	return env.end;
 }
--(NSArray *)makeDescribeTabsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeTabsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
 }
@@ -485,8 +485,8 @@
 	[env endElement:@"describeAllTabs"];
 	return env.end;
 }
--(NSArray *)makeDescribeAllTabsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeAllTabsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTab class]];
 }
@@ -501,8 +501,8 @@
 	[env endElement:@"describePrimaryCompactLayouts"];
 	return env.end;
 }
--(NSArray *)makeDescribePrimaryCompactLayoutsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribePrimaryCompactLayoutsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayout class]];
 }
@@ -527,8 +527,8 @@
 	[env endElement:@"create"];
 	return env.end;
 }
--(NSArray *)makeCreateResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeCreateResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSaveResult class]];
 }
@@ -554,8 +554,8 @@
 	[env endElement:@"update"];
 	return env.end;
 }
--(NSArray *)makeUpdateResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeUpdateResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSaveResult class]];
 }
@@ -582,8 +582,8 @@
 	[env endElement:@"upsert"];
 	return env.end;
 }
--(NSArray *)makeUpsertResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeUpsertResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
 }
@@ -607,8 +607,8 @@
 	[env endElement:@"merge"];
 	return env.end;
 }
--(NSArray *)makeMergeResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeMergeResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
 }
@@ -632,8 +632,8 @@
 	[env endElement:@"delete"];
 	return env.end;
 }
--(NSArray *)makeDeleteResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDeleteResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
 }
@@ -655,8 +655,8 @@
 	[env endElement:@"undelete"];
 	return env.end;
 }
--(NSArray *)makeUndeleteResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeUndeleteResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
 }
@@ -670,8 +670,8 @@
 	[env endElement:@"emptyRecycleBin"];
 	return env.end;
 }
--(NSArray *)makeEmptyRecycleBinResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeEmptyRecycleBinResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
 }
@@ -690,7 +690,7 @@
 	[env endElement:@"retrieve"];
 	return env.end;
 }
--(NSDictionary *)makeRetrieveResult:(zkElement *)root {
+-(NSDictionary *)makeRetrieveResult:(ZKElement *)root {
 	NSAssert(NO, @"subclass is expected to override this method");
 	return nil;
 }
@@ -711,8 +711,8 @@
 	[env endElement:@"process"];
 	return env.end;
 }
--(NSArray *)makeProcessResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeProcessResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
 }
@@ -733,8 +733,8 @@
 	[env endElement:@"convertLead"];
 	return env.end;
 }
--(NSArray *)makeConvertLeadResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeConvertLeadResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
 }
@@ -747,7 +747,7 @@
 	[env endElement:@"logout"];
 	return env.end;
 }
--(void)makeLogoutResult:(zkElement *)root {
+-(void)makeLogoutResult:(ZKElement *)root {
 }
 
 -(NSString *)makeInvalidateSessionsEnv:(NSArray *)sessionIds {
@@ -759,8 +759,8 @@
 	[env endElement:@"invalidateSessions"];
 	return env.end;
 }
--(NSArray *)makeInvalidateSessionsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeInvalidateSessionsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
 }
@@ -776,8 +776,8 @@
 	[env endElement:@"getDeleted"];
 	return env.end;
 }
--(ZKGetDeletedResult *)makeGetDeletedResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKGetDeletedResult *)makeGetDeletedResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetDeletedResult class]].lastObject;
 }
@@ -793,8 +793,8 @@
 	[env endElement:@"getUpdated"];
 	return env.end;
 }
--(ZKGetUpdatedResult *)makeGetUpdatedResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKGetUpdatedResult *)makeGetUpdatedResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetUpdatedResult class]].lastObject;
 }
@@ -811,8 +811,8 @@
 	[env endElement:@"query"];
 	return env.end;
 }
--(ZKQueryResult *)makeQueryResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKQueryResult *)makeQueryResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser queryResult:@"result"];
 }
@@ -827,8 +827,8 @@
 	[env endElement:@"queryAll"];
 	return env.end;
 }
--(ZKQueryResult *)makeQueryAllResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKQueryResult *)makeQueryAllResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser queryResult:@"result"];
 }
@@ -843,8 +843,8 @@
 	[env endElement:@"queryMore"];
 	return env.end;
 }
--(ZKQueryResult *)makeQueryMoreResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKQueryResult *)makeQueryMoreResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser queryResult:@"result"];
 }
@@ -859,8 +859,8 @@
 	[env endElement:@"search"];
 	return env.end;
 }
--(ZKSearchResult *)makeSearchResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKSearchResult *)makeSearchResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSearchResult class]].lastObject;
 }
@@ -873,8 +873,8 @@
 	[env endElement:@"getServerTimestamp"];
 	return env.end;
 }
--(ZKGetServerTimestampResult *)makeGetServerTimestampResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKGetServerTimestampResult *)makeGetServerTimestampResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKGetServerTimestampResult class]].lastObject;
 }
@@ -889,8 +889,8 @@
 	[env endElement:@"setPassword"];
 	return env.end;
 }
--(ZKSetPasswordResult *)makeSetPasswordResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKSetPasswordResult *)makeSetPasswordResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]].lastObject;
 }
@@ -905,8 +905,8 @@
 	[env endElement:@"changeOwnPassword"];
 	return env.end;
 }
--(ZKChangeOwnPasswordResult *)makeChangeOwnPasswordResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKChangeOwnPasswordResult *)makeChangeOwnPasswordResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKChangeOwnPasswordResult class]].lastObject;
 }
@@ -921,8 +921,8 @@
 	[env endElement:@"resetPassword"];
 	return env.end;
 }
--(ZKResetPasswordResult *)makeResetPasswordResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKResetPasswordResult *)makeResetPasswordResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKResetPasswordResult class]].lastObject;
 }
@@ -935,8 +935,8 @@
 	[env endElement:@"getUserInfo"];
 	return env.end;
 }
--(ZKUserInfo *)makeGetUserInfoResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKUserInfo *)makeGetUserInfoResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]].lastObject;
 }
@@ -960,8 +960,8 @@
 	[env endElement:@"deleteByExample"];
 	return env.end;
 }
--(NSArray *)makeDeleteByExampleResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDeleteByExampleResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteByExampleResult class]];
 }
@@ -975,8 +975,8 @@
 	[env endElement:@"sendEmailMessage"];
 	return env.end;
 }
--(NSArray *)makeSendEmailMessageResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeSendEmailMessageResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
@@ -990,8 +990,8 @@
 	[env endElement:@"sendEmail"];
 	return env.end;
 }
--(NSArray *)makeSendEmailResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeSendEmailResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
@@ -1005,8 +1005,8 @@
 	[env endElement:@"renderEmailTemplate"];
 	return env.end;
 }
--(NSArray *)makeRenderEmailTemplateResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeRenderEmailTemplateResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
 }
@@ -1020,8 +1020,8 @@
 	[env endElement:@"renderStoredEmailTemplate"];
 	return env.end;
 }
--(ZKRenderStoredEmailTemplateResult *)makeRenderStoredEmailTemplateResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKRenderStoredEmailTemplateResult *)makeRenderStoredEmailTemplateResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderStoredEmailTemplateResult class]].lastObject;
 }
@@ -1047,8 +1047,8 @@
 	[env endElement:@"performQuickActions"];
 	return env.end;
 }
--(NSArray *)makePerformQuickActionsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makePerformQuickActionsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
 }
@@ -1064,8 +1064,8 @@
 	[env endElement:@"describeQuickActions"];
 	return env.end;
 }
--(NSArray *)makeDescribeQuickActionsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeQuickActionsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
@@ -1082,8 +1082,8 @@
 	[env endElement:@"describeQuickActionsForRecordType"];
 	return env.end;
 }
--(NSArray *)makeDescribeQuickActionsForRecordTypeResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeQuickActionsForRecordTypeResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
@@ -1099,8 +1099,8 @@
 	[env endElement:@"describeAvailableQuickActions"];
 	return env.end;
 }
--(NSArray *)makeDescribeAvailableQuickActionsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeAvailableQuickActionsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
 }
@@ -1117,8 +1117,8 @@
 	[env endElement:@"retrieveQuickActionTemplates"];
 	return env.end;
 }
--(NSArray *)makeRetrieveQuickActionTemplatesResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeRetrieveQuickActionTemplatesResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
@@ -1135,8 +1135,8 @@
 	[env endElement:@"retrieveMassQuickActionTemplates"];
 	return env.end;
 }
--(NSArray *)makeRetrieveMassQuickActionTemplatesResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeRetrieveMassQuickActionTemplatesResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
@@ -1152,8 +1152,8 @@
 	[env endElement:@"describeVisualForce"];
 	return env.end;
 }
--(ZKDescribeVisualForceResult *)makeDescribeVisualForceResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(ZKDescribeVisualForceResult *)makeDescribeVisualForceResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeVisualForceResult class]].lastObject;
 }
@@ -1169,8 +1169,8 @@
 	[env endElement:@"findDuplicates"];
 	return env.end;
 }
--(NSArray *)makeFindDuplicatesResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeFindDuplicatesResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
@@ -1186,8 +1186,8 @@
 	[env endElement:@"findDuplicatesByIds"];
 	return env.end;
 }
--(NSArray *)makeFindDuplicatesByIdsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeFindDuplicatesByIdsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
@@ -1205,8 +1205,8 @@
 	[env endElement:@"describeNouns"];
 	return env.end;
 }
--(NSArray *)makeDescribeNounsResult:(zkElement *)root {
-	zkElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
+-(NSArray *)makeDescribeNounsResult:(ZKElement *)root {
+	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeNounResult class]];
 }

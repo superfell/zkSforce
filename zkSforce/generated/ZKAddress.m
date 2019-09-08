@@ -49,7 +49,7 @@
     return self;
 }
 
--(instancetype)initWithXmlElement:(zkElement *)e {
+-(instancetype)initWithXmlElement:(ZKElement *)e {
     ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
     return [self initWithZKXmlDeserializer:d];
 }
