@@ -82,8 +82,8 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteDescribeSObjectBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		ZKDescribeSObject *shortcut = [self preHook_describeSObject:sObjectType];
@@ -111,8 +111,8 @@
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
@@ -135,8 +135,8 @@
 -(void) describeGlobalWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSArray *shortcut = [self preHook_describeGlobal];
@@ -164,8 +164,8 @@
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
@@ -186,8 +186,8 @@
                                   failBlock:(ZKFailWithErrorBlock)failBlock
                               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
@@ -207,8 +207,8 @@
 -(void) describeDataCategoryMappingsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
@@ -228,8 +228,8 @@
 -(void) describeKnowledgeSettingsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                                  completeBlock:(ZKCompleteKnowledgeSettingsBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
@@ -250,8 +250,8 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteDescribeAppMenuResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
@@ -271,8 +271,8 @@
 -(void) describeGlobalThemeWithFailBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteDescribeGlobalThemeBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeGlobalThemeEnv];
@@ -293,8 +293,8 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteDescribeThemeResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeThemeEnv:sobjectType];
@@ -315,8 +315,8 @@
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteDescribeLayoutResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
@@ -336,8 +336,8 @@
 -(void) describeSoftphoneLayoutWithFailBlock:(ZKFailWithErrorBlock)failBlock
                                completeBlock:(ZKCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
@@ -358,8 +358,8 @@
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
@@ -380,8 +380,8 @@
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
@@ -402,8 +402,8 @@
                        failBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
@@ -424,8 +424,8 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeCompactLayoutsResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
@@ -446,8 +446,8 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribePathAssistantsResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
@@ -468,8 +468,8 @@
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeApprovalLayoutResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
@@ -490,8 +490,8 @@
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
@@ -512,8 +512,8 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteExecuteListViewResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeExecuteListViewEnv:request];
@@ -534,8 +534,8 @@
                        failBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
@@ -555,8 +555,8 @@
 -(void) describeTabsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeTabsEnv];
@@ -576,8 +576,8 @@
 -(void) describeAllTabsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeAllTabsEnv];
@@ -598,8 +598,8 @@
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
@@ -620,8 +620,8 @@
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeCreateEnv:sObjects];
@@ -642,8 +642,8 @@
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeUpdateEnv:sObjects];
@@ -664,8 +664,8 @@
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
@@ -686,8 +686,8 @@
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeMergeEnv:request];
@@ -708,8 +708,8 @@
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDeleteEnv:ids];
@@ -730,8 +730,8 @@
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeUndeleteEnv:ids];
@@ -752,8 +752,8 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeEmptyRecycleBinEnv:ids];
@@ -774,8 +774,8 @@
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteDictionaryBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
@@ -796,8 +796,8 @@
       failBlock:(ZKFailWithErrorBlock)failBlock
   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeProcessEnv:actions];
@@ -818,8 +818,8 @@
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeConvertLeadEnv:leadConverts];
@@ -839,8 +839,8 @@
 -(void) logoutWithFailBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteVoidBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeLogoutEnv];
@@ -861,8 +861,8 @@
                  failBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
@@ -883,8 +883,8 @@
          failBlock:(ZKFailWithErrorBlock)failBlock
      completeBlock:(ZKCompleteGetDeletedResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
@@ -905,8 +905,8 @@
          failBlock:(ZKFailWithErrorBlock)failBlock
      completeBlock:(ZKCompleteGetUpdatedResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
@@ -927,8 +927,8 @@
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeQueryEnv:queryString];
@@ -949,8 +949,8 @@
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeQueryAllEnv:queryString];
@@ -971,8 +971,8 @@
         failBlock:(ZKFailWithErrorBlock)failBlock
     completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeQueryMoreEnv:queryLocator];
@@ -993,8 +993,8 @@
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteSearchResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSearchEnv:searchString];
@@ -1014,8 +1014,8 @@
 -(void) getServerTimestampWithFailBlock:(ZKFailWithErrorBlock)failBlock
                           completeBlock:(ZKCompleteGetServerTimestampResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetServerTimestampEnv];
@@ -1036,8 +1036,8 @@
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteSetPasswordResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSetPasswordEnv:userId password:password];
@@ -1058,8 +1058,8 @@
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
@@ -1080,8 +1080,8 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteResetPasswordResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeResetPasswordEnv:userId];
@@ -1101,8 +1101,8 @@
 -(void) getUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetUserInfoEnv];
@@ -1123,8 +1123,8 @@
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDeleteByExampleEnv:sObjects];
@@ -1145,8 +1145,8 @@
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSendEmailMessageEnv:ids];
@@ -1167,8 +1167,8 @@
         failBlock:(ZKFailWithErrorBlock)failBlock
     completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSendEmailEnv:messages];
@@ -1189,8 +1189,8 @@
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
@@ -1211,8 +1211,8 @@
                         failBlock:(ZKFailWithErrorBlock)failBlock
                     completeBlock:(ZKCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
@@ -1233,8 +1233,8 @@
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makePerformQuickActionsEnv:quickActions];
@@ -1255,8 +1255,8 @@
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
@@ -1277,8 +1277,8 @@
                                 failBlock:(ZKFailWithErrorBlock)failBlock
                             completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
@@ -1299,8 +1299,8 @@
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
@@ -1321,8 +1321,8 @@
                            failBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
@@ -1343,8 +1343,8 @@
                                failBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
@@ -1365,8 +1365,8 @@
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteDescribeVisualForceResultBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
@@ -1387,8 +1387,8 @@
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeFindDuplicatesEnv:sObjects];
@@ -1409,8 +1409,8 @@
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
@@ -1431,8 +1431,8 @@
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
-	[self execWithSession:^(NSError *err) {
-		if ([self handledError:err failBlock:failBlock]) {
+	[self execWithSession:^(NSError *sessionErr) {
+		if ([self handledError:sessionErr failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
