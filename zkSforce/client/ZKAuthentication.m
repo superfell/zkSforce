@@ -67,7 +67,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 @synthesize apiVersion, refreshToken, authHostUrl;
 
-+(NSDictionary *)decodeParams:(NSString *)params error:(NSError **)error {
++(NSDictionary *)decodeParams:(NSString *)params error:(NSError *  __autoreleasing *)error {
     NSMutableDictionary *results = [NSMutableDictionary dictionary];
     for (NSString *param in [params componentsSeparatedByString:@"&"]) {
         NSArray *paramParts = [param componentsSeparatedByString:@"="];
@@ -82,7 +82,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return results;
 }
 
-+(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid error:(NSError **)err {
++(instancetype)oauthInfoFromCallbackUrl:(NSURL *)callbackUrl clientId:(NSString *)cid error:(NSError *  __autoreleasing *)err {
     // callbackUrl will be something:///blah/blah#p=1&q=2&foo=bar
     // we need to get our params out of the callback fragment
     NSError *error = nil;

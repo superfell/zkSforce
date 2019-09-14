@@ -74,7 +74,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
                          data:(NSData *)respPayload
                   fromRequest:(NSMutableURLRequest *)request
                          name:(NSString *)callName
-                        error:(NSError **)err {
+                        error:(NSError * __autoreleasing *)err {
     if (err && *err) {
         NSLog(@"Got error sending API request %@ : %@", request, *err);
         return nil;
