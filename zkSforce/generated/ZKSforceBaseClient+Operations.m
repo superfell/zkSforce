@@ -47,13 +47,11 @@
 	}];
 }
 
--(BOOL)handledError:(NSError *)ex failBlock:(ZKFailWithErrorBlock)failBlock {
+-(BOOL)handledError:(NSError *)ex queue:(dispatch_queue_t)queue failBlock:(ZKFailWithErrorBlock)failBlock {
 	if (ex == nil) {
 		return NO;
 	}
-	dispatch_async(dispatch_get_main_queue(), ^{
-		failBlock(ex);
-	});
+	dispatch_async(queue, ^{ failBlock(ex); });
 	return YES;
 }
 /** Login to the Salesforce.com SOAP Api
@@ -61,14 +59,23 @@
 -(void) login:(NSString *)username password:(NSString *)password
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
+	[self login:username password:password
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Login to the Salesforce.com SOAP Api
+    Callbacks with be executed on the supplied queue. */
+-(void) login:(NSString *)username password:(NSString *)password
+        queue:(dispatch_queue_t)callbackQueue
+    failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
 
 	NSString *payload = [self makeLoginEnv:username password:password];
 	[self startRequest:payload name:@"login" handler:^(ZKElement *root, NSError *err) {
-		if (![self handledError:err failBlock:failBlock]) {
+		if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 			ZKLoginResult *result = [self makeLoginResult:root];
-			dispatch_async(dispatch_get_main_queue(), ^{
-				completeBlock(result);
-			});
+			dispatch_async(callbackQueue, ^{ completeBlock(result); });
 		}
 	}];
 }
@@ -81,25 +88,32 @@
 -(void) describeSObject:(NSString *)sObjectType
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteDescribeSObjectBlock)completeBlock {
+	[self describeSObject:sObjectType
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe an sObject
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSObject:(NSString *)sObjectType
+                  queue:(dispatch_queue_t)callbackQueue
+              failBlock:(ZKFailWithErrorBlock)failBlock
+          completeBlock:(ZKCompleteDescribeSObjectBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		ZKDescribeSObject *shortcut = [self preHook_describeSObject:sObjectType];
 		if (shortcut != nil) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(shortcut);
-			});
+			dispatch_async(callbackQueue, ^{ completeBlock(shortcut); });
 			return;
 		}
 		NSString *payload = [self makeDescribeSObjectEnv:sObjectType];
 		[self startRequest:payload name:@"describeSObject" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeSObject *result = [self postHook_describeSObject:[self makeDescribeSObjectResult:root]];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -110,18 +124,27 @@
 -(void) describeSObjects:(NSArray *)sObjectType
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeSObjects:sObjectType
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe multiple sObjects (upto 100)
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSObjects:(NSArray *)sObjectType
+                   queue:(dispatch_queue_t)callbackQueue
+               failBlock:(ZKFailWithErrorBlock)failBlock
+           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSObjectsEnv:sObjectType];
 		[self startRequest:payload name:@"describeSObjects" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeSObjectsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -134,25 +157,30 @@
     Callbacks will be executed on the main queue. */
 -(void) describeGlobalWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeGlobalWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the Global state
+    Callbacks with be executed on the supplied queue. */
+-(void) describeGlobalWithQueue:(dispatch_queue_t)callbackQueue 
+                      failBlock:(ZKFailWithErrorBlock)failBlock
+                  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSArray *shortcut = [self preHook_describeGlobal];
 		if (shortcut != nil) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(shortcut);
-			});
+			dispatch_async(callbackQueue, ^{ completeBlock(shortcut); });
 			return;
 		}
 		NSString *payload = [self makeDescribeGlobalEnv];
 		[self startRequest:payload name:@"describeGlobal" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self postHook_describeGlobal:[self makeDescribeGlobalResult:root]];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -163,18 +191,27 @@
 -(void) describeDataCategoryGroups:(NSArray *)sObjectType
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeDataCategoryGroups:sObjectType
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe all the data category groups available for a given set of types
+    Callbacks with be executed on the supplied queue. */
+-(void) describeDataCategoryGroups:(NSArray *)sObjectType
+                             queue:(dispatch_queue_t)callbackQueue
+                         failBlock:(ZKFailWithErrorBlock)failBlock
+                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeDataCategoryGroupsEnv:sObjectType];
 		[self startRequest:payload name:@"describeDataCategoryGroups" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeDataCategoryGroupsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -185,18 +222,27 @@
 -(void) describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
                                   failBlock:(ZKFailWithErrorBlock)failBlock
                               completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeDataCategoryGroupStructures:pairs topCategoriesOnly:topCategoriesOnly
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the data category group structures for a given set of pair of types and data category group name
+    Callbacks with be executed on the supplied queue. */
+-(void) describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
+                                      queue:(dispatch_queue_t)callbackQueue
+                                  failBlock:(ZKFailWithErrorBlock)failBlock
+                              completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeDataCategoryGroupStructuresEnv:pairs topCategoriesOnly:topCategoriesOnly];
 		[self startRequest:payload name:@"describeDataCategoryGroupStructures" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeDataCategoryGroupStructuresResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -206,18 +252,25 @@
     Callbacks will be executed on the main queue. */
 -(void) describeDataCategoryMappingsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeDataCategoryMappingsWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe your Data Category Mappings.
+    Callbacks with be executed on the supplied queue. */
+-(void) describeDataCategoryMappingsWithQueue:(dispatch_queue_t)callbackQueue 
+                                    failBlock:(ZKFailWithErrorBlock)failBlock
+                                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeDataCategoryMappingsEnv];
 		[self startRequest:payload name:@"describeDataCategoryMappings" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeDataCategoryMappingsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -227,18 +280,25 @@
     Callbacks will be executed on the main queue. */
 -(void) describeKnowledgeSettingsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                                  completeBlock:(ZKCompleteKnowledgeSettingsBlock)completeBlock {
+	[self describeKnowledgeSettingsWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describes your Knowledge settings, such as if knowledgeEnabled is on or off, its default language and supported languages
+    Callbacks with be executed on the supplied queue. */
+-(void) describeKnowledgeSettingsWithQueue:(dispatch_queue_t)callbackQueue 
+                                 failBlock:(ZKFailWithErrorBlock)failBlock
+                             completeBlock:(ZKCompleteKnowledgeSettingsBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeKnowledgeSettingsEnv];
 		[self startRequest:payload name:@"describeKnowledgeSettings" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKKnowledgeSettings *result = [self makeDescribeKnowledgeSettingsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -249,18 +309,27 @@
 -(void) describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteDescribeAppMenuResultBlock)completeBlock {
+	[self describeAppMenu:appMenuType networkId:networkId
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the items in an AppMenu
+    Callbacks with be executed on the supplied queue. */
+-(void) describeAppMenu:(NSString *)appMenuType networkId:(NSString *)networkId
+                  queue:(dispatch_queue_t)callbackQueue
+              failBlock:(ZKFailWithErrorBlock)failBlock
+          completeBlock:(ZKCompleteDescribeAppMenuResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeAppMenuEnv:appMenuType networkId:networkId];
 		[self startRequest:payload name:@"describeAppMenu" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeAppMenuResult *result = [self makeDescribeAppMenuResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -270,18 +339,25 @@
     Callbacks will be executed on the main queue. */
 -(void) describeGlobalThemeWithFailBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteDescribeGlobalThemeBlock)completeBlock {
+	[self describeGlobalThemeWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe Gloal and Themes
+    Callbacks with be executed on the supplied queue. */
+-(void) describeGlobalThemeWithQueue:(dispatch_queue_t)callbackQueue 
+                           failBlock:(ZKFailWithErrorBlock)failBlock
+                       completeBlock:(ZKCompleteDescribeGlobalThemeBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeGlobalThemeEnv];
 		[self startRequest:payload name:@"describeGlobalTheme" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeGlobalTheme *result = [self makeDescribeGlobalThemeResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -292,18 +368,27 @@
 -(void) describeTheme:(NSArray *)sobjectType
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteDescribeThemeResultBlock)completeBlock {
+	[self describeTheme:sobjectType
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe Themes
+    Callbacks with be executed on the supplied queue. */
+-(void) describeTheme:(NSArray *)sobjectType
+                queue:(dispatch_queue_t)callbackQueue
+            failBlock:(ZKFailWithErrorBlock)failBlock
+        completeBlock:(ZKCompleteDescribeThemeResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeThemeEnv:sobjectType];
 		[self startRequest:payload name:@"describeTheme" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeThemeResult *result = [self makeDescribeThemeResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -314,18 +399,27 @@
 -(void) describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteDescribeLayoutResultBlock)completeBlock {
+	[self describeLayout:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the layout of the given sObject or the given actionable global page.
+    Callbacks with be executed on the supplied queue. */
+-(void) describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
+                 queue:(dispatch_queue_t)callbackQueue
+             failBlock:(ZKFailWithErrorBlock)failBlock
+         completeBlock:(ZKCompleteDescribeLayoutResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeLayoutEnv:sObjectType layoutName:layoutName recordTypeIds:recordTypeIds];
 		[self startRequest:payload name:@"describeLayout" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeLayoutResult *result = [self makeDescribeLayoutResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -335,18 +429,25 @@
     Callbacks will be executed on the main queue. */
 -(void) describeSoftphoneLayoutWithFailBlock:(ZKFailWithErrorBlock)failBlock
                                completeBlock:(ZKCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
+	[self describeSoftphoneLayoutWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the layout of the SoftPhone
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSoftphoneLayoutWithQueue:(dispatch_queue_t)callbackQueue 
+                               failBlock:(ZKFailWithErrorBlock)failBlock
+                           completeBlock:(ZKCompleteDescribeSoftphoneLayoutResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSoftphoneLayoutEnv];
 		[self startRequest:payload name:@"describeSoftphoneLayout" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeSoftphoneLayoutResult *result = [self makeDescribeSoftphoneLayoutResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -357,18 +458,27 @@
 -(void) describeSearchLayouts:(NSArray *)sObjectType
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeSearchLayouts:sObjectType
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the search view of an sObject
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSearchLayouts:(NSArray *)sObjectType
+                        queue:(dispatch_queue_t)callbackQueue
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSearchLayoutsEnv:sObjectType];
 		[self startRequest:payload name:@"describeSearchLayouts" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeSearchLayoutsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -379,18 +489,27 @@
 -(void) describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeSearchableEntities:includeOnlyEntitiesWithTabs
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe a list of entity names that reflects the current user's searchable entities
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSearchableEntities:(BOOL)includeOnlyEntitiesWithTabs
+                             queue:(dispatch_queue_t)callbackQueue
+                         failBlock:(ZKFailWithErrorBlock)failBlock
+                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSearchableEntitiesEnv:includeOnlyEntitiesWithTabs];
 		[self startRequest:payload name:@"describeSearchableEntities" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeSearchableEntitiesResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -401,18 +520,27 @@
 -(void) describeSearchScopeOrder:(BOOL)includeRealTimeEntities
                        failBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeSearchScopeOrder:includeRealTimeEntities
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe a list of objects representing the order and scope of objects on a users search result page
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSearchScopeOrder:(BOOL)includeRealTimeEntities
+                           queue:(dispatch_queue_t)callbackQueue
+                       failBlock:(ZKFailWithErrorBlock)failBlock
+                   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSearchScopeOrderEnv:includeRealTimeEntities];
 		[self startRequest:payload name:@"describeSearchScopeOrder" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeSearchScopeOrderResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -423,18 +551,27 @@
 -(void) describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeCompactLayoutsResultBlock)completeBlock {
+	[self describeCompactLayouts:sObjectType recordTypeIds:recordTypeIds
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the compact layouts of the given sObject
+    Callbacks with be executed on the supplied queue. */
+-(void) describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
+                         queue:(dispatch_queue_t)callbackQueue
+                     failBlock:(ZKFailWithErrorBlock)failBlock
+                 completeBlock:(ZKCompleteDescribeCompactLayoutsResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeCompactLayoutsEnv:sObjectType recordTypeIds:recordTypeIds];
 		[self startRequest:payload name:@"describeCompactLayouts" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeCompactLayoutsResult *result = [self makeDescribeCompactLayoutsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -445,18 +582,27 @@
 -(void) describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribePathAssistantsResultBlock)completeBlock {
+	[self describePathAssistants:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the Path Assistants for the given sObject and optionally RecordTypes
+    Callbacks with be executed on the supplied queue. */
+-(void) describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
+                         queue:(dispatch_queue_t)callbackQueue
+                     failBlock:(ZKFailWithErrorBlock)failBlock
+                 completeBlock:(ZKCompleteDescribePathAssistantsResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribePathAssistantsEnv:sObjectType picklistValue:picklistValue recordTypeIds:recordTypeIds];
 		[self startRequest:payload name:@"describePathAssistants" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribePathAssistantsResult *result = [self makeDescribePathAssistantsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -467,18 +613,27 @@
 -(void) describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeApprovalLayoutResultBlock)completeBlock {
+	[self describeApprovalLayout:sObjectType approvalProcessNames:approvalProcessNames
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the approval layouts of the given sObject
+    Callbacks with be executed on the supplied queue. */
+-(void) describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
+                         queue:(dispatch_queue_t)callbackQueue
+                     failBlock:(ZKFailWithErrorBlock)failBlock
+                 completeBlock:(ZKCompleteDescribeApprovalLayoutResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeApprovalLayoutEnv:sObjectType approvalProcessNames:approvalProcessNames];
 		[self startRequest:payload name:@"describeApprovalLayout" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeApprovalLayoutResult *result = [self makeDescribeApprovalLayoutResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -489,18 +644,27 @@
 -(void) describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
+	[self describeSoqlListViews:request
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the ListViews as SOQL metadata for the generation of SOQL.
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSoqlListViews:(ZKDescribeSoqlListViewsRequest *)request
+                        queue:(dispatch_queue_t)callbackQueue
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSoqlListViewsEnv:request];
 		[self startRequest:payload name:@"describeSoqlListViews" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeSoqlListViewResult *result = [self makeDescribeSoqlListViewsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -511,18 +675,27 @@
 -(void) executeListView:(ZKExecuteListViewRequest *)request
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteExecuteListViewResultBlock)completeBlock {
+	[self executeListView:request
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Execute the specified list view and return the presentation-ready results.
+    Callbacks with be executed on the supplied queue. */
+-(void) executeListView:(ZKExecuteListViewRequest *)request
+                  queue:(dispatch_queue_t)callbackQueue
+              failBlock:(ZKFailWithErrorBlock)failBlock
+          completeBlock:(ZKCompleteExecuteListViewResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeExecuteListViewEnv:request];
 		[self startRequest:payload name:@"executeListView" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKExecuteListViewResult *result = [self makeExecuteListViewResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -533,18 +706,27 @@
 -(void) describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset
                        failBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
+	[self describeSObjectListViews:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the ListViews of a SObject as SOQL metadata for the generation of SOQL.
+    Callbacks with be executed on the supplied queue. */
+-(void) describeSObjectListViews:(NSString *)sObjectType recentsOnly:(BOOL)recentsOnly isSoqlCompatible:(NSString *)isSoqlCompatible limit:(NSInteger)limit offset:(NSInteger)offset
+                           queue:(dispatch_queue_t)callbackQueue
+                       failBlock:(ZKFailWithErrorBlock)failBlock
+                   completeBlock:(ZKCompleteDescribeSoqlListViewResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeSObjectListViewsEnv:sObjectType recentsOnly:recentsOnly isSoqlCompatible:isSoqlCompatible limit:limit offset:offset];
 		[self startRequest:payload name:@"describeSObjectListViews" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeSoqlListViewResult *result = [self makeDescribeSObjectListViewsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -554,18 +736,25 @@
     Callbacks will be executed on the main queue. */
 -(void) describeTabsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                     completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeTabsWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the tabs that appear on a users page
+    Callbacks with be executed on the supplied queue. */
+-(void) describeTabsWithQueue:(dispatch_queue_t)callbackQueue 
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeTabsEnv];
 		[self startRequest:payload name:@"describeTabs" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeTabsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -575,18 +764,25 @@
     Callbacks will be executed on the main queue. */
 -(void) describeAllTabsWithFailBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeAllTabsWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe all tabs available to a user
+    Callbacks with be executed on the supplied queue. */
+-(void) describeAllTabsWithQueue:(dispatch_queue_t)callbackQueue 
+                       failBlock:(ZKFailWithErrorBlock)failBlock
+                   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeAllTabsEnv];
 		[self startRequest:payload name:@"describeAllTabs" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeAllTabsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -597,18 +793,27 @@
 -(void) describePrimaryCompactLayouts:(NSArray *)sObjectTypes
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describePrimaryCompactLayouts:sObjectTypes
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the primary compact layouts for the sObjects requested
+    Callbacks with be executed on the supplied queue. */
+-(void) describePrimaryCompactLayouts:(NSArray *)sObjectTypes
+                                queue:(dispatch_queue_t)callbackQueue
+                            failBlock:(ZKFailWithErrorBlock)failBlock
+                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribePrimaryCompactLayoutsEnv:sObjectTypes];
 		[self startRequest:payload name:@"describePrimaryCompactLayouts" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribePrimaryCompactLayoutsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -619,18 +824,27 @@
 -(void) create:(NSArray *)sObjects
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self create:sObjects
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Create a set of new sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) create:(NSArray *)sObjects
+         queue:(dispatch_queue_t)callbackQueue
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeCreateEnv:sObjects];
 		[self startRequest:payload name:@"create" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeCreateResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -641,18 +855,27 @@
 -(void) update:(NSArray *)sObjects
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self update:sObjects
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Update a set of sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) update:(NSArray *)sObjects
+         queue:(dispatch_queue_t)callbackQueue
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeUpdateEnv:sObjects];
 		[self startRequest:payload name:@"update" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeUpdateResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -663,18 +886,27 @@
 -(void) upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self upsert:externalIDFieldName sObjects:sObjects
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Update or insert a set of sObjects based on object id
+    Callbacks with be executed on the supplied queue. */
+-(void) upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects
+         queue:(dispatch_queue_t)callbackQueue
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeUpsertEnv:externalIDFieldName sObjects:sObjects];
 		[self startRequest:payload name:@"upsert" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeUpsertResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -685,18 +917,27 @@
 -(void) merge:(NSArray *)request
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self merge:request
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Merge and update a set of sObjects based on object id
+    Callbacks with be executed on the supplied queue. */
+-(void) merge:(NSArray *)request
+        queue:(dispatch_queue_t)callbackQueue
+    failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeMergeEnv:request];
 		[self startRequest:payload name:@"merge" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeMergeResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -707,18 +948,27 @@
 -(void) delete:(NSArray *)ids
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self delete:ids
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Delete a set of sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) delete:(NSArray *)ids
+         queue:(dispatch_queue_t)callbackQueue
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDeleteEnv:ids];
 		[self startRequest:payload name:@"delete" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDeleteResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -729,18 +979,27 @@
 -(void) undelete:(NSArray *)ids
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self undelete:ids
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Undelete a set of sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) undelete:(NSArray *)ids
+           queue:(dispatch_queue_t)callbackQueue
+       failBlock:(ZKFailWithErrorBlock)failBlock
+   completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeUndeleteEnv:ids];
 		[self startRequest:payload name:@"undelete" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeUndeleteResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -751,18 +1010,27 @@
 -(void) emptyRecycleBin:(NSArray *)ids
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self emptyRecycleBin:ids
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Empty a set of sObjects from the recycle bin
+    Callbacks with be executed on the supplied queue. */
+-(void) emptyRecycleBin:(NSArray *)ids
+                  queue:(dispatch_queue_t)callbackQueue
+              failBlock:(ZKFailWithErrorBlock)failBlock
+          completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeEmptyRecycleBinEnv:ids];
 		[self startRequest:payload name:@"emptyRecycleBin" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeEmptyRecycleBinResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -773,18 +1041,27 @@
 -(void) retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteDictionaryBlock)completeBlock {
+	[self retrieve:fieldList sObjectType:sObjectType ids:ids
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Get a set of sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
+           queue:(dispatch_queue_t)callbackQueue
+       failBlock:(ZKFailWithErrorBlock)failBlock
+   completeBlock:(ZKCompleteDictionaryBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRetrieveEnv:fieldList sObjectType:sObjectType ids:ids];
 		[self startRequest:payload name:@"retrieve" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSDictionary *result = [self makeRetrieveResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -795,18 +1072,27 @@
 -(void) process:(NSArray *)actions
       failBlock:(ZKFailWithErrorBlock)failBlock
   completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self process:actions
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Submit an entity to a workflow process or process a workitem
+    Callbacks with be executed on the supplied queue. */
+-(void) process:(NSArray *)actions
+          queue:(dispatch_queue_t)callbackQueue
+      failBlock:(ZKFailWithErrorBlock)failBlock
+  completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeProcessEnv:actions];
 		[self startRequest:payload name:@"process" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeProcessResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -817,18 +1103,27 @@
 -(void) convertLead:(NSArray *)leadConverts
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self convertLead:leadConverts
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** convert a set of leads
+    Callbacks with be executed on the supplied queue. */
+-(void) convertLead:(NSArray *)leadConverts
+              queue:(dispatch_queue_t)callbackQueue
+          failBlock:(ZKFailWithErrorBlock)failBlock
+      completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeConvertLeadEnv:leadConverts];
 		[self startRequest:payload name:@"convertLead" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeConvertLeadResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -838,18 +1133,25 @@
     Callbacks will be executed on the main queue. */
 -(void) logoutWithFailBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteVoidBlock)completeBlock {
+	[self logoutWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Logout the current user, invalidating the current session.
+    Callbacks with be executed on the supplied queue. */
+-(void) logoutWithQueue:(dispatch_queue_t)callbackQueue 
+              failBlock:(ZKFailWithErrorBlock)failBlock
+          completeBlock:(ZKCompleteVoidBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeLogoutEnv];
 		[self startRequest:payload name:@"logout" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock();
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(); });
 			}
 		}];
 	}];
@@ -860,18 +1162,27 @@
 -(void) invalidateSessions:(NSArray *)sessionIds
                  failBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self invalidateSessions:sessionIds
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Logs out and invalidates session ids
+    Callbacks with be executed on the supplied queue. */
+-(void) invalidateSessions:(NSArray *)sessionIds
+                     queue:(dispatch_queue_t)callbackQueue
+                 failBlock:(ZKFailWithErrorBlock)failBlock
+             completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeInvalidateSessionsEnv:sessionIds];
 		[self startRequest:payload name:@"invalidateSessions" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeInvalidateSessionsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -882,18 +1193,27 @@
 -(void) getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate
          failBlock:(ZKFailWithErrorBlock)failBlock
      completeBlock:(ZKCompleteGetDeletedResultBlock)completeBlock {
+	[self getDeleted:sObjectType startDate:startDate endDate:endDate
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Get the IDs for deleted sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) getDeleted:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate
+             queue:(dispatch_queue_t)callbackQueue
+         failBlock:(ZKFailWithErrorBlock)failBlock
+     completeBlock:(ZKCompleteGetDeletedResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetDeletedEnv:sObjectType startDate:startDate endDate:endDate];
 		[self startRequest:payload name:@"getDeleted" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKGetDeletedResult *result = [self makeGetDeletedResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -904,18 +1224,27 @@
 -(void) getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate
          failBlock:(ZKFailWithErrorBlock)failBlock
      completeBlock:(ZKCompleteGetUpdatedResultBlock)completeBlock {
+	[self getUpdated:sObjectType startDate:startDate endDate:endDate
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Get the IDs for updated sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) getUpdated:(NSString *)sObjectType startDate:(NSDate *)startDate endDate:(NSDate *)endDate
+             queue:(dispatch_queue_t)callbackQueue
+         failBlock:(ZKFailWithErrorBlock)failBlock
+     completeBlock:(ZKCompleteGetUpdatedResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetUpdatedEnv:sObjectType startDate:startDate endDate:endDate];
 		[self startRequest:payload name:@"getUpdated" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKGetUpdatedResult *result = [self makeGetUpdatedResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -926,18 +1255,27 @@
 -(void) query:(NSString *)queryString
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
+	[self query:queryString
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Create a Query Cursor
+    Callbacks with be executed on the supplied queue. */
+-(void) query:(NSString *)queryString
+        queue:(dispatch_queue_t)callbackQueue
+    failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeQueryEnv:queryString];
 		[self startRequest:payload name:@"query" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKQueryResult *result = [self makeQueryResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -948,18 +1286,27 @@
 -(void) queryAll:(NSString *)queryString
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
+	[self queryAll:queryString
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Create a Query Cursor, including deleted sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) queryAll:(NSString *)queryString
+           queue:(dispatch_queue_t)callbackQueue
+       failBlock:(ZKFailWithErrorBlock)failBlock
+   completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeQueryAllEnv:queryString];
 		[self startRequest:payload name:@"queryAll" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKQueryResult *result = [self makeQueryAllResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -970,18 +1317,27 @@
 -(void) queryMore:(NSString *)queryLocator
         failBlock:(ZKFailWithErrorBlock)failBlock
     completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
+	[self queryMore:queryLocator
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Gets the next batch of sObjects from a query
+    Callbacks with be executed on the supplied queue. */
+-(void) queryMore:(NSString *)queryLocator
+            queue:(dispatch_queue_t)callbackQueue
+        failBlock:(ZKFailWithErrorBlock)failBlock
+    completeBlock:(ZKCompleteQueryResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeQueryMoreEnv:queryLocator];
 		[self startRequest:payload name:@"queryMore" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKQueryResult *result = [self makeQueryMoreResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -992,18 +1348,27 @@
 -(void) search:(NSString *)searchString
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteSearchResultBlock)completeBlock {
+	[self search:searchString
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Search for sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) search:(NSString *)searchString
+         queue:(dispatch_queue_t)callbackQueue
+     failBlock:(ZKFailWithErrorBlock)failBlock
+ completeBlock:(ZKCompleteSearchResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSearchEnv:searchString];
 		[self startRequest:payload name:@"search" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKSearchResult *result = [self makeSearchResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1013,18 +1378,25 @@
     Callbacks will be executed on the main queue. */
 -(void) getServerTimestampWithFailBlock:(ZKFailWithErrorBlock)failBlock
                           completeBlock:(ZKCompleteGetServerTimestampResultBlock)completeBlock {
+	[self getServerTimestampWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Gets server timestamp
+    Callbacks with be executed on the supplied queue. */
+-(void) getServerTimestampWithQueue:(dispatch_queue_t)callbackQueue 
+                          failBlock:(ZKFailWithErrorBlock)failBlock
+                      completeBlock:(ZKCompleteGetServerTimestampResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetServerTimestampEnv];
 		[self startRequest:payload name:@"getServerTimestamp" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKGetServerTimestampResult *result = [self makeGetServerTimestampResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1035,18 +1407,27 @@
 -(void) setPassword:(NSString *)userId password:(NSString *)password
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteSetPasswordResultBlock)completeBlock {
+	[self setPassword:userId password:password
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Set a user's password
+    Callbacks with be executed on the supplied queue. */
+-(void) setPassword:(NSString *)userId password:(NSString *)password
+              queue:(dispatch_queue_t)callbackQueue
+          failBlock:(ZKFailWithErrorBlock)failBlock
+      completeBlock:(ZKCompleteSetPasswordResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSetPasswordEnv:userId password:password];
 		[self startRequest:payload name:@"setPassword" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKSetPasswordResult *result = [self makeSetPasswordResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1057,18 +1438,27 @@
 -(void) changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock {
+	[self changeOwnPassword:oldPassword newPassword:newPassword
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Change the current user's password
+    Callbacks with be executed on the supplied queue. */
+-(void) changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+                    queue:(dispatch_queue_t)callbackQueue
+                failBlock:(ZKFailWithErrorBlock)failBlock
+            completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
 		[self startRequest:payload name:@"changeOwnPassword" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKChangeOwnPasswordResult *result = [self makeChangeOwnPasswordResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1079,18 +1469,27 @@
 -(void) resetPassword:(NSString *)userId
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteResetPasswordResultBlock)completeBlock {
+	[self resetPassword:userId
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Reset a user's password
+    Callbacks with be executed on the supplied queue. */
+-(void) resetPassword:(NSString *)userId
+                queue:(dispatch_queue_t)callbackQueue
+            failBlock:(ZKFailWithErrorBlock)failBlock
+        completeBlock:(ZKCompleteResetPasswordResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeResetPasswordEnv:userId];
 		[self startRequest:payload name:@"resetPassword" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKResetPasswordResult *result = [self makeResetPasswordResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1100,18 +1499,25 @@
     Callbacks will be executed on the main queue. */
 -(void) getUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                    completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
+	[self getUserInfoWithQueue:dispatch_get_main_queue()
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Returns standard information relevant to the current user
+    Callbacks with be executed on the supplied queue. */
+-(void) getUserInfoWithQueue:(dispatch_queue_t)callbackQueue 
+                   failBlock:(ZKFailWithErrorBlock)failBlock
+               completeBlock:(ZKCompleteUserInfoBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeGetUserInfoEnv];
 		[self startRequest:payload name:@"getUserInfo" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKUserInfo *result = [self makeGetUserInfoResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1122,18 +1528,27 @@
 -(void) deleteByExample:(NSArray *)sObjects
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self deleteByExample:sObjects
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete
+    Callbacks with be executed on the supplied queue. */
+-(void) deleteByExample:(NSArray *)sObjects
+                  queue:(dispatch_queue_t)callbackQueue
+              failBlock:(ZKFailWithErrorBlock)failBlock
+          completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDeleteByExampleEnv:sObjects];
 		[self startRequest:payload name:@"deleteByExample" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDeleteByExampleResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1144,18 +1559,27 @@
 -(void) sendEmailMessage:(NSArray *)ids
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self sendEmailMessage:ids
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Send existing draft EmailMessage
+    Callbacks with be executed on the supplied queue. */
+-(void) sendEmailMessage:(NSArray *)ids
+                   queue:(dispatch_queue_t)callbackQueue
+               failBlock:(ZKFailWithErrorBlock)failBlock
+           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSendEmailMessageEnv:ids];
 		[self startRequest:payload name:@"sendEmailMessage" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeSendEmailMessageResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1166,18 +1590,27 @@
 -(void) sendEmail:(NSArray *)messages
         failBlock:(ZKFailWithErrorBlock)failBlock
     completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self sendEmail:messages
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Send outbound email
+    Callbacks with be executed on the supplied queue. */
+-(void) sendEmail:(NSArray *)messages
+            queue:(dispatch_queue_t)callbackQueue
+        failBlock:(ZKFailWithErrorBlock)failBlock
+    completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeSendEmailEnv:messages];
 		[self startRequest:payload name:@"sendEmail" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeSendEmailResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1188,18 +1621,27 @@
 -(void) renderEmailTemplate:(NSArray *)renderRequests
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self renderEmailTemplate:renderRequests
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Perform a template merge on one or more blocks of text.
+    Callbacks with be executed on the supplied queue. */
+-(void) renderEmailTemplate:(NSArray *)renderRequests
+                      queue:(dispatch_queue_t)callbackQueue
+                  failBlock:(ZKFailWithErrorBlock)failBlock
+              completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRenderEmailTemplateEnv:renderRequests];
 		[self startRequest:payload name:@"renderEmailTemplate" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeRenderEmailTemplateResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1210,18 +1652,27 @@
 -(void) renderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request
                         failBlock:(ZKFailWithErrorBlock)failBlock
                     completeBlock:(ZKCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
+	[self renderStoredEmailTemplate:request
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Perform a template merge using an email template stored in the database.
+    Callbacks with be executed on the supplied queue. */
+-(void) renderStoredEmailTemplate:(ZKRenderStoredEmailTemplateRequest *)request
+                            queue:(dispatch_queue_t)callbackQueue
+                        failBlock:(ZKFailWithErrorBlock)failBlock
+                    completeBlock:(ZKCompleteRenderStoredEmailTemplateResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRenderStoredEmailTemplateEnv:request];
 		[self startRequest:payload name:@"renderStoredEmailTemplate" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKRenderStoredEmailTemplateResult *result = [self makeRenderStoredEmailTemplateResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1232,18 +1683,27 @@
 -(void) performQuickActions:(NSArray *)quickActions
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self performQuickActions:quickActions
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Perform a series of predefined actions such as quick create or log a task
+    Callbacks with be executed on the supplied queue. */
+-(void) performQuickActions:(NSArray *)quickActions
+                      queue:(dispatch_queue_t)callbackQueue
+                  failBlock:(ZKFailWithErrorBlock)failBlock
+              completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makePerformQuickActionsEnv:quickActions];
 		[self startRequest:payload name:@"performQuickActions" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makePerformQuickActionsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1254,18 +1714,27 @@
 -(void) describeQuickActions:(NSArray *)quickActions
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeQuickActions:quickActions
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the details of a series of quick actions
+    Callbacks with be executed on the supplied queue. */
+-(void) describeQuickActions:(NSArray *)quickActions
+                       queue:(dispatch_queue_t)callbackQueue
+                   failBlock:(ZKFailWithErrorBlock)failBlock
+               completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeQuickActionsEnv:quickActions];
 		[self startRequest:payload name:@"describeQuickActions" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeQuickActionsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1276,18 +1745,27 @@
 -(void) describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId
                                 failBlock:(ZKFailWithErrorBlock)failBlock
                             completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeQuickActionsForRecordType:quickActions recordTypeId:recordTypeId
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the details of a series of quick actions in context of requested recordType id for Update actions
+    Callbacks with be executed on the supplied queue. */
+-(void) describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId
+                                    queue:(dispatch_queue_t)callbackQueue
+                                failBlock:(ZKFailWithErrorBlock)failBlock
+                            completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeQuickActionsForRecordTypeEnv:quickActions recordTypeId:recordTypeId];
 		[self startRequest:payload name:@"describeQuickActionsForRecordType" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeQuickActionsForRecordTypeResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1298,18 +1776,27 @@
 -(void) describeAvailableQuickActions:(NSString *)contextType
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeAvailableQuickActions:contextType
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe the details of a series of quick actions available for the given contextType
+    Callbacks with be executed on the supplied queue. */
+-(void) describeAvailableQuickActions:(NSString *)contextType
+                                queue:(dispatch_queue_t)callbackQueue
+                            failBlock:(ZKFailWithErrorBlock)failBlock
+                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeAvailableQuickActionsEnv:contextType];
 		[self startRequest:payload name:@"describeAvailableQuickActions" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeAvailableQuickActionsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1320,18 +1807,27 @@
 -(void) retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
                            failBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self retrieveQuickActionTemplates:quickActionNames contextId:contextId
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context
+    Callbacks with be executed on the supplied queue. */
+-(void) retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
+                               queue:(dispatch_queue_t)callbackQueue
+                           failBlock:(ZKFailWithErrorBlock)failBlock
+                       completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRetrieveQuickActionTemplatesEnv:quickActionNames contextId:contextId];
 		[self startRequest:payload name:@"retrieveQuickActionTemplates" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeRetrieveQuickActionTemplatesResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1342,18 +1838,27 @@
 -(void) retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds
                                failBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self retrieveMassQuickActionTemplates:quickActionName contextIds:contextIds
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action
+    Callbacks with be executed on the supplied queue. */
+-(void) retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds
+                                   queue:(dispatch_queue_t)callbackQueue
+                               failBlock:(ZKFailWithErrorBlock)failBlock
+                           completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeRetrieveMassQuickActionTemplatesEnv:quickActionName contextIds:contextIds];
 		[self startRequest:payload name:@"retrieveMassQuickActionTemplates" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeRetrieveMassQuickActionTemplatesResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1364,18 +1869,27 @@
 -(void) describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteDescribeVisualForceResultBlock)completeBlock {
+	[self describeVisualForce:includeAllDetails namespacePrefix:namespacePrefix
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Describe visualforce for an org
+    Callbacks with be executed on the supplied queue. */
+-(void) describeVisualForce:(BOOL)includeAllDetails namespacePrefix:(NSString *)namespacePrefix
+                      queue:(dispatch_queue_t)callbackQueue
+                  failBlock:(ZKFailWithErrorBlock)failBlock
+              completeBlock:(ZKCompleteDescribeVisualForceResultBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeVisualForceEnv:includeAllDetails namespacePrefix:namespacePrefix];
 		[self startRequest:payload name:@"describeVisualForce" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKDescribeVisualForceResult *result = [self makeDescribeVisualForceResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1386,18 +1900,27 @@
 -(void) findDuplicates:(NSArray *)sObjects
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self findDuplicates:sObjects
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Find duplicates for a set of sObjects
+    Callbacks with be executed on the supplied queue. */
+-(void) findDuplicates:(NSArray *)sObjects
+                 queue:(dispatch_queue_t)callbackQueue
+             failBlock:(ZKFailWithErrorBlock)failBlock
+         completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeFindDuplicatesEnv:sObjects];
 		[self startRequest:payload name:@"findDuplicates" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeFindDuplicatesResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1408,18 +1931,27 @@
 -(void) findDuplicatesByIds:(NSArray *)ids
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self findDuplicatesByIds:ids
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Find duplicates for a set of ids
+    Callbacks with be executed on the supplied queue. */
+-(void) findDuplicatesByIds:(NSArray *)ids
+                      queue:(dispatch_queue_t)callbackQueue
+                  failBlock:(ZKFailWithErrorBlock)failBlock
+              completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeFindDuplicatesByIdsEnv:ids];
 		[self startRequest:payload name:@"findDuplicatesByIds" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeFindDuplicatesByIdsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
@@ -1430,18 +1962,27 @@
 -(void) describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock {
+	[self describeNouns:nouns onlyRenamed:onlyRenamed includeFields:includeFields
+               queue:dispatch_get_main_queue() 
+           failBlock:failBlock 
+       completeBlock:completeBlock];
+}
+/** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
+    Callbacks with be executed on the supplied queue. */
+-(void) describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
+                queue:(dispatch_queue_t)callbackQueue
+            failBlock:(ZKFailWithErrorBlock)failBlock
+        completeBlock:(ZKCompleteArrayBlock)completeBlock {
 
 	[self execWithSession:^(NSError *sessionErr) {
-		if ([self handledError:sessionErr failBlock:failBlock]) {
+		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
 		NSString *payload = [self makeDescribeNounsEnv:nouns onlyRenamed:onlyRenamed includeFields:includeFields];
 		[self startRequest:payload name:@"describeNouns" handler:^(ZKElement *root, NSError *err) {
-			if (![self handledError:err failBlock:failBlock]) {
+			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				NSArray *result = [self makeDescribeNounsResult:root];
-				dispatch_async(dispatch_get_main_queue(), ^{
-					completeBlock(result);
-				});
+				dispatch_async(callbackQueue, ^{ completeBlock(result); });
 			}
 		}];
 	}];
