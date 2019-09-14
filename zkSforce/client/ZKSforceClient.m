@@ -99,25 +99,21 @@ static const int DEFAULT_API_VERSION = 46;
 }
 
 -(void)soapLogin:(ZKSoapLogin *)auth
+           queue:(dispatch_queue_t)queue
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     
-    [auth startLoginWithFailBlock:^(NSError *err) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                failBlock(err);
-            });
-        }
+    [auth startLoginWithQueue:queue failBlock:failBlock
         completeBlock:^(ZKLoginResult *result) {
-            dispatch_async(dispatch_get_main_queue(), ^{
                 self.authenticationInfo = auth;
                 self.userInfo = result.userInfo;
                 completeBlock(result);
-            });
-    }];
+        }];
 }
 
 /** Login to the Salesforce API with username & password */
 -(void) login:(NSString *)username password:(NSString *)password
+        queue:(dispatch_queue_t)queue
     failBlock:(ZKFailWithErrorBlock)failBlock
 completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
 
@@ -127,7 +123,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
                                                 apiVersion:preferedApiVersion
                                                   clientId:self.clientId
                                                   delegate:self.delegate];
-    [self soapLogin:auth failBlock:failBlock completeBlock:completeBlock];
+    [self soapLogin:auth queue:queue failBlock:failBlock completeBlock:completeBlock];
 }
 
 - (NSError *)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId {
@@ -142,13 +138,14 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
 }
 
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)cid
+                        queue:(dispatch_queue_t)queue
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteVoidBlock)completeBlock {
     
     ZKOAuthInfo *auth = [[ZKOAuthInfo alloc] initWithRefreshToken:refreshToken authHost:authUrl sessionId:nil instanceUrl:nil clientId:cid];
     auth.apiVersion = preferedApiVersion;
     [auth refresh:^(NSError *ex) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(queue, ^{
             if (ex != nil) {
                 failBlock(ex);
             } else {
@@ -163,6 +160,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
                       password:(NSString *)password
                          orgId:(NSString *)orgId
                       portalId:(NSString *)portalId
+                         queue:(dispatch_queue_t)queue
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     
@@ -174,7 +172,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
                                                                     delegate:self.delegate
                                                                        orgId:orgId
                                                                     portalId:portalId];
-    [self soapLogin:auth failBlock:failBlock completeBlock:completeBlock];
+    [self soapLogin:auth queue:queue failBlock:failBlock completeBlock:completeBlock];
 }
 
 -(void)setUserInfo:(ZKUserInfo *)ui {

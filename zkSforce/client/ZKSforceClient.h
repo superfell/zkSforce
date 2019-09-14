@@ -75,6 +75,7 @@
     @param password the password [and possibly api security token] of the user
 */
 -(void) login:(NSString *)username password:(NSString *)password
+        queue:(dispatch_queue_t)callbackQueue
     failBlock:(ZKFailWithErrorBlock)failBlock
 completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
@@ -97,6 +98,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
     @param oauthClientId the OAuth consumer key for your applications oauth configuration
  */
 - (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId
+                        queue:(dispatch_queue_t)callbackQueue
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteVoidBlock)completeBlock;
 
@@ -113,6 +115,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
     @param portalId  PortalId is required for new generation portals, can be null for old style self service portals.
 */
 - (void)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId
+              queue:(dispatch_queue_t)callbackQueue
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 

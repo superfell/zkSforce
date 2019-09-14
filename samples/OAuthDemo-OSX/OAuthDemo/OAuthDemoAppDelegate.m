@@ -85,6 +85,7 @@ static NSString *OAUTH_CALLBACK = @"compocketsoapoauthdemo:///done";
     [c loginWithRefreshToken:refreshToken
                      authUrl:authHost
             oAuthConsumerKey:OAUTH_CLIENTID
+                       queue:dispatch_get_main_queue()
                    failBlock:^(NSError *err) {
                        [[NSAlert alertWithError:err] runModal];;
                    } completeBlock:^{

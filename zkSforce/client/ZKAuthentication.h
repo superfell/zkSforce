@@ -54,8 +54,8 @@
 
 +(instancetype)soapLoginWithUsername:(NSString *)un password:(NSString *)pwd authHost:(NSURL *)auth apiVersion:(int)v clientId:(NSString *)cid delegate:(NSObject<ZKBaseClientDelegate> *)delegate;
 
-// Starts a login request. Callbacks will be on a random GCD queue
--(void)startLoginWithFailBlock:(ZKFailWithErrorBlock)failBlock completeBlock:(ZKCompleteLoginResultBlock)cb;
+// Starts a login request. Callbacks will be on the supplied queue.
+-(void)startLoginWithQueue:(dispatch_queue_t)queue failBlock:(ZKFailWithErrorBlock)failBlock completeBlock:(ZKCompleteLoginResultBlock)cb;
 
 @end
 

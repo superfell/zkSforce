@@ -195,11 +195,12 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 
 -(void)refresh:(void(^)(NSError *ex))cb {
-    [self startLoginWithFailBlock:^(NSError *result) {
-        cb(result);
-    } completeBlock:^(ZKLoginResult *result) {
-        cb(nil);
-    }];
+    [self startLoginWithQueue:dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
+                    failBlock:^(NSError *result) {
+                        cb(result);
+              } completeBlock:^(ZKLoginResult *result) {
+                        cb(nil);
+              }];
 }
 
 - (void)refreshIfNeeded:(void (^)(BOOL, NSError *))cb {
@@ -214,7 +215,9 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     return env;
 }
 
--(void)startLoginWithFailBlock:(ZKFailWithErrorBlock)failBlock completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
+-(void)startLoginWithQueue:(dispatch_queue_t)queue
+                 failBlock:(ZKFailWithErrorBlock)failBlock
+             completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     ZKEnvelope *env = [self newEnvelope];
     [env startElement:@"login"];
     [env addElement:@"username" elemValue:username];
@@ -225,7 +228,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
     client.urlSession = self.urlSession;
     [client startRequest:xml name:@"login" handler:^(ZKElement *root, NSError *ex) {
         if (ex != nil) {
-            failBlock(ex);
+            dispatch_async(queue, ^{ failBlock(ex); });
             return;
         }
         ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
@@ -239,7 +242,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
         ZKUserInfo *userInfo = lr.userInfo;
         NSInteger sessionAge = userInfo.sessionSecondsValid > 0 ? userInfo.sessionSecondsValid - 60 : DEFAULT_MAX_SESSION_AGE;
         self.sessionExpiresAt = [NSDate dateWithTimeIntervalSinceNow:sessionAge];
-        completeBlock(lr);
+        dispatch_async(queue, ^{ completeBlock(lr); });
     }];
 }
 
