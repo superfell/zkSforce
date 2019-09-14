@@ -222,6 +222,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F42C63C8232DA98C00E1893A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "iPad/Base.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		F42C63C9232DA98C00E1893A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		F42EC3BD2325AA5300C5DC05 /* ZKRenderEmailTemplateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRenderEmailTemplateRequest.m; sourceTree = "<group>"; };
 		F42EC3BE2325AA5300C5DC05 /* ZKLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginResult.h; sourceTree = "<group>"; };
 		F42EC3BF2325AA5300C5DC05 /* ZKPackageVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPackageVersion.h; sourceTree = "<group>"; };
@@ -642,8 +644,6 @@
 		F4C297B313649C44009ACB8D /* iOSQueryDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSQueryDemoAppDelegate.m; sourceTree = "<group>"; };
 		F4C297B813649C45009ACB8D /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		F4C297B913649C45009ACB8D /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		F4C297BC13649C45009ACB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
-		F4C297C513649C54009ACB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		F4C2982C13649D13009ACB8D /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -1198,16 +1198,16 @@
 		F4C2979613649C44009ACB8D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Salesforce.com;
 			};
 			buildConfigurationList = F4C2979913649C44009ACB8D /* Build configuration list for PBXProject "iOSQueryDemo" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = F4C2979413649C44009ACB8D;
 			productRefGroup = F4C297A013649C44009ACB8D /* Products */;
@@ -1459,7 +1459,7 @@
 		F4C297BB13649C45009ACB8D /* RootViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F4C297BC13649C45009ACB8D /* en */,
+				F42C63C9232DA98C00E1893A /* Base */,
 			);
 			name = RootViewController.xib;
 			sourceTree = "<group>";
@@ -1467,7 +1467,7 @@
 		F4C297C413649C54009ACB8D /* MainWindow-iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F4C297C513649C54009ACB8D /* en */,
+				F42C63C8232DA98C00E1893A /* Base */,
 			);
 			name = "MainWindow-iPad.xib";
 			sourceTree = "<group>";
@@ -1478,6 +1478,7 @@
 		F4C297BE13649C45009ACB8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -1519,6 +1520,7 @@
 		F4C297BF13649C45009ACB8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
