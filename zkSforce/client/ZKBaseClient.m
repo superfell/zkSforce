@@ -52,6 +52,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
 
 -(void)startRequest:(NSString *)payload name:(NSString *)callName handler:(void(^)(ZKElement *root, NSError *err))handler {
     uint64_t start = mach_absolute_time();
+    NSObject<ZKBaseClientDelegate> *del = self.delegate;
     NSURLSession *s = urlSession;
     if (s == nil) s = [NSURLSession sharedSession];
     NSMutableURLRequest *request = [self createRequest:payload name:callName];
@@ -60,8 +61,8 @@ NSTimeInterval intervalFrom(uint64_t start) {
 
         NSError *error = err;
         ZKElement *root = [self processResponse:(NSHTTPURLResponse *)response data:data fromRequest:request name:callName error:&error];
-        if (self.delegate != nil) {
-            [self.delegate client:self sentRequest:payload named:callName to:self.endpointUrl withResponse:root error:error in:intervalFrom(start)];
+        if (del != nil) {
+            [del client:self sentRequest:payload named:callName to:self.endpointUrl withResponse:root error:error in:intervalFrom(start)];
         }
         handler(root, error);
     }];
