@@ -22,9 +22,27 @@
 #import "QueryController.h"
 #import "ZKSforce.h"
 
+@interface SObjectList : NSObject<NSTableViewDataSource>
+@property NSArray *sobjects;
+@end
+
+@implementation SObjectList
+@synthesize sobjects;
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return sobjects.count;
+}
+
+-(nullable id)tableView:(NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
+    ZKDescribeGlobalSObject *o = sobjects[row];
+    return o.name;
+}
+
+@end
+
 @implementation QueryController
 
-@synthesize results, client;
+@synthesize results, client, sobjects;
 
 // This tells KVO (and theirfore the UI binding, that the 'CanQuery' property value is affected by changes to the 'Client' property
 +(NSSet *)keyPathsForValuesAffectingCanQuery {
@@ -42,9 +60,20 @@
            }
     completeBlock:^(ZKQueryResult *qr) {
                self.results = qr;
-               self->table.dataSource = qr;
-               [self->table reloadData];
+               self->queryTable.dataSource = qr;
+               [self->queryTable reloadData];
            }];
+}
+
+-(void)runDescGlobal:(id)sender {
+    [client describeGlobalWithFailBlock:^(NSError *result) {
+        [[NSAlert alertWithError:result] runModal];
+    } completeBlock:^(NSArray *result) {
+        SObjectList *l = [[SObjectList alloc] init];
+        l.sobjects = result;
+        self.sobjects = l;
+        self->objectList.dataSource = l;
+    }];
 }
 
 -(IBAction)refreshSid:(id)sender {
@@ -56,6 +85,12 @@
         }
         NSLog(@"SID Refreshed, now %@", self.client.sessionId);
     }];
+}
+
+-(void)setClient:(ZKSforceClient *)c {
+    self->client = c;
+    [self runQuery:self];
+    [self runDescGlobal:self];
 }
 
 

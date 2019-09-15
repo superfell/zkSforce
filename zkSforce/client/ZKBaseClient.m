@@ -83,7 +83,7 @@ NSTimeInterval intervalFrom(uint64_t start) {
         NSError __autoreleasing *dummy = nil;
         err = &dummy;
     }
-    //NSLog(@"response \r\n%@", [NSString stringWithCString:[respPayload bytes] length:[respPayload length]]);
+    // NSLog(@"response \r\n%@", [[NSString alloc] initWithData:respPayload encoding:NSUTF8StringEncoding]);
     ZKElement *root = [ZKParser parseData:respPayload];
     if (root == nil) {
         [self logInvalidResponse:resp payload:respPayload note:@"Unable to parse XML"];

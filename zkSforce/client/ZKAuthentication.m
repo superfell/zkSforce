@@ -195,7 +195,7 @@ static const int DEFAULT_MAX_SESSION_AGE = 25 * 60; // 25 minutes
 
 
 -(void)refresh:(void(^)(NSError *ex))cb {
-    [self startLoginWithQueue:dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
+    [self startLoginWithQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
                     failBlock:^(NSError *result) {
                         cb(result);
               } completeBlock:^(ZKLoginResult *result) {

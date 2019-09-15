@@ -349,6 +349,12 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     return sobjects;
 }
 
+-(NSArray *)makeDescribeGlobalResult:(ZKElement *)root {
+    ZKElement *dgr = [[root childElement:@"Body" ns:NS_SOAP_ENV] childElements][0];
+    ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:dgr.childElements[0]];
+    return [deser complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
+}
+
 -(void)handleResponseSoapHeaders:(ZKElement *)soapHeaders {
     // this looks in the supplied headers for a limit info header and if we got one, hangs onto it.
     ZKElement *liElem = [soapHeaders childElement:@"LimitInfoHeader" ns:NS_SFORCE_PARTNER];

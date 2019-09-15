@@ -140,7 +140,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
     interaction that would generate a userInfo response */
 -(ZKUserInfo *)cachedUserInfo;
 
-/** @return the last cached UserInfo result, either from a LoginResult or by calling
+/** Accesses the last cached UserInfo result, either from a LoginResult or by calling
     getUserInfo to get a copy to cache. */
 -(void)currentUserInfoWithFailBlock:(ZKFailWithErrorBlock)failBlock
                       completeBlock:(ZKCompleteUserInfoBlock)completeBlock;
