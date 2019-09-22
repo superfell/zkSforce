@@ -13,6 +13,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F414BAF71840304A00322AC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BAF61840304A00322AC2 /* Security.framework */; };
+		F42C63E92337FC6500E1893A /* ZKQueryResult+NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C63E82337FC6500E1893A /* ZKQueryResult+NSTableView.m */; };
 		F42EC2F12325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC1562325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m */; };
 		F42EC2F22325899D00C5DC05 /* ZKEntityIntentQueryMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC1592325899D00C5DC05 /* ZKEntityIntentQueryMetadata.m */; };
 		F42EC2F32325899D00C5DC05 /* ZKVisualforcePage.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC1632325899D00C5DC05 /* ZKVisualforcePage.m */; };
@@ -208,7 +209,6 @@
 		F42EC3B12325899E00C5DC05 /* ZKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2DD2325899D00C5DC05 /* ZKConstants.m */; };
 		F42EC3B22325899E00C5DC05 /* ZKSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2DE2325899D00C5DC05 /* ZKSObject.m */; };
 		F42EC3B32325899E00C5DC05 /* ZKSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2DF2325899D00C5DC05 /* ZKSimpleTypes.m */; };
-		F42EC3B42325899E00C5DC05 /* ZKQueryResult+NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2E52325899D00C5DC05 /* ZKQueryResult+NSTableView.m */; };
 		F42EC3B52325899E00C5DC05 /* ZKRelatedList+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2E62325899D00C5DC05 /* ZKRelatedList+Extras.m */; };
 		F42EC3B62325899E00C5DC05 /* ZKDescribeField+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2E72325899D00C5DC05 /* ZKDescribeField+Extras.m */; };
 		F42EC3B72325899E00C5DC05 /* ZKDescribeSObject+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2E82325899D00C5DC05 /* ZKDescribeSObject+Extras.m */; };
@@ -234,6 +234,8 @@
 		8D1107310486CEB800E47090 /* query-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "query-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* query.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = query.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414BAF61840304A00322AC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		F42C63E72337FC6500E1893A /* ZKQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKQueryResult+NSTableView.h"; sourceTree = "<group>"; };
+		F42C63E82337FC6500E1893A /* ZKQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKQueryResult+NSTableView.m"; sourceTree = "<group>"; };
 		F42EC1562325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRenderEmailTemplateRequest.m; sourceTree = "<group>"; };
 		F42EC1572325899D00C5DC05 /* ZKLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginResult.h; sourceTree = "<group>"; };
 		F42EC1582325899D00C5DC05 /* ZKPackageVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPackageVersion.h; sourceTree = "<group>"; };
@@ -630,14 +632,12 @@
 		F42EC2E12325899D00C5DC05 /* ZKXmlDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXmlDeserializer.h; sourceTree = "<group>"; };
 		F42EC2E32325899D00C5DC05 /* ZKSaveResult+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKSaveResult+Extras.h"; sourceTree = "<group>"; };
 		F42EC2E42325899D00C5DC05 /* ZKUserInfo+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKUserInfo+Extras.h"; sourceTree = "<group>"; };
-		F42EC2E52325899D00C5DC05 /* ZKQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKQueryResult+NSTableView.m"; sourceTree = "<group>"; };
 		F42EC2E62325899D00C5DC05 /* ZKRelatedList+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKRelatedList+Extras.m"; sourceTree = "<group>"; };
 		F42EC2E72325899D00C5DC05 /* ZKDescribeField+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKDescribeField+Extras.m"; sourceTree = "<group>"; };
 		F42EC2E82325899D00C5DC05 /* ZKDescribeSObject+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKDescribeSObject+Extras.m"; sourceTree = "<group>"; };
 		F42EC2E92325899D00C5DC05 /* NSArray+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extras.m"; sourceTree = "<group>"; };
 		F42EC2EA2325899D00C5DC05 /* ZKUserInfo+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKUserInfo+Extras.m"; sourceTree = "<group>"; };
 		F42EC2EB2325899D00C5DC05 /* ZKSaveResult+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKSaveResult+Extras.m"; sourceTree = "<group>"; };
-		F42EC2EC2325899D00C5DC05 /* ZKQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKQueryResult+NSTableView.h"; sourceTree = "<group>"; };
 		F42EC2ED2325899D00C5DC05 /* ZKRelatedList+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKRelatedList+Extras.h"; sourceTree = "<group>"; };
 		F42EC2EE2325899D00C5DC05 /* NSArray+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extras.h"; sourceTree = "<group>"; };
 		F42EC2EF2325899D00C5DC05 /* ZKDescribeSObject+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKDescribeSObject+Extras.h"; sourceTree = "<group>"; };
@@ -1179,8 +1179,8 @@
 				F42EC2E72325899D00C5DC05 /* ZKDescribeField+Extras.m */,
 				F42EC2EF2325899D00C5DC05 /* ZKDescribeSObject+Extras.h */,
 				F42EC2E82325899D00C5DC05 /* ZKDescribeSObject+Extras.m */,
-				F42EC2EC2325899D00C5DC05 /* ZKQueryResult+NSTableView.h */,
-				F42EC2E52325899D00C5DC05 /* ZKQueryResult+NSTableView.m */,
+				F42C63E72337FC6500E1893A /* ZKQueryResult+NSTableView.h */,
+				F42C63E82337FC6500E1893A /* ZKQueryResult+NSTableView.m */,
 				F42EC2ED2325899D00C5DC05 /* ZKRelatedList+Extras.h */,
 				F42EC2E62325899D00C5DC05 /* ZKRelatedList+Extras.m */,
 				F42EC2E32325899D00C5DC05 /* ZKSaveResult+Extras.h */,
@@ -1280,7 +1280,6 @@
 				F42EC33D2325899E00C5DC05 /* ZKDescribeThemeItem.m in Sources */,
 				F42EC39C2325899E00C5DC05 /* ZKPicklistEntry.m in Sources */,
 				F42EC3A82325899E00C5DC05 /* ZKLimitInfoHeader.m in Sources */,
-				F42EC3B42325899E00C5DC05 /* ZKQueryResult+NSTableView.m in Sources */,
 				F42EC38A2325899E00C5DC05 /* ZKExecuteListViewResult.m in Sources */,
 				F42EC36B2325899E00C5DC05 /* ZKDescribeGlobalSObject.m in Sources */,
 				F42EC3272325899D00C5DC05 /* ZKSearchResult.m in Sources */,
@@ -1366,6 +1365,7 @@
 				F42EC2FB2325899D00C5DC05 /* ZKDescribeSearchableEntityResult.m in Sources */,
 				F42EC3292325899E00C5DC05 /* ZKEntitySearchPromotionMetadata.m in Sources */,
 				F42EC36E2325899E00C5DC05 /* ZKStreamingEnabledHeader.m in Sources */,
+				F42C63E92337FC6500E1893A /* ZKQueryResult+NSTableView.m in Sources */,
 				F42EC39E2325899E00C5DC05 /* ZKRelatedList.m in Sources */,
 				F42EC3972325899E00C5DC05 /* ZKEmptyRecycleBinResult.m in Sources */,
 				F42EC3932325899E00C5DC05 /* ZKSaveResult.m in Sources */,

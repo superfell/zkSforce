@@ -298,11 +298,12 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     NSArray *chunks = [sObjects ZKPartitionWithSize:SAVE_BATCH_SIZE];
     NSUInteger __block idx = 0;
     
-    ZKCompleteArrayBlock cb;
+    ZKCompleteArrayBlock __block cb;
     cb = ^void(NSArray *result) {
         [results addObjectsFromArray:result];
         idx++;
         if (idx >= chunks.count) {
+            cb = nil;
             completeBlock(results);
         } else {
             // next chunk
@@ -325,11 +326,12 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     NSArray *chunks = [sObjects ZKPartitionWithSize:SAVE_BATCH_SIZE];
     NSUInteger __block idx = 0;
     
-    ZKCompleteArrayBlock cb;
+    ZKCompleteArrayBlock __block cb;
     cb = ^void(NSArray *result) {
         [results addObjectsFromArray:result];
         idx++;
         if (idx >= chunks.count) {
+            cb = nil;
             completeBlock(results);
         } else {
             // next chunk
