@@ -34,7 +34,7 @@
 #import "NSArray+Extras.h"
 
 static const int SAVE_BATCH_SIZE = 25;
-static const int DEFAULT_API_VERSION = 46;
+static const int DEFAULT_API_VERSION = 47;
 
 @implementation ZKSforceClient
 

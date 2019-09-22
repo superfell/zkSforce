@@ -48,6 +48,10 @@
     return [self boolean:@"dataTranslationEnabled"];
 }
 			
+-(BOOL)deepCloneable {
+    return [self boolean:@"deepCloneable"];
+}
+			
 -(BOOL)deletable {
     return [self boolean:@"deletable"];
 }
@@ -66,6 +70,10 @@
 			
 -(BOOL)idEnabled {
     return [self boolean:@"idEnabled"];
+}
+			
+-(BOOL)isInterface {
+    return [self boolean:@"isInterface"];
 }
 			
 -(BOOL)isSubtype {

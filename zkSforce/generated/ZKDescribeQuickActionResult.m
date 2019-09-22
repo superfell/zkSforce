@@ -108,6 +108,14 @@
     return [self string:@"miniIconUrl"];
 }
 			
+-(NSString *)mobileExtensionDisplayMode {
+    return [self string:@"mobileExtensionDisplayMode"];
+}
+			
+-(NSString *)mobileExtensionId {
+    return [self string:@"mobileExtensionId"];
+}
+			
 -(NSString *)name {
     return [self string:@"name"];
 }

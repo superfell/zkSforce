@@ -26,6 +26,7 @@
 
 #import "ZKXmlDeserializer.h"
 
+@class ZKEntityErrorMetadata;
 @class ZKEntityIntentQueryMetadata;
 @class ZKEntitySearchPromotionMetadata;
 @class ZKEntitySpellCorrectionMetadata;
@@ -33,6 +34,7 @@
 <complexType name="EntitySearchMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false" name="entityName"/>
+    <element type="tns:EntityErrorMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="errorMetadata"/>
     <element type="tns:FieldLevelSearchMetadata" maxOccurs="unbounded" minOccurs="0" nillable="false" name="fieldMetadata"/>
     <element type="tns:EntityIntentQueryMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="intentQueryMetadata"/>
     <element type="tns:EntitySearchPromotionMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="searchPromotionMetadata"/>
@@ -43,6 +45,7 @@
 @interface ZKEntitySearchMetadata : ZKXmlDeserializer {
 }
 @property (weak, readonly) NSString                         *entityName; 
+@property (weak, readonly) ZKEntityErrorMetadata            *errorMetadata; 
 @property (weak, readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
 @property (weak, readonly) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
 @property (weak, readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 

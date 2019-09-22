@@ -14,6 +14,8 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F414BAF71840304A00322AC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BAF61840304A00322AC2 /* Security.framework */; };
 		F42C63E92337FC6500E1893A /* ZKQueryResult+NSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C63E82337FC6500E1893A /* ZKQueryResult+NSTableView.m */; };
+		F42C63F4233833FF00E1893A /* ZKDescribeAnimationRule.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C63F1233833FE00E1893A /* ZKDescribeAnimationRule.m */; };
+		F42C63F5233833FF00E1893A /* ZKEntityErrorMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C63F3233833FE00E1893A /* ZKEntityErrorMetadata.m */; };
 		F42EC2F12325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC1562325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m */; };
 		F42EC2F22325899D00C5DC05 /* ZKEntityIntentQueryMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC1592325899D00C5DC05 /* ZKEntityIntentQueryMetadata.m */; };
 		F42EC2F32325899D00C5DC05 /* ZKVisualforcePage.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC1632325899D00C5DC05 /* ZKVisualforcePage.m */; };
@@ -236,6 +238,10 @@
 		F414BAF61840304A00322AC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		F42C63E72337FC6500E1893A /* ZKQueryResult+NSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKQueryResult+NSTableView.h"; sourceTree = "<group>"; };
 		F42C63E82337FC6500E1893A /* ZKQueryResult+NSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZKQueryResult+NSTableView.m"; sourceTree = "<group>"; };
+		F42C63F0233833FE00E1893A /* ZKDescribeAnimationRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKDescribeAnimationRule.h; sourceTree = "<group>"; };
+		F42C63F1233833FE00E1893A /* ZKDescribeAnimationRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKDescribeAnimationRule.m; sourceTree = "<group>"; };
+		F42C63F2233833FE00E1893A /* ZKEntityErrorMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEntityErrorMetadata.h; sourceTree = "<group>"; };
+		F42C63F3233833FE00E1893A /* ZKEntityErrorMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEntityErrorMetadata.m; sourceTree = "<group>"; };
 		F42EC1562325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRenderEmailTemplateRequest.m; sourceTree = "<group>"; };
 		F42EC1572325899D00C5DC05 /* ZKLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKLoginResult.h; sourceTree = "<group>"; };
 		F42EC1582325899D00C5DC05 /* ZKPackageVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKPackageVersion.h; sourceTree = "<group>"; };
@@ -796,6 +802,8 @@
 				F42EC2162325899D00C5DC05 /* ZKDeletedRecord.m */,
 				F42EC21A2325899D00C5DC05 /* ZKDeleteResult.h */,
 				F42EC1752325899D00C5DC05 /* ZKDeleteResult.m */,
+				F42C63F0233833FE00E1893A /* ZKDescribeAnimationRule.h */,
+				F42C63F1233833FE00E1893A /* ZKDescribeAnimationRule.m */,
 				F42EC2042325899D00C5DC05 /* ZKDescribeAppMenuItem.h */,
 				F42EC28E2325899D00C5DC05 /* ZKDescribeAppMenuItem.m */,
 				F42EC15F2325899D00C5DC05 /* ZKDescribeAppMenuResult.h */,
@@ -926,6 +934,8 @@
 				F42EC2672325899D00C5DC05 /* ZKEmailHeader.m */,
 				F42EC1F32325899D00C5DC05 /* ZKEmptyRecycleBinResult.h */,
 				F42EC2A22325899D00C5DC05 /* ZKEmptyRecycleBinResult.m */,
+				F42C63F2233833FE00E1893A /* ZKEntityErrorMetadata.h */,
+				F42C63F3233833FE00E1893A /* ZKEntityErrorMetadata.m */,
 				F42EC2382325899D00C5DC05 /* ZKEntityIntentQueryMetadata.h */,
 				F42EC1592325899D00C5DC05 /* ZKEntityIntentQueryMetadata.m */,
 				F42EC29B2325899D00C5DC05 /* ZKEntitySearchMetadata.h */,
@@ -1361,6 +1371,7 @@
 				F42EC3152325899D00C5DC05 /* ZKDescribeApprovalLayoutResult.m in Sources */,
 				F42EC2FC2325899D00C5DC05 /* ZKDeleteResult.m in Sources */,
 				F42EC2FF2325899D00C5DC05 /* ZKChangeOwnPasswordResult.m in Sources */,
+				F42C63F5233833FF00E1893A /* ZKEntityErrorMetadata.m in Sources */,
 				F42EC35C2325899E00C5DC05 /* ZKUserInfo.m in Sources */,
 				F42EC2FB2325899D00C5DC05 /* ZKDescribeSearchableEntityResult.m in Sources */,
 				F42EC3292325899E00C5DC05 /* ZKEntitySearchPromotionMetadata.m in Sources */,
@@ -1413,6 +1424,7 @@
 				F42EC3252325899D00C5DC05 /* ZKDescribeSoqlListViewResult.m in Sources */,
 				F42EC2F12325899D00C5DC05 /* ZKRenderEmailTemplateRequest.m in Sources */,
 				F42EC3982325899E00C5DC05 /* ZKSforceBaseClient.m in Sources */,
+				F42C63F4233833FF00E1893A /* ZKDescribeAnimationRule.m in Sources */,
 				F42EC32B2325899E00C5DC05 /* ZKDescribeGlobalResult.m in Sources */,
 				F42EC3892325899E00C5DC05 /* ZKListViewRecord.m in Sources */,
 				F42EC3AC2325899E00C5DC05 /* ZKBase64.m in Sources */,

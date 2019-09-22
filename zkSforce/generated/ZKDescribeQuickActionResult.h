@@ -49,6 +49,8 @@
     <element nillable="true" type="xsd:string" name="lightningComponentBundleName"/>
     <element nillable="true" type="xsd:string" name="lightningComponentQualifiedName"/>
     <element nillable="true" type="xsd:string" name="miniIconUrl"/>
+    <element nillable="true" type="xsd:string" name="mobileExtensionDisplayMode"/>
+    <element nillable="true" type="xsd:string" name="mobileExtensionId"/>
     <element type="xsd:string" name="name"/>
     <element type="xsd:boolean" name="showQuickActionLcHeader"/>
     <element type="xsd:boolean" name="showQuickActionVfHeader"/>
@@ -83,6 +85,8 @@
 @property (weak, readonly) NSString                 *lightningComponentBundleName; 
 @property (weak, readonly) NSString                 *lightningComponentQualifiedName; 
 @property (weak, readonly) NSString                 *miniIconUrl; 
+@property (weak, readonly) NSString                 *mobileExtensionDisplayMode; 
+@property (weak, readonly) NSString                 *mobileExtensionId; 
 @property (weak, readonly) NSString                 *name; 
 @property (readonly) BOOL                            showQuickActionLcHeader; 
 @property (readonly) BOOL                            showQuickActionVfHeader; 

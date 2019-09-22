@@ -25,6 +25,7 @@
 //
 
 #import "ZKEntitySearchMetadata.h"
+#import "ZKEntityErrorMetadata.h"
 #import "ZKEntityIntentQueryMetadata.h"
 #import "ZKEntitySearchPromotionMetadata.h"
 #import "ZKEntitySpellCorrectionMetadata.h"
@@ -34,6 +35,10 @@
 
 -(NSString *)entityName {
     return [self string:@"entityName"];
+}
+			
+-(ZKEntityErrorMetadata *)errorMetadata {
+    return [self complexTypeArrayFromElements:@"errorMetadata" cls:[ZKEntityErrorMetadata class]].lastObject;
 }
 			
 -(NSArray *)fieldMetadata {

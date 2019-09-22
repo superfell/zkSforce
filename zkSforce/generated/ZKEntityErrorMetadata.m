@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Simon Fell
+// Copyright (c) 2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -24,43 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribePathAssistant.h"
-#import "ZKDescribeAnimationRule.h"
-#import "ZKDescribePathAssistantStep.h"
-#import "ZKPicklistForRecordType.h"
+#import "ZKEntityErrorMetadata.h"
 
-@implementation ZKDescribePathAssistant
+@implementation ZKEntityErrorMetadata
 
--(BOOL)active {
-    return [self boolean:@"active"];
+-(NSString *)errorCode {
+    return [self string:@"errorCode"];
 }
 			
--(NSArray *)animationRule {
-    return [self complexTypeArrayFromElements:@"animationRule" cls:[ZKDescribeAnimationRule class]];
-}
-			
--(NSString *)apiName {
-    return [self string:@"apiName"];
-}
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSString *)pathPicklistField {
-    return [self string:@"pathPicklistField"];
-}
-			
--(NSArray *)picklistsForRecordType {
-    return [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
-}
-			
--(NSString *)recordTypeId {
-    return [self string:@"recordTypeId"];
-}
-			
--(NSArray *)steps {
-    return [self complexTypeArrayFromElements:@"steps" cls:[ZKDescribePathAssistantStep class]];
+-(NSString *)message {
+    return [self string:@"message"];
 }
 			
 @end

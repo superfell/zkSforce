@@ -37,12 +37,17 @@
     <element type="xsd:boolean" name="custom"/>
     <element type="xsd:boolean" name="customSetting"/>
     <element minOccurs="0" type="xsd:boolean" name="dataTranslationEnabled"/>
+    <element type="xsd:boolean" name="deepCloneable"/>
+    <element nillable="true" type="xsd:string" name="defaultImplementation"/>
     <element type="xsd:boolean" name="deletable"/>
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:boolean" name="feedEnabled"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:Field" name="fields"/>
     <element type="xsd:boolean" name="hasSubtypes"/>
     <element type="xsd:boolean" name="idEnabled"/>
+    <element nillable="true" type="xsd:string" name="implementedBy"/>
+    <element nillable="true" type="xsd:string" name="implementsInterfaces"/>
+    <element type="xsd:boolean" name="isInterface"/>
     <element type="xsd:boolean" name="isSubtype"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>
@@ -76,7 +81,10 @@
 @property (weak, readonly) NSArray   *actionOverrides;  // of ZKActionOverride
 @property (weak, readonly) NSArray   *childRelationships;  // of ZKChildRelationship
 @property (readonly) BOOL             compactLayoutable; 
+@property (weak, readonly) NSString  *defaultImplementation; 
 @property (weak, readonly) NSArray   *fields;  // of ZKDescribeField
+@property (weak, readonly) NSString  *implementedBy; 
+@property (weak, readonly) NSString  *implementsInterfaces; 
 @property (weak, readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
 @property (weak, readonly) NSString  *networkScopeFieldName; 
 @property (weak, readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo

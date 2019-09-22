@@ -55,6 +55,18 @@
     return [self boolean:@"compactLayoutable"];
 }
 			
+-(NSString *)defaultImplementation {
+    return [self string:@"defaultImplementation"];
+}
+			
+-(NSString *)implementedBy {
+    return [self string:@"implementedBy"];
+}
+			
+-(NSString *)implementsInterfaces {
+    return [self string:@"implementsInterfaces"];
+}
+			
 -(NSArray *)namedLayoutInfos {
     return [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
 }

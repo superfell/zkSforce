@@ -34,11 +34,13 @@
     <element type="xsd:boolean" name="custom"/>
     <element type="xsd:boolean" name="customSetting"/>
     <element minOccurs="0" type="xsd:boolean" name="dataTranslationEnabled"/>
+    <element type="xsd:boolean" name="deepCloneable"/>
     <element type="xsd:boolean" name="deletable"/>
     <element type="xsd:boolean" name="deprecatedAndHidden"/>
     <element type="xsd:boolean" name="feedEnabled"/>
     <element type="xsd:boolean" name="hasSubtypes"/>
     <element type="xsd:boolean" name="idEnabled"/>
+    <element type="xsd:boolean" name="isInterface"/>
     <element type="xsd:boolean" name="isSubtype"/>
     <element nillable="true" type="xsd:string" name="keyPrefix"/>
     <element type="xsd:string" name="label"/>
@@ -64,11 +66,13 @@
 @property (readonly) BOOL             custom; 
 @property (readonly) BOOL             customSetting; 
 @property (readonly) BOOL             dataTranslationEnabled; 
+@property (readonly) BOOL             deepCloneable; 
 @property (readonly) BOOL             deletable; 
 @property (readonly) BOOL             deprecatedAndHidden; 
 @property (readonly) BOOL             feedEnabled; 
 @property (readonly) BOOL             hasSubtypes; 
 @property (readonly) BOOL             idEnabled; 
+@property (readonly) BOOL             isInterface; 
 @property (readonly) BOOL             isSubtype; 
 @property (weak, readonly) NSString  *keyPrefix; 
 @property (weak, readonly) NSString  *label; 

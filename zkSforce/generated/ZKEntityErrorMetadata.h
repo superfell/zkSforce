@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Simon Fell
+// Copyright (c) 2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -24,43 +24,18 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribePathAssistant.h"
-#import "ZKDescribeAnimationRule.h"
-#import "ZKDescribePathAssistantStep.h"
-#import "ZKPicklistForRecordType.h"
+#import "ZKXmlDeserializer.h"
 
-@implementation ZKDescribePathAssistant
-
--(BOOL)active {
-    return [self boolean:@"active"];
+/*
+<complexType name="EntityErrorMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="true" name="errorCode"/>
+    <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="true" name="message"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKEntityErrorMetadata : ZKXmlDeserializer {
 }
-			
--(NSArray *)animationRule {
-    return [self complexTypeArrayFromElements:@"animationRule" cls:[ZKDescribeAnimationRule class]];
-}
-			
--(NSString *)apiName {
-    return [self string:@"apiName"];
-}
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSString *)pathPicklistField {
-    return [self string:@"pathPicklistField"];
-}
-			
--(NSArray *)picklistsForRecordType {
-    return [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
-}
-			
--(NSString *)recordTypeId {
-    return [self string:@"recordTypeId"];
-}
-			
--(NSArray *)steps {
-    return [self complexTypeArrayFromElements:@"steps" cls:[ZKDescribePathAssistantStep class]];
-}
-			
+@property (weak, readonly) NSString  *errorCode; 
+@property (weak, readonly) NSString  *message; 
 @end

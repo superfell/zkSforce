@@ -30,6 +30,7 @@
 <complexType name="DescribePathAssistant" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <sequence>
     <element type="xsd:boolean" name="active"/>
+    <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:DescribeAnimationRule" name="animationRule"/>
     <element type="xsd:string" name="apiName"/>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="pathPicklistField"/>
@@ -42,6 +43,7 @@
 @interface ZKDescribePathAssistant : ZKXmlDeserializer {
 }
 @property (readonly) BOOL             active; 
+@property (weak, readonly) NSArray   *animationRule;  // of ZKDescribeAnimationRule
 @property (weak, readonly) NSString  *apiName; 
 @property (weak, readonly) NSString  *label; 
 @property (weak, readonly) NSString  *pathPicklistField; 

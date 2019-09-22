@@ -1,4 +1,4 @@
-// Copyright (c) 2015 Simon Fell
+// Copyright (c) 2019 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -24,43 +24,26 @@
 //       DO NOT HAND EDIT.
 //
 
-#import "ZKDescribePathAssistant.h"
-#import "ZKDescribeAnimationRule.h"
-#import "ZKDescribePathAssistantStep.h"
-#import "ZKPicklistForRecordType.h"
+#import "ZKXmlDeserializer.h"
 
-@implementation ZKDescribePathAssistant
-
--(BOOL)active {
-    return [self boolean:@"active"];
+/*
+<complexType name="DescribeAnimationRule" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <sequence>
+    <element type="xsd:string" name="animationFrequency"/>
+    <element type="xsd:boolean" name="isActive"/>
+    <element type="xsd:string" name="recordTypeContext"/>
+    <element nillable="true" type="xsd:string" name="recordTypeId"/>
+    <element type="xsd:string" name="targetField"/>
+    <element type="xsd:string" name="targetFieldChangeToValues"/>
+  </sequence>
+</complexType>
+*/
+@interface ZKDescribeAnimationRule : ZKXmlDeserializer {
 }
-			
--(NSArray *)animationRule {
-    return [self complexTypeArrayFromElements:@"animationRule" cls:[ZKDescribeAnimationRule class]];
-}
-			
--(NSString *)apiName {
-    return [self string:@"apiName"];
-}
-			
--(NSString *)label {
-    return [self string:@"label"];
-}
-			
--(NSString *)pathPicklistField {
-    return [self string:@"pathPicklistField"];
-}
-			
--(NSArray *)picklistsForRecordType {
-    return [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
-}
-			
--(NSString *)recordTypeId {
-    return [self string:@"recordTypeId"];
-}
-			
--(NSArray *)steps {
-    return [self complexTypeArrayFromElements:@"steps" cls:[ZKDescribePathAssistantStep class]];
-}
-			
+@property (weak, readonly) NSString  *animationFrequency; 
+@property (readonly) BOOL             isActive; 
+@property (weak, readonly) NSString  *recordTypeContext; 
+@property (weak, readonly) NSString  *recordTypeId; 
+@property (weak, readonly) NSString  *targetField; 
+@property (weak, readonly) NSString  *targetFieldChangeToValues; 
 @end

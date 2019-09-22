@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F414BEE41845A40B00322AC2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F414BEE31845A40B00322AC2 /* Security.framework */; };
+		F42C63EE233833C400E1893A /* ZKEntityErrorMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C63EB233833C300E1893A /* ZKEntityErrorMetadata.m */; };
+		F42C63EF233833C400E1893A /* ZKDescribeAnimationRule.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C63ED233833C400E1893A /* ZKDescribeAnimationRule.m */; };
 		F42EC0862324A6C500C5DC05 /* ZKBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EBEED2324A6C400C5DC05 /* ZKBaseClient.m */; };
 		F42EC0882324A6C500C5DC05 /* ZKAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EBEF02324A6C400C5DC05 /* ZKAuthentication.m */; };
 		F42EC0892324A6C500C5DC05 /* ZKSforceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EBEF12324A6C400C5DC05 /* ZKSforceClient.m */; };
@@ -223,6 +225,10 @@
 /* Begin PBXFileReference section */
 		F414BEE31845A40B00322AC2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F42C63C4232D906E00E1893A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F42C63EA233833C300E1893A /* ZKEntityErrorMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKEntityErrorMetadata.h; sourceTree = "<group>"; };
+		F42C63EB233833C300E1893A /* ZKEntityErrorMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKEntityErrorMetadata.m; sourceTree = "<group>"; };
+		F42C63EC233833C400E1893A /* ZKDescribeAnimationRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKDescribeAnimationRule.h; sourceTree = "<group>"; };
+		F42C63ED233833C400E1893A /* ZKDescribeAnimationRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKDescribeAnimationRule.m; sourceTree = "<group>"; };
 		F42EBEEB2324A6C400C5DC05 /* ZKSforce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSforce.h; path = ../../../zkSforce/ZKSforce.h; sourceTree = "<group>"; };
 		F42EBEED2324A6C400C5DC05 /* ZKBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKBaseClient.m; sourceTree = "<group>"; };
 		F42EBEEE2324A6C400C5DC05 /* ZKAuthenticationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKAuthenticationInfo.h; sourceTree = "<group>"; };
@@ -739,6 +745,8 @@
 				F42EBFC52324A6C500C5DC05 /* ZKDeletedRecord.m */,
 				F42EBFC92324A6C500C5DC05 /* ZKDeleteResult.h */,
 				F42EBF242324A6C400C5DC05 /* ZKDeleteResult.m */,
+				F42C63EC233833C400E1893A /* ZKDescribeAnimationRule.h */,
+				F42C63ED233833C400E1893A /* ZKDescribeAnimationRule.m */,
 				F42EBFB32324A6C500C5DC05 /* ZKDescribeAppMenuItem.h */,
 				F42EC03D2324A6C500C5DC05 /* ZKDescribeAppMenuItem.m */,
 				F42EBF0E2324A6C400C5DC05 /* ZKDescribeAppMenuResult.h */,
@@ -869,6 +877,8 @@
 				F42EC0162324A6C500C5DC05 /* ZKEmailHeader.m */,
 				F42EBFA22324A6C500C5DC05 /* ZKEmptyRecycleBinResult.h */,
 				F42EC0512324A6C500C5DC05 /* ZKEmptyRecycleBinResult.m */,
+				F42C63EA233833C300E1893A /* ZKEntityErrorMetadata.h */,
+				F42C63EB233833C300E1893A /* ZKEntityErrorMetadata.m */,
 				F42EBFE72324A6C500C5DC05 /* ZKEntityIntentQueryMetadata.h */,
 				F42EBF092324A6C400C5DC05 /* ZKEntityIntentQueryMetadata.m */,
 				F42EC04A2324A6C500C5DC05 /* ZKEntitySearchMetadata.h */,
@@ -1313,6 +1323,7 @@
 				F42EC12B2324A6C500C5DC05 /* ZKReportChartComponent.m in Sources */,
 				F42EC0952324A6C500C5DC05 /* ZKDescribeSoftphoneLayoutItem.m in Sources */,
 				F42EC0A92324A6C500C5DC05 /* ZKListViewRecordColumn.m in Sources */,
+				F42C63EE233833C400E1893A /* ZKEntityErrorMetadata.m in Sources */,
 				F42EC0C12324A6C500C5DC05 /* ZKLoginScopeHeader.m in Sources */,
 				F42EC0A52324A6C500C5DC05 /* ZKGetDeletedResult.m in Sources */,
 				F42EC0F92324A6C500C5DC05 /* ZKDescribeSObject.m in Sources */,
@@ -1372,6 +1383,7 @@
 				F42EC11D2324A6C500C5DC05 /* ZKAllOrNoneHeader.m in Sources */,
 				F42EC08C2324A6C500C5DC05 /* ZKDescribeField+Extras.m in Sources */,
 				F42EC0CA2324A6C500C5DC05 /* ZKExecuteListViewRequest.m in Sources */,
+				F42C63EF233833C400E1893A /* ZKDescribeAnimationRule.m in Sources */,
 				F42EC1052324A6C500C5DC05 /* ZKChildRelationship.m in Sources */,
 				F42EC1332324A6C500C5DC05 /* ZKSaveResult.m in Sources */,
 				F49C1C8113636C88000CDE02 /* OAuthDemoAppDelegate.m in Sources */,
