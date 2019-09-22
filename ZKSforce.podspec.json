@@ -18,8 +18,7 @@
   },
   "libraries": "xml2",
   "osx": {
-    "frameworks": "Security",
-    "deployment_target": "10.9"
+    "frameworks": "Security"
   },
   "requires_arc": true,
   "xcconfig": {
