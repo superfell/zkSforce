@@ -1,6 +1,6 @@
 {
   "name": "ZKSforce",
-  "version": "46.1.0",
+  "version": "47.0.0",
   "license": "MIT",
   "summary": "A Cocoa library for calling the Salesforce.com SOAP APIs.",
   "homepage": "https://github.com/superfell/zkSforce",
@@ -9,17 +9,17 @@
   },
   "source": {
     "git": "https://github.com/superfell/zkSforce.git",
-    "tag": "v46.0.0"
+    "tag": "v47.0.0"
   },
   "source_files": "zkSforce/**/*",
   "platforms" : {
- 	"ios" : "9.0",
-	"osx" : "10.9"
+ 	  "ios" : "9.0",
+	  "osx" : "10.9"
   },
   "libraries": "xml2",
   "osx": {
     "frameworks": "Security",
-    "deployment_target": "10.10"
+    "deployment_target": "10.9"
   },
   "requires_arc": true,
   "xcconfig": {
