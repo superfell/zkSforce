@@ -26,7 +26,8 @@
 
 @interface QueryController : NSObject {
     ZKSforceClient       *client;
-    IBOutlet NSTableView *table;
+    IBOutlet NSTableView *queryTable;
+    IBOutlet NSTableView *objectList;
     
     ZKQueryResult       *results;
     NSString            *lastSid;
@@ -35,6 +36,7 @@
 @property (nonatomic, strong) ZKSforceClient *client;
 @property (readonly) BOOL canQuery;
 @property (strong) ZKQueryResult *results;
+@property (strong) NSObject<NSTableViewDataSource> *sobjects;
 
 -(IBAction)runQuery:(id)sender;
 -(IBAction)refreshSid:(id)sender;

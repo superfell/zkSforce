@@ -24,32 +24,32 @@
 
 @implementation ZKParserTests
 
--(zkElement *)parse:(NSString *)doc {
-    return [zkParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
+-(ZKElement *)parse:(NSString *)doc {
+    return [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
--(void)assert:(zkElement *)e hasName:(NSString *)n text:(NSString *)t {
+-(void)assert:(ZKElement *)e hasName:(NSString *)n text:(NSString *)t {
     XCTAssertEqualObjects([e name], n);
     XCTAssertEqualObjects([e stringValue], t);
 }
 
--(void)assert:(zkElement *)e hasName:(NSString *)n ns:(NSString *)ns text:(NSString *)t {
+-(void)assert:(ZKElement *)e hasName:(NSString *)n ns:(NSString *)ns text:(NSString *)t {
     [self assert:e hasName:n text:t];
     XCTAssertEqualObjects([e namespace], ns);
 }
 
 -(void)testSimple {
     NSString *doc = @"<root>some text</root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     [self assert:e hasName:@"root" text:@"some text"];
 }
 
 -(void)testChildElement {
     NSString *doc = @"<root><child>some text</child><child2>more text</child2></root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     XCTAssertEqualObjects(@"root", [e name]);
-    zkElement *c1 = [e childElement:@"child"];
-    zkElement *c2 = [e childElement:@"child2"];
+    ZKElement *c1 = [e childElement:@"child"];
+    ZKElement *c2 = [e childElement:@"child2"];
     [self assert:c1 hasName:@"child" text:@"some text"];
     [self assert:c2 hasName:@"child2" text:@"more text"];
     XCTAssertNil([e childElement:@"dontExist"]);
@@ -57,7 +57,7 @@
 
 -(void)testChildElements {
     NSString *doc = @"<root><c>one</c><c>two</c></root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     NSArray *c = [e childElements:@"c"];
     XCTAssertEqual((NSUInteger)2, [c count]);
     [self assert:c[0] hasName:@"c" text:@"one"];
@@ -66,20 +66,20 @@
 
 -(void)testAttributeValue {
     NSString *doc = @"<root a='bob'/>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     XCTAssertEqualObjects(@"bob", [e attributeValue:@"a" ns:nil]);
 }
 
 -(void)testAttributeValueNs {
     NSString *doc = @"<root xmlns='urn:a' xmlns:x='urn:b' bob='a' x:bob='b' />";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     XCTAssertEqualObjects(@"a", [e attributeValue:@"bob" ns:nil]);
     XCTAssertEqualObjects(@"b", [e attributeValue:@"bob" ns:@"urn:b"]);
 }
 
 -(void)testChildElementsNs {
     NSString *doc = @"<root xmlns='urn:a' xmlns:b='urn:bb'><c>one</c><b:c>two</b:c><b:c>three</b:c></root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     NSArray *bc = [e childElements:@"c" ns:@"urn:bb"];
     XCTAssertEqual((NSUInteger)2, [bc count]);
     [self assert:bc[0] hasName:@"c" ns:@"urn:bb" text:@"two"];
@@ -98,7 +98,7 @@
 
 -(void)testXsiTypeWithNs {
     NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xsi:type='xsd:date'>2016-05-31</root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     ZKNamespacedName *t = e.xsiType;
     XCTAssertEqualObjects(@"date", t.localname);
     XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema", t.namespaceURI);
@@ -107,7 +107,7 @@
 
 -(void)testXsiTypeWithDefaultNs {
     NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://www.w3.org/2001/XMLSchema' xsi:type='date'>2016-05-31</root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     ZKNamespacedName *t = e.xsiType;
     XCTAssertEqualObjects(@"date", t.localname);
     XCTAssertEqualObjects(@"http://www.w3.org/2001/XMLSchema", t.namespaceURI);
@@ -116,19 +116,19 @@
 
 -(void)testXsiTypeNotExists {
     NSString *doc = @"<root>2016-05-31</root>";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     XCTAssertNil([e xsiType]);
 }
 
 -(void)testIsXsiNil {
     NSString *doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:nil='true' />";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     XCTAssertEqual(TRUE, [e isXsiNil]);
 }
 
 -(void)testIsNotXsiNil {
     NSString *doc = @"<root />";
-    zkElement *e = [self parse:doc];
+    ZKElement *e = [self parse:doc];
     XCTAssertEqual(false, [e isXsiNil]);
 
     doc = @"<root xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:nil='false' />";

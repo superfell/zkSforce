@@ -20,11 +20,29 @@
 //
 
 #import "QueryController.h"
-#import "zkSforce.h"
+#import "ZKSforce.h"
+
+@interface SObjectList : NSObject<NSTableViewDataSource>
+@property NSArray *sobjects;
+@end
+
+@implementation SObjectList
+@synthesize sobjects;
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return sobjects.count;
+}
+
+-(nullable id)tableView:(NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
+    ZKDescribeGlobalSObject *o = sobjects[row];
+    return o.name;
+}
+
+@end
 
 @implementation QueryController
 
-@synthesize results, client;
+@synthesize results, client, sobjects;
 
 // This tells KVO (and theirfore the UI binding, that the 'CanQuery' property value is affected by changes to the 'Client' property
 +(NSSet *)keyPathsForValuesAffectingCanQuery {
@@ -36,15 +54,43 @@
 }
 
 -(IBAction)runQuery:(id)sender {
-    ZKQueryResult *qr = [client query:@"select id,name from account limit 25"];
-    self.results = qr;
-    table.dataSource = qr;
-    [table reloadData];
+    [client query:@"select id,name from account limit 25"
+        failBlock:^(NSError *err) {
+               [[NSAlert alertWithError:err] runModal];
+           }
+    completeBlock:^(ZKQueryResult *qr) {
+               self.results = qr;
+               self->queryTable.dataSource = qr;
+               [self->queryTable reloadData];
+           }];
+}
+
+-(void)runDescGlobal:(id)sender {
+    [client describeGlobalWithFailBlock:^(NSError *result) {
+        [[NSAlert alertWithError:result] runModal];
+    } completeBlock:^(NSArray *result) {
+        SObjectList *l = [[SObjectList alloc] init];
+        l.sobjects = result;
+        self.sobjects = l;
+        self->objectList.dataSource = l;
+    }];
 }
 
 -(IBAction)refreshSid:(id)sender {
     // normally you wouldn't need to do this, but its handy to see how it works.
-    [client.authenticationInfo refresh];
+    [client.authenticationInfo refresh:^(NSError *err) {
+        if (err != nil) {
+            [[NSAlert alertWithError:err] runModal];
+            return;
+        }
+        NSLog(@"SID Refreshed, now %@", self.client.sessionId);
+    }];
+}
+
+-(void)setClient:(ZKSforceClient *)c {
+    self->client = c;
+    [self runQuery:self];
+    [self runDescGlobal:self];
 }
 
 

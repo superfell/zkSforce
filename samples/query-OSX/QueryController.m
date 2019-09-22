@@ -21,9 +21,7 @@
 
 
 #import "QueryController.h"
-#import "zkSforce.h"
-#import "zkQueryResult+NSTableView.h"
-#import "ZKLimitInfoHeader.h"
+#import "ZKSforce.h"
 
 @interface QueryController ()
 @property (strong) ZKSforceClient *client;
@@ -36,11 +34,8 @@
 
 
 // Helper function to show an error dialog/sheet from a soap exception
--(void)showError:(NSException *)ex {
-    NSAlert *a = [[NSAlert alloc] init];
-    a.messageText = [ex isKindOfClass:[ZKSoapException class]] ? [(ZKSoapException *)ex faultCode] : @"Error";
-    a.informativeText = ex.reason;
-    [a addButtonWithTitle:@"Close"];
+-(void)showError:(NSError *)err {
+    NSAlert *a = [NSAlert alertWithError:err];
     [a beginSheetModalForWindow:window completionHandler:^(NSModalResponse returnCode) {
     }];
 }
@@ -55,31 +50,25 @@
 // run the query on a background thread, and when we get the results, update the UI (from the main thread)
 -(IBAction)runQuery:(id)sender {
     NSString *query = @"select id, name from account order by SystemModStamp desc limit 20";
-    [client performQuery:query 
-            failBlock:^(NSException *ex) {
-                [self setLoginInProgress:NO];
-                [self showError:ex];
-            } 
-            completeBlock:^(ZKQueryResult *qr) {
-                self.result = qr;
-                self->table.dataSource = qr;
-                [self->table reloadData];
-                [self setLoginInProgress:NO];
-            }];
+    [client query:query
+        failBlock:^(NSError *ex) {
+            [self setLoginInProgress:NO];
+            [self showError:ex];
+        }
+    completeBlock:^(ZKQueryResult *qr) {
+            self.result = qr;
+            self->table.dataSource = qr;
+            [self->table reloadData];
+            [self setLoginInProgress:NO];
+        }];
 }
 
 // Called when the user clicks the Login button, we call login, and if successful, we run the query to populate the table.
 -(IBAction)performLogin:(id)sender {
-    // zkSforceClient makes synchronous HTTP calls, you dont' really want to
-    // do them on the main UI thread, so we use blocks to have the login
-    // request happen on another thread, then switch back to the UI
-    // thread at the end to update the UI state.
     [self setLoginInProgress:YES];
-    // you can either do the blocks stuff yourself and use the methods in SforceClient / SforceClient(Operations)
-    // or there's a blocks vesion available in SforceClient(zkAsyncQuery) that you can use.
     ZKSforceClient *theClient = [[ZKSforceClient alloc] init];
     theClient.delegate = self;
-    [theClient performLogin:username password:password failBlock:^(NSException *res) {
+    [theClient login:username password:password failBlock:^(NSError *res) {
         [self setLoginInProgress:NO];
         [self showError:res];
     } completeBlock:^(ZKLoginResult *result) {
@@ -91,8 +80,8 @@
 }
 
 -(IBAction)showServerTimestamp:(id)sender {
-    [client performGetServerTimestampWithFailBlock:^(NSException *e) {
-        NSLog(@"Error fetching timestamp : %@", e);
+    [client getServerTimestampWithFailBlock:^(NSError *e) {
+        [self showError:e];
     } completeBlock:^(ZKGetServerTimestampResult *str) {
         NSAlert *a  = [[NSAlert alloc] init];
         a.messageText = @"Server Timestamp";
@@ -103,13 +92,22 @@
     }];
 }
 
--(void)client:(ZKSforceClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)endpoint withResponse:(zkElement *)response in:(NSTimeInterval)time {
-    NSLog(@"%@ took %f", callName, time);
-    [self updateApiLimitInfo];
-}
+-(void)client:(ZKBaseClient *)client
+  sentRequest:(NSString *)payload
+        named:(NSString *)callName
+           to:(NSURL *)destination
+ withResponse:(ZKElement *)response
+        error:(NSError *)error
+           in:(NSTimeInterval)time {
 
--(void)client:(ZKSforceClient *)client sentRequest:(NSString *)payload named:(NSString *)callName to:(NSURL *)endpoint withException:(NSException *)ex    in:(NSTimeInterval)time {
-    NSLog(@"%@ took %f withException %@", callName, time, ex);
+    if (error != nil) {
+        NSLog(@"%@ took %f with error %@", callName, time, error);
+    } else {
+        NSLog(@"%@ took %f", callName, time);
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self updateApiLimitInfo];
+    });
 }
 
 @end

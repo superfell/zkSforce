@@ -28,7 +28,7 @@
 
 -(ZKSObject *)parseSobject:(NSString *)sobjectContents {
     NSString *xml = [NSString stringWithFormat:@"<sObject xmlns:x='http://www.w3.org/2001/XMLSchema-instance'>%@</sObject>", sobjectContents];
-    zkElement *e = [zkParser parseData:[xml dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKElement *e = [ZKParser parseData:[xml dataUsingEncoding:NSUTF8StringEncoding]];
     return [[ZKSObject alloc] initWithXmlElement:e];
 }
 
