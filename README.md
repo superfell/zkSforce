@@ -1,6 +1,6 @@
 # ZKSforce  [![Build Status](https://travis-ci.org/superfell/zkSforce.svg?branch=master)](https://travis-ci.org/superfell/zkSforce)
 
-ZKSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](http://www.salesforce.com/us/developer/docs/api/index.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.9+, iOS 9+)
+ZKSforce is a cocoa library for calling the [Salesforce.com Web Services APIs](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm), easily integrate Salesforce into your OSX and iOS projects. (supports OSX 10.9+, iOS 9+)
 
 ZKSforce supports all of the partner web services API, including
 
@@ -21,7 +21,7 @@ In general the client acts just like the Web Services API, however in a few plac
  * You can ask the ZKSforceClient object to automatically cache describeGlobal/describeSObject results for you by calling setCacheDescribes
 
 
-Usage is really straight forward, create an instance of the [ZKSforceClient](https://github.com/superfell/zkSforce/blob/master/zkSforce/zkSforceClient.h)
+Usage is really straight forward, create an instance of the [ZKSforceClient](https://github.com/superfell/zkSforce/blob/master/zkSforce/client/ZKSforceClient.h)
 class, call login, then call the other operations as needed. All calls that might result in a HTTP request use an async blocks
 based methods. e.g.
 
