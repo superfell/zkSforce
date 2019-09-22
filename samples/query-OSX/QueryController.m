@@ -65,13 +65,7 @@
 
 // Called when the user clicks the Login button, we call login, and if successful, we run the query to populate the table.
 -(IBAction)performLogin:(id)sender {
-    // zkSforceClient makes synchronous HTTP calls, you dont' really want to
-    // do them on the main UI thread, so we use blocks to have the login
-    // request happen on another thread, then switch back to the UI
-    // thread at the end to update the UI state.
     [self setLoginInProgress:YES];
-    // you can either do the blocks stuff yourself and use the methods in SforceClient / SforceClient(Operations)
-    // or there's a blocks vesion available in SforceClient(zkAsyncQuery) that you can use.
     ZKSforceClient *theClient = [[ZKSforceClient alloc] init];
     theClient.delegate = self;
     [theClient login:username password:password failBlock:^(NSError *res) {
@@ -87,7 +81,7 @@
 
 -(IBAction)showServerTimestamp:(id)sender {
     [client getServerTimestampWithFailBlock:^(NSError *e) {
-        NSLog(@"Error fetching timestamp : %@", e);
+        [self showError:e];
     } completeBlock:^(ZKGetServerTimestampResult *str) {
         NSAlert *a  = [[NSAlert alloc] init];
         a.messageText = @"Server Timestamp";
