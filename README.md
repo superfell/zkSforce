@@ -62,7 +62,11 @@ field values, and then calling create.
 As well as the traditional username and password login, there's also support for working with OAuth based authentication, you can pass it the finalized callbackURL you receive at the end of the oauth login flow, and it'll automatically extract all the parameters it needs from that URL.
 
 		ZKSforceClient *sforce = [[ZKSforceClient alloc] init];
-		[sforce loginFromOAuthCallbackUrl:callbackUrl oAuthConsumerKey:OAUTH_CLIENTID];
+		NSError *err = [sforce loginFromOAuthCallbackUrl:callbackUrl oAuthConsumerKey:OAUTH_CLIENTID];
+        if (err != nill) {
+            [[NSAlert alertWithError:err] runModal];
+            return;
+        }
 		// use as normal
 
 

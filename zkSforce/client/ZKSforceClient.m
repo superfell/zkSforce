@@ -126,6 +126,12 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     [self soapLogin:auth queue:queue failBlock:failBlock completeBlock:completeBlock];
 }
 
+-(void) login:(NSString *)username password:(NSString *)password
+    failBlock:(ZKFailWithErrorBlock)failBlock
+completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
+    [self login:username password:password queue:dispatch_get_main_queue() failBlock:failBlock completeBlock:completeBlock];
+}
+
 - (NSError *)loginFromOAuthCallbackUrl:(NSString *)callbackUrl oAuthConsumerKey:(NSString *)oauthClientId {
     NSError *err = nil;
     ZKOAuthInfo *auth = [ZKOAuthInfo oauthInfoFromCallbackUrl:[NSURL URLWithString:callbackUrl] clientId:oauthClientId error:&err];
@@ -156,6 +162,14 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
     }];
 }
 
+- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteVoidBlock)completeBlock {
+    [self loginWithRefreshToken:refreshToken authUrl:authUrl oAuthConsumerKey:oauthClientId
+                          queue:dispatch_get_main_queue()
+                      failBlock:failBlock completeBlock:completeBlock];
+}
+
 - (void)portalLogin:(NSString *)username
                       password:(NSString *)password
                          orgId:(NSString *)orgId
@@ -173,6 +187,16 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
                                                                        orgId:orgId
                                                                     portalId:portalId];
     [self soapLogin:auth queue:queue failBlock:failBlock completeBlock:completeBlock];
+}
+
+- (void)portalLogin:(NSString *)username
+           password:(NSString *)password
+              orgId:(NSString *)orgId
+           portalId:(NSString *)portalId
+          failBlock:(ZKFailWithErrorBlock)failBlock
+      completeBlock:(ZKCompleteLoginResultBlock)completeBlock {
+    [self portalLogin:username password:password orgId:orgId portalId:portalId
+                queue:dispatch_get_main_queue() failBlock:failBlock completeBlock:completeBlock];
 }
 
 -(void)setUserInfo:(ZKUserInfo *)ui {
