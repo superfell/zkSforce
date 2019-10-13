@@ -63,10 +63,10 @@ As well as the traditional username and password login, there's also support for
 
 		ZKSforceClient *sforce = [[ZKSforceClient alloc] init];
 		NSError *err = [sforce loginFromOAuthCallbackUrl:callbackUrl oAuthConsumerKey:OAUTH_CLIENTID];
-        if (err != nill) {
-            [[NSAlert alertWithError:err] runModal];
-            return;
-        }
+		if (err != nill) {
+		    [[NSAlert alertWithError:err] runModal];
+		    return;
+		}
 		// use as normal
 
 
