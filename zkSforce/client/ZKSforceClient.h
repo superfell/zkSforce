@@ -69,7 +69,7 @@
 
 /** Attempt a login request. If a security token is required to be used you need to
     append it to the password parameter.
-    The callbacks will be executed on the main queue
+    The callbacks will be executed on the provided queue.
 
     @param username the salesforce username to try and authenticate
     @param password the password [and possibly api security token] of the user
@@ -78,6 +78,18 @@
         queue:(dispatch_queue_t)callbackQueue
     failBlock:(ZKFailWithErrorBlock)failBlock
 completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
+
+/** Attempt a login request. If a security token is required to be used you need to
+    append it to the password parameter.
+    The callbacks will be executed on the main queue
+
+    @param username the salesforce username to try and authenticate
+    @param password the password [and possibly api security token] of the user
+*/
+-(void) login:(NSString *)username password:(NSString *)password
+    failBlock:(ZKFailWithErrorBlock)failBlock
+completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
+
 
 /** Initialize the authentication info from the parameters contained in the OAuth
     completion callback Uri passed in. Call this when the oauth flow is complete,
@@ -91,7 +103,7 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
 /** Login by making a refresh token request with this refresh Token to the specifed
     authentication host. oAuthConsumerKey is the oauth client_id / consumer key
-    The callbacks will be executed on the main queue
+    The callbacks will be executed on the provided queue
  
     @param refreshToken  a refresh token previously obtained from the oauth login flow
     @param authUrl       the URL to the token service to send the refresh token to
@@ -102,12 +114,23 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteVoidBlock)completeBlock;
 
+/** Login by making a refresh token request with this refresh Token to the specifed
+    authentication host. oAuthConsumerKey is the oauth client_id / consumer key
+    The callbacks will be executed on the main queue
+ 
+    @param refreshToken  a refresh token previously obtained from the oauth login flow
+    @param authUrl       the URL to the token service to send the refresh token to
+    @param oauthClientId the OAuth consumer key for your applications oauth configuration
+ */
+- (void)loginWithRefreshToken:(NSString *)refreshToken authUrl:(NSURL *)authUrl oAuthConsumerKey:(NSString *)oauthClientId
+                    failBlock:(ZKFailWithErrorBlock)failBlock
+                completeBlock:(ZKCompleteVoidBlock)completeBlock;
 
 /** Attempt a login for a portal User.
  
     In the case of self service portals, you can ony authenticate users, they don't have access
     to the rest of the API, attempts to call other API methods will return an error.
-    The callbacks will be executed on the main queue
+    The callbacks will be executed on the provided queue.
 
     @param username  the portal users username
     @param password  the portal users password
@@ -116,6 +139,21 @@ completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 */
 - (void)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId
               queue:(dispatch_queue_t)callbackQueue
+          failBlock:(ZKFailWithErrorBlock)failBlock
+      completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
+
+/** Attempt a login for a portal User.
+ 
+    In the case of self service portals, you can ony authenticate users, they don't have access
+    to the rest of the API, attempts to call other API methods will return an error.
+    The callbacks will be executed on the main queue.
+
+    @param username  the portal users username
+    @param password  the portal users password
+    @param orgId     OrgId is required, and should be the Id of the organization that owns the portal.
+    @param portalId  PortalId is required for new generation portals, can be null for old style self service portals.
+*/
+- (void)portalLogin:(NSString *)username password:(NSString *)password orgId:(NSString *)orgId portalId:(NSString *)portalId
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteLoginResultBlock)completeBlock;
 
