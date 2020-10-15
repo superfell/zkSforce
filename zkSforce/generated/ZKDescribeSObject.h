@@ -31,6 +31,8 @@
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:ActionOverride" name="actionOverrides"/>
     <element type="xsd:boolean" name="activateable"/>
+    <element nillable="true" type="xsd:string" name="associateEntityType"/>
+    <element nillable="true" type="xsd:string" name="associateParentEntity"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:ChildRelationship" name="childRelationships"/>
     <element type="xsd:boolean" name="compactLayoutable"/>
     <element type="xsd:boolean" name="createable"/>

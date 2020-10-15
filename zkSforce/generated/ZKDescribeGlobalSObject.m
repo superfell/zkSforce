@@ -32,6 +32,14 @@
     return [self boolean:@"activateable"];
 }
 			
+-(NSString *)associateEntityType {
+    return [self string:@"associateEntityType"];
+}
+			
+-(NSString *)associateParentEntity {
+    return [self string:@"associateParentEntity"];
+}
+			
 -(BOOL)createable {
     return [self boolean:@"createable"];
 }
