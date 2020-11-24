@@ -80,4 +80,20 @@
     NSString *ds = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
     XCTAssertEqualObjects(@"bob!", ds);
 }
+
+-(void)testAsXmlType {
+    NSArray *strs = @[@"true",@"12.12",@"2016-11-12",@"Ym9iIQ=="];
+    NSArray *types = @[@"boolean",@"double",@"date", @"base64Binary"];
+    NSDateComponents *dc = [[NSDateComponents alloc] init];
+    dc.year = 2016;
+    dc.month=11;
+    dc.day=12;
+    dc.calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSArray *exp = @[@TRUE, @12.12, [dc date], [@"bob!" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    for (int i = 0; i < strs.count; i++) {
+        XCTAssertEqualObjects(exp[i], [strs[i] ZKAsXmlType:types[i]]);
+    }
+}
+
 @end

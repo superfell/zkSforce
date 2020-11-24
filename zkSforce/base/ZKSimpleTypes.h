@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Simon Fell
+// Copyright (c) 2016,2020 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -34,5 +34,8 @@
 @property (readonly) NSDate *ZKTime;
 @property (readonly) NSDate *ZKDate;
 @property (readonly) NSData *ZKBase64Binary;
+
+/** convert to the specified xml type. Returns one of the types listed above. */
+-(id)ZKAsXmlType:(NSString *)xsdTypeLocalName;
 
 @end
