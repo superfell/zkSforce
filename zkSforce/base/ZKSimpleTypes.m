@@ -37,6 +37,10 @@
     return @(self.longLongValue);
 }
 
+-(NSNumber *)ZKLong {
+    return @(self.longLongValue);
+}
+
 -(NSNumber *)ZKFloat {
     return @(self.floatValue);
 }

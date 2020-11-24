@@ -27,6 +27,7 @@
 @property (readonly) NSNumber *ZKBoolean;
 @property (readonly) NSDecimalNumber *ZKDecimal;
 @property (readonly) NSNumber *ZKInteger;
+@property (readonly) NSNumber *ZKLong;
 @property (readonly) NSNumber *ZKFloat;
 @property (readonly) NSNumber *ZKDouble;
 @property (readonly) NSDate *ZKDateTime;

@@ -39,10 +39,16 @@
     XCTAssertEqualObjects([NSDecimalNumber decimalNumberWithMantissa:12345 exponent:-3 isNegative:YES], [@"-12.345" ZKDecimal]);
 }
 
--(void)testInt {
+-(void)testInteger {
     XCTAssertEqualObjects([NSNumber numberWithLongLong:0], [@"0" ZKInteger]);
     XCTAssertEqualObjects([NSNumber numberWithLongLong:-1234], [@"-1234" ZKInteger]);
     XCTAssertEqualObjects([NSNumber numberWithLongLong:123456], [@"123456" ZKInteger]);
+}
+
+-(void)testLong {
+    XCTAssertEqualObjects([NSNumber numberWithLongLong:0], [@"0" ZKLong]);
+    XCTAssertEqualObjects([NSNumber numberWithLongLong:-1234], [@"-1234" ZKLong]);
+    XCTAssertEqualObjects([NSNumber numberWithLongLong:9223372036854775807], [@"9223372036854775807" ZKLong]);
 }
 
 -(void)testFloat {
