@@ -20,8 +20,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "NSDateAsserts.h"
 
-@interface ZKSObjectTests : XCTestCase
+@interface ZKSObjectTests : NSDateAsserts
 
 
 @end

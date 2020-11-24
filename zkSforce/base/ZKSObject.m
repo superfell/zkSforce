@@ -28,12 +28,14 @@
 #import "ZKConstants.h"
 #import "ZKDescribeSObject+Extras.h"
 #import "ZKDescribeField.h"
+#import "ZKSimpleTypes.h"
 
 @interface ZKSObject()
 @property (strong) NSMutableSet<NSString*> *fieldsToNullSet;
 @property (strong) NSMutableDictionary<NSString*,NSObject*> *fieldsDict;
 @property (strong) NSMutableArray<NSString*> *fieldOrder;
 @property (strong) NSMutableDictionary<NSString*,NSString*> *fieldTypes;
+@property (strong) NSMutableDictionary<NSString*,NSObject*> *typedValues;
 @end
 
 @implementation ZKSObject
@@ -60,7 +62,6 @@
     self.fieldsToNullSet = [[NSMutableSet alloc] init];
     self.fieldsDict = [[NSMutableDictionary alloc] init];
     self.fieldOrder = [[NSMutableArray alloc] init];
-    self.fieldTypes = [[NSMutableDictionary alloc] init];
     return self;
 }
 
@@ -68,6 +69,7 @@
     NSString *type = [[node childElement:@"type"].stringValue copy];
     self = [self initWithType:type];
     self.id = [[node childElement:@"Id"].stringValue copy];
+    self.fieldTypes = [[NSMutableDictionary alloc] init];
     NSArray *children = node.childElements;
     NSUInteger childCount = children.count;
     // start at 2 to skip Id & Type
@@ -89,7 +91,6 @@
                 fieldVal = [[ZKAddress alloc] initWithXmlElement:f];
             } else if ([xsiType hasSuffix:@"location"]) {
                 fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
-                fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
             } else {
                 fieldVal = f.stringValue;
             }
@@ -107,6 +108,7 @@
     c.fieldsDict = self.fieldsDict.mutableCopy;
     c.fieldOrder = self.fieldOrder.mutableCopy;
     c.fieldTypes = self.fieldTypes.mutableCopy;
+    // typedValues is a cache, no need to copy it over.
     return c;
 }
 
@@ -126,6 +128,8 @@
     [self.fieldsToNullSet addObject:field];
     [self.fieldsDict removeObjectForKey:field];
     [self.fieldOrder removeObject:field];
+    [self.fieldTypes removeObjectForKey:field];
+    [self.typedValues removeObjectForKey:field];
 }
 
 - (void)setFieldValue:(NSObject *)value field:(NSString *)field {
@@ -136,6 +140,7 @@
         self.fieldsDict[field] = value;
         if (![self.fieldOrder containsObject:field])
             [self.fieldOrder addObject:field];
+        [self.typedValues removeObjectForKey:field];
     }
 }
 
@@ -145,7 +150,11 @@
 
 - (void)setFieldDateValue:(NSDate *)value field:(NSString *)field {
     [self setFieldValue:[[ZKSoapDate instance] toDateString:value] field:field];
-}    
+}
+
+- (void)setFieldTimeValue:(NSDate *)value field:(NSString *)field {
+    [self setFieldValue:[[ZKSoapDate instance] toTimeString:value] field:field];
+}
 
 - (BOOL)containsField:(NSString *)field {
     return self.fieldsDict[field] != nil;
@@ -161,23 +170,31 @@
 }
 
 - (BOOL)boolValue:(NSString *)field {
-    return [[self fieldValue:field] isEqualToString:@"true"];
+    return [[[self fieldValue:field] ZKBoolean] boolValue];
 }
 
 - (NSDate *)dateTimeValue:(NSString *)field {
-    return [[ZKSoapDate instance] fromDateTimeString:[self fieldValue:field]];
+    return [[self fieldValue:field] ZKDateTime];
 }
 
 - (NSDate *)dateValue:(NSString *)field {
-    return [[ZKSoapDate instance] fromDateString:[self fieldValue:field]];
+    return [[self fieldValue:field] ZKDate];
 }
 
-- (int)intValue:(NSString *)field {
-    return [[self fieldValue:field] intValue];
+- (NSDate *)timeValue:(NSString *)field {
+    return [[self fieldValue:field] ZKTime];
+}
+
+- (long long)intValue:(NSString *)field {
+    return [[[self fieldValue:field] ZKInteger] longLongValue];
+}
+
+- (float)floatValue:(NSString *)field {
+    return [[[self fieldValue:field] ZKFloat] floatValue];
 }
 
 - (double)doubleValue:(NSString *)field {
-    return [[self fieldValue:field] doubleValue];
+    return [[[self fieldValue:field] ZKDouble] doubleValue];
 }
 
 - (ZKQueryResult *)queryResultValue:(NSString *)field {
@@ -206,6 +223,25 @@
         return t;
     }
     return [[desc fieldWithName:field] soapType];
+}
+
+- (id)typedValueOfField:(NSString *)field withDescribe:(ZKDescribeSObject*)desc {
+    id tv = self.typedValues[field];
+    if (tv != nil) {
+        return tv;
+    }
+    NSObject *fv = [self fieldValue:field];
+    if ([fv isKindOfClass:[NSString class]]) {
+        NSString *xmlType = [self typeOfField:field withDescribe:desc];
+        NSString *xmlTypeLocalName = [xmlType substringFromIndex:[xmlType rangeOfString:@":"].location+1];
+        tv = [(NSString*)fv ZKAsXmlType:xmlTypeLocalName];
+        if (self.typedValues == nil) {
+            self.typedValues = [[NSMutableDictionary alloc] init];
+        }
+        self.typedValues[field] = tv;
+        return tv;
+    }
+    return fv;
 }
 
 @end

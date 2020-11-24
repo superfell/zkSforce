@@ -94,6 +94,8 @@
     for (int i = 0; i < strs.count; i++) {
         XCTAssertEqualObjects(exp[i], [strs[i] ZKAsXmlType:types[i]]);
     }
+    
+    XCTAssertEqualObjects(@"bob", [@"bob" ZKAsXmlType:nil]);
 }
 
 @end

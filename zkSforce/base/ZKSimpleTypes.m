@@ -72,6 +72,7 @@
         m = @{@"string":  ^id(NSString*s) { return s; },
               @"boolean": ^id(NSString*s) { return [s ZKBoolean];},
               @"integer": ^id(NSString*s) { return [s ZKInteger];},
+              @"int":     ^id(NSString*s) { return [s ZKInteger];},
               @"long":    ^id(NSString*s) { return [s ZKLong];},
               @"float":   ^id(NSString*s) { return [s ZKFloat];},
               @"double":  ^id(NSString*s) { return [s ZKDouble];},

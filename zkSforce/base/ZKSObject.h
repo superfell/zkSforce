@@ -48,6 +48,7 @@
 - (void)setFieldValue:(NSObject *)value field:(NSString *)field;
 - (void)setFieldDateTimeValue:(NSDate *)value field:(NSString *)field;
 - (void)setFieldDateValue:(NSDate *)value field:(NSString *)field;
+- (void)setFieldTimeValue:(NSDate *)value field:(NSString *)field;
 - (void)setFieldToNull:(NSString *)field;
 
 // basic getters
@@ -60,10 +61,19 @@
 - (BOOL)isFieldToNull:(NSString *)field;
 
 // typed getters
+
+/** Returns a strongly typed instance of the named field, using the field type from the describe if needed.
+    The typed instances are created on demand and cached, so repeatedly asking for the same field value will
+    get you the same object instance. If the type is not resolvable, then you'll get the string value for primitives.
+ */
+- (id)typedValueOfField:(NSString *)field withDescribe:(ZKDescribeSObject*)desc;
+
 - (BOOL)boolValue:(NSString *)field;
 - (NSDate *)dateTimeValue:(NSString *)field;
 - (NSDate *)dateValue:(NSString *)field;
-- (int)intValue:(NSString *)field;
+- (NSDate *)timeValue:(NSString *)field;
+- (long long)intValue:(NSString *)field;
+- (float)floatValue:(NSString *)field;
 - (double)doubleValue:(NSString *)field;
 
 - (ZKQueryResult *)queryResultValue:(NSString *)field;
