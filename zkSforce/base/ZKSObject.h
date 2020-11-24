@@ -72,4 +72,7 @@
 // others
 @property (readonly) NSArray *orderedFieldNames;
 
+/** returns true if there is a value for this field. Includes fields that were marked as xsi:nil by the server. */
+- (BOOL)containsField:(NSString *)field;
+
 @end

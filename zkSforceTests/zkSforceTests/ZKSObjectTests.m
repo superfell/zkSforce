@@ -98,4 +98,16 @@
     XCTAssertEqualObjects(o.fieldsToNull, c.fieldsToNull);
 }
 
+-(void)testContainsField {
+    NSString *xml = @"<type>Agg</type><id/><min x:type='double'>1.1</min><max>1.1</max>";
+    ZKSObject *o = [self parseSobject:xml];
+    XCTAssertTrue([o containsField:@"min"]);
+    XCTAssertTrue([o containsField:@"max"]);
+    XCTAssertFalse([o containsField:@"sum"]);
+    ZKSObject *c = [o copy];
+    XCTAssertTrue([c containsField:@"min"]);
+    XCTAssertTrue([c containsField:@"max"]);
+    XCTAssertFalse([c containsField:@"sum"]);
+}
+
 @end

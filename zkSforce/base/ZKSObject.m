@@ -139,6 +139,10 @@
     [self setFieldValue:[[ZKSoapDate instance] toDateString:value] field:field];
 }    
 
+- (BOOL)containsField:(NSString *)field {
+    return self.fieldsDict[field] != nil;
+}
+
 - (id)fieldValue:(NSString *)field {
     id v = self.fieldsDict[field];
     return v == [NSNull null] ? nil : v;
