@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2014,2018 Simon Fell
+// Copyright (c) 2006-2014,2018,2020 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -25,6 +25,7 @@
 @class ZKQueryResult;
 @class ZKAddress;
 @class ZKLocation;
+@class ZKDescribeSObject;
 
 /** ZKSObject represents a row of data in Salesforce [either already in salesforce, or one we're in
     the process of constructing to be sent to Salesforce */
@@ -74,5 +75,11 @@
 
 /** returns true if there is a value for this field. Includes fields that were marked as xsi:nil by the server. */
 - (BOOL)containsField:(NSString *)field;
+
+/** returns the xml type of the named field if it was specified in the object sent from the server. */
+- (NSString*)typeOfField:(NSString *)field;
+
+/** returns the xml type of the named field, falling back to the metadata from the describe if its available.*/
+- (NSString*)typeOfField:(NSString *)field withDescribe:(ZKDescribeSObject*)desc;
 
 @end

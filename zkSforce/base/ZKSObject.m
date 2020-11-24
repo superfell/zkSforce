@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2014,2018 Simon Fell
+// Copyright (c) 2006,2014,2018,2020 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -26,11 +26,14 @@
 #import "ZKSoapDate.h"
 #import "ZKAddress.h"
 #import "ZKConstants.h"
+#import "ZKDescribeSObject+Extras.h"
+#import "ZKDescribeField.h"
 
 @interface ZKSObject()
-@property (strong) NSMutableSet *fieldsToNullSet;
-@property (strong) NSMutableDictionary *fieldsDict;
-@property (strong) NSMutableArray *fieldOrder;
+@property (strong) NSMutableSet<NSString*> *fieldsToNullSet;
+@property (strong) NSMutableDictionary<NSString*,NSObject*> *fieldsDict;
+@property (strong) NSMutableArray<NSString*> *fieldOrder;
+@property (strong) NSMutableDictionary<NSString*,NSString*> *fieldTypes;
 @end
 
 @implementation ZKSObject
@@ -57,6 +60,7 @@
     self.fieldsToNullSet = [[NSMutableSet alloc] init];
     self.fieldsDict = [[NSMutableDictionary alloc] init];
     self.fieldOrder = [[NSMutableArray alloc] init];
+    self.fieldTypes = [[NSMutableDictionary alloc] init];
     return self;
 }
 
@@ -67,27 +71,30 @@
     NSArray *children = node.childElements;
     NSUInteger childCount = children.count;
     // start at 2 to skip Id & Type
-    for (NSUInteger i = 2; i < childCount; i++)
-    {
+    for (NSUInteger i = 2; i < childCount; i++) {
         ZKElement *f = children[i];
-        NSString *xsiNil = [f attributeValue:@"nil" ns:NS_URI_XSI];
         id fieldVal;
-        if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) 
+        if (f.isXsiNil) {
             fieldVal = [NSNull null];
-        else {
+        } else {
             NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
-            if ([xsiType hasSuffix:@"QueryResult"]) 
+            if (xsiType != nil) {
+                self.fieldTypes[f.name] = xsiType;
+            }
+            if ([xsiType hasSuffix:@"QueryResult"]) {
                 fieldVal = [[ZKQueryResult alloc] initWithXmlElement:f];
-            else if ([xsiType hasSuffix:@"sObject"])
+            } else if ([xsiType hasSuffix:@"sObject"]) {
                 fieldVal = [[ZKSObject alloc] initWithXmlElement:f];
-            else if ([xsiType hasSuffix:@"address"])
+            } else if ([xsiType hasSuffix:@"address"]) {
                 fieldVal = [[ZKAddress alloc] initWithXmlElement:f];
-            else if ([xsiType hasSuffix:@"location"])
+            } else if ([xsiType hasSuffix:@"location"]) {
                 fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
-            else
+                fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
+            } else {
                 fieldVal = f.stringValue;
+            }
         }
-        [self.fieldsDict setValue:fieldVal forKey:f.name];
+        self.fieldsDict[f.name] = fieldVal;
         [self.fieldOrder addObject:f.name];
     }
     return self;
@@ -99,6 +106,7 @@
     c.fieldsToNullSet = self.fieldsToNull.mutableCopy;
     c.fieldsDict = self.fieldsDict.mutableCopy;
     c.fieldOrder = self.fieldOrder.mutableCopy;
+    c.fieldTypes = self.fieldTypes.mutableCopy;
     return c;
 }
 
@@ -186,6 +194,18 @@
 
 - (NSArray *)fieldsToNull {
     return self.fieldsToNullSet.allObjects;
+}
+
+- (NSString *)typeOfField:(NSString *)field {
+    return self.fieldTypes[field];
+}
+
+- (NSString *)typeOfField:(NSString *)field withDescribe:(ZKDescribeSObject*)desc {
+    NSString *t = self.fieldTypes[field];
+    if (t != nil) {
+        return t;
+    }
+    return [[desc fieldWithName:field] soapType];
 }
 
 @end

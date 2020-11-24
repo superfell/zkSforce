@@ -20,9 +20,10 @@
 //
 
 #import "ZKSObjectTests.h"
-#import "zkSObject.h"
-#import "zkParser.h"
+#import "ZKSObject.h"
+#import "ZKParser.h"
 #import "ZKAddress.h"
+#import "ZKDescribeSObject+Extras.h"
 
 @implementation ZKSObjectTests
 
@@ -108,6 +109,30 @@
     XCTAssertTrue([c containsField:@"min"]);
     XCTAssertTrue([c containsField:@"max"]);
     XCTAssertFalse([c containsField:@"sum"]);
+}
+
+-(void)testXmlType {
+    NSString *xml = @"<type>Agg</type><id/><min x:type='xsd:double'>1.1</min><max>1.1</max>";
+    ZKSObject *o = [self parseSobject:xml];
+    XCTAssertEqualObjects(@"xsd:double", [o typeOfField:@"min"]);
+    XCTAssertNil([o typeOfField:@"max"]);
+    XCTAssertNil([o typeOfField:@"missing"]);
+}
+
+-(void)testXmlTypeWithDesc {
+    NSString *xmld = @"<desc><fields><name>max</name><soapType>xsd:decimal</soapType></fields></desc>";
+    ZKElement *e = [ZKParser parseData:[xmld dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKDescribeSObject *desc = [[ZKDescribeSObject alloc] initWithXmlElement:e];
+    
+    NSString *xmlo = @"<type>Agg</type><id/><min x:type='xsd:double'>1.1</min><max>1.1</max>";
+    ZKSObject *o = [self parseSobject:xmlo];
+    XCTAssertEqualObjects(@"xsd:double", [o typeOfField:@"min" withDescribe:desc]);
+    XCTAssertEqualObjects(@"xsd:decimal", [o typeOfField:@"max" withDescribe:desc]);
+    XCTAssertNil([o typeOfField:@"missing" withDescribe:desc]);
+
+    XCTAssertEqualObjects(@"xsd:double", [o typeOfField:@"min" withDescribe:nil]);
+    XCTAssertNil([o typeOfField:@"max" withDescribe:nil]);
+    XCTAssertNil([o typeOfField:@"missing" withDescribe:nil]);
 }
 
 @end
