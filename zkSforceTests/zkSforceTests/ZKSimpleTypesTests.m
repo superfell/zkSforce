@@ -39,10 +39,16 @@
     XCTAssertEqualObjects([NSDecimalNumber decimalNumberWithMantissa:12345 exponent:-3 isNegative:YES], [@"-12.345" ZKDecimal]);
 }
 
--(void)testInt {
+-(void)testInteger {
     XCTAssertEqualObjects([NSNumber numberWithLongLong:0], [@"0" ZKInteger]);
     XCTAssertEqualObjects([NSNumber numberWithLongLong:-1234], [@"-1234" ZKInteger]);
     XCTAssertEqualObjects([NSNumber numberWithLongLong:123456], [@"123456" ZKInteger]);
+}
+
+-(void)testLong {
+    XCTAssertEqualObjects([NSNumber numberWithLongLong:0], [@"0" ZKLong]);
+    XCTAssertEqualObjects([NSNumber numberWithLongLong:-1234], [@"-1234" ZKLong]);
+    XCTAssertEqualObjects([NSNumber numberWithLongLong:9223372036854775807], [@"9223372036854775807" ZKLong]);
 }
 
 -(void)testFloat {
@@ -74,4 +80,22 @@
     NSString *ds = [[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
     XCTAssertEqualObjects(@"bob!", ds);
 }
+
+-(void)testAsXmlType {
+    NSArray *strs = @[@"true",@"12.12",@"2016-11-12",@"Ym9iIQ=="];
+    NSArray *types = @[@"boolean",@"double",@"date", @"base64Binary"];
+    NSDateComponents *dc = [[NSDateComponents alloc] init];
+    dc.year = 2016;
+    dc.month=11;
+    dc.day=12;
+    dc.calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSArray *exp = @[@TRUE, @12.12, [dc date], [@"bob!" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    for (int i = 0; i < strs.count; i++) {
+        XCTAssertEqualObjects(exp[i], [strs[i] ZKAsXmlType:types[i]]);
+    }
+    
+    XCTAssertEqualObjects(@"bob", [@"bob" ZKAsXmlType:nil]);
+}
+
 @end

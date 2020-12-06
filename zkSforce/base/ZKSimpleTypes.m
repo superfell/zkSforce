@@ -1,4 +1,4 @@
-// Copyright (c) 2016 Simon Fell
+// Copyright (c) 2016,2020 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -37,6 +37,10 @@
     return @(self.longLongValue);
 }
 
+-(NSNumber *)ZKLong {
+    return @(self.longLongValue);
+}
+
 -(NSNumber *)ZKFloat {
     return @(self.floatValue);
 }
@@ -59,6 +63,32 @@
 
 -(NSData *)ZKBase64Binary {
     return self.ZKBase64Decode;
+}
+
+-(id)ZKAsXmlType:(NSString *)xsdTypeLocalName {
+    static NSDictionary *m = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        m = @{@"string":  ^id(NSString*s) { return s; },
+              @"boolean": ^id(NSString*s) { return [s ZKBoolean];},
+              @"integer": ^id(NSString*s) { return [s ZKInteger];},
+              @"int":     ^id(NSString*s) { return [s ZKInteger];},
+              @"long":    ^id(NSString*s) { return [s ZKLong];},
+              @"float":   ^id(NSString*s) { return [s ZKFloat];},
+              @"double":  ^id(NSString*s) { return [s ZKDouble];},
+              @"decimal": ^id(NSString*s) { return [s ZKDecimal];},
+              @"date":    ^id(NSString*s) { return [s ZKDate];},
+              @"time":    ^id(NSString*s) { return [s ZKTime];},
+              @"dateTime":^id(NSString*s) { return [s ZKDateTime];},
+              @"base64Binary" :^id(NSString*s) { return [s ZKBase64Binary];}};
+    });
+    typedef id(^accessor)(NSString*);
+    accessor acc = m[xsdTypeLocalName];
+    if (acc == nil) {
+        NSLog(@"primitive element with standard type %@ with no deserializer registered, returning NSString*", xsdTypeLocalName);
+        return self;
+    }
+    return acc(self);
 }
 
 @end

@@ -1,4 +1,4 @@
-// Copyright (c) 2006-2014,2018 Simon Fell
+// Copyright (c) 2006-2014,2018,2020 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -25,6 +25,7 @@
 @class ZKQueryResult;
 @class ZKAddress;
 @class ZKLocation;
+@class ZKDescribeSObject;
 
 /** ZKSObject represents a row of data in Salesforce [either already in salesforce, or one we're in
     the process of constructing to be sent to Salesforce */
@@ -47,6 +48,7 @@
 - (void)setFieldValue:(NSObject *)value field:(NSString *)field;
 - (void)setFieldDateTimeValue:(NSDate *)value field:(NSString *)field;
 - (void)setFieldDateValue:(NSDate *)value field:(NSString *)field;
+- (void)setFieldTimeValue:(NSDate *)value field:(NSString *)field;
 - (void)setFieldToNull:(NSString *)field;
 
 // basic getters
@@ -59,10 +61,19 @@
 - (BOOL)isFieldToNull:(NSString *)field;
 
 // typed getters
+
+/** Returns a strongly typed instance of the named field, using the field type from the describe if needed.
+    The typed instances are created on demand and cached, so repeatedly asking for the same field value will
+    get you the same object instance. If the type is not resolvable, then you'll get the string value for primitives.
+ */
+- (id)typedValueOfField:(NSString *)field withDescribe:(ZKDescribeSObject*)desc;
+
 - (BOOL)boolValue:(NSString *)field;
 - (NSDate *)dateTimeValue:(NSString *)field;
 - (NSDate *)dateValue:(NSString *)field;
-- (int)intValue:(NSString *)field;
+- (NSDate *)timeValue:(NSString *)field;
+- (long long)intValue:(NSString *)field;
+- (float)floatValue:(NSString *)field;
 - (double)doubleValue:(NSString *)field;
 
 - (ZKQueryResult *)queryResultValue:(NSString *)field;
@@ -71,5 +82,14 @@
 
 // others
 @property (readonly) NSArray *orderedFieldNames;
+
+/** returns true if there is a value for this field. Includes fields that were marked as xsi:nil by the server. */
+- (BOOL)containsField:(NSString *)field;
+
+/** returns the xml type of the named field if it was specified in the object sent from the server. */
+- (NSString*)typeOfField:(NSString *)field;
+
+/** returns the xml type of the named field, falling back to the metadata from the describe if its available.*/
+- (NSString*)typeOfField:(NSString *)field withDescribe:(ZKDescribeSObject*)desc;
 
 @end
