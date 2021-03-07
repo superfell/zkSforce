@@ -29,6 +29,7 @@
 @class ZKSObject;
 @class ZKSObject;
 @class ZKSObject;
+@class ZKSObject;
 /*
 <complexType name="LeadConvert" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -46,6 +47,8 @@
     <element nillable="true" type="ens:sObject" name="opportunityRecord"/>
     <element type="xsd:boolean" name="overwriteLeadSource"/>
     <element nillable="true" type="tns:ID" name="ownerId"/>
+    <element nillable="true" type="tns:ID" name="relatedPersonAccountId"/>
+    <element nillable="true" type="ens:sObject" name="relatedPersonAccountRecord"/>
     <element type="xsd:boolean" name="sendNotificationEmail"/>
   </sequence>
 </complexType>
@@ -66,5 +69,7 @@
 @property (strong) ZKSObject  *opportunityRecord; 
 @property (assign) BOOL        overwriteLeadSource; 
 @property (strong) NSString   *ownerId; 
+@property (strong) NSString   *relatedPersonAccountId; 
+@property (strong) ZKSObject  *relatedPersonAccountRecord; 
 @property (assign) BOOL        sendNotificationEmail; 
 @end

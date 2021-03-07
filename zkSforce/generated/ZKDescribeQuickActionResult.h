@@ -48,6 +48,9 @@
     <element nillable="true" type="tns:ID" name="lightningComponentBundleId"/>
     <element nillable="true" type="xsd:string" name="lightningComponentBundleName"/>
     <element nillable="true" type="xsd:string" name="lightningComponentQualifiedName"/>
+    <element nillable="true" type="tns:ID" name="lightningWebComponentBundleId"/>
+    <element nillable="true" type="xsd:string" name="lightningWebComponentBundleName"/>
+    <element nillable="true" type="xsd:string" name="lightningWebComponentQualifiedName"/>
     <element nillable="true" type="xsd:string" name="miniIconUrl"/>
     <element nillable="true" type="xsd:string" name="mobileExtensionId"/>
     <element type="xsd:string" name="name"/>
@@ -83,6 +86,9 @@
 @property (weak, readonly) NSString                 *lightningComponentBundleId; 
 @property (weak, readonly) NSString                 *lightningComponentBundleName; 
 @property (weak, readonly) NSString                 *lightningComponentQualifiedName; 
+@property (weak, readonly) NSString                 *lightningWebComponentBundleId; 
+@property (weak, readonly) NSString                 *lightningWebComponentBundleName; 
+@property (weak, readonly) NSString                 *lightningWebComponentQualifiedName; 
 @property (weak, readonly) NSString                 *miniIconUrl; 
 @property (weak, readonly) NSString                 *mobileExtensionId; 
 @property (weak, readonly) NSString                 *name; 

@@ -34,6 +34,7 @@
     <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
     <element nillable="true" type="tns:ID" name="leadId"/>
     <element nillable="true" type="tns:ID" name="opportunityId"/>
+    <element maxOccurs="1" minOccurs="0" type="tns:ID" name="relatedPersonAccountId"/>
     <element type="xsd:boolean" name="success"/>
   </sequence>
 </complexType>
@@ -45,5 +46,6 @@
 @property (weak, readonly) NSArray   *errors;  // of ZKError
 @property (weak, readonly) NSString  *leadId; 
 @property (weak, readonly) NSString  *opportunityId; 
+@property (weak, readonly) NSString  *relatedPersonAccountId; 
 @property (readonly) BOOL             success; 
 @end

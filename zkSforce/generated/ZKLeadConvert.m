@@ -29,24 +29,26 @@
 
 @implementation ZKLeadConvert
 
-@synthesize accountId, accountRecord, bypassAccountDedupeCheck, bypassContactDedupeCheck, contactId, contactRecord, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, opportunityRecord, overwriteLeadSource, ownerId, sendNotificationEmail;
+@synthesize accountId, accountRecord, bypassAccountDedupeCheck, bypassContactDedupeCheck, contactId, contactRecord, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, opportunityRecord, overwriteLeadSource, ownerId, relatedPersonAccountId, relatedPersonAccountRecord, sendNotificationEmail;
 
 -(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
-	[env addElement:@"accountId"                    elemValue:self.accountId                nillable:YES optional:NO];
-	[env addElement:@"accountRecord"                elemValue:self.accountRecord            nillable:YES optional:NO];
+	[env addElement:@"accountId"                    elemValue:self.accountId                  nillable:YES optional:NO];
+	[env addElement:@"accountRecord"                elemValue:self.accountRecord              nillable:YES optional:NO];
 	[env addBoolElement:@"bypassAccountDedupeCheck" elemValue:self.bypassAccountDedupeCheck];
 	[env addBoolElement:@"bypassContactDedupeCheck" elemValue:self.bypassContactDedupeCheck];
-	[env addElement:@"contactId"                    elemValue:self.contactId                nillable:YES optional:NO];
-	[env addElement:@"contactRecord"                elemValue:self.contactRecord            nillable:YES optional:NO];
-	[env addElement:@"convertedStatus"              elemValue:self.convertedStatus          nillable:NO  optional:NO];
+	[env addElement:@"contactId"                    elemValue:self.contactId                  nillable:YES optional:NO];
+	[env addElement:@"contactRecord"                elemValue:self.contactRecord              nillable:YES optional:NO];
+	[env addElement:@"convertedStatus"              elemValue:self.convertedStatus            nillable:NO  optional:NO];
 	[env addBoolElement:@"doNotCreateOpportunity"   elemValue:self.doNotCreateOpportunity];
-	[env addElement:@"leadId"                       elemValue:self.leadId                   nillable:NO  optional:NO];
-	[env addElement:@"opportunityId"                elemValue:self.opportunityId            nillable:YES optional:NO];
-	[env addElement:@"opportunityName"              elemValue:self.opportunityName          nillable:YES optional:NO];
-	[env addElement:@"opportunityRecord"            elemValue:self.opportunityRecord        nillable:YES optional:NO];
+	[env addElement:@"leadId"                       elemValue:self.leadId                     nillable:NO  optional:NO];
+	[env addElement:@"opportunityId"                elemValue:self.opportunityId              nillable:YES optional:NO];
+	[env addElement:@"opportunityName"              elemValue:self.opportunityName            nillable:YES optional:NO];
+	[env addElement:@"opportunityRecord"            elemValue:self.opportunityRecord          nillable:YES optional:NO];
 	[env addBoolElement:@"overwriteLeadSource"      elemValue:self.overwriteLeadSource];
-	[env addElement:@"ownerId"                      elemValue:self.ownerId                  nillable:YES optional:NO];
+	[env addElement:@"ownerId"                      elemValue:self.ownerId                    nillable:YES optional:NO];
+	[env addElement:@"relatedPersonAccountId"       elemValue:self.relatedPersonAccountId     nillable:YES optional:NO];
+	[env addElement:@"relatedPersonAccountRecord"   elemValue:self.relatedPersonAccountRecord nillable:YES optional:NO];
 	[env addBoolElement:@"sendNotificationEmail"    elemValue:self.sendNotificationEmail];
 	[env endElement:elemName];
 }

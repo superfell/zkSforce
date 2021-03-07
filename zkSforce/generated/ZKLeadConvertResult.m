@@ -49,6 +49,10 @@
     return [self string:@"opportunityId"];
 }
 			
+-(NSString *)relatedPersonAccountId {
+    return [self string:@"relatedPersonAccountId"];
+}
+			
 -(BOOL)success {
     return [self boolean:@"success"];
 }

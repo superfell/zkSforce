@@ -104,6 +104,18 @@
     return [self string:@"lightningComponentQualifiedName"];
 }
 			
+-(NSString *)lightningWebComponentBundleId {
+    return [self string:@"lightningWebComponentBundleId"];
+}
+			
+-(NSString *)lightningWebComponentBundleName {
+    return [self string:@"lightningWebComponentBundleName"];
+}
+			
+-(NSString *)lightningWebComponentQualifiedName {
+    return [self string:@"lightningWebComponentQualifiedName"];
+}
+			
 -(NSString *)miniIconUrl {
     return [self string:@"miniIconUrl"];
 }

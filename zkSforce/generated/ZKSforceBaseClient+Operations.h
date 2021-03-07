@@ -684,13 +684,13 @@
                completeBlock:(ZKCompleteUserInfoBlock)completeBlock;
 
 
-/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete
+/** Delete a set of SObjects by example. The passed SObject is a template for the object to delete
     Callbacks will be executed on the main queue. */
 -(void) deleteByExample:(NSArray *)sObjects
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
-/** Delete a set of sObjects by example. The passed SOBject is a template for the object to delete
+/** Delete a set of SObjects by example. The passed SObject is a template for the object to delete
     Callbacks with be executed on the supplied queue. */
 -(void) deleteByExample:(NSArray *)sObjects
                   queue:(dispatch_queue_t)callbackQueue
