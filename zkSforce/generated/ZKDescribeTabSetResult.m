@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeTabSetResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeTabSetResult"];
+}
+
+      
 -(NSString *)description {
     return [self string:@"description"];
 }

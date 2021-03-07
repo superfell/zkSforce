@@ -29,6 +29,11 @@
 
 @implementation ZKFieldComponent
 
++(void)load {
+   [self registerType:self xmlName:@"FieldComponent"];
+}
+
+      
 -(ZKDescribeField *)field {
     return [self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]].lastObject;
 }

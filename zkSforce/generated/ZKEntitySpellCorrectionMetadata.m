@@ -28,6 +28,11 @@
 
 @implementation ZKEntitySpellCorrectionMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"EntitySpellCorrectionMetadata"];
+}
+
+      
 -(NSString *)correctedQuery {
     return [self string:@"correctedQuery"];
 }

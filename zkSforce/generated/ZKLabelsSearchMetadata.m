@@ -29,6 +29,11 @@
 
 @implementation ZKLabelsSearchMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"LabelsSearchMetadata"];
+}
+
+      
 -(NSArray *)entityFieldLabels {
     return [self complexTypeArrayFromElements:@"entityFieldLabels" cls:[ZKNameValuePair class]];
 }

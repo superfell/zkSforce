@@ -28,6 +28,11 @@
 
 @implementation ZKEntityIntentQueryMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"EntityIntentQueryMetadata"];
+}
+
+      
 -(BOOL)intentQuery {
     return [self boolean:@"intentQuery"];
 }

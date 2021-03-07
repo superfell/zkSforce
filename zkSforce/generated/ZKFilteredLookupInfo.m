@@ -28,6 +28,11 @@
 
 @implementation ZKFilteredLookupInfo
 
++(void)load {
+   [self registerType:self xmlName:@"FilteredLookupInfo"];
+}
+
+      
 -(NSArray *)controllingFields {
     return [self strings:@"controllingFields"];
 }

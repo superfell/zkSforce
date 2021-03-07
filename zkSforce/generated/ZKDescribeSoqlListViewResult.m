@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeSoqlListViewResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoqlListViewResult"];
+}
+
+      
 -(NSArray *)describeSoqlListViews {
     return [self complexTypeArrayFromElements:@"describeSoqlListViews" cls:[ZKDescribeSoqlListView class]];
 }

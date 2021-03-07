@@ -31,6 +31,11 @@
 
 @implementation ZKDescribePathAssistant
 
++(void)load {
+   [self registerType:self xmlName:@"DescribePathAssistant"];
+}
+
+      
 -(BOOL)active {
     return [self boolean:@"active"];
 }

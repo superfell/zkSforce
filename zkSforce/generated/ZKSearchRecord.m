@@ -31,6 +31,11 @@
 
 @implementation ZKSearchRecord
 
++(void)load {
+   [self registerType:self xmlName:@"SearchRecord"];
+}
+
+      
 -(ZKSObject *)record {
     return [self sObject:@"record"];
 }

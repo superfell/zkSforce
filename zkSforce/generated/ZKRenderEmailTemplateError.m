@@ -28,6 +28,11 @@
 
 @implementation ZKRenderEmailTemplateError
 
++(void)load {
+   [self registerType:self xmlName:@"RenderEmailTemplateError"];
+}
+
+      
 -(NSString *)fieldName {
     return [self string:@"fieldName"];
 }

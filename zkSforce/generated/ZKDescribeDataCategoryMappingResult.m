@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeDataCategoryMappingResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeDataCategoryMappingResult"];
+}
+
+      
 -(NSString *)dataCategoryGroupId {
     return [self string:@"dataCategoryGroupId"];
 }

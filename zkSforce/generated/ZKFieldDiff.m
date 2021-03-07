@@ -28,6 +28,11 @@
 
 @implementation ZKFieldDiff
 
++(void)load {
+   [self registerType:self xmlName:@"FieldDiff"];
+}
+
+      
 -(NSString *)difference {
     return [self string:@"difference"];
 }

@@ -30,6 +30,11 @@
 
 @implementation ZKSearchResultsMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"SearchResultsMetadata"];
+}
+
+      
 -(NSArray *)entityLabelMetadata {
     return [self complexTypeArrayFromElements:@"entityLabelMetadata" cls:[ZKLabelsSearchMetadata class]];
 }

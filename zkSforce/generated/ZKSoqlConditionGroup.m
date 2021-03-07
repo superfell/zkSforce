@@ -29,6 +29,11 @@
 
 @implementation ZKSoqlConditionGroup
 
++(void)load {
+   [self registerType:self xmlName:@"SoqlConditionGroup"];
+}
+
+      
 -(NSArray *)conditions {
     return [self complexTypeArrayFromElements:@"conditions" cls:[ZKSoqlWhereCondition class]];
 }

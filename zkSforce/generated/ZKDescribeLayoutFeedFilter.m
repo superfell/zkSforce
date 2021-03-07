@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeLayoutFeedFilter
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutFeedFilter"];
+}
+
+      
 -(NSString *)label {
     return [self string:@"label"];
 }

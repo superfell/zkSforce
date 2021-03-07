@@ -30,6 +30,11 @@
 
 @implementation ZKQuickActionTemplateResult
 
++(void)load {
+   [self registerType:self xmlName:@"QuickActionTemplateResult"];
+}
+
+      
 -(NSString *)contextId {
     return [self string:@"contextId"];
 }

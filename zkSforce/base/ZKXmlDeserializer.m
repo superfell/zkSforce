@@ -29,6 +29,23 @@
 
 @implementation ZKXmlDeserializer
 
+static NSMutableDictionary *registeredComplexTypes;
+
++(void)load {
+    registeredComplexTypes = [[NSMutableDictionary alloc] init];
+}
+
++ (void)registerType:(Class)cls xmlName:(NSString *)name {
+    id inst = [cls alloc];
+    NSAssert([inst conformsToProtocol:@protocol(ZKXmlInitable)], @"registered type %@ does not conform to xmlInitable protocol", cls);
+    [registeredComplexTypes setObject:cls forKey:name];
+}
+
++ (NSObject<ZKXmlInitable>*)instanceOfXmlType:(NSString *)localName {
+    Class c = [registeredComplexTypes objectForKey:localName];
+    return [c alloc];
+}
+
 -(instancetype)initWithXmlElement:(ZKElement *)e {
     self = [super init];
     node = e;
@@ -40,7 +57,6 @@
     self = [super init];
     return self;
 }
-
 
 - (id)copyWithZone:(NSZone *)zone {
     return [[[self class] allocWithZone:zone] initWithXmlElement:node];
@@ -129,8 +145,7 @@
 
 - (Class) complexTypeClassForType:(ZKNamespacedName *)xsiType baseClass:(Class)base {
     if (xsiType == nil || (xsiType.localname).length == 0) return base;
-    NSString *className = [NSString stringWithFormat:@"ZK%@%@", [xsiType.localname substringToIndex:1].uppercaseString, [xsiType.localname substringFromIndex:1]];
-    Class cls = NSClassFromString(className);
+    Class cls = [registeredComplexTypes objectForKey:xsiType.localname];
     return cls != nil && [cls isSubclassOfClass:base] ? cls : base;
 }
 

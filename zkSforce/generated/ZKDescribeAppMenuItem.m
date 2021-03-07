@@ -30,6 +30,11 @@
 
 @implementation ZKDescribeAppMenuItem
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeAppMenuItem"];
+}
+
+      
 -(NSArray *)colors {
     return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
 }

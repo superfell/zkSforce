@@ -29,6 +29,11 @@
 
 @implementation ZKListViewRecord
 
++(void)load {
+   [self registerType:self xmlName:@"ListViewRecord"];
+}
+
+      
 -(NSArray *)columns {
     return [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewRecordColumn class]];
 }

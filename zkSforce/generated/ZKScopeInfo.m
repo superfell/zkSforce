@@ -28,6 +28,11 @@
 
 @implementation ZKScopeInfo
 
++(void)load {
+   [self registerType:self xmlName:@"ScopeInfo"];
+}
+
+      
 -(NSString *)label {
     return [self string:@"label"];
 }

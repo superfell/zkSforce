@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeQuickActionListResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeQuickActionListResult"];
+}
+
+      
 -(NSArray *)quickActionListItems {
     return [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKRenderEmailTemplateBodyResult
 
++(void)load {
+   [self registerType:self xmlName:@"RenderEmailTemplateBodyResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKRenderEmailTemplateError class]];
 }

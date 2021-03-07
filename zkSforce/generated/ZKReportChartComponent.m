@@ -28,6 +28,11 @@
 
 @implementation ZKReportChartComponent
 
++(void)load {
+   [self registerType:self xmlName:@"ReportChartComponent"];
+}
+
+      
 -(BOOL)cacheData {
     return [self boolean:@"cacheData"];
 }

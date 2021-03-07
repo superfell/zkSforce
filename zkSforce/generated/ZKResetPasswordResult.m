@@ -28,6 +28,11 @@
 
 @implementation ZKResetPasswordResult
 
++(void)load {
+   [self registerType:self xmlName:@"ResetPasswordResult"];
+}
+
+      
 -(NSString *)password {
     return [self string:@"password"];
 }

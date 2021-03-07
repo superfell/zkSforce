@@ -30,6 +30,11 @@
 
 @implementation ZKDescribeCompactLayoutsResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeCompactLayoutsResult"];
+}
+
+      
 -(NSArray *)compactLayouts {
     return [self complexTypeArrayFromElements:@"compactLayouts" cls:[ZKDescribeCompactLayout class]];
 }

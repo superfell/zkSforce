@@ -35,6 +35,11 @@
 
 @implementation ZKDescribeLayout
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayout"];
+}
+
+      
 -(ZKDescribeLayoutButtonSection *)buttonLayoutSection {
     return [self complexTypeArrayFromElements:@"buttonLayoutSection" cls:[ZKDescribeLayoutButtonSection class]].lastObject;
 }

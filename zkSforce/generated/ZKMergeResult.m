@@ -29,6 +29,11 @@
 
 @implementation ZKMergeResult
 
++(void)load {
+   [self registerType:self xmlName:@"MergeResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

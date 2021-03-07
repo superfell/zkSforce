@@ -29,6 +29,11 @@
 
 @implementation ZKGetDeletedResult
 
++(void)load {
+   [self registerType:self xmlName:@"GetDeletedResult"];
+}
+
+      
 -(NSArray *)deletedRecords {
     return [self complexTypeArrayFromElements:@"deletedRecords" cls:[ZKDeletedRecord class]];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeVisualForceResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeVisualForceResult"];
+}
+
+      
 -(NSString *)domain {
     return [self string:@"domain"];
 }

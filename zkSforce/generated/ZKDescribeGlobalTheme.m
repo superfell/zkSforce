@@ -30,6 +30,11 @@
 
 @implementation ZKDescribeGlobalTheme
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeGlobalTheme"];
+}
+
+      
 -(ZKDescribeGlobalResult *)global {
     return [self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]].lastObject;
 }

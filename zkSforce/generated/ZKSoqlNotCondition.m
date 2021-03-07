@@ -29,6 +29,11 @@
 
 @implementation ZKSoqlNotCondition
 
++(void)load {
+   [self registerType:self xmlName:@"SoqlNotCondition"];
+}
+
+      
 -(ZKSoqlWhereCondition *)condition {
     return [self complexTypeArrayFromElements:@"condition" cls:[ZKSoqlWhereCondition class]].lastObject;
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKDescribePathAssistantsResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribePathAssistantsResult"];
+}
+
+      
 -(NSArray *)pathAssistants {
     return [self complexTypeArrayFromElements:@"pathAssistants" cls:[ZKDescribePathAssistant class]];
 }

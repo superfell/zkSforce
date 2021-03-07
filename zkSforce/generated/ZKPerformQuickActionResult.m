@@ -29,6 +29,11 @@
 
 @implementation ZKPerformQuickActionResult
 
++(void)load {
+   [self registerType:self xmlName:@"PerformQuickActionResult"];
+}
+
+      
 -(NSString *)contextId {
     return [self string:@"contextId"];
 }

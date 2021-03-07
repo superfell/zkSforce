@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeColor
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeColor"];
+}
+
+      
 -(NSString *)color {
     return [self string:@"color"];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeDataCategoryGroupResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeDataCategoryGroupResult"];
+}
+
+      
 -(NSInteger)categoryCount {
     return [self integer:@"categoryCount"];
 }

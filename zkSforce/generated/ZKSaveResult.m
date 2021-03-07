@@ -29,6 +29,11 @@
 
 @implementation ZKSaveResult
 
++(void)load {
+   [self registerType:self xmlName:@"SaveResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

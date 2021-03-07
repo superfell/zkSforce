@@ -29,6 +29,11 @@
 
 @implementation ZKUndeleteResult
 
++(void)load {
+   [self registerType:self xmlName:@"UndeleteResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

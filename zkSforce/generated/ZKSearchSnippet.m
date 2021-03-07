@@ -29,6 +29,11 @@
 
 @implementation ZKSearchSnippet
 
++(void)load {
+   [self registerType:self xmlName:@"SearchSnippet"];
+}
+
+      
 -(NSString *)text {
     return [self string:@"text"];
 }

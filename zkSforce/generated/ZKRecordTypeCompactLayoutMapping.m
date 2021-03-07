@@ -28,6 +28,11 @@
 
 @implementation ZKRecordTypeCompactLayoutMapping
 
++(void)load {
+   [self registerType:self xmlName:@"RecordTypeCompactLayoutMapping"];
+}
+
+      
 -(BOOL)available {
     return [self boolean:@"available"];
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeSoftphoneLayoutSection
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoftphoneLayoutSection"];
+}
+
+      
 -(NSString *)entityApiName {
     return [self string:@"entityApiName"];
 }

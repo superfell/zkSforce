@@ -28,6 +28,11 @@
 
 @implementation ZKRelatedListSort
 
++(void)load {
+   [self registerType:self xmlName:@"RelatedListSort"];
+}
+
+      
 -(BOOL)ascending {
     return [self boolean:@"ascending"];
 }

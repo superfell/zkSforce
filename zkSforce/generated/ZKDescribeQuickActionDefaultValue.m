@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeQuickActionDefaultValue
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeQuickActionDefaultValue"];
+}
+
+      
 -(NSString *)defaultValue {
     return [self string:@"defaultValue"];
 }

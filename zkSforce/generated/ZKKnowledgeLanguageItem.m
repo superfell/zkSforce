@@ -28,6 +28,11 @@
 
 @implementation ZKKnowledgeLanguageItem
 
++(void)load {
+   [self registerType:self xmlName:@"KnowledgeLanguageItem"];
+}
+
+      
 -(BOOL)active {
     return [self boolean:@"active"];
 }

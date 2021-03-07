@@ -28,6 +28,11 @@
 
 @implementation ZKExtendedErrorDetails
 
++(void)load {
+   [self registerType:self xmlName:@"ExtendedErrorDetails"];
+}
+
+      
 -(NSString *)extendedErrorCode {
     return [self string:@"extendedErrorCode"];
 }

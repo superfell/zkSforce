@@ -29,6 +29,11 @@
 
 @implementation ZKFieldLayoutComponent
 
++(void)load {
+   [self registerType:self xmlName:@"FieldLayoutComponent"];
+}
+
+      
 -(NSArray *)components {
     return [self complexTypeArrayFromElements:@"components" cls:[ZKDescribeLayoutComponent class]];
 }

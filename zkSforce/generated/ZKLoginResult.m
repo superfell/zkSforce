@@ -29,6 +29,11 @@
 
 @implementation ZKLoginResult
 
++(void)load {
+   [self registerType:self xmlName:@"LoginResult"];
+}
+
+      
 -(NSString *)metadataServerUrl {
     return [self string:@"metadataServerUrl"];
 }

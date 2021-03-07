@@ -29,6 +29,11 @@
 
 @implementation ZKKnowledgeSettings
 
++(void)load {
+   [self registerType:self xmlName:@"KnowledgeSettings"];
+}
+
+      
 -(NSString *)defaultLanguage {
     return [self string:@"defaultLanguage"];
 }

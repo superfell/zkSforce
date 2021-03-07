@@ -28,6 +28,11 @@
 
 @implementation ZKDescribePathAssistantField
 
++(void)load {
+   [self registerType:self xmlName:@"DescribePathAssistantField"];
+}
+
+      
 -(NSString *)apiName {
     return [self string:@"apiName"];
 }

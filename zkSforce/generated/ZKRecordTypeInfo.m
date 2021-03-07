@@ -28,6 +28,11 @@
 
 @implementation ZKRecordTypeInfo
 
++(void)load {
+   [self registerType:self xmlName:@"RecordTypeInfo"];
+}
+
+      
 -(BOOL)active {
     return [self boolean:@"active"];
 }

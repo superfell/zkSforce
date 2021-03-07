@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeAnimationRule
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeAnimationRule"];
+}
+
+      
 -(NSString *)animationFrequency {
     return [self string:@"animationFrequency"];
 }

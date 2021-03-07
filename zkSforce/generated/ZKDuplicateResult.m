@@ -29,6 +29,11 @@
 
 @implementation ZKDuplicateResult
 
++(void)load {
+   [self registerType:self xmlName:@"DuplicateResult"];
+}
+
+      
 -(BOOL)allowSave {
     return [self boolean:@"allowSave"];
 }

@@ -30,6 +30,11 @@
 
 @implementation ZKRenderStoredEmailTemplateResult
 
++(void)load {
+   [self registerType:self xmlName:@"RenderStoredEmailTemplateResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

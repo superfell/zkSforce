@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeSoftphoneLayoutResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoftphoneLayoutResult"];
+}
+
+      
 -(NSArray *)callTypes {
     return [self complexTypeArrayFromElements:@"callTypes" cls:[ZKDescribeSoftphoneLayoutCallType class]];
 }

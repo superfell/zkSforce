@@ -28,6 +28,11 @@
 
 @implementation ZKListViewRecordColumn
 
++(void)load {
+   [self registerType:self xmlName:@"ListViewRecordColumn"];
+}
+
+      
 -(NSString *)fieldNameOrPath {
     return [self string:@"fieldNameOrPath"];
 }

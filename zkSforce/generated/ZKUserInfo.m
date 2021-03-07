@@ -28,6 +28,11 @@
 
 @implementation ZKUserInfo
 
++(void)load {
+   [self registerType:self xmlName:@"GetUserInfoResult"];
+}
+
+      
 -(BOOL)accessibilityMode {
     return [self boolean:@"accessibilityMode"];
 }

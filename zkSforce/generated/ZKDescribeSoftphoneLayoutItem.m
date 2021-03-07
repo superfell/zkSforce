@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeSoftphoneLayoutItem
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoftphoneLayoutItem"];
+}
+
+      
 -(NSString *)itemApiName {
     return [self string:@"itemApiName"];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKAnalyticsCloudComponent
 
++(void)load {
+   [self registerType:self xmlName:@"AnalyticsCloudComponent"];
+}
+
+      
 -(NSString *)error {
     return [self string:@"error"];
 }

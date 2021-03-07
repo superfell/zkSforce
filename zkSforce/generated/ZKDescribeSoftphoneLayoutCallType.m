@@ -31,6 +31,11 @@
 
 @implementation ZKDescribeSoftphoneLayoutCallType
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoftphoneLayoutCallType"];
+}
+
+      
 -(NSArray *)infoFields {
     return [self complexTypeArrayFromElements:@"infoFields" cls:[ZKDescribeSoftphoneLayoutInfoField class]];
 }

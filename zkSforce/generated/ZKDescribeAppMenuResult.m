@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeAppMenuResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeAppMenuResult"];
+}
+
+      
 -(NSArray *)appMenuItems {
     return [self complexTypeArrayFromElements:@"appMenuItems" cls:[ZKDescribeAppMenuItem class]];
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKDataCategory
 
++(void)load {
+   [self registerType:self xmlName:@"DataCategory"];
+}
+
+      
 -(NSArray *)childCategories {
     return [self complexTypeArrayFromElements:@"childCategories" cls:[ZKDataCategory class]];
 }

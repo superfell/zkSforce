@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeLayoutComponent
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutComponent"];
+}
+
+      
 -(NSInteger)displayLines {
     return [self integer:@"displayLines"];
 }

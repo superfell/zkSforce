@@ -28,6 +28,11 @@
 
 @implementation ZKNamedLayoutInfo
 
++(void)load {
+   [self registerType:self xmlName:@"NamedLayoutInfo"];
+}
+
+      
 -(NSString *)name {
     return [self string:@"name"];
 }

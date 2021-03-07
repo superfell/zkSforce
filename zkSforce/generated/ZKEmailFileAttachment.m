@@ -28,6 +28,11 @@
 
 @implementation ZKEmailFileAttachment
 
++(void)load {
+   [self registerType:self xmlName:@"EmailFileAttachment"];
+}
+
+      
 -(NSData *)body {
     return [self blob:@"body"];
 }

@@ -30,6 +30,11 @@
 
 @implementation ZKDeleteByExampleResult
 
++(void)load {
+   [self registerType:self xmlName:@"DeleteByExampleResult"];
+}
+
+      
 -(ZKSObject *)entity {
     return [self sObject:@"entity"];
 }

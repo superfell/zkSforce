@@ -29,6 +29,11 @@
 
 @implementation ZKCustomLinkComponent
 
++(void)load {
+   [self registerType:self xmlName:@"CustomLinkComponent"];
+}
+
+      
 -(ZKDescribeLayoutButton *)customLink {
     return [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
 }

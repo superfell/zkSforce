@@ -29,6 +29,11 @@
 
 @implementation ZKRelatedContent
 
++(void)load {
+   [self registerType:self xmlName:@"RelatedContent"];
+}
+
+      
 -(NSArray *)relatedContentItems {
     return [self complexTypeArrayFromElements:@"relatedContentItems" cls:[ZKDescribeRelatedContentItem class]];
 }

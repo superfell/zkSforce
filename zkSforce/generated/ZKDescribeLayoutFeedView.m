@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeLayoutFeedView
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutFeedView"];
+}
+
+      
 -(NSArray *)feedFilters {
     return [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
 }

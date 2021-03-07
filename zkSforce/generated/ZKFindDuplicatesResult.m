@@ -30,6 +30,11 @@
 
 @implementation ZKFindDuplicatesResult
 
++(void)load {
+   [self registerType:self xmlName:@"FindDuplicatesResult"];
+}
+
+      
 -(NSArray *)duplicateResults {
     return [self complexTypeArrayFromElements:@"duplicateResults" cls:[ZKDuplicateResult class]];
 }

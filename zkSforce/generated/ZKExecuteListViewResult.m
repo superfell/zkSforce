@@ -30,6 +30,11 @@
 
 @implementation ZKExecuteListViewResult
 
++(void)load {
+   [self registerType:self xmlName:@"ExecuteListViewResult"];
+}
+
+      
 -(NSArray *)columns {
     return [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewColumn class]];
 }

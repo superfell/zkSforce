@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeApprovalLayout
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeApprovalLayout"];
+}
+
+      
 -(NSString *)id {
     return [self string:@"id"];
 }

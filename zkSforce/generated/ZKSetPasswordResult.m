@@ -28,4 +28,9 @@
 
 @implementation ZKSetPasswordResult
 
++(void)load {
+   [self registerType:self xmlName:@"SetPasswordResult"];
+}
+
+      
 @end

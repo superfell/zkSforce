@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeSoftphoneScreenPopOption
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoftphoneScreenPopOption"];
+}
+
+      
 -(NSString *)matchType {
     return [self string:@"matchType"];
 }

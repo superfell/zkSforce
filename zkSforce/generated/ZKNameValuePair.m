@@ -28,6 +28,11 @@
 
 @implementation ZKNameValuePair
 
++(void)load {
+   [self registerType:self xmlName:@"NameValuePair"];
+}
+
+      
 -(NSString *)name {
     return [self string:@"name"];
 }

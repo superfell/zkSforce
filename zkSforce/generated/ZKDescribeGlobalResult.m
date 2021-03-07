@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeGlobalResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeGlobalResult"];
+}
+
+      
 -(NSString *)encoding {
     return [self string:@"encoding"];
 }

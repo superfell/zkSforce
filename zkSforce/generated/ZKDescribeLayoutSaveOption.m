@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeLayoutSaveOption
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutSaveOption"];
+}
+
+      
 -(BOOL)defaultValue {
     return [self boolean:@"defaultValue"];
 }

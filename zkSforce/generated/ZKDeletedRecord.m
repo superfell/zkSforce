@@ -28,6 +28,11 @@
 
 @implementation ZKDeletedRecord
 
++(void)load {
+   [self registerType:self xmlName:@"DeletedRecord"];
+}
+
+      
 -(NSDate *)deletedDate {
     return [self dateTime:@"deletedDate"];
 }

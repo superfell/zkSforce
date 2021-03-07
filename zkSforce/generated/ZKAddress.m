@@ -31,6 +31,10 @@
 
 @synthesize city, country, countryCode, geocodeAccuracy, postalCode, state, stateCode, street;
 
++(void)load {
+    [self registerType:self xmlName:@"address"];
+}
+
 -(instancetype)init {
     self = [super init];
     return self;

@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeLayoutSection
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutSection"];
+}
+
+      
 -(BOOL)collapsed {
     return [self boolean:@"collapsed"];
 }

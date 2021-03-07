@@ -28,6 +28,11 @@
 
 @implementation ZKVisualforcePage
 
++(void)load {
+   [self registerType:self xmlName:@"VisualforcePage"];
+}
+
+      
 -(BOOL)showLabel {
     return [self boolean:@"showLabel"];
 }

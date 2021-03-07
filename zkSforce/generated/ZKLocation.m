@@ -31,6 +31,10 @@
 
 @synthesize latitude, longitude;
 
++(void)load {
+    [self registerType:self xmlName:@"location"];
+}
+
 -(instancetype)init {
     self = [super init];
     return self;

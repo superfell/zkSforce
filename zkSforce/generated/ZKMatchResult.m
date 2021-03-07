@@ -30,6 +30,11 @@
 
 @implementation ZKMatchResult
 
++(void)load {
+   [self registerType:self xmlName:@"MatchResult"];
+}
+
+      
 -(NSString *)entityType {
     return [self string:@"entityType"];
 }

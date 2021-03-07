@@ -29,6 +29,11 @@
 
 @implementation ZKSingleEmailMessage
 
++(void)load {
+   [self registerType:self xmlName:@"SingleEmailMessage"];
+}
+
+      
 -(NSArray *)bccAddresses {
     return [self strings:@"bccAddresses"];
 }

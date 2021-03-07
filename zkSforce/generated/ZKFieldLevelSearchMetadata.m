@@ -28,6 +28,11 @@
 
 @implementation ZKFieldLevelSearchMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"FieldLevelSearchMetadata"];
+}
+
+      
 -(NSString *)label {
     return [self string:@"label"];
 }

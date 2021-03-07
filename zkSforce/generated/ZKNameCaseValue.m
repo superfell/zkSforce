@@ -28,6 +28,11 @@
 
 @implementation ZKNameCaseValue
 
++(void)load {
+   [self registerType:self xmlName:@"NameCaseValue"];
+}
+
+      
 -(NSString *)article {
     return [self string:@"article"];
 }

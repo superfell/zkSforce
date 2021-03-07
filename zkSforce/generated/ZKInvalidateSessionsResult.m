@@ -29,6 +29,11 @@
 
 @implementation ZKInvalidateSessionsResult
 
++(void)load {
+   [self registerType:self xmlName:@"InvalidateSessionsResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

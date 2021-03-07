@@ -29,6 +29,11 @@
 
 @implementation ZKDuplicateError
 
++(void)load {
+   [self registerType:self xmlName:@"DuplicateError"];
+}
+
+      
 -(ZKDuplicateResult *)duplicateResult {
     return [self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]].lastObject;
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKSoqlCondition
 
++(void)load {
+   [self registerType:self xmlName:@"SoqlCondition"];
+}
+
+      
 -(NSString *)field {
     return [self string:@"field"];
 }

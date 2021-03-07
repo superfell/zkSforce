@@ -31,6 +31,10 @@
 
 @synthesize bccSender, emailPriority, replyTo, saveAsActivity, senderDisplayName, subject, useSignature;
 
++(void)load {
+    [self registerType:self xmlName:@"Email"];
+}
+
 -(instancetype)init {
     self = [super init];
     return self;

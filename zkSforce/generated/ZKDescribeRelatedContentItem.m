@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeRelatedContentItem
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeRelatedContentItem"];
+}
+
+      
 -(ZKDescribeLayoutItem *)describeLayoutItem {
     return [self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]].lastObject;
 }

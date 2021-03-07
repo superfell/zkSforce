@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeLayoutItem
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutItem"];
+}
+
+      
 -(BOOL)editableForNew {
     return [self boolean:@"editableForNew"];
 }

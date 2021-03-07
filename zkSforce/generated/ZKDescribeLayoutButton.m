@@ -30,6 +30,11 @@
 
 @implementation ZKDescribeLayoutButton
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutButton"];
+}
+
+      
 -(NSString *)behavior {
     return [self string:@"behavior"];
 }

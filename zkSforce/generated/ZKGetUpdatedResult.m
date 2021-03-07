@@ -28,6 +28,11 @@
 
 @implementation ZKGetUpdatedResult
 
++(void)load {
+   [self registerType:self xmlName:@"GetUpdatedResult"];
+}
+
+      
 -(NSArray *)ids {
     return [self strings:@"ids"];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKSearchRecordMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"SearchRecordMetadata"];
+}
+
+      
 -(BOOL)searchPromoted {
     return [self boolean:@"searchPromoted"];
 }

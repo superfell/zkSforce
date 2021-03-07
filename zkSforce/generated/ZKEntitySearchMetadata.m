@@ -33,6 +33,11 @@
 
 @implementation ZKEntitySearchMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"EntitySearchMetadata"];
+}
+
+      
 -(NSString *)entityName {
     return [self string:@"entityName"];
 }

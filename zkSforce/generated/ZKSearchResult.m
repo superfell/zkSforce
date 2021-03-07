@@ -30,6 +30,11 @@
 
 @implementation ZKSearchResult
 
++(void)load {
+   [self registerType:self xmlName:@"SearchResult"];
+}
+
+      
 -(NSString *)queryId {
     return [self string:@"queryId"];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKCanvas
 
++(void)load {
+   [self registerType:self xmlName:@"Canvas"];
+}
+
+      
 -(NSString *)displayLocation {
     return [self string:@"displayLocation"];
 }

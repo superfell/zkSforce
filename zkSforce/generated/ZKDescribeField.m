@@ -35,6 +35,11 @@
 
 @synthesize sobject;
 
++(void)load {
+   [self registerType:self xmlName:@"Field"];
+}
+
+      
 -(id)copyWithZone:(NSZone *)zone {
     ZKElement *e = [node copyWithZone:zone];
     ZKDescribeField *c = [[ZKDescribeField alloc] initWithXmlElement:e];

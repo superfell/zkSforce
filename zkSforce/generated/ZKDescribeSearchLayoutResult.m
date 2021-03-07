@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeSearchLayoutResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSearchLayoutResult"];
+}
+
+      
 -(NSString *)errorMsg {
     return [self string:@"errorMsg"];
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKRecordTypeMapping
 
++(void)load {
+   [self registerType:self xmlName:@"RecordTypeMapping"];
+}
+
+      
 -(BOOL)active {
     return [self boolean:@"active"];
 }

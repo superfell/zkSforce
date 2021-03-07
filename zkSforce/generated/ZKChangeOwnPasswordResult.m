@@ -28,4 +28,9 @@
 
 @implementation ZKChangeOwnPasswordResult
 
++(void)load {
+   [self registerType:self xmlName:@"ChangeOwnPasswordResult"];
+}
+
+      
 @end

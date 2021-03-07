@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeAvailableQuickActionResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeAvailableQuickActionResult"];
+}
+
+      
 -(NSString *)actionEnumOrId {
     return [self string:@"actionEnumOrId"];
 }

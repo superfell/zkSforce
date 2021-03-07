@@ -26,10 +26,17 @@
 @class ZKNamespacedName;
 @class ZKXsdAnyType;
 
-@interface ZKXmlDeserializer : NSObject<NSCopying> {
+@protocol ZKXmlInitable <NSObject>
+- (instancetype)initWithXmlElement:(ZKElement *)e;
+@end
+
+@interface ZKXmlDeserializer : NSObject<NSCopying, ZKXmlInitable> {
     ZKElement *node;
     NSMutableDictionary *values;
 }
++ (void)registerType:(Class)cls xmlName:(NSString *)name;
++ (NSObject<ZKXmlInitable>*)instanceOfXmlType:(NSString *)localName;
+
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithXmlElement:(ZKElement *)e NS_DESIGNATED_INITIALIZER;
 

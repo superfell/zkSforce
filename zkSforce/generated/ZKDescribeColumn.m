@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeColumn
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeColumn"];
+}
+
+      
 -(NSString *)field {
     return [self string:@"field"];
 }

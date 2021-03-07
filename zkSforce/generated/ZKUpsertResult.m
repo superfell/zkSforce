@@ -29,6 +29,11 @@
 
 @implementation ZKUpsertResult
 
++(void)load {
+   [self registerType:self xmlName:@"UpsertResult"];
+}
+
+      
 -(BOOL)created {
     return [self boolean:@"created"];
 }

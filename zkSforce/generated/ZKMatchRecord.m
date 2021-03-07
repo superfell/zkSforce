@@ -31,6 +31,11 @@
 
 @implementation ZKMatchRecord
 
++(void)load {
+   [self registerType:self xmlName:@"MatchRecord"];
+}
+
+      
 -(NSArray *)additionalInformation {
     return [self complexTypeArrayFromElements:@"additionalInformation" cls:[ZKAdditionalInformationMap class]];
 }

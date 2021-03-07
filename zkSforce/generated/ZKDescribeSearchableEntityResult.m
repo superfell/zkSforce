@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeSearchableEntityResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSearchableEntityResult"];
+}
+
+      
 -(NSString *)label {
     return [self string:@"label"];
 }

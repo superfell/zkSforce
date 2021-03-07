@@ -28,6 +28,11 @@
 
 @implementation ZKEntityErrorMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"EntityErrorMetadata"];
+}
+
+      
 -(NSString *)errorCode {
     return [self string:@"errorCode"];
 }

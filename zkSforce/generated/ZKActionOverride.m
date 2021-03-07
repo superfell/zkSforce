@@ -28,6 +28,11 @@
 
 @implementation ZKActionOverride
 
++(void)load {
+   [self registerType:self xmlName:@"ActionOverride"];
+}
+
+      
 -(NSString *)formFactor {
     return [self string:@"formFactor"];
 }

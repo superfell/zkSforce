@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeGlobalSObject
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeGlobalSObjectResult"];
+}
+
+      
 -(BOOL)activateable {
     return [self boolean:@"activateable"];
 }

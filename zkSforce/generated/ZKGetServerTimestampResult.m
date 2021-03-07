@@ -28,6 +28,11 @@
 
 @implementation ZKGetServerTimestampResult
 
++(void)load {
+   [self registerType:self xmlName:@"GetServerTimestampResult"];
+}
+
+      
 -(NSDate *)timestamp {
     return [self dateTime:@"timestamp"];
 }

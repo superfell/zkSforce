@@ -28,6 +28,11 @@
 
 @implementation ZKEntitySearchPromotionMetadata
 
++(void)load {
+   [self registerType:self xmlName:@"EntitySearchPromotionMetadata"];
+}
+
+      
 -(NSInteger)promotedResultCount {
     return [self integer:@"promotedResultCount"];
 }

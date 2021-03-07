@@ -30,6 +30,11 @@
 
 @implementation ZKDescribeTab
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeTab"];
+}
+
+      
 -(NSArray *)colors {
     return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
 }

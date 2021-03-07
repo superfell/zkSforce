@@ -31,6 +31,10 @@
 
 @synthesize fieldNameOrPath, nullsPosition, sortDirection;
 
++(void)load {
+    [self registerType:self xmlName:@"ListViewOrderBy"];
+}
+
 -(instancetype)init {
     self = [super init];
     return self;

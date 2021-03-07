@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeDataCategoryGroupStructureResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeDataCategoryGroupStructureResult"];
+}
+
+      
 -(NSString *)description {
     return [self string:@"description"];
 }

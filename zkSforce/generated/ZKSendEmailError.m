@@ -28,6 +28,11 @@
 
 @implementation ZKSendEmailError
 
++(void)load {
+   [self registerType:self xmlName:@"SendEmailError"];
+}
+
+      
 -(NSArray *)fields {
     return [self strings:@"fields"];
 }

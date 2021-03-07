@@ -30,6 +30,11 @@
 
 @implementation ZKDescribePathAssistantStep
 
++(void)load {
+   [self registerType:self xmlName:@"DescribePathAssistantStep"];
+}
+
+      
 -(BOOL)closed {
     return [self boolean:@"closed"];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKListViewColumn
 
++(void)load {
+   [self registerType:self xmlName:@"ListViewColumn"];
+}
+
+      
 -(NSString *)ascendingLabel {
     return [self string:@"ascendingLabel"];
 }

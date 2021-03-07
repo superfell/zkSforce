@@ -28,4 +28,9 @@
 
 @implementation ZKSoqlWhereCondition
 
++(void)load {
+   [self registerType:self xmlName:@"SoqlWhereCondition"];
+}
+
+      
 @end

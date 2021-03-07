@@ -28,6 +28,11 @@
 
 @implementation ZKRelatedListColumn
 
++(void)load {
+   [self registerType:self xmlName:@"RelatedListColumn"];
+}
+
+      
 -(NSString *)field {
     return [self string:@"field"];
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeApprovalLayoutResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeApprovalLayoutResult"];
+}
+
+      
 -(NSArray *)approvalLayouts {
     return [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
 }

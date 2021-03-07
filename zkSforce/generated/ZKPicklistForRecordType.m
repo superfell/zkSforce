@@ -29,6 +29,11 @@
 
 @implementation ZKPicklistForRecordType
 
++(void)load {
+   [self registerType:self xmlName:@"PicklistForRecordType"];
+}
+
+      
 -(NSString *)picklistName {
     return [self string:@"picklistName"];
 }

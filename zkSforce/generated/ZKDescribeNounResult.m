@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeNounResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeNounResult"];
+}
+
+      
 -(NSArray *)caseValues {
     return [self complexTypeArrayFromElements:@"caseValues" cls:[ZKNameCaseValue class]];
 }

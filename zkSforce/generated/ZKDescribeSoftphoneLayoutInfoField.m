@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeSoftphoneLayoutInfoField
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoftphoneLayoutInfoField"];
+}
+
+      
 -(NSString *)name {
     return [self string:@"name"];
 }

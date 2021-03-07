@@ -31,6 +31,11 @@
 
 @implementation ZKDescribeSoqlListView
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSoqlListView"];
+}
+
+      
 -(NSArray *)columns {
     return [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewColumn class]];
 }

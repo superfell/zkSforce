@@ -29,6 +29,11 @@
 
 @implementation ZKEmptyRecycleBinResult
 
++(void)load {
+   [self registerType:self xmlName:@"EmptyRecycleBinResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

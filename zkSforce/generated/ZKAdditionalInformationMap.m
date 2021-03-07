@@ -31,6 +31,10 @@
 
 @synthesize name, value;
 
++(void)load {
+    [self registerType:self xmlName:@"AdditionalInformationMap"];
+}
+
 -(instancetype)init {
     self = [super init];
     return self;

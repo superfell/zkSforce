@@ -29,6 +29,11 @@
 
 @implementation ZKSendEmailResult
 
++(void)load {
+   [self registerType:self xmlName:@"SendEmailResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKSendEmailError class]];
 }

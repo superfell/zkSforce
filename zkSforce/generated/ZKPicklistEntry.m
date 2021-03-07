@@ -28,6 +28,11 @@
 
 @implementation ZKPicklistEntry
 
++(void)load {
+   [self registerType:self xmlName:@"PicklistEntry"];
+}
+
+      
 -(BOOL)active {
     return [self boolean:@"active"];
 }

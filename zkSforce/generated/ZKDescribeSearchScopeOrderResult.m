@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeSearchScopeOrderResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeSearchScopeOrderResult"];
+}
+
+      
 -(NSString *)keyPrefix {
     return [self string:@"keyPrefix"];
 }

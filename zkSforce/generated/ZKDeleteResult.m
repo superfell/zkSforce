@@ -29,6 +29,11 @@
 
 @implementation ZKDeleteResult
 
++(void)load {
+   [self registerType:self xmlName:@"DeleteResult"];
+}
+
+      
 -(NSArray *)errors {
     return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
 }

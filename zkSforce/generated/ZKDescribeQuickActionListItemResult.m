@@ -30,6 +30,11 @@
 
 @implementation ZKDescribeQuickActionListItemResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeQuickActionListItemResult"];
+}
+
+      
 -(NSString *)accessLevelRequired {
     return [self string:@"accessLevelRequired"];
 }

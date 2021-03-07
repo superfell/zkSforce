@@ -29,6 +29,11 @@
 
 @implementation ZKLeadConvertResult
 
++(void)load {
+   [self registerType:self xmlName:@"LeadConvertResult"];
+}
+
+      
 -(NSString *)accountId {
     return [self string:@"accountId"];
 }

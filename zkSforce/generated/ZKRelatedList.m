@@ -31,6 +31,11 @@
 
 @implementation ZKRelatedList
 
++(void)load {
+   [self registerType:self xmlName:@"RelatedList"];
+}
+
+      
 -(NSString *)accessLevelRequiredForCreate {
     return [self string:@"accessLevelRequiredForCreate"];
 }

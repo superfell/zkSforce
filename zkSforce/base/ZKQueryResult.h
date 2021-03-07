@@ -19,9 +19,9 @@
 // THE SOFTWARE.
 //
 
-@class ZKElement;
+#import "ZKXmlDeserializer.h"
 
-@interface ZKQueryResult : NSObject <NSCopying> {
+@interface ZKQueryResult : NSObject <NSCopying, ZKXmlInitable> {
     NSInteger   size;
     BOOL        done;
     NSString    *queryLocator;

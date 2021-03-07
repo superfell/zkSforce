@@ -29,6 +29,11 @@
 
 @implementation ZKProcessResult
 
++(void)load {
+   [self registerType:self xmlName:@"ProcessResult"];
+}
+
+      
 -(NSArray *)actorIds {
     return [self strings:@"actorIds"];
 }

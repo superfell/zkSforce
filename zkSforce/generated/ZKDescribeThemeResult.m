@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeThemeResult
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeThemeResult"];
+}
+
+      
 -(NSArray *)themeItems {
     return [self complexTypeArrayFromElements:@"themeItems" cls:[ZKDescribeThemeItem class]];
 }

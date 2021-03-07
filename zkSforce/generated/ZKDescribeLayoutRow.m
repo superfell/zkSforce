@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeLayoutRow
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutRow"];
+}
+
+      
 -(NSArray *)layoutItems {
     return [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
 }

@@ -29,6 +29,11 @@
 
 @implementation ZKDescribeLayoutButtonSection
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeLayoutButtonSection"];
+}
+
+      
 -(NSArray *)detailButtons {
     return [self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]];
 }

@@ -28,6 +28,11 @@
 
 @implementation ZKDescribeIcon
 
++(void)load {
+   [self registerType:self xmlName:@"DescribeIcon"];
+}
+
+      
 -(NSString *)contentType {
     return [self string:@"contentType"];
 }

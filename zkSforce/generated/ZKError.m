@@ -29,6 +29,11 @@
 
 @implementation ZKError
 
++(void)load {
+   [self registerType:self xmlName:@"Error"];
+}
+
+      
 -(NSArray *)extendedErrorDetails {
     return [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
 }

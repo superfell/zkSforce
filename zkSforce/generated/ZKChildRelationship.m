@@ -28,6 +28,11 @@
 
 @implementation ZKChildRelationship
 
++(void)load {
+   [self registerType:self xmlName:@"ChildRelationship"];
+}
+
+      
 -(BOOL)cascadeDelete {
     return [self boolean:@"cascadeDelete"];
 }
