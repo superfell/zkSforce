@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Simon Fell
+// Copyright (c) 2021 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -21,11 +21,29 @@
 
 #import <Foundation/Foundation.h>
 
-@class ZKXmlWriter;
+@interface ZKXmlWriter : NSObject {
+    NSMutableString     *env;
+}
+-(instancetype)init NS_DESIGNATED_INITIALIZER;
 
-@protocol ZKXMLSerializable <NSObject>
+- (void) startElement:(NSString *)elemName;
+- (void) startElement:(NSString *)elemName type:(NSString *)type;
+- (void) startElement:(NSString *)elemName prefixes:(NSArray*)prefixes uris:(NSArray*)uris;
 
-/** Write the current instance to this writer */
--(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName;
+- (void) writeText:(NSString *)text;
+
+- (void) endElement:(NSString *)elemName;
+
+- (void) addElement:(NSString *)elemName elemValue:(id)elemValue;
+- (void) addElement:(NSString *)elemName elemValue:(id)elemValue nillable:(BOOL)nillable optional:(BOOL)optional;
+
+- (void) addNullElement:(NSString *)elemName;
+- (void) addBoolElement:(NSString *)elemName elemValue:(BOOL)elemValue;
+- (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
+- (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue;
+- (void) addElementArray:(NSString *)elemName   elemValue:(NSArray *)elemValues;
+- (void) addElementString:(NSString *)elemName  elemValue:(NSString *)elemValue;
+
+- (NSString *)output;
 
 @end

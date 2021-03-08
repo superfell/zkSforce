@@ -29,6 +29,7 @@
 #import "ZKDescribeSObject+Extras.h"
 #import "ZKDescribeField.h"
 #import "ZKSimpleTypes.h"
+#import "ZKXmlWriter.h"
 
 @interface ZKSObject()
 @property (strong) NSMutableSet<NSString*> *fieldsToNullSet;
@@ -111,6 +112,17 @@
     c.fieldTypes = self.fieldTypes.mutableCopy;
     // typedValues is a cache, no need to copy it over.
     return c;
+}
+
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+    [env startElement:elemName];
+    [env addElement:@"type" elemValue:self.type];
+    [env addElementArray:@"fieldsToNull" elemValue:self.fieldsToNull];
+    [env addElement:@"Id" elemValue:self.id nillable:NO optional:YES];
+    [self.fieldsDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSObject * _Nonnull obj, BOOL * _Nonnull stop) {
+        [env addElement:key elemValue:obj];
+    }];
+    [env endElement:elemName];
 }
 
 - (id)description {

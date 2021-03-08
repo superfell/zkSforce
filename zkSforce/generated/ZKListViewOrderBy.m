@@ -53,7 +53,7 @@
     return [self initWithZKXmlDeserializer:d];
 }
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"fieldNameOrPath" elemValue:self.fieldNameOrPath nillable:NO  optional:NO];
 	[env addElement:@"nullsPosition"   elemValue:self.nullsPosition   nillable:YES optional:NO];

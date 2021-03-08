@@ -31,7 +31,7 @@
 
 @synthesize accountId, accountRecord, bypassAccountDedupeCheck, bypassContactDedupeCheck, contactId, contactRecord, convertedStatus, doNotCreateOpportunity, leadId, opportunityId, opportunityName, opportunityRecord, overwriteLeadSource, ownerId, relatedPersonAccountId, relatedPersonAccountRecord, sendNotificationEmail;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accountId"                    elemValue:self.accountId                  nillable:YES optional:NO];
 	[env addElement:@"accountRecord"                elemValue:self.accountRecord              nillable:YES optional:NO];

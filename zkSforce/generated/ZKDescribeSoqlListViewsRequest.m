@@ -31,7 +31,7 @@
 
 @synthesize listViewParams;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"listViewParams" elemValue:self.listViewParams];
 	[env endElement:elemName];

@@ -31,7 +31,7 @@
 
 @synthesize description, targetObjectIds, templateId, whatIds;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"MassEmailMessage"];
 	[env addBoolElement:@"bccSender"        elemValue:self.bccSender];
 	[env addElement:@"emailPriority"        elemValue:self.emailPriority     nillable:YES optional:NO];

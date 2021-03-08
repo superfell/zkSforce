@@ -31,7 +31,7 @@
 
 @synthesize categories, debugLevel;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"categories" elemValue:self.categories];
 	[env addElement:@"debugLevel"      elemValue:self.debugLevel nillable:NO  optional:NO];

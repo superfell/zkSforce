@@ -31,7 +31,7 @@
 
 @synthesize assignmentRuleId, useDefaultRule;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"assignmentRuleId"   elemValue:self.assignmentRuleId nillable:YES optional:NO];
 	[env addBoolElement:@"useDefaultRule" elemValue:self.useDefaultRule];

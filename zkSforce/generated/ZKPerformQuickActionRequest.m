@@ -31,7 +31,7 @@
 
 @synthesize contextId, quickActionName, records;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"contextId"       elemValue:self.contextId       nillable:YES optional:NO];
 	[env addElement:@"quickActionName" elemValue:self.quickActionName nillable:NO  optional:NO];

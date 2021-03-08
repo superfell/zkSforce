@@ -221,6 +221,8 @@
 		F42EC8872325AB6E00C5DC05 /* ZKUserInfo+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC7B82325AB6E00C5DC05 /* ZKUserInfo+Extras.m */; };
 		F42EC8882325AB6E00C5DC05 /* ZKSaveResult+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC7B92325AB6E00C5DC05 /* ZKSaveResult+Extras.m */; };
 		F49918891DCAE119009CC5B0 /* ZKAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */; };
+		F49DC38025F5AF9B0016A8A0 /* ZKLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC37F25F5AF9B0016A8A0 /* ZKLocationTests.m */; };
+		F49DC38525F5B1A10016A8A0 /* ZKXmlWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC38425F5B1A10016A8A0 /* ZKXmlWriter.m */; };
 		F4BB7F4D18B015EB00444797 /* ZKSObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */; };
 		F4EB23DE1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */; };
 		F4EB23E01D0DFFC000AA9B46 /* NSDateAsserts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23DF1D0DFFC000AA9B46 /* NSDateAsserts.m */; };
@@ -661,6 +663,9 @@
 		F42EC7BD2325AB6E00C5DC05 /* ZKDescribeSObject+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKDescribeSObject+Extras.h"; sourceTree = "<group>"; };
 		F42EC7BE2325AB6E00C5DC05 /* ZKDescribeField+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKDescribeField+Extras.h"; sourceTree = "<group>"; };
 		F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAuthenticationTests.m; sourceTree = "<group>"; };
+		F49DC37F25F5AF9B0016A8A0 /* ZKLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKLocationTests.m; sourceTree = "<group>"; };
+		F49DC38325F5B1A10016A8A0 /* ZKXmlWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKXmlWriter.h; sourceTree = "<group>"; };
+		F49DC38425F5B1A10016A8A0 /* ZKXmlWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKXmlWriter.m; sourceTree = "<group>"; };
 		F4BB7F4B18B015EB00444797 /* ZKSObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSObjectTests.h; sourceTree = "<group>"; };
 		F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSObjectTests.m; sourceTree = "<group>"; };
 		F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSimpleTypesTests.m; sourceTree = "<group>"; };
@@ -742,6 +747,7 @@
 				F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */,
 				F4F3ADFD1CFD4B9600638F0B /* ZKXsdAnyTypeTests.m */,
 				F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */,
+				F49DC37F25F5AF9B0016A8A0 /* ZKLocationTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
 			);
 			name = UnitTests;
@@ -1160,6 +1166,8 @@
 				F42EC79E2325AB6D00C5DC05 /* ZKBase64.m */,
 				F42EC79B2325AB6D00C5DC05 /* ZKConstants.h */,
 				F42EC7AB2325AB6D00C5DC05 /* ZKConstants.m */,
+				F49DC38325F5B1A10016A8A0 /* ZKXmlWriter.h */,
+				F49DC38425F5B1A10016A8A0 /* ZKXmlWriter.m */,
 				F42EC7942325AB6D00C5DC05 /* ZKEnvelope.h */,
 				F42EC7A22325AB6D00C5DC05 /* ZKEnvelope.m */,
 				F42EC7A42325AB6D00C5DC05 /* ZKErrors.h */,
@@ -1308,6 +1316,7 @@
 				F42EC85E2325AB6E00C5DC05 /* ZKSendEmailResult.m in Sources */,
 				F42EC8602325AB6E00C5DC05 /* ZKDescribeSoqlListView.m in Sources */,
 				F42EC7DF2325AB6E00C5DC05 /* ZKDebuggingHeader.m in Sources */,
+				F49DC38525F5B1A10016A8A0 /* ZKXmlWriter.m in Sources */,
 				F42EC8192325AB6E00C5DC05 /* ZKAddress.m in Sources */,
 				F42EC8222325AB6E00C5DC05 /* ZKDeletedRecord.m in Sources */,
 				F42EC8472325AB6E00C5DC05 /* ZKSessionHeader.m in Sources */,
@@ -1386,6 +1395,7 @@
 				F42EC8452325AB6E00C5DC05 /* ZKDataCategory.m in Sources */,
 				F42EC8582325AB6E00C5DC05 /* ZKExecuteListViewResult.m in Sources */,
 				F42EC8052325AB6E00C5DC05 /* ZKError.m in Sources */,
+				F49DC38025F5AF9B0016A8A0 /* ZKLocationTests.m in Sources */,
 				F42EC8252325AB6E00C5DC05 /* ZKSforceBaseClient+Operations.m in Sources */,
 				F42EC81A2325AB6E00C5DC05 /* ZKDescribeSearchScopeOrderResult.m in Sources */,
 				F42EC82B2325AB6E00C5DC05 /* ZKDescribePathAssistantField.m in Sources */,

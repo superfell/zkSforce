@@ -31,7 +31,7 @@
 
 @synthesize attachmentRetrievalOption, templateId, updateTemplateUsage, whatId, whoId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"attachmentRetrievalOption" elemValue:self.attachmentRetrievalOption nillable:YES optional:NO];
 	[env addElement:@"templateId"                elemValue:self.templateId                nillable:NO  optional:NO];

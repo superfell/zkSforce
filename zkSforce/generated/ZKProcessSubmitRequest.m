@@ -31,7 +31,7 @@
 
 @synthesize objectId, submitterId, processDefinitionNameOrId, skipEntryCriteria;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"ProcessSubmitRequest"];
 	[env addElement:@"comments"                  elemValue:self.comments                  nillable:YES optional:NO];
 	[env addElementArray:@"nextApproverIds"      elemValue:self.nextApproverIds];

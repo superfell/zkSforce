@@ -31,7 +31,7 @@
 
 @synthesize organizationId, portalId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"organizationId" elemValue:self.organizationId nillable:NO  optional:NO];
 	[env addElement:@"portalId"       elemValue:self.portalId       nillable:NO  optional:YES];

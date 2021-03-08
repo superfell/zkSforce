@@ -31,7 +31,7 @@
 
 @synthesize triggerAutoResponseEmail, triggerOtherEmail, triggerUserEmail;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"triggerAutoResponseEmail" elemValue:self.triggerAutoResponseEmail];
 	[env addBoolElement:@"triggerOtherEmail"        elemValue:self.triggerOtherEmail];

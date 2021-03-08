@@ -31,7 +31,7 @@
 
 @synthesize client, defaultNamespace;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"client"           elemValue:self.client           nillable:YES optional:NO];
 	[env addElement:@"defaultNamespace" elemValue:self.defaultNamespace nillable:YES optional:NO];

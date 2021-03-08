@@ -31,7 +31,7 @@
 
 @synthesize developerNameOrId, sobjectType;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"developerNameOrId" elemValue:self.developerNameOrId nillable:NO  optional:NO];
 	[env addElement:@"sobjectType"       elemValue:self.sobjectType       nillable:YES optional:NO];

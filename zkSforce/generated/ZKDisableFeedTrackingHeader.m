@@ -31,7 +31,7 @@
 
 @synthesize disableFeedTracking;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"disableFeedTracking" elemValue:self.disableFeedTracking];
 	[env endElement:elemName];

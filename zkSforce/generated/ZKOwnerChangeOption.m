@@ -31,7 +31,7 @@
 
 @synthesize type, execute;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"type"        elemValue:self.type    nillable:NO  optional:NO];
 	[env addBoolElement:@"execute" elemValue:self.execute];

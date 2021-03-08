@@ -52,7 +52,7 @@
     return [self initWithZKXmlDeserializer:d];
 }
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
 	[env addDoubleElement:@"longitude" elemValue:self.longitude];

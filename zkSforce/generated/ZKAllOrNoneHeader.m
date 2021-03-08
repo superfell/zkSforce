@@ -31,7 +31,7 @@
 
 @synthesize allOrNone;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allOrNone" elemValue:self.allOrNone];
 	[env endElement:elemName];

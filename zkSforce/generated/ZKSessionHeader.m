@@ -31,7 +31,7 @@
 
 @synthesize sessionId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"sessionId" elemValue:self.sessionId nillable:NO  optional:NO];
 	[env endElement:elemName];

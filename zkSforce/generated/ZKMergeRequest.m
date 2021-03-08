@@ -31,7 +31,7 @@
 
 @synthesize additionalInformationMap, masterRecord, recordToMergeIds;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"additionalInformationMap" elemValue:self.additionalInformationMap];
 	[env addElement:@"masterRecord"                  elemValue:self.masterRecord             nillable:NO  optional:NO];
