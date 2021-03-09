@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSearchResultsMetadata;
 /*
@@ -36,9 +38,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKSearchResult : ZKXmlDeserializer {
+@interface ZKSearchResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString                 *queryId; 
-@property (weak, readonly) NSArray                  *searchRecords;  // of ZKSearchRecord
-@property (weak, readonly) ZKSearchResultsMetadata  *searchResultsMetadata; 
+
+@property (strong,nonatomic) NSString                 *queryId; 
+@property (strong,nonatomic) NSArray                  *searchRecords;  // of ZKSearchRecord
+@property (strong,nonatomic) ZKSearchResultsMetadata  *searchResultsMetadata; 
 @end

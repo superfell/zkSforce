@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKUserInfo;
 /*
@@ -40,13 +42,15 @@
   </sequence>
 </complexType>
 */
-@interface ZKLoginResult : ZKXmlDeserializer {
+@interface ZKLoginResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString    *metadataServerUrl; 
-@property (readonly) BOOL               passwordExpired; 
-@property (readonly) BOOL               sandbox; 
-@property (weak, readonly) NSString    *serverUrl; 
-@property (weak, readonly) NSString    *sessionId; 
-@property (weak, readonly) NSString    *userId; 
-@property (weak, readonly) ZKUserInfo  *userInfo; 
+
+@property (strong,nonatomic) NSString    *metadataServerUrl; 
+@property (assign,nonatomic) BOOL         passwordExpired; 
+@property (assign,nonatomic) BOOL         sandbox; 
+@property (strong,nonatomic) NSString    *serverUrl; 
+@property (strong,nonatomic) NSString    *sessionId; 
+@property (strong,nonatomic) NSString    *userId; 
+@property (strong,nonatomic) ZKUserInfo  *userInfo; 
 @end

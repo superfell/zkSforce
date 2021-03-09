@@ -25,29 +25,88 @@
 //
 
 #import "ZKError.h"
+#import "ZKEnvelope.h"
 #import "ZKExtendedErrorDetails.h"
+
+@interface ZKError()
+@property (strong,nonatomic) NSArray   *extendedErrorDetails__v;
+@property (strong,nonatomic) NSArray   *fields__v;
+@property (strong,nonatomic) NSString  *message__v;
+@property (strong,nonatomic) NSString  *statusCode__v;
+@end
 
 @implementation ZKError
 
+
 +(void)load {
-   [self registerType:self xmlName:@"Error"];
+    [self registerType:self xmlName:@"Error"];
 }
 
-      
 -(NSArray *)extendedErrorDetails {
-    return [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.extendedErrorDetails__v = [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.extendedErrorDetails__v;
 }
-			
+        
+
+-(void)setExtendedErrorDetails:(NSArray *)v {
+    self.extendedErrorDetails__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)fields {
-    return [self strings:@"fields"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.fields__v = [self strings:@"fields"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.fields__v;
 }
-			
+        
+
+-(void)setFields:(NSArray *)v {
+    self.fields__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)message {
-    return [self string:@"message"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.message__v = [self string:@"message"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.message__v;
 }
-			
+        
+
+-(void)setMessage:(NSString *)v {
+    self.message__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)statusCode {
-    return [self string:@"statusCode"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.statusCode__v = [self string:@"statusCode"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.statusCode__v;
 }
-			
+        
+
+-(void)setStatusCode:(NSString *)v {
+    self.statusCode__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"extendedErrorDetails" elemValue:self.extendedErrorDetails];
+	[env addElementArray:@"fields"               elemValue:self.fields];
+	[env addElement:@"message"                   elemValue:self.message              nillable:NO  optional:NO];
+	[env addElement:@"statusCode"                elemValue:self.statusCode           nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

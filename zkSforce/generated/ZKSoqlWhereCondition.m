@@ -25,12 +25,19 @@
 //
 
 #import "ZKSoqlWhereCondition.h"
+#import "ZKEnvelope.h"
+
+@interface ZKSoqlWhereCondition()
+@end
 
 @implementation ZKSoqlWhereCondition
 
-+(void)load {
-   [self registerType:self xmlName:@"SoqlWhereCondition"];
-}
 
-      
++(void)load {
+    [self registerType:self xmlName:@"SoqlWhereCondition"];
+}
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env endElement:elemName];
+}
 @end

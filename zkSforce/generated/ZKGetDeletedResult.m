@@ -25,25 +25,71 @@
 //
 
 #import "ZKGetDeletedResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDeletedRecord.h"
+
+@interface ZKGetDeletedResult()
+@property (strong,nonatomic) NSArray  *deletedRecords__v;
+@property (strong,nonatomic) NSDate   *earliestDateAvailable__v;
+@property (strong,nonatomic) NSDate   *latestDateCovered__v;
+@end
 
 @implementation ZKGetDeletedResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"GetDeletedResult"];
+    [self registerType:self xmlName:@"GetDeletedResult"];
 }
 
-      
 -(NSArray *)deletedRecords {
-    return [self complexTypeArrayFromElements:@"deletedRecords" cls:[ZKDeletedRecord class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.deletedRecords__v = [self complexTypeArrayFromElements:@"deletedRecords" cls:[ZKDeletedRecord class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.deletedRecords__v;
 }
-			
+        
+
+-(void)setDeletedRecords:(NSArray *)v {
+    self.deletedRecords__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSDate *)earliestDateAvailable {
-    return [self dateTime:@"earliestDateAvailable"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.earliestDateAvailable__v = [self dateTime:@"earliestDateAvailable"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.earliestDateAvailable__v;
 }
-			
+        
+
+-(void)setEarliestDateAvailable:(NSDate *)v {
+    self.earliestDateAvailable__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSDate *)latestDateCovered {
-    return [self dateTime:@"latestDateCovered"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.latestDateCovered__v = [self dateTime:@"latestDateCovered"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.latestDateCovered__v;
 }
-			
+        
+
+-(void)setLatestDateCovered:(NSDate *)v {
+    self.latestDateCovered__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"deletedRecords"   elemValue:self.deletedRecords];
+	[env addElement:@"earliestDateAvailable" elemValue:self.earliestDateAvailable nillable:NO  optional:NO];
+	[env addElement:@"latestDateCovered"     elemValue:self.latestDateCovered     nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

@@ -58,9 +58,10 @@ static NSMutableDictionary *registeredComplexTypes;
     return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-    return [[[self class] allocWithZone:zone] initWithXmlElement:node];
-}
+//- (id)copyWithZone:(NSZone *)zone {
+//    NSLog(@"copyWithZone");
+//    return [[[self class] allocWithZone:zone] initWithXmlElement:node];
+//}
 
 - (NSString *)string:(NSString *)elem {
     id cached = values[elem];

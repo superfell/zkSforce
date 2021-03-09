@@ -25,128 +25,512 @@
 //
 
 #import "ZKDescribeGlobalSObject.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeGlobalSObject()
+@property (assign,nonatomic) BOOL       activateable__v;
+@property (strong,nonatomic) NSString  *associateEntityType__v;
+@property (strong,nonatomic) NSString  *associateParentEntity__v;
+@property (assign,nonatomic) BOOL       createable__v;
+@property (assign,nonatomic) BOOL       custom__v;
+@property (assign,nonatomic) BOOL       customSetting__v;
+@property (assign,nonatomic) BOOL       dataTranslationEnabled__v;
+@property (assign,nonatomic) BOOL       deepCloneable__v;
+@property (assign,nonatomic) BOOL       deletable__v;
+@property (assign,nonatomic) BOOL       deprecatedAndHidden__v;
+@property (assign,nonatomic) BOOL       feedEnabled__v;
+@property (assign,nonatomic) BOOL       hasSubtypes__v;
+@property (assign,nonatomic) BOOL       idEnabled__v;
+@property (assign,nonatomic) BOOL       isInterface__v;
+@property (assign,nonatomic) BOOL       isSubtype__v;
+@property (strong,nonatomic) NSString  *keyPrefix__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *labelPlural__v;
+@property (assign,nonatomic) BOOL       layoutable__v;
+@property (assign,nonatomic) BOOL       mergeable__v;
+@property (assign,nonatomic) BOOL       mruEnabled__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (assign,nonatomic) BOOL       queryable__v;
+@property (assign,nonatomic) BOOL       replicateable__v;
+@property (assign,nonatomic) BOOL       retrieveable__v;
+@property (assign,nonatomic) BOOL       searchable__v;
+@property (assign,nonatomic) BOOL       triggerable__v;
+@property (assign,nonatomic) BOOL       undeletable__v;
+@property (assign,nonatomic) BOOL       updateable__v;
+@end
 
 @implementation ZKDescribeGlobalSObject
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeGlobalSObjectResult"];
+    [self registerType:self xmlName:@"DescribeGlobalSObjectResult"];
 }
 
-      
 -(BOOL)activateable {
-    return [self boolean:@"activateable"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.activateable__v = [self boolean:@"activateable"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.activateable__v;
 }
-			
+        
+
+-(void)setActivateable:(BOOL)v {
+    self.activateable__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)associateEntityType {
-    return [self string:@"associateEntityType"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.associateEntityType__v = [self string:@"associateEntityType"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.associateEntityType__v;
 }
-			
+        
+
+-(void)setAssociateEntityType:(NSString *)v {
+    self.associateEntityType__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)associateParentEntity {
-    return [self string:@"associateParentEntity"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.associateParentEntity__v = [self string:@"associateParentEntity"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.associateParentEntity__v;
 }
-			
+        
+
+-(void)setAssociateParentEntity:(NSString *)v {
+    self.associateParentEntity__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(BOOL)createable {
-    return [self boolean:@"createable"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.createable__v = [self boolean:@"createable"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.createable__v;
 }
-			
+        
+
+-(void)setCreateable:(BOOL)v {
+    self.createable__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(BOOL)custom {
-    return [self boolean:@"custom"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.custom__v = [self boolean:@"custom"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.custom__v;
 }
-			
+        
+
+-(void)setCustom:(BOOL)v {
+    self.custom__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(BOOL)customSetting {
-    return [self boolean:@"customSetting"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.customSetting__v = [self boolean:@"customSetting"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.customSetting__v;
 }
-			
+        
+
+-(void)setCustomSetting:(BOOL)v {
+    self.customSetting__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(BOOL)dataTranslationEnabled {
-    return [self boolean:@"dataTranslationEnabled"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.dataTranslationEnabled__v = [self boolean:@"dataTranslationEnabled"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.dataTranslationEnabled__v;
 }
-			
+        
+
+-(void)setDataTranslationEnabled:(BOOL)v {
+    self.dataTranslationEnabled__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(BOOL)deepCloneable {
-    return [self boolean:@"deepCloneable"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.deepCloneable__v = [self boolean:@"deepCloneable"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.deepCloneable__v;
 }
-			
+        
+
+-(void)setDeepCloneable:(BOOL)v {
+    self.deepCloneable__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(BOOL)deletable {
-    return [self boolean:@"deletable"];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.deletable__v = [self boolean:@"deletable"];
+        fields__set[0] |= 0x100; 
+    }
+    return self.deletable__v;
 }
-			
+        
+
+-(void)setDeletable:(BOOL)v {
+    self.deletable__v = v;
+    fields__set[0] |= 0x100; 
+}
+        
+
 -(BOOL)deprecatedAndHidden {
-    return [self boolean:@"deprecatedAndHidden"];
+    if ((fields__set[0] & 0x200) == 0) {
+        self.deprecatedAndHidden__v = [self boolean:@"deprecatedAndHidden"];
+        fields__set[0] |= 0x200; 
+    }
+    return self.deprecatedAndHidden__v;
 }
-			
+        
+
+-(void)setDeprecatedAndHidden:(BOOL)v {
+    self.deprecatedAndHidden__v = v;
+    fields__set[0] |= 0x200; 
+}
+        
+
 -(BOOL)feedEnabled {
-    return [self boolean:@"feedEnabled"];
+    if ((fields__set[0] & 0x400) == 0) {
+        self.feedEnabled__v = [self boolean:@"feedEnabled"];
+        fields__set[0] |= 0x400; 
+    }
+    return self.feedEnabled__v;
 }
-			
+        
+
+-(void)setFeedEnabled:(BOOL)v {
+    self.feedEnabled__v = v;
+    fields__set[0] |= 0x400; 
+}
+        
+
 -(BOOL)hasSubtypes {
-    return [self boolean:@"hasSubtypes"];
+    if ((fields__set[0] & 0x800) == 0) {
+        self.hasSubtypes__v = [self boolean:@"hasSubtypes"];
+        fields__set[0] |= 0x800; 
+    }
+    return self.hasSubtypes__v;
 }
-			
+        
+
+-(void)setHasSubtypes:(BOOL)v {
+    self.hasSubtypes__v = v;
+    fields__set[0] |= 0x800; 
+}
+        
+
 -(BOOL)idEnabled {
-    return [self boolean:@"idEnabled"];
+    if ((fields__set[0] & 0x1000) == 0) {
+        self.idEnabled__v = [self boolean:@"idEnabled"];
+        fields__set[0] |= 0x1000; 
+    }
+    return self.idEnabled__v;
 }
-			
+        
+
+-(void)setIdEnabled:(BOOL)v {
+    self.idEnabled__v = v;
+    fields__set[0] |= 0x1000; 
+}
+        
+
 -(BOOL)isInterface {
-    return [self boolean:@"isInterface"];
+    if ((fields__set[0] & 0x2000) == 0) {
+        self.isInterface__v = [self boolean:@"isInterface"];
+        fields__set[0] |= 0x2000; 
+    }
+    return self.isInterface__v;
 }
-			
+        
+
+-(void)setIsInterface:(BOOL)v {
+    self.isInterface__v = v;
+    fields__set[0] |= 0x2000; 
+}
+        
+
 -(BOOL)isSubtype {
-    return [self boolean:@"isSubtype"];
+    if ((fields__set[0] & 0x4000) == 0) {
+        self.isSubtype__v = [self boolean:@"isSubtype"];
+        fields__set[0] |= 0x4000; 
+    }
+    return self.isSubtype__v;
 }
-			
+        
+
+-(void)setIsSubtype:(BOOL)v {
+    self.isSubtype__v = v;
+    fields__set[0] |= 0x4000; 
+}
+        
+
 -(NSString *)keyPrefix {
-    return [self string:@"keyPrefix"];
+    if ((fields__set[0] & 0x8000) == 0) {
+        self.keyPrefix__v = [self string:@"keyPrefix"];
+        fields__set[0] |= 0x8000; 
+    }
+    return self.keyPrefix__v;
 }
-			
+        
+
+-(void)setKeyPrefix:(NSString *)v {
+    self.keyPrefix__v = v;
+    fields__set[0] |= 0x8000; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x10000) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x10000; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x10000; 
+}
+        
+
 -(NSString *)labelPlural {
-    return [self string:@"labelPlural"];
+    if ((fields__set[0] & 0x20000) == 0) {
+        self.labelPlural__v = [self string:@"labelPlural"];
+        fields__set[0] |= 0x20000; 
+    }
+    return self.labelPlural__v;
 }
-			
+        
+
+-(void)setLabelPlural:(NSString *)v {
+    self.labelPlural__v = v;
+    fields__set[0] |= 0x20000; 
+}
+        
+
 -(BOOL)layoutable {
-    return [self boolean:@"layoutable"];
+    if ((fields__set[0] & 0x40000) == 0) {
+        self.layoutable__v = [self boolean:@"layoutable"];
+        fields__set[0] |= 0x40000; 
+    }
+    return self.layoutable__v;
 }
-			
+        
+
+-(void)setLayoutable:(BOOL)v {
+    self.layoutable__v = v;
+    fields__set[0] |= 0x40000; 
+}
+        
+
 -(BOOL)mergeable {
-    return [self boolean:@"mergeable"];
+    if ((fields__set[0] & 0x80000) == 0) {
+        self.mergeable__v = [self boolean:@"mergeable"];
+        fields__set[0] |= 0x80000; 
+    }
+    return self.mergeable__v;
 }
-			
+        
+
+-(void)setMergeable:(BOOL)v {
+    self.mergeable__v = v;
+    fields__set[0] |= 0x80000; 
+}
+        
+
 -(BOOL)mruEnabled {
-    return [self boolean:@"mruEnabled"];
+    if ((fields__set[0] & 0x100000) == 0) {
+        self.mruEnabled__v = [self boolean:@"mruEnabled"];
+        fields__set[0] |= 0x100000; 
+    }
+    return self.mruEnabled__v;
 }
-			
+        
+
+-(void)setMruEnabled:(BOOL)v {
+    self.mruEnabled__v = v;
+    fields__set[0] |= 0x100000; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x200000) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x200000; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x200000; 
+}
+        
+
 -(BOOL)queryable {
-    return [self boolean:@"queryable"];
+    if ((fields__set[0] & 0x400000) == 0) {
+        self.queryable__v = [self boolean:@"queryable"];
+        fields__set[0] |= 0x400000; 
+    }
+    return self.queryable__v;
 }
-			
+        
+
+-(void)setQueryable:(BOOL)v {
+    self.queryable__v = v;
+    fields__set[0] |= 0x400000; 
+}
+        
+
 -(BOOL)replicateable {
-    return [self boolean:@"replicateable"];
+    if ((fields__set[0] & 0x800000) == 0) {
+        self.replicateable__v = [self boolean:@"replicateable"];
+        fields__set[0] |= 0x800000; 
+    }
+    return self.replicateable__v;
 }
-			
+        
+
+-(void)setReplicateable:(BOOL)v {
+    self.replicateable__v = v;
+    fields__set[0] |= 0x800000; 
+}
+        
+
 -(BOOL)retrieveable {
-    return [self boolean:@"retrieveable"];
+    if ((fields__set[0] & 0x1000000) == 0) {
+        self.retrieveable__v = [self boolean:@"retrieveable"];
+        fields__set[0] |= 0x1000000; 
+    }
+    return self.retrieveable__v;
 }
-			
+        
+
+-(void)setRetrieveable:(BOOL)v {
+    self.retrieveable__v = v;
+    fields__set[0] |= 0x1000000; 
+}
+        
+
 -(BOOL)searchable {
-    return [self boolean:@"searchable"];
+    if ((fields__set[0] & 0x2000000) == 0) {
+        self.searchable__v = [self boolean:@"searchable"];
+        fields__set[0] |= 0x2000000; 
+    }
+    return self.searchable__v;
 }
-			
+        
+
+-(void)setSearchable:(BOOL)v {
+    self.searchable__v = v;
+    fields__set[0] |= 0x2000000; 
+}
+        
+
 -(BOOL)triggerable {
-    return [self boolean:@"triggerable"];
+    if ((fields__set[0] & 0x4000000) == 0) {
+        self.triggerable__v = [self boolean:@"triggerable"];
+        fields__set[0] |= 0x4000000; 
+    }
+    return self.triggerable__v;
 }
-			
+        
+
+-(void)setTriggerable:(BOOL)v {
+    self.triggerable__v = v;
+    fields__set[0] |= 0x4000000; 
+}
+        
+
 -(BOOL)undeletable {
-    return [self boolean:@"undeletable"];
+    if ((fields__set[0] & 0x8000000) == 0) {
+        self.undeletable__v = [self boolean:@"undeletable"];
+        fields__set[0] |= 0x8000000; 
+    }
+    return self.undeletable__v;
 }
-			
+        
+
+-(void)setUndeletable:(BOOL)v {
+    self.undeletable__v = v;
+    fields__set[0] |= 0x8000000; 
+}
+        
+
 -(BOOL)updateable {
-    return [self boolean:@"updateable"];
+    if ((fields__set[0] & 0x10000000) == 0) {
+        self.updateable__v = [self boolean:@"updateable"];
+        fields__set[0] |= 0x10000000; 
+    }
+    return self.updateable__v;
 }
-			
+        
+
+-(void)setUpdateable:(BOOL)v {
+    self.updateable__v = v;
+    fields__set[0] |= 0x10000000; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"activateable"           elemValue:self.activateable];
+	[env addElement:@"associateEntityType"        elemValue:self.associateEntityType    nillable:YES optional:NO];
+	[env addElement:@"associateParentEntity"      elemValue:self.associateParentEntity  nillable:YES optional:NO];
+	[env addBoolElement:@"createable"             elemValue:self.createable];
+	[env addBoolElement:@"custom"                 elemValue:self.custom];
+	[env addBoolElement:@"customSetting"          elemValue:self.customSetting];
+	[env addBoolElement:@"dataTranslationEnabled" elemValue:self.dataTranslationEnabled];
+	[env addBoolElement:@"deepCloneable"          elemValue:self.deepCloneable];
+	[env addBoolElement:@"deletable"              elemValue:self.deletable];
+	[env addBoolElement:@"deprecatedAndHidden"    elemValue:self.deprecatedAndHidden];
+	[env addBoolElement:@"feedEnabled"            elemValue:self.feedEnabled];
+	[env addBoolElement:@"hasSubtypes"            elemValue:self.hasSubtypes];
+	[env addBoolElement:@"idEnabled"              elemValue:self.idEnabled];
+	[env addBoolElement:@"isInterface"            elemValue:self.isInterface];
+	[env addBoolElement:@"isSubtype"              elemValue:self.isSubtype];
+	[env addElement:@"keyPrefix"                  elemValue:self.keyPrefix              nillable:YES optional:NO];
+	[env addElement:@"label"                      elemValue:self.label                  nillable:NO  optional:NO];
+	[env addElement:@"labelPlural"                elemValue:self.labelPlural            nillable:NO  optional:NO];
+	[env addBoolElement:@"layoutable"             elemValue:self.layoutable];
+	[env addBoolElement:@"mergeable"              elemValue:self.mergeable];
+	[env addBoolElement:@"mruEnabled"             elemValue:self.mruEnabled];
+	[env addElement:@"name"                       elemValue:self.name                   nillable:NO  optional:NO];
+	[env addBoolElement:@"queryable"              elemValue:self.queryable];
+	[env addBoolElement:@"replicateable"          elemValue:self.replicateable];
+	[env addBoolElement:@"retrieveable"           elemValue:self.retrieveable];
+	[env addBoolElement:@"searchable"             elemValue:self.searchable];
+	[env addBoolElement:@"triggerable"            elemValue:self.triggerable];
+	[env addBoolElement:@"undeletable"            elemValue:self.undeletable];
+	[env addBoolElement:@"updateable"             elemValue:self.updateable];
+	[env endElement:elemName];
+}
 @end

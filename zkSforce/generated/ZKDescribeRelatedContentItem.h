@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeLayoutItem;
 /*
@@ -34,7 +36,9 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeRelatedContentItem : ZKXmlDeserializer {
+@interface ZKDescribeRelatedContentItem : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) ZKDescribeLayoutItem  *describeLayoutItem; 
+
+@property (strong,nonatomic) ZKDescribeLayoutItem  *describeLayoutItem; 
 @end

@@ -25,21 +25,58 @@
 //
 
 #import "ZKFieldLayoutComponent.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutComponent.h"
+
+@interface ZKFieldLayoutComponent()
+@property (strong,nonatomic) NSArray   *components__v;
+@property (strong,nonatomic) NSString  *fieldType__v;
+@end
 
 @implementation ZKFieldLayoutComponent
 
+
 +(void)load {
-   [self registerType:self xmlName:@"FieldLayoutComponent"];
+    [self registerType:self xmlName:@"FieldLayoutComponent"];
 }
 
-      
 -(NSArray *)components {
-    return [self complexTypeArrayFromElements:@"components" cls:[ZKDescribeLayoutComponent class]];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.components__v = [self complexTypeArrayFromElements:@"components" cls:[ZKDescribeLayoutComponent class]];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.components__v;
 }
-			
+        
+
+-(void)setComponents:(NSArray *)v {
+    self.components__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(NSString *)fieldType {
-    return [self string:@"fieldType"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.fieldType__v = [self string:@"fieldType"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.fieldType__v;
 }
-			
+        
+
+-(void)setFieldType:(NSString *)v {
+    self.fieldType__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"FieldLayoutComponent"];
+	[env addIntElement:@"displayLines" elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"     elemValue:self.tabOrder];
+	[env addElement:@"type"            elemValue:self.type         nillable:NO  optional:NO];
+	[env addElement:@"value"           elemValue:self.value        nillable:YES optional:NO];
+	[env addElementArray:@"components" elemValue:self.components];
+	[env addElement:@"fieldType"       elemValue:self.fieldType    nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

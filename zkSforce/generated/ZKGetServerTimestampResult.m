@@ -25,16 +25,36 @@
 //
 
 #import "ZKGetServerTimestampResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKGetServerTimestampResult()
+@property (strong,nonatomic) NSDate  *timestamp__v;
+@end
 
 @implementation ZKGetServerTimestampResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"GetServerTimestampResult"];
+    [self registerType:self xmlName:@"GetServerTimestampResult"];
 }
 
-      
 -(NSDate *)timestamp {
-    return [self dateTime:@"timestamp"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.timestamp__v = [self dateTime:@"timestamp"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.timestamp__v;
 }
-			
+        
+
+-(void)setTimestamp:(NSDate *)v {
+    self.timestamp__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"timestamp" elemValue:self.timestamp nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

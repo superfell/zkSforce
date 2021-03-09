@@ -27,10 +27,47 @@
 #import "ZKDataCategoryGroupSobjectTypePair.h"
 #import "ZKEnvelope.h"
 
+@interface ZKDataCategoryGroupSobjectTypePair()
+@property (strong,nonatomic) NSString  *dataCategoryGroupName__v;
+@property (strong,nonatomic) NSString  *sobject__v;
+@end
+
 @implementation ZKDataCategoryGroupSobjectTypePair
 
-@synthesize dataCategoryGroupName, sobject;
 
++(void)load {
+    [self registerType:self xmlName:@"DataCategoryGroupSobjectTypePair"];
+}
+
+-(NSString *)dataCategoryGroupName {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.dataCategoryGroupName__v = [self string:@"dataCategoryGroupName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.dataCategoryGroupName__v;
+}
+        
+
+-(void)setDataCategoryGroupName:(NSString *)v {
+    self.dataCategoryGroupName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)sobject {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.sobject__v = [self string:@"sobject"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.sobject__v;
+}
+        
+
+-(void)setSobject:(NSString *)v {
+    self.sobject__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"dataCategoryGroupName" elemValue:self.dataCategoryGroupName nillable:NO  optional:NO];

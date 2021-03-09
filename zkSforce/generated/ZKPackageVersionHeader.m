@@ -26,11 +26,33 @@
 
 #import "ZKPackageVersionHeader.h"
 #import "ZKEnvelope.h"
+#import "ZKPackageVersion.h"
+
+@interface ZKPackageVersionHeader()
+@property (strong,nonatomic) NSArray  *packageVersions__v;
+@end
 
 @implementation ZKPackageVersionHeader
 
-@synthesize packageVersions;
 
++(void)load {
+    [self registerType:self xmlName:@"PackageVersionHeader"];
+}
+
+-(NSArray *)packageVersions {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.packageVersions__v = [self complexTypeArrayFromElements:@"packageVersions" cls:[ZKPackageVersion class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.packageVersions__v;
+}
+        
+
+-(void)setPackageVersions:(NSArray *)v {
+    self.packageVersions__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"packageVersions" elemValue:self.packageVersions];

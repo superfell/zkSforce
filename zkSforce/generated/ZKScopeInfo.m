@@ -25,20 +25,53 @@
 //
 
 #import "ZKScopeInfo.h"
+#import "ZKEnvelope.h"
+
+@interface ZKScopeInfo()
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKScopeInfo
 
+
 +(void)load {
-   [self registerType:self xmlName:@"ScopeInfo"];
+    [self registerType:self xmlName:@"ScopeInfo"];
 }
 
-      
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"label" elemValue:self.label nillable:NO  optional:NO];
+	[env addElement:@"name"  elemValue:self.name  nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

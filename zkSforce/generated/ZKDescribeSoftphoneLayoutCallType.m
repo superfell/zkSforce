@@ -25,35 +25,107 @@
 //
 
 #import "ZKDescribeSoftphoneLayoutCallType.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeSoftphoneLayoutInfoField.h"
 #import "ZKDescribeSoftphoneLayoutSection.h"
 #import "ZKDescribeSoftphoneScreenPopOption.h"
 
+@interface ZKDescribeSoftphoneLayoutCallType()
+@property (strong,nonatomic) NSArray   *infoFields__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSArray   *screenPopOptions__v;
+@property (strong,nonatomic) NSString  *screenPopsOpenWithin__v;
+@property (strong,nonatomic) NSArray   *sections__v;
+@end
+
 @implementation ZKDescribeSoftphoneLayoutCallType
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeSoftphoneLayoutCallType"];
+    [self registerType:self xmlName:@"DescribeSoftphoneLayoutCallType"];
 }
 
-      
 -(NSArray *)infoFields {
-    return [self complexTypeArrayFromElements:@"infoFields" cls:[ZKDescribeSoftphoneLayoutInfoField class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.infoFields__v = [self complexTypeArrayFromElements:@"infoFields" cls:[ZKDescribeSoftphoneLayoutInfoField class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.infoFields__v;
 }
-			
+        
+
+-(void)setInfoFields:(NSArray *)v {
+    self.infoFields__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)screenPopOptions {
-    return [self complexTypeArrayFromElements:@"screenPopOptions" cls:[ZKDescribeSoftphoneScreenPopOption class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.screenPopOptions__v = [self complexTypeArrayFromElements:@"screenPopOptions" cls:[ZKDescribeSoftphoneScreenPopOption class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.screenPopOptions__v;
 }
-			
+        
+
+-(void)setScreenPopOptions:(NSArray *)v {
+    self.screenPopOptions__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)screenPopsOpenWithin {
-    return [self string:@"screenPopsOpenWithin"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.screenPopsOpenWithin__v = [self string:@"screenPopsOpenWithin"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.screenPopsOpenWithin__v;
 }
-			
+        
+
+-(void)setScreenPopsOpenWithin:(NSString *)v {
+    self.screenPopsOpenWithin__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSArray *)sections {
-    return [self complexTypeArrayFromElements:@"sections" cls:[ZKDescribeSoftphoneLayoutSection class]];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.sections__v = [self complexTypeArrayFromElements:@"sections" cls:[ZKDescribeSoftphoneLayoutSection class]];
+        fields__set[0] |= 0x10; 
+    }
+    return self.sections__v;
 }
-			
+        
+
+-(void)setSections:(NSArray *)v {
+    self.sections__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"infoFields"       elemValue:self.infoFields];
+	[env addElement:@"name"                  elemValue:self.name                 nillable:NO  optional:NO];
+	[env addElementArray:@"screenPopOptions" elemValue:self.screenPopOptions];
+	[env addElement:@"screenPopsOpenWithin"  elemValue:self.screenPopsOpenWithin nillable:NO  optional:YES];
+	[env addElementArray:@"sections"         elemValue:self.sections];
+	[env endElement:elemName];
+}
 @end

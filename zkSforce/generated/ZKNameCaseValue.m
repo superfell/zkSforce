@@ -25,32 +25,104 @@
 //
 
 #import "ZKNameCaseValue.h"
+#import "ZKEnvelope.h"
+
+@interface ZKNameCaseValue()
+@property (strong,nonatomic) NSString  *article__v;
+@property (strong,nonatomic) NSString  *caseType__v;
+@property (strong,nonatomic) NSString  *number__v;
+@property (strong,nonatomic) NSString  *possessive__v;
+@property (strong,nonatomic) NSString  *value__v;
+@end
 
 @implementation ZKNameCaseValue
 
+
 +(void)load {
-   [self registerType:self xmlName:@"NameCaseValue"];
+    [self registerType:self xmlName:@"NameCaseValue"];
 }
 
-      
 -(NSString *)article {
-    return [self string:@"article"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.article__v = [self string:@"article"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.article__v;
 }
-			
+        
+
+-(void)setArticle:(NSString *)v {
+    self.article__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)caseType {
-    return [self string:@"caseType"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.caseType__v = [self string:@"caseType"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.caseType__v;
 }
-			
+        
+
+-(void)setCaseType:(NSString *)v {
+    self.caseType__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)number {
-    return [self string:@"number"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.number__v = [self string:@"number"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.number__v;
 }
-			
+        
+
+-(void)setNumber:(NSString *)v {
+    self.number__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)possessive {
-    return [self string:@"possessive"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.possessive__v = [self string:@"possessive"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.possessive__v;
 }
-			
+        
+
+-(void)setPossessive:(NSString *)v {
+    self.possessive__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)value {
-    return [self string:@"value"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.value__v = [self string:@"value"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.value__v;
 }
-			
+        
+
+-(void)setValue:(NSString *)v {
+    self.value__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"article"    elemValue:self.article    nillable:YES optional:NO];
+	[env addElement:@"caseType"   elemValue:self.caseType   nillable:YES optional:NO];
+	[env addElement:@"number"     elemValue:self.number     nillable:YES optional:NO];
+	[env addElement:@"possessive" elemValue:self.possessive nillable:YES optional:NO];
+	[env addElement:@"value"      elemValue:self.value      nillable:YES optional:NO];
+	[env endElement:elemName];
+}
 @end

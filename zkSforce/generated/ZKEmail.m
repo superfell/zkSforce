@@ -27,36 +27,127 @@
 #import "ZKEmail.h"
 #import "ZKEnvelope.h"
 
+@interface ZKEmail()
+@property (assign,nonatomic) BOOL       bccSender__v;
+@property (strong,nonatomic) NSString  *emailPriority__v;
+@property (strong,nonatomic) NSString  *replyTo__v;
+@property (assign,nonatomic) BOOL       saveAsActivity__v;
+@property (strong,nonatomic) NSString  *senderDisplayName__v;
+@property (strong,nonatomic) NSString  *subject__v;
+@property (assign,nonatomic) BOOL       useSignature__v;
+@end
+
 @implementation ZKEmail
 
-@synthesize bccSender, emailPriority, replyTo, saveAsActivity, senderDisplayName, subject, useSignature;
 
 +(void)load {
     [self registerType:self xmlName:@"Email"];
 }
 
--(instancetype)init {
-    self = [super init];
-    return self;
+-(BOOL)bccSender {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.bccSender__v = [self boolean:@"bccSender"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.bccSender__v;
 }
+        
 
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.bccSender = [d boolean:@"bccSender"];
-	self.emailPriority = [d string:@"emailPriority"];
-	self.replyTo = [d string:@"replyTo"];
-	self.saveAsActivity = [d boolean:@"saveAsActivity"];
-	self.senderDisplayName = [d string:@"senderDisplayName"];
-	self.subject = [d string:@"subject"];
-	self.useSignature = [d boolean:@"useSignature"];
-    return self;
+-(void)setBccSender:(BOOL)v {
+    self.bccSender__v = v;
+    fields__set[0] |= 0x1; 
 }
+        
 
--(instancetype)initWithXmlElement:(ZKElement *)e {
-    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
-    return [self initWithZKXmlDeserializer:d];
+-(NSString *)emailPriority {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.emailPriority__v = [self string:@"emailPriority"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.emailPriority__v;
 }
+        
 
+-(void)setEmailPriority:(NSString *)v {
+    self.emailPriority__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSString *)replyTo {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.replyTo__v = [self string:@"replyTo"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.replyTo__v;
+}
+        
+
+-(void)setReplyTo:(NSString *)v {
+    self.replyTo__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
+-(BOOL)saveAsActivity {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.saveAsActivity__v = [self boolean:@"saveAsActivity"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.saveAsActivity__v;
+}
+        
+
+-(void)setSaveAsActivity:(BOOL)v {
+    self.saveAsActivity__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
+-(NSString *)senderDisplayName {
+    if ((fields__set[0] & 0x10) == 0) {
+        self.senderDisplayName__v = [self string:@"senderDisplayName"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.senderDisplayName__v;
+}
+        
+
+-(void)setSenderDisplayName:(NSString *)v {
+    self.senderDisplayName__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
+-(NSString *)subject {
+    if ((fields__set[0] & 0x20) == 0) {
+        self.subject__v = [self string:@"subject"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.subject__v;
+}
+        
+
+-(void)setSubject:(NSString *)v {
+    self.subject__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
+-(BOOL)useSignature {
+    if ((fields__set[0] & 0x40) == 0) {
+        self.useSignature__v = [self boolean:@"useSignature"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.useSignature__v;
+}
+        
+
+-(void)setUseSignature:(BOOL)v {
+    self.useSignature__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"bccSender"      elemValue:self.bccSender];

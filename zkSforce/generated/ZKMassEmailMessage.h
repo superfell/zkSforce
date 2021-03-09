@@ -25,6 +25,8 @@
 //
 
 #import "ZKEmail.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="MassEmailMessage" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -40,10 +42,12 @@
   </complexContent>
 </complexType>
 */
-@interface ZKMassEmailMessage : ZKEmail {
+@interface ZKMassEmailMessage : ZKEmail  {
+	UInt16   fields__set2[1];
 }
-@property (strong) NSString  *description; 
-@property (strong) NSArray   *targetObjectIds;  // of NSString
-@property (strong) NSString  *templateId; 
-@property (strong) NSArray   *whatIds;  // of NSString
+
+@property (strong,nonatomic) NSString  *a_description; 
+@property (strong,nonatomic) NSArray   *targetObjectIds;  // of NSString
+@property (strong,nonatomic) NSString  *templateId; 
+@property (strong,nonatomic) NSArray   *whatIds;  // of NSString
 @end

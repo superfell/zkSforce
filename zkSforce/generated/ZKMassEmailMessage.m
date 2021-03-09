@@ -27,10 +27,79 @@
 #import "ZKMassEmailMessage.h"
 #import "ZKEnvelope.h"
 
+@interface ZKMassEmailMessage()
+@property (strong,nonatomic) NSString  *a_description__v;
+@property (strong,nonatomic) NSArray   *targetObjectIds__v;
+@property (strong,nonatomic) NSString  *templateId__v;
+@property (strong,nonatomic) NSArray   *whatIds__v;
+@end
+
 @implementation ZKMassEmailMessage
 
-@synthesize description, targetObjectIds, templateId, whatIds;
 
++(void)load {
+    [self registerType:self xmlName:@"MassEmailMessage"];
+}
+
+-(NSString *)a_description {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.a_description__v = [self string:@"description"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.a_description__v;
+}
+        
+
+-(void)setA_description:(NSString *)v {
+    self.a_description__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
+-(NSArray *)targetObjectIds {
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.targetObjectIds__v = [self strings:@"targetObjectIds"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.targetObjectIds__v;
+}
+        
+
+-(void)setTargetObjectIds:(NSArray *)v {
+    self.targetObjectIds__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
+-(NSString *)templateId {
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.templateId__v = [self string:@"templateId"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.templateId__v;
+}
+        
+
+-(void)setTemplateId:(NSString *)v {
+    self.templateId__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
+-(NSArray *)whatIds {
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.whatIds__v = [self strings:@"whatIds"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.whatIds__v;
+}
+        
+
+-(void)setWhatIds:(NSArray *)v {
+    self.whatIds__v = v;
+    fields__set2[0] |= 0x8; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"MassEmailMessage"];
 	[env addBoolElement:@"bccSender"        elemValue:self.bccSender];
@@ -40,7 +109,7 @@
 	[env addElement:@"senderDisplayName"    elemValue:self.senderDisplayName nillable:YES optional:NO];
 	[env addElement:@"subject"              elemValue:self.subject           nillable:YES optional:NO];
 	[env addBoolElement:@"useSignature"     elemValue:self.useSignature];
-	[env addElement:@"description"          elemValue:self.description       nillable:YES optional:NO];
+	[env addElement:@"description"          elemValue:self.a_description       nillable:YES optional:NO];
 	[env addElementArray:@"targetObjectIds" elemValue:self.targetObjectIds];
 	[env addElement:@"templateId"           elemValue:self.templateId        nillable:NO  optional:NO];
 	[env addElementArray:@"whatIds"         elemValue:self.whatIds];

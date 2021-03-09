@@ -25,12 +25,19 @@
 //
 
 #import "ZKChangeOwnPasswordResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKChangeOwnPasswordResult()
+@end
 
 @implementation ZKChangeOwnPasswordResult
 
-+(void)load {
-   [self registerType:self xmlName:@"ChangeOwnPasswordResult"];
-}
 
-      
++(void)load {
+    [self registerType:self xmlName:@"ChangeOwnPasswordResult"];
+}
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env endElement:elemName];
+}
 @end

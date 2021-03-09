@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="EmailFileAttachment" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -37,11 +39,13 @@
   </sequence>
 </complexType>
 */
-@interface ZKEmailFileAttachment : ZKXmlDeserializer {
+@interface ZKEmailFileAttachment : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSData    *body; 
-@property (weak, readonly) NSString  *contentType; 
-@property (weak, readonly) NSString  *fileName; 
-@property (weak, readonly) NSString  *id; 
-@property (readonly) BOOL             _inline; 
+
+@property (strong,nonatomic) NSData    *body; 
+@property (strong,nonatomic) NSString  *contentType; 
+@property (strong,nonatomic) NSString  *fileName; 
+@property (strong,nonatomic) NSString  *id; 
+@property (assign,nonatomic) BOOL       a_inline; 
 @end

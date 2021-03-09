@@ -25,16 +25,36 @@
 //
 
 #import "ZKDescribeSoftphoneLayoutInfoField.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeSoftphoneLayoutInfoField()
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKDescribeSoftphoneLayoutInfoField
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeSoftphoneLayoutInfoField"];
+    [self registerType:self xmlName:@"DescribeSoftphoneLayoutInfoField"];
 }
 
-      
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"name" elemValue:self.name nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

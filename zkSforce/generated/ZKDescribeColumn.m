@@ -25,28 +25,87 @@
 //
 
 #import "ZKDescribeColumn.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeColumn()
+@property (strong,nonatomic) NSString  *field__v;
+@property (strong,nonatomic) NSString  *format__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKDescribeColumn
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeColumn"];
+    [self registerType:self xmlName:@"DescribeColumn"];
 }
 
-      
 -(NSString *)field {
-    return [self string:@"field"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.field__v = [self string:@"field"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(NSString *)v {
+    self.field__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)format {
-    return [self string:@"format"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.format__v = [self string:@"format"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.format__v;
 }
-			
+        
+
+-(void)setFormat:(NSString *)v {
+    self.format__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"field"  elemValue:self.field  nillable:NO  optional:NO];
+	[env addElement:@"format" elemValue:self.format nillable:YES optional:NO];
+	[env addElement:@"label"  elemValue:self.label  nillable:NO  optional:NO];
+	[env addElement:@"name"   elemValue:self.name   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

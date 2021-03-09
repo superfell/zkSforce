@@ -25,17 +25,37 @@
 //
 
 #import "ZKDescribeLayoutFeedView.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutFeedFilter.h"
+
+@interface ZKDescribeLayoutFeedView()
+@property (strong,nonatomic) NSArray  *feedFilters__v;
+@end
 
 @implementation ZKDescribeLayoutFeedView
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeLayoutFeedView"];
+    [self registerType:self xmlName:@"DescribeLayoutFeedView"];
 }
 
-      
 -(NSArray *)feedFilters {
-    return [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.feedFilters__v = [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.feedFilters__v;
 }
-			
+        
+
+-(void)setFeedFilters:(NSArray *)v {
+    self.feedFilters__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"feedFilters" elemValue:self.feedFilters];
+	[env endElement:elemName];
+}
 @end

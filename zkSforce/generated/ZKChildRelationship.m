@@ -25,44 +25,155 @@
 //
 
 #import "ZKChildRelationship.h"
+#import "ZKEnvelope.h"
+
+@interface ZKChildRelationship()
+@property (assign,nonatomic) BOOL       cascadeDelete__v;
+@property (strong,nonatomic) NSString  *childSObject__v;
+@property (assign,nonatomic) BOOL       deprecatedAndHidden__v;
+@property (strong,nonatomic) NSString  *field__v;
+@property (strong,nonatomic) NSArray   *junctionIdListNames__v;
+@property (strong,nonatomic) NSArray   *junctionReferenceTo__v;
+@property (strong,nonatomic) NSString  *relationshipName__v;
+@property (assign,nonatomic) BOOL       restrictedDelete__v;
+@end
 
 @implementation ZKChildRelationship
 
+
 +(void)load {
-   [self registerType:self xmlName:@"ChildRelationship"];
+    [self registerType:self xmlName:@"ChildRelationship"];
 }
 
-      
 -(BOOL)cascadeDelete {
-    return [self boolean:@"cascadeDelete"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.cascadeDelete__v = [self boolean:@"cascadeDelete"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.cascadeDelete__v;
 }
-			
+        
+
+-(void)setCascadeDelete:(BOOL)v {
+    self.cascadeDelete__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)childSObject {
-    return [self string:@"childSObject"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.childSObject__v = [self string:@"childSObject"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.childSObject__v;
 }
-			
+        
+
+-(void)setChildSObject:(NSString *)v {
+    self.childSObject__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)deprecatedAndHidden {
-    return [self boolean:@"deprecatedAndHidden"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.deprecatedAndHidden__v = [self boolean:@"deprecatedAndHidden"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.deprecatedAndHidden__v;
 }
-			
+        
+
+-(void)setDeprecatedAndHidden:(BOOL)v {
+    self.deprecatedAndHidden__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)field {
-    return [self string:@"field"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.field__v = [self string:@"field"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(NSString *)v {
+    self.field__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSArray *)junctionIdListNames {
-    return [self strings:@"junctionIdListNames"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.junctionIdListNames__v = [self strings:@"junctionIdListNames"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.junctionIdListNames__v;
 }
-			
+        
+
+-(void)setJunctionIdListNames:(NSArray *)v {
+    self.junctionIdListNames__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSArray *)junctionReferenceTo {
-    return [self strings:@"junctionReferenceTo"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.junctionReferenceTo__v = [self strings:@"junctionReferenceTo"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.junctionReferenceTo__v;
 }
-			
+        
+
+-(void)setJunctionReferenceTo:(NSArray *)v {
+    self.junctionReferenceTo__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)relationshipName {
-    return [self string:@"relationshipName"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.relationshipName__v = [self string:@"relationshipName"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.relationshipName__v;
 }
-			
+        
+
+-(void)setRelationshipName:(NSString *)v {
+    self.relationshipName__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(BOOL)restrictedDelete {
-    return [self boolean:@"restrictedDelete"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.restrictedDelete__v = [self boolean:@"restrictedDelete"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.restrictedDelete__v;
 }
-			
+        
+
+-(void)setRestrictedDelete:(BOOL)v {
+    self.restrictedDelete__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"cascadeDelete"        elemValue:self.cascadeDelete];
+	[env addElement:@"childSObject"             elemValue:self.childSObject        nillable:NO  optional:NO];
+	[env addBoolElement:@"deprecatedAndHidden"  elemValue:self.deprecatedAndHidden];
+	[env addElement:@"field"                    elemValue:self.field               nillable:NO  optional:NO];
+	[env addElementArray:@"junctionIdListNames" elemValue:self.junctionIdListNames];
+	[env addElementArray:@"junctionReferenceTo" elemValue:self.junctionReferenceTo];
+	[env addElement:@"relationshipName"         elemValue:self.relationshipName    nillable:NO  optional:YES];
+	[env addBoolElement:@"restrictedDelete"     elemValue:self.restrictedDelete];
+	[env endElement:elemName];
+}
 @end

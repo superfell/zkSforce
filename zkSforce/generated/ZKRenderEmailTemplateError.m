@@ -25,28 +25,87 @@
 //
 
 #import "ZKRenderEmailTemplateError.h"
+#import "ZKEnvelope.h"
+
+@interface ZKRenderEmailTemplateError()
+@property (strong,nonatomic) NSString  *fieldName__v;
+@property (strong,nonatomic) NSString  *message__v;
+@property (assign,nonatomic) NSInteger  offset__v;
+@property (strong,nonatomic) NSString  *statusCode__v;
+@end
 
 @implementation ZKRenderEmailTemplateError
 
+
 +(void)load {
-   [self registerType:self xmlName:@"RenderEmailTemplateError"];
+    [self registerType:self xmlName:@"RenderEmailTemplateError"];
 }
 
-      
 -(NSString *)fieldName {
-    return [self string:@"fieldName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.fieldName__v = [self string:@"fieldName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.fieldName__v;
 }
-			
+        
+
+-(void)setFieldName:(NSString *)v {
+    self.fieldName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)message {
-    return [self string:@"message"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.message__v = [self string:@"message"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.message__v;
 }
-			
+        
+
+-(void)setMessage:(NSString *)v {
+    self.message__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSInteger)offset {
-    return [self integer:@"offset"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.offset__v = [self integer:@"offset"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.offset__v;
 }
-			
+        
+
+-(void)setOffset:(NSInteger)v {
+    self.offset__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)statusCode {
-    return [self string:@"statusCode"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.statusCode__v = [self string:@"statusCode"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.statusCode__v;
 }
-			
+        
+
+-(void)setStatusCode:(NSString *)v {
+    self.statusCode__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"fieldName"  elemValue:self.fieldName  nillable:NO  optional:NO];
+	[env addElement:@"message"    elemValue:self.message    nillable:NO  optional:NO];
+	[env addIntElement:@"offset"  elemValue:self.offset];
+	[env addElement:@"statusCode" elemValue:self.statusCode nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

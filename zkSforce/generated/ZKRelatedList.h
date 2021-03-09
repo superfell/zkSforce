@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="RelatedList" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -42,16 +44,18 @@
   </sequence>
 </complexType>
 */
-@interface ZKRelatedList : ZKXmlDeserializer {
+@interface ZKRelatedList : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *accessLevelRequiredForCreate; 
-@property (weak, readonly) NSArray   *buttons;  // of ZKDescribeLayoutButton
-@property (weak, readonly) NSArray   *columns;  // of ZKRelatedListColumn
-@property (readonly) BOOL             custom; 
-@property (weak, readonly) NSString  *field; 
-@property (weak, readonly) NSString  *label; 
-@property (readonly) NSInteger        limitRows; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *sobject; 
-@property (weak, readonly) NSArray   *sort;  // of ZKRelatedListSort
+
+@property (strong,nonatomic) NSString  *accessLevelRequiredForCreate; 
+@property (strong,nonatomic) NSArray   *buttons;  // of ZKDescribeLayoutButton
+@property (strong,nonatomic) NSArray   *columns;  // of ZKRelatedListColumn
+@property (assign,nonatomic) BOOL       custom; 
+@property (strong,nonatomic) NSString  *field; 
+@property (strong,nonatomic) NSString  *label; 
+@property (assign,nonatomic) NSInteger  limitRows; 
+@property (strong,nonatomic) NSString  *name; 
+@property (strong,nonatomic) NSString  *sobject; 
+@property (strong,nonatomic) NSArray   *sort;  // of ZKRelatedListSort
 @end

@@ -895,13 +895,13 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSetPasswordResult class]].lastObject;
 }
 
--(NSString *)makeChangeOwnPasswordEnv:(NSString *)oldPassword newPassword:(NSString *)newPassword {
+-(NSString *)makeChangeOwnPasswordEnv:(NSString *)oldPassword a_newPassword:(NSString *)a_newPassword {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions" elemValue:self.callOptions nillable:NO  optional:YES];
 	[env moveToBody];
 	[env startElement:@"changeOwnPassword"];
 	[env addElement:@"oldPassword" elemValue:oldPassword nillable:NO  optional:NO];
-	[env addElement:@"newPassword" elemValue:newPassword nillable:NO  optional:NO];
+	[env addElement:@"newPassword" elemValue:a_newPassword nillable:NO  optional:NO];
 	[env endElement:@"changeOwnPassword"];
 	return env.end;
 }

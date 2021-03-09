@@ -25,16 +25,36 @@
 //
 
 #import "ZKNamedLayoutInfo.h"
+#import "ZKEnvelope.h"
+
+@interface ZKNamedLayoutInfo()
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKNamedLayoutInfo
 
+
 +(void)load {
-   [self registerType:self xmlName:@"NamedLayoutInfo"];
+    [self registerType:self xmlName:@"NamedLayoutInfo"];
 }
 
-      
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"name" elemValue:self.name nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

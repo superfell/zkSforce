@@ -25,26 +25,72 @@
 //
 
 #import "ZKDescribeLayoutResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayout.h"
 #import "ZKRecordTypeMapping.h"
 
+@interface ZKDescribeLayoutResult()
+@property (strong,nonatomic) NSArray  *layouts__v;
+@property (strong,nonatomic) NSArray  *recordTypeMappings__v;
+@property (assign,nonatomic) BOOL      recordTypeSelectorRequired__v;
+@end
+
 @implementation ZKDescribeLayoutResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeLayoutResult"];
+    [self registerType:self xmlName:@"DescribeLayoutResult"];
 }
 
-      
 -(NSArray *)layouts {
-    return [self complexTypeArrayFromElements:@"layouts" cls:[ZKDescribeLayout class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.layouts__v = [self complexTypeArrayFromElements:@"layouts" cls:[ZKDescribeLayout class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.layouts__v;
 }
-			
+        
+
+-(void)setLayouts:(NSArray *)v {
+    self.layouts__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)recordTypeMappings {
-    return [self complexTypeArrayFromElements:@"recordTypeMappings" cls:[ZKRecordTypeMapping class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.recordTypeMappings__v = [self complexTypeArrayFromElements:@"recordTypeMappings" cls:[ZKRecordTypeMapping class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.recordTypeMappings__v;
 }
-			
+        
+
+-(void)setRecordTypeMappings:(NSArray *)v {
+    self.recordTypeMappings__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)recordTypeSelectorRequired {
-    return [self boolean:@"recordTypeSelectorRequired"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.recordTypeSelectorRequired__v = [self boolean:@"recordTypeSelectorRequired"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.recordTypeSelectorRequired__v;
 }
-			
+        
+
+-(void)setRecordTypeSelectorRequired:(BOOL)v {
+    self.recordTypeSelectorRequired__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"layouts"                   elemValue:self.layouts];
+	[env addElementArray:@"recordTypeMappings"        elemValue:self.recordTypeMappings];
+	[env addBoolElement:@"recordTypeSelectorRequired" elemValue:self.recordTypeSelectorRequired];
+	[env endElement:elemName];
+}
 @end

@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="ListViewColumn" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -43,17 +45,19 @@
   </sequence>
 </complexType>
 */
-@interface ZKListViewColumn : ZKXmlDeserializer {
+@interface ZKListViewColumn : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *ascendingLabel; 
-@property (weak, readonly) NSString  *descendingLabel; 
-@property (weak, readonly) NSString  *fieldNameOrPath; 
-@property (readonly) BOOL             hidden; 
-@property (weak, readonly) NSString  *label; 
-@property (readonly) BOOL             searchable; 
-@property (weak, readonly) NSString  *selectListItem; 
-@property (weak, readonly) NSString  *sortDirection; 
-@property (readonly) NSInteger        sortIndex; 
-@property (readonly) BOOL             sortable; 
-@property (weak, readonly) NSString  *type; 
+
+@property (strong,nonatomic) NSString  *ascendingLabel; 
+@property (strong,nonatomic) NSString  *descendingLabel; 
+@property (strong,nonatomic) NSString  *fieldNameOrPath; 
+@property (assign,nonatomic) BOOL       hidden; 
+@property (strong,nonatomic) NSString  *label; 
+@property (assign,nonatomic) BOOL       searchable; 
+@property (strong,nonatomic) NSString  *selectListItem; 
+@property (strong,nonatomic) NSString  *sortDirection; 
+@property (assign,nonatomic) NSInteger  sortIndex; 
+@property (assign,nonatomic) BOOL       sortable; 
+@property (strong,nonatomic) NSString  *type; 
 @end

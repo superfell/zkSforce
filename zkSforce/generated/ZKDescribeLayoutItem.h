@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeLayoutItem" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -38,12 +40,14 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutItem : ZKXmlDeserializer {
+@interface ZKDescribeLayoutItem : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL             editableForNew; 
-@property (readonly) BOOL             editableForUpdate; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSArray   *layoutComponents;  // of ZKDescribeLayoutComponent
-@property (readonly) BOOL             placeholder; 
-@property (readonly) BOOL             required; 
+
+@property (assign,nonatomic) BOOL       editableForNew; 
+@property (assign,nonatomic) BOOL       editableForUpdate; 
+@property (strong,nonatomic) NSString  *label; 
+@property (strong,nonatomic) NSArray   *layoutComponents;  // of ZKDescribeLayoutComponent
+@property (assign,nonatomic) BOOL       placeholder; 
+@property (assign,nonatomic) BOOL       required; 
 @end

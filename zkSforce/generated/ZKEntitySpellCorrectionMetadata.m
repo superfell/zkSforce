@@ -25,20 +25,53 @@
 //
 
 #import "ZKEntitySpellCorrectionMetadata.h"
+#import "ZKEnvelope.h"
+
+@interface ZKEntitySpellCorrectionMetadata()
+@property (strong,nonatomic) NSString  *correctedQuery__v;
+@property (assign,nonatomic) BOOL       hasNonCorrectedResults__v;
+@end
 
 @implementation ZKEntitySpellCorrectionMetadata
 
+
 +(void)load {
-   [self registerType:self xmlName:@"EntitySpellCorrectionMetadata"];
+    [self registerType:self xmlName:@"EntitySpellCorrectionMetadata"];
 }
 
-      
 -(NSString *)correctedQuery {
-    return [self string:@"correctedQuery"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.correctedQuery__v = [self string:@"correctedQuery"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.correctedQuery__v;
 }
-			
+        
+
+-(void)setCorrectedQuery:(NSString *)v {
+    self.correctedQuery__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)hasNonCorrectedResults {
-    return [self boolean:@"hasNonCorrectedResults"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.hasNonCorrectedResults__v = [self boolean:@"hasNonCorrectedResults"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.hasNonCorrectedResults__v;
 }
-			
+        
+
+-(void)setHasNonCorrectedResults:(BOOL)v {
+    self.hasNonCorrectedResults__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"correctedQuery"             elemValue:self.correctedQuery         nillable:NO  optional:NO];
+	[env addBoolElement:@"hasNonCorrectedResults" elemValue:self.hasNonCorrectedResults];
+	[env endElement:elemName];
+}
 @end

@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="MergeResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -37,11 +39,13 @@
   </sequence>
 </complexType>
 */
-@interface ZKMergeResult : ZKXmlDeserializer {
+@interface ZKMergeResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *errors;  // of ZKError
-@property (weak, readonly) NSString  *id; 
-@property (weak, readonly) NSArray   *mergedRecordIds;  // of NSString
-@property (readonly) BOOL             success; 
-@property (weak, readonly) NSArray   *updatedRelatedIds;  // of NSString
+
+@property (strong,nonatomic) NSArray   *errors;  // of ZKError
+@property (strong,nonatomic) NSString  *id; 
+@property (strong,nonatomic) NSArray   *mergedRecordIds;  // of NSString
+@property (assign,nonatomic) BOOL       success; 
+@property (strong,nonatomic) NSArray   *updatedRelatedIds;  // of NSString
 @end

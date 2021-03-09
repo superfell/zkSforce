@@ -27,10 +27,31 @@
 #import "ZKDisableFeedTrackingHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKDisableFeedTrackingHeader()
+@property (assign,nonatomic) BOOL disableFeedTracking__v;
+@end
+
 @implementation ZKDisableFeedTrackingHeader
 
-@synthesize disableFeedTracking;
 
++(void)load {
+    [self registerType:self xmlName:@"DisableFeedTrackingHeader"];
+}
+
+-(BOOL)disableFeedTracking {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.disableFeedTracking__v = [self boolean:@"disableFeedTracking"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.disableFeedTracking__v;
+}
+        
+
+-(void)setDisableFeedTracking:(BOOL)v {
+    self.disableFeedTracking__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"disableFeedTracking" elemValue:self.disableFeedTracking];

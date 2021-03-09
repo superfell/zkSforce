@@ -25,17 +25,37 @@
 //
 
 #import "ZKDescribeApprovalLayoutResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeApprovalLayout.h"
+
+@interface ZKDescribeApprovalLayoutResult()
+@property (strong,nonatomic) NSArray  *approvalLayouts__v;
+@end
 
 @implementation ZKDescribeApprovalLayoutResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeApprovalLayoutResult"];
+    [self registerType:self xmlName:@"DescribeApprovalLayoutResult"];
 }
 
-      
 -(NSArray *)approvalLayouts {
-    return [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.approvalLayouts__v = [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.approvalLayouts__v;
 }
-			
+        
+
+-(void)setApprovalLayouts:(NSArray *)v {
+    self.approvalLayouts__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"approvalLayouts" elemValue:self.approvalLayouts];
+	[env endElement:elemName];
+}
 @end

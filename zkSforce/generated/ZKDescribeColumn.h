@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeColumn" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -36,10 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeColumn : ZKXmlDeserializer {
+@interface ZKDescribeColumn : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *field; 
-@property (weak, readonly) NSString  *format; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *name; 
+
+@property (strong,nonatomic) NSString  *field; 
+@property (strong,nonatomic) NSString  *format; 
+@property (strong,nonatomic) NSString  *label; 
+@property (strong,nonatomic) NSString  *name; 
 @end

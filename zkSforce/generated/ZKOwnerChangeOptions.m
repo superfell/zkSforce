@@ -26,11 +26,33 @@
 
 #import "ZKOwnerChangeOptions.h"
 #import "ZKEnvelope.h"
+#import "ZKOwnerChangeOption.h"
+
+@interface ZKOwnerChangeOptions()
+@property (strong,nonatomic) NSArray  *options__v;
+@end
 
 @implementation ZKOwnerChangeOptions
 
-@synthesize options;
 
++(void)load {
+    [self registerType:self xmlName:@"OwnerChangeOptions"];
+}
+
+-(NSArray *)options {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.options__v = [self complexTypeArrayFromElements:@"options" cls:[ZKOwnerChangeOption class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.options__v;
+}
+        
+
+-(void)setOptions:(NSArray *)v {
+    self.options__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"options" elemValue:self.options];

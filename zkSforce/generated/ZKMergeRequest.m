@@ -26,11 +26,66 @@
 
 #import "ZKMergeRequest.h"
 #import "ZKEnvelope.h"
+#import "ZKAdditionalInformationMap.h"
+#import "ZKSObject.h"
+
+@interface ZKMergeRequest()
+@property (strong,nonatomic) NSArray    *additionalInformationMap__v;
+@property (strong,nonatomic) ZKSObject  *masterRecord__v;
+@property (strong,nonatomic) NSArray    *recordToMergeIds__v;
+@end
 
 @implementation ZKMergeRequest
 
-@synthesize additionalInformationMap, masterRecord, recordToMergeIds;
 
++(void)load {
+    [self registerType:self xmlName:@"MergeRequest"];
+}
+
+-(NSArray *)additionalInformationMap {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.additionalInformationMap__v = [self complexTypeArrayFromElements:@"additionalInformationMap" cls:[ZKAdditionalInformationMap class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.additionalInformationMap__v;
+}
+        
+
+-(void)setAdditionalInformationMap:(NSArray *)v {
+    self.additionalInformationMap__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(ZKSObject *)masterRecord {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.masterRecord__v = [self sObject:@"masterRecord"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.masterRecord__v;
+}
+        
+
+-(void)setMasterRecord:(ZKSObject *)v {
+    self.masterRecord__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSArray *)recordToMergeIds {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.recordToMergeIds__v = [self strings:@"recordToMergeIds"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.recordToMergeIds__v;
+}
+        
+
+-(void)setRecordToMergeIds:(NSArray *)v {
+    self.recordToMergeIds__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"additionalInformationMap" elemValue:self.additionalInformationMap];

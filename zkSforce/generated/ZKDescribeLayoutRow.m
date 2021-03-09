@@ -25,21 +25,54 @@
 //
 
 #import "ZKDescribeLayoutRow.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutItem.h"
+
+@interface ZKDescribeLayoutRow()
+@property (strong,nonatomic) NSArray  *layoutItems__v;
+@property (assign,nonatomic) NSInteger numItems__v;
+@end
 
 @implementation ZKDescribeLayoutRow
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeLayoutRow"];
+    [self registerType:self xmlName:@"DescribeLayoutRow"];
 }
 
-      
 -(NSArray *)layoutItems {
-    return [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.layoutItems__v;
 }
-			
+        
+
+-(void)setLayoutItems:(NSArray *)v {
+    self.layoutItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSInteger)numItems {
-    return [self integer:@"numItems"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.numItems__v = [self integer:@"numItems"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.numItems__v;
 }
-			
+        
+
+-(void)setNumItems:(NSInteger)v {
+    self.numItems__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"layoutItems" elemValue:self.layoutItems];
+	[env addIntElement:@"numItems"      elemValue:self.numItems];
+	[env endElement:elemName];
+}
 @end

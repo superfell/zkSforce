@@ -118,22 +118,4 @@
     XCTAssertEqual(1, [qr size]);
 }
 
--(void)testNSCopying {
-    NSString *doc = @"<root><field>f</field><format>fmt</format><label>lbl</label><name>n</name></root>";
-    ZKElement *e = [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    ZKDescribeColumn *l = [[ZKDescribeColumn alloc] initWithXmlElement:e];
-    XCTAssertEqualObjects([ZKDescribeColumn class], [l class], @"original of wrong type");
-    XCTAssertEqualObjects(@"f", [l field], @"field is wrong");
-    XCTAssertEqualObjects(@"fmt", [l format],  @"format is wrong");
-    XCTAssertEqualObjects(@"lbl", [l label],  @"label is wrong");
-    XCTAssertEqualObjects(@"n", [l name],  @"name is wrong");
-    ZKDescribeColumn *copy = [l copyWithZone:nil];
-    XCTAssertNotNil(copy, @"copy was nil");
-    XCTAssertEqualObjects([ZKDescribeColumn class], [copy class], @"copy of wrong type");
-    XCTAssertEqualObjects(@"f", [copy field], @"field is wrong");
-    XCTAssertEqualObjects(@"fmt", [copy format],  @"format is wrong");
-    XCTAssertEqualObjects(@"lbl", [copy label],  @"label is wrong");
-    XCTAssertEqualObjects(@"n", [copy name],  @"name is wrong");
-}
-
 @end

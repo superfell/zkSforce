@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeDataCategoryMappingResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -41,15 +43,17 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeDataCategoryMappingResult : ZKXmlDeserializer {
+@interface ZKDescribeDataCategoryMappingResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *dataCategoryGroupId; 
-@property (weak, readonly) NSString  *dataCategoryGroupLabel; 
-@property (weak, readonly) NSString  *dataCategoryGroupName; 
-@property (weak, readonly) NSString  *dataCategoryId; 
-@property (weak, readonly) NSString  *dataCategoryLabel; 
-@property (weak, readonly) NSString  *dataCategoryName; 
-@property (weak, readonly) NSString  *id; 
-@property (weak, readonly) NSString  *mappedEntity; 
-@property (weak, readonly) NSString  *mappedField; 
+
+@property (strong,nonatomic) NSString  *dataCategoryGroupId; 
+@property (strong,nonatomic) NSString  *dataCategoryGroupLabel; 
+@property (strong,nonatomic) NSString  *dataCategoryGroupName; 
+@property (strong,nonatomic) NSString  *dataCategoryId; 
+@property (strong,nonatomic) NSString  *dataCategoryLabel; 
+@property (strong,nonatomic) NSString  *dataCategoryName; 
+@property (strong,nonatomic) NSString  *id; 
+@property (strong,nonatomic) NSString  *mappedEntity; 
+@property (strong,nonatomic) NSString  *mappedField; 
 @end

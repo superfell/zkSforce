@@ -27,10 +27,31 @@
 #import "ZKMruHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKMruHeader()
+@property (assign,nonatomic) BOOL updateMru__v;
+@end
+
 @implementation ZKMruHeader
 
-@synthesize updateMru;
 
++(void)load {
+    [self registerType:self xmlName:@"MruHeader"];
+}
+
+-(BOOL)updateMru {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.updateMru__v = [self boolean:@"updateMru"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.updateMru__v;
+}
+        
+
+-(void)setUpdateMru:(BOOL)v {
+    self.updateMru__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"updateMru" elemValue:self.updateMru];

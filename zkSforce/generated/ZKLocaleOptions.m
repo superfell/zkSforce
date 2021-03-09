@@ -27,10 +27,47 @@
 #import "ZKLocaleOptions.h"
 #import "ZKEnvelope.h"
 
+@interface ZKLocaleOptions()
+@property (strong,nonatomic) NSString  *language__v;
+@property (assign,nonatomic) BOOL       localizeErrors__v;
+@end
+
 @implementation ZKLocaleOptions
 
-@synthesize language, localizeErrors;
 
++(void)load {
+    [self registerType:self xmlName:@"LocaleOptions"];
+}
+
+-(NSString *)language {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.language__v = [self string:@"language"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.language__v;
+}
+        
+
+-(void)setLanguage:(NSString *)v {
+    self.language__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(BOOL)localizeErrors {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.localizeErrors__v = [self boolean:@"localizeErrors"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.localizeErrors__v;
+}
+        
+
+-(void)setLocalizeErrors:(BOOL)v {
+    self.localizeErrors__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"language"           elemValue:self.language       nillable:NO  optional:YES];

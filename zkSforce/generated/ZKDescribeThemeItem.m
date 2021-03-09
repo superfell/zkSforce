@@ -25,26 +25,72 @@
 //
 
 #import "ZKDescribeThemeItem.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeColor.h"
 #import "ZKDescribeIcon.h"
 
+@interface ZKDescribeThemeItem()
+@property (strong,nonatomic) NSArray   *colors__v;
+@property (strong,nonatomic) NSArray   *icons__v;
+@property (strong,nonatomic) NSString  *name__v;
+@end
+
 @implementation ZKDescribeThemeItem
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeThemeItem"];
+    [self registerType:self xmlName:@"DescribeThemeItem"];
 }
 
-      
 -(NSArray *)colors {
-    return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.colors__v;
 }
-			
+        
+
+-(void)setColors:(NSArray *)v {
+    self.colors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)icons {
-    return [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.icons__v;
 }
-			
+        
+
+-(void)setIcons:(NSArray *)v {
+    self.icons__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"colors" elemValue:self.colors];
+	[env addElementArray:@"icons"  elemValue:self.icons];
+	[env addElement:@"name"        elemValue:self.name   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

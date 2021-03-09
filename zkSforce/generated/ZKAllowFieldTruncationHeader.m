@@ -27,10 +27,31 @@
 #import "ZKAllowFieldTruncationHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKAllowFieldTruncationHeader()
+@property (assign,nonatomic) BOOL allowFieldTruncation__v;
+@end
+
 @implementation ZKAllowFieldTruncationHeader
 
-@synthesize allowFieldTruncation;
 
++(void)load {
+    [self registerType:self xmlName:@"AllowFieldTruncationHeader"];
+}
+
+-(BOOL)allowFieldTruncation {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.allowFieldTruncation__v = [self boolean:@"allowFieldTruncation"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.allowFieldTruncation__v;
+}
+        
+
+-(void)setAllowFieldTruncation:(BOOL)v {
+    self.allowFieldTruncation__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allowFieldTruncation" elemValue:self.allowFieldTruncation];

@@ -25,24 +25,70 @@
 //
 
 #import "ZKFilteredLookupInfo.h"
+#import "ZKEnvelope.h"
+
+@interface ZKFilteredLookupInfo()
+@property (strong,nonatomic) NSArray  *controllingFields__v;
+@property (assign,nonatomic) BOOL      dependent__v;
+@property (assign,nonatomic) BOOL      optionalFilter__v;
+@end
 
 @implementation ZKFilteredLookupInfo
 
+
 +(void)load {
-   [self registerType:self xmlName:@"FilteredLookupInfo"];
+    [self registerType:self xmlName:@"FilteredLookupInfo"];
 }
 
-      
 -(NSArray *)controllingFields {
-    return [self strings:@"controllingFields"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.controllingFields__v = [self strings:@"controllingFields"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.controllingFields__v;
 }
-			
+        
+
+-(void)setControllingFields:(NSArray *)v {
+    self.controllingFields__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)dependent {
-    return [self boolean:@"dependent"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.dependent__v = [self boolean:@"dependent"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.dependent__v;
 }
-			
+        
+
+-(void)setDependent:(BOOL)v {
+    self.dependent__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)optionalFilter {
-    return [self boolean:@"optionalFilter"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.optionalFilter__v = [self boolean:@"optionalFilter"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.optionalFilter__v;
 }
-			
+        
+
+-(void)setOptionalFilter:(BOOL)v {
+    self.optionalFilter__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"controllingFields" elemValue:self.controllingFields];
+	[env addBoolElement:@"dependent"          elemValue:self.dependent];
+	[env addBoolElement:@"optionalFilter"     elemValue:self.optionalFilter];
+	[env endElement:elemName];
+}
 @end

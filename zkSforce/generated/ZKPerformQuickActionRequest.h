@@ -25,6 +25,8 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="PerformQuickActionRequest" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -35,9 +37,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKPerformQuickActionRequest : NSObject<ZKXMLSerializable> {
+@interface ZKPerformQuickActionRequest : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (strong) NSString  *contextId; 
-@property (strong) NSString  *quickActionName; 
-@property (strong) NSArray   *records;  // of ZKSObject
+
+@property (strong,nonatomic) NSString  *contextId; 
+@property (strong,nonatomic) NSString  *quickActionName; 
+@property (strong,nonatomic) NSArray   *records;  // of ZKSObject
 @end

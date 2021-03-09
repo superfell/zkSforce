@@ -25,9 +25,9 @@
 //
 
 #import "ZKXMLSerializable.h"
-
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
+
 /*
 <complexType name="ListViewOrderBy" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -37,13 +37,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKListViewOrderBy : ZKXmlDeserializer<ZKXMLSerializable> {
+@interface ZKListViewOrderBy : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
--(instancetype)init NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithXmlElement:(ZKElement *)e;
 
-@property (strong) NSString  *fieldNameOrPath; 
-@property (strong) NSString  *nullsPosition; 
-@property (strong) NSString  *sortDirection; 
+@property (strong,nonatomic) NSString  *fieldNameOrPath; 
+@property (strong,nonatomic) NSString  *nullsPosition; 
+@property (strong,nonatomic) NSString  *sortDirection; 
 @end

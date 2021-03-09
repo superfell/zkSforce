@@ -25,6 +25,8 @@
 //
 
 #import "ZKError.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDuplicateResult;
 /*
@@ -38,7 +40,9 @@
   </complexContent>
 </complexType>
 */
-@interface ZKDuplicateError : ZKError {
+@interface ZKDuplicateError : ZKError  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) ZKDuplicateResult  *duplicateResult; 
+
+@property (strong,nonatomic) ZKDuplicateResult  *duplicateResult; 
 @end

@@ -25,17 +25,41 @@
 //
 
 #import "ZKFieldComponent.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeField.h"
+
+@interface ZKFieldComponent()
+@property (strong,nonatomic) ZKDescribeField  *field__v;
+@end
 
 @implementation ZKFieldComponent
 
+
 +(void)load {
-   [self registerType:self xmlName:@"FieldComponent"];
+    [self registerType:self xmlName:@"FieldComponent"];
 }
 
-      
 -(ZKDescribeField *)field {
-    return [self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]].lastObject;
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.field__v = [self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]].lastObject;
+        fields__set2[0] |= 0x1; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(ZKDescribeField *)v {
+    self.field__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"FieldComponent"];
+	[env addIntElement:@"displayLines" elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"     elemValue:self.tabOrder];
+	[env addElement:@"type"            elemValue:self.type         nillable:NO  optional:NO];
+	[env addElement:@"value"           elemValue:self.value        nillable:YES optional:NO];
+	[env addElement:@"field"           elemValue:self.field        nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

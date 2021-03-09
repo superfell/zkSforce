@@ -25,17 +25,37 @@
 //
 
 #import "ZKDescribeQuickActionListResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeQuickActionListItemResult.h"
+
+@interface ZKDescribeQuickActionListResult()
+@property (strong,nonatomic) NSArray  *quickActionListItems__v;
+@end
 
 @implementation ZKDescribeQuickActionListResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeQuickActionListResult"];
+    [self registerType:self xmlName:@"DescribeQuickActionListResult"];
 }
 
-      
 -(NSArray *)quickActionListItems {
-    return [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.quickActionListItems__v = [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.quickActionListItems__v;
 }
-			
+        
+
+-(void)setQuickActionListItems:(NSArray *)v {
+    self.quickActionListItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"quickActionListItems" elemValue:self.quickActionListItems];
+	[env endElement:elemName];
+}
 @end

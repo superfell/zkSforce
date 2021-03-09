@@ -25,17 +25,37 @@
 //
 
 #import "ZKDescribeAppMenuResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeAppMenuItem.h"
+
+@interface ZKDescribeAppMenuResult()
+@property (strong,nonatomic) NSArray  *appMenuItems__v;
+@end
 
 @implementation ZKDescribeAppMenuResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeAppMenuResult"];
+    [self registerType:self xmlName:@"DescribeAppMenuResult"];
 }
 
-      
 -(NSArray *)appMenuItems {
-    return [self complexTypeArrayFromElements:@"appMenuItems" cls:[ZKDescribeAppMenuItem class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.appMenuItems__v = [self complexTypeArrayFromElements:@"appMenuItems" cls:[ZKDescribeAppMenuItem class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.appMenuItems__v;
 }
-			
+        
+
+-(void)setAppMenuItems:(NSArray *)v {
+    self.appMenuItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"appMenuItems" elemValue:self.appMenuItems];
+	[env endElement:elemName];
+}
 @end

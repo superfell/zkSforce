@@ -25,17 +25,41 @@
 //
 
 #import "ZKDuplicateError.h"
+#import "ZKEnvelope.h"
 #import "ZKDuplicateResult.h"
+
+@interface ZKDuplicateError()
+@property (strong,nonatomic) ZKDuplicateResult  *duplicateResult__v;
+@end
 
 @implementation ZKDuplicateError
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DuplicateError"];
+    [self registerType:self xmlName:@"DuplicateError"];
 }
 
-      
 -(ZKDuplicateResult *)duplicateResult {
-    return [self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]].lastObject;
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.duplicateResult__v = [self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]].lastObject;
+        fields__set2[0] |= 0x1; 
+    }
+    return self.duplicateResult__v;
 }
-			
+        
+
+-(void)setDuplicateResult:(ZKDuplicateResult *)v {
+    self.duplicateResult__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"DuplicateError"];
+	[env addElementArray:@"extendedErrorDetails" elemValue:self.extendedErrorDetails];
+	[env addElementArray:@"fields"               elemValue:self.fields];
+	[env addElement:@"message"                   elemValue:self.message              nillable:NO  optional:NO];
+	[env addElement:@"statusCode"                elemValue:self.statusCode           nillable:NO  optional:NO];
+	[env addElement:@"duplicateResult"           elemValue:self.duplicateResult      nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

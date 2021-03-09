@@ -25,32 +25,108 @@
 //
 
 #import "ZKVisualforcePage.h"
+#import "ZKEnvelope.h"
+
+@interface ZKVisualforcePage()
+@property (assign,nonatomic) BOOL       showLabel__v;
+@property (assign,nonatomic) BOOL       showScrollbars__v;
+@property (strong,nonatomic) NSString  *suggestedHeight__v;
+@property (strong,nonatomic) NSString  *suggestedWidth__v;
+@property (strong,nonatomic) NSString  *url__v;
+@end
 
 @implementation ZKVisualforcePage
 
+
 +(void)load {
-   [self registerType:self xmlName:@"VisualforcePage"];
+    [self registerType:self xmlName:@"VisualforcePage"];
 }
 
-      
 -(BOOL)showLabel {
-    return [self boolean:@"showLabel"];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.showLabel__v = [self boolean:@"showLabel"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.showLabel__v;
 }
-			
+        
+
+-(void)setShowLabel:(BOOL)v {
+    self.showLabel__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(BOOL)showScrollbars {
-    return [self boolean:@"showScrollbars"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.showScrollbars__v = [self boolean:@"showScrollbars"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.showScrollbars__v;
 }
-			
+        
+
+-(void)setShowScrollbars:(BOOL)v {
+    self.showScrollbars__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
 -(NSString *)suggestedHeight {
-    return [self string:@"suggestedHeight"];
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.suggestedHeight__v = [self string:@"suggestedHeight"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.suggestedHeight__v;
 }
-			
+        
+
+-(void)setSuggestedHeight:(NSString *)v {
+    self.suggestedHeight__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
 -(NSString *)suggestedWidth {
-    return [self string:@"suggestedWidth"];
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.suggestedWidth__v = [self string:@"suggestedWidth"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.suggestedWidth__v;
 }
-			
+        
+
+-(void)setSuggestedWidth:(NSString *)v {
+    self.suggestedWidth__v = v;
+    fields__set2[0] |= 0x8; 
+}
+        
+
 -(NSString *)url {
-    return [self string:@"url"];
+    if ((fields__set2[0] & 0x10) == 0) {
+        self.url__v = [self string:@"url"];
+        fields__set2[0] |= 0x10; 
+    }
+    return self.url__v;
 }
-			
+        
+
+-(void)setUrl:(NSString *)v {
+    self.url__v = v;
+    fields__set2[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"VisualforcePage"];
+	[env addIntElement:@"displayLines"    elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"        elemValue:self.tabOrder];
+	[env addElement:@"type"               elemValue:self.type            nillable:NO  optional:NO];
+	[env addElement:@"value"              elemValue:self.value           nillable:YES optional:NO];
+	[env addBoolElement:@"showLabel"      elemValue:self.showLabel];
+	[env addBoolElement:@"showScrollbars" elemValue:self.showScrollbars];
+	[env addElement:@"suggestedHeight"    elemValue:self.suggestedHeight nillable:NO  optional:NO];
+	[env addElement:@"suggestedWidth"     elemValue:self.suggestedWidth  nillable:NO  optional:NO];
+	[env addElement:@"url"                elemValue:self.url             nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

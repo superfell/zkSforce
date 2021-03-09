@@ -25,22 +25,55 @@
 //
 
 #import "ZKDescribeGlobalTheme.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeGlobalResult.h"
 #import "ZKDescribeThemeResult.h"
 
+@interface ZKDescribeGlobalTheme()
+@property (strong,nonatomic) ZKDescribeGlobalResult  *global__v;
+@property (strong,nonatomic) ZKDescribeThemeResult   *theme__v;
+@end
+
 @implementation ZKDescribeGlobalTheme
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeGlobalTheme"];
+    [self registerType:self xmlName:@"DescribeGlobalTheme"];
 }
 
-      
 -(ZKDescribeGlobalResult *)global {
-    return [self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]].lastObject;
+    if ((fields__set[0] & 0x1) == 0) {
+        self.global__v = [self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]].lastObject;
+        fields__set[0] |= 0x1; 
+    }
+    return self.global__v;
 }
-			
+        
+
+-(void)setGlobal:(ZKDescribeGlobalResult *)v {
+    self.global__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(ZKDescribeThemeResult *)theme {
-    return [self complexTypeArrayFromElements:@"theme" cls:[ZKDescribeThemeResult class]].lastObject;
+    if ((fields__set[0] & 0x2) == 0) {
+        self.theme__v = [self complexTypeArrayFromElements:@"theme" cls:[ZKDescribeThemeResult class]].lastObject;
+        fields__set[0] |= 0x2; 
+    }
+    return self.theme__v;
 }
-			
+        
+
+-(void)setTheme:(ZKDescribeThemeResult *)v {
+    self.theme__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"global" elemValue:self.global nillable:NO  optional:NO];
+	[env addElement:@"theme"  elemValue:self.theme  nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

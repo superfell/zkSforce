@@ -25,56 +25,206 @@
 //
 
 #import "ZKListViewColumn.h"
+#import "ZKEnvelope.h"
+
+@interface ZKListViewColumn()
+@property (strong,nonatomic) NSString  *ascendingLabel__v;
+@property (strong,nonatomic) NSString  *descendingLabel__v;
+@property (strong,nonatomic) NSString  *fieldNameOrPath__v;
+@property (assign,nonatomic) BOOL       hidden__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (assign,nonatomic) BOOL       searchable__v;
+@property (strong,nonatomic) NSString  *selectListItem__v;
+@property (strong,nonatomic) NSString  *sortDirection__v;
+@property (assign,nonatomic) NSInteger  sortIndex__v;
+@property (assign,nonatomic) BOOL       sortable__v;
+@property (strong,nonatomic) NSString  *type__v;
+@end
 
 @implementation ZKListViewColumn
 
+
 +(void)load {
-   [self registerType:self xmlName:@"ListViewColumn"];
+    [self registerType:self xmlName:@"ListViewColumn"];
 }
 
-      
 -(NSString *)ascendingLabel {
-    return [self string:@"ascendingLabel"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.ascendingLabel__v = [self string:@"ascendingLabel"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.ascendingLabel__v;
 }
-			
+        
+
+-(void)setAscendingLabel:(NSString *)v {
+    self.ascendingLabel__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)descendingLabel {
-    return [self string:@"descendingLabel"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.descendingLabel__v = [self string:@"descendingLabel"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.descendingLabel__v;
 }
-			
+        
+
+-(void)setDescendingLabel:(NSString *)v {
+    self.descendingLabel__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)fieldNameOrPath {
-    return [self string:@"fieldNameOrPath"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.fieldNameOrPath__v;
 }
-			
+        
+
+-(void)setFieldNameOrPath:(NSString *)v {
+    self.fieldNameOrPath__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(BOOL)hidden {
-    return [self boolean:@"hidden"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.hidden__v = [self boolean:@"hidden"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.hidden__v;
 }
-			
+        
+
+-(void)setHidden:(BOOL)v {
+    self.hidden__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(BOOL)searchable {
-    return [self boolean:@"searchable"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.searchable__v = [self boolean:@"searchable"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.searchable__v;
 }
-			
+        
+
+-(void)setSearchable:(BOOL)v {
+    self.searchable__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)selectListItem {
-    return [self string:@"selectListItem"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.selectListItem__v = [self string:@"selectListItem"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.selectListItem__v;
 }
-			
+        
+
+-(void)setSelectListItem:(NSString *)v {
+    self.selectListItem__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(NSString *)sortDirection {
-    return [self string:@"sortDirection"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.sortDirection__v = [self string:@"sortDirection"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.sortDirection__v;
 }
-			
+        
+
+-(void)setSortDirection:(NSString *)v {
+    self.sortDirection__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(NSInteger)sortIndex {
-    return [self integer:@"sortIndex"];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.sortIndex__v = [self integer:@"sortIndex"];
+        fields__set[0] |= 0x100; 
+    }
+    return self.sortIndex__v;
 }
-			
+        
+
+-(void)setSortIndex:(NSInteger)v {
+    self.sortIndex__v = v;
+    fields__set[0] |= 0x100; 
+}
+        
+
 -(BOOL)sortable {
-    return [self boolean:@"sortable"];
+    if ((fields__set[0] & 0x200) == 0) {
+        self.sortable__v = [self boolean:@"sortable"];
+        fields__set[0] |= 0x200; 
+    }
+    return self.sortable__v;
 }
-			
+        
+
+-(void)setSortable:(BOOL)v {
+    self.sortable__v = v;
+    fields__set[0] |= 0x200; 
+}
+        
+
 -(NSString *)type {
-    return [self string:@"type"];
+    if ((fields__set[0] & 0x400) == 0) {
+        self.type__v = [self string:@"type"];
+        fields__set[0] |= 0x400; 
+    }
+    return self.type__v;
 }
-			
+        
+
+-(void)setType:(NSString *)v {
+    self.type__v = v;
+    fields__set[0] |= 0x400; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"ascendingLabel"  elemValue:self.ascendingLabel  nillable:YES optional:NO];
+	[env addElement:@"descendingLabel" elemValue:self.descendingLabel nillable:YES optional:NO];
+	[env addElement:@"fieldNameOrPath" elemValue:self.fieldNameOrPath nillable:NO  optional:NO];
+	[env addBoolElement:@"hidden"      elemValue:self.hidden];
+	[env addElement:@"label"           elemValue:self.label           nillable:NO  optional:NO];
+	[env addBoolElement:@"searchable"  elemValue:self.searchable];
+	[env addElement:@"selectListItem"  elemValue:self.selectListItem  nillable:NO  optional:NO];
+	[env addElement:@"sortDirection"   elemValue:self.sortDirection   nillable:YES optional:NO];
+	[env addIntElement:@"sortIndex"    elemValue:self.sortIndex];
+	[env addBoolElement:@"sortable"    elemValue:self.sortable];
+	[env addElement:@"type"            elemValue:self.type            nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

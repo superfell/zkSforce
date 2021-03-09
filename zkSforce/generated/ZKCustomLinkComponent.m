@@ -25,17 +25,41 @@
 //
 
 #import "ZKCustomLinkComponent.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutButton.h"
+
+@interface ZKCustomLinkComponent()
+@property (strong,nonatomic) ZKDescribeLayoutButton  *customLink__v;
+@end
 
 @implementation ZKCustomLinkComponent
 
+
 +(void)load {
-   [self registerType:self xmlName:@"CustomLinkComponent"];
+    [self registerType:self xmlName:@"CustomLinkComponent"];
 }
 
-      
 -(ZKDescribeLayoutButton *)customLink {
-    return [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.customLink__v = [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
+        fields__set2[0] |= 0x1; 
+    }
+    return self.customLink__v;
 }
-			
+        
+
+-(void)setCustomLink:(ZKDescribeLayoutButton *)v {
+    self.customLink__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"CustomLinkComponent"];
+	[env addIntElement:@"displayLines" elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"     elemValue:self.tabOrder];
+	[env addElement:@"type"            elemValue:self.type         nillable:NO  optional:NO];
+	[env addElement:@"value"           elemValue:self.value        nillable:YES optional:NO];
+	[env addElement:@"customLink"      elemValue:self.customLink   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

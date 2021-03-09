@@ -25,21 +25,54 @@
 //
 
 #import "ZKSearchSnippet.h"
+#import "ZKEnvelope.h"
 #import "ZKNameValuePair.h"
+
+@interface ZKSearchSnippet()
+@property (strong,nonatomic) NSString  *text__v;
+@property (strong,nonatomic) NSArray   *wholeFields__v;
+@end
 
 @implementation ZKSearchSnippet
 
+
 +(void)load {
-   [self registerType:self xmlName:@"SearchSnippet"];
+    [self registerType:self xmlName:@"SearchSnippet"];
 }
 
-      
 -(NSString *)text {
-    return [self string:@"text"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.text__v = [self string:@"text"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.text__v;
 }
-			
+        
+
+-(void)setText:(NSString *)v {
+    self.text__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)wholeFields {
-    return [self complexTypeArrayFromElements:@"wholeFields" cls:[ZKNameValuePair class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.wholeFields__v = [self complexTypeArrayFromElements:@"wholeFields" cls:[ZKNameValuePair class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.wholeFields__v;
 }
-			
+        
+
+-(void)setWholeFields:(NSArray *)v {
+    self.wholeFields__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"text"             elemValue:self.text        nillable:YES optional:YES];
+	[env addElementArray:@"wholeFields" elemValue:self.wholeFields];
+	[env endElement:elemName];
+}
 @end

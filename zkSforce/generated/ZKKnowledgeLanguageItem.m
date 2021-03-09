@@ -25,24 +25,70 @@
 //
 
 #import "ZKKnowledgeLanguageItem.h"
+#import "ZKEnvelope.h"
+
+@interface ZKKnowledgeLanguageItem()
+@property (assign,nonatomic) BOOL       active__v;
+@property (strong,nonatomic) NSString  *assigneeId__v;
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKKnowledgeLanguageItem
 
+
 +(void)load {
-   [self registerType:self xmlName:@"KnowledgeLanguageItem"];
+    [self registerType:self xmlName:@"KnowledgeLanguageItem"];
 }
 
-      
 -(BOOL)active {
-    return [self boolean:@"active"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.active__v = [self boolean:@"active"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.active__v;
 }
-			
+        
+
+-(void)setActive:(BOOL)v {
+    self.active__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)assigneeId {
-    return [self string:@"assigneeId"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.assigneeId__v = [self string:@"assigneeId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.assigneeId__v;
 }
-			
+        
+
+-(void)setAssigneeId:(NSString *)v {
+    self.assigneeId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"active" elemValue:self.active];
+	[env addElement:@"assigneeId" elemValue:self.assigneeId nillable:YES optional:NO];
+	[env addElement:@"name"       elemValue:self.name       nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

@@ -25,41 +25,139 @@
 //
 
 #import "ZKProcessResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
+
+@interface ZKProcessResult()
+@property (strong,nonatomic) NSArray   *actorIds__v;
+@property (strong,nonatomic) NSString  *entityId__v;
+@property (strong,nonatomic) NSArray   *errors__v;
+@property (strong,nonatomic) NSString  *instanceId__v;
+@property (strong,nonatomic) NSString  *instanceStatus__v;
+@property (strong,nonatomic) NSArray   *a_newWorkitemIds__v;
+@property (assign,nonatomic) BOOL       success__v;
+@end
 
 @implementation ZKProcessResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"ProcessResult"];
+    [self registerType:self xmlName:@"ProcessResult"];
 }
 
-      
 -(NSArray *)actorIds {
-    return [self strings:@"actorIds"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.actorIds__v = [self strings:@"actorIds"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.actorIds__v;
 }
-			
+        
+
+-(void)setActorIds:(NSArray *)v {
+    self.actorIds__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)entityId {
-    return [self string:@"entityId"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.entityId__v = [self string:@"entityId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.entityId__v;
 }
-			
+        
+
+-(void)setEntityId:(NSString *)v {
+    self.entityId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)instanceId {
-    return [self string:@"instanceId"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.instanceId__v = [self string:@"instanceId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.instanceId__v;
 }
-			
+        
+
+-(void)setInstanceId:(NSString *)v {
+    self.instanceId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)instanceStatus {
-    return [self string:@"instanceStatus"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.instanceStatus__v = [self string:@"instanceStatus"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.instanceStatus__v;
 }
-			
--(NSArray *)newWorkitemIds {
-    return [self strings:@"newWorkitemIds"];
+        
+
+-(void)setInstanceStatus:(NSString *)v {
+    self.instanceStatus__v = v;
+    fields__set[0] |= 0x10; 
 }
-			
+        
+
+-(NSArray *)a_newWorkitemIds {
+    if ((fields__set[0] & 0x20) == 0) {
+        self.a_newWorkitemIds__v = [self strings:@"newWorkitemIds"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.a_newWorkitemIds__v;
+}
+        
+
+-(void)setA_newWorkitemIds:(NSArray *)v {
+    self.a_newWorkitemIds__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"actorIds"       elemValue:self.actorIds];
+	[env addElement:@"entityId"            elemValue:self.entityId       nillable:YES optional:NO];
+	[env addElementArray:@"errors"         elemValue:self.errors];
+	[env addElement:@"instanceId"          elemValue:self.instanceId     nillable:YES optional:NO];
+	[env addElement:@"instanceStatus"      elemValue:self.instanceStatus nillable:YES optional:NO];
+	[env addElementArray:@"newWorkitemIds" elemValue:self.a_newWorkitemIds];
+	[env addBoolElement:@"success"         elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

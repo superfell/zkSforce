@@ -25,16 +25,36 @@
 //
 
 #import "ZKDescribeSoftphoneLayoutItem.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeSoftphoneLayoutItem()
+@property (strong,nonatomic) NSString  *itemApiName__v;
+@end
 
 @implementation ZKDescribeSoftphoneLayoutItem
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeSoftphoneLayoutItem"];
+    [self registerType:self xmlName:@"DescribeSoftphoneLayoutItem"];
 }
 
-      
 -(NSString *)itemApiName {
-    return [self string:@"itemApiName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.itemApiName__v = [self string:@"itemApiName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.itemApiName__v;
 }
-			
+        
+
+-(void)setItemApiName:(NSString *)v {
+    self.itemApiName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"itemApiName" elemValue:self.itemApiName nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

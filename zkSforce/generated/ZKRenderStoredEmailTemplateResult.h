@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSingleEmailMessage;
 /*
@@ -36,9 +38,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKRenderStoredEmailTemplateResult : ZKXmlDeserializer {
+@interface ZKRenderStoredEmailTemplateResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray               *errors;  // of ZKError
-@property (weak, readonly) ZKSingleEmailMessage  *renderedEmail; 
-@property (readonly) BOOL                         success; 
+
+@property (strong,nonatomic) NSArray               *errors;  // of ZKError
+@property (strong,nonatomic) ZKSingleEmailMessage  *renderedEmail; 
+@property (assign,nonatomic) BOOL                   success; 
 @end

@@ -25,25 +25,71 @@
 //
 
 #import "ZKDescribeGlobalResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeGlobalSObject.h"
+
+@interface ZKDescribeGlobalResult()
+@property (strong,nonatomic) NSString  *encoding__v;
+@property (assign,nonatomic) NSInteger  maxBatchSize__v;
+@property (strong,nonatomic) NSArray   *sobjects__v;
+@end
 
 @implementation ZKDescribeGlobalResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeGlobalResult"];
+    [self registerType:self xmlName:@"DescribeGlobalResult"];
 }
 
-      
 -(NSString *)encoding {
-    return [self string:@"encoding"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.encoding__v = [self string:@"encoding"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.encoding__v;
 }
-			
+        
+
+-(void)setEncoding:(NSString *)v {
+    self.encoding__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSInteger)maxBatchSize {
-    return [self integer:@"maxBatchSize"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.maxBatchSize__v = [self integer:@"maxBatchSize"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.maxBatchSize__v;
 }
-			
+        
+
+-(void)setMaxBatchSize:(NSInteger)v {
+    self.maxBatchSize__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)sobjects {
-    return [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.sobjects__v = [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.sobjects__v;
 }
-			
+        
+
+-(void)setSobjects:(NSArray *)v {
+    self.sobjects__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"encoding"        elemValue:self.encoding     nillable:YES optional:NO];
+	[env addIntElement:@"maxBatchSize" elemValue:self.maxBatchSize];
+	[env addElementArray:@"sobjects"   elemValue:self.sobjects];
+	[env endElement:elemName];
+}
 @end

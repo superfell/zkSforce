@@ -25,26 +25,72 @@
 //
 
 #import "ZKDescribeCompactLayoutsResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeCompactLayout.h"
 #import "ZKRecordTypeCompactLayoutMapping.h"
 
+@interface ZKDescribeCompactLayoutsResult()
+@property (strong,nonatomic) NSArray   *compactLayouts__v;
+@property (strong,nonatomic) NSString  *defaultCompactLayoutId__v;
+@property (strong,nonatomic) NSArray   *recordTypeCompactLayoutMappings__v;
+@end
+
 @implementation ZKDescribeCompactLayoutsResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeCompactLayoutsResult"];
+    [self registerType:self xmlName:@"DescribeCompactLayoutsResult"];
 }
 
-      
 -(NSArray *)compactLayouts {
-    return [self complexTypeArrayFromElements:@"compactLayouts" cls:[ZKDescribeCompactLayout class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.compactLayouts__v = [self complexTypeArrayFromElements:@"compactLayouts" cls:[ZKDescribeCompactLayout class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.compactLayouts__v;
 }
-			
+        
+
+-(void)setCompactLayouts:(NSArray *)v {
+    self.compactLayouts__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)defaultCompactLayoutId {
-    return [self string:@"defaultCompactLayoutId"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.defaultCompactLayoutId__v = [self string:@"defaultCompactLayoutId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.defaultCompactLayoutId__v;
 }
-			
+        
+
+-(void)setDefaultCompactLayoutId:(NSString *)v {
+    self.defaultCompactLayoutId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)recordTypeCompactLayoutMappings {
-    return [self complexTypeArrayFromElements:@"recordTypeCompactLayoutMappings" cls:[ZKRecordTypeCompactLayoutMapping class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.recordTypeCompactLayoutMappings__v = [self complexTypeArrayFromElements:@"recordTypeCompactLayoutMappings" cls:[ZKRecordTypeCompactLayoutMapping class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.recordTypeCompactLayoutMappings__v;
 }
-			
+        
+
+-(void)setRecordTypeCompactLayoutMappings:(NSArray *)v {
+    self.recordTypeCompactLayoutMappings__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"compactLayouts"                  elemValue:self.compactLayouts];
+	[env addElement:@"defaultCompactLayoutId"               elemValue:self.defaultCompactLayoutId          nillable:NO  optional:NO];
+	[env addElementArray:@"recordTypeCompactLayoutMappings" elemValue:self.recordTypeCompactLayoutMappings];
+	[env endElement:elemName];
+}
 @end

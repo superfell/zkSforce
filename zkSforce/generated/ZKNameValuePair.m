@@ -25,20 +25,53 @@
 //
 
 #import "ZKNameValuePair.h"
+#import "ZKEnvelope.h"
+
+@interface ZKNameValuePair()
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *value__v;
+@end
 
 @implementation ZKNameValuePair
 
+
 +(void)load {
-   [self registerType:self xmlName:@"NameValuePair"];
+    [self registerType:self xmlName:@"NameValuePair"];
 }
 
-      
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)value {
-    return [self string:@"value"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.value__v = [self string:@"value"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.value__v;
 }
-			
+        
+
+-(void)setValue:(NSString *)v {
+    self.value__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"name"  elemValue:self.name  nillable:NO  optional:NO];
+	[env addElement:@"value" elemValue:self.value nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

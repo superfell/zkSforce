@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeLayout.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutButtonSection.h"
 #import "ZKDescribeLayoutFeedView.h"
 #import "ZKDescribeLayoutSaveOption.h"
@@ -33,51 +34,187 @@
 #import "ZKRelatedContent.h"
 #import "ZKRelatedList.h"
 
+@interface ZKDescribeLayout()
+@property (strong,nonatomic) ZKDescribeLayoutButtonSection    *buttonLayoutSection__v;
+@property (strong,nonatomic) NSArray                          *detailLayoutSections__v;
+@property (strong,nonatomic) NSArray                          *editLayoutSections__v;
+@property (strong,nonatomic) ZKDescribeLayoutFeedView         *feedView__v;
+@property (strong,nonatomic) ZKDescribeLayoutSection          *highlightsPanelLayoutSection__v;
+@property (strong,nonatomic) NSString                         *id__v;
+@property (strong,nonatomic) ZKDescribeQuickActionListResult  *quickActionList__v;
+@property (strong,nonatomic) ZKRelatedContent                 *relatedContent__v;
+@property (strong,nonatomic) NSArray                          *relatedLists__v;
+@property (strong,nonatomic) NSArray                          *saveOptions__v;
+@end
+
 @implementation ZKDescribeLayout
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeLayout"];
+    [self registerType:self xmlName:@"DescribeLayout"];
 }
 
-      
 -(ZKDescribeLayoutButtonSection *)buttonLayoutSection {
-    return [self complexTypeArrayFromElements:@"buttonLayoutSection" cls:[ZKDescribeLayoutButtonSection class]].lastObject;
+    if ((fields__set[0] & 0x1) == 0) {
+        self.buttonLayoutSection__v = [self complexTypeArrayFromElements:@"buttonLayoutSection" cls:[ZKDescribeLayoutButtonSection class]].lastObject;
+        fields__set[0] |= 0x1; 
+    }
+    return self.buttonLayoutSection__v;
 }
-			
+        
+
+-(void)setButtonLayoutSection:(ZKDescribeLayoutButtonSection *)v {
+    self.buttonLayoutSection__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)detailLayoutSections {
-    return [self complexTypeArrayFromElements:@"detailLayoutSections" cls:[ZKDescribeLayoutSection class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.detailLayoutSections__v = [self complexTypeArrayFromElements:@"detailLayoutSections" cls:[ZKDescribeLayoutSection class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.detailLayoutSections__v;
 }
-			
+        
+
+-(void)setDetailLayoutSections:(NSArray *)v {
+    self.detailLayoutSections__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)editLayoutSections {
-    return [self complexTypeArrayFromElements:@"editLayoutSections" cls:[ZKDescribeLayoutSection class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.editLayoutSections__v = [self complexTypeArrayFromElements:@"editLayoutSections" cls:[ZKDescribeLayoutSection class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.editLayoutSections__v;
 }
-			
+        
+
+-(void)setEditLayoutSections:(NSArray *)v {
+    self.editLayoutSections__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(ZKDescribeLayoutFeedView *)feedView {
-    return [self complexTypeArrayFromElements:@"feedView" cls:[ZKDescribeLayoutFeedView class]].lastObject;
+    if ((fields__set[0] & 0x8) == 0) {
+        self.feedView__v = [self complexTypeArrayFromElements:@"feedView" cls:[ZKDescribeLayoutFeedView class]].lastObject;
+        fields__set[0] |= 0x8; 
+    }
+    return self.feedView__v;
 }
-			
+        
+
+-(void)setFeedView:(ZKDescribeLayoutFeedView *)v {
+    self.feedView__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(ZKDescribeLayoutSection *)highlightsPanelLayoutSection {
-    return [self complexTypeArrayFromElements:@"highlightsPanelLayoutSection" cls:[ZKDescribeLayoutSection class]].lastObject;
+    if ((fields__set[0] & 0x10) == 0) {
+        self.highlightsPanelLayoutSection__v = [self complexTypeArrayFromElements:@"highlightsPanelLayoutSection" cls:[ZKDescribeLayoutSection class]].lastObject;
+        fields__set[0] |= 0x10; 
+    }
+    return self.highlightsPanelLayoutSection__v;
 }
-			
+        
+
+-(void)setHighlightsPanelLayoutSection:(ZKDescribeLayoutSection *)v {
+    self.highlightsPanelLayoutSection__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)id {
-    return [self string:@"id"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.id__v = [self string:@"id"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.id__v;
 }
-			
+        
+
+-(void)setId:(NSString *)v {
+    self.id__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(ZKDescribeQuickActionListResult *)quickActionList {
-    return [self complexTypeArrayFromElements:@"quickActionList" cls:[ZKDescribeQuickActionListResult class]].lastObject;
+    if ((fields__set[0] & 0x40) == 0) {
+        self.quickActionList__v = [self complexTypeArrayFromElements:@"quickActionList" cls:[ZKDescribeQuickActionListResult class]].lastObject;
+        fields__set[0] |= 0x40; 
+    }
+    return self.quickActionList__v;
 }
-			
+        
+
+-(void)setQuickActionList:(ZKDescribeQuickActionListResult *)v {
+    self.quickActionList__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(ZKRelatedContent *)relatedContent {
-    return [self complexTypeArrayFromElements:@"relatedContent" cls:[ZKRelatedContent class]].lastObject;
+    if ((fields__set[0] & 0x80) == 0) {
+        self.relatedContent__v = [self complexTypeArrayFromElements:@"relatedContent" cls:[ZKRelatedContent class]].lastObject;
+        fields__set[0] |= 0x80; 
+    }
+    return self.relatedContent__v;
 }
-			
+        
+
+-(void)setRelatedContent:(ZKRelatedContent *)v {
+    self.relatedContent__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(NSArray *)relatedLists {
-    return [self complexTypeArrayFromElements:@"relatedLists" cls:[ZKRelatedList class]];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.relatedLists__v = [self complexTypeArrayFromElements:@"relatedLists" cls:[ZKRelatedList class]];
+        fields__set[0] |= 0x100; 
+    }
+    return self.relatedLists__v;
 }
-			
+        
+
+-(void)setRelatedLists:(NSArray *)v {
+    self.relatedLists__v = v;
+    fields__set[0] |= 0x100; 
+}
+        
+
 -(NSArray *)saveOptions {
-    return [self complexTypeArrayFromElements:@"saveOptions" cls:[ZKDescribeLayoutSaveOption class]];
+    if ((fields__set[0] & 0x200) == 0) {
+        self.saveOptions__v = [self complexTypeArrayFromElements:@"saveOptions" cls:[ZKDescribeLayoutSaveOption class]];
+        fields__set[0] |= 0x200; 
+    }
+    return self.saveOptions__v;
 }
-			
+        
+
+-(void)setSaveOptions:(NSArray *)v {
+    self.saveOptions__v = v;
+    fields__set[0] |= 0x200; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"buttonLayoutSection"          elemValue:self.buttonLayoutSection          nillable:NO  optional:YES];
+	[env addElementArray:@"detailLayoutSections"    elemValue:self.detailLayoutSections];
+	[env addElementArray:@"editLayoutSections"      elemValue:self.editLayoutSections];
+	[env addElement:@"feedView"                     elemValue:self.feedView                     nillable:NO  optional:YES];
+	[env addElement:@"highlightsPanelLayoutSection" elemValue:self.highlightsPanelLayoutSection nillable:NO  optional:YES];
+	[env addElement:@"id"                           elemValue:self.id                           nillable:YES optional:NO];
+	[env addElement:@"quickActionList"              elemValue:self.quickActionList              nillable:NO  optional:YES];
+	[env addElement:@"relatedContent"               elemValue:self.relatedContent               nillable:NO  optional:YES];
+	[env addElementArray:@"relatedLists"            elemValue:self.relatedLists];
+	[env addElementArray:@"saveOptions"             elemValue:self.saveOptions];
+	[env endElement:elemName];
+}
 @end

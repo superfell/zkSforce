@@ -25,21 +25,54 @@
 //
 
 #import "ZKSoqlConditionGroup.h"
+#import "ZKEnvelope.h"
 #import "ZKSoqlWhereCondition.h"
+
+@interface ZKSoqlConditionGroup()
+@property (strong,nonatomic) NSArray   *conditions__v;
+@property (strong,nonatomic) NSString  *conjunction__v;
+@end
 
 @implementation ZKSoqlConditionGroup
 
+
 +(void)load {
-   [self registerType:self xmlName:@"SoqlConditionGroup"];
+    [self registerType:self xmlName:@"SoqlConditionGroup"];
 }
 
-      
 -(NSArray *)conditions {
-    return [self complexTypeArrayFromElements:@"conditions" cls:[ZKSoqlWhereCondition class]];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.conditions__v = [self complexTypeArrayFromElements:@"conditions" cls:[ZKSoqlWhereCondition class]];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.conditions__v;
 }
-			
+        
+
+-(void)setConditions:(NSArray *)v {
+    self.conditions__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(NSString *)conjunction {
-    return [self string:@"conjunction"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.conjunction__v = [self string:@"conjunction"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.conjunction__v;
 }
-			
+        
+
+-(void)setConjunction:(NSString *)v {
+    self.conjunction__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"SoqlConditionGroup"];
+	[env addElementArray:@"conditions" elemValue:self.conditions];
+	[env addElement:@"conjunction"     elemValue:self.conjunction nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

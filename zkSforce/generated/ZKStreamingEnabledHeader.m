@@ -27,10 +27,31 @@
 #import "ZKStreamingEnabledHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKStreamingEnabledHeader()
+@property (assign,nonatomic) BOOL streamingEnabled__v;
+@end
+
 @implementation ZKStreamingEnabledHeader
 
-@synthesize streamingEnabled;
 
++(void)load {
+    [self registerType:self xmlName:@"StreamingEnabledHeader"];
+}
+
+-(BOOL)streamingEnabled {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.streamingEnabled__v = [self boolean:@"streamingEnabled"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.streamingEnabled__v;
+}
+        
+
+-(void)setStreamingEnabled:(BOOL)v {
+    self.streamingEnabled__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"streamingEnabled" elemValue:self.streamingEnabled];

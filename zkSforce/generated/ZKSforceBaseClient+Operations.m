@@ -1435,17 +1435,17 @@
 
 /** Change the current user's password
     Callbacks will be executed on the main queue. */
--(void) changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+-(void) changeOwnPassword:(NSString *)oldPassword a_newPassword:(NSString *)a_newPassword
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock {
-	[self changeOwnPassword:oldPassword newPassword:newPassword
+	[self changeOwnPassword:oldPassword a_newPassword:a_newPassword
                queue:dispatch_get_main_queue() 
            failBlock:failBlock 
        completeBlock:completeBlock];
 }
 /** Change the current user's password
     Callbacks with be executed on the supplied queue. */
--(void) changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+-(void) changeOwnPassword:(NSString *)oldPassword a_newPassword:(NSString *)a_newPassword
                     queue:(dispatch_queue_t)callbackQueue
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock {
@@ -1454,7 +1454,7 @@
 		if ([self handledError:sessionErr queue:callbackQueue failBlock:failBlock]) {
 			return;
 		}
-		NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword newPassword:newPassword];
+		NSString *payload = [self makeChangeOwnPasswordEnv:oldPassword a_newPassword:a_newPassword];
 		[self startRequest:payload name:@"changeOwnPassword" handler:^(ZKElement *root, NSError *err) {
 			if (![self handledError:err queue:callbackQueue failBlock:failBlock]) {
 				ZKChangeOwnPasswordResult *result = [self makeChangeOwnPasswordResult:root];

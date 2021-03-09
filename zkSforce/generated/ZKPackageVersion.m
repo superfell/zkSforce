@@ -27,10 +27,63 @@
 #import "ZKPackageVersion.h"
 #import "ZKEnvelope.h"
 
+@interface ZKPackageVersion()
+@property (assign,nonatomic) NSInteger  majorNumber__v;
+@property (assign,nonatomic) NSInteger  minorNumber__v;
+@property (strong,nonatomic) NSString  *namespace__v;
+@end
+
 @implementation ZKPackageVersion
 
-@synthesize majorNumber, minorNumber, namespace;
 
++(void)load {
+    [self registerType:self xmlName:@"PackageVersion"];
+}
+
+-(NSInteger)majorNumber {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.majorNumber__v = [self integer:@"majorNumber"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.majorNumber__v;
+}
+        
+
+-(void)setMajorNumber:(NSInteger)v {
+    self.majorNumber__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSInteger)minorNumber {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.minorNumber__v = [self integer:@"minorNumber"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.minorNumber__v;
+}
+        
+
+-(void)setMinorNumber:(NSInteger)v {
+    self.minorNumber__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSString *)namespace {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.namespace__v = [self string:@"namespace"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.namespace__v;
+}
+        
+
+-(void)setNamespace:(NSString *)v {
+    self.namespace__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addIntElement:@"majorNumber" elemValue:self.majorNumber];

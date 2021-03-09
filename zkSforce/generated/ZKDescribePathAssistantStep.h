@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeLayoutSection;
 /*
@@ -41,14 +43,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribePathAssistantStep : ZKXmlDeserializer {
+@interface ZKDescribePathAssistantStep : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL                            closed; 
-@property (readonly) BOOL                            converted; 
-@property (weak, readonly) NSArray                  *fields;  // of ZKDescribePathAssistantField
-@property (weak, readonly) NSString                 *info; 
-@property (weak, readonly) ZKDescribeLayoutSection  *layoutSection; 
-@property (weak, readonly) NSString                 *picklistLabel; 
-@property (weak, readonly) NSString                 *picklistValue; 
-@property (readonly) BOOL                            won; 
+
+@property (assign,nonatomic) BOOL                      closed; 
+@property (assign,nonatomic) BOOL                      converted; 
+@property (strong,nonatomic) NSArray                  *fields;  // of ZKDescribePathAssistantField
+@property (strong,nonatomic) NSString                 *info; 
+@property (strong,nonatomic) ZKDescribeLayoutSection  *layoutSection; 
+@property (strong,nonatomic) NSString                 *picklistLabel; 
+@property (strong,nonatomic) NSString                 *picklistValue; 
+@property (assign,nonatomic) BOOL                      won; 
 @end

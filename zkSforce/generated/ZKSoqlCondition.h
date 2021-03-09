@@ -25,6 +25,8 @@
 //
 
 #import "ZKSoqlWhereCondition.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="SoqlCondition" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -39,9 +41,11 @@
   </complexContent>
 </complexType>
 */
-@interface ZKSoqlCondition : ZKSoqlWhereCondition {
+@interface ZKSoqlCondition : ZKSoqlWhereCondition  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) NSString  *field; 
-@property (weak, readonly) NSString  *operator; 
-@property (weak, readonly) NSArray   *values;  // of NSString
+
+@property (strong,nonatomic) NSString  *field; 
+@property (strong,nonatomic) NSString  *operator; 
+@property (strong,nonatomic) NSArray   *values;  // of NSString
 @end

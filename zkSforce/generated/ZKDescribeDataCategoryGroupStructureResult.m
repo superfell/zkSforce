@@ -25,33 +25,105 @@
 //
 
 #import "ZKDescribeDataCategoryGroupStructureResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDataCategory.h"
+
+@interface ZKDescribeDataCategoryGroupStructureResult()
+@property (strong,nonatomic) NSString  *a_description__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *sobject__v;
+@property (strong,nonatomic) NSArray   *topCategories__v;
+@end
 
 @implementation ZKDescribeDataCategoryGroupStructureResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeDataCategoryGroupStructureResult"];
+    [self registerType:self xmlName:@"DescribeDataCategoryGroupStructureResult"];
 }
 
-      
--(NSString *)description {
-    return [self string:@"description"];
+-(NSString *)a_description {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.a_description__v = [self string:@"description"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.a_description__v;
 }
-			
+        
+
+-(void)setA_description:(NSString *)v {
+    self.a_description__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)sobject {
-    return [self string:@"sobject"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.sobject__v = [self string:@"sobject"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.sobject__v;
 }
-			
+        
+
+-(void)setSobject:(NSString *)v {
+    self.sobject__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSArray *)topCategories {
-    return [self complexTypeArrayFromElements:@"topCategories" cls:[ZKDataCategory class]];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.topCategories__v = [self complexTypeArrayFromElements:@"topCategories" cls:[ZKDataCategory class]];
+        fields__set[0] |= 0x10; 
+    }
+    return self.topCategories__v;
 }
-			
+        
+
+-(void)setTopCategories:(NSArray *)v {
+    self.topCategories__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"description"        elemValue:self.a_description   nillable:NO  optional:NO];
+	[env addElement:@"label"              elemValue:self.label         nillable:NO  optional:NO];
+	[env addElement:@"name"               elemValue:self.name          nillable:NO  optional:NO];
+	[env addElement:@"sobject"            elemValue:self.sobject       nillable:NO  optional:NO];
+	[env addElementArray:@"topCategories" elemValue:self.topCategories];
+	[env endElement:elemName];
+}
 @end

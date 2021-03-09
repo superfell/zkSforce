@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeAppMenuItem" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -39,13 +41,15 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeAppMenuItem : ZKXmlDeserializer {
+@interface ZKDescribeAppMenuItem : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (weak, readonly) NSString  *content; 
-@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *type; 
-@property (weak, readonly) NSString  *url; 
+
+@property (strong,nonatomic) NSArray   *colors;  // of ZKDescribeColor
+@property (strong,nonatomic) NSString  *content; 
+@property (strong,nonatomic) NSArray   *icons;  // of ZKDescribeIcon
+@property (strong,nonatomic) NSString  *label; 
+@property (strong,nonatomic) NSString  *name; 
+@property (strong,nonatomic) NSString  *type; 
+@property (strong,nonatomic) NSString  *url; 
 @end

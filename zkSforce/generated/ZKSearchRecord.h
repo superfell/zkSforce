@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSObject;
 @class ZKSearchRecordMetadata;
@@ -38,9 +40,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKSearchRecord : ZKXmlDeserializer {
+@interface ZKSearchRecord : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) ZKSObject               *record; 
-@property (weak, readonly) ZKSearchRecordMetadata  *searchRecordMetadata; 
-@property (weak, readonly) ZKSearchSnippet         *snippet; 
+
+@property (strong,nonatomic) ZKSObject               *record; 
+@property (strong,nonatomic) ZKSearchRecordMetadata  *searchRecordMetadata; 
+@property (strong,nonatomic) ZKSearchSnippet         *snippet; 
 @end

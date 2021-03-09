@@ -25,24 +25,70 @@
 //
 
 #import "ZKDescribeSoftphoneScreenPopOption.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeSoftphoneScreenPopOption()
+@property (strong,nonatomic) NSString  *matchType__v;
+@property (strong,nonatomic) NSString  *screenPopData__v;
+@property (strong,nonatomic) NSString  *screenPopType__v;
+@end
 
 @implementation ZKDescribeSoftphoneScreenPopOption
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeSoftphoneScreenPopOption"];
+    [self registerType:self xmlName:@"DescribeSoftphoneScreenPopOption"];
 }
 
-      
 -(NSString *)matchType {
-    return [self string:@"matchType"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.matchType__v = [self string:@"matchType"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.matchType__v;
 }
-			
+        
+
+-(void)setMatchType:(NSString *)v {
+    self.matchType__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)screenPopData {
-    return [self string:@"screenPopData"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.screenPopData__v = [self string:@"screenPopData"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.screenPopData__v;
 }
-			
+        
+
+-(void)setScreenPopData:(NSString *)v {
+    self.screenPopData__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)screenPopType {
-    return [self string:@"screenPopType"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.screenPopType__v = [self string:@"screenPopType"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.screenPopType__v;
 }
-			
+        
+
+-(void)setScreenPopType:(NSString *)v {
+    self.screenPopType__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"matchType"     elemValue:self.matchType     nillable:NO  optional:NO];
+	[env addElement:@"screenPopData" elemValue:self.screenPopData nillable:NO  optional:NO];
+	[env addElement:@"screenPopType" elemValue:self.screenPopType nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

@@ -25,17 +25,37 @@
 //
 
 #import "ZKDescribePathAssistantsResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribePathAssistant.h"
+
+@interface ZKDescribePathAssistantsResult()
+@property (strong,nonatomic) NSArray  *pathAssistants__v;
+@end
 
 @implementation ZKDescribePathAssistantsResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribePathAssistantsResult"];
+    [self registerType:self xmlName:@"DescribePathAssistantsResult"];
 }
 
-      
 -(NSArray *)pathAssistants {
-    return [self complexTypeArrayFromElements:@"pathAssistants" cls:[ZKDescribePathAssistant class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.pathAssistants__v = [self complexTypeArrayFromElements:@"pathAssistants" cls:[ZKDescribePathAssistant class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.pathAssistants__v;
 }
-			
+        
+
+-(void)setPathAssistants:(NSArray *)v {
+    self.pathAssistants__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"pathAssistants" elemValue:self.pathAssistants];
+	[env endElement:elemName];
+}
 @end

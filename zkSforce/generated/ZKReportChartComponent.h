@@ -25,6 +25,8 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="ReportChartComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -43,13 +45,15 @@
   </complexContent>
 </complexType>
 */
-@interface ZKReportChartComponent : ZKDescribeLayoutComponent {
+@interface ZKReportChartComponent : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (readonly) BOOL             cacheData; 
-@property (weak, readonly) NSString  *contextFilterableField; 
-@property (weak, readonly) NSString  *error; 
-@property (readonly) BOOL             hideOnError; 
-@property (readonly) BOOL             includeContext; 
-@property (readonly) BOOL             showTitle; 
-@property (weak, readonly) NSString  *size; 
+
+@property (assign,nonatomic) BOOL       cacheData; 
+@property (strong,nonatomic) NSString  *contextFilterableField; 
+@property (strong,nonatomic) NSString  *error; 
+@property (assign,nonatomic) BOOL       hideOnError; 
+@property (assign,nonatomic) BOOL       includeContext; 
+@property (assign,nonatomic) BOOL       showTitle; 
+@property (strong,nonatomic) NSString  *size; 
 @end

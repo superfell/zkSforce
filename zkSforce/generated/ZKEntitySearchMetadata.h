@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKEntityErrorMetadata;
 @class ZKEntityIntentQueryMetadata;
@@ -42,12 +44,14 @@
   </sequence>
 </complexType>
 */
-@interface ZKEntitySearchMetadata : ZKXmlDeserializer {
+@interface ZKEntitySearchMetadata : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString                         *entityName; 
-@property (weak, readonly) ZKEntityErrorMetadata            *errorMetadata; 
-@property (weak, readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
-@property (weak, readonly) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
-@property (weak, readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
-@property (weak, readonly) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
+
+@property (strong,nonatomic) NSString                         *entityName; 
+@property (strong,nonatomic) ZKEntityErrorMetadata            *errorMetadata; 
+@property (strong,nonatomic) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
+@property (strong,nonatomic) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
+@property (strong,nonatomic) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
+@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
 @end

@@ -25,30 +25,89 @@
 //
 
 #import "ZKDeleteByExampleResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
 #import "ZKSObject.h"
 
+@interface ZKDeleteByExampleResult()
+@property (strong,nonatomic) ZKSObject  *entity__v;
+@property (strong,nonatomic) NSArray    *errors__v;
+@property (assign,nonatomic) int64_t     rowCount__v;
+@property (assign,nonatomic) BOOL        success__v;
+@end
+
 @implementation ZKDeleteByExampleResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DeleteByExampleResult"];
+    [self registerType:self xmlName:@"DeleteByExampleResult"];
 }
 
-      
 -(ZKSObject *)entity {
-    return [self sObject:@"entity"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.entity__v = [self sObject:@"entity"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.entity__v;
 }
-			
+        
+
+-(void)setEntity:(ZKSObject *)v {
+    self.entity__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(int64_t)rowCount {
-    return [self int64:@"rowCount"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.rowCount__v = [self int64:@"rowCount"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.rowCount__v;
 }
-			
+        
+
+-(void)setRowCount:(int64_t)v {
+    self.rowCount__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"entity"        elemValue:self.entity   nillable:YES optional:NO];
+	[env addElementArray:@"errors"   elemValue:self.errors];
+	[env addInt64Element:@"rowCount" elemValue:self.rowCount];
+	[env addBoolElement:@"success"   elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

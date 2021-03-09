@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeApprovalLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -36,10 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeApprovalLayout : ZKXmlDeserializer {
+@interface ZKDescribeApprovalLayout : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *id; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSArray   *layoutItems;  // of ZKDescribeLayoutItem
-@property (weak, readonly) NSString  *name; 
+
+@property (strong,nonatomic) NSString  *id; 
+@property (strong,nonatomic) NSString  *label; 
+@property (strong,nonatomic) NSArray   *layoutItems;  // of ZKDescribeLayoutItem
+@property (strong,nonatomic) NSString  *name; 
 @end

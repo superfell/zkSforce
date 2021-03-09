@@ -27,10 +27,47 @@
 #import "ZKCallOptions.h"
 #import "ZKEnvelope.h"
 
+@interface ZKCallOptions()
+@property (strong,nonatomic) NSString  *client__v;
+@property (strong,nonatomic) NSString  *defaultNamespace__v;
+@end
+
 @implementation ZKCallOptions
 
-@synthesize client, defaultNamespace;
 
++(void)load {
+    [self registerType:self xmlName:@"CallOptions"];
+}
+
+-(NSString *)client {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.client__v = [self string:@"client"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.client__v;
+}
+        
+
+-(void)setClient:(NSString *)v {
+    self.client__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)defaultNamespace {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.defaultNamespace__v = [self string:@"defaultNamespace"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.defaultNamespace__v;
+}
+        
+
+-(void)setDefaultNamespace:(NSString *)v {
+    self.defaultNamespace__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"client"           elemValue:self.client           nillable:YES optional:NO];

@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="ChildRelationship" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -40,14 +42,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKChildRelationship : ZKXmlDeserializer {
+@interface ZKChildRelationship : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL             cascadeDelete; 
-@property (weak, readonly) NSString  *childSObject; 
-@property (readonly) BOOL             deprecatedAndHidden; 
-@property (weak, readonly) NSString  *field; 
-@property (weak, readonly) NSArray   *junctionIdListNames;  // of NSString
-@property (weak, readonly) NSArray   *junctionReferenceTo;  // of NSString
-@property (weak, readonly) NSString  *relationshipName; 
-@property (readonly) BOOL             restrictedDelete; 
+
+@property (assign,nonatomic) BOOL       cascadeDelete; 
+@property (strong,nonatomic) NSString  *childSObject; 
+@property (assign,nonatomic) BOOL       deprecatedAndHidden; 
+@property (strong,nonatomic) NSString  *field; 
+@property (strong,nonatomic) NSArray   *junctionIdListNames;  // of NSString
+@property (strong,nonatomic) NSArray   *junctionReferenceTo;  // of NSString
+@property (strong,nonatomic) NSString  *relationshipName; 
+@property (assign,nonatomic) BOOL       restrictedDelete; 
 @end

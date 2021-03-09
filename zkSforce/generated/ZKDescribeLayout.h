@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeLayoutButtonSection;
 @class ZKDescribeLayoutFeedView;
@@ -47,16 +49,18 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayout : ZKXmlDeserializer {
+@interface ZKDescribeLayout : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
-@property (weak, readonly) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
-@property (weak, readonly) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
-@property (weak, readonly) ZKDescribeLayoutFeedView         *feedView; 
-@property (weak, readonly) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
-@property (weak, readonly) NSString                         *id; 
-@property (weak, readonly) ZKDescribeQuickActionListResult  *quickActionList; 
-@property (weak, readonly) ZKRelatedContent                 *relatedContent; 
-@property (weak, readonly) NSArray                          *relatedLists;  // of ZKRelatedList
-@property (weak, readonly) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
+
+@property (strong,nonatomic) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
+@property (strong,nonatomic) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
+@property (strong,nonatomic) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
+@property (strong,nonatomic) ZKDescribeLayoutFeedView         *feedView; 
+@property (strong,nonatomic) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
+@property (strong,nonatomic) NSString                         *id; 
+@property (strong,nonatomic) ZKDescribeQuickActionListResult  *quickActionList; 
+@property (strong,nonatomic) ZKRelatedContent                 *relatedContent; 
+@property (strong,nonatomic) NSArray                          *relatedLists;  // of ZKRelatedList
+@property (strong,nonatomic) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
 @end

@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="Error" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -36,10 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKError : ZKXmlDeserializer {
+@interface ZKError : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *extendedErrorDetails;  // of ZKExtendedErrorDetails
-@property (weak, readonly) NSArray   *fields;  // of NSString
-@property (weak, readonly) NSString  *message; 
-@property (weak, readonly) NSString  *statusCode; 
+
+@property (strong,nonatomic) NSArray   *extendedErrorDetails;  // of ZKExtendedErrorDetails
+@property (strong,nonatomic) NSArray   *fields;  // of NSString
+@property (strong,nonatomic) NSString  *message; 
+@property (strong,nonatomic) NSString  *statusCode; 
 @end

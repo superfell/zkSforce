@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="KnowledgeSettings" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -35,9 +37,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKKnowledgeSettings : ZKXmlDeserializer {
+@interface ZKKnowledgeSettings : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *defaultLanguage; 
-@property (readonly) BOOL             knowledgeEnabled; 
-@property (weak, readonly) NSArray   *languages;  // of ZKKnowledgeLanguageItem
+
+@property (strong,nonatomic) NSString  *defaultLanguage; 
+@property (assign,nonatomic) BOOL       knowledgeEnabled; 
+@property (strong,nonatomic) NSArray   *languages;  // of ZKKnowledgeLanguageItem
 @end

@@ -25,25 +25,71 @@
 //
 
 #import "ZKRenderEmailTemplateBodyResult.h"
+#import "ZKEnvelope.h"
 #import "ZKRenderEmailTemplateError.h"
+
+@interface ZKRenderEmailTemplateBodyResult()
+@property (strong,nonatomic) NSArray   *errors__v;
+@property (strong,nonatomic) NSString  *mergedBody__v;
+@property (assign,nonatomic) BOOL       success__v;
+@end
 
 @implementation ZKRenderEmailTemplateBodyResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"RenderEmailTemplateBodyResult"];
+    [self registerType:self xmlName:@"RenderEmailTemplateBodyResult"];
 }
 
-      
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKRenderEmailTemplateError class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKRenderEmailTemplateError class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)mergedBody {
-    return [self string:@"mergedBody"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.mergedBody__v = [self string:@"mergedBody"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.mergedBody__v;
 }
-			
+        
+
+-(void)setMergedBody:(NSString *)v {
+    self.mergedBody__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"errors" elemValue:self.errors];
+	[env addElement:@"mergedBody"  elemValue:self.mergedBody nillable:YES optional:NO];
+	[env addBoolElement:@"success" elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

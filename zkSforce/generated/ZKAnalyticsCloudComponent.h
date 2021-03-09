@@ -25,6 +25,8 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="AnalyticsCloudComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -43,13 +45,15 @@
   </complexContent>
 </complexType>
 */
-@interface ZKAnalyticsCloudComponent : ZKDescribeLayoutComponent {
+@interface ZKAnalyticsCloudComponent : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) NSString  *error; 
-@property (weak, readonly) NSString  *filter; 
-@property (weak, readonly) NSString  *height; 
-@property (readonly) BOOL             hideOnError; 
-@property (readonly) BOOL             showSharing; 
-@property (readonly) BOOL             showTitle; 
-@property (weak, readonly) NSString  *width; 
+
+@property (strong,nonatomic) NSString  *error; 
+@property (strong,nonatomic) NSString  *filter; 
+@property (strong,nonatomic) NSString  *height; 
+@property (assign,nonatomic) BOOL       hideOnError; 
+@property (assign,nonatomic) BOOL       showSharing; 
+@property (assign,nonatomic) BOOL       showTitle; 
+@property (strong,nonatomic) NSString  *width; 
 @end

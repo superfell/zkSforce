@@ -40,6 +40,7 @@
 - (void) addNullElement:(NSString *)elemName;
 - (void) addBoolElement:(NSString *)elemName elemValue:(BOOL)elemValue;
 - (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
+- (void) addInt64Element:(NSString *)elemName elemValue:(int64_t)elemValue;
 - (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue;
 - (void) addElementArray:(NSString *)elemName   elemValue:(NSArray *)elemValues;
 - (void) addElementString:(NSString *)elemName  elemValue:(NSString *)elemValue;

@@ -25,16 +25,36 @@
 //
 
 #import "ZKEntitySearchPromotionMetadata.h"
+#import "ZKEnvelope.h"
+
+@interface ZKEntitySearchPromotionMetadata()
+@property (assign,nonatomic) NSInteger promotedResultCount__v;
+@end
 
 @implementation ZKEntitySearchPromotionMetadata
 
+
 +(void)load {
-   [self registerType:self xmlName:@"EntitySearchPromotionMetadata"];
+    [self registerType:self xmlName:@"EntitySearchPromotionMetadata"];
 }
 
-      
 -(NSInteger)promotedResultCount {
-    return [self integer:@"promotedResultCount"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.promotedResultCount__v = [self integer:@"promotedResultCount"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.promotedResultCount__v;
 }
-			
+        
+
+-(void)setPromotedResultCount:(NSInteger)v {
+    self.promotedResultCount__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addIntElement:@"promotedResultCount" elemValue:self.promotedResultCount];
+	[env endElement:elemName];
+}
 @end

@@ -25,42 +25,140 @@
 //
 
 #import "ZKDescribeCompactLayout.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutButton.h"
 #import "ZKDescribeLayoutItem.h"
 
+@interface ZKDescribeCompactLayout()
+@property (strong,nonatomic) NSArray   *actions__v;
+@property (strong,nonatomic) NSArray   *fieldItems__v;
+@property (strong,nonatomic) NSString  *id__v;
+@property (strong,nonatomic) NSArray   *imageItems__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *objectType__v;
+@end
+
 @implementation ZKDescribeCompactLayout
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeCompactLayout"];
+    [self registerType:self xmlName:@"DescribeCompactLayout"];
 }
 
-      
 -(NSArray *)actions {
-    return [self complexTypeArrayFromElements:@"actions" cls:[ZKDescribeLayoutButton class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.actions__v = [self complexTypeArrayFromElements:@"actions" cls:[ZKDescribeLayoutButton class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.actions__v;
 }
-			
+        
+
+-(void)setActions:(NSArray *)v {
+    self.actions__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)fieldItems {
-    return [self complexTypeArrayFromElements:@"fieldItems" cls:[ZKDescribeLayoutItem class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.fieldItems__v = [self complexTypeArrayFromElements:@"fieldItems" cls:[ZKDescribeLayoutItem class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.fieldItems__v;
 }
-			
+        
+
+-(void)setFieldItems:(NSArray *)v {
+    self.fieldItems__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)id {
-    return [self string:@"id"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.id__v = [self string:@"id"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.id__v;
 }
-			
+        
+
+-(void)setId:(NSString *)v {
+    self.id__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSArray *)imageItems {
-    return [self complexTypeArrayFromElements:@"imageItems" cls:[ZKDescribeLayoutItem class]];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.imageItems__v = [self complexTypeArrayFromElements:@"imageItems" cls:[ZKDescribeLayoutItem class]];
+        fields__set[0] |= 0x8; 
+    }
+    return self.imageItems__v;
 }
-			
+        
+
+-(void)setImageItems:(NSArray *)v {
+    self.imageItems__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)objectType {
-    return [self string:@"objectType"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.objectType__v = [self string:@"objectType"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.objectType__v;
 }
-			
+        
+
+-(void)setObjectType:(NSString *)v {
+    self.objectType__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"actions"    elemValue:self.actions];
+	[env addElementArray:@"fieldItems" elemValue:self.fieldItems];
+	[env addElement:@"id"              elemValue:self.id         nillable:NO  optional:NO];
+	[env addElementArray:@"imageItems" elemValue:self.imageItems];
+	[env addElement:@"label"           elemValue:self.label      nillable:NO  optional:NO];
+	[env addElement:@"name"            elemValue:self.name       nillable:NO  optional:NO];
+	[env addElement:@"objectType"      elemValue:self.objectType nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

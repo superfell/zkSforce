@@ -27,10 +27,63 @@
 #import "ZKEmailHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKEmailHeader()
+@property (assign,nonatomic) BOOL triggerAutoResponseEmail__v;
+@property (assign,nonatomic) BOOL triggerOtherEmail__v;
+@property (assign,nonatomic) BOOL triggerUserEmail__v;
+@end
+
 @implementation ZKEmailHeader
 
-@synthesize triggerAutoResponseEmail, triggerOtherEmail, triggerUserEmail;
 
++(void)load {
+    [self registerType:self xmlName:@"EmailHeader"];
+}
+
+-(BOOL)triggerAutoResponseEmail {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.triggerAutoResponseEmail__v = [self boolean:@"triggerAutoResponseEmail"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.triggerAutoResponseEmail__v;
+}
+        
+
+-(void)setTriggerAutoResponseEmail:(BOOL)v {
+    self.triggerAutoResponseEmail__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(BOOL)triggerOtherEmail {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.triggerOtherEmail__v = [self boolean:@"triggerOtherEmail"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.triggerOtherEmail__v;
+}
+        
+
+-(void)setTriggerOtherEmail:(BOOL)v {
+    self.triggerOtherEmail__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(BOOL)triggerUserEmail {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.triggerUserEmail__v = [self boolean:@"triggerUserEmail"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.triggerUserEmail__v;
+}
+        
+
+-(void)setTriggerUserEmail:(BOOL)v {
+    self.triggerUserEmail__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"triggerAutoResponseEmail" elemValue:self.triggerAutoResponseEmail];

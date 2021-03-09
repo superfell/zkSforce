@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="RecordTypeInfo" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -39,13 +41,15 @@
   </sequence>
 </complexType>
 */
-@interface ZKRecordTypeInfo : ZKXmlDeserializer {
+@interface ZKRecordTypeInfo : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL             active; 
-@property (readonly) BOOL             available; 
-@property (readonly) BOOL             defaultRecordTypeMapping; 
-@property (weak, readonly) NSString  *developerName; 
-@property (readonly) BOOL             master; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *recordTypeId; 
+
+@property (assign,nonatomic) BOOL       active; 
+@property (assign,nonatomic) BOOL       available; 
+@property (assign,nonatomic) BOOL       defaultRecordTypeMapping; 
+@property (strong,nonatomic) NSString  *developerName; 
+@property (assign,nonatomic) BOOL       master; 
+@property (strong,nonatomic) NSString  *name; 
+@property (strong,nonatomic) NSString  *recordTypeId; 
 @end

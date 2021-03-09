@@ -25,6 +25,8 @@
 //
 
 #import "ZKDescribeGlobalSObject.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeSObjectResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -76,23 +78,24 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeSObject : ZKDescribeGlobalSObject {
-	NSArray 	 *fieldList;
+@interface ZKDescribeSObject : ZKDescribeGlobalSObject  {
 	NSDictionary *fieldsByName;
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) NSArray   *actionOverrides;  // of ZKActionOverride
-@property (weak, readonly) NSArray   *childRelationships;  // of ZKChildRelationship
-@property (readonly) BOOL             compactLayoutable; 
-@property (weak, readonly) NSString  *defaultImplementation; 
-@property (weak, readonly) NSArray   *fields;  // of ZKDescribeField
-@property (weak, readonly) NSString  *implementedBy; 
-@property (weak, readonly) NSString  *implementsInterfaces; 
-@property (weak, readonly) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
-@property (weak, readonly) NSString  *networkScopeFieldName; 
-@property (weak, readonly) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
-@property (readonly) BOOL             searchLayoutable; 
-@property (weak, readonly) NSArray   *supportedScopes;  // of ZKScopeInfo
-@property (weak, readonly) NSString  *urlDetail; 
-@property (weak, readonly) NSString  *urlEdit; 
-@property (weak, readonly) NSString  *urlNew; 
+
+@property (strong,nonatomic) NSArray   *actionOverrides;  // of ZKActionOverride
+@property (strong,nonatomic) NSArray   *childRelationships;  // of ZKChildRelationship
+@property (assign,nonatomic) BOOL       compactLayoutable; 
+@property (strong,nonatomic) NSString  *defaultImplementation; 
+@property (strong,nonatomic) NSArray   *fields;  // of ZKDescribeField
+@property (strong,nonatomic) NSString  *implementedBy; 
+@property (strong,nonatomic) NSString  *implementsInterfaces; 
+@property (strong,nonatomic) NSArray   *namedLayoutInfos;  // of ZKNamedLayoutInfo
+@property (strong,nonatomic) NSString  *networkScopeFieldName; 
+@property (strong,nonatomic) NSArray   *recordTypeInfos;  // of ZKRecordTypeInfo
+@property (assign,nonatomic) BOOL       searchLayoutable; 
+@property (strong,nonatomic) NSArray   *supportedScopes;  // of ZKScopeInfo
+@property (strong,nonatomic) NSString  *urlDetail; 
+@property (strong,nonatomic) NSString  *urlEdit; 
+@property (strong,nonatomic) NSString  *urlNew; 
 @end

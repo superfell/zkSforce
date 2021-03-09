@@ -25,17 +25,37 @@
 //
 
 #import "ZKDescribeSoqlListViewResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeSoqlListView.h"
+
+@interface ZKDescribeSoqlListViewResult()
+@property (strong,nonatomic) NSArray  *describeSoqlListViews__v;
+@end
 
 @implementation ZKDescribeSoqlListViewResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeSoqlListViewResult"];
+    [self registerType:self xmlName:@"DescribeSoqlListViewResult"];
 }
 
-      
 -(NSArray *)describeSoqlListViews {
-    return [self complexTypeArrayFromElements:@"describeSoqlListViews" cls:[ZKDescribeSoqlListView class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.describeSoqlListViews__v = [self complexTypeArrayFromElements:@"describeSoqlListViews" cls:[ZKDescribeSoqlListView class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.describeSoqlListViews__v;
 }
-			
+        
+
+-(void)setDescribeSoqlListViews:(NSArray *)v {
+    self.describeSoqlListViews__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"describeSoqlListViews" elemValue:self.describeSoqlListViews];
+	[env endElement:elemName];
+}
 @end

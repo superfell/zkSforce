@@ -25,9 +25,9 @@
 //
 
 #import "ZKXMLSerializable.h"
-
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
+
 /*
 <complexType name="Email" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -41,17 +41,15 @@
   </sequence>
 </complexType>
 */
-@interface ZKEmail : ZKXmlDeserializer<ZKXMLSerializable> {
+@interface ZKEmail : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
--(instancetype)init NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithXmlElement:(ZKElement *)e;
 
-@property (assign) BOOL       bccSender; 
-@property (strong) NSString  *emailPriority; 
-@property (strong) NSString  *replyTo; 
-@property (assign) BOOL       saveAsActivity; 
-@property (strong) NSString  *senderDisplayName; 
-@property (strong) NSString  *subject; 
-@property (assign) BOOL       useSignature; 
+@property (assign,nonatomic) BOOL       bccSender; 
+@property (strong,nonatomic) NSString  *emailPriority; 
+@property (strong,nonatomic) NSString  *replyTo; 
+@property (assign,nonatomic) BOOL       saveAsActivity; 
+@property (strong,nonatomic) NSString  *senderDisplayName; 
+@property (strong,nonatomic) NSString  *subject; 
+@property (assign,nonatomic) BOOL       useSignature; 
 @end

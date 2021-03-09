@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="ActionOverride" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -37,11 +39,13 @@
   </sequence>
 </complexType>
 */
-@interface ZKActionOverride : ZKXmlDeserializer {
+@interface ZKActionOverride : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *formFactor; 
-@property (readonly) BOOL             isAvailableInTouch; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *pageId; 
-@property (weak, readonly) NSString  *url; 
+
+@property (strong,nonatomic) NSString  *formFactor; 
+@property (assign,nonatomic) BOOL       isAvailableInTouch; 
+@property (strong,nonatomic) NSString  *name; 
+@property (strong,nonatomic) NSString  *pageId; 
+@property (strong,nonatomic) NSString  *url; 
 @end

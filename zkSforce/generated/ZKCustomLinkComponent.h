@@ -25,6 +25,8 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeLayoutButton;
 /*
@@ -38,7 +40,9 @@
   </complexContent>
 </complexType>
 */
-@interface ZKCustomLinkComponent : ZKDescribeLayoutComponent {
+@interface ZKCustomLinkComponent : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) ZKDescribeLayoutButton  *customLink; 
+
+@property (strong,nonatomic) ZKDescribeLayoutButton  *customLink; 
 @end

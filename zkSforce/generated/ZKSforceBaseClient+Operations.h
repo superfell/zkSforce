@@ -646,13 +646,13 @@
 
 /** Change the current user's password
     Callbacks will be executed on the main queue. */
--(void) changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+-(void) changeOwnPassword:(NSString *)oldPassword a_newPassword:(NSString *)a_newPassword
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock;
 
 /** Change the current user's password
     Callbacks with be executed on the supplied queue. */
--(void) changeOwnPassword:(NSString *)oldPassword newPassword:(NSString *)newPassword
+-(void) changeOwnPassword:(NSString *)oldPassword a_newPassword:(NSString *)a_newPassword
                     queue:(dispatch_queue_t)callbackQueue
                 failBlock:(ZKFailWithErrorBlock)failBlock
             completeBlock:(ZKCompleteChangeOwnPasswordResultBlock)completeBlock;

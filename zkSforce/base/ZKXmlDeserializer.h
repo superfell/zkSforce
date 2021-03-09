@@ -30,7 +30,7 @@
 - (instancetype)initWithXmlElement:(ZKElement *)e;
 @end
 
-@interface ZKXmlDeserializer : NSObject<NSCopying, ZKXmlInitable> {
+@interface ZKXmlDeserializer : NSObject<ZKXmlInitable> {
     ZKElement *node;
     NSMutableDictionary *values;
 }

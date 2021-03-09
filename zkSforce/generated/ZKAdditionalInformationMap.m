@@ -27,31 +27,47 @@
 #import "ZKAdditionalInformationMap.h"
 #import "ZKEnvelope.h"
 
+@interface ZKAdditionalInformationMap()
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *value__v;
+@end
+
 @implementation ZKAdditionalInformationMap
 
-@synthesize name, value;
 
 +(void)load {
     [self registerType:self xmlName:@"AdditionalInformationMap"];
 }
 
--(instancetype)init {
-    self = [super init];
-    return self;
+-(NSString *)name {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.name__v;
 }
+        
 
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.name = [d string:@"name"];
-	self.value = [d string:@"value"];
-    return self;
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x1; 
 }
+        
 
--(instancetype)initWithXmlElement:(ZKElement *)e {
-    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
-    return [self initWithZKXmlDeserializer:d];
+-(NSString *)value {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.value__v = [self string:@"value"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.value__v;
 }
+        
 
+-(void)setValue:(NSString *)v {
+    self.value__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"name"  elemValue:self.name  nillable:NO  optional:NO];

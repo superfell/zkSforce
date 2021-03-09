@@ -89,6 +89,10 @@
     [self addElement:elemName elemValue:@(elemValue)];
 }
 
+- (void) addInt64Element:(NSString *)elemName elemValue:(int64_t)elemValue {
+    [self addElement:elemName elemValue:@(elemValue)];
+}
+
 - (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue {
     [self addElement:elemName elemValue:@(elemValue)];
 }

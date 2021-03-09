@@ -25,16 +25,36 @@
 //
 
 #import "ZKResetPasswordResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKResetPasswordResult()
+@property (strong,nonatomic) NSString  *password__v;
+@end
 
 @implementation ZKResetPasswordResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"ResetPasswordResult"];
+    [self registerType:self xmlName:@"ResetPasswordResult"];
 }
 
-      
 -(NSString *)password {
-    return [self string:@"password"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.password__v = [self string:@"password"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.password__v;
 }
-			
+        
+
+-(void)setPassword:(NSString *)v {
+    self.password__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"password" elemValue:self.password nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

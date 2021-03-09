@@ -27,10 +27,95 @@
 #import "ZKRenderStoredEmailTemplateRequest.h"
 #import "ZKEnvelope.h"
 
+@interface ZKRenderStoredEmailTemplateRequest()
+@property (strong,nonatomic) NSString  *attachmentRetrievalOption__v;
+@property (strong,nonatomic) NSString  *templateId__v;
+@property (assign,nonatomic) BOOL       updateTemplateUsage__v;
+@property (strong,nonatomic) NSString  *whatId__v;
+@property (strong,nonatomic) NSString  *whoId__v;
+@end
+
 @implementation ZKRenderStoredEmailTemplateRequest
 
-@synthesize attachmentRetrievalOption, templateId, updateTemplateUsage, whatId, whoId;
 
++(void)load {
+    [self registerType:self xmlName:@"RenderStoredEmailTemplateRequest"];
+}
+
+-(NSString *)attachmentRetrievalOption {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.attachmentRetrievalOption__v = [self string:@"attachmentRetrievalOption"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.attachmentRetrievalOption__v;
+}
+        
+
+-(void)setAttachmentRetrievalOption:(NSString *)v {
+    self.attachmentRetrievalOption__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)templateId {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.templateId__v = [self string:@"templateId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.templateId__v;
+}
+        
+
+-(void)setTemplateId:(NSString *)v {
+    self.templateId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(BOOL)updateTemplateUsage {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.updateTemplateUsage__v = [self boolean:@"updateTemplateUsage"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.updateTemplateUsage__v;
+}
+        
+
+-(void)setUpdateTemplateUsage:(BOOL)v {
+    self.updateTemplateUsage__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
+-(NSString *)whatId {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.whatId__v = [self string:@"whatId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.whatId__v;
+}
+        
+
+-(void)setWhatId:(NSString *)v {
+    self.whatId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
+-(NSString *)whoId {
+    if ((fields__set[0] & 0x10) == 0) {
+        self.whoId__v = [self string:@"whoId"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.whoId__v;
+}
+        
+
+-(void)setWhoId:(NSString *)v {
+    self.whoId__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"attachmentRetrievalOption" elemValue:self.attachmentRetrievalOption nillable:YES optional:NO];

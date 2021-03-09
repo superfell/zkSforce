@@ -25,6 +25,8 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSObject;
 /*
@@ -36,9 +38,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKMergeRequest : NSObject<ZKXMLSerializable> {
+@interface ZKMergeRequest : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (strong) NSArray    *additionalInformationMap;  // of ZKAdditionalInformationMap
-@property (strong) ZKSObject  *masterRecord; 
-@property (strong) NSArray    *recordToMergeIds;  // of NSString
+
+@property (strong,nonatomic) NSArray    *additionalInformationMap;  // of ZKAdditionalInformationMap
+@property (strong,nonatomic) ZKSObject  *masterRecord; 
+@property (strong,nonatomic) NSArray    *recordToMergeIds;  // of NSString
 @end

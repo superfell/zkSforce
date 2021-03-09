@@ -25,34 +25,106 @@
 //
 
 #import "ZKQuickActionTemplateResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
 #import "ZKSObject.h"
 
+@interface ZKQuickActionTemplateResult()
+@property (strong,nonatomic) NSString   *contextId__v;
+@property (strong,nonatomic) ZKSObject  *defaultValueFormulas__v;
+@property (strong,nonatomic) ZKSObject  *defaultValues__v;
+@property (strong,nonatomic) NSArray    *errors__v;
+@property (assign,nonatomic) BOOL        success__v;
+@end
+
 @implementation ZKQuickActionTemplateResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"QuickActionTemplateResult"];
+    [self registerType:self xmlName:@"QuickActionTemplateResult"];
 }
 
-      
 -(NSString *)contextId {
-    return [self string:@"contextId"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.contextId__v = [self string:@"contextId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.contextId__v;
 }
-			
+        
+
+-(void)setContextId:(NSString *)v {
+    self.contextId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(ZKSObject *)defaultValueFormulas {
-    return [self sObject:@"defaultValueFormulas"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.defaultValueFormulas__v = [self sObject:@"defaultValueFormulas"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.defaultValueFormulas__v;
 }
-			
+        
+
+-(void)setDefaultValueFormulas:(ZKSObject *)v {
+    self.defaultValueFormulas__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(ZKSObject *)defaultValues {
-    return [self sObject:@"defaultValues"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.defaultValues__v = [self sObject:@"defaultValues"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.defaultValues__v;
 }
-			
+        
+
+-(void)setDefaultValues:(ZKSObject *)v {
+    self.defaultValues__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x8; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"contextId"            elemValue:self.contextId            nillable:YES optional:NO];
+	[env addElement:@"defaultValueFormulas" elemValue:self.defaultValueFormulas nillable:YES optional:NO];
+	[env addElement:@"defaultValues"        elemValue:self.defaultValues        nillable:YES optional:NO];
+	[env addElementArray:@"errors"          elemValue:self.errors];
+	[env addBoolElement:@"success"          elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

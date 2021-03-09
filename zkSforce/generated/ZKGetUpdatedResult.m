@@ -25,20 +25,53 @@
 //
 
 #import "ZKGetUpdatedResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKGetUpdatedResult()
+@property (strong,nonatomic) NSArray  *ids__v;
+@property (strong,nonatomic) NSDate   *latestDateCovered__v;
+@end
 
 @implementation ZKGetUpdatedResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"GetUpdatedResult"];
+    [self registerType:self xmlName:@"GetUpdatedResult"];
 }
 
-      
 -(NSArray *)ids {
-    return [self strings:@"ids"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.ids__v = [self strings:@"ids"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.ids__v;
 }
-			
+        
+
+-(void)setIds:(NSArray *)v {
+    self.ids__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSDate *)latestDateCovered {
-    return [self dateTime:@"latestDateCovered"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.latestDateCovered__v = [self dateTime:@"latestDateCovered"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.latestDateCovered__v;
 }
-			
+        
+
+-(void)setLatestDateCovered:(NSDate *)v {
+    self.latestDateCovered__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"ids"          elemValue:self.ids];
+	[env addElement:@"latestDateCovered" elemValue:self.latestDateCovered nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

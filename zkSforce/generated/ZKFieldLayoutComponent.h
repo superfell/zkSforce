@@ -25,6 +25,8 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="FieldLayoutComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -38,8 +40,10 @@
   </complexContent>
 </complexType>
 */
-@interface ZKFieldLayoutComponent : ZKDescribeLayoutComponent {
+@interface ZKFieldLayoutComponent : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) NSArray   *components;  // of ZKDescribeLayoutComponent
-@property (weak, readonly) NSString  *fieldType; 
+
+@property (strong,nonatomic) NSArray   *components;  // of ZKDescribeLayoutComponent
+@property (strong,nonatomic) NSString  *fieldType; 
 @end

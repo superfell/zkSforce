@@ -25,22 +25,55 @@
 //
 
 #import "ZKSearchResultsMetadata.h"
+#import "ZKEnvelope.h"
 #import "ZKEntitySearchMetadata.h"
 #import "ZKLabelsSearchMetadata.h"
 
+@interface ZKSearchResultsMetadata()
+@property (strong,nonatomic) NSArray  *entityLabelMetadata__v;
+@property (strong,nonatomic) NSArray  *entityMetadata__v;
+@end
+
 @implementation ZKSearchResultsMetadata
 
+
 +(void)load {
-   [self registerType:self xmlName:@"SearchResultsMetadata"];
+    [self registerType:self xmlName:@"SearchResultsMetadata"];
 }
 
-      
 -(NSArray *)entityLabelMetadata {
-    return [self complexTypeArrayFromElements:@"entityLabelMetadata" cls:[ZKLabelsSearchMetadata class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.entityLabelMetadata__v = [self complexTypeArrayFromElements:@"entityLabelMetadata" cls:[ZKLabelsSearchMetadata class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.entityLabelMetadata__v;
 }
-			
+        
+
+-(void)setEntityLabelMetadata:(NSArray *)v {
+    self.entityLabelMetadata__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)entityMetadata {
-    return [self complexTypeArrayFromElements:@"entityMetadata" cls:[ZKEntitySearchMetadata class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.entityMetadata__v = [self complexTypeArrayFromElements:@"entityMetadata" cls:[ZKEntitySearchMetadata class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.entityMetadata__v;
 }
-			
+        
+
+-(void)setEntityMetadata:(NSArray *)v {
+    self.entityMetadata__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"entityLabelMetadata" elemValue:self.entityLabelMetadata];
+	[env addElementArray:@"entityMetadata"      elemValue:self.entityMetadata];
+	[env endElement:elemName];
+}
 @end

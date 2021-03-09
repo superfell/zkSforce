@@ -25,6 +25,8 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeField;
 /*
@@ -38,7 +40,9 @@
   </complexContent>
 </complexType>
 */
-@interface ZKFieldComponent : ZKDescribeLayoutComponent {
+@interface ZKFieldComponent : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) ZKDescribeField  *field; 
+
+@property (strong,nonatomic) ZKDescribeField  *field; 
 @end

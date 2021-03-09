@@ -25,40 +25,138 @@
 //
 
 #import "ZKRelatedListColumn.h"
+#import "ZKEnvelope.h"
+
+@interface ZKRelatedListColumn()
+@property (strong,nonatomic) NSString  *field__v;
+@property (strong,nonatomic) NSString  *fieldApiName__v;
+@property (strong,nonatomic) NSString  *format__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *lookupId__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (assign,nonatomic) BOOL       sortable__v;
+@end
 
 @implementation ZKRelatedListColumn
 
+
 +(void)load {
-   [self registerType:self xmlName:@"RelatedListColumn"];
+    [self registerType:self xmlName:@"RelatedListColumn"];
 }
 
-      
 -(NSString *)field {
-    return [self string:@"field"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.field__v = [self string:@"field"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(NSString *)v {
+    self.field__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)fieldApiName {
-    return [self string:@"fieldApiName"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.fieldApiName__v = [self string:@"fieldApiName"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.fieldApiName__v;
 }
-			
+        
+
+-(void)setFieldApiName:(NSString *)v {
+    self.fieldApiName__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)format {
-    return [self string:@"format"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.format__v = [self string:@"format"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.format__v;
 }
-			
+        
+
+-(void)setFormat:(NSString *)v {
+    self.format__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)lookupId {
-    return [self string:@"lookupId"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.lookupId__v = [self string:@"lookupId"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.lookupId__v;
 }
-			
+        
+
+-(void)setLookupId:(NSString *)v {
+    self.lookupId__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(BOOL)sortable {
-    return [self boolean:@"sortable"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.sortable__v = [self boolean:@"sortable"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.sortable__v;
 }
-			
+        
+
+-(void)setSortable:(BOOL)v {
+    self.sortable__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"field"        elemValue:self.field        nillable:YES optional:NO];
+	[env addElement:@"fieldApiName" elemValue:self.fieldApiName nillable:NO  optional:NO];
+	[env addElement:@"format"       elemValue:self.format       nillable:YES optional:NO];
+	[env addElement:@"label"        elemValue:self.label        nillable:NO  optional:NO];
+	[env addElement:@"lookupId"     elemValue:self.lookupId     nillable:YES optional:YES];
+	[env addElement:@"name"         elemValue:self.name         nillable:NO  optional:NO];
+	[env addBoolElement:@"sortable" elemValue:self.sortable];
+	[env endElement:elemName];
+}
 @end

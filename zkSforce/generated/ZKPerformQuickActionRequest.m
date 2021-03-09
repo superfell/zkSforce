@@ -26,11 +26,65 @@
 
 #import "ZKPerformQuickActionRequest.h"
 #import "ZKEnvelope.h"
+#import "ZKSObject.h"
+
+@interface ZKPerformQuickActionRequest()
+@property (strong,nonatomic) NSString  *contextId__v;
+@property (strong,nonatomic) NSString  *quickActionName__v;
+@property (strong,nonatomic) NSArray   *records__v;
+@end
 
 @implementation ZKPerformQuickActionRequest
 
-@synthesize contextId, quickActionName, records;
 
++(void)load {
+    [self registerType:self xmlName:@"PerformQuickActionRequest"];
+}
+
+-(NSString *)contextId {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.contextId__v = [self string:@"contextId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.contextId__v;
+}
+        
+
+-(void)setContextId:(NSString *)v {
+    self.contextId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)quickActionName {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.quickActionName__v = [self string:@"quickActionName"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.quickActionName__v;
+}
+        
+
+-(void)setQuickActionName:(NSString *)v {
+    self.quickActionName__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSArray *)records {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.records__v = [self complexTypeArrayFromElements:@"records" cls:[ZKSObject class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.records__v;
+}
+        
+
+-(void)setRecords:(NSArray *)v {
+    self.records__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"contextId"       elemValue:self.contextId       nillable:YES optional:NO];

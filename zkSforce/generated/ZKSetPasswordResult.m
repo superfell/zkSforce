@@ -25,12 +25,19 @@
 //
 
 #import "ZKSetPasswordResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKSetPasswordResult()
+@end
 
 @implementation ZKSetPasswordResult
 
-+(void)load {
-   [self registerType:self xmlName:@"SetPasswordResult"];
-}
 
-      
++(void)load {
+    [self registerType:self xmlName:@"SetPasswordResult"];
+}
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env endElement:elemName];
+}
 @end

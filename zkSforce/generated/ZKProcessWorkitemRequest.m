@@ -27,10 +27,47 @@
 #import "ZKProcessWorkitemRequest.h"
 #import "ZKEnvelope.h"
 
+@interface ZKProcessWorkitemRequest()
+@property (strong,nonatomic) NSString  *action__v;
+@property (strong,nonatomic) NSString  *workitemId__v;
+@end
+
 @implementation ZKProcessWorkitemRequest
 
-@synthesize action, workitemId;
 
++(void)load {
+    [self registerType:self xmlName:@"ProcessWorkitemRequest"];
+}
+
+-(NSString *)action {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.action__v = [self string:@"action"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.action__v;
+}
+        
+
+-(void)setAction:(NSString *)v {
+    self.action__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
+-(NSString *)workitemId {
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.workitemId__v = [self string:@"workitemId"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.workitemId__v;
+}
+        
+
+-(void)setWorkitemId:(NSString *)v {
+    self.workitemId__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"ProcessWorkitemRequest"];
 	[env addElement:@"comments"             elemValue:self.comments        nillable:YES optional:NO];

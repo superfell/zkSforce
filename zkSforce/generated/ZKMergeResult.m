@@ -25,33 +25,105 @@
 //
 
 #import "ZKMergeResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
+
+@interface ZKMergeResult()
+@property (strong,nonatomic) NSArray   *errors__v;
+@property (strong,nonatomic) NSString  *id__v;
+@property (strong,nonatomic) NSArray   *mergedRecordIds__v;
+@property (assign,nonatomic) BOOL       success__v;
+@property (strong,nonatomic) NSArray   *updatedRelatedIds__v;
+@end
 
 @implementation ZKMergeResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"MergeResult"];
+    [self registerType:self xmlName:@"MergeResult"];
 }
 
-      
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)id {
-    return [self string:@"id"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.id__v = [self string:@"id"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.id__v;
 }
-			
+        
+
+-(void)setId:(NSString *)v {
+    self.id__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)mergedRecordIds {
-    return [self strings:@"mergedRecordIds"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.mergedRecordIds__v = [self strings:@"mergedRecordIds"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.mergedRecordIds__v;
 }
-			
+        
+
+-(void)setMergedRecordIds:(NSArray *)v {
+    self.mergedRecordIds__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSArray *)updatedRelatedIds {
-    return [self strings:@"updatedRelatedIds"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.updatedRelatedIds__v = [self strings:@"updatedRelatedIds"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.updatedRelatedIds__v;
 }
-			
+        
+
+-(void)setUpdatedRelatedIds:(NSArray *)v {
+    self.updatedRelatedIds__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"errors"            elemValue:self.errors];
+	[env addElement:@"id"                     elemValue:self.id                nillable:YES optional:NO];
+	[env addElementArray:@"mergedRecordIds"   elemValue:self.mergedRecordIds];
+	[env addBoolElement:@"success"            elemValue:self.success];
+	[env addElementArray:@"updatedRelatedIds" elemValue:self.updatedRelatedIds];
+	[env endElement:elemName];
+}
 @end

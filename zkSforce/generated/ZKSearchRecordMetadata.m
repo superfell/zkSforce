@@ -25,20 +25,53 @@
 //
 
 #import "ZKSearchRecordMetadata.h"
+#import "ZKEnvelope.h"
+
+@interface ZKSearchRecordMetadata()
+@property (assign,nonatomic) BOOL searchPromoted__v;
+@property (assign,nonatomic) BOOL spellCorrected__v;
+@end
 
 @implementation ZKSearchRecordMetadata
 
+
 +(void)load {
-   [self registerType:self xmlName:@"SearchRecordMetadata"];
+    [self registerType:self xmlName:@"SearchRecordMetadata"];
 }
 
-      
 -(BOOL)searchPromoted {
-    return [self boolean:@"searchPromoted"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.searchPromoted__v = [self boolean:@"searchPromoted"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.searchPromoted__v;
 }
-			
+        
+
+-(void)setSearchPromoted:(BOOL)v {
+    self.searchPromoted__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)spellCorrected {
-    return [self boolean:@"spellCorrected"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.spellCorrected__v = [self boolean:@"spellCorrected"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.spellCorrected__v;
 }
-			
+        
+
+-(void)setSpellCorrected:(BOOL)v {
+    self.spellCorrected__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"searchPromoted" elemValue:self.searchPromoted];
+	[env addBoolElement:@"spellCorrected" elemValue:self.spellCorrected];
+	[env endElement:elemName];
+}
 @end

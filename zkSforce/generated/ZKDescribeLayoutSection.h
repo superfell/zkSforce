@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="DescribeLayoutSection" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -42,16 +44,18 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutSection : ZKXmlDeserializer {
+@interface ZKDescribeLayoutSection : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL             collapsed; 
-@property (readonly) NSInteger        columns; 
-@property (weak, readonly) NSString  *heading; 
-@property (weak, readonly) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
-@property (weak, readonly) NSString  *layoutSectionId; 
-@property (weak, readonly) NSString  *parentLayoutId; 
-@property (readonly) NSInteger        rows; 
-@property (weak, readonly) NSString  *tabOrder; 
-@property (readonly) BOOL             useCollapsibleSection; 
-@property (readonly) BOOL             useHeading; 
+
+@property (assign,nonatomic) BOOL       collapsed; 
+@property (assign,nonatomic) NSInteger  columns; 
+@property (strong,nonatomic) NSString  *heading; 
+@property (strong,nonatomic) NSArray   *layoutRows;  // of ZKDescribeLayoutRow
+@property (strong,nonatomic) NSString  *layoutSectionId; 
+@property (strong,nonatomic) NSString  *parentLayoutId; 
+@property (assign,nonatomic) NSInteger  rows; 
+@property (strong,nonatomic) NSString  *tabOrder; 
+@property (assign,nonatomic) BOOL       useCollapsibleSection; 
+@property (assign,nonatomic) BOOL       useHeading; 
 @end

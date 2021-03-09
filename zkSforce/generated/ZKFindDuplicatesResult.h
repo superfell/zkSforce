@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="FindDuplicatesResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -35,9 +37,11 @@
   </sequence>
 </complexType>
 */
-@interface ZKFindDuplicatesResult : ZKXmlDeserializer {
+@interface ZKFindDuplicatesResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray  *duplicateResults;  // of ZKDuplicateResult
-@property (weak, readonly) NSArray  *errors;  // of ZKError
-@property (readonly) BOOL            success; 
+
+@property (strong,nonatomic) NSArray  *duplicateResults;  // of ZKDuplicateResult
+@property (strong,nonatomic) NSArray  *errors;  // of ZKError
+@property (assign,nonatomic) BOOL      success; 
 @end

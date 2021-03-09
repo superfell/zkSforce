@@ -25,21 +25,54 @@
 //
 
 #import "ZKInvalidateSessionsResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
+
+@interface ZKInvalidateSessionsResult()
+@property (strong,nonatomic) NSArray  *errors__v;
+@property (assign,nonatomic) BOOL      success__v;
+@end
 
 @implementation ZKInvalidateSessionsResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"InvalidateSessionsResult"];
+    [self registerType:self xmlName:@"InvalidateSessionsResult"];
 }
 
-      
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"errors" elemValue:self.errors];
+	[env addBoolElement:@"success" elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

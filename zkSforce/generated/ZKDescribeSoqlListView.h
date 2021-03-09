@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSoqlWhereCondition;
 /*
@@ -42,15 +44,17 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeSoqlListView : ZKXmlDeserializer {
+@interface ZKDescribeSoqlListView : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray               *columns;  // of ZKListViewColumn
-@property (weak, readonly) NSString              *id; 
-@property (weak, readonly) NSArray               *orderBy;  // of ZKListViewOrderBy
-@property (weak, readonly) NSString              *query; 
-@property (weak, readonly) NSString              *relatedEntityId; 
-@property (weak, readonly) NSString              *scope; 
-@property (weak, readonly) NSString              *scopeEntityId; 
-@property (weak, readonly) NSString              *sobjectType; 
-@property (weak, readonly) ZKSoqlWhereCondition  *whereCondition; 
+
+@property (strong,nonatomic) NSArray               *columns;  // of ZKListViewColumn
+@property (strong,nonatomic) NSString              *id; 
+@property (strong,nonatomic) NSArray               *orderBy;  // of ZKListViewOrderBy
+@property (strong,nonatomic) NSString              *query; 
+@property (strong,nonatomic) NSString              *relatedEntityId; 
+@property (strong,nonatomic) NSString              *scope; 
+@property (strong,nonatomic) NSString              *scopeEntityId; 
+@property (strong,nonatomic) NSString              *sobjectType; 
+@property (strong,nonatomic) ZKSoqlWhereCondition  *whereCondition; 
 @end

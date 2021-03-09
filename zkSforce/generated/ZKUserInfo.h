@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="GetUserInfoResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -56,30 +58,32 @@
   </sequence>
 </complexType>
 */
-@interface ZKUserInfo : ZKXmlDeserializer {
+@interface ZKUserInfo : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt32   fields__set[1];
 }
-@property (readonly) BOOL             accessibilityMode; 
-@property (readonly) BOOL             chatterExternal; 
-@property (weak, readonly) NSString  *currencySymbol; 
-@property (readonly) NSInteger        orgAttachmentFileSizeLimit; 
-@property (weak, readonly) NSString  *orgDefaultCurrencyIsoCode; 
-@property (weak, readonly) NSString  *orgDefaultCurrencyLocale; 
-@property (readonly) BOOL             orgDisallowHtmlAttachments; 
-@property (readonly) BOOL             orgHasPersonAccounts; 
-@property (weak, readonly) NSString  *organizationId; 
-@property (readonly) BOOL             organizationMultiCurrency; 
-@property (weak, readonly) NSString  *organizationName; 
-@property (weak, readonly) NSString  *profileId; 
-@property (weak, readonly) NSString  *roleId; 
-@property (readonly) NSInteger        sessionSecondsValid; 
-@property (weak, readonly) NSString  *userDefaultCurrencyIsoCode; 
-@property (weak, readonly) NSString  *userEmail; 
-@property (weak, readonly) NSString  *userFullName; 
-@property (weak, readonly) NSString  *userId; 
-@property (weak, readonly) NSString  *userLanguage; 
-@property (weak, readonly) NSString  *userLocale; 
-@property (weak, readonly) NSString  *userName; 
-@property (weak, readonly) NSString  *userTimeZone; 
-@property (weak, readonly) NSString  *userType; 
-@property (weak, readonly) NSString  *userUiSkin; 
+
+@property (assign,nonatomic) BOOL       accessibilityMode; 
+@property (assign,nonatomic) BOOL       chatterExternal; 
+@property (strong,nonatomic) NSString  *currencySymbol; 
+@property (assign,nonatomic) NSInteger  orgAttachmentFileSizeLimit; 
+@property (strong,nonatomic) NSString  *orgDefaultCurrencyIsoCode; 
+@property (strong,nonatomic) NSString  *orgDefaultCurrencyLocale; 
+@property (assign,nonatomic) BOOL       orgDisallowHtmlAttachments; 
+@property (assign,nonatomic) BOOL       orgHasPersonAccounts; 
+@property (strong,nonatomic) NSString  *organizationId; 
+@property (assign,nonatomic) BOOL       organizationMultiCurrency; 
+@property (strong,nonatomic) NSString  *organizationName; 
+@property (strong,nonatomic) NSString  *profileId; 
+@property (strong,nonatomic) NSString  *roleId; 
+@property (assign,nonatomic) NSInteger  sessionSecondsValid; 
+@property (strong,nonatomic) NSString  *userDefaultCurrencyIsoCode; 
+@property (strong,nonatomic) NSString  *userEmail; 
+@property (strong,nonatomic) NSString  *userFullName; 
+@property (strong,nonatomic) NSString  *userId; 
+@property (strong,nonatomic) NSString  *userLanguage; 
+@property (strong,nonatomic) NSString  *userLocale; 
+@property (strong,nonatomic) NSString  *userName; 
+@property (strong,nonatomic) NSString  *userTimeZone; 
+@property (strong,nonatomic) NSString  *userType; 
+@property (strong,nonatomic) NSString  *userUiSkin; 
 @end

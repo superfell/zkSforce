@@ -25,21 +25,54 @@
 //
 
 #import "ZKDescribeSoftphoneLayoutSection.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeSoftphoneLayoutItem.h"
+
+@interface ZKDescribeSoftphoneLayoutSection()
+@property (strong,nonatomic) NSString  *entityApiName__v;
+@property (strong,nonatomic) NSArray   *items__v;
+@end
 
 @implementation ZKDescribeSoftphoneLayoutSection
 
+
 +(void)load {
-   [self registerType:self xmlName:@"DescribeSoftphoneLayoutSection"];
+    [self registerType:self xmlName:@"DescribeSoftphoneLayoutSection"];
 }
 
-      
 -(NSString *)entityApiName {
-    return [self string:@"entityApiName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.entityApiName__v = [self string:@"entityApiName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.entityApiName__v;
 }
-			
+        
+
+-(void)setEntityApiName:(NSString *)v {
+    self.entityApiName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSArray *)items {
-    return [self complexTypeArrayFromElements:@"items" cls:[ZKDescribeSoftphoneLayoutItem class]];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.items__v = [self complexTypeArrayFromElements:@"items" cls:[ZKDescribeSoftphoneLayoutItem class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.items__v;
 }
-			
+        
+
+-(void)setItems:(NSArray *)v {
+    self.items__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"entityApiName" elemValue:self.entityApiName nillable:NO  optional:NO];
+	[env addElementArray:@"items"    elemValue:self.items];
+	[env endElement:elemName];
+}
 @end

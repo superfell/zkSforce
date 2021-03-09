@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSObject;
 /*
@@ -37,10 +39,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKMatchRecord : ZKXmlDeserializer {
+@interface ZKMatchRecord : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray    *additionalInformation;  // of ZKAdditionalInformationMap
-@property (weak, readonly) NSArray    *fieldDiffs;  // of ZKFieldDiff
-@property (readonly) double            matchConfidence; 
-@property (weak, readonly) ZKSObject  *record; 
+
+@property (strong,nonatomic) NSArray    *additionalInformation;  // of ZKAdditionalInformationMap
+@property (strong,nonatomic) NSArray    *fieldDiffs;  // of ZKFieldDiff
+@property (assign,nonatomic) double      matchConfidence; 
+@property (strong,nonatomic) ZKSObject  *record; 
 @end

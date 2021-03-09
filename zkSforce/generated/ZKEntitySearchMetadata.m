@@ -25,41 +25,126 @@
 //
 
 #import "ZKEntitySearchMetadata.h"
+#import "ZKEnvelope.h"
 #import "ZKEntityErrorMetadata.h"
 #import "ZKEntityIntentQueryMetadata.h"
 #import "ZKEntitySearchPromotionMetadata.h"
 #import "ZKEntitySpellCorrectionMetadata.h"
 #import "ZKFieldLevelSearchMetadata.h"
 
+@interface ZKEntitySearchMetadata()
+@property (strong,nonatomic) NSString                         *entityName__v;
+@property (strong,nonatomic) ZKEntityErrorMetadata            *errorMetadata__v;
+@property (strong,nonatomic) NSArray                          *fieldMetadata__v;
+@property (strong,nonatomic) ZKEntityIntentQueryMetadata      *intentQueryMetadata__v;
+@property (strong,nonatomic) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata__v;
+@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata__v;
+@end
+
 @implementation ZKEntitySearchMetadata
 
+
 +(void)load {
-   [self registerType:self xmlName:@"EntitySearchMetadata"];
+    [self registerType:self xmlName:@"EntitySearchMetadata"];
 }
 
-      
 -(NSString *)entityName {
-    return [self string:@"entityName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.entityName__v = [self string:@"entityName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.entityName__v;
 }
-			
+        
+
+-(void)setEntityName:(NSString *)v {
+    self.entityName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(ZKEntityErrorMetadata *)errorMetadata {
-    return [self complexTypeArrayFromElements:@"errorMetadata" cls:[ZKEntityErrorMetadata class]].lastObject;
+    if ((fields__set[0] & 0x2) == 0) {
+        self.errorMetadata__v = [self complexTypeArrayFromElements:@"errorMetadata" cls:[ZKEntityErrorMetadata class]].lastObject;
+        fields__set[0] |= 0x2; 
+    }
+    return self.errorMetadata__v;
 }
-			
+        
+
+-(void)setErrorMetadata:(ZKEntityErrorMetadata *)v {
+    self.errorMetadata__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)fieldMetadata {
-    return [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.fieldMetadata__v = [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.fieldMetadata__v;
 }
-			
+        
+
+-(void)setFieldMetadata:(NSArray *)v {
+    self.fieldMetadata__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(ZKEntityIntentQueryMetadata *)intentQueryMetadata {
-    return [self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]].lastObject;
+    if ((fields__set[0] & 0x8) == 0) {
+        self.intentQueryMetadata__v = [self complexTypeArrayFromElements:@"intentQueryMetadata" cls:[ZKEntityIntentQueryMetadata class]].lastObject;
+        fields__set[0] |= 0x8; 
+    }
+    return self.intentQueryMetadata__v;
 }
-			
+        
+
+-(void)setIntentQueryMetadata:(ZKEntityIntentQueryMetadata *)v {
+    self.intentQueryMetadata__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(ZKEntitySearchPromotionMetadata *)searchPromotionMetadata {
-    return [self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]].lastObject;
+    if ((fields__set[0] & 0x10) == 0) {
+        self.searchPromotionMetadata__v = [self complexTypeArrayFromElements:@"searchPromotionMetadata" cls:[ZKEntitySearchPromotionMetadata class]].lastObject;
+        fields__set[0] |= 0x10; 
+    }
+    return self.searchPromotionMetadata__v;
 }
-			
+        
+
+-(void)setSearchPromotionMetadata:(ZKEntitySearchPromotionMetadata *)v {
+    self.searchPromotionMetadata__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(ZKEntitySpellCorrectionMetadata *)spellCorrectionMetadata {
-    return [self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]].lastObject;
+    if ((fields__set[0] & 0x20) == 0) {
+        self.spellCorrectionMetadata__v = [self complexTypeArrayFromElements:@"spellCorrectionMetadata" cls:[ZKEntitySpellCorrectionMetadata class]].lastObject;
+        fields__set[0] |= 0x20; 
+    }
+    return self.spellCorrectionMetadata__v;
 }
-			
+        
+
+-(void)setSpellCorrectionMetadata:(ZKEntitySpellCorrectionMetadata *)v {
+    self.spellCorrectionMetadata__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"entityName"              elemValue:self.entityName              nillable:NO  optional:NO];
+	[env addElement:@"errorMetadata"           elemValue:self.errorMetadata           nillable:NO  optional:YES];
+	[env addElementArray:@"fieldMetadata"      elemValue:self.fieldMetadata];
+	[env addElement:@"intentQueryMetadata"     elemValue:self.intentQueryMetadata     nillable:NO  optional:YES];
+	[env addElement:@"searchPromotionMetadata" elemValue:self.searchPromotionMetadata nillable:NO  optional:YES];
+	[env addElement:@"spellCorrectionMetadata" elemValue:self.spellCorrectionMetadata nillable:NO  optional:YES];
+	[env endElement:elemName];
+}
 @end

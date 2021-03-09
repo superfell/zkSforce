@@ -78,23 +78,23 @@
 
 @property (strong) NSObject<ZKAuthenticationInfo> *authSource;
 
-@property (strong) ZKAllOrNoneHeader             *allOrNoneHeader; 
-@property (strong) ZKAllowFieldTruncationHeader  *allowFieldTruncationHeader; 
-@property (strong) ZKAssignmentRuleHeader        *assignmentRuleHeader; 
-@property (strong) ZKCallOptions                 *callOptions; 
-@property (strong) ZKDebuggingHeader             *debuggingHeader; 
-@property (strong) ZKDisableFeedTrackingHeader   *disableFeedTrackingHeader; 
-@property (strong) ZKDuplicateRuleHeader         *duplicateRuleHeader; 
-@property (strong) ZKEmailHeader                 *emailHeader; 
-@property (strong) ZKLocaleOptions               *localeOptions; 
-@property (strong) ZKLoginScopeHeader            *loginScopeHeader; 
-@property (strong) ZKMruHeader                   *mruHeader; 
-@property (strong) ZKOwnerChangeOptions          *ownerChangeOptions; 
-@property (strong) ZKPackageVersionHeader        *packageVersionHeader; 
-@property (strong) ZKQueryOptions                *queryOptions; 
-@property (strong) ZKSessionHeader               *sessionHeader; 
-@property (strong) ZKStreamingEnabledHeader      *streamingEnabledHeader; 
-@property (strong) ZKUserTerritoryDeleteHeader   *userTerritoryDeleteHeader; 
+@property (strong,nonatomic) ZKAllOrNoneHeader             *allOrNoneHeader; 
+@property (strong,nonatomic) ZKAllowFieldTruncationHeader  *allowFieldTruncationHeader; 
+@property (strong,nonatomic) ZKAssignmentRuleHeader        *assignmentRuleHeader; 
+@property (strong,nonatomic) ZKCallOptions                 *callOptions; 
+@property (strong,nonatomic) ZKDebuggingHeader             *debuggingHeader; 
+@property (strong,nonatomic) ZKDisableFeedTrackingHeader   *disableFeedTrackingHeader; 
+@property (strong,nonatomic) ZKDuplicateRuleHeader         *duplicateRuleHeader; 
+@property (strong,nonatomic) ZKEmailHeader                 *emailHeader; 
+@property (strong,nonatomic) ZKLocaleOptions               *localeOptions; 
+@property (strong,nonatomic) ZKLoginScopeHeader            *loginScopeHeader; 
+@property (strong,nonatomic) ZKMruHeader                   *mruHeader; 
+@property (strong,nonatomic) ZKOwnerChangeOptions          *ownerChangeOptions; 
+@property (strong,nonatomic) ZKPackageVersionHeader        *packageVersionHeader; 
+@property (strong,nonatomic) ZKQueryOptions                *queryOptions; 
+@property (strong,nonatomic) ZKSessionHeader               *sessionHeader; 
+@property (strong,nonatomic) ZKStreamingEnabledHeader      *streamingEnabledHeader; 
+@property (strong,nonatomic) ZKUserTerritoryDeleteHeader   *userTerritoryDeleteHeader; 
 
 -(NSString *)makeLoginEnv:(NSString *)username password:(NSString *)password;
 -(ZKLoginResult *)makeLoginResult:(ZKElement *)root;
@@ -231,7 +231,7 @@
 -(NSString *)makeSetPasswordEnv:(NSString *)userId password:(NSString *)password;
 -(ZKSetPasswordResult *)makeSetPasswordResult:(ZKElement *)root;
 
--(NSString *)makeChangeOwnPasswordEnv:(NSString *)oldPassword newPassword:(NSString *)newPassword;
+-(NSString *)makeChangeOwnPasswordEnv:(NSString *)oldPassword a_newPassword:(NSString *)a_newPassword;
 -(ZKChangeOwnPasswordResult *)makeChangeOwnPasswordResult:(ZKElement *)root;
 
 -(NSString *)makeResetPasswordEnv:(NSString *)userId;

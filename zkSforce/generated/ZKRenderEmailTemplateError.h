@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
 <complexType name="RenderEmailTemplateError" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
@@ -36,10 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKRenderEmailTemplateError : ZKXmlDeserializer {
+@interface ZKRenderEmailTemplateError : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *fieldName; 
-@property (weak, readonly) NSString  *message; 
-@property (readonly) NSInteger        offset; 
-@property (weak, readonly) NSString  *statusCode; 
+
+@property (strong,nonatomic) NSString  *fieldName; 
+@property (strong,nonatomic) NSString  *message; 
+@property (assign,nonatomic) NSInteger  offset; 
+@property (strong,nonatomic) NSString  *statusCode; 
 @end

@@ -27,32 +27,63 @@
 #import "ZKListViewOrderBy.h"
 #import "ZKEnvelope.h"
 
+@interface ZKListViewOrderBy()
+@property (strong,nonatomic) NSString  *fieldNameOrPath__v;
+@property (strong,nonatomic) NSString  *nullsPosition__v;
+@property (strong,nonatomic) NSString  *sortDirection__v;
+@end
+
 @implementation ZKListViewOrderBy
 
-@synthesize fieldNameOrPath, nullsPosition, sortDirection;
 
 +(void)load {
     [self registerType:self xmlName:@"ListViewOrderBy"];
 }
 
--(instancetype)init {
-    self = [super init];
-    return self;
+-(NSString *)fieldNameOrPath {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.fieldNameOrPath__v;
 }
+        
 
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.fieldNameOrPath = [d string:@"fieldNameOrPath"];
-	self.nullsPosition = [d string:@"nullsPosition"];
-	self.sortDirection = [d string:@"sortDirection"];
-    return self;
+-(void)setFieldNameOrPath:(NSString *)v {
+    self.fieldNameOrPath__v = v;
+    fields__set[0] |= 0x1; 
 }
+        
 
--(instancetype)initWithXmlElement:(ZKElement *)e {
-    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
-    return [self initWithZKXmlDeserializer:d];
+-(NSString *)nullsPosition {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.nullsPosition__v = [self string:@"nullsPosition"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.nullsPosition__v;
 }
+        
 
+-(void)setNullsPosition:(NSString *)v {
+    self.nullsPosition__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSString *)sortDirection {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.sortDirection__v = [self string:@"sortDirection"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.sortDirection__v;
+}
+        
+
+-(void)setSortDirection:(NSString *)v {
+    self.sortDirection__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"fieldNameOrPath" elemValue:self.fieldNameOrPath nillable:NO  optional:NO];

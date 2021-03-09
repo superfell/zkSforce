@@ -25,6 +25,8 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSObject;
 /*
@@ -50,23 +52,25 @@
   </sequence>
 </complexType>
 */
-@interface ZKLeadConvert : NSObject<ZKXMLSerializable> {
+@interface ZKLeadConvert : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt32   fields__set[1];
 }
-@property (strong) NSString   *accountId; 
-@property (strong) ZKSObject  *accountRecord; 
-@property (assign) BOOL        bypassAccountDedupeCheck; 
-@property (assign) BOOL        bypassContactDedupeCheck; 
-@property (strong) NSString   *contactId; 
-@property (strong) ZKSObject  *contactRecord; 
-@property (strong) NSString   *convertedStatus; 
-@property (assign) BOOL        doNotCreateOpportunity; 
-@property (strong) NSString   *leadId; 
-@property (strong) NSString   *opportunityId; 
-@property (strong) NSString   *opportunityName; 
-@property (strong) ZKSObject  *opportunityRecord; 
-@property (assign) BOOL        overwriteLeadSource; 
-@property (strong) NSString   *ownerId; 
-@property (strong) NSString   *relatedPersonAccountId; 
-@property (strong) ZKSObject  *relatedPersonAccountRecord; 
-@property (assign) BOOL        sendNotificationEmail; 
+
+@property (strong,nonatomic) NSString   *accountId; 
+@property (strong,nonatomic) ZKSObject  *accountRecord; 
+@property (assign,nonatomic) BOOL        bypassAccountDedupeCheck; 
+@property (assign,nonatomic) BOOL        bypassContactDedupeCheck; 
+@property (strong,nonatomic) NSString   *contactId; 
+@property (strong,nonatomic) ZKSObject  *contactRecord; 
+@property (strong,nonatomic) NSString   *convertedStatus; 
+@property (assign,nonatomic) BOOL        doNotCreateOpportunity; 
+@property (strong,nonatomic) NSString   *leadId; 
+@property (strong,nonatomic) NSString   *opportunityId; 
+@property (strong,nonatomic) NSString   *opportunityName; 
+@property (strong,nonatomic) ZKSObject  *opportunityRecord; 
+@property (assign,nonatomic) BOOL        overwriteLeadSource; 
+@property (strong,nonatomic) NSString   *ownerId; 
+@property (strong,nonatomic) NSString   *relatedPersonAccountId; 
+@property (strong,nonatomic) ZKSObject  *relatedPersonAccountRecord; 
+@property (assign,nonatomic) BOOL        sendNotificationEmail; 
 @end

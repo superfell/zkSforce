@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeSObject;
 @class ZKXsdAnyType;
@@ -93,67 +95,69 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeField : ZKXmlDeserializer <NSCopying> {
+@interface ZKDescribeField : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt64   fields__set[1];
 	ZKDescribeSObject *__weak sobject;
 }
 @property (weak) ZKDescribeSObject *sobject;
 
-@property (readonly) BOOL                         aggregatable; 
-@property (readonly) BOOL                         aiPredictionField; 
-@property (readonly) BOOL                         autoNumber; 
-@property (readonly) NSInteger                    byteLength; 
-@property (readonly) BOOL                         calculated; 
-@property (weak, readonly) NSString              *calculatedFormula; 
-@property (readonly) BOOL                         cascadeDelete; 
-@property (readonly) BOOL                         caseSensitive; 
-@property (weak, readonly) NSString              *compoundFieldName; 
-@property (weak, readonly) NSString              *controllerName; 
-@property (readonly) BOOL                         createable; 
-@property (readonly) BOOL                         custom; 
-@property (readonly) BOOL                         dataTranslationEnabled; 
-@property (weak, readonly) ZKXsdAnyType          *defaultValue; 
-@property (weak, readonly) NSString              *defaultValueFormula; 
-@property (readonly) BOOL                         defaultedOnCreate; 
-@property (readonly) BOOL                         dependentPicklist; 
-@property (readonly) BOOL                         deprecatedAndHidden; 
-@property (readonly) NSInteger                    digits; 
-@property (readonly) BOOL                         displayLocationInDecimal; 
-@property (readonly) BOOL                         encrypted; 
-@property (readonly) BOOL                         externalId; 
-@property (weak, readonly) NSString              *extraTypeInfo; 
-@property (readonly) BOOL                         filterable; 
-@property (weak, readonly) ZKFilteredLookupInfo  *filteredLookupInfo; 
-@property (readonly) BOOL                         formulaTreatNullNumberAsZero; 
-@property (readonly) BOOL                         groupable; 
-@property (readonly) BOOL                         highScaleNumber; 
-@property (readonly) BOOL                         htmlFormatted; 
-@property (readonly) BOOL                         idLookup; 
-@property (weak, readonly) NSString              *inlineHelpText; 
-@property (weak, readonly) NSString              *label; 
-@property (readonly) NSInteger                    length; 
-@property (weak, readonly) NSString              *mask; 
-@property (weak, readonly) NSString              *maskType; 
-@property (weak, readonly) NSString              *name; 
-@property (readonly) BOOL                         nameField; 
-@property (readonly) BOOL                         namePointing; 
-@property (readonly) BOOL                         nillable; 
-@property (readonly) BOOL                         permissionable; 
-@property (weak, readonly) NSArray               *picklistValues;  // of ZKPicklistEntry
-@property (readonly) BOOL                         polymorphicForeignKey; 
-@property (readonly) NSInteger                    precision; 
-@property (readonly) BOOL                         queryByDistance; 
-@property (weak, readonly) NSString              *referenceTargetField; 
-@property (weak, readonly) NSArray               *referenceTo;  // of NSString
-@property (weak, readonly) NSString              *relationshipName; 
-@property (readonly) NSInteger                    relationshipOrder; 
-@property (readonly) BOOL                         restrictedDelete; 
-@property (readonly) BOOL                         restrictedPicklist; 
-@property (readonly) NSInteger                    scale; 
-@property (readonly) BOOL                         searchPrefilterable; 
-@property (weak, readonly) NSString              *soapType; 
-@property (readonly) BOOL                         sortable; 
-@property (weak, readonly) NSString              *type; 
-@property (readonly) BOOL                         unique; 
-@property (readonly) BOOL                         updateable; 
-@property (readonly) BOOL                         writeRequiresMasterRead; 
+
+@property (assign,nonatomic) BOOL                   aggregatable; 
+@property (assign,nonatomic) BOOL                   aiPredictionField; 
+@property (assign,nonatomic) BOOL                   autoNumber; 
+@property (assign,nonatomic) NSInteger              byteLength; 
+@property (assign,nonatomic) BOOL                   calculated; 
+@property (strong,nonatomic) NSString              *calculatedFormula; 
+@property (assign,nonatomic) BOOL                   cascadeDelete; 
+@property (assign,nonatomic) BOOL                   caseSensitive; 
+@property (strong,nonatomic) NSString              *compoundFieldName; 
+@property (strong,nonatomic) NSString              *controllerName; 
+@property (assign,nonatomic) BOOL                   createable; 
+@property (assign,nonatomic) BOOL                   custom; 
+@property (assign,nonatomic) BOOL                   dataTranslationEnabled; 
+@property (strong,nonatomic) ZKXsdAnyType          *defaultValue; 
+@property (strong,nonatomic) NSString              *defaultValueFormula; 
+@property (assign,nonatomic) BOOL                   defaultedOnCreate; 
+@property (assign,nonatomic) BOOL                   dependentPicklist; 
+@property (assign,nonatomic) BOOL                   deprecatedAndHidden; 
+@property (assign,nonatomic) NSInteger              digits; 
+@property (assign,nonatomic) BOOL                   displayLocationInDecimal; 
+@property (assign,nonatomic) BOOL                   encrypted; 
+@property (assign,nonatomic) BOOL                   externalId; 
+@property (strong,nonatomic) NSString              *extraTypeInfo; 
+@property (assign,nonatomic) BOOL                   filterable; 
+@property (strong,nonatomic) ZKFilteredLookupInfo  *filteredLookupInfo; 
+@property (assign,nonatomic) BOOL                   formulaTreatNullNumberAsZero; 
+@property (assign,nonatomic) BOOL                   groupable; 
+@property (assign,nonatomic) BOOL                   highScaleNumber; 
+@property (assign,nonatomic) BOOL                   htmlFormatted; 
+@property (assign,nonatomic) BOOL                   idLookup; 
+@property (strong,nonatomic) NSString              *inlineHelpText; 
+@property (strong,nonatomic) NSString              *label; 
+@property (assign,nonatomic) NSInteger              length; 
+@property (strong,nonatomic) NSString              *mask; 
+@property (strong,nonatomic) NSString              *maskType; 
+@property (strong,nonatomic) NSString              *name; 
+@property (assign,nonatomic) BOOL                   nameField; 
+@property (assign,nonatomic) BOOL                   namePointing; 
+@property (assign,nonatomic) BOOL                   nillable; 
+@property (assign,nonatomic) BOOL                   permissionable; 
+@property (strong,nonatomic) NSArray               *picklistValues;  // of ZKPicklistEntry
+@property (assign,nonatomic) BOOL                   polymorphicForeignKey; 
+@property (assign,nonatomic) NSInteger              precision; 
+@property (assign,nonatomic) BOOL                   queryByDistance; 
+@property (strong,nonatomic) NSString              *referenceTargetField; 
+@property (strong,nonatomic) NSArray               *referenceTo;  // of NSString
+@property (strong,nonatomic) NSString              *relationshipName; 
+@property (assign,nonatomic) NSInteger              relationshipOrder; 
+@property (assign,nonatomic) BOOL                   restrictedDelete; 
+@property (assign,nonatomic) BOOL                   restrictedPicklist; 
+@property (assign,nonatomic) NSInteger              scale; 
+@property (assign,nonatomic) BOOL                   searchPrefilterable; 
+@property (strong,nonatomic) NSString              *soapType; 
+@property (assign,nonatomic) BOOL                   sortable; 
+@property (strong,nonatomic) NSString              *type; 
+@property (assign,nonatomic) BOOL                   unique; 
+@property (assign,nonatomic) BOOL                   updateable; 
+@property (assign,nonatomic) BOOL                   writeRequiresMasterRead; 
 @end

@@ -25,41 +25,139 @@
 //
 
 #import "ZKLeadConvertResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
+
+@interface ZKLeadConvertResult()
+@property (strong,nonatomic) NSString  *accountId__v;
+@property (strong,nonatomic) NSString  *contactId__v;
+@property (strong,nonatomic) NSArray   *errors__v;
+@property (strong,nonatomic) NSString  *leadId__v;
+@property (strong,nonatomic) NSString  *opportunityId__v;
+@property (strong,nonatomic) NSString  *relatedPersonAccountId__v;
+@property (assign,nonatomic) BOOL       success__v;
+@end
 
 @implementation ZKLeadConvertResult
 
+
 +(void)load {
-   [self registerType:self xmlName:@"LeadConvertResult"];
+    [self registerType:self xmlName:@"LeadConvertResult"];
 }
 
-      
 -(NSString *)accountId {
-    return [self string:@"accountId"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.accountId__v = [self string:@"accountId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.accountId__v;
 }
-			
+        
+
+-(void)setAccountId:(NSString *)v {
+    self.accountId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)contactId {
-    return [self string:@"contactId"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.contactId__v = [self string:@"contactId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.contactId__v;
 }
-			
+        
+
+-(void)setContactId:(NSString *)v {
+    self.contactId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.errors__v;
 }
-			
+        
+
+-(void)setErrors:(NSArray *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)leadId {
-    return [self string:@"leadId"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.leadId__v = [self string:@"leadId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.leadId__v;
 }
-			
+        
+
+-(void)setLeadId:(NSString *)v {
+    self.leadId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)opportunityId {
-    return [self string:@"opportunityId"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.opportunityId__v = [self string:@"opportunityId"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.opportunityId__v;
 }
-			
+        
+
+-(void)setOpportunityId:(NSString *)v {
+    self.opportunityId__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)relatedPersonAccountId {
-    return [self string:@"relatedPersonAccountId"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.relatedPersonAccountId__v = [self string:@"relatedPersonAccountId"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.relatedPersonAccountId__v;
 }
-			
+        
+
+-(void)setRelatedPersonAccountId:(NSString *)v {
+    self.relatedPersonAccountId__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"accountId"              elemValue:self.accountId              nillable:YES optional:NO];
+	[env addElement:@"contactId"              elemValue:self.contactId              nillable:YES optional:NO];
+	[env addElementArray:@"errors"            elemValue:self.errors];
+	[env addElement:@"leadId"                 elemValue:self.leadId                 nillable:YES optional:NO];
+	[env addElement:@"opportunityId"          elemValue:self.opportunityId          nillable:YES optional:NO];
+	[env addElement:@"relatedPersonAccountId" elemValue:self.relatedPersonAccountId nillable:NO  optional:YES];
+	[env addBoolElement:@"success"            elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

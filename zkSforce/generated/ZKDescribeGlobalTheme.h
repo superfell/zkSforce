@@ -24,7 +24,9 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeGlobalResult;
 @class ZKDescribeThemeResult;
@@ -36,8 +38,10 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeGlobalTheme : ZKXmlDeserializer {
+@interface ZKDescribeGlobalTheme : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) ZKDescribeGlobalResult  *global; 
-@property (weak, readonly) ZKDescribeThemeResult   *theme; 
+
+@property (strong,nonatomic) ZKDescribeGlobalResult  *global; 
+@property (strong,nonatomic) ZKDescribeThemeResult   *theme; 
 @end

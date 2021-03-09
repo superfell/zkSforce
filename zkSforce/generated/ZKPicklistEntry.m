@@ -25,32 +25,104 @@
 //
 
 #import "ZKPicklistEntry.h"
+#import "ZKEnvelope.h"
+
+@interface ZKPicklistEntry()
+@property (assign,nonatomic) BOOL       active__v;
+@property (assign,nonatomic) BOOL       defaultValue__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSData    *validFor__v;
+@property (strong,nonatomic) NSString  *value__v;
+@end
 
 @implementation ZKPicklistEntry
 
+
 +(void)load {
-   [self registerType:self xmlName:@"PicklistEntry"];
+    [self registerType:self xmlName:@"PicklistEntry"];
 }
 
-      
 -(BOOL)active {
-    return [self boolean:@"active"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.active__v = [self boolean:@"active"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.active__v;
 }
-			
+        
+
+-(void)setActive:(BOOL)v {
+    self.active__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)defaultValue {
-    return [self boolean:@"defaultValue"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.defaultValue__v = [self boolean:@"defaultValue"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.defaultValue__v;
 }
-			
+        
+
+-(void)setDefaultValue:(BOOL)v {
+    self.defaultValue__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSData *)validFor {
-    return [self blob:@"validFor"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.validFor__v = [self blob:@"validFor"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.validFor__v;
 }
-			
+        
+
+-(void)setValidFor:(NSData *)v {
+    self.validFor__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)value {
-    return [self string:@"value"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.value__v = [self string:@"value"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.value__v;
 }
-			
+        
+
+-(void)setValue:(NSString *)v {
+    self.value__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"active"       elemValue:self.active];
+	[env addBoolElement:@"defaultValue" elemValue:self.defaultValue];
+	[env addElement:@"label"            elemValue:self.label        nillable:YES optional:NO];
+	[env addElement:@"validFor"         elemValue:self.validFor     nillable:NO  optional:YES];
+	[env addElement:@"value"            elemValue:self.value        nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end
