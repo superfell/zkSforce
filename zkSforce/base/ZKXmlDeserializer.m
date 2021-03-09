@@ -49,7 +49,6 @@ static NSMutableDictionary *registeredComplexTypes;
 -(instancetype)initWithXmlElement:(ZKElement *)e {
     self = [super init];
     node = e;
-    values = [[NSMutableDictionary alloc] init];
     return self;
 }
 
@@ -58,17 +57,8 @@ static NSMutableDictionary *registeredComplexTypes;
     return self;
 }
 
-//- (id)copyWithZone:(NSZone *)zone {
-//    NSLog(@"copyWithZone");
-//    return [[[self class] allocWithZone:zone] initWithXmlElement:node];
-//}
-
 - (NSString *)string:(NSString *)elem {
-    id cached = values[elem];
-    if (cached != nil) return cached == [NSNull null] ? nil : cached;
-    id v = [self string:elem fromXmlElement:node];
-    values[elem] = (v != nil ? v : [NSNull null]);
-    return v;
+    return [self string:elem fromXmlElement:node];
 }
 
 - (BOOL)boolean:(NSString *)elem {
@@ -108,35 +98,19 @@ static NSMutableDictionary *registeredComplexTypes;
 }
 
 - (ZKXsdAnyType *)anyType:(NSString *)elem {
-    ZKXsdAnyType *cached = values[elem];
-    if (cached == nil) {
-        cached = [[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]];
-        [values setValue:cached forKey:elem];
-    }
-    return cached;
+    return [[ZKXsdAnyType alloc] initWithXmlElement:[node childElement:elem]];
 }
 
 - (NSData *)blob:(NSString *)elem {
-    NSData *cached = values[elem];
-    if (cached == nil) {
-        NSString *b64 = [self string:elem fromXmlElement:node];
-        cached = b64.ZKBase64Decode;
-
-        if (cached != nil)
-            values[elem] = cached;
-    }
-    return cached;
+    return [self string:elem fromXmlElement:node].ZKBase64Decode;
 }
 
 - (NSArray *)strings:(NSString *)elem {
-    NSArray *cached = values[elem];
-    if (cached != nil) return cached;
     NSArray *nodes = [node childElements:elem];
     NSMutableArray *s = [NSMutableArray arrayWithCapacity:nodes.count];
-    for (ZKElement *e in nodes) 
+    for (ZKElement *e in nodes) {
         [s addObject:e.stringValue];
-    
-    values[elem] = s;
+    }
     return s;
 }
 
@@ -151,19 +125,14 @@ static NSMutableDictionary *registeredComplexTypes;
 }
 
 - (NSArray *)complexTypeArrayFromElements:(NSString *)elemName cls:(Class)type {
-    NSArray *cached = values[elemName];
-    if (cached == nil) {
-        NSArray *elements = [node childElements:elemName];
-        NSMutableArray *results = [NSMutableArray arrayWithCapacity:elements.count];
-        for(ZKElement *childNode in elements) {
-            Class actualType = [self complexTypeClassForType:childNode.xsiType baseClass:type];
-            NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
-            [results addObject:child];
-        }
-        values[elemName] = results;
-        cached = results;
+    NSArray *elements = [node childElements:elemName];
+    NSMutableArray *results = [NSMutableArray arrayWithCapacity:elements.count];
+    for(ZKElement *childNode in elements) {
+        Class actualType = [self complexTypeClassForType:childNode.xsiType baseClass:type];
+        NSObject *child = [[actualType alloc] initWithXmlElement:childNode];
+        [results addObject:child];
     }
-    return cached;
+    return results;
 }
 
 -(NSString *)description {

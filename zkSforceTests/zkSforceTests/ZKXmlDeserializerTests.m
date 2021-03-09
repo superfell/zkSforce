@@ -26,6 +26,7 @@
 #import "zkQueryResult.h"
 #import "ZKReportChartComponent.h"
 #import "ZKDescribeColumn.h"
+#import "ZKStringList.h"
 
 @implementation ZKXmlDeserializerTests
 
@@ -116,6 +117,15 @@
     XCTAssertEqualObjects(@"123", [qr queryLocator]);
     XCTAssertEqualObjects(@"Account", [(ZKSObject *)[[qr records] lastObject] type]);
     XCTAssertEqual(1, [qr size]);
+}
+
+-(void)testSubClassesCacheValue {
+    NSString *doc = @"<root><values>a</values><values>b</values></root>";
+    ZKElement *e = [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
+    ZKStringList *l = [[ZKStringList alloc] initWithXmlElement:e];
+    NSArray *v = l.values;
+    XCTAssertEqualObjects((@[@"a",@"b"]), v);
+    XCTAssertEqual(v, l.values);
 }
 
 @end
