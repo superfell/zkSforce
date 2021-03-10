@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"RelationshipReferenceTo"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RelationshipReferenceTo" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"referenceTo" propertyName:@"referenceTo" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)referenceTo {
     if ((fields__set[0] & 0x1) == 0) {
         self.referenceTo__v = [self strings:@"referenceTo"];

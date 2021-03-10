@@ -40,6 +40,22 @@
     [self registerType:self xmlName:@"EmailHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EmailHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"triggerAutoResponseEmail" propertyName:@"triggerAutoResponseEmail" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"triggerOtherEmail" propertyName:@"triggerOtherEmail" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"triggerUserEmail" propertyName:@"triggerUserEmail" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)triggerAutoResponseEmail {
     if ((fields__set[0] & 0x1) == 0) {
         self.triggerAutoResponseEmail__v = [self boolean:@"triggerAutoResponseEmail"];

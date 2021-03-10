@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -49,6 +50,7 @@
 @interface ZKChangeEventHeader : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt16   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *entityName; 
 @property (strong,nonatomic) NSArray   *recordIds;  // of NSString

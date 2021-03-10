@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -43,6 +44,7 @@
 @interface ZKFieldLayoutComponent : ZKDescribeLayoutComponent  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSArray   *components;  // of ZKDescribeLayoutComponent
 @property (strong,nonatomic) NSString  *fieldType; 

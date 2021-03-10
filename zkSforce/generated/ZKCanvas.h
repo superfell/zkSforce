@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -47,6 +48,7 @@
 @interface ZKCanvas : ZKDescribeLayoutComponent  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *displayLocation; 
 @property (strong,nonatomic) NSString  *referenceId; 

@@ -43,6 +43,25 @@
     [self registerType:self xmlName:@"Canvas"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"Canvas" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"displayLocation" propertyName:@"displayLocation" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"referenceId" propertyName:@"referenceId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showLabel" propertyName:@"showLabel" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showScrollbars" propertyName:@"showScrollbars" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"suggestedHeight" propertyName:@"suggestedHeight" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"suggestedWidth" propertyName:@"suggestedWidth" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)displayLocation {
     if ((fields__set2[0] & 0x1) == 0) {
         self.displayLocation__v = [self string:@"displayLocation"];

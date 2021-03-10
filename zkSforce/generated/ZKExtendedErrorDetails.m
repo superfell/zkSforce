@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"ExtendedErrorDetails"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ExtendedErrorDetails" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"extendedErrorCode" propertyName:@"extendedErrorCode" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)extendedErrorCode {
     if ((fields__set[0] & 0x1) == 0) {
         self.extendedErrorCode__v = [self string:@"extendedErrorCode"];

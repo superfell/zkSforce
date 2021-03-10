@@ -43,6 +43,24 @@
     [self registerType:self xmlName:@"DuplicateResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DuplicateResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"allowSave" propertyName:@"allowSave" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateRule" propertyName:@"duplicateRule" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateRuleEntityType" propertyName:@"duplicateRuleEntityType" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errorMessage" propertyName:@"errorMessage" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"matchResults" propertyName:@"matchResults" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)allowSave {
     if ((fields__set[0] & 0x1) == 0) {
         self.allowSave__v = [self boolean:@"allowSave"];

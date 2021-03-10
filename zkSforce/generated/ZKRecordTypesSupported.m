@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"RecordTypesSupported"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RecordTypesSupported" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeInfos" propertyName:@"recordTypeInfos" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)recordTypeInfos {
     if ((fields__set[0] & 0x1) == 0) {
         self.recordTypeInfos__v = [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];

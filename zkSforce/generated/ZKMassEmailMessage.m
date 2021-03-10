@@ -41,6 +41,23 @@
     [self registerType:self xmlName:@"MassEmailMessage"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"MassEmailMessage" parent:[ZKEmail class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"description" propertyName:@"a_description" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"targetObjectIds" propertyName:@"targetObjectIds" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateId" propertyName:@"templateId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whatIds" propertyName:@"whatIds" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)a_description {
     if ((fields__set2[0] & 0x1) == 0) {
         self.a_description__v = [self string:@"description"];

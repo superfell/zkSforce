@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"ListViewRecordColumn"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ListViewRecordColumn" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fieldNameOrPath" propertyName:@"fieldNameOrPath" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"value" propertyName:@"value" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)fieldNameOrPath {
     if ((fields__set[0] & 0x1) == 0) {
         self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];

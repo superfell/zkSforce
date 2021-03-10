@@ -42,6 +42,24 @@
     [self registerType:self xmlName:@"RecordTypeCompactLayoutMapping"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RecordTypeCompactLayoutMapping" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"available" propertyName:@"available" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"compactLayoutId" propertyName:@"compactLayoutId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"compactLayoutName" propertyName:@"compactLayoutName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeId" propertyName:@"recordTypeId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeName" propertyName:@"recordTypeName" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)available {
     if ((fields__set[0] & 0x1) == 0) {
         self.available__v = [self boolean:@"available"];

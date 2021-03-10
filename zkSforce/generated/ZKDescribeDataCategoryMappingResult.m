@@ -46,6 +46,28 @@
     [self registerType:self xmlName:@"DescribeDataCategoryMappingResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeDataCategoryMappingResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupId" propertyName:@"dataCategoryGroupId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupLabel" propertyName:@"dataCategoryGroupLabel" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupName" propertyName:@"dataCategoryGroupName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryId" propertyName:@"dataCategoryId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryLabel" propertyName:@"dataCategoryLabel" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryName" propertyName:@"dataCategoryName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"id" propertyName:@"id" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"mappedEntity" propertyName:@"mappedEntity" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"mappedField" propertyName:@"mappedField" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)dataCategoryGroupId {
     if ((fields__set[0] & 0x1) == 0) {
         self.dataCategoryGroupId__v = [self string:@"dataCategoryGroupId"];

@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -42,6 +43,7 @@
 @interface ZKActionOverride : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt16   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *formFactor; 
 @property (assign,nonatomic) BOOL       isAvailableInTouch; 

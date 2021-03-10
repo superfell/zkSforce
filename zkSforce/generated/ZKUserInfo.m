@@ -61,6 +61,43 @@
     [self registerType:self xmlName:@"GetUserInfoResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"GetUserInfoResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"accessibilityMode" propertyName:@"accessibilityMode" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"chatterExternal" propertyName:@"chatterExternal" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"currencySymbol" propertyName:@"currencySymbol" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgAttachmentFileSizeLimit" propertyName:@"orgAttachmentFileSizeLimit" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgDefaultCurrencyIsoCode" propertyName:@"orgDefaultCurrencyIsoCode" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgDefaultCurrencyLocale" propertyName:@"orgDefaultCurrencyLocale" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgDisallowHtmlAttachments" propertyName:@"orgDisallowHtmlAttachments" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgHasPersonAccounts" propertyName:@"orgHasPersonAccounts" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"organizationId" propertyName:@"organizationId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"organizationMultiCurrency" propertyName:@"organizationMultiCurrency" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"organizationName" propertyName:@"organizationName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"profileId" propertyName:@"profileId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"roleId" propertyName:@"roleId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sessionSecondsValid" propertyName:@"sessionSecondsValid" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userDefaultCurrencyIsoCode" propertyName:@"userDefaultCurrencyIsoCode" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userEmail" propertyName:@"userEmail" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userFullName" propertyName:@"userFullName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userId" propertyName:@"userId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userLanguage" propertyName:@"userLanguage" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userLocale" propertyName:@"userLocale" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userName" propertyName:@"userName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userTimeZone" propertyName:@"userTimeZone" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userType" propertyName:@"userType" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"userUiSkin" propertyName:@"userUiSkin" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)accessibilityMode {
     if ((fields__set[0] & 0x1) == 0) {
         self.accessibilityMode__v = [self boolean:@"accessibilityMode"];

@@ -42,6 +42,22 @@
     [self registerType:self xmlName:@"FindDuplicatesResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"FindDuplicatesResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateResults" propertyName:@"duplicateResults" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errors" propertyName:@"errors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"success" propertyName:@"success" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)duplicateResults {
     if ((fields__set[0] & 0x1) == 0) {
         self.duplicateResults__v = [self complexTypeArrayFromElements:@"duplicateResults" cls:[ZKDuplicateResult class]];

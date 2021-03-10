@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"DescribeSearchScopeOrderResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSearchScopeOrderResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"keyPrefix" propertyName:@"keyPrefix" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)keyPrefix {
     if ((fields__set[0] & 0x1) == 0) {
         self.keyPrefix__v = [self string:@"keyPrefix"];

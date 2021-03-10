@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -39,6 +40,7 @@
 @interface ZKDescribeSoftphoneLayoutSection : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt16   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *entityApiName; 
 @property (strong,nonatomic) NSArray   *items;  // of ZKDescribeSoftphoneLayoutItem

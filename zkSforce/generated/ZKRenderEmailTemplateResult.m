@@ -42,6 +42,22 @@
     [self registerType:self xmlName:@"RenderEmailTemplateResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RenderEmailTemplateResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"bodyResults" propertyName:@"bodyResults" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errors" propertyName:@"errors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"success" propertyName:@"success" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)bodyResults {
     if ((fields__set[0] & 0x1) == 0) {
         self.bodyResults__v = [self complexTypeArrayFromElements:@"bodyResults" cls:[ZKRenderEmailTemplateBodyResult class]];

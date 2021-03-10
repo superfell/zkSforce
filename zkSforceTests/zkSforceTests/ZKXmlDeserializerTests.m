@@ -27,6 +27,7 @@
 #import "ZKReportChartComponent.h"
 #import "ZKDescribeColumn.h"
 #import "ZKStringList.h"
+#import "ZKAddress.h"
 
 @implementation ZKXmlDeserializerTests
 

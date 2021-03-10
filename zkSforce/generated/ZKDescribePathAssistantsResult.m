@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"DescribePathAssistantsResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribePathAssistantsResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"pathAssistants" propertyName:@"pathAssistants" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)pathAssistants {
     if ((fields__set[0] & 0x1) == 0) {
         self.pathAssistants__v = [self complexTypeArrayFromElements:@"pathAssistants" cls:[ZKDescribePathAssistant class]];

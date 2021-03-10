@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"QueryOptions"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"QueryOptions" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"batchSize" propertyName:@"batchSize" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSInteger)batchSize {
     if ((fields__set[0] & 0x1) == 0) {
         self.batchSize__v = [self integer:@"batchSize"];

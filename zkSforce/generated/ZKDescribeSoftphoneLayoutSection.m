@@ -40,6 +40,21 @@
     [self registerType:self xmlName:@"DescribeSoftphoneLayoutSection"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoftphoneLayoutSection" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityApiName" propertyName:@"entityApiName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"items" propertyName:@"items" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)entityApiName {
     if ((fields__set[0] & 0x1) == 0) {
         self.entityApiName__v = [self string:@"entityApiName"];

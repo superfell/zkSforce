@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"DeletedRecord"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DeletedRecord" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"deletedDate" propertyName:@"deletedDate" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"id" propertyName:@"id" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSDate *)deletedDate {
     if ((fields__set[0] & 0x1) == 0) {
         self.deletedDate__v = [self dateTime:@"deletedDate"];

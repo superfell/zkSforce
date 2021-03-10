@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"SearchRecordMetadata"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SearchRecordMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"searchPromoted" propertyName:@"searchPromoted" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"spellCorrected" propertyName:@"spellCorrected" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)searchPromoted {
     if ((fields__set[0] & 0x1) == 0) {
         self.searchPromoted__v = [self boolean:@"searchPromoted"];

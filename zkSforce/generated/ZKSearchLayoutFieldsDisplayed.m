@@ -40,6 +40,21 @@
     [self registerType:self xmlName:@"SearchLayoutFieldsDisplayed"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SearchLayoutFieldsDisplayed" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"applicable" propertyName:@"applicable" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fields" propertyName:@"fields" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)applicable {
     if ((fields__set[0] & 0x1) == 0) {
         self.applicable__v = [self boolean:@"applicable"];

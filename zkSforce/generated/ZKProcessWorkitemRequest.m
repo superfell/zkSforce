@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"ProcessWorkitemRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ProcessWorkitemRequest" parent:[ZKProcessRequest class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"action" propertyName:@"action" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"workitemId" propertyName:@"workitemId" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)action {
     if ((fields__set2[0] & 0x1) == 0) {
         self.action__v = [self string:@"action"];

@@ -41,6 +41,23 @@
     [self registerType:self xmlName:@"ProcessSubmitRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ProcessSubmitRequest" parent:[ZKProcessRequest class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"objectId" propertyName:@"objectId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"submitterId" propertyName:@"submitterId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"processDefinitionNameOrId" propertyName:@"processDefinitionNameOrId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"skipEntryCriteria" propertyName:@"skipEntryCriteria" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)objectId {
     if ((fields__set2[0] & 0x1) == 0) {
         self.objectId__v = [self string:@"objectId"];

@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"SessionHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SessionHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sessionId" propertyName:@"sessionId" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)sessionId {
     if ((fields__set[0] & 0x1) == 0) {
         self.sessionId__v = [self string:@"sessionId"];

@@ -41,6 +41,22 @@
     [self registerType:self xmlName:@"KnowledgeSettings"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"KnowledgeSettings" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"defaultLanguage" propertyName:@"defaultLanguage" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"knowledgeEnabled" propertyName:@"knowledgeEnabled" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"languages" propertyName:@"languages" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)defaultLanguage {
     if ((fields__set[0] & 0x1) == 0) {
         self.defaultLanguage__v = [self string:@"defaultLanguage"];

@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -43,6 +44,7 @@
 @interface ZKDescribeLayoutSaveOption : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt16   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (assign,nonatomic) BOOL       defaultValue; 
 @property (assign,nonatomic) BOOL       isDisplayed; 

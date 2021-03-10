@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"DisableFeedTrackingHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DisableFeedTrackingHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"disableFeedTracking" propertyName:@"disableFeedTracking" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)disableFeedTracking {
     if ((fields__set[0] & 0x1) == 0) {
         self.disableFeedTracking__v = [self boolean:@"disableFeedTracking"];

@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"DataCategoryGroupSobjectTypePair"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DataCategoryGroupSobjectTypePair" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupName" propertyName:@"dataCategoryGroupName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobject" propertyName:@"sobject" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)dataCategoryGroupName {
     if ((fields__set[0] & 0x1) == 0) {
         self.dataCategoryGroupName__v = [self string:@"dataCategoryGroupName"];

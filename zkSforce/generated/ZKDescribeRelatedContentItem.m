@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"DescribeRelatedContentItem"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeRelatedContentItem" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"describeLayoutItem" propertyName:@"describeLayoutItem" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(ZKDescribeLayoutItem *)describeLayoutItem {
     if ((fields__set[0] & 0x1) == 0) {
         self.describeLayoutItem__v = [self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]].lastObject;

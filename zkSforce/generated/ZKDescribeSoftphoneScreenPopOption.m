@@ -40,6 +40,22 @@
     [self registerType:self xmlName:@"DescribeSoftphoneScreenPopOption"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoftphoneScreenPopOption" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"matchType" propertyName:@"matchType" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"screenPopData" propertyName:@"screenPopData" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"screenPopType" propertyName:@"screenPopType" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)matchType {
     if ((fields__set[0] & 0x1) == 0) {
         self.matchType__v = [self string:@"matchType"];

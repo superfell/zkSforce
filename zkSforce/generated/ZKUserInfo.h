@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -61,6 +62,7 @@
 @interface ZKUserInfo : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt32   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (assign,nonatomic) BOOL       accessibilityMode; 
 @property (assign,nonatomic) BOOL       chatterExternal; 

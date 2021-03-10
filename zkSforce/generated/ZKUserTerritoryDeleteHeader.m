@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"UserTerritoryDeleteHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"UserTerritoryDeleteHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"transferToUserId" propertyName:@"transferToUserId" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)transferToUserId {
     if ((fields__set[0] & 0x1) == 0) {
         self.transferToUserId__v = [self string:@"transferToUserId"];

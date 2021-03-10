@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -101,6 +102,7 @@
 }
 @property (weak) ZKDescribeSObject *sobject;
 
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (assign,nonatomic) BOOL                   aggregatable; 
 @property (assign,nonatomic) BOOL                   aiPredictionField; 

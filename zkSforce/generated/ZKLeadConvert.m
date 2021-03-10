@@ -55,6 +55,36 @@
     [self registerType:self xmlName:@"LeadConvert"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"LeadConvert" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"accountId" propertyName:@"accountId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"accountRecord" propertyName:@"accountRecord" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"bypassAccountDedupeCheck" propertyName:@"bypassAccountDedupeCheck" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"bypassContactDedupeCheck" propertyName:@"bypassContactDedupeCheck" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"contactId" propertyName:@"contactId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"contactRecord" propertyName:@"contactRecord" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"convertedStatus" propertyName:@"convertedStatus" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"doNotCreateOpportunity" propertyName:@"doNotCreateOpportunity" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"leadId" propertyName:@"leadId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"opportunityId" propertyName:@"opportunityId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"opportunityName" propertyName:@"opportunityName" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"opportunityRecord" propertyName:@"opportunityRecord" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"overwriteLeadSource" propertyName:@"overwriteLeadSource" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ownerId" propertyName:@"ownerId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"relatedPersonAccountId" propertyName:@"relatedPersonAccountId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"relatedPersonAccountRecord" propertyName:@"relatedPersonAccountRecord" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sendNotificationEmail" propertyName:@"sendNotificationEmail" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)accountId {
     if ((fields__set[0] & 0x1) == 0) {
         self.accountId__v = [self string:@"accountId"];

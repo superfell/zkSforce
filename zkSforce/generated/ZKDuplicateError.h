@@ -25,6 +25,7 @@
 //
 
 #import "ZKError.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -43,6 +44,7 @@
 @interface ZKDuplicateError : ZKError  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) ZKDuplicateResult  *duplicateResult; 
 @end

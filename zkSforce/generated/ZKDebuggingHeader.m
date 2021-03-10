@@ -40,6 +40,21 @@
     [self registerType:self xmlName:@"DebuggingHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DebuggingHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"categories" propertyName:@"categories" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"debugLevel" propertyName:@"debugLevel" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)categories {
     if ((fields__set[0] & 0x1) == 0) {
         self.categories__v = [self complexTypeArrayFromElements:@"categories" cls:[ZKLogInfo class]];

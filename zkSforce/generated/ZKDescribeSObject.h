@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeGlobalSObject.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -82,6 +83,7 @@
 	NSDictionary *fieldsByName;
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSArray   *actionOverrides;  // of ZKActionOverride
 @property (strong,nonatomic) NSArray   *childRelationships;  // of ZKChildRelationship

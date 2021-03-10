@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"SoqlNotCondition"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SoqlNotCondition" parent:[ZKSoqlWhereCondition class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"condition" propertyName:@"condition" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(ZKSoqlWhereCondition *)condition {
     if ((fields__set2[0] & 0x1) == 0) {
         self.condition__v = [self complexTypeArrayFromElements:@"condition" cls:[ZKSoqlWhereCondition class]].lastObject;

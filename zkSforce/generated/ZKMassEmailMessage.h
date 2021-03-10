@@ -25,6 +25,7 @@
 //
 
 #import "ZKEmail.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -45,6 +46,7 @@
 @interface ZKMassEmailMessage : ZKEmail  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *a_description; 
 @property (strong,nonatomic) NSArray   *targetObjectIds;  // of NSString

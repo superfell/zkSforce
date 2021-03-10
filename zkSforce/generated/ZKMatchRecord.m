@@ -44,6 +44,23 @@
     [self registerType:self xmlName:@"MatchRecord"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"MatchRecord" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"additionalInformation" propertyName:@"additionalInformation" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fieldDiffs" propertyName:@"fieldDiffs" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"matchConfidence" propertyName:@"matchConfidence" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"record" propertyName:@"record" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)additionalInformation {
     if ((fields__set[0] & 0x1) == 0) {
         self.additionalInformation__v = [self complexTypeArrayFromElements:@"additionalInformation" cls:[ZKAdditionalInformationMap class]];

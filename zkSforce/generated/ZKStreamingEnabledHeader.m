@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"StreamingEnabledHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"StreamingEnabledHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"streamingEnabled" propertyName:@"streamingEnabled" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)streamingEnabled {
     if ((fields__set[0] & 0x1) == 0) {
         self.streamingEnabled__v = [self boolean:@"streamingEnabled"];

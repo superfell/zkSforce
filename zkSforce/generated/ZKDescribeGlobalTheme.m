@@ -41,6 +41,21 @@
     [self registerType:self xmlName:@"DescribeGlobalTheme"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeGlobalTheme" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"global" propertyName:@"global" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"theme" propertyName:@"theme" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(ZKDescribeGlobalResult *)global {
     if ((fields__set[0] & 0x1) == 0) {
         self.global__v = [self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]].lastObject;

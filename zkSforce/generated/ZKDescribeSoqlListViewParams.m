@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"DescribeSoqlListViewParams"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoqlListViewParams" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"developerNameOrId" propertyName:@"developerNameOrId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobjectType" propertyName:@"sobjectType" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)developerNameOrId {
     if ((fields__set[0] & 0x1) == 0) {
         self.developerNameOrId__v = [self string:@"developerNameOrId"];

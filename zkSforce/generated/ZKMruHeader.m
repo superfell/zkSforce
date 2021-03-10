@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"MruHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"MruHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"updateMru" propertyName:@"updateMru" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)updateMru {
     if ((fields__set[0] & 0x1) == 0) {
         self.updateMru__v = [self boolean:@"updateMru"];

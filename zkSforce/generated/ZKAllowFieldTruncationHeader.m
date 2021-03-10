@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"AllowFieldTruncationHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"AllowFieldTruncationHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"allowFieldTruncation" propertyName:@"allowFieldTruncation" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)allowFieldTruncation {
     if ((fields__set[0] & 0x1) == 0) {
         self.allowFieldTruncation__v = [self boolean:@"allowFieldTruncation"];

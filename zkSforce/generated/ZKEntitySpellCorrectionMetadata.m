@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"EntitySpellCorrectionMetadata"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EntitySpellCorrectionMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"correctedQuery" propertyName:@"correctedQuery" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"hasNonCorrectedResults" propertyName:@"hasNonCorrectedResults" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)correctedQuery {
     if ((fields__set[0] & 0x1) == 0) {
         self.correctedQuery__v = [self string:@"correctedQuery"];

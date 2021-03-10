@@ -45,6 +45,24 @@
     [self registerType:self xmlName:@"DescribeSoftphoneLayoutCallType"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoftphoneLayoutCallType" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"infoFields" propertyName:@"infoFields" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"screenPopOptions" propertyName:@"screenPopOptions" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"screenPopsOpenWithin" propertyName:@"screenPopsOpenWithin" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sections" propertyName:@"sections" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)infoFields {
     if ((fields__set[0] & 0x1) == 0) {
         self.infoFields__v = [self complexTypeArrayFromElements:@"infoFields" cls:[ZKDescribeSoftphoneLayoutInfoField class]];

@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"FieldComponent"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"FieldComponent" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"field" propertyName:@"field" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(ZKDescribeField *)field {
     if ((fields__set2[0] & 0x1) == 0) {
         self.field__v = [self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]].lastObject;

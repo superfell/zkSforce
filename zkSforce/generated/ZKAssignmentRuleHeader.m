@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"AssignmentRuleHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"AssignmentRuleHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"assignmentRuleId" propertyName:@"assignmentRuleId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"useDefaultRule" propertyName:@"useDefaultRule" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)assignmentRuleId {
     if ((fields__set[0] & 0x1) == 0) {
         self.assignmentRuleId__v = [self string:@"assignmentRuleId"];

@@ -41,6 +41,23 @@
     [self registerType:self xmlName:@"RenderEmailTemplateRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RenderEmailTemplateRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"escapeHtmlInMergeFields" propertyName:@"escapeHtmlInMergeFields" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateBodies" propertyName:@"templateBodies" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whatId" propertyName:@"whatId" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whoId" propertyName:@"whoId" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)escapeHtmlInMergeFields {
     if ((fields__set[0] & 0x1) == 0) {
         self.escapeHtmlInMergeFields__v = [self boolean:@"escapeHtmlInMergeFields"];

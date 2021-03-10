@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"AllOrNoneHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"AllOrNoneHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"allOrNone" propertyName:@"allOrNone" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)allOrNone {
     if ((fields__set[0] & 0x1) == 0) {
         self.allOrNone__v = [self boolean:@"allOrNone"];

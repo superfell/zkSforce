@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"JunctionIdListNames"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"JunctionIdListNames" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"names" propertyName:@"names" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)names {
     if ((fields__set[0] & 0x1) == 0) {
         self.names__v = [self strings:@"names"];

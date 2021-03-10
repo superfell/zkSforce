@@ -57,6 +57,38 @@
     [self registerType:self xmlName:@"SingleEmailMessage"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SingleEmailMessage" parent:[ZKEmail class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"bccAddresses" propertyName:@"bccAddresses" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ccAddresses" propertyName:@"ccAddresses" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"charset" propertyName:@"charset" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"documentAttachments" propertyName:@"documentAttachments" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityAttachments" propertyName:@"entityAttachments" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fileAttachments" propertyName:@"fileAttachments" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"htmlBody" propertyName:@"htmlBody" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"inReplyTo" propertyName:@"inReplyTo" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"optOutPolicy" propertyName:@"optOutPolicy" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgWideEmailAddressId" propertyName:@"orgWideEmailAddressId" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"plainTextBody" propertyName:@"plainTextBody" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"references" propertyName:@"references" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"targetObjectId" propertyName:@"targetObjectId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateId" propertyName:@"templateId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateName" propertyName:@"templateName" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"toAddresses" propertyName:@"toAddresses" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"treatBodiesAsTemplate" propertyName:@"treatBodiesAsTemplate" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"treatTargetObjectAsRecipient" propertyName:@"treatTargetObjectAsRecipient" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whatId" propertyName:@"whatId" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)bccAddresses {
     if ((fields__set2[0] & 0x1) == 0) {
         self.bccAddresses__v = [self strings:@"bccAddresses"];

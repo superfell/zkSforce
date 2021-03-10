@@ -45,6 +45,27 @@
     [self registerType:self xmlName:@"ChildRelationship"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ChildRelationship" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"cascadeDelete" propertyName:@"cascadeDelete" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"childSObject" propertyName:@"childSObject" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"deprecatedAndHidden" propertyName:@"deprecatedAndHidden" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"field" propertyName:@"field" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"junctionIdListNames" propertyName:@"junctionIdListNames" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"junctionReferenceTo" propertyName:@"junctionReferenceTo" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"relationshipName" propertyName:@"relationshipName" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"restrictedDelete" propertyName:@"restrictedDelete" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)cascadeDelete {
     if ((fields__set[0] & 0x1) == 0) {
         self.cascadeDelete__v = [self boolean:@"cascadeDelete"];

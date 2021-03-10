@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -46,6 +47,7 @@
 @interface ZKVisualforcePage : ZKDescribeLayoutComponent  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (assign,nonatomic) BOOL       showLabel; 
 @property (assign,nonatomic) BOOL       showScrollbars; 

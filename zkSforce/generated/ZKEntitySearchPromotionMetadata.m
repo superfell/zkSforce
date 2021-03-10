@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"EntitySearchPromotionMetadata"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EntitySearchPromotionMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"promotedResultCount" propertyName:@"promotedResultCount" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSInteger)promotedResultCount {
     if ((fields__set[0] & 0x1) == 0) {
         self.promotedResultCount__v = [self integer:@"promotedResultCount"];

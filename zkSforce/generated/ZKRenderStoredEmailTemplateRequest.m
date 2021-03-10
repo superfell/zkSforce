@@ -42,6 +42,24 @@
     [self registerType:self xmlName:@"RenderStoredEmailTemplateRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RenderStoredEmailTemplateRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"attachmentRetrievalOption" propertyName:@"attachmentRetrievalOption" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateId" propertyName:@"templateId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"updateTemplateUsage" propertyName:@"updateTemplateUsage" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whatId" propertyName:@"whatId" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whoId" propertyName:@"whoId" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)attachmentRetrievalOption {
     if ((fields__set[0] & 0x1) == 0) {
         self.attachmentRetrievalOption__v = [self string:@"attachmentRetrievalOption"];

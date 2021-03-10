@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"RelatedContent"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RelatedContent" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"relatedContentItems" propertyName:@"relatedContentItems" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)relatedContentItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.relatedContentItems__v = [self complexTypeArrayFromElements:@"relatedContentItems" cls:[ZKDescribeRelatedContentItem class]];

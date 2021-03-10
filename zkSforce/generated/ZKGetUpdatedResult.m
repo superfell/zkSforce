@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"GetUpdatedResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"GetUpdatedResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ids" propertyName:@"ids" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"latestDateCovered" propertyName:@"latestDateCovered" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)ids {
     if ((fields__set[0] & 0x1) == 0) {
         self.ids__v = [self strings:@"ids"];

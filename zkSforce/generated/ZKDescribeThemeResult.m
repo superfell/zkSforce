@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"DescribeThemeResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeThemeResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"themeItems" propertyName:@"themeItems" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)themeItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.themeItems__v = [self complexTypeArrayFromElements:@"themeItems" cls:[ZKDescribeThemeItem class]];

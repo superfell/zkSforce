@@ -43,6 +43,24 @@
     [self registerType:self xmlName:@"ExecuteListViewRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ExecuteListViewRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"developerNameOrId" propertyName:@"developerNameOrId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"limit" propertyName:@"limit" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"offset" propertyName:@"offset" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orderBy" propertyName:@"orderBy" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobjectType" propertyName:@"sobjectType" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)developerNameOrId {
     if ((fields__set[0] & 0x1) == 0) {
         self.developerNameOrId__v = [self string:@"developerNameOrId"];

@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -48,6 +49,7 @@
 @interface ZKAnalyticsCloudComponent : ZKDescribeLayoutComponent  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *error; 
 @property (strong,nonatomic) NSString  *filter; 

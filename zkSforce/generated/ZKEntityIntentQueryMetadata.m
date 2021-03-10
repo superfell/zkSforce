@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"EntityIntentQueryMetadata"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EntityIntentQueryMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"intentQuery" propertyName:@"intentQuery" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"message" propertyName:@"message" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)intentQuery {
     if ((fields__set[0] & 0x1) == 0) {
         self.intentQuery__v = [self boolean:@"intentQuery"];

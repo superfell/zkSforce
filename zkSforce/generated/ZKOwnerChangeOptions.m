@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"OwnerChangeOptions"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"OwnerChangeOptions" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"options" propertyName:@"options" optional:YES nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)options {
     if ((fields__set[0] & 0x1) == 0) {
         self.options__v = [self complexTypeArrayFromElements:@"options" cls:[ZKOwnerChangeOption class]];

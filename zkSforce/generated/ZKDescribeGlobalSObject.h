@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -66,6 +67,7 @@
 @interface ZKDescribeGlobalSObject : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt32   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (assign,nonatomic) BOOL       activateable; 
 @property (strong,nonatomic) NSString  *associateEntityType; 

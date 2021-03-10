@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"DescribeVisualForceResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeVisualForceResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"domain" propertyName:@"domain" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)domain {
     if ((fields__set[0] & 0x1) == 0) {
         self.domain__v = [self string:@"domain"];

@@ -40,6 +40,21 @@
     [self registerType:self xmlName:@"SoqlConditionGroup"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SoqlConditionGroup" parent:[ZKSoqlWhereCondition class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"conditions" propertyName:@"conditions" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"conjunction" propertyName:@"conjunction" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)conditions {
     if ((fields__set2[0] & 0x1) == 0) {
         self.conditions__v = [self complexTypeArrayFromElements:@"conditions" cls:[ZKSoqlWhereCondition class]];

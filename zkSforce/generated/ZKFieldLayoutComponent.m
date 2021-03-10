@@ -40,6 +40,21 @@
     [self registerType:self xmlName:@"FieldLayoutComponent"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"FieldLayoutComponent" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"components" propertyName:@"components" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fieldType" propertyName:@"fieldType" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)components {
     if ((fields__set2[0] & 0x1) == 0) {
         self.components__v = [self complexTypeArrayFromElements:@"components" cls:[ZKDescribeLayoutComponent class]];

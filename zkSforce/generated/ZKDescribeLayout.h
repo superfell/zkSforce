@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -52,6 +53,7 @@
 @interface ZKDescribeLayout : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt16   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
 @property (strong,nonatomic) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection

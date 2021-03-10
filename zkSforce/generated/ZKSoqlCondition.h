@@ -25,6 +25,7 @@
 //
 
 #import "ZKSoqlWhereCondition.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -44,6 +45,7 @@
 @interface ZKSoqlCondition : ZKSoqlWhereCondition  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *field; 
 @property (strong,nonatomic) NSString  *operator; 

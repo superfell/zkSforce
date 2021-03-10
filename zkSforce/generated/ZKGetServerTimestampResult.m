@@ -38,6 +38,20 @@
     [self registerType:self xmlName:@"GetServerTimestampResult"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"GetServerTimestampResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"timestamp" propertyName:@"timestamp" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSDate *)timestamp {
     if ((fields__set[0] & 0x1) == 0) {
         self.timestamp__v = [self dateTime:@"timestamp"];

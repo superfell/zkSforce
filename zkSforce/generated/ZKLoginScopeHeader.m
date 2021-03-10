@@ -39,6 +39,21 @@
     [self registerType:self xmlName:@"LoginScopeHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"LoginScopeHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"organizationId" propertyName:@"organizationId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"portalId" propertyName:@"portalId" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)organizationId {
     if ((fields__set[0] & 0x1) == 0) {
         self.organizationId__v = [self string:@"organizationId"];

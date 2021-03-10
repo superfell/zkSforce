@@ -42,6 +42,22 @@
     [self registerType:self xmlName:@"MergeRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"MergeRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"additionalInformationMap" propertyName:@"additionalInformationMap" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"masterRecord" propertyName:@"masterRecord" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordToMergeIds" propertyName:@"recordToMergeIds" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)additionalInformationMap {
     if ((fields__set[0] & 0x1) == 0) {
         self.additionalInformationMap__v = [self complexTypeArrayFromElements:@"additionalInformationMap" cls:[ZKAdditionalInformationMap class]];

@@ -25,6 +25,7 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -40,6 +41,7 @@
 @interface ZKRenderEmailTemplateResult : ZKXmlDeserializer <ZKXMLSerializable> {
 	UInt16   fields__set[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSArray  *bodyResults;  // of ZKRenderEmailTemplateBodyResult
 @property (strong,nonatomic) NSArray  *errors;  // of ZKError

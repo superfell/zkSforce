@@ -25,6 +25,7 @@
 //
 
 #import "ZKProcessRequest.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -43,6 +44,7 @@
 @interface ZKProcessWorkitemRequest : ZKProcessRequest  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *action; 
 @property (strong,nonatomic) NSString  *workitemId; 

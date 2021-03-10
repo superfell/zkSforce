@@ -40,6 +40,22 @@
     [self registerType:self xmlName:@"FilteredLookupInfo"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"FilteredLookupInfo" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"controllingFields" propertyName:@"controllingFields" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dependent" propertyName:@"dependent" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"optionalFilter" propertyName:@"optionalFilter" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)controllingFields {
     if ((fields__set[0] & 0x1) == 0) {
         self.controllingFields__v = [self strings:@"controllingFields"];

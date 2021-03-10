@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -48,6 +49,7 @@
 @interface ZKReportChartComponent : ZKDescribeLayoutComponent  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (assign,nonatomic) BOOL       cacheData; 
 @property (strong,nonatomic) NSString  *contextFilterableField; 

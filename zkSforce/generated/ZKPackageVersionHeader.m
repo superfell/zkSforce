@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"PackageVersionHeader"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"PackageVersionHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"packageVersions" propertyName:@"packageVersions" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)packageVersions {
     if ((fields__set[0] & 0x1) == 0) {
         self.packageVersions__v = [self complexTypeArrayFromElements:@"packageVersions" cls:[ZKPackageVersion class]];

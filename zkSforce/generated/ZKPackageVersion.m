@@ -40,6 +40,22 @@
     [self registerType:self xmlName:@"PackageVersion"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"PackageVersion" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"majorNumber" propertyName:@"majorNumber" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"minorNumber" propertyName:@"minorNumber" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"namespace" propertyName:@"namespace" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSInteger)majorNumber {
     if ((fields__set[0] & 0x1) == 0) {
         self.majorNumber__v = [self integer:@"majorNumber"];

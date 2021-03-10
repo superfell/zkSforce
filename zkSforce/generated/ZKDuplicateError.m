@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"DuplicateError"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DuplicateError" parent:[ZKError class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateResult" propertyName:@"duplicateResult" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(ZKDuplicateResult *)duplicateResult {
     if ((fields__set2[0] & 0x1) == 0) {
         self.duplicateResult__v = [self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]].lastObject;

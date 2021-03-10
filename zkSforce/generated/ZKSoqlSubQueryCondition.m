@@ -40,6 +40,22 @@
     [self registerType:self xmlName:@"SoqlSubQueryCondition"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SoqlSubQueryCondition" parent:[ZKSoqlWhereCondition class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"field" propertyName:@"field" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"operator" propertyName:@"operator" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"subQuery" propertyName:@"subQuery" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)field {
     if ((fields__set2[0] & 0x1) == 0) {
         self.field__v = [self string:@"field"];

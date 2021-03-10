@@ -234,6 +234,8 @@
 		F49DC3AB25F6DD750016A8A0 /* ZKLimitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3A325F6DD750016A8A0 /* ZKLimitInfo.m */; };
 		F49DC3AC25F6DD750016A8A0 /* ZKSearchLayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3A425F6DD750016A8A0 /* ZKSearchLayoutButton.m */; };
 		F49DC3AD25F6DD750016A8A0 /* ZKJunctionIdListNames.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3A625F6DD750016A8A0 /* ZKJunctionIdListNames.m */; };
+		F49DC40725F91EE20016A8A0 /* ZKComplexTypeFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC40625F91EE20016A8A0 /* ZKComplexTypeFieldInfo.m */; };
+		F49DC41125F930520016A8A0 /* ZKComplexTypeFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC41025F930520016A8A0 /* ZKComplexTypeFieldInfo.m */; };
 		F4BB7F4D18B015EB00444797 /* ZKSObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */; };
 		F4EB23DE1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */; };
 		F4EB23E01D0DFFC000AA9B46 /* NSDateAsserts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4EB23DF1D0DFFC000AA9B46 /* NSDateAsserts.m */; };
@@ -699,6 +701,9 @@
 		F49DC3A425F6DD750016A8A0 /* ZKSearchLayoutButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSearchLayoutButton.m; sourceTree = "<group>"; };
 		F49DC3A525F6DD750016A8A0 /* ZKSearchLayoutField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSearchLayoutField.h; sourceTree = "<group>"; };
 		F49DC3A625F6DD750016A8A0 /* ZKJunctionIdListNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKJunctionIdListNames.m; sourceTree = "<group>"; };
+		F49DC40525F91EE20016A8A0 /* ZKComplexTypeFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKComplexTypeFieldInfo.h; sourceTree = "<group>"; };
+		F49DC40625F91EE20016A8A0 /* ZKComplexTypeFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKComplexTypeFieldInfo.m; sourceTree = "<group>"; };
+		F49DC41025F930520016A8A0 /* ZKComplexTypeFieldInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKComplexTypeFieldInfo.m; sourceTree = "<group>"; };
 		F4BB7F4B18B015EB00444797 /* ZKSObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSObjectTests.h; sourceTree = "<group>"; };
 		F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSObjectTests.m; sourceTree = "<group>"; };
 		F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSimpleTypesTests.m; sourceTree = "<group>"; };
@@ -782,6 +787,7 @@
 				F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */,
 				F49DC37F25F5AF9B0016A8A0 /* ZKLocationTests.m */,
 				F414BBFD1842EC4700322AC2 /* Supporting Files */,
+				F49DC41025F930520016A8A0 /* ZKComplexTypeFieldInfo.m */,
 			);
 			name = UnitTests;
 			path = zkSforceTests;
@@ -1217,6 +1223,8 @@
 		F42EC7922325AB6D00C5DC05 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				F49DC40525F91EE20016A8A0 /* ZKComplexTypeFieldInfo.h */,
+				F49DC40625F91EE20016A8A0 /* ZKComplexTypeFieldInfo.m */,
 				F42EC7AE2325AB6D00C5DC05 /* ZKBase64.h */,
 				F42EC79E2325AB6D00C5DC05 /* ZKBase64.m */,
 				F42EC79B2325AB6D00C5DC05 /* ZKConstants.h */,
@@ -1300,7 +1308,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0640;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = F414BBE81842EC1900322AC2 /* Build configuration list for PBXProject "zkSforceTests" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1458,6 +1466,7 @@
 				F42EC81A2325AB6E00C5DC05 /* ZKDescribeSearchScopeOrderResult.m in Sources */,
 				F42EC82B2325AB6E00C5DC05 /* ZKDescribePathAssistantField.m in Sources */,
 				F42EC8002325AB6E00C5DC05 /* ZKGetUpdatedResult.m in Sources */,
+				F49DC40725F91EE20016A8A0 /* ZKComplexTypeFieldInfo.m in Sources */,
 				F42EC8112325AB6E00C5DC05 /* ZKProcessSubmitRequest.m in Sources */,
 				F42EC7E62325AB6E00C5DC05 /* ZKDescribeLayoutRow.m in Sources */,
 				F49DC3A825F6DD750016A8A0 /* ZKSearchLayoutField.m in Sources */,
@@ -1502,6 +1511,7 @@
 				F42EC7EA2325AB6E00C5DC05 /* ZKDescribeTabSetResult.m in Sources */,
 				F42EC7CC2325AB6E00C5DC05 /* ZKQuickActionTemplateResult.m in Sources */,
 				F42EC8652325AB6E00C5DC05 /* ZKEmptyRecycleBinResult.m in Sources */,
+				F49DC41125F930520016A8A0 /* ZKComplexTypeFieldInfo.m in Sources */,
 				F42EC7D32325AB6E00C5DC05 /* ZKGetDeletedResult.m in Sources */,
 				F42EC83A2325AB6E00C5DC05 /* ZKRenderStoredEmailTemplateResult.m in Sources */,
 				F42EC81E2325AB6E00C5DC05 /* ZKRecordTypeCompactLayoutMapping.m in Sources */,
@@ -1597,6 +1607,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1612,7 +1623,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1635,6 +1646,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1649,7 +1661,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1685,7 +1697,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "zkSforceTests/zkSforceTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1718,7 +1730,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "zkSforceTests/zkSforceTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pocketsoap.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

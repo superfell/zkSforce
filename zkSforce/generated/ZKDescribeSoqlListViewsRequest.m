@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"DescribeSoqlListViewsRequest"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoqlListViewsRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"listViewParams" propertyName:@"listViewParams" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)listViewParams {
     if ((fields__set[0] & 0x1) == 0) {
         self.listViewParams__v = [self complexTypeArrayFromElements:@"listViewParams" cls:[ZKDescribeSoqlListViewParams class]];

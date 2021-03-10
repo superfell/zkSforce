@@ -39,6 +39,20 @@
     [self registerType:self xmlName:@"DescribeLayoutButtonSection"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutButtonSection" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"detailButtons" propertyName:@"detailButtons" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)detailButtons {
     if ((fields__set[0] & 0x1) == 0) {
         self.detailButtons__v = [self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]];

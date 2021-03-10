@@ -25,6 +25,7 @@
 //
 
 #import "ZKLocation.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
@@ -49,6 +50,7 @@
 @interface ZKAddress : ZKLocation  {
 	UInt16   fields__set2[1];
 }
++(ZKComplexTypeInfo *)wsdlSchema;
 
 @property (strong,nonatomic) NSString  *city; 
 @property (strong,nonatomic) NSString  *country; 

@@ -48,6 +48,25 @@
     [self registerType:self xmlName:@"EntitySearchMetadata"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EntitySearchMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityName" propertyName:@"entityName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errorMetadata" propertyName:@"errorMetadata" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fieldMetadata" propertyName:@"fieldMetadata" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"intentQueryMetadata" propertyName:@"intentQueryMetadata" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"searchPromotionMetadata" propertyName:@"searchPromotionMetadata" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"spellCorrectionMetadata" propertyName:@"spellCorrectionMetadata" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)entityName {
     if ((fields__set[0] & 0x1) == 0) {
         self.entityName__v = [self string:@"entityName"];

@@ -40,6 +40,21 @@
     [self registerType:self xmlName:@"LabelsSearchMetadata"];
 }
 
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"LabelsSearchMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityFieldLabels" propertyName:@"entityFieldLabels" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityName" propertyName:@"entityName" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSArray *)entityFieldLabels {
     if ((fields__set[0] & 0x1) == 0) {
         self.entityFieldLabels__v = [self complexTypeArrayFromElements:@"entityFieldLabels" cls:[ZKNameValuePair class]];
