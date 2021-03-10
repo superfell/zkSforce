@@ -58,11 +58,14 @@
     [self registerType:self xmlName:@"DescribeSObjectResult"];
 }
 
+// This schema information reflects how ZKSforce maps DescribeSObject
+// into being a subclass of DescribeGlobalSObject, rather than
+// exactly how it is defined in the WSDL (where they are not related).
 +(ZKComplexTypeInfo *)wsdlSchema {
    static ZKComplexTypeInfo *wsdlSchema;
    static dispatch_once_t onceToken;
    dispatch_once(&onceToken, ^{
-       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSObjectResult" parent:nil
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSObjectResult" parent:[ZKDescribeGlobalSObject class]
                     fields:@[
                         [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"actionOverrides" propertyName:@"actionOverrides" optional:YES nillable:YES],
                         [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"childRelationships" propertyName:@"childRelationships" optional:YES nillable:NO],
@@ -156,22 +159,51 @@
 }
         
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
-	[env startElement:elemName];
-	[env addElementArray:@"actionOverrides"    elemValue:self.actionOverrides];
-	[env addElementArray:@"childRelationships" elemValue:self.childRelationships];
-	[env addBoolElement:@"compactLayoutable"   elemValue:self.compactLayoutable];
-	[env addElement:@"defaultImplementation"   elemValue:self.defaultImplementation nillable:YES optional:NO];
-	[env addElementArray:@"fields"             elemValue:self.fields];
-	[env addElement:@"implementedBy"           elemValue:self.implementedBy         nillable:YES optional:NO];
-	[env addElement:@"implementsInterfaces"    elemValue:self.implementsInterfaces  nillable:YES optional:NO];
-	[env addElementArray:@"namedLayoutInfos"   elemValue:self.namedLayoutInfos];
-	[env addElement:@"networkScopeFieldName"   elemValue:self.networkScopeFieldName nillable:YES optional:NO];
-	[env addElementArray:@"recordTypeInfos"    elemValue:self.recordTypeInfos];
-	[env addBoolElement:@"searchLayoutable"    elemValue:self.searchLayoutable];
-	[env addElementArray:@"supportedScopes"    elemValue:self.supportedScopes];
-	[env addElement:@"urlDetail"               elemValue:self.urlDetail             nillable:YES optional:NO];
-	[env addElement:@"urlEdit"                 elemValue:self.urlEdit               nillable:YES optional:NO];
-	[env addElement:@"urlNew"                  elemValue:self.urlNew                nillable:YES optional:NO];
+	[env startElement:elemName type:@"DescribeSObjectResult"];
+	[env addBoolElement:@"activateable"           elemValue:self.activateable];
+	[env addElement:@"associateEntityType"        elemValue:self.associateEntityType    nillable:YES optional:NO];
+	[env addElement:@"associateParentEntity"      elemValue:self.associateParentEntity  nillable:YES optional:NO];
+	[env addBoolElement:@"createable"             elemValue:self.createable];
+	[env addBoolElement:@"custom"                 elemValue:self.custom];
+	[env addBoolElement:@"customSetting"          elemValue:self.customSetting];
+	[env addBoolElement:@"dataTranslationEnabled" elemValue:self.dataTranslationEnabled];
+	[env addBoolElement:@"deepCloneable"          elemValue:self.deepCloneable];
+	[env addBoolElement:@"deletable"              elemValue:self.deletable];
+	[env addBoolElement:@"deprecatedAndHidden"    elemValue:self.deprecatedAndHidden];
+	[env addBoolElement:@"feedEnabled"            elemValue:self.feedEnabled];
+	[env addBoolElement:@"hasSubtypes"            elemValue:self.hasSubtypes];
+	[env addBoolElement:@"idEnabled"              elemValue:self.idEnabled];
+	[env addBoolElement:@"isInterface"            elemValue:self.isInterface];
+	[env addBoolElement:@"isSubtype"              elemValue:self.isSubtype];
+	[env addElement:@"keyPrefix"                  elemValue:self.keyPrefix              nillable:YES optional:NO];
+	[env addElement:@"label"                      elemValue:self.label                  nillable:NO  optional:NO];
+	[env addElement:@"labelPlural"                elemValue:self.labelPlural            nillable:NO  optional:NO];
+	[env addBoolElement:@"layoutable"             elemValue:self.layoutable];
+	[env addBoolElement:@"mergeable"              elemValue:self.mergeable];
+	[env addBoolElement:@"mruEnabled"             elemValue:self.mruEnabled];
+	[env addElement:@"name"                       elemValue:self.name                   nillable:NO  optional:NO];
+	[env addBoolElement:@"queryable"              elemValue:self.queryable];
+	[env addBoolElement:@"replicateable"          elemValue:self.replicateable];
+	[env addBoolElement:@"retrieveable"           elemValue:self.retrieveable];
+	[env addBoolElement:@"searchable"             elemValue:self.searchable];
+	[env addBoolElement:@"triggerable"            elemValue:self.triggerable];
+	[env addBoolElement:@"undeletable"            elemValue:self.undeletable];
+	[env addBoolElement:@"updateable"             elemValue:self.updateable];
+	[env addElementArray:@"actionOverrides"       elemValue:self.actionOverrides];
+	[env addElementArray:@"childRelationships"    elemValue:self.childRelationships];
+	[env addBoolElement:@"compactLayoutable"      elemValue:self.compactLayoutable];
+	[env addElement:@"defaultImplementation"      elemValue:self.defaultImplementation  nillable:YES optional:NO];
+	[env addElementArray:@"fields"                elemValue:self.fields];
+	[env addElement:@"implementedBy"              elemValue:self.implementedBy          nillable:YES optional:NO];
+	[env addElement:@"implementsInterfaces"       elemValue:self.implementsInterfaces   nillable:YES optional:NO];
+	[env addElementArray:@"namedLayoutInfos"      elemValue:self.namedLayoutInfos];
+	[env addElement:@"networkScopeFieldName"      elemValue:self.networkScopeFieldName  nillable:YES optional:NO];
+	[env addElementArray:@"recordTypeInfos"       elemValue:self.recordTypeInfos];
+	[env addBoolElement:@"searchLayoutable"       elemValue:self.searchLayoutable];
+	[env addElementArray:@"supportedScopes"       elemValue:self.supportedScopes];
+	[env addElement:@"urlDetail"                  elemValue:self.urlDetail              nillable:YES optional:NO];
+	[env addElement:@"urlEdit"                    elemValue:self.urlEdit                nillable:YES optional:NO];
+	[env addElement:@"urlNew"                     elemValue:self.urlNew                 nillable:YES optional:NO];
 	[env endElement:elemName];
 }
 @end
