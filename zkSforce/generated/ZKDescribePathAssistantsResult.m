@@ -29,7 +29,7 @@
 #import "ZKDescribePathAssistant.h"
 
 @interface ZKDescribePathAssistantsResult()
-@property (strong,nonatomic) NSArray  *pathAssistants__v;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistant *>  *pathAssistants__v;
 @end
 
 @implementation ZKDescribePathAssistantsResult
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)pathAssistants {
+-(NSArray<ZKDescribePathAssistant *> *)pathAssistants {
     if ((fields__set[0] & 0x1) == 0) {
         self.pathAssistants__v = [self complexTypeArrayFromElements:@"pathAssistants" cls:[ZKDescribePathAssistant class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setPathAssistants:(NSArray *)v {
+-(void)setPathAssistants:(NSArray<ZKDescribePathAssistant *> *)v {
     self.pathAssistants__v = v;
     fields__set[0] |= 0x1; 
 }

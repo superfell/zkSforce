@@ -29,7 +29,7 @@
 #import "ZKDescribeSoqlListView.h"
 
 @interface ZKDescribeSoqlListViewResult()
-@property (strong,nonatomic) NSArray  *describeSoqlListViews__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoqlListView *>  *describeSoqlListViews__v;
 @end
 
 @implementation ZKDescribeSoqlListViewResult
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)describeSoqlListViews {
+-(NSArray<ZKDescribeSoqlListView *> *)describeSoqlListViews {
     if ((fields__set[0] & 0x1) == 0) {
         self.describeSoqlListViews__v = [self complexTypeArrayFromElements:@"describeSoqlListViews" cls:[ZKDescribeSoqlListView class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setDescribeSoqlListViews:(NSArray *)v {
+-(void)setDescribeSoqlListViews:(NSArray<ZKDescribeSoqlListView *> *)v {
     self.describeSoqlListViews__v = v;
     fields__set[0] |= 0x1; 
 }

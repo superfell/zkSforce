@@ -29,6 +29,8 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDeletedRecord;
+
 /*
 <complexType name="GetDeletedResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -43,7 +45,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray  *deletedRecords;  // of ZKDeletedRecord
-@property (strong,nonatomic) NSDate   *earliestDateAvailable; 
-@property (strong,nonatomic) NSDate   *latestDateCovered; 
+@property (strong,nonatomic) NSArray<ZKDeletedRecord *>  *deletedRecords;
+@property (strong,nonatomic) NSDate                      *earliestDateAvailable;
+@property (strong,nonatomic) NSDate                      *latestDateCovered;
 @end

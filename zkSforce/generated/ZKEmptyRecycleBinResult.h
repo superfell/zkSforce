@@ -29,6 +29,8 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKError;
+
 /*
 <complexType name="EmptyRecycleBinResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -43,7 +45,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray   *errors;  // of ZKError
-@property (strong,nonatomic) NSString  *id; 
-@property (assign,nonatomic) BOOL       success; 
+@property (strong,nonatomic) NSArray<ZKError *>  *errors;
+@property (strong,nonatomic) NSString            *id;
+@property (assign,nonatomic) BOOL                 success;
 @end

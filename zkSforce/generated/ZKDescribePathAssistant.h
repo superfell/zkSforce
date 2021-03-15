@@ -29,6 +29,10 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeAnimationRule;
+@class ZKPicklistForRecordType;
+@class ZKDescribePathAssistantStep;
+
 /*
 <complexType name="DescribePathAssistant" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -48,12 +52,12 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       active; 
-@property (strong,nonatomic) NSArray   *animationRule;  // of ZKDescribeAnimationRule
-@property (strong,nonatomic) NSString  *apiName; 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSString  *pathPicklistField; 
-@property (strong,nonatomic) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
-@property (strong,nonatomic) NSString  *recordTypeId; 
-@property (strong,nonatomic) NSArray   *steps;  // of ZKDescribePathAssistantStep
+@property (assign,nonatomic) BOOL                                     active;
+@property (strong,nonatomic) NSArray<ZKDescribeAnimationRule *>      *animationRule;
+@property (strong,nonatomic) NSString                                *apiName;
+@property (strong,nonatomic) NSString                                *label;
+@property (strong,nonatomic) NSString                                *pathPicklistField;
+@property (strong,nonatomic) NSArray<ZKPicklistForRecordType *>      *picklistsForRecordType;
+@property (strong,nonatomic) NSString                                *recordTypeId;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistantStep *>  *steps;
 @end

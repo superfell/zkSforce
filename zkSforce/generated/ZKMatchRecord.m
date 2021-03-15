@@ -31,10 +31,10 @@
 #import "ZKSObject.h"
 
 @interface ZKMatchRecord()
-@property (strong,nonatomic) NSArray    *additionalInformation__v;
-@property (strong,nonatomic) NSArray    *fieldDiffs__v;
-@property (assign,nonatomic) double      matchConfidence__v;
-@property (strong,nonatomic) ZKSObject  *record__v;
+@property (strong,nonatomic) NSArray<ZKAdditionalInformationMap *>  *additionalInformation__v;
+@property (strong,nonatomic) NSArray<ZKFieldDiff *>                 *fieldDiffs__v;
+@property (assign,nonatomic) double                                  matchConfidence__v;
+@property (strong,nonatomic) ZKSObject                              *record__v;
 @end
 
 @implementation ZKMatchRecord
@@ -61,7 +61,7 @@
 }
     
 
--(NSArray *)additionalInformation {
+-(NSArray<ZKAdditionalInformationMap *> *)additionalInformation {
     if ((fields__set[0] & 0x1) == 0) {
         self.additionalInformation__v = [self complexTypeArrayFromElements:@"additionalInformation" cls:[ZKAdditionalInformationMap class]];
         fields__set[0] |= 0x1; 
@@ -70,13 +70,13 @@
 }
         
 
--(void)setAdditionalInformation:(NSArray *)v {
+-(void)setAdditionalInformation:(NSArray<ZKAdditionalInformationMap *> *)v {
     self.additionalInformation__v = v;
     fields__set[0] |= 0x1; 
 }
         
 
--(NSArray *)fieldDiffs {
+-(NSArray<ZKFieldDiff *> *)fieldDiffs {
     if ((fields__set[0] & 0x2) == 0) {
         self.fieldDiffs__v = [self complexTypeArrayFromElements:@"fieldDiffs" cls:[ZKFieldDiff class]];
         fields__set[0] |= 0x2; 
@@ -85,7 +85,7 @@
 }
         
 
--(void)setFieldDiffs:(NSArray *)v {
+-(void)setFieldDiffs:(NSArray<ZKFieldDiff *> *)v {
     self.fieldDiffs__v = v;
     fields__set[0] |= 0x2; 
 }

@@ -29,8 +29,8 @@
 #import "ZKDescribeLayoutComponent.h"
 
 @interface ZKFieldLayoutComponent()
-@property (strong,nonatomic) NSArray   *components__v;
-@property (strong,nonatomic) NSString  *fieldType__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutComponent *>  *components__v;
+@property (strong,nonatomic) NSString                              *fieldType__v;
 @end
 
 @implementation ZKFieldLayoutComponent
@@ -55,7 +55,7 @@
 }
     
 
--(NSArray *)components {
+-(NSArray<ZKDescribeLayoutComponent *> *)components {
     if ((fields__set2[0] & 0x1) == 0) {
         self.components__v = [self complexTypeArrayFromElements:@"components" cls:[ZKDescribeLayoutComponent class]];
         fields__set2[0] |= 0x1; 
@@ -64,7 +64,7 @@
 }
         
 
--(void)setComponents:(NSArray *)v {
+-(void)setComponents:(NSArray<ZKDescribeLayoutComponent *> *)v {
     self.components__v = v;
     fields__set2[0] |= 0x1; 
 }

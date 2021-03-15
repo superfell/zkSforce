@@ -30,9 +30,9 @@
 #import "ZKSObject.h"
 
 @interface ZKMergeRequest()
-@property (strong,nonatomic) NSArray    *additionalInformationMap__v;
-@property (strong,nonatomic) ZKSObject  *masterRecord__v;
-@property (strong,nonatomic) NSArray    *recordToMergeIds__v;
+@property (strong,nonatomic) NSArray<ZKAdditionalInformationMap *>  *additionalInformationMap__v;
+@property (strong,nonatomic) ZKSObject                              *masterRecord__v;
+@property (strong,nonatomic) NSArray<NSString *>                    *recordToMergeIds__v;
 @end
 
 @implementation ZKMergeRequest
@@ -58,7 +58,7 @@
 }
     
 
--(NSArray *)additionalInformationMap {
+-(NSArray<ZKAdditionalInformationMap *> *)additionalInformationMap {
     if ((fields__set[0] & 0x1) == 0) {
         self.additionalInformationMap__v = [self complexTypeArrayFromElements:@"additionalInformationMap" cls:[ZKAdditionalInformationMap class]];
         fields__set[0] |= 0x1; 
@@ -67,7 +67,7 @@
 }
         
 
--(void)setAdditionalInformationMap:(NSArray *)v {
+-(void)setAdditionalInformationMap:(NSArray<ZKAdditionalInformationMap *> *)v {
     self.additionalInformationMap__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -88,7 +88,7 @@
 }
         
 
--(NSArray *)recordToMergeIds {
+-(NSArray<NSString *> *)recordToMergeIds {
     if ((fields__set[0] & 0x4) == 0) {
         self.recordToMergeIds__v = [self strings:@"recordToMergeIds"];
         fields__set[0] |= 0x4; 
@@ -97,7 +97,7 @@
 }
         
 
--(void)setRecordToMergeIds:(NSArray *)v {
+-(void)setRecordToMergeIds:(NSArray<NSString *> *)v {
     self.recordToMergeIds__v = v;
     fields__set[0] |= 0x4; 
 }

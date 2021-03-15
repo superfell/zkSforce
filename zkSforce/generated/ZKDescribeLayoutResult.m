@@ -30,9 +30,9 @@
 #import "ZKRecordTypeMapping.h"
 
 @interface ZKDescribeLayoutResult()
-@property (strong,nonatomic) NSArray  *layouts__v;
-@property (strong,nonatomic) NSArray  *recordTypeMappings__v;
-@property (assign,nonatomic) BOOL      recordTypeSelectorRequired__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayout *>     *layouts__v;
+@property (strong,nonatomic) NSArray<ZKRecordTypeMapping *>  *recordTypeMappings__v;
+@property (assign,nonatomic) BOOL                             recordTypeSelectorRequired__v;
 @end
 
 @implementation ZKDescribeLayoutResult
@@ -58,7 +58,7 @@
 }
     
 
--(NSArray *)layouts {
+-(NSArray<ZKDescribeLayout *> *)layouts {
     if ((fields__set[0] & 0x1) == 0) {
         self.layouts__v = [self complexTypeArrayFromElements:@"layouts" cls:[ZKDescribeLayout class]];
         fields__set[0] |= 0x1; 
@@ -67,13 +67,13 @@
 }
         
 
--(void)setLayouts:(NSArray *)v {
+-(void)setLayouts:(NSArray<ZKDescribeLayout *> *)v {
     self.layouts__v = v;
     fields__set[0] |= 0x1; 
 }
         
 
--(NSArray *)recordTypeMappings {
+-(NSArray<ZKRecordTypeMapping *> *)recordTypeMappings {
     if ((fields__set[0] & 0x2) == 0) {
         self.recordTypeMappings__v = [self complexTypeArrayFromElements:@"recordTypeMappings" cls:[ZKRecordTypeMapping class]];
         fields__set[0] |= 0x2; 
@@ -82,7 +82,7 @@
 }
         
 
--(void)setRecordTypeMappings:(NSArray *)v {
+-(void)setRecordTypeMappings:(NSArray<ZKRecordTypeMapping *> *)v {
     self.recordTypeMappings__v = v;
     fields__set[0] |= 0x2; 
 }

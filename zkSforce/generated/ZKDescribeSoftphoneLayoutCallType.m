@@ -31,11 +31,11 @@
 #import "ZKDescribeSoftphoneScreenPopOption.h"
 
 @interface ZKDescribeSoftphoneLayoutCallType()
-@property (strong,nonatomic) NSArray   *infoFields__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSArray   *screenPopOptions__v;
-@property (strong,nonatomic) NSString  *screenPopsOpenWithin__v;
-@property (strong,nonatomic) NSArray   *sections__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutInfoField *>  *infoFields__v;
+@property (strong,nonatomic) NSString                                       *name__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneScreenPopOption *>  *screenPopOptions__v;
+@property (strong,nonatomic) NSString                                       *screenPopsOpenWithin__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutSection *>    *sections__v;
 @end
 
 @implementation ZKDescribeSoftphoneLayoutCallType
@@ -63,7 +63,7 @@
 }
     
 
--(NSArray *)infoFields {
+-(NSArray<ZKDescribeSoftphoneLayoutInfoField *> *)infoFields {
     if ((fields__set[0] & 0x1) == 0) {
         self.infoFields__v = [self complexTypeArrayFromElements:@"infoFields" cls:[ZKDescribeSoftphoneLayoutInfoField class]];
         fields__set[0] |= 0x1; 
@@ -72,7 +72,7 @@
 }
         
 
--(void)setInfoFields:(NSArray *)v {
+-(void)setInfoFields:(NSArray<ZKDescribeSoftphoneLayoutInfoField *> *)v {
     self.infoFields__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -93,7 +93,7 @@
 }
         
 
--(NSArray *)screenPopOptions {
+-(NSArray<ZKDescribeSoftphoneScreenPopOption *> *)screenPopOptions {
     if ((fields__set[0] & 0x4) == 0) {
         self.screenPopOptions__v = [self complexTypeArrayFromElements:@"screenPopOptions" cls:[ZKDescribeSoftphoneScreenPopOption class]];
         fields__set[0] |= 0x4; 
@@ -102,7 +102,7 @@
 }
         
 
--(void)setScreenPopOptions:(NSArray *)v {
+-(void)setScreenPopOptions:(NSArray<ZKDescribeSoftphoneScreenPopOption *> *)v {
     self.screenPopOptions__v = v;
     fields__set[0] |= 0x4; 
 }
@@ -123,7 +123,7 @@
 }
         
 
--(NSArray *)sections {
+-(NSArray<ZKDescribeSoftphoneLayoutSection *> *)sections {
     if ((fields__set[0] & 0x10) == 0) {
         self.sections__v = [self complexTypeArrayFromElements:@"sections" cls:[ZKDescribeSoftphoneLayoutSection class]];
         fields__set[0] |= 0x10; 
@@ -132,7 +132,7 @@
 }
         
 
--(void)setSections:(NSArray *)v {
+-(void)setSections:(NSArray<ZKDescribeSoftphoneLayoutSection *> *)v {
     self.sections__v = v;
     fields__set[0] |= 0x10; 
 }

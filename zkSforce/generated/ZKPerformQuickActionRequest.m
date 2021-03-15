@@ -29,9 +29,9 @@
 #import "ZKSObject.h"
 
 @interface ZKPerformQuickActionRequest()
-@property (strong,nonatomic) NSString  *contextId__v;
-@property (strong,nonatomic) NSString  *quickActionName__v;
-@property (strong,nonatomic) NSArray   *records__v;
+@property (strong,nonatomic) NSString              *contextId__v;
+@property (strong,nonatomic) NSString              *quickActionName__v;
+@property (strong,nonatomic) NSArray<ZKSObject *>  *records__v;
 @end
 
 @implementation ZKPerformQuickActionRequest
@@ -87,7 +87,7 @@
 }
         
 
--(NSArray *)records {
+-(NSArray<ZKSObject *> *)records {
     if ((fields__set[0] & 0x4) == 0) {
         self.records__v = [self complexTypeArrayFromElements:@"records" cls:[ZKSObject class]];
         fields__set[0] |= 0x4; 
@@ -96,7 +96,7 @@
 }
         
 
--(void)setRecords:(NSArray *)v {
+-(void)setRecords:(NSArray<ZKSObject *> *)v {
     self.records__v = v;
     fields__set[0] |= 0x4; 
 }

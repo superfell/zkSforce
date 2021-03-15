@@ -44,8 +44,8 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) NSInteger  displayLines; 
-@property (assign,nonatomic) NSInteger  tabOrder; 
-@property (strong,nonatomic) NSString  *type; 
-@property (strong,nonatomic) NSString  *value; 
+@property (assign,nonatomic) NSInteger  displayLines;
+@property (assign,nonatomic) NSInteger  tabOrder;
+@property (strong,nonatomic) NSString  *type;
+@property (strong,nonatomic) NSString  *value;
 @end

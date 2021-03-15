@@ -30,13 +30,13 @@
 #import "ZKDescribeLayoutItem.h"
 
 @interface ZKDescribeCompactLayout()
-@property (strong,nonatomic) NSArray   *actions__v;
-@property (strong,nonatomic) NSArray   *fieldItems__v;
-@property (strong,nonatomic) NSString  *id__v;
-@property (strong,nonatomic) NSArray   *imageItems__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSString  *objectType__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *actions__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>    *fieldItems__v;
+@property (strong,nonatomic) NSString                           *id__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>    *imageItems__v;
+@property (strong,nonatomic) NSString                           *label__v;
+@property (strong,nonatomic) NSString                           *name__v;
+@property (strong,nonatomic) NSString                           *objectType__v;
 @end
 
 @implementation ZKDescribeCompactLayout
@@ -66,7 +66,7 @@
 }
     
 
--(NSArray *)actions {
+-(NSArray<ZKDescribeLayoutButton *> *)actions {
     if ((fields__set[0] & 0x1) == 0) {
         self.actions__v = [self complexTypeArrayFromElements:@"actions" cls:[ZKDescribeLayoutButton class]];
         fields__set[0] |= 0x1; 
@@ -75,13 +75,13 @@
 }
         
 
--(void)setActions:(NSArray *)v {
+-(void)setActions:(NSArray<ZKDescribeLayoutButton *> *)v {
     self.actions__v = v;
     fields__set[0] |= 0x1; 
 }
         
 
--(NSArray *)fieldItems {
+-(NSArray<ZKDescribeLayoutItem *> *)fieldItems {
     if ((fields__set[0] & 0x2) == 0) {
         self.fieldItems__v = [self complexTypeArrayFromElements:@"fieldItems" cls:[ZKDescribeLayoutItem class]];
         fields__set[0] |= 0x2; 
@@ -90,7 +90,7 @@
 }
         
 
--(void)setFieldItems:(NSArray *)v {
+-(void)setFieldItems:(NSArray<ZKDescribeLayoutItem *> *)v {
     self.fieldItems__v = v;
     fields__set[0] |= 0x2; 
 }
@@ -111,7 +111,7 @@
 }
         
 
--(NSArray *)imageItems {
+-(NSArray<ZKDescribeLayoutItem *> *)imageItems {
     if ((fields__set[0] & 0x8) == 0) {
         self.imageItems__v = [self complexTypeArrayFromElements:@"imageItems" cls:[ZKDescribeLayoutItem class]];
         fields__set[0] |= 0x8; 
@@ -120,7 +120,7 @@
 }
         
 
--(void)setImageItems:(NSArray *)v {
+-(void)setImageItems:(NSArray<ZKDescribeLayoutItem *> *)v {
     self.imageItems__v = v;
     fields__set[0] |= 0x8; 
 }

@@ -29,6 +29,8 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKError;
+
 /*
 <complexType name="ProcessResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -47,11 +49,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray   *actorIds;  // of NSString
-@property (strong,nonatomic) NSString  *entityId; 
-@property (strong,nonatomic) NSArray   *errors;  // of ZKError
-@property (strong,nonatomic) NSString  *instanceId; 
-@property (strong,nonatomic) NSString  *instanceStatus; 
-@property (strong,nonatomic) NSArray   *a_newWorkitemIds;  // of NSString
-@property (assign,nonatomic) BOOL       success; 
+@property (strong,nonatomic) NSArray<NSString *>  *actorIds;
+@property (strong,nonatomic) NSString             *entityId;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors;
+@property (strong,nonatomic) NSString             *instanceId;
+@property (strong,nonatomic) NSString             *instanceStatus;
+@property (strong,nonatomic) NSArray<NSString *>  *a_newWorkitemIds;
+@property (assign,nonatomic) BOOL                  success;
 @end

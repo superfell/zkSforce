@@ -32,39 +32,39 @@
 #import "ZKDescribeQuickActionDefaultValue.h"
 
 @interface ZKDescribeQuickActionResult()
-@property (strong,nonatomic) NSString                 *accessLevelRequired__v;
-@property (strong,nonatomic) NSString                 *actionEnumOrId__v;
-@property (strong,nonatomic) NSString                 *canvasApplicationId__v;
-@property (strong,nonatomic) NSString                 *canvasApplicationName__v;
-@property (strong,nonatomic) NSArray                  *colors__v;
-@property (strong,nonatomic) NSString                 *contextSobjectType__v;
-@property (strong,nonatomic) NSArray                  *defaultValues__v;
-@property (strong,nonatomic) NSString                 *flowDevName__v;
-@property (strong,nonatomic) NSString                 *flowRecordIdVar__v;
-@property (assign,nonatomic) NSInteger                 height__v;
-@property (strong,nonatomic) NSString                 *iconName__v;
-@property (strong,nonatomic) NSString                 *iconUrl__v;
-@property (strong,nonatomic) NSArray                  *icons__v;
-@property (strong,nonatomic) NSString                 *label__v;
-@property (strong,nonatomic) ZKDescribeLayoutSection  *layout__v;
-@property (strong,nonatomic) NSString                 *lightningComponentBundleId__v;
-@property (strong,nonatomic) NSString                 *lightningComponentBundleName__v;
-@property (strong,nonatomic) NSString                 *lightningComponentQualifiedName__v;
-@property (strong,nonatomic) NSString                 *lightningWebComponentBundleId__v;
-@property (strong,nonatomic) NSString                 *lightningWebComponentBundleName__v;
-@property (strong,nonatomic) NSString                 *lightningWebComponentQualifiedName__v;
-@property (strong,nonatomic) NSString                 *miniIconUrl__v;
-@property (strong,nonatomic) NSString                 *mobileExtensionId__v;
-@property (strong,nonatomic) NSString                 *name__v;
-@property (assign,nonatomic) BOOL                      showQuickActionLcHeader__v;
-@property (assign,nonatomic) BOOL                      showQuickActionVfHeader__v;
-@property (strong,nonatomic) NSString                 *targetParentField__v;
-@property (strong,nonatomic) NSString                 *targetRecordTypeId__v;
-@property (strong,nonatomic) NSString                 *targetSobjectType__v;
-@property (strong,nonatomic) NSString                 *type__v;
-@property (strong,nonatomic) NSString                 *visualforcePageName__v;
-@property (strong,nonatomic) NSString                 *visualforcePageUrl__v;
-@property (assign,nonatomic) NSInteger                 width__v;
+@property (strong,nonatomic) NSString                                      *accessLevelRequired__v;
+@property (strong,nonatomic) NSString                                      *actionEnumOrId__v;
+@property (strong,nonatomic) NSString                                      *canvasApplicationId__v;
+@property (strong,nonatomic) NSString                                      *canvasApplicationName__v;
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>                    *colors__v;
+@property (strong,nonatomic) NSString                                      *contextSobjectType__v;
+@property (strong,nonatomic) NSArray<ZKDescribeQuickActionDefaultValue *>  *defaultValues__v;
+@property (strong,nonatomic) NSString                                      *flowDevName__v;
+@property (strong,nonatomic) NSString                                      *flowRecordIdVar__v;
+@property (assign,nonatomic) NSInteger                                      height__v;
+@property (strong,nonatomic) NSString                                      *iconName__v;
+@property (strong,nonatomic) NSString                                      *iconUrl__v;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>                     *icons__v;
+@property (strong,nonatomic) NSString                                      *label__v;
+@property (strong,nonatomic) ZKDescribeLayoutSection                       *layout__v;
+@property (strong,nonatomic) NSString                                      *lightningComponentBundleId__v;
+@property (strong,nonatomic) NSString                                      *lightningComponentBundleName__v;
+@property (strong,nonatomic) NSString                                      *lightningComponentQualifiedName__v;
+@property (strong,nonatomic) NSString                                      *lightningWebComponentBundleId__v;
+@property (strong,nonatomic) NSString                                      *lightningWebComponentBundleName__v;
+@property (strong,nonatomic) NSString                                      *lightningWebComponentQualifiedName__v;
+@property (strong,nonatomic) NSString                                      *miniIconUrl__v;
+@property (strong,nonatomic) NSString                                      *mobileExtensionId__v;
+@property (strong,nonatomic) NSString                                      *name__v;
+@property (assign,nonatomic) BOOL                                           showQuickActionLcHeader__v;
+@property (assign,nonatomic) BOOL                                           showQuickActionVfHeader__v;
+@property (strong,nonatomic) NSString                                      *targetParentField__v;
+@property (strong,nonatomic) NSString                                      *targetRecordTypeId__v;
+@property (strong,nonatomic) NSString                                      *targetSobjectType__v;
+@property (strong,nonatomic) NSString                                      *type__v;
+@property (strong,nonatomic) NSString                                      *visualforcePageName__v;
+@property (strong,nonatomic) NSString                                      *visualforcePageUrl__v;
+@property (assign,nonatomic) NSInteger                                      width__v;
 @end
 
 @implementation ZKDescribeQuickActionResult
@@ -180,7 +180,7 @@
 }
         
 
--(NSArray *)colors {
+-(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x10) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
         fields__set[0] |= 0x10; 
@@ -189,7 +189,7 @@
 }
         
 
--(void)setColors:(NSArray *)v {
+-(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
     fields__set[0] |= 0x10; 
 }
@@ -210,7 +210,7 @@
 }
         
 
--(NSArray *)defaultValues {
+-(NSArray<ZKDescribeQuickActionDefaultValue *> *)defaultValues {
     if ((fields__set[0] & 0x40) == 0) {
         self.defaultValues__v = [self complexTypeArrayFromElements:@"defaultValues" cls:[ZKDescribeQuickActionDefaultValue class]];
         fields__set[0] |= 0x40; 
@@ -219,7 +219,7 @@
 }
         
 
--(void)setDefaultValues:(NSArray *)v {
+-(void)setDefaultValues:(NSArray<ZKDescribeQuickActionDefaultValue *> *)v {
     self.defaultValues__v = v;
     fields__set[0] |= 0x40; 
 }
@@ -300,7 +300,7 @@
 }
         
 
--(NSArray *)icons {
+-(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x1000) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
         fields__set[0] |= 0x1000; 
@@ -309,7 +309,7 @@
 }
         
 
--(void)setIcons:(NSArray *)v {
+-(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
     fields__set[0] |= 0x1000; 
 }

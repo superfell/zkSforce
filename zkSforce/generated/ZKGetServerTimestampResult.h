@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSDate  *timestamp; 
+@property (strong,nonatomic) NSDate  *timestamp;
 @end

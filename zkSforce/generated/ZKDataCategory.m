@@ -29,9 +29,9 @@
 #import "ZKDataCategory.h"
 
 @interface ZKDataCategory()
-@property (strong,nonatomic) NSArray   *childCategories__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSArray<ZKDataCategory *>  *childCategories__v;
+@property (strong,nonatomic) NSString                   *label__v;
+@property (strong,nonatomic) NSString                   *name__v;
 @end
 
 @implementation ZKDataCategory
@@ -57,7 +57,7 @@
 }
     
 
--(NSArray *)childCategories {
+-(NSArray<ZKDataCategory *> *)childCategories {
     if ((fields__set[0] & 0x1) == 0) {
         self.childCategories__v = [self complexTypeArrayFromElements:@"childCategories" cls:[ZKDataCategory class]];
         fields__set[0] |= 0x1; 
@@ -66,7 +66,7 @@
 }
         
 
--(void)setChildCategories:(NSArray *)v {
+-(void)setChildCategories:(NSArray<ZKDataCategory *> *)v {
     self.childCategories__v = v;
     fields__set[0] |= 0x1; 
 }

@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *matchType; 
-@property (strong,nonatomic) NSString  *screenPopData; 
-@property (strong,nonatomic) NSString  *screenPopType; 
+@property (strong,nonatomic) NSString  *matchType;
+@property (strong,nonatomic) NSString  *screenPopData;
+@property (strong,nonatomic) NSString  *screenPopType;
 @end

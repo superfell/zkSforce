@@ -129,7 +129,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]].lastObject;
 }
 
--(NSString *)makeDescribeSObjectsEnv:(NSArray *)sObjectType {
+-(NSString *)makeDescribeSObjectsEnv:(NSArray<NSString *> *)sObjectType {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -140,7 +140,7 @@
 	[env endElement:@"describeSObjects"];
 	return env.end;
 }
--(NSArray *)makeDescribeSObjectsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeSObject *> *)makeDescribeSObjectsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSObject class]];
@@ -155,13 +155,13 @@
 	[env endElement:@"describeGlobal"];
 	return env.end;
 }
--(NSArray *)makeDescribeGlobalResult:(ZKElement *)root {
+-(NSArray<ZKDescribeGlobalSObject *> *)makeDescribeGlobalResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalSObject class]];
 }
 
--(NSString *)makeDescribeDataCategoryGroupsEnv:(NSArray *)sObjectType {
+-(NSString *)makeDescribeDataCategoryGroupsEnv:(NSArray<NSString *> *)sObjectType {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -172,13 +172,13 @@
 	[env endElement:@"describeDataCategoryGroups"];
 	return env.end;
 }
--(NSArray *)makeDescribeDataCategoryGroupsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeDataCategoryGroupResult *> *)makeDescribeDataCategoryGroupsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupResult class]];
 }
 
--(NSString *)makeDescribeDataCategoryGroupStructuresEnv:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
+-(NSString *)makeDescribeDataCategoryGroupStructuresEnv:(NSArray<ZKDataCategoryGroupSobjectTypePair *> *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -190,7 +190,7 @@
 	[env endElement:@"describeDataCategoryGroupStructures"];
 	return env.end;
 }
--(NSArray *)makeDescribeDataCategoryGroupStructuresResult:(ZKElement *)root {
+-(NSArray<ZKDescribeDataCategoryGroupStructureResult *> *)makeDescribeDataCategoryGroupStructuresResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryGroupStructureResult class]];
@@ -206,7 +206,7 @@
 	[env endElement:@"describeDataCategoryMappings"];
 	return env.end;
 }
--(NSArray *)makeDescribeDataCategoryMappingsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeDataCategoryMappingResult *> *)makeDescribeDataCategoryMappingsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeDataCategoryMappingResult class]];
@@ -260,7 +260,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeGlobalTheme class]].lastObject;
 }
 
--(NSString *)makeDescribeThemeEnv:(NSArray *)sobjectType {
+-(NSString *)makeDescribeThemeEnv:(NSArray<NSString *> *)sobjectType {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -276,7 +276,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeThemeResult class]].lastObject;
 }
 
--(NSString *)makeDescribeLayoutEnv:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds {
+-(NSString *)makeDescribeLayoutEnv:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray<NSString *> *)recordTypeIds {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -309,7 +309,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSoftphoneLayoutResult class]].lastObject;
 }
 
--(NSString *)makeDescribeSearchLayoutsEnv:(NSArray *)sObjectType {
+-(NSString *)makeDescribeSearchLayoutsEnv:(NSArray<NSString *> *)sObjectType {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -319,7 +319,7 @@
 	[env endElement:@"describeSearchLayouts"];
 	return env.end;
 }
--(NSArray *)makeDescribeSearchLayoutsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeSearchLayoutResult *> *)makeDescribeSearchLayoutsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchLayoutResult class]];
@@ -335,7 +335,7 @@
 	[env endElement:@"describeSearchableEntities"];
 	return env.end;
 }
--(NSArray *)makeDescribeSearchableEntitiesResult:(ZKElement *)root {
+-(NSArray<ZKDescribeSearchableEntityResult *> *)makeDescribeSearchableEntitiesResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchableEntityResult class]];
@@ -351,13 +351,13 @@
 	[env endElement:@"describeSearchScopeOrder"];
 	return env.end;
 }
--(NSArray *)makeDescribeSearchScopeOrderResult:(ZKElement *)root {
+-(NSArray<ZKDescribeSearchScopeOrderResult *> *)makeDescribeSearchScopeOrderResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeSearchScopeOrderResult class]];
 }
 
--(NSString *)makeDescribeCompactLayoutsEnv:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds {
+-(NSString *)makeDescribeCompactLayoutsEnv:(NSString *)sObjectType recordTypeIds:(NSArray<NSString *> *)recordTypeIds {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -374,7 +374,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayoutsResult class]].lastObject;
 }
 
--(NSString *)makeDescribePathAssistantsEnv:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds {
+-(NSString *)makeDescribePathAssistantsEnv:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray<NSString *> *)recordTypeIds {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -392,7 +392,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribePathAssistantsResult class]].lastObject;
 }
 
--(NSString *)makeDescribeApprovalLayoutEnv:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames {
+-(NSString *)makeDescribeApprovalLayoutEnv:(NSString *)sObjectType approvalProcessNames:(NSArray<NSString *> *)approvalProcessNames {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -470,7 +470,7 @@
 	[env endElement:@"describeTabs"];
 	return env.end;
 }
--(NSArray *)makeDescribeTabsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeTabSetResult *> *)makeDescribeTabsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTabSetResult class]];
@@ -485,13 +485,13 @@
 	[env endElement:@"describeAllTabs"];
 	return env.end;
 }
--(NSArray *)makeDescribeAllTabsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeTab *> *)makeDescribeAllTabsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeTab class]];
 }
 
--(NSString *)makeDescribePrimaryCompactLayoutsEnv:(NSArray *)sObjectTypes {
+-(NSString *)makeDescribePrimaryCompactLayoutsEnv:(NSArray<NSString *> *)sObjectTypes {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -501,13 +501,13 @@
 	[env endElement:@"describePrimaryCompactLayouts"];
 	return env.end;
 }
--(NSArray *)makeDescribePrimaryCompactLayoutsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeCompactLayout *> *)makeDescribePrimaryCompactLayoutsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeCompactLayout class]];
 }
 
--(NSString *)makeCreateEnv:(NSArray *)sObjects {
+-(NSString *)makeCreateEnv:(NSArray<ZKSObject *> *)sObjects {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AssignmentRuleHeader"       elemValue:self.assignmentRuleHeader       nillable:NO  optional:YES];
@@ -527,13 +527,13 @@
 	[env endElement:@"create"];
 	return env.end;
 }
--(NSArray *)makeCreateResult:(ZKElement *)root {
+-(NSArray<ZKSaveResult *> *)makeCreateResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSaveResult class]];
 }
 
--(NSString *)makeUpdateEnv:(NSArray *)sObjects {
+-(NSString *)makeUpdateEnv:(NSArray<ZKSObject *> *)sObjects {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AssignmentRuleHeader"       elemValue:self.assignmentRuleHeader       nillable:NO  optional:YES];
@@ -554,13 +554,13 @@
 	[env endElement:@"update"];
 	return env.end;
 }
--(NSArray *)makeUpdateResult:(ZKElement *)root {
+-(NSArray<ZKSaveResult *> *)makeUpdateResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSaveResult class]];
 }
 
--(NSString *)makeUpsertEnv:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects {
+-(NSString *)makeUpsertEnv:(NSString *)externalIDFieldName sObjects:(NSArray<ZKSObject *> *)sObjects {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AssignmentRuleHeader"       elemValue:self.assignmentRuleHeader       nillable:NO  optional:YES];
@@ -582,13 +582,13 @@
 	[env endElement:@"upsert"];
 	return env.end;
 }
--(NSArray *)makeUpsertResult:(ZKElement *)root {
+-(NSArray<ZKUpsertResult *> *)makeUpsertResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUpsertResult class]];
 }
 
--(NSString *)makeMergeEnv:(NSArray *)request {
+-(NSString *)makeMergeEnv:(NSArray<ZKMergeRequest *> *)request {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AssignmentRuleHeader"       elemValue:self.assignmentRuleHeader       nillable:NO  optional:YES];
@@ -607,13 +607,13 @@
 	[env endElement:@"merge"];
 	return env.end;
 }
--(NSArray *)makeMergeResult:(ZKElement *)root {
+-(NSArray<ZKMergeResult *> *)makeMergeResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKMergeResult class]];
 }
 
--(NSString *)makeDeleteEnv:(NSArray *)ids {
+-(NSString *)makeDeleteEnv:(NSArray<NSString *> *)ids {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader"       elemValue:self.packageVersionHeader       nillable:NO  optional:YES];
@@ -632,13 +632,13 @@
 	[env endElement:@"delete"];
 	return env.end;
 }
--(NSArray *)makeDeleteResult:(ZKElement *)root {
+-(NSArray<ZKDeleteResult *> *)makeDeleteResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteResult class]];
 }
 
--(NSString *)makeUndeleteEnv:(NSArray *)ids {
+-(NSString *)makeUndeleteEnv:(NSArray<NSString *> *)ids {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AllowFieldTruncationHeader" elemValue:self.allowFieldTruncationHeader nillable:NO  optional:YES];
@@ -655,13 +655,13 @@
 	[env endElement:@"undelete"];
 	return env.end;
 }
--(NSArray *)makeUndeleteResult:(ZKElement *)root {
+-(NSArray<ZKUndeleteResult *> *)makeUndeleteResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUndeleteResult class]];
 }
 
--(NSString *)makeEmptyRecycleBinEnv:(NSArray *)ids {
+-(NSString *)makeEmptyRecycleBinEnv:(NSArray<NSString *> *)ids {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions" elemValue:self.callOptions nillable:NO  optional:YES];
 	[env moveToBody];
@@ -670,13 +670,13 @@
 	[env endElement:@"emptyRecycleBin"];
 	return env.end;
 }
--(NSArray *)makeEmptyRecycleBinResult:(ZKElement *)root {
+-(NSArray<ZKEmptyRecycleBinResult *> *)makeEmptyRecycleBinResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKEmptyRecycleBinResult class]];
 }
 
--(NSString *)makeRetrieveEnv:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids {
+-(NSString *)makeRetrieveEnv:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray<NSString *> *)ids {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"QueryOptions"         elemValue:self.queryOptions         nillable:NO  optional:YES];
@@ -695,7 +695,7 @@
 	return nil;
 }
 
--(NSString *)makeProcessEnv:(NSArray *)actions {
+-(NSString *)makeProcessEnv:(NSArray<ZKProcessRequest *> *)actions {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AllowFieldTruncationHeader" elemValue:self.allowFieldTruncationHeader nillable:NO  optional:YES];
@@ -711,13 +711,13 @@
 	[env endElement:@"process"];
 	return env.end;
 }
--(NSArray *)makeProcessResult:(ZKElement *)root {
+-(NSArray<ZKProcessResult *> *)makeProcessResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKProcessResult class]];
 }
 
--(NSString *)makeConvertLeadEnv:(NSArray *)leadConverts {
+-(NSString *)makeConvertLeadEnv:(NSArray<ZKLeadConvert *> *)leadConverts {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AllowFieldTruncationHeader" elemValue:self.allowFieldTruncationHeader nillable:NO  optional:YES];
@@ -733,7 +733,7 @@
 	[env endElement:@"convertLead"];
 	return env.end;
 }
--(NSArray *)makeConvertLeadResult:(ZKElement *)root {
+-(NSArray<ZKLeadConvertResult *> *)makeConvertLeadResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKLeadConvertResult class]];
@@ -750,7 +750,7 @@
 -(void)makeLogoutResult:(ZKElement *)root {
 }
 
--(NSString *)makeInvalidateSessionsEnv:(NSArray *)sessionIds {
+-(NSString *)makeInvalidateSessionsEnv:(NSArray<NSString *> *)sessionIds {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions" elemValue:self.callOptions nillable:NO  optional:YES];
 	[env moveToBody];
@@ -759,7 +759,7 @@
 	[env endElement:@"invalidateSessions"];
 	return env.end;
 }
--(NSArray *)makeInvalidateSessionsResult:(ZKElement *)root {
+-(NSArray<ZKInvalidateSessionsResult *> *)makeInvalidateSessionsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKInvalidateSessionsResult class]];
@@ -941,7 +941,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKUserInfo class]].lastObject;
 }
 
--(NSString *)makeDeleteByExampleEnv:(NSArray *)sObjects {
+-(NSString *)makeDeleteByExampleEnv:(NSArray<ZKSObject *> *)sObjects {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader"       elemValue:self.packageVersionHeader       nillable:NO  optional:YES];
@@ -960,13 +960,13 @@
 	[env endElement:@"deleteByExample"];
 	return env.end;
 }
--(NSArray *)makeDeleteByExampleResult:(ZKElement *)root {
+-(NSArray<ZKDeleteByExampleResult *> *)makeDeleteByExampleResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDeleteByExampleResult class]];
 }
 
--(NSString *)makeSendEmailMessageEnv:(NSArray *)ids {
+-(NSString *)makeSendEmailMessageEnv:(NSArray<NSString *> *)ids {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions" elemValue:self.callOptions nillable:NO  optional:YES];
 	[env moveToBody];
@@ -975,13 +975,13 @@
 	[env endElement:@"sendEmailMessage"];
 	return env.end;
 }
--(NSArray *)makeSendEmailMessageResult:(ZKElement *)root {
+-(NSArray<ZKSendEmailResult *> *)makeSendEmailMessageResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
--(NSString *)makeSendEmailEnv:(NSArray *)messages {
+-(NSString *)makeSendEmailEnv:(NSArray<ZKEmail *> *)messages {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions" elemValue:self.callOptions nillable:NO  optional:YES];
 	[env moveToBody];
@@ -990,13 +990,13 @@
 	[env endElement:@"sendEmail"];
 	return env.end;
 }
--(NSArray *)makeSendEmailResult:(ZKElement *)root {
+-(NSArray<ZKSendEmailResult *> *)makeSendEmailResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKSendEmailResult class]];
 }
 
--(NSString *)makeRenderEmailTemplateEnv:(NSArray *)renderRequests {
+-(NSString *)makeRenderEmailTemplateEnv:(NSArray<ZKRenderEmailTemplateRequest *> *)renderRequests {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions" elemValue:self.callOptions nillable:NO  optional:YES];
 	[env moveToBody];
@@ -1005,7 +1005,7 @@
 	[env endElement:@"renderEmailTemplate"];
 	return env.end;
 }
--(NSArray *)makeRenderEmailTemplateResult:(ZKElement *)root {
+-(NSArray<ZKRenderEmailTemplateResult *> *)makeRenderEmailTemplateResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderEmailTemplateResult class]];
@@ -1026,7 +1026,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKRenderStoredEmailTemplateResult class]].lastObject;
 }
 
--(NSString *)makePerformQuickActionsEnv:(NSArray *)quickActions {
+-(NSString *)makePerformQuickActionsEnv:(NSArray<ZKPerformQuickActionRequest *> *)quickActions {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"                elemValue:self.callOptions                nillable:NO  optional:YES];
 	[env addElement:@"AssignmentRuleHeader"       elemValue:self.assignmentRuleHeader       nillable:NO  optional:YES];
@@ -1047,13 +1047,13 @@
 	[env endElement:@"performQuickActions"];
 	return env.end;
 }
--(NSArray *)makePerformQuickActionsResult:(ZKElement *)root {
+-(NSArray<ZKPerformQuickActionResult *> *)makePerformQuickActionsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKPerformQuickActionResult class]];
 }
 
--(NSString *)makeDescribeQuickActionsEnv:(NSArray *)quickActions {
+-(NSString *)makeDescribeQuickActionsEnv:(NSArray<NSString *> *)quickActions {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1064,13 +1064,13 @@
 	[env endElement:@"describeQuickActions"];
 	return env.end;
 }
--(NSArray *)makeDescribeQuickActionsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeQuickActionResult *> *)makeDescribeQuickActionsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
 }
 
--(NSString *)makeDescribeQuickActionsForRecordTypeEnv:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId {
+-(NSString *)makeDescribeQuickActionsForRecordTypeEnv:(NSArray<NSString *> *)quickActions recordTypeId:(NSString *)recordTypeId {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1082,7 +1082,7 @@
 	[env endElement:@"describeQuickActionsForRecordType"];
 	return env.end;
 }
--(NSArray *)makeDescribeQuickActionsForRecordTypeResult:(ZKElement *)root {
+-(NSArray<ZKDescribeQuickActionResult *> *)makeDescribeQuickActionsForRecordTypeResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeQuickActionResult class]];
@@ -1099,13 +1099,13 @@
 	[env endElement:@"describeAvailableQuickActions"];
 	return env.end;
 }
--(NSArray *)makeDescribeAvailableQuickActionsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeAvailableQuickActionResult *> *)makeDescribeAvailableQuickActionsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeAvailableQuickActionResult class]];
 }
 
--(NSString *)makeRetrieveQuickActionTemplatesEnv:(NSArray *)quickActionNames contextId:(NSString *)contextId {
+-(NSString *)makeRetrieveQuickActionTemplatesEnv:(NSArray<NSString *> *)quickActionNames contextId:(NSString *)contextId {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1117,13 +1117,13 @@
 	[env endElement:@"retrieveQuickActionTemplates"];
 	return env.end;
 }
--(NSArray *)makeRetrieveQuickActionTemplatesResult:(ZKElement *)root {
+-(NSArray<ZKQuickActionTemplateResult *> *)makeRetrieveQuickActionTemplatesResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
 }
 
--(NSString *)makeRetrieveMassQuickActionTemplatesEnv:(NSString *)quickActionName contextIds:(NSArray *)contextIds {
+-(NSString *)makeRetrieveMassQuickActionTemplatesEnv:(NSString *)quickActionName contextIds:(NSArray<NSString *> *)contextIds {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1135,7 +1135,7 @@
 	[env endElement:@"retrieveMassQuickActionTemplates"];
 	return env.end;
 }
--(NSArray *)makeRetrieveMassQuickActionTemplatesResult:(ZKElement *)root {
+-(NSArray<ZKQuickActionTemplateResult *> *)makeRetrieveMassQuickActionTemplatesResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKQuickActionTemplateResult class]];
@@ -1158,7 +1158,7 @@
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeVisualForceResult class]].lastObject;
 }
 
--(NSString *)makeFindDuplicatesEnv:(NSArray *)sObjects {
+-(NSString *)makeFindDuplicatesEnv:(NSArray<ZKSObject *> *)sObjects {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1169,13 +1169,13 @@
 	[env endElement:@"findDuplicates"];
 	return env.end;
 }
--(NSArray *)makeFindDuplicatesResult:(ZKElement *)root {
+-(NSArray<ZKFindDuplicatesResult *> *)makeFindDuplicatesResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
 
--(NSString *)makeFindDuplicatesByIdsEnv:(NSArray *)ids {
+-(NSString *)makeFindDuplicatesByIdsEnv:(NSArray<NSString *> *)ids {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1186,13 +1186,13 @@
 	[env endElement:@"findDuplicatesByIds"];
 	return env.end;
 }
--(NSArray *)makeFindDuplicatesByIdsResult:(ZKElement *)root {
+-(NSArray<ZKFindDuplicatesResult *> *)makeFindDuplicatesByIdsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKFindDuplicatesResult class]];
 }
 
--(NSString *)makeDescribeNounsEnv:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields {
+-(NSString *)makeDescribeNounsEnv:(NSArray<NSString *> *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields {
 	ZKEnvelope *env = [[ZKPartnerEnvelope alloc] initWithSessionHeader:self.authSource.sessionId];
 	[env addElement:@"CallOptions"          elemValue:self.callOptions          nillable:NO  optional:YES];
 	[env addElement:@"PackageVersionHeader" elemValue:self.packageVersionHeader nillable:NO  optional:YES];
@@ -1205,7 +1205,7 @@
 	[env endElement:@"describeNouns"];
 	return env.end;
 }
--(NSArray *)makeDescribeNounsResult:(ZKElement *)root {
+-(NSArray<ZKDescribeNounResult *> *)makeDescribeNounsResult:(ZKElement *)root {
 	ZKElement *body = [root childElement:@"Body" ns:NS_SOAP_ENV];
 	ZKXmlDeserializer *deser = [[ZKXmlDeserializer alloc] initWithXmlElement:body.childElements[0]];
 	return [deser complexTypeArrayFromElements:@"result" cls:[ZKDescribeNounResult class]];

@@ -28,18 +28,18 @@
 #import "ZKEnvelope.h"
 
 @interface ZKChangeEventHeader()
-@property (strong,nonatomic) NSString  *entityName__v;
-@property (strong,nonatomic) NSArray   *recordIds__v;
-@property (assign,nonatomic) int64_t    commitTimestamp__v;
-@property (assign,nonatomic) int64_t    commitNumber__v;
-@property (strong,nonatomic) NSString  *commitUser__v;
-@property (strong,nonatomic) NSArray   *diffFields__v;
-@property (strong,nonatomic) NSString  *changeType__v;
-@property (strong,nonatomic) NSString  *changeOrigin__v;
-@property (strong,nonatomic) NSString  *transactionKey__v;
-@property (assign,nonatomic) NSInteger  sequenceNumber__v;
-@property (strong,nonatomic) NSArray   *nulledFields__v;
-@property (strong,nonatomic) NSArray   *changedFields__v;
+@property (strong,nonatomic) NSString             *entityName__v;
+@property (strong,nonatomic) NSArray<NSString *>  *recordIds__v;
+@property (assign,nonatomic) int64_t               commitTimestamp__v;
+@property (assign,nonatomic) int64_t               commitNumber__v;
+@property (strong,nonatomic) NSString             *commitUser__v;
+@property (strong,nonatomic) NSArray<NSString *>  *diffFields__v;
+@property (strong,nonatomic) NSString             *changeType__v;
+@property (strong,nonatomic) NSString             *changeOrigin__v;
+@property (strong,nonatomic) NSString             *transactionKey__v;
+@property (assign,nonatomic) NSInteger             sequenceNumber__v;
+@property (strong,nonatomic) NSArray<NSString *>  *nulledFields__v;
+@property (strong,nonatomic) NSArray<NSString *>  *changedFields__v;
 @end
 
 @implementation ZKChangeEventHeader
@@ -89,7 +89,7 @@
 }
         
 
--(NSArray *)recordIds {
+-(NSArray<NSString *> *)recordIds {
     if ((fields__set[0] & 0x2) == 0) {
         self.recordIds__v = [self strings:@"recordIds"];
         fields__set[0] |= 0x2; 
@@ -98,7 +98,7 @@
 }
         
 
--(void)setRecordIds:(NSArray *)v {
+-(void)setRecordIds:(NSArray<NSString *> *)v {
     self.recordIds__v = v;
     fields__set[0] |= 0x2; 
 }
@@ -149,7 +149,7 @@
 }
         
 
--(NSArray *)diffFields {
+-(NSArray<NSString *> *)diffFields {
     if ((fields__set[0] & 0x20) == 0) {
         self.diffFields__v = [self strings:@"diffFields"];
         fields__set[0] |= 0x20; 
@@ -158,7 +158,7 @@
 }
         
 
--(void)setDiffFields:(NSArray *)v {
+-(void)setDiffFields:(NSArray<NSString *> *)v {
     self.diffFields__v = v;
     fields__set[0] |= 0x20; 
 }
@@ -224,7 +224,7 @@
 }
         
 
--(NSArray *)nulledFields {
+-(NSArray<NSString *> *)nulledFields {
     if ((fields__set[0] & 0x400) == 0) {
         self.nulledFields__v = [self strings:@"nulledFields"];
         fields__set[0] |= 0x400; 
@@ -233,13 +233,13 @@
 }
         
 
--(void)setNulledFields:(NSArray *)v {
+-(void)setNulledFields:(NSArray<NSString *> *)v {
     self.nulledFields__v = v;
     fields__set[0] |= 0x400; 
 }
         
 
--(NSArray *)changedFields {
+-(NSArray<NSString *> *)changedFields {
     if ((fields__set[0] & 0x800) == 0) {
         self.changedFields__v = [self strings:@"changedFields"];
         fields__set[0] |= 0x800; 
@@ -248,7 +248,7 @@
 }
         
 
--(void)setChangedFields:(NSArray *)v {
+-(void)setChangedFields:(NSArray<NSString *> *)v {
     self.changedFields__v = v;
     fields__set[0] |= 0x800; 
 }

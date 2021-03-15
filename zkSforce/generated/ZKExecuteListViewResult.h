@@ -29,6 +29,9 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKListViewColumn;
+@class ZKListViewRecord;
+
 /*
 <complexType name="ExecuteListViewResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -47,11 +50,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray   *columns;  // of ZKListViewColumn
-@property (strong,nonatomic) NSString  *developerName; 
-@property (assign,nonatomic) BOOL       done; 
-@property (strong,nonatomic) NSString  *id; 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSArray   *records;  // of ZKListViewRecord
-@property (assign,nonatomic) NSInteger  size; 
+@property (strong,nonatomic) NSArray<ZKListViewColumn *>  *columns;
+@property (strong,nonatomic) NSString                     *developerName;
+@property (assign,nonatomic) BOOL                          done;
+@property (strong,nonatomic) NSString                     *id;
+@property (strong,nonatomic) NSString                     *label;
+@property (strong,nonatomic) NSArray<ZKListViewRecord *>  *records;
+@property (assign,nonatomic) NSInteger                     size;
 @end

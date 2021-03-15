@@ -30,8 +30,8 @@
 #import "ZKLabelsSearchMetadata.h"
 
 @interface ZKSearchResultsMetadata()
-@property (strong,nonatomic) NSArray  *entityLabelMetadata__v;
-@property (strong,nonatomic) NSArray  *entityMetadata__v;
+@property (strong,nonatomic) NSArray<ZKLabelsSearchMetadata *>  *entityLabelMetadata__v;
+@property (strong,nonatomic) NSArray<ZKEntitySearchMetadata *>  *entityMetadata__v;
 @end
 
 @implementation ZKSearchResultsMetadata
@@ -56,7 +56,7 @@
 }
     
 
--(NSArray *)entityLabelMetadata {
+-(NSArray<ZKLabelsSearchMetadata *> *)entityLabelMetadata {
     if ((fields__set[0] & 0x1) == 0) {
         self.entityLabelMetadata__v = [self complexTypeArrayFromElements:@"entityLabelMetadata" cls:[ZKLabelsSearchMetadata class]];
         fields__set[0] |= 0x1; 
@@ -65,13 +65,13 @@
 }
         
 
--(void)setEntityLabelMetadata:(NSArray *)v {
+-(void)setEntityLabelMetadata:(NSArray<ZKLabelsSearchMetadata *> *)v {
     self.entityLabelMetadata__v = v;
     fields__set[0] |= 0x1; 
 }
         
 
--(NSArray *)entityMetadata {
+-(NSArray<ZKEntitySearchMetadata *> *)entityMetadata {
     if ((fields__set[0] & 0x2) == 0) {
         self.entityMetadata__v = [self complexTypeArrayFromElements:@"entityMetadata" cls:[ZKEntitySearchMetadata class]];
         fields__set[0] |= 0x2; 
@@ -80,7 +80,7 @@
 }
         
 
--(void)setEntityMetadata:(NSArray *)v {
+-(void)setEntityMetadata:(NSArray<ZKEntitySearchMetadata *> *)v {
     self.entityMetadata__v = v;
     fields__set[0] |= 0x2; 
 }

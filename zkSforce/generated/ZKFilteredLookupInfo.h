@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray  *controllingFields;  // of NSString
-@property (assign,nonatomic) BOOL      dependent; 
-@property (assign,nonatomic) BOOL      optionalFilter; 
+@property (strong,nonatomic) NSArray<NSString *>  *controllingFields;
+@property (assign,nonatomic) BOOL                  dependent;
+@property (assign,nonatomic) BOOL                  optionalFilter;
 @end

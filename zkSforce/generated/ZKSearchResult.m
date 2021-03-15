@@ -30,9 +30,9 @@
 #import "ZKSearchResultsMetadata.h"
 
 @interface ZKSearchResult()
-@property (strong,nonatomic) NSString                 *queryId__v;
-@property (strong,nonatomic) NSArray                  *searchRecords__v;
-@property (strong,nonatomic) ZKSearchResultsMetadata  *searchResultsMetadata__v;
+@property (strong,nonatomic) NSString                   *queryId__v;
+@property (strong,nonatomic) NSArray<ZKSearchRecord *>  *searchRecords__v;
+@property (strong,nonatomic) ZKSearchResultsMetadata    *searchResultsMetadata__v;
 @end
 
 @implementation ZKSearchResult
@@ -73,7 +73,7 @@
 }
         
 
--(NSArray *)searchRecords {
+-(NSArray<ZKSearchRecord *> *)searchRecords {
     if ((fields__set[0] & 0x2) == 0) {
         self.searchRecords__v = [self complexTypeArrayFromElements:@"searchRecords" cls:[ZKSearchRecord class]];
         fields__set[0] |= 0x2; 
@@ -82,7 +82,7 @@
 }
         
 
--(void)setSearchRecords:(NSArray *)v {
+-(void)setSearchRecords:(NSArray<ZKSearchRecord *> *)v {
     self.searchRecords__v = v;
     fields__set[0] |= 0x2; 
 }

@@ -62,13 +62,13 @@
 
 /** Describe multiple sObjects (upto 100)
     Callbacks will be executed on the main queue. */
--(void) describeSObjects:(NSArray *)sObjectType
+-(void) describeSObjects:(NSArray<NSString *> *)sObjectType
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe multiple sObjects (upto 100)
     Callbacks with be executed on the supplied queue. */
--(void) describeSObjects:(NSArray *)sObjectType
+-(void) describeSObjects:(NSArray<NSString *> *)sObjectType
                    queue:(dispatch_queue_t)callbackQueue
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -88,13 +88,13 @@
 
 /** Describe all the data category groups available for a given set of types
     Callbacks will be executed on the main queue. */
--(void) describeDataCategoryGroups:(NSArray *)sObjectType
+-(void) describeDataCategoryGroups:(NSArray<NSString *> *)sObjectType
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe all the data category groups available for a given set of types
     Callbacks with be executed on the supplied queue. */
--(void) describeDataCategoryGroups:(NSArray *)sObjectType
+-(void) describeDataCategoryGroups:(NSArray<NSString *> *)sObjectType
                              queue:(dispatch_queue_t)callbackQueue
                          failBlock:(ZKFailWithErrorBlock)failBlock
                      completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -102,13 +102,13 @@
 
 /** Describe the data category group structures for a given set of pair of types and data category group name
     Callbacks will be executed on the main queue. */
--(void) describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
+-(void) describeDataCategoryGroupStructures:(NSArray<ZKDataCategoryGroupSobjectTypePair *> *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
                                   failBlock:(ZKFailWithErrorBlock)failBlock
                               completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe the data category group structures for a given set of pair of types and data category group name
     Callbacks with be executed on the supplied queue. */
--(void) describeDataCategoryGroupStructures:(NSArray *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
+-(void) describeDataCategoryGroupStructures:(NSArray<ZKDataCategoryGroupSobjectTypePair *> *)pairs topCategoriesOnly:(BOOL)topCategoriesOnly
                                       queue:(dispatch_queue_t)callbackQueue
                                   failBlock:(ZKFailWithErrorBlock)failBlock
                               completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -166,13 +166,13 @@
 
 /** Describe Themes
     Callbacks will be executed on the main queue. */
--(void) describeTheme:(NSArray *)sobjectType
+-(void) describeTheme:(NSArray<NSString *> *)sobjectType
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteDescribeThemeResultBlock)completeBlock;
 
 /** Describe Themes
     Callbacks with be executed on the supplied queue. */
--(void) describeTheme:(NSArray *)sobjectType
+-(void) describeTheme:(NSArray<NSString *> *)sobjectType
                 queue:(dispatch_queue_t)callbackQueue
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteDescribeThemeResultBlock)completeBlock;
@@ -180,13 +180,13 @@
 
 /** Describe the layout of the given sObject or the given actionable global page.
     Callbacks will be executed on the main queue. */
--(void) describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
+-(void) describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray<NSString *> *)recordTypeIds
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteDescribeLayoutResultBlock)completeBlock;
 
 /** Describe the layout of the given sObject or the given actionable global page.
     Callbacks with be executed on the supplied queue. */
--(void) describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray *)recordTypeIds
+-(void) describeLayout:(NSString *)sObjectType layoutName:(NSString *)layoutName recordTypeIds:(NSArray<NSString *> *)recordTypeIds
                  queue:(dispatch_queue_t)callbackQueue
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteDescribeLayoutResultBlock)completeBlock;
@@ -206,13 +206,13 @@
 
 /** Describe the search view of an sObject
     Callbacks will be executed on the main queue. */
--(void) describeSearchLayouts:(NSArray *)sObjectType
+-(void) describeSearchLayouts:(NSArray<NSString *> *)sObjectType
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe the search view of an sObject
     Callbacks with be executed on the supplied queue. */
--(void) describeSearchLayouts:(NSArray *)sObjectType
+-(void) describeSearchLayouts:(NSArray<NSString *> *)sObjectType
                         queue:(dispatch_queue_t)callbackQueue
                     failBlock:(ZKFailWithErrorBlock)failBlock
                 completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -248,13 +248,13 @@
 
 /** Describe the compact layouts of the given sObject
     Callbacks will be executed on the main queue. */
--(void) describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
+-(void) describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray<NSString *> *)recordTypeIds
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeCompactLayoutsResultBlock)completeBlock;
 
 /** Describe the compact layouts of the given sObject
     Callbacks with be executed on the supplied queue. */
--(void) describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray *)recordTypeIds
+-(void) describeCompactLayouts:(NSString *)sObjectType recordTypeIds:(NSArray<NSString *> *)recordTypeIds
                          queue:(dispatch_queue_t)callbackQueue
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeCompactLayoutsResultBlock)completeBlock;
@@ -262,13 +262,13 @@
 
 /** Describe the Path Assistants for the given sObject and optionally RecordTypes
     Callbacks will be executed on the main queue. */
--(void) describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
+-(void) describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray<NSString *> *)recordTypeIds
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribePathAssistantsResultBlock)completeBlock;
 
 /** Describe the Path Assistants for the given sObject and optionally RecordTypes
     Callbacks with be executed on the supplied queue. */
--(void) describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray *)recordTypeIds
+-(void) describePathAssistants:(NSString *)sObjectType picklistValue:(NSString *)picklistValue recordTypeIds:(NSArray<NSString *> *)recordTypeIds
                          queue:(dispatch_queue_t)callbackQueue
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribePathAssistantsResultBlock)completeBlock;
@@ -276,13 +276,13 @@
 
 /** Describe the approval layouts of the given sObject
     Callbacks will be executed on the main queue. */
--(void) describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
+-(void) describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray<NSString *> *)approvalProcessNames
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeApprovalLayoutResultBlock)completeBlock;
 
 /** Describe the approval layouts of the given sObject
     Callbacks with be executed on the supplied queue. */
--(void) describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray *)approvalProcessNames
+-(void) describeApprovalLayout:(NSString *)sObjectType approvalProcessNames:(NSArray<NSString *> *)approvalProcessNames
                          queue:(dispatch_queue_t)callbackQueue
                      failBlock:(ZKFailWithErrorBlock)failBlock
                  completeBlock:(ZKCompleteDescribeApprovalLayoutResultBlock)completeBlock;
@@ -356,13 +356,13 @@
 
 /** Describe the primary compact layouts for the sObjects requested
     Callbacks will be executed on the main queue. */
--(void) describePrimaryCompactLayouts:(NSArray *)sObjectTypes
+-(void) describePrimaryCompactLayouts:(NSArray<NSString *> *)sObjectTypes
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe the primary compact layouts for the sObjects requested
     Callbacks with be executed on the supplied queue. */
--(void) describePrimaryCompactLayouts:(NSArray *)sObjectTypes
+-(void) describePrimaryCompactLayouts:(NSArray<NSString *> *)sObjectTypes
                                 queue:(dispatch_queue_t)callbackQueue
                             failBlock:(ZKFailWithErrorBlock)failBlock
                         completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -370,13 +370,13 @@
 
 /** Create a set of new sObjects
     Callbacks will be executed on the main queue. */
--(void) create:(NSArray *)sObjects
+-(void) create:(NSArray<ZKSObject *> *)sObjects
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Create a set of new sObjects
     Callbacks with be executed on the supplied queue. */
--(void) create:(NSArray *)sObjects
+-(void) create:(NSArray<ZKSObject *> *)sObjects
          queue:(dispatch_queue_t)callbackQueue
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -384,13 +384,13 @@
 
 /** Update a set of sObjects
     Callbacks will be executed on the main queue. */
--(void) update:(NSArray *)sObjects
+-(void) update:(NSArray<ZKSObject *> *)sObjects
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Update a set of sObjects
     Callbacks with be executed on the supplied queue. */
--(void) update:(NSArray *)sObjects
+-(void) update:(NSArray<ZKSObject *> *)sObjects
          queue:(dispatch_queue_t)callbackQueue
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -398,13 +398,13 @@
 
 /** Update or insert a set of sObjects based on object id
     Callbacks will be executed on the main queue. */
--(void) upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects
+-(void) upsert:(NSString *)externalIDFieldName sObjects:(NSArray<ZKSObject *> *)sObjects
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Update or insert a set of sObjects based on object id
     Callbacks with be executed on the supplied queue. */
--(void) upsert:(NSString *)externalIDFieldName sObjects:(NSArray *)sObjects
+-(void) upsert:(NSString *)externalIDFieldName sObjects:(NSArray<ZKSObject *> *)sObjects
          queue:(dispatch_queue_t)callbackQueue
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -412,13 +412,13 @@
 
 /** Merge and update a set of sObjects based on object id
     Callbacks will be executed on the main queue. */
--(void) merge:(NSArray *)request
+-(void) merge:(NSArray<ZKMergeRequest *> *)request
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Merge and update a set of sObjects based on object id
     Callbacks with be executed on the supplied queue. */
--(void) merge:(NSArray *)request
+-(void) merge:(NSArray<ZKMergeRequest *> *)request
         queue:(dispatch_queue_t)callbackQueue
     failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -426,13 +426,13 @@
 
 /** Delete a set of sObjects
     Callbacks will be executed on the main queue. */
--(void) delete:(NSArray *)ids
+-(void) delete:(NSArray<NSString *> *)ids
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Delete a set of sObjects
     Callbacks with be executed on the supplied queue. */
--(void) delete:(NSArray *)ids
+-(void) delete:(NSArray<NSString *> *)ids
          queue:(dispatch_queue_t)callbackQueue
      failBlock:(ZKFailWithErrorBlock)failBlock
  completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -440,13 +440,13 @@
 
 /** Undelete a set of sObjects
     Callbacks will be executed on the main queue. */
--(void) undelete:(NSArray *)ids
+-(void) undelete:(NSArray<NSString *> *)ids
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Undelete a set of sObjects
     Callbacks with be executed on the supplied queue. */
--(void) undelete:(NSArray *)ids
+-(void) undelete:(NSArray<NSString *> *)ids
            queue:(dispatch_queue_t)callbackQueue
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -454,13 +454,13 @@
 
 /** Empty a set of sObjects from the recycle bin
     Callbacks will be executed on the main queue. */
--(void) emptyRecycleBin:(NSArray *)ids
+-(void) emptyRecycleBin:(NSArray<NSString *> *)ids
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Empty a set of sObjects from the recycle bin
     Callbacks with be executed on the supplied queue. */
--(void) emptyRecycleBin:(NSArray *)ids
+-(void) emptyRecycleBin:(NSArray<NSString *> *)ids
                   queue:(dispatch_queue_t)callbackQueue
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -468,13 +468,13 @@
 
 /** Get a set of sObjects
     Callbacks will be executed on the main queue. */
--(void) retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
+-(void) retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray<NSString *> *)ids
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteDictionaryBlock)completeBlock;
 
 /** Get a set of sObjects
     Callbacks with be executed on the supplied queue. */
--(void) retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray *)ids
+-(void) retrieve:(NSString *)fieldList sObjectType:(NSString *)sObjectType ids:(NSArray<NSString *> *)ids
            queue:(dispatch_queue_t)callbackQueue
        failBlock:(ZKFailWithErrorBlock)failBlock
    completeBlock:(ZKCompleteDictionaryBlock)completeBlock;
@@ -482,13 +482,13 @@
 
 /** Submit an entity to a workflow process or process a workitem
     Callbacks will be executed on the main queue. */
--(void) process:(NSArray *)actions
+-(void) process:(NSArray<ZKProcessRequest *> *)actions
       failBlock:(ZKFailWithErrorBlock)failBlock
   completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Submit an entity to a workflow process or process a workitem
     Callbacks with be executed on the supplied queue. */
--(void) process:(NSArray *)actions
+-(void) process:(NSArray<ZKProcessRequest *> *)actions
           queue:(dispatch_queue_t)callbackQueue
       failBlock:(ZKFailWithErrorBlock)failBlock
   completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -496,13 +496,13 @@
 
 /** convert a set of leads
     Callbacks will be executed on the main queue. */
--(void) convertLead:(NSArray *)leadConverts
+-(void) convertLead:(NSArray<ZKLeadConvert *> *)leadConverts
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** convert a set of leads
     Callbacks with be executed on the supplied queue. */
--(void) convertLead:(NSArray *)leadConverts
+-(void) convertLead:(NSArray<ZKLeadConvert *> *)leadConverts
               queue:(dispatch_queue_t)callbackQueue
           failBlock:(ZKFailWithErrorBlock)failBlock
       completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -522,13 +522,13 @@
 
 /** Logs out and invalidates session ids
     Callbacks will be executed on the main queue. */
--(void) invalidateSessions:(NSArray *)sessionIds
+-(void) invalidateSessions:(NSArray<NSString *> *)sessionIds
                  failBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Logs out and invalidates session ids
     Callbacks with be executed on the supplied queue. */
--(void) invalidateSessions:(NSArray *)sessionIds
+-(void) invalidateSessions:(NSArray<NSString *> *)sessionIds
                      queue:(dispatch_queue_t)callbackQueue
                  failBlock:(ZKFailWithErrorBlock)failBlock
              completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -686,13 +686,13 @@
 
 /** Delete a set of SObjects by example. The passed SObject is a template for the object to delete
     Callbacks will be executed on the main queue. */
--(void) deleteByExample:(NSArray *)sObjects
+-(void) deleteByExample:(NSArray<ZKSObject *> *)sObjects
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Delete a set of SObjects by example. The passed SObject is a template for the object to delete
     Callbacks with be executed on the supplied queue. */
--(void) deleteByExample:(NSArray *)sObjects
+-(void) deleteByExample:(NSArray<ZKSObject *> *)sObjects
                   queue:(dispatch_queue_t)callbackQueue
               failBlock:(ZKFailWithErrorBlock)failBlock
           completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -700,13 +700,13 @@
 
 /** Send existing draft EmailMessage
     Callbacks will be executed on the main queue. */
--(void) sendEmailMessage:(NSArray *)ids
+-(void) sendEmailMessage:(NSArray<NSString *> *)ids
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Send existing draft EmailMessage
     Callbacks with be executed on the supplied queue. */
--(void) sendEmailMessage:(NSArray *)ids
+-(void) sendEmailMessage:(NSArray<NSString *> *)ids
                    queue:(dispatch_queue_t)callbackQueue
                failBlock:(ZKFailWithErrorBlock)failBlock
            completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -714,13 +714,13 @@
 
 /** Send outbound email
     Callbacks will be executed on the main queue. */
--(void) sendEmail:(NSArray *)messages
+-(void) sendEmail:(NSArray<ZKEmail *> *)messages
         failBlock:(ZKFailWithErrorBlock)failBlock
     completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Send outbound email
     Callbacks with be executed on the supplied queue. */
--(void) sendEmail:(NSArray *)messages
+-(void) sendEmail:(NSArray<ZKEmail *> *)messages
             queue:(dispatch_queue_t)callbackQueue
         failBlock:(ZKFailWithErrorBlock)failBlock
     completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -728,13 +728,13 @@
 
 /** Perform a template merge on one or more blocks of text.
     Callbacks will be executed on the main queue. */
--(void) renderEmailTemplate:(NSArray *)renderRequests
+-(void) renderEmailTemplate:(NSArray<ZKRenderEmailTemplateRequest *> *)renderRequests
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Perform a template merge on one or more blocks of text.
     Callbacks with be executed on the supplied queue. */
--(void) renderEmailTemplate:(NSArray *)renderRequests
+-(void) renderEmailTemplate:(NSArray<ZKRenderEmailTemplateRequest *> *)renderRequests
                       queue:(dispatch_queue_t)callbackQueue
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -756,13 +756,13 @@
 
 /** Perform a series of predefined actions such as quick create or log a task
     Callbacks will be executed on the main queue. */
--(void) performQuickActions:(NSArray *)quickActions
+-(void) performQuickActions:(NSArray<ZKPerformQuickActionRequest *> *)quickActions
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Perform a series of predefined actions such as quick create or log a task
     Callbacks with be executed on the supplied queue. */
--(void) performQuickActions:(NSArray *)quickActions
+-(void) performQuickActions:(NSArray<ZKPerformQuickActionRequest *> *)quickActions
                       queue:(dispatch_queue_t)callbackQueue
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -770,13 +770,13 @@
 
 /** Describe the details of a series of quick actions
     Callbacks will be executed on the main queue. */
--(void) describeQuickActions:(NSArray *)quickActions
+-(void) describeQuickActions:(NSArray<NSString *> *)quickActions
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe the details of a series of quick actions
     Callbacks with be executed on the supplied queue. */
--(void) describeQuickActions:(NSArray *)quickActions
+-(void) describeQuickActions:(NSArray<NSString *> *)quickActions
                        queue:(dispatch_queue_t)callbackQueue
                    failBlock:(ZKFailWithErrorBlock)failBlock
                completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -784,13 +784,13 @@
 
 /** Describe the details of a series of quick actions in context of requested recordType id for Update actions
     Callbacks will be executed on the main queue. */
--(void) describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId
+-(void) describeQuickActionsForRecordType:(NSArray<NSString *> *)quickActions recordTypeId:(NSString *)recordTypeId
                                 failBlock:(ZKFailWithErrorBlock)failBlock
                             completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Describe the details of a series of quick actions in context of requested recordType id for Update actions
     Callbacks with be executed on the supplied queue. */
--(void) describeQuickActionsForRecordType:(NSArray *)quickActions recordTypeId:(NSString *)recordTypeId
+-(void) describeQuickActionsForRecordType:(NSArray<NSString *> *)quickActions recordTypeId:(NSString *)recordTypeId
                                     queue:(dispatch_queue_t)callbackQueue
                                 failBlock:(ZKFailWithErrorBlock)failBlock
                             completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -812,13 +812,13 @@
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context
     Callbacks will be executed on the main queue. */
--(void) retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
+-(void) retrieveQuickActionTemplates:(NSArray<NSString *> *)quickActionNames contextId:(NSString *)contextId
                            failBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given context
     Callbacks with be executed on the supplied queue. */
--(void) retrieveQuickActionTemplates:(NSArray *)quickActionNames contextId:(NSString *)contextId
+-(void) retrieveQuickActionTemplates:(NSArray<NSString *> *)quickActionNames contextId:(NSString *)contextId
                                queue:(dispatch_queue_t)callbackQueue
                            failBlock:(ZKFailWithErrorBlock)failBlock
                        completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -826,13 +826,13 @@
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action
     Callbacks will be executed on the main queue. */
--(void) retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds
+-(void) retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray<NSString *> *)contextIds
                                failBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Retrieve the template sobjects, if appropriate, for the given quick action names in a given contexts when used a mass quick action
     Callbacks with be executed on the supplied queue. */
--(void) retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray *)contextIds
+-(void) retrieveMassQuickActionTemplates:(NSString *)quickActionName contextIds:(NSArray<NSString *> *)contextIds
                                    queue:(dispatch_queue_t)callbackQueue
                                failBlock:(ZKFailWithErrorBlock)failBlock
                            completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -854,13 +854,13 @@
 
 /** Find duplicates for a set of sObjects
     Callbacks will be executed on the main queue. */
--(void) findDuplicates:(NSArray *)sObjects
+-(void) findDuplicates:(NSArray<ZKSObject *> *)sObjects
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Find duplicates for a set of sObjects
     Callbacks with be executed on the supplied queue. */
--(void) findDuplicates:(NSArray *)sObjects
+-(void) findDuplicates:(NSArray<ZKSObject *> *)sObjects
                  queue:(dispatch_queue_t)callbackQueue
              failBlock:(ZKFailWithErrorBlock)failBlock
          completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -868,13 +868,13 @@
 
 /** Find duplicates for a set of ids
     Callbacks will be executed on the main queue. */
--(void) findDuplicatesByIds:(NSArray *)ids
+-(void) findDuplicatesByIds:(NSArray<NSString *> *)ids
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Find duplicates for a set of ids
     Callbacks with be executed on the supplied queue. */
--(void) findDuplicatesByIds:(NSArray *)ids
+-(void) findDuplicatesByIds:(NSArray<NSString *> *)ids
                       queue:(dispatch_queue_t)callbackQueue
                   failBlock:(ZKFailWithErrorBlock)failBlock
               completeBlock:(ZKCompleteArrayBlock)completeBlock;
@@ -882,13 +882,13 @@
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
     Callbacks will be executed on the main queue. */
--(void) describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
+-(void) describeNouns:(NSArray<NSString *> *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock;
 
 /** Return the renameable nouns from the server for use in presentation using the salesforce grammar engine
     Callbacks with be executed on the supplied queue. */
--(void) describeNouns:(NSArray *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
+-(void) describeNouns:(NSArray<NSString *> *)nouns onlyRenamed:(BOOL)onlyRenamed includeFields:(BOOL)includeFields
                 queue:(dispatch_queue_t)callbackQueue
             failBlock:(ZKFailWithErrorBlock)failBlock
         completeBlock:(ZKCompleteArrayBlock)completeBlock;

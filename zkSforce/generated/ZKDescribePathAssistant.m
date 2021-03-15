@@ -31,14 +31,14 @@
 #import "ZKPicklistForRecordType.h"
 
 @interface ZKDescribePathAssistant()
-@property (assign,nonatomic) BOOL       active__v;
-@property (strong,nonatomic) NSArray   *animationRule__v;
-@property (strong,nonatomic) NSString  *apiName__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSString  *pathPicklistField__v;
-@property (strong,nonatomic) NSArray   *picklistsForRecordType__v;
-@property (strong,nonatomic) NSString  *recordTypeId__v;
-@property (strong,nonatomic) NSArray   *steps__v;
+@property (assign,nonatomic) BOOL                                     active__v;
+@property (strong,nonatomic) NSArray<ZKDescribeAnimationRule *>      *animationRule__v;
+@property (strong,nonatomic) NSString                                *apiName__v;
+@property (strong,nonatomic) NSString                                *label__v;
+@property (strong,nonatomic) NSString                                *pathPicklistField__v;
+@property (strong,nonatomic) NSArray<ZKPicklistForRecordType *>      *picklistsForRecordType__v;
+@property (strong,nonatomic) NSString                                *recordTypeId__v;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistantStep *>  *steps__v;
 @end
 
 @implementation ZKDescribePathAssistant
@@ -84,7 +84,7 @@
 }
         
 
--(NSArray *)animationRule {
+-(NSArray<ZKDescribeAnimationRule *> *)animationRule {
     if ((fields__set[0] & 0x2) == 0) {
         self.animationRule__v = [self complexTypeArrayFromElements:@"animationRule" cls:[ZKDescribeAnimationRule class]];
         fields__set[0] |= 0x2; 
@@ -93,7 +93,7 @@
 }
         
 
--(void)setAnimationRule:(NSArray *)v {
+-(void)setAnimationRule:(NSArray<ZKDescribeAnimationRule *> *)v {
     self.animationRule__v = v;
     fields__set[0] |= 0x2; 
 }
@@ -144,7 +144,7 @@
 }
         
 
--(NSArray *)picklistsForRecordType {
+-(NSArray<ZKPicklistForRecordType *> *)picklistsForRecordType {
     if ((fields__set[0] & 0x20) == 0) {
         self.picklistsForRecordType__v = [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
         fields__set[0] |= 0x20; 
@@ -153,7 +153,7 @@
 }
         
 
--(void)setPicklistsForRecordType:(NSArray *)v {
+-(void)setPicklistsForRecordType:(NSArray<ZKPicklistForRecordType *> *)v {
     self.picklistsForRecordType__v = v;
     fields__set[0] |= 0x20; 
 }
@@ -174,7 +174,7 @@
 }
         
 
--(NSArray *)steps {
+-(NSArray<ZKDescribePathAssistantStep *> *)steps {
     if ((fields__set[0] & 0x80) == 0) {
         self.steps__v = [self complexTypeArrayFromElements:@"steps" cls:[ZKDescribePathAssistantStep class]];
         fields__set[0] |= 0x80; 
@@ -183,7 +183,7 @@
 }
         
 
--(void)setSteps:(NSArray *)v {
+-(void)setSteps:(NSArray<ZKDescribePathAssistantStep *> *)v {
     self.steps__v = v;
     fields__set[0] |= 0x80; 
 }

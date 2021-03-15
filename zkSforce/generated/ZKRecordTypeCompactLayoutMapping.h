@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       available; 
-@property (strong,nonatomic) NSString  *compactLayoutId; 
-@property (strong,nonatomic) NSString  *compactLayoutName; 
-@property (strong,nonatomic) NSString  *recordTypeId; 
-@property (strong,nonatomic) NSString  *recordTypeName; 
+@property (assign,nonatomic) BOOL       available;
+@property (strong,nonatomic) NSString  *compactLayoutId;
+@property (strong,nonatomic) NSString  *compactLayoutName;
+@property (strong,nonatomic) NSString  *recordTypeId;
+@property (strong,nonatomic) NSString  *recordTypeName;
 @end

@@ -44,8 +44,8 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *apiName; 
-@property (strong,nonatomic) NSString  *label; 
-@property (assign,nonatomic) BOOL       readOnly; 
-@property (assign,nonatomic) BOOL       required; 
+@property (strong,nonatomic) NSString  *apiName;
+@property (strong,nonatomic) NSString  *label;
+@property (assign,nonatomic) BOOL       readOnly;
+@property (assign,nonatomic) BOOL       required;
 @end

@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL allowFieldTruncation; 
+@property (assign,nonatomic) BOOL allowFieldTruncation;
 @end

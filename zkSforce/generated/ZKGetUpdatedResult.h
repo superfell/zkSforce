@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray  *ids;  // of NSString
-@property (strong,nonatomic) NSDate   *latestDateCovered; 
+@property (strong,nonatomic) NSArray<NSString *>  *ids;
+@property (strong,nonatomic) NSDate               *latestDateCovered;
 @end

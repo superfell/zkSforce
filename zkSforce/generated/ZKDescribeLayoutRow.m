@@ -29,8 +29,8 @@
 #import "ZKDescribeLayoutItem.h"
 
 @interface ZKDescribeLayoutRow()
-@property (strong,nonatomic) NSArray  *layoutItems__v;
-@property (assign,nonatomic) NSInteger numItems__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>  *layoutItems__v;
+@property (assign,nonatomic) NSInteger                         numItems__v;
 @end
 
 @implementation ZKDescribeLayoutRow
@@ -55,7 +55,7 @@
 }
     
 
--(NSArray *)layoutItems {
+-(NSArray<ZKDescribeLayoutItem *> *)layoutItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
         fields__set[0] |= 0x1; 
@@ -64,7 +64,7 @@
 }
         
 
--(void)setLayoutItems:(NSArray *)v {
+-(void)setLayoutItems:(NSArray<ZKDescribeLayoutItem *> *)v {
     self.layoutItems__v = v;
     fields__set[0] |= 0x1; 
 }

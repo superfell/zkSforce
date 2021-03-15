@@ -29,11 +29,11 @@
 #import "ZKMatchResult.h"
 
 @interface ZKDuplicateResult()
-@property (assign,nonatomic) BOOL       allowSave__v;
-@property (strong,nonatomic) NSString  *duplicateRule__v;
-@property (strong,nonatomic) NSString  *duplicateRuleEntityType__v;
-@property (strong,nonatomic) NSString  *errorMessage__v;
-@property (strong,nonatomic) NSArray   *matchResults__v;
+@property (assign,nonatomic) BOOL                       allowSave__v;
+@property (strong,nonatomic) NSString                  *duplicateRule__v;
+@property (strong,nonatomic) NSString                  *duplicateRuleEntityType__v;
+@property (strong,nonatomic) NSString                  *errorMessage__v;
+@property (strong,nonatomic) NSArray<ZKMatchResult *>  *matchResults__v;
 @end
 
 @implementation ZKDuplicateResult
@@ -121,7 +121,7 @@
 }
         
 
--(NSArray *)matchResults {
+-(NSArray<ZKMatchResult *> *)matchResults {
     if ((fields__set[0] & 0x10) == 0) {
         self.matchResults__v = [self complexTypeArrayFromElements:@"matchResults" cls:[ZKMatchResult class]];
         fields__set[0] |= 0x10; 
@@ -130,7 +130,7 @@
 }
         
 
--(void)setMatchResults:(NSArray *)v {
+-(void)setMatchResults:(NSArray<ZKMatchResult *> *)v {
     self.matchResults__v = v;
     fields__set[0] |= 0x10; 
 }

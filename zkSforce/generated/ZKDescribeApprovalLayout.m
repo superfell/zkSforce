@@ -29,10 +29,10 @@
 #import "ZKDescribeLayoutItem.h"
 
 @interface ZKDescribeApprovalLayout()
-@property (strong,nonatomic) NSString  *id__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSArray   *layoutItems__v;
-@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString                         *id__v;
+@property (strong,nonatomic) NSString                         *label__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>  *layoutItems__v;
+@property (strong,nonatomic) NSString                         *name__v;
 @end
 
 @implementation ZKDescribeApprovalLayout
@@ -89,7 +89,7 @@
 }
         
 
--(NSArray *)layoutItems {
+-(NSArray<ZKDescribeLayoutItem *> *)layoutItems {
     if ((fields__set[0] & 0x4) == 0) {
         self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
         fields__set[0] |= 0x4; 
@@ -98,7 +98,7 @@
 }
         
 
--(void)setLayoutItems:(NSArray *)v {
+-(void)setLayoutItems:(NSArray<ZKDescribeLayoutItem *> *)v {
     self.layoutItems__v = v;
     fields__set[0] |= 0x4; 
 }

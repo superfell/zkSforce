@@ -30,9 +30,9 @@
 #import "ZKRecordTypeCompactLayoutMapping.h"
 
 @interface ZKDescribeCompactLayoutsResult()
-@property (strong,nonatomic) NSArray   *compactLayouts__v;
-@property (strong,nonatomic) NSString  *defaultCompactLayoutId__v;
-@property (strong,nonatomic) NSArray   *recordTypeCompactLayoutMappings__v;
+@property (strong,nonatomic) NSArray<ZKDescribeCompactLayout *>           *compactLayouts__v;
+@property (strong,nonatomic) NSString                                     *defaultCompactLayoutId__v;
+@property (strong,nonatomic) NSArray<ZKRecordTypeCompactLayoutMapping *>  *recordTypeCompactLayoutMappings__v;
 @end
 
 @implementation ZKDescribeCompactLayoutsResult
@@ -58,7 +58,7 @@
 }
     
 
--(NSArray *)compactLayouts {
+-(NSArray<ZKDescribeCompactLayout *> *)compactLayouts {
     if ((fields__set[0] & 0x1) == 0) {
         self.compactLayouts__v = [self complexTypeArrayFromElements:@"compactLayouts" cls:[ZKDescribeCompactLayout class]];
         fields__set[0] |= 0x1; 
@@ -67,7 +67,7 @@
 }
         
 
--(void)setCompactLayouts:(NSArray *)v {
+-(void)setCompactLayouts:(NSArray<ZKDescribeCompactLayout *> *)v {
     self.compactLayouts__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -88,7 +88,7 @@
 }
         
 
--(NSArray *)recordTypeCompactLayoutMappings {
+-(NSArray<ZKRecordTypeCompactLayoutMapping *> *)recordTypeCompactLayoutMappings {
     if ((fields__set[0] & 0x4) == 0) {
         self.recordTypeCompactLayoutMappings__v = [self complexTypeArrayFromElements:@"recordTypeCompactLayoutMappings" cls:[ZKRecordTypeCompactLayoutMapping class]];
         fields__set[0] |= 0x4; 
@@ -97,7 +97,7 @@
 }
         
 
--(void)setRecordTypeCompactLayoutMappings:(NSArray *)v {
+-(void)setRecordTypeCompactLayoutMappings:(NSArray<ZKRecordTypeCompactLayoutMapping *> *)v {
     self.recordTypeCompactLayoutMappings__v = v;
     fields__set[0] |= 0x4; 
 }

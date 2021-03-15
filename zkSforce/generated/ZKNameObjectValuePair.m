@@ -29,9 +29,9 @@
 #import "ZKXsdAnyType.h"
 
 @interface ZKNameObjectValuePair()
-@property (assign,nonatomic) BOOL       isVisible__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSArray   *value__v;
+@property (assign,nonatomic) BOOL                      isVisible__v;
+@property (strong,nonatomic) NSString                 *name__v;
+@property (strong,nonatomic) NSArray<ZKXsdAnyType *>  *value__v;
 @end
 
 @implementation ZKNameObjectValuePair
@@ -87,7 +87,7 @@
 }
         
 
--(NSArray *)value {
+-(NSArray<ZKXsdAnyType *> *)value {
     if ((fields__set[0] & 0x4) == 0) {
         self.value__v = [self complexTypeArrayFromElements:@"value" cls:[ZKXsdAnyType class]];
         fields__set[0] |= 0x4; 
@@ -96,7 +96,7 @@
 }
         
 
--(void)setValue:(NSArray *)v {
+-(void)setValue:(NSArray<ZKXsdAnyType *> *)v {
     self.value__v = v;
     fields__set[0] |= 0x4; 
 }

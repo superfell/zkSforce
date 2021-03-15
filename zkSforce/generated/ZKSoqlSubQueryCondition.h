@@ -47,7 +47,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *field; 
-@property (strong,nonatomic) NSString  *operator; 
-@property (strong,nonatomic) NSString  *subQuery; 
+@property (strong,nonatomic) NSString  *field;
+@property (strong,nonatomic) NSString  *operator;
+@property (strong,nonatomic) NSString  *subQuery;
 @end

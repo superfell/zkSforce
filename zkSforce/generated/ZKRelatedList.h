@@ -29,6 +29,10 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeLayoutButton;
+@class ZKRelatedListColumn;
+@class ZKRelatedListSort;
+
 /*
 <complexType name="RelatedList" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -50,14 +54,14 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *accessLevelRequiredForCreate; 
-@property (strong,nonatomic) NSArray   *buttons;  // of ZKDescribeLayoutButton
-@property (strong,nonatomic) NSArray   *columns;  // of ZKRelatedListColumn
-@property (assign,nonatomic) BOOL       custom; 
-@property (strong,nonatomic) NSString  *field; 
-@property (strong,nonatomic) NSString  *label; 
-@property (assign,nonatomic) NSInteger  limitRows; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSString  *sobject; 
-@property (strong,nonatomic) NSArray   *sort;  // of ZKRelatedListSort
+@property (strong,nonatomic) NSString                           *accessLevelRequiredForCreate;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *buttons;
+@property (strong,nonatomic) NSArray<ZKRelatedListColumn *>     *columns;
+@property (assign,nonatomic) BOOL                                custom;
+@property (strong,nonatomic) NSString                           *field;
+@property (strong,nonatomic) NSString                           *label;
+@property (assign,nonatomic) NSInteger                           limitRows;
+@property (strong,nonatomic) NSString                           *name;
+@property (strong,nonatomic) NSString                           *sobject;
+@property (strong,nonatomic) NSArray<ZKRelatedListSort *>       *sort;
 @end

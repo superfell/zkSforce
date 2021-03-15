@@ -34,21 +34,21 @@
 #import "ZKScopeInfo.h"
 
 @interface ZKDescribeSObject()
-@property (strong,nonatomic) NSArray   *actionOverrides__v;
-@property (strong,nonatomic) NSArray   *childRelationships__v;
-@property (assign,nonatomic) BOOL       compactLayoutable__v;
-@property (strong,nonatomic) NSString  *defaultImplementation__v;
-@property (strong,nonatomic) NSArray   *fields__v;
-@property (strong,nonatomic) NSString  *implementedBy__v;
-@property (strong,nonatomic) NSString  *implementsInterfaces__v;
-@property (strong,nonatomic) NSArray   *namedLayoutInfos__v;
-@property (strong,nonatomic) NSString  *networkScopeFieldName__v;
-@property (strong,nonatomic) NSArray   *recordTypeInfos__v;
-@property (assign,nonatomic) BOOL       searchLayoutable__v;
-@property (strong,nonatomic) NSArray   *supportedScopes__v;
-@property (strong,nonatomic) NSString  *urlDetail__v;
-@property (strong,nonatomic) NSString  *urlEdit__v;
-@property (strong,nonatomic) NSString  *urlNew__v;
+@property (strong,nonatomic) NSArray<ZKActionOverride *>     *actionOverrides__v;
+@property (strong,nonatomic) NSArray<ZKChildRelationship *>  *childRelationships__v;
+@property (assign,nonatomic) BOOL                             compactLayoutable__v;
+@property (strong,nonatomic) NSString                        *defaultImplementation__v;
+@property (strong,nonatomic) NSArray<ZKDescribeField *>      *fields__v;
+@property (strong,nonatomic) NSString                        *implementedBy__v;
+@property (strong,nonatomic) NSString                        *implementsInterfaces__v;
+@property (strong,nonatomic) NSArray<ZKNamedLayoutInfo *>    *namedLayoutInfos__v;
+@property (strong,nonatomic) NSString                        *networkScopeFieldName__v;
+@property (strong,nonatomic) NSArray<ZKRecordTypeInfo *>     *recordTypeInfos__v;
+@property (assign,nonatomic) BOOL                             searchLayoutable__v;
+@property (strong,nonatomic) NSArray<ZKScopeInfo *>          *supportedScopes__v;
+@property (strong,nonatomic) NSString                        *urlDetail__v;
+@property (strong,nonatomic) NSString                        *urlEdit__v;
+@property (strong,nonatomic) NSString                        *urlNew__v;
 @end
 
 @implementation ZKDescribeSObject
@@ -99,7 +99,7 @@
 	return self.fields__v;
 }
 
--(NSArray *)actionOverrides {
+-(NSArray<ZKActionOverride *> *)actionOverrides {
     if ((fields__set2[0] & 0x1) == 0) {
         self.actionOverrides__v = [self complexTypeArrayFromElements:@"actionOverrides" cls:[ZKActionOverride class]];
         fields__set2[0] |= 0x1; 
@@ -108,13 +108,13 @@
 }
         
 
--(void)setActionOverrides:(NSArray *)v {
+-(void)setActionOverrides:(NSArray<ZKActionOverride *> *)v {
     self.actionOverrides__v = v;
     fields__set2[0] |= 0x1; 
 }
         
 
--(NSArray *)childRelationships {
+-(NSArray<ZKChildRelationship *> *)childRelationships {
     if ((fields__set2[0] & 0x2) == 0) {
         self.childRelationships__v = [self complexTypeArrayFromElements:@"childRelationships" cls:[ZKChildRelationship class]];
         fields__set2[0] |= 0x2; 
@@ -123,7 +123,7 @@
 }
         
 
--(void)setChildRelationships:(NSArray *)v {
+-(void)setChildRelationships:(NSArray<ZKChildRelationship *> *)v {
     self.childRelationships__v = v;
     fields__set2[0] |= 0x2; 
 }

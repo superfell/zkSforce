@@ -28,10 +28,10 @@
 #import "ZKEnvelope.h"
 
 @interface ZKRenderEmailTemplateRequest()
-@property (assign,nonatomic) BOOL       escapeHtmlInMergeFields__v;
-@property (strong,nonatomic) NSArray   *templateBodies__v;
-@property (strong,nonatomic) NSString  *whatId__v;
-@property (strong,nonatomic) NSString  *whoId__v;
+@property (assign,nonatomic) BOOL                  escapeHtmlInMergeFields__v;
+@property (strong,nonatomic) NSArray<NSString *>  *templateBodies__v;
+@property (strong,nonatomic) NSString             *whatId__v;
+@property (strong,nonatomic) NSString             *whoId__v;
 @end
 
 @implementation ZKRenderEmailTemplateRequest
@@ -73,7 +73,7 @@
 }
         
 
--(NSArray *)templateBodies {
+-(NSArray<NSString *> *)templateBodies {
     if ((fields__set[0] & 0x2) == 0) {
         self.templateBodies__v = [self strings:@"templateBodies"];
         fields__set[0] |= 0x2; 
@@ -82,7 +82,7 @@
 }
         
 
--(void)setTemplateBodies:(NSArray *)v {
+-(void)setTemplateBodies:(NSArray<NSString *> *)v {
     self.templateBodies__v = v;
     fields__set[0] |= 0x2; 
 }

@@ -47,11 +47,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       active; 
-@property (assign,nonatomic) BOOL       available; 
-@property (assign,nonatomic) BOOL       defaultRecordTypeMapping; 
-@property (strong,nonatomic) NSString  *developerName; 
-@property (assign,nonatomic) BOOL       master; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSString  *recordTypeId; 
+@property (assign,nonatomic) BOOL       active;
+@property (assign,nonatomic) BOOL       available;
+@property (assign,nonatomic) BOOL       defaultRecordTypeMapping;
+@property (strong,nonatomic) NSString  *developerName;
+@property (assign,nonatomic) BOOL       master;
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *recordTypeId;
 @end

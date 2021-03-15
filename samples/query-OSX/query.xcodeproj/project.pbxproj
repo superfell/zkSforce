@@ -231,6 +231,7 @@
 		F49DC3D125F6E1950016A8A0 /* ZKChangeEventHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3C625F6E1950016A8A0 /* ZKChangeEventHeader.m */; };
 		F49DC3D525F6E19E0016A8A0 /* ZKLimitInfo+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3D325F6E19E0016A8A0 /* ZKLimitInfo+Extras.m */; };
 		F49DC3DB25F6E22A0016A8A0 /* ZKXmlWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3DA25F6E2290016A8A0 /* ZKXmlWriter.m */; };
+		F49DC41525FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC41325FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.m */; };
 		F4C2983B1364A283009ACB8D /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = F4C2983A1364A283009ACB8D /* readme.md */; };
 /* End PBXBuildFile section */
 
@@ -687,6 +688,8 @@
 		F49DC3D425F6E19E0016A8A0 /* ZKLimitInfo+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKLimitInfo+Extras.h"; sourceTree = "<group>"; };
 		F49DC3D925F6E2290016A8A0 /* ZKXmlWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKXmlWriter.h; sourceTree = "<group>"; };
 		F49DC3DA25F6E2290016A8A0 /* ZKXmlWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKXmlWriter.m; sourceTree = "<group>"; };
+		F49DC41325FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKComplexTypeFieldInfo.m; sourceTree = "<group>"; };
+		F49DC41425FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKComplexTypeFieldInfo.h; sourceTree = "<group>"; };
 		F4C2983A1364A283009ACB8D /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1205,6 +1208,8 @@
 		F42EC2C42325899D00C5DC05 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				F49DC41425FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.h */,
+				F49DC41325FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.m */,
 				F49DC3D925F6E2290016A8A0 /* ZKXmlWriter.h */,
 				F49DC3DA25F6E2290016A8A0 /* ZKXmlWriter.m */,
 				F42EC2E02325899D00C5DC05 /* ZKBase64.h */,
@@ -1455,6 +1460,7 @@
 				F42EC3232325899D00C5DC05 /* ZKMatchResult.m in Sources */,
 				F42EC34F2325899E00C5DC05 /* ZKDuplicateRuleHeader.m in Sources */,
 				F42EC3072325899D00C5DC05 /* ZKDescribeRelatedContentItem.m in Sources */,
+				F49DC41525FFE37A0016A8A0 /* ZKComplexTypeFieldInfo.m in Sources */,
 				F42EC2FD2325899D00C5DC05 /* ZKSoqlConditionGroup.m in Sources */,
 				F42EC3552325899E00C5DC05 /* ZKDescribeDataCategoryGroupStructureResult.m in Sources */,
 				F42EC3282325899E00C5DC05 /* ZKActionOverride.m in Sources */,

@@ -29,6 +29,10 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeSoftphoneLayoutInfoField;
+@class ZKDescribeSoftphoneScreenPopOption;
+@class ZKDescribeSoftphoneLayoutSection;
+
 /*
 <complexType name="DescribeSoftphoneLayoutCallType" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -45,9 +49,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray   *infoFields;  // of ZKDescribeSoftphoneLayoutInfoField
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSArray   *screenPopOptions;  // of ZKDescribeSoftphoneScreenPopOption
-@property (strong,nonatomic) NSString  *screenPopsOpenWithin; 
-@property (strong,nonatomic) NSArray   *sections;  // of ZKDescribeSoftphoneLayoutSection
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutInfoField *>  *infoFields;
+@property (strong,nonatomic) NSString                                       *name;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneScreenPopOption *>  *screenPopOptions;
+@property (strong,nonatomic) NSString                                       *screenPopsOpenWithin;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutSection *>    *sections;
 @end

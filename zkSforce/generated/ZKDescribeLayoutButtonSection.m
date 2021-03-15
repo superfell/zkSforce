@@ -29,7 +29,7 @@
 #import "ZKDescribeLayoutButton.h"
 
 @interface ZKDescribeLayoutButtonSection()
-@property (strong,nonatomic) NSArray  *detailButtons__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *detailButtons__v;
 @end
 
 @implementation ZKDescribeLayoutButtonSection
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)detailButtons {
+-(NSArray<ZKDescribeLayoutButton *> *)detailButtons {
     if ((fields__set[0] & 0x1) == 0) {
         self.detailButtons__v = [self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setDetailButtons:(NSArray *)v {
+-(void)setDetailButtons:(NSArray<ZKDescribeLayoutButton *> *)v {
     self.detailButtons__v = v;
     fields__set[0] |= 0x1; 
 }

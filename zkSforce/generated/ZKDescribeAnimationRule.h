@@ -46,10 +46,10 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *animationFrequency; 
-@property (assign,nonatomic) BOOL       isActive; 
-@property (strong,nonatomic) NSString  *recordTypeContext; 
-@property (strong,nonatomic) NSString  *recordTypeId; 
-@property (strong,nonatomic) NSString  *targetField; 
-@property (strong,nonatomic) NSString  *targetFieldChangeToValues; 
+@property (strong,nonatomic) NSString  *animationFrequency;
+@property (assign,nonatomic) BOOL       isActive;
+@property (strong,nonatomic) NSString  *recordTypeContext;
+@property (strong,nonatomic) NSString  *recordTypeId;
+@property (strong,nonatomic) NSString  *targetField;
+@property (strong,nonatomic) NSString  *targetFieldChangeToValues;
 @end

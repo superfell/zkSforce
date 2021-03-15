@@ -48,8 +48,8 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *a_description; 
-@property (strong,nonatomic) NSArray   *targetObjectIds;  // of NSString
-@property (strong,nonatomic) NSString  *templateId; 
-@property (strong,nonatomic) NSArray   *whatIds;  // of NSString
+@property (strong,nonatomic) NSString             *a_description;
+@property (strong,nonatomic) NSArray<NSString *>  *targetObjectIds;
+@property (strong,nonatomic) NSString             *templateId;
+@property (strong,nonatomic) NSArray<NSString *>  *whatIds;
 @end

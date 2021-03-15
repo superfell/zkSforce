@@ -29,8 +29,8 @@
 #import "ZKNameValuePair.h"
 
 @interface ZKLabelsSearchMetadata()
-@property (strong,nonatomic) NSArray   *entityFieldLabels__v;
-@property (strong,nonatomic) NSString  *entityName__v;
+@property (strong,nonatomic) NSArray<ZKNameValuePair *>  *entityFieldLabels__v;
+@property (strong,nonatomic) NSString                    *entityName__v;
 @end
 
 @implementation ZKLabelsSearchMetadata
@@ -55,7 +55,7 @@
 }
     
 
--(NSArray *)entityFieldLabels {
+-(NSArray<ZKNameValuePair *> *)entityFieldLabels {
     if ((fields__set[0] & 0x1) == 0) {
         self.entityFieldLabels__v = [self complexTypeArrayFromElements:@"entityFieldLabels" cls:[ZKNameValuePair class]];
         fields__set[0] |= 0x1; 
@@ -64,7 +64,7 @@
 }
         
 
--(void)setEntityFieldLabels:(NSArray *)v {
+-(void)setEntityFieldLabels:(NSArray<ZKNameValuePair *> *)v {
     self.entityFieldLabels__v = v;
     fields__set[0] |= 0x1; 
 }

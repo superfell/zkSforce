@@ -30,26 +30,26 @@
 #import "ZKDescribeIcon.h"
 
 @interface ZKDescribeLayoutButton()
-@property (strong,nonatomic) NSString  *behavior__v;
-@property (strong,nonatomic) NSArray   *colors__v;
-@property (strong,nonatomic) NSString  *content__v;
-@property (strong,nonatomic) NSString  *contentSource__v;
-@property (assign,nonatomic) BOOL       custom__v;
-@property (strong,nonatomic) NSString  *encoding__v;
-@property (assign,nonatomic) NSInteger  height__v;
-@property (strong,nonatomic) NSArray   *icons__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (assign,nonatomic) BOOL       menubar__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (assign,nonatomic) BOOL       overridden__v;
-@property (assign,nonatomic) BOOL       resizeable__v;
-@property (assign,nonatomic) BOOL       scrollbars__v;
-@property (assign,nonatomic) BOOL       showsLocation__v;
-@property (assign,nonatomic) BOOL       showsStatus__v;
-@property (assign,nonatomic) BOOL       toolbar__v;
-@property (strong,nonatomic) NSString  *url__v;
-@property (assign,nonatomic) NSInteger  width__v;
-@property (strong,nonatomic) NSString  *windowPosition__v;
+@property (strong,nonatomic) NSString                    *behavior__v;
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors__v;
+@property (strong,nonatomic) NSString                    *content__v;
+@property (strong,nonatomic) NSString                    *contentSource__v;
+@property (assign,nonatomic) BOOL                         custom__v;
+@property (strong,nonatomic) NSString                    *encoding__v;
+@property (assign,nonatomic) NSInteger                    height__v;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons__v;
+@property (strong,nonatomic) NSString                    *label__v;
+@property (assign,nonatomic) BOOL                         menubar__v;
+@property (strong,nonatomic) NSString                    *name__v;
+@property (assign,nonatomic) BOOL                         overridden__v;
+@property (assign,nonatomic) BOOL                         resizeable__v;
+@property (assign,nonatomic) BOOL                         scrollbars__v;
+@property (assign,nonatomic) BOOL                         showsLocation__v;
+@property (assign,nonatomic) BOOL                         showsStatus__v;
+@property (assign,nonatomic) BOOL                         toolbar__v;
+@property (strong,nonatomic) NSString                    *url__v;
+@property (assign,nonatomic) NSInteger                    width__v;
+@property (strong,nonatomic) NSString                    *windowPosition__v;
 @end
 
 @implementation ZKDescribeLayoutButton
@@ -107,7 +107,7 @@
 }
         
 
--(NSArray *)colors {
+-(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x2) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
         fields__set[0] |= 0x2; 
@@ -116,7 +116,7 @@
 }
         
 
--(void)setColors:(NSArray *)v {
+-(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
     fields__set[0] |= 0x2; 
 }
@@ -197,7 +197,7 @@
 }
         
 
--(NSArray *)icons {
+-(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x80) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
         fields__set[0] |= 0x80; 
@@ -206,7 +206,7 @@
 }
         
 
--(void)setIcons:(NSArray *)v {
+-(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
     fields__set[0] |= 0x80; 
 }

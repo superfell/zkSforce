@@ -29,7 +29,7 @@
 #import "ZKDescribeApprovalLayout.h"
 
 @interface ZKDescribeApprovalLayoutResult()
-@property (strong,nonatomic) NSArray  *approvalLayouts__v;
+@property (strong,nonatomic) NSArray<ZKDescribeApprovalLayout *>  *approvalLayouts__v;
 @end
 
 @implementation ZKDescribeApprovalLayoutResult
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)approvalLayouts {
+-(NSArray<ZKDescribeApprovalLayout *> *)approvalLayouts {
     if ((fields__set[0] & 0x1) == 0) {
         self.approvalLayouts__v = [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setApprovalLayouts:(NSArray *)v {
+-(void)setApprovalLayouts:(NSArray<ZKDescribeApprovalLayout *> *)v {
     self.approvalLayouts__v = v;
     fields__set[0] |= 0x1; 
 }

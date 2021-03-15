@@ -42,5 +42,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *extendedErrorCode; 
+@property (strong,nonatomic) NSString  *extendedErrorCode;
 @end

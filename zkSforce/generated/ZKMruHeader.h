@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL updateMru; 
+@property (assign,nonatomic) BOOL updateMru;
 @end

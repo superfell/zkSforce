@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray  *referenceTo;  // of NSString
+@property (strong,nonatomic) NSArray<NSString *>  *referenceTo;
 @end

@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *color; 
-@property (strong,nonatomic) NSString  *context; 
-@property (strong,nonatomic) NSString  *theme; 
+@property (strong,nonatomic) NSString  *color;
+@property (strong,nonatomic) NSString  *context;
+@property (strong,nonatomic) NSString  *theme;
 @end

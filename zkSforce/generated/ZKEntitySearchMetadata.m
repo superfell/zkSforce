@@ -33,12 +33,12 @@
 #import "ZKFieldLevelSearchMetadata.h"
 
 @interface ZKEntitySearchMetadata()
-@property (strong,nonatomic) NSString                         *entityName__v;
-@property (strong,nonatomic) ZKEntityErrorMetadata            *errorMetadata__v;
-@property (strong,nonatomic) NSArray                          *fieldMetadata__v;
-@property (strong,nonatomic) ZKEntityIntentQueryMetadata      *intentQueryMetadata__v;
-@property (strong,nonatomic) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata__v;
-@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata__v;
+@property (strong,nonatomic) NSString                               *entityName__v;
+@property (strong,nonatomic) ZKEntityErrorMetadata                  *errorMetadata__v;
+@property (strong,nonatomic) NSArray<ZKFieldLevelSearchMetadata *>  *fieldMetadata__v;
+@property (strong,nonatomic) ZKEntityIntentQueryMetadata            *intentQueryMetadata__v;
+@property (strong,nonatomic) ZKEntitySearchPromotionMetadata        *searchPromotionMetadata__v;
+@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata        *spellCorrectionMetadata__v;
 @end
 
 @implementation ZKEntitySearchMetadata
@@ -97,7 +97,7 @@
 }
         
 
--(NSArray *)fieldMetadata {
+-(NSArray<ZKFieldLevelSearchMetadata *> *)fieldMetadata {
     if ((fields__set[0] & 0x4) == 0) {
         self.fieldMetadata__v = [self complexTypeArrayFromElements:@"fieldMetadata" cls:[ZKFieldLevelSearchMetadata class]];
         fields__set[0] |= 0x4; 
@@ -106,7 +106,7 @@
 }
         
 
--(void)setFieldMetadata:(NSArray *)v {
+-(void)setFieldMetadata:(NSArray<ZKFieldLevelSearchMetadata *> *)v {
     self.fieldMetadata__v = v;
     fields__set[0] |= 0x4; 
 }

@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL searchPromoted; 
-@property (assign,nonatomic) BOOL spellCorrected; 
+@property (assign,nonatomic) BOOL searchPromoted;
+@property (assign,nonatomic) BOOL spellCorrected;
 @end

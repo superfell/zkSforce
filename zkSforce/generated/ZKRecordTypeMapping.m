@@ -29,15 +29,15 @@
 #import "ZKPicklistForRecordType.h"
 
 @interface ZKRecordTypeMapping()
-@property (assign,nonatomic) BOOL       active__v;
-@property (assign,nonatomic) BOOL       available__v;
-@property (assign,nonatomic) BOOL       defaultRecordTypeMapping__v;
-@property (strong,nonatomic) NSString  *developerName__v;
-@property (strong,nonatomic) NSString  *layoutId__v;
-@property (assign,nonatomic) BOOL       master__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSArray   *picklistsForRecordType__v;
-@property (strong,nonatomic) NSString  *recordTypeId__v;
+@property (assign,nonatomic) BOOL                                 active__v;
+@property (assign,nonatomic) BOOL                                 available__v;
+@property (assign,nonatomic) BOOL                                 defaultRecordTypeMapping__v;
+@property (strong,nonatomic) NSString                            *developerName__v;
+@property (strong,nonatomic) NSString                            *layoutId__v;
+@property (assign,nonatomic) BOOL                                 master__v;
+@property (strong,nonatomic) NSString                            *name__v;
+@property (strong,nonatomic) NSArray<ZKPicklistForRecordType *>  *picklistsForRecordType__v;
+@property (strong,nonatomic) NSString                            *recordTypeId__v;
 @end
 
 @implementation ZKRecordTypeMapping
@@ -174,7 +174,7 @@
 }
         
 
--(NSArray *)picklistsForRecordType {
+-(NSArray<ZKPicklistForRecordType *> *)picklistsForRecordType {
     if ((fields__set[0] & 0x80) == 0) {
         self.picklistsForRecordType__v = [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
         fields__set[0] |= 0x80; 
@@ -183,7 +183,7 @@
 }
         
 
--(void)setPicklistsForRecordType:(NSArray *)v {
+-(void)setPicklistsForRecordType:(NSArray<ZKPicklistForRecordType *> *)v {
     self.picklistsForRecordType__v = v;
     fields__set[0] |= 0x80; 
 }

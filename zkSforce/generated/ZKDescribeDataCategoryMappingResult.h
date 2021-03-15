@@ -49,13 +49,13 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *dataCategoryGroupId; 
-@property (strong,nonatomic) NSString  *dataCategoryGroupLabel; 
-@property (strong,nonatomic) NSString  *dataCategoryGroupName; 
-@property (strong,nonatomic) NSString  *dataCategoryId; 
-@property (strong,nonatomic) NSString  *dataCategoryLabel; 
-@property (strong,nonatomic) NSString  *dataCategoryName; 
-@property (strong,nonatomic) NSString  *id; 
-@property (strong,nonatomic) NSString  *mappedEntity; 
-@property (strong,nonatomic) NSString  *mappedField; 
+@property (strong,nonatomic) NSString  *dataCategoryGroupId;
+@property (strong,nonatomic) NSString  *dataCategoryGroupLabel;
+@property (strong,nonatomic) NSString  *dataCategoryGroupName;
+@property (strong,nonatomic) NSString  *dataCategoryId;
+@property (strong,nonatomic) NSString  *dataCategoryLabel;
+@property (strong,nonatomic) NSString  *dataCategoryName;
+@property (strong,nonatomic) NSString  *id;
+@property (strong,nonatomic) NSString  *mappedEntity;
+@property (strong,nonatomic) NSString  *mappedField;
 @end

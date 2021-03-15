@@ -30,9 +30,11 @@
 #import "ZKParser.h"
 
 @class ZKEntityErrorMetadata;
+@class ZKFieldLevelSearchMetadata;
 @class ZKEntityIntentQueryMetadata;
 @class ZKEntitySearchPromotionMetadata;
 @class ZKEntitySpellCorrectionMetadata;
+
 /*
 <complexType name="EntitySearchMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -50,10 +52,10 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString                         *entityName; 
-@property (strong,nonatomic) ZKEntityErrorMetadata            *errorMetadata; 
-@property (strong,nonatomic) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
-@property (strong,nonatomic) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
-@property (strong,nonatomic) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
-@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
+@property (strong,nonatomic) NSString                               *entityName;
+@property (strong,nonatomic) ZKEntityErrorMetadata                  *errorMetadata;
+@property (strong,nonatomic) NSArray<ZKFieldLevelSearchMetadata *>  *fieldMetadata;
+@property (strong,nonatomic) ZKEntityIntentQueryMetadata            *intentQueryMetadata;
+@property (strong,nonatomic) ZKEntitySearchPromotionMetadata        *searchPromotionMetadata;
+@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata        *spellCorrectionMetadata;
 @end

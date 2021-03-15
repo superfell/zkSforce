@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *defaultValue; 
-@property (strong,nonatomic) NSString  *field; 
+@property (strong,nonatomic) NSString  *defaultValue;
+@property (strong,nonatomic) NSString  *field;
 @end

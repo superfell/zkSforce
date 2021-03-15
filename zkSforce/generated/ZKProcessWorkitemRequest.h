@@ -46,6 +46,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *action; 
-@property (strong,nonatomic) NSString  *workitemId; 
+@property (strong,nonatomic) NSString  *action;
+@property (strong,nonatomic) NSString  *workitemId;
 @end

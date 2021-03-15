@@ -31,15 +31,15 @@
 #import "ZKSoqlWhereCondition.h"
 
 @interface ZKDescribeSoqlListView()
-@property (strong,nonatomic) NSArray               *columns__v;
-@property (strong,nonatomic) NSString              *id__v;
-@property (strong,nonatomic) NSArray               *orderBy__v;
-@property (strong,nonatomic) NSString              *query__v;
-@property (strong,nonatomic) NSString              *relatedEntityId__v;
-@property (strong,nonatomic) NSString              *scope__v;
-@property (strong,nonatomic) NSString              *scopeEntityId__v;
-@property (strong,nonatomic) NSString              *sobjectType__v;
-@property (strong,nonatomic) ZKSoqlWhereCondition  *whereCondition__v;
+@property (strong,nonatomic) NSArray<ZKListViewColumn *>   *columns__v;
+@property (strong,nonatomic) NSString                      *id__v;
+@property (strong,nonatomic) NSArray<ZKListViewOrderBy *>  *orderBy__v;
+@property (strong,nonatomic) NSString                      *query__v;
+@property (strong,nonatomic) NSString                      *relatedEntityId__v;
+@property (strong,nonatomic) NSString                      *scope__v;
+@property (strong,nonatomic) NSString                      *scopeEntityId__v;
+@property (strong,nonatomic) NSString                      *sobjectType__v;
+@property (strong,nonatomic) ZKSoqlWhereCondition          *whereCondition__v;
 @end
 
 @implementation ZKDescribeSoqlListView
@@ -71,7 +71,7 @@
 }
     
 
--(NSArray *)columns {
+-(NSArray<ZKListViewColumn *> *)columns {
     if ((fields__set[0] & 0x1) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewColumn class]];
         fields__set[0] |= 0x1; 
@@ -80,7 +80,7 @@
 }
         
 
--(void)setColumns:(NSArray *)v {
+-(void)setColumns:(NSArray<ZKListViewColumn *> *)v {
     self.columns__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -101,7 +101,7 @@
 }
         
 
--(NSArray *)orderBy {
+-(NSArray<ZKListViewOrderBy *> *)orderBy {
     if ((fields__set[0] & 0x4) == 0) {
         self.orderBy__v = [self complexTypeArrayFromElements:@"orderBy" cls:[ZKListViewOrderBy class]];
         fields__set[0] |= 0x4; 
@@ -110,7 +110,7 @@
 }
         
 
--(void)setOrderBy:(NSArray *)v {
+-(void)setOrderBy:(NSArray<ZKListViewOrderBy *> *)v {
     self.orderBy__v = v;
     fields__set[0] |= 0x4; 
 }

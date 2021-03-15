@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *dataCategoryGroupName; 
-@property (strong,nonatomic) NSString  *sobject; 
+@property (strong,nonatomic) NSString  *dataCategoryGroupName;
+@property (strong,nonatomic) NSString  *sobject;
 @end

@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       ascending; 
-@property (strong,nonatomic) NSString  *column; 
+@property (assign,nonatomic) BOOL       ascending;
+@property (strong,nonatomic) NSString  *column;
 @end

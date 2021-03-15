@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *sessionId; 
+@property (strong,nonatomic) NSString  *sessionId;
 @end

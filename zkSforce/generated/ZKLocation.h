@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) double latitude; 
-@property (assign,nonatomic) double longitude; 
+@property (assign,nonatomic) double latitude;
+@property (assign,nonatomic) double longitude;
 @end

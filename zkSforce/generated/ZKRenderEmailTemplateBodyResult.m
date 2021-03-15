@@ -29,9 +29,9 @@
 #import "ZKRenderEmailTemplateError.h"
 
 @interface ZKRenderEmailTemplateBodyResult()
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSString  *mergedBody__v;
-@property (assign,nonatomic) BOOL       success__v;
+@property (strong,nonatomic) NSArray<ZKRenderEmailTemplateError *>  *errors__v;
+@property (strong,nonatomic) NSString                               *mergedBody__v;
+@property (assign,nonatomic) BOOL                                    success__v;
 @end
 
 @implementation ZKRenderEmailTemplateBodyResult
@@ -57,7 +57,7 @@
 }
     
 
--(NSArray *)errors {
+-(NSArray<ZKRenderEmailTemplateError *> *)errors {
     if ((fields__set[0] & 0x1) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKRenderEmailTemplateError class]];
         fields__set[0] |= 0x1; 
@@ -66,7 +66,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKRenderEmailTemplateError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x1; 
 }

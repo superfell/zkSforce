@@ -31,16 +31,16 @@
 #import "ZKRelatedListSort.h"
 
 @interface ZKRelatedList()
-@property (strong,nonatomic) NSString  *accessLevelRequiredForCreate__v;
-@property (strong,nonatomic) NSArray   *buttons__v;
-@property (strong,nonatomic) NSArray   *columns__v;
-@property (assign,nonatomic) BOOL       custom__v;
-@property (strong,nonatomic) NSString  *field__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (assign,nonatomic) NSInteger  limitRows__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSString  *sobject__v;
-@property (strong,nonatomic) NSArray   *sort__v;
+@property (strong,nonatomic) NSString                           *accessLevelRequiredForCreate__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *buttons__v;
+@property (strong,nonatomic) NSArray<ZKRelatedListColumn *>     *columns__v;
+@property (assign,nonatomic) BOOL                                custom__v;
+@property (strong,nonatomic) NSString                           *field__v;
+@property (strong,nonatomic) NSString                           *label__v;
+@property (assign,nonatomic) NSInteger                           limitRows__v;
+@property (strong,nonatomic) NSString                           *name__v;
+@property (strong,nonatomic) NSString                           *sobject__v;
+@property (strong,nonatomic) NSArray<ZKRelatedListSort *>       *sort__v;
 @end
 
 @implementation ZKRelatedList
@@ -88,7 +88,7 @@
 }
         
 
--(NSArray *)buttons {
+-(NSArray<ZKDescribeLayoutButton *> *)buttons {
     if ((fields__set[0] & 0x2) == 0) {
         self.buttons__v = [self complexTypeArrayFromElements:@"buttons" cls:[ZKDescribeLayoutButton class]];
         fields__set[0] |= 0x2; 
@@ -97,13 +97,13 @@
 }
         
 
--(void)setButtons:(NSArray *)v {
+-(void)setButtons:(NSArray<ZKDescribeLayoutButton *> *)v {
     self.buttons__v = v;
     fields__set[0] |= 0x2; 
 }
         
 
--(NSArray *)columns {
+-(NSArray<ZKRelatedListColumn *> *)columns {
     if ((fields__set[0] & 0x4) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKRelatedListColumn class]];
         fields__set[0] |= 0x4; 
@@ -112,7 +112,7 @@
 }
         
 
--(void)setColumns:(NSArray *)v {
+-(void)setColumns:(NSArray<ZKRelatedListColumn *> *)v {
     self.columns__v = v;
     fields__set[0] |= 0x4; 
 }
@@ -208,7 +208,7 @@
 }
         
 
--(NSArray *)sort {
+-(NSArray<ZKRelatedListSort *> *)sort {
     if ((fields__set[0] & 0x200) == 0) {
         self.sort__v = [self complexTypeArrayFromElements:@"sort" cls:[ZKRelatedListSort class]];
         fields__set[0] |= 0x200; 
@@ -217,7 +217,7 @@
 }
         
 
--(void)setSort:(NSArray *)v {
+-(void)setSort:(NSArray<ZKRelatedListSort *> *)v {
     self.sort__v = v;
     fields__set[0] |= 0x200; 
 }

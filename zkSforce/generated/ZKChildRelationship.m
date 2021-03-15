@@ -28,14 +28,14 @@
 #import "ZKEnvelope.h"
 
 @interface ZKChildRelationship()
-@property (assign,nonatomic) BOOL       cascadeDelete__v;
-@property (strong,nonatomic) NSString  *childSObject__v;
-@property (assign,nonatomic) BOOL       deprecatedAndHidden__v;
-@property (strong,nonatomic) NSString  *field__v;
-@property (strong,nonatomic) NSArray   *junctionIdListNames__v;
-@property (strong,nonatomic) NSArray   *junctionReferenceTo__v;
-@property (strong,nonatomic) NSString  *relationshipName__v;
-@property (assign,nonatomic) BOOL       restrictedDelete__v;
+@property (assign,nonatomic) BOOL                  cascadeDelete__v;
+@property (strong,nonatomic) NSString             *childSObject__v;
+@property (assign,nonatomic) BOOL                  deprecatedAndHidden__v;
+@property (strong,nonatomic) NSString             *field__v;
+@property (strong,nonatomic) NSArray<NSString *>  *junctionIdListNames__v;
+@property (strong,nonatomic) NSArray<NSString *>  *junctionReferenceTo__v;
+@property (strong,nonatomic) NSString             *relationshipName__v;
+@property (assign,nonatomic) BOOL                  restrictedDelete__v;
 @end
 
 @implementation ZKChildRelationship
@@ -126,7 +126,7 @@
 }
         
 
--(NSArray *)junctionIdListNames {
+-(NSArray<NSString *> *)junctionIdListNames {
     if ((fields__set[0] & 0x10) == 0) {
         self.junctionIdListNames__v = [self strings:@"junctionIdListNames"];
         fields__set[0] |= 0x10; 
@@ -135,13 +135,13 @@
 }
         
 
--(void)setJunctionIdListNames:(NSArray *)v {
+-(void)setJunctionIdListNames:(NSArray<NSString *> *)v {
     self.junctionIdListNames__v = v;
     fields__set[0] |= 0x10; 
 }
         
 
--(NSArray *)junctionReferenceTo {
+-(NSArray<NSString *> *)junctionReferenceTo {
     if ((fields__set[0] & 0x20) == 0) {
         self.junctionReferenceTo__v = [self strings:@"junctionReferenceTo"];
         fields__set[0] |= 0x20; 
@@ -150,7 +150,7 @@
 }
         
 
--(void)setJunctionReferenceTo:(NSArray *)v {
+-(void)setJunctionReferenceTo:(NSArray<NSString *> *)v {
     self.junctionReferenceTo__v = v;
     fields__set[0] |= 0x20; 
 }

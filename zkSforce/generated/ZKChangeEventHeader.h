@@ -52,16 +52,16 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *entityName; 
-@property (strong,nonatomic) NSArray   *recordIds;  // of NSString
-@property (assign,nonatomic) int64_t    commitTimestamp; 
-@property (assign,nonatomic) int64_t    commitNumber; 
-@property (strong,nonatomic) NSString  *commitUser; 
-@property (strong,nonatomic) NSArray   *diffFields;  // of NSString
-@property (strong,nonatomic) NSString  *changeType; 
-@property (strong,nonatomic) NSString  *changeOrigin; 
-@property (strong,nonatomic) NSString  *transactionKey; 
-@property (assign,nonatomic) NSInteger  sequenceNumber; 
-@property (strong,nonatomic) NSArray   *nulledFields;  // of NSString
-@property (strong,nonatomic) NSArray   *changedFields;  // of NSString
+@property (strong,nonatomic) NSString             *entityName;
+@property (strong,nonatomic) NSArray<NSString *>  *recordIds;
+@property (assign,nonatomic) int64_t               commitTimestamp;
+@property (assign,nonatomic) int64_t               commitNumber;
+@property (strong,nonatomic) NSString             *commitUser;
+@property (strong,nonatomic) NSArray<NSString *>  *diffFields;
+@property (strong,nonatomic) NSString             *changeType;
+@property (strong,nonatomic) NSString             *changeOrigin;
+@property (strong,nonatomic) NSString             *transactionKey;
+@property (assign,nonatomic) NSInteger             sequenceNumber;
+@property (strong,nonatomic) NSArray<NSString *>  *nulledFields;
+@property (strong,nonatomic) NSArray<NSString *>  *changedFields;
 @end

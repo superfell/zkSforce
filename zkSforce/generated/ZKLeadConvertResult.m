@@ -29,13 +29,13 @@
 #import "ZKError.h"
 
 @interface ZKLeadConvertResult()
-@property (strong,nonatomic) NSString  *accountId__v;
-@property (strong,nonatomic) NSString  *contactId__v;
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSString  *leadId__v;
-@property (strong,nonatomic) NSString  *opportunityId__v;
-@property (strong,nonatomic) NSString  *relatedPersonAccountId__v;
-@property (assign,nonatomic) BOOL       success__v;
+@property (strong,nonatomic) NSString            *accountId__v;
+@property (strong,nonatomic) NSString            *contactId__v;
+@property (strong,nonatomic) NSArray<ZKError *>  *errors__v;
+@property (strong,nonatomic) NSString            *leadId__v;
+@property (strong,nonatomic) NSString            *opportunityId__v;
+@property (strong,nonatomic) NSString            *relatedPersonAccountId__v;
+@property (assign,nonatomic) BOOL                 success__v;
 @end
 
 @implementation ZKLeadConvertResult
@@ -95,7 +95,7 @@
 }
         
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x4) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x4; 
@@ -104,7 +104,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x4; 
 }

@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       active; 
-@property (strong,nonatomic) NSString  *assigneeId; 
-@property (strong,nonatomic) NSString  *name; 
+@property (assign,nonatomic) BOOL       active;
+@property (strong,nonatomic) NSString  *assigneeId;
+@property (strong,nonatomic) NSString  *name;
 @end

@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL allOrNone; 
+@property (assign,nonatomic) BOOL allOrNone;
 @end

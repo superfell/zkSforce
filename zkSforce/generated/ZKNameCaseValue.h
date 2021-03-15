@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *article; 
-@property (strong,nonatomic) NSString  *caseType; 
-@property (strong,nonatomic) NSString  *number; 
-@property (strong,nonatomic) NSString  *possessive; 
-@property (strong,nonatomic) NSString  *value; 
+@property (strong,nonatomic) NSString  *article;
+@property (strong,nonatomic) NSString  *caseType;
+@property (strong,nonatomic) NSString  *number;
+@property (strong,nonatomic) NSString  *possessive;
+@property (strong,nonatomic) NSString  *value;
 @end

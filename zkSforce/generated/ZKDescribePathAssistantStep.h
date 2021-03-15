@@ -29,7 +29,9 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribePathAssistantField;
 @class ZKDescribeLayoutSection;
+
 /*
 <complexType name="DescribePathAssistantStep" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -49,12 +51,12 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL                      closed; 
-@property (assign,nonatomic) BOOL                      converted; 
-@property (strong,nonatomic) NSArray                  *fields;  // of ZKDescribePathAssistantField
-@property (strong,nonatomic) NSString                 *info; 
-@property (strong,nonatomic) ZKDescribeLayoutSection  *layoutSection; 
-@property (strong,nonatomic) NSString                 *picklistLabel; 
-@property (strong,nonatomic) NSString                 *picklistValue; 
-@property (assign,nonatomic) BOOL                      won; 
+@property (assign,nonatomic) BOOL                                      closed;
+@property (assign,nonatomic) BOOL                                      converted;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistantField *>  *fields;
+@property (strong,nonatomic) NSString                                 *info;
+@property (strong,nonatomic) ZKDescribeLayoutSection                  *layoutSection;
+@property (strong,nonatomic) NSString                                 *picklistLabel;
+@property (strong,nonatomic) NSString                                 *picklistValue;
+@property (assign,nonatomic) BOOL                                      won;
 @end

@@ -29,13 +29,13 @@
 #import "ZKError.h"
 
 @interface ZKProcessResult()
-@property (strong,nonatomic) NSArray   *actorIds__v;
-@property (strong,nonatomic) NSString  *entityId__v;
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSString  *instanceId__v;
-@property (strong,nonatomic) NSString  *instanceStatus__v;
-@property (strong,nonatomic) NSArray   *a_newWorkitemIds__v;
-@property (assign,nonatomic) BOOL       success__v;
+@property (strong,nonatomic) NSArray<NSString *>  *actorIds__v;
+@property (strong,nonatomic) NSString             *entityId__v;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors__v;
+@property (strong,nonatomic) NSString             *instanceId__v;
+@property (strong,nonatomic) NSString             *instanceStatus__v;
+@property (strong,nonatomic) NSArray<NSString *>  *a_newWorkitemIds__v;
+@property (assign,nonatomic) BOOL                  success__v;
 @end
 
 @implementation ZKProcessResult
@@ -65,7 +65,7 @@
 }
     
 
--(NSArray *)actorIds {
+-(NSArray<NSString *> *)actorIds {
     if ((fields__set[0] & 0x1) == 0) {
         self.actorIds__v = [self strings:@"actorIds"];
         fields__set[0] |= 0x1; 
@@ -74,7 +74,7 @@
 }
         
 
--(void)setActorIds:(NSArray *)v {
+-(void)setActorIds:(NSArray<NSString *> *)v {
     self.actorIds__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -95,7 +95,7 @@
 }
         
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x4) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x4; 
@@ -104,7 +104,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x4; 
 }
@@ -140,7 +140,7 @@
 }
         
 
--(NSArray *)a_newWorkitemIds {
+-(NSArray<NSString *> *)a_newWorkitemIds {
     if ((fields__set[0] & 0x20) == 0) {
         self.a_newWorkitemIds__v = [self strings:@"newWorkitemIds"];
         fields__set[0] |= 0x20; 
@@ -149,7 +149,7 @@
 }
         
 
--(void)setA_newWorkitemIds:(NSArray *)v {
+-(void)setA_newWorkitemIds:(NSArray<NSString *> *)v {
     self.a_newWorkitemIds__v = v;
     fields__set[0] |= 0x20; 
 }

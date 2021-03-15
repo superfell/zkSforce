@@ -29,25 +29,25 @@
 #import "ZKEmailFileAttachment.h"
 
 @interface ZKSingleEmailMessage()
-@property (strong,nonatomic) NSArray   *bccAddresses__v;
-@property (strong,nonatomic) NSArray   *ccAddresses__v;
-@property (strong,nonatomic) NSString  *charset__v;
-@property (strong,nonatomic) NSArray   *documentAttachments__v;
-@property (strong,nonatomic) NSArray   *entityAttachments__v;
-@property (strong,nonatomic) NSArray   *fileAttachments__v;
-@property (strong,nonatomic) NSString  *htmlBody__v;
-@property (strong,nonatomic) NSString  *inReplyTo__v;
-@property (strong,nonatomic) NSString  *optOutPolicy__v;
-@property (strong,nonatomic) NSString  *orgWideEmailAddressId__v;
-@property (strong,nonatomic) NSString  *plainTextBody__v;
-@property (strong,nonatomic) NSString  *references__v;
-@property (strong,nonatomic) NSString  *targetObjectId__v;
-@property (strong,nonatomic) NSString  *templateId__v;
-@property (strong,nonatomic) NSString  *templateName__v;
-@property (strong,nonatomic) NSArray   *toAddresses__v;
-@property (assign,nonatomic) BOOL       treatBodiesAsTemplate__v;
-@property (assign,nonatomic) BOOL       treatTargetObjectAsRecipient__v;
-@property (strong,nonatomic) NSString  *whatId__v;
+@property (strong,nonatomic) NSArray<NSString *>               *bccAddresses__v;
+@property (strong,nonatomic) NSArray<NSString *>               *ccAddresses__v;
+@property (strong,nonatomic) NSString                          *charset__v;
+@property (strong,nonatomic) NSArray<NSString *>               *documentAttachments__v;
+@property (strong,nonatomic) NSArray<NSString *>               *entityAttachments__v;
+@property (strong,nonatomic) NSArray<ZKEmailFileAttachment *>  *fileAttachments__v;
+@property (strong,nonatomic) NSString                          *htmlBody__v;
+@property (strong,nonatomic) NSString                          *inReplyTo__v;
+@property (strong,nonatomic) NSString                          *optOutPolicy__v;
+@property (strong,nonatomic) NSString                          *orgWideEmailAddressId__v;
+@property (strong,nonatomic) NSString                          *plainTextBody__v;
+@property (strong,nonatomic) NSString                          *references__v;
+@property (strong,nonatomic) NSString                          *targetObjectId__v;
+@property (strong,nonatomic) NSString                          *templateId__v;
+@property (strong,nonatomic) NSString                          *templateName__v;
+@property (strong,nonatomic) NSArray<NSString *>               *toAddresses__v;
+@property (assign,nonatomic) BOOL                               treatBodiesAsTemplate__v;
+@property (assign,nonatomic) BOOL                               treatTargetObjectAsRecipient__v;
+@property (strong,nonatomic) NSString                          *whatId__v;
 @end
 
 @implementation ZKSingleEmailMessage
@@ -89,7 +89,7 @@
 }
     
 
--(NSArray *)bccAddresses {
+-(NSArray<NSString *> *)bccAddresses {
     if ((fields__set2[0] & 0x1) == 0) {
         self.bccAddresses__v = [self strings:@"bccAddresses"];
         fields__set2[0] |= 0x1; 
@@ -98,13 +98,13 @@
 }
         
 
--(void)setBccAddresses:(NSArray *)v {
+-(void)setBccAddresses:(NSArray<NSString *> *)v {
     self.bccAddresses__v = v;
     fields__set2[0] |= 0x1; 
 }
         
 
--(NSArray *)ccAddresses {
+-(NSArray<NSString *> *)ccAddresses {
     if ((fields__set2[0] & 0x2) == 0) {
         self.ccAddresses__v = [self strings:@"ccAddresses"];
         fields__set2[0] |= 0x2; 
@@ -113,7 +113,7 @@
 }
         
 
--(void)setCcAddresses:(NSArray *)v {
+-(void)setCcAddresses:(NSArray<NSString *> *)v {
     self.ccAddresses__v = v;
     fields__set2[0] |= 0x2; 
 }
@@ -134,7 +134,7 @@
 }
         
 
--(NSArray *)documentAttachments {
+-(NSArray<NSString *> *)documentAttachments {
     if ((fields__set2[0] & 0x8) == 0) {
         self.documentAttachments__v = [self strings:@"documentAttachments"];
         fields__set2[0] |= 0x8; 
@@ -143,13 +143,13 @@
 }
         
 
--(void)setDocumentAttachments:(NSArray *)v {
+-(void)setDocumentAttachments:(NSArray<NSString *> *)v {
     self.documentAttachments__v = v;
     fields__set2[0] |= 0x8; 
 }
         
 
--(NSArray *)entityAttachments {
+-(NSArray<NSString *> *)entityAttachments {
     if ((fields__set2[0] & 0x10) == 0) {
         self.entityAttachments__v = [self strings:@"entityAttachments"];
         fields__set2[0] |= 0x10; 
@@ -158,13 +158,13 @@
 }
         
 
--(void)setEntityAttachments:(NSArray *)v {
+-(void)setEntityAttachments:(NSArray<NSString *> *)v {
     self.entityAttachments__v = v;
     fields__set2[0] |= 0x10; 
 }
         
 
--(NSArray *)fileAttachments {
+-(NSArray<ZKEmailFileAttachment *> *)fileAttachments {
     if ((fields__set2[0] & 0x20) == 0) {
         self.fileAttachments__v = [self complexTypeArrayFromElements:@"fileAttachments" cls:[ZKEmailFileAttachment class]];
         fields__set2[0] |= 0x20; 
@@ -173,7 +173,7 @@
 }
         
 
--(void)setFileAttachments:(NSArray *)v {
+-(void)setFileAttachments:(NSArray<ZKEmailFileAttachment *> *)v {
     self.fileAttachments__v = v;
     fields__set2[0] |= 0x20; 
 }
@@ -314,7 +314,7 @@
 }
         
 
--(NSArray *)toAddresses {
+-(NSArray<NSString *> *)toAddresses {
     if ((fields__set2[0] & 0x8000) == 0) {
         self.toAddresses__v = [self strings:@"toAddresses"];
         fields__set2[0] |= 0x8000; 
@@ -323,7 +323,7 @@
 }
         
 
--(void)setToAddresses:(NSArray *)v {
+-(void)setToAddresses:(NSArray<NSString *> *)v {
     self.toAddresses__v = v;
     fields__set2[0] |= 0x8000; 
 }

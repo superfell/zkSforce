@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSDate    *deletedDate; 
-@property (strong,nonatomic) NSString  *id; 
+@property (strong,nonatomic) NSDate    *deletedDate;
+@property (strong,nonatomic) NSString  *id;
 @end

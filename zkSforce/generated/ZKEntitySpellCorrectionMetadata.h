@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *correctedQuery; 
-@property (assign,nonatomic) BOOL       hasNonCorrectedResults; 
+@property (strong,nonatomic) NSString  *correctedQuery;
+@property (assign,nonatomic) BOOL       hasNonCorrectedResults;
 @end

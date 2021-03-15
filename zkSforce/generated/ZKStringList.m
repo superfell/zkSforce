@@ -28,7 +28,7 @@
 #import "ZKEnvelope.h"
 
 @interface ZKStringList()
-@property (strong,nonatomic) NSArray  *values__v;
+@property (strong,nonatomic) NSArray<NSString *>  *values__v;
 @end
 
 @implementation ZKStringList
@@ -52,7 +52,7 @@
 }
     
 
--(NSArray *)values {
+-(NSArray<NSString *> *)values {
     if ((fields__set[0] & 0x1) == 0) {
         self.values__v = [self strings:@"values"];
         fields__set[0] |= 0x1; 
@@ -61,7 +61,7 @@
 }
         
 
--(void)setValues:(NSArray *)v {
+-(void)setValues:(NSArray<NSString *> *)v {
     self.values__v = v;
     fields__set[0] |= 0x1; 
 }

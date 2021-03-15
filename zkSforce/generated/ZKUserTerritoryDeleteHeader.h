@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *transferToUserId; 
+@property (strong,nonatomic) NSString  *transferToUserId;
 @end

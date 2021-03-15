@@ -29,9 +29,9 @@
 #import "ZKDescribeSoftphoneLayoutCallType.h"
 
 @interface ZKDescribeSoftphoneLayoutResult()
-@property (strong,nonatomic) NSArray   *callTypes__v;
-@property (strong,nonatomic) NSString  *id__v;
-@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutCallType *>  *callTypes__v;
+@property (strong,nonatomic) NSString                                      *id__v;
+@property (strong,nonatomic) NSString                                      *name__v;
 @end
 
 @implementation ZKDescribeSoftphoneLayoutResult
@@ -57,7 +57,7 @@
 }
     
 
--(NSArray *)callTypes {
+-(NSArray<ZKDescribeSoftphoneLayoutCallType *> *)callTypes {
     if ((fields__set[0] & 0x1) == 0) {
         self.callTypes__v = [self complexTypeArrayFromElements:@"callTypes" cls:[ZKDescribeSoftphoneLayoutCallType class]];
         fields__set[0] |= 0x1; 
@@ -66,7 +66,7 @@
 }
         
 
--(void)setCallTypes:(NSArray *)v {
+-(void)setCallTypes:(NSArray<ZKDescribeSoftphoneLayoutCallType *> *)v {
     self.callTypes__v = v;
     fields__set[0] |= 0x1; 
 }

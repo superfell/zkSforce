@@ -29,8 +29,8 @@
 #import "ZKPicklistEntry.h"
 
 @interface ZKPicklistForRecordType()
-@property (strong,nonatomic) NSString  *picklistName__v;
-@property (strong,nonatomic) NSArray   *picklistValues__v;
+@property (strong,nonatomic) NSString                    *picklistName__v;
+@property (strong,nonatomic) NSArray<ZKPicklistEntry *>  *picklistValues__v;
 @end
 
 @implementation ZKPicklistForRecordType
@@ -70,7 +70,7 @@
 }
         
 
--(NSArray *)picklistValues {
+-(NSArray<ZKPicklistEntry *> *)picklistValues {
     if ((fields__set[0] & 0x2) == 0) {
         self.picklistValues__v = [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
         fields__set[0] |= 0x2; 
@@ -79,7 +79,7 @@
 }
         
 
--(void)setPicklistValues:(NSArray *)v {
+-(void)setPicklistValues:(NSArray<ZKPicklistEntry *> *)v {
     self.picklistValues__v = v;
     fields__set[0] |= 0x2; 
 }

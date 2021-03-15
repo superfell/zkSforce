@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *fieldNameOrPath; 
-@property (strong,nonatomic) NSString  *nullsPosition; 
-@property (strong,nonatomic) NSString  *sortDirection; 
+@property (strong,nonatomic) NSString  *fieldNameOrPath;
+@property (strong,nonatomic) NSString  *nullsPosition;
+@property (strong,nonatomic) NSString  *sortDirection;
 @end

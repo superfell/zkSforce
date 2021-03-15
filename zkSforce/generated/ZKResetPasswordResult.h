@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *password; 
+@property (strong,nonatomic) NSString  *password;
 @end

@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) NSInteger  categoryCount; 
-@property (strong,nonatomic) NSString  *a_description; 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSString  *sobject; 
+@property (assign,nonatomic) NSInteger  categoryCount;
+@property (strong,nonatomic) NSString  *a_description;
+@property (strong,nonatomic) NSString  *label;
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *sobject;
 @end

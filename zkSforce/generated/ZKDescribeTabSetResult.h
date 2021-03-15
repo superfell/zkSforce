@@ -29,6 +29,8 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeTab;
+
 /*
 <complexType name="DescribeTabSetResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -47,11 +49,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *a_description; 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSString  *logoUrl; 
-@property (strong,nonatomic) NSString  *namespace; 
-@property (assign,nonatomic) BOOL       selected; 
-@property (strong,nonatomic) NSString  *tabSetId; 
-@property (strong,nonatomic) NSArray   *tabs;  // of ZKDescribeTab
+@property (strong,nonatomic) NSString                  *a_description;
+@property (strong,nonatomic) NSString                  *label;
+@property (strong,nonatomic) NSString                  *logoUrl;
+@property (strong,nonatomic) NSString                  *namespace;
+@property (assign,nonatomic) BOOL                       selected;
+@property (strong,nonatomic) NSString                  *tabSetId;
+@property (strong,nonatomic) NSArray<ZKDescribeTab *>  *tabs;
 @end

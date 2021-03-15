@@ -29,7 +29,7 @@
 #import "ZKOwnerChangeOption.h"
 
 @interface ZKOwnerChangeOptions()
-@property (strong,nonatomic) NSArray  *options__v;
+@property (strong,nonatomic) NSArray<ZKOwnerChangeOption *>  *options__v;
 @end
 
 @implementation ZKOwnerChangeOptions
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)options {
+-(NSArray<ZKOwnerChangeOption *> *)options {
     if ((fields__set[0] & 0x1) == 0) {
         self.options__v = [self complexTypeArrayFromElements:@"options" cls:[ZKOwnerChangeOption class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setOptions:(NSArray *)v {
+-(void)setOptions:(NSArray<ZKOwnerChangeOption *> *)v {
     self.options__v = v;
     fields__set[0] |= 0x1; 
 }

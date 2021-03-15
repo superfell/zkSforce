@@ -51,15 +51,15 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *ascendingLabel; 
-@property (strong,nonatomic) NSString  *descendingLabel; 
-@property (strong,nonatomic) NSString  *fieldNameOrPath; 
-@property (assign,nonatomic) BOOL       hidden; 
-@property (strong,nonatomic) NSString  *label; 
-@property (assign,nonatomic) BOOL       searchable; 
-@property (strong,nonatomic) NSString  *selectListItem; 
-@property (strong,nonatomic) NSString  *sortDirection; 
-@property (assign,nonatomic) NSInteger  sortIndex; 
-@property (assign,nonatomic) BOOL       sortable; 
-@property (strong,nonatomic) NSString  *type; 
+@property (strong,nonatomic) NSString  *ascendingLabel;
+@property (strong,nonatomic) NSString  *descendingLabel;
+@property (strong,nonatomic) NSString  *fieldNameOrPath;
+@property (assign,nonatomic) BOOL       hidden;
+@property (strong,nonatomic) NSString  *label;
+@property (assign,nonatomic) BOOL       searchable;
+@property (strong,nonatomic) NSString  *selectListItem;
+@property (strong,nonatomic) NSString  *sortDirection;
+@property (assign,nonatomic) NSInteger  sortIndex;
+@property (assign,nonatomic) BOOL       sortable;
+@property (strong,nonatomic) NSString  *type;
 @end

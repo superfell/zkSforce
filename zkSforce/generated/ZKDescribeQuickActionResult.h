@@ -29,7 +29,11 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeColor;
+@class ZKDescribeQuickActionDefaultValue;
+@class ZKDescribeIcon;
 @class ZKDescribeLayoutSection;
+
 /*
 <complexType name="DescribeQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -74,37 +78,37 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString                 *accessLevelRequired; 
-@property (strong,nonatomic) NSString                 *actionEnumOrId; 
-@property (strong,nonatomic) NSString                 *canvasApplicationId; 
-@property (strong,nonatomic) NSString                 *canvasApplicationName; 
-@property (strong,nonatomic) NSArray                  *colors;  // of ZKDescribeColor
-@property (strong,nonatomic) NSString                 *contextSobjectType; 
-@property (strong,nonatomic) NSArray                  *defaultValues;  // of ZKDescribeQuickActionDefaultValue
-@property (strong,nonatomic) NSString                 *flowDevName; 
-@property (strong,nonatomic) NSString                 *flowRecordIdVar; 
-@property (assign,nonatomic) NSInteger                 height; 
-@property (strong,nonatomic) NSString                 *iconName; 
-@property (strong,nonatomic) NSString                 *iconUrl; 
-@property (strong,nonatomic) NSArray                  *icons;  // of ZKDescribeIcon
-@property (strong,nonatomic) NSString                 *label; 
-@property (strong,nonatomic) ZKDescribeLayoutSection  *layout; 
-@property (strong,nonatomic) NSString                 *lightningComponentBundleId; 
-@property (strong,nonatomic) NSString                 *lightningComponentBundleName; 
-@property (strong,nonatomic) NSString                 *lightningComponentQualifiedName; 
-@property (strong,nonatomic) NSString                 *lightningWebComponentBundleId; 
-@property (strong,nonatomic) NSString                 *lightningWebComponentBundleName; 
-@property (strong,nonatomic) NSString                 *lightningWebComponentQualifiedName; 
-@property (strong,nonatomic) NSString                 *miniIconUrl; 
-@property (strong,nonatomic) NSString                 *mobileExtensionId; 
-@property (strong,nonatomic) NSString                 *name; 
-@property (assign,nonatomic) BOOL                      showQuickActionLcHeader; 
-@property (assign,nonatomic) BOOL                      showQuickActionVfHeader; 
-@property (strong,nonatomic) NSString                 *targetParentField; 
-@property (strong,nonatomic) NSString                 *targetRecordTypeId; 
-@property (strong,nonatomic) NSString                 *targetSobjectType; 
-@property (strong,nonatomic) NSString                 *type; 
-@property (strong,nonatomic) NSString                 *visualforcePageName; 
-@property (strong,nonatomic) NSString                 *visualforcePageUrl; 
-@property (assign,nonatomic) NSInteger                 width; 
+@property (strong,nonatomic) NSString                                      *accessLevelRequired;
+@property (strong,nonatomic) NSString                                      *actionEnumOrId;
+@property (strong,nonatomic) NSString                                      *canvasApplicationId;
+@property (strong,nonatomic) NSString                                      *canvasApplicationName;
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>                    *colors;
+@property (strong,nonatomic) NSString                                      *contextSobjectType;
+@property (strong,nonatomic) NSArray<ZKDescribeQuickActionDefaultValue *>  *defaultValues;
+@property (strong,nonatomic) NSString                                      *flowDevName;
+@property (strong,nonatomic) NSString                                      *flowRecordIdVar;
+@property (assign,nonatomic) NSInteger                                      height;
+@property (strong,nonatomic) NSString                                      *iconName;
+@property (strong,nonatomic) NSString                                      *iconUrl;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>                     *icons;
+@property (strong,nonatomic) NSString                                      *label;
+@property (strong,nonatomic) ZKDescribeLayoutSection                       *layout;
+@property (strong,nonatomic) NSString                                      *lightningComponentBundleId;
+@property (strong,nonatomic) NSString                                      *lightningComponentBundleName;
+@property (strong,nonatomic) NSString                                      *lightningComponentQualifiedName;
+@property (strong,nonatomic) NSString                                      *lightningWebComponentBundleId;
+@property (strong,nonatomic) NSString                                      *lightningWebComponentBundleName;
+@property (strong,nonatomic) NSString                                      *lightningWebComponentQualifiedName;
+@property (strong,nonatomic) NSString                                      *miniIconUrl;
+@property (strong,nonatomic) NSString                                      *mobileExtensionId;
+@property (strong,nonatomic) NSString                                      *name;
+@property (assign,nonatomic) BOOL                                           showQuickActionLcHeader;
+@property (assign,nonatomic) BOOL                                           showQuickActionVfHeader;
+@property (strong,nonatomic) NSString                                      *targetParentField;
+@property (strong,nonatomic) NSString                                      *targetRecordTypeId;
+@property (strong,nonatomic) NSString                                      *targetSobjectType;
+@property (strong,nonatomic) NSString                                      *type;
+@property (strong,nonatomic) NSString                                      *visualforcePageName;
+@property (strong,nonatomic) NSString                                      *visualforcePageUrl;
+@property (assign,nonatomic) NSInteger                                      width;
 @end

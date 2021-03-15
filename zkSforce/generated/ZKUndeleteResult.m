@@ -29,9 +29,9 @@
 #import "ZKError.h"
 
 @interface ZKUndeleteResult()
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSString  *id__v;
-@property (assign,nonatomic) BOOL       success__v;
+@property (strong,nonatomic) NSArray<ZKError *>  *errors__v;
+@property (strong,nonatomic) NSString            *id__v;
+@property (assign,nonatomic) BOOL                 success__v;
 @end
 
 @implementation ZKUndeleteResult
@@ -57,7 +57,7 @@
 }
     
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x1) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x1; 
@@ -66,7 +66,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x1; 
 }

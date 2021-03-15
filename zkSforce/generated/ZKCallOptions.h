@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *client; 
-@property (strong,nonatomic) NSString  *defaultNamespace; 
+@property (strong,nonatomic) NSString  *client;
+@property (strong,nonatomic) NSString  *defaultNamespace;
 @end

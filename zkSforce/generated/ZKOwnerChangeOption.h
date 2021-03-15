@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *type; 
-@property (assign,nonatomic) BOOL       execute; 
+@property (strong,nonatomic) NSString  *type;
+@property (assign,nonatomic) BOOL       execute;
 @end

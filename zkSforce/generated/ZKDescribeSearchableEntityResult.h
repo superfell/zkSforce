@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSString  *pluralLabel; 
+@property (strong,nonatomic) NSString  *label;
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *pluralLabel;
 @end

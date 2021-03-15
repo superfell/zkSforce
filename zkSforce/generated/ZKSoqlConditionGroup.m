@@ -29,8 +29,8 @@
 #import "ZKSoqlWhereCondition.h"
 
 @interface ZKSoqlConditionGroup()
-@property (strong,nonatomic) NSArray   *conditions__v;
-@property (strong,nonatomic) NSString  *conjunction__v;
+@property (strong,nonatomic) NSArray<ZKSoqlWhereCondition *>  *conditions__v;
+@property (strong,nonatomic) NSString                         *conjunction__v;
 @end
 
 @implementation ZKSoqlConditionGroup
@@ -55,7 +55,7 @@
 }
     
 
--(NSArray *)conditions {
+-(NSArray<ZKSoqlWhereCondition *> *)conditions {
     if ((fields__set2[0] & 0x1) == 0) {
         self.conditions__v = [self complexTypeArrayFromElements:@"conditions" cls:[ZKSoqlWhereCondition class]];
         fields__set2[0] |= 0x1; 
@@ -64,7 +64,7 @@
 }
         
 
--(void)setConditions:(NSArray *)v {
+-(void)setConditions:(NSArray<ZKSoqlWhereCondition *> *)v {
     self.conditions__v = v;
     fields__set2[0] |= 0x1; 
 }

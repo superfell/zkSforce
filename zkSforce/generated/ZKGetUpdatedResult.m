@@ -28,8 +28,8 @@
 #import "ZKEnvelope.h"
 
 @interface ZKGetUpdatedResult()
-@property (strong,nonatomic) NSArray  *ids__v;
-@property (strong,nonatomic) NSDate   *latestDateCovered__v;
+@property (strong,nonatomic) NSArray<NSString *>  *ids__v;
+@property (strong,nonatomic) NSDate               *latestDateCovered__v;
 @end
 
 @implementation ZKGetUpdatedResult
@@ -54,7 +54,7 @@
 }
     
 
--(NSArray *)ids {
+-(NSArray<NSString *> *)ids {
     if ((fields__set[0] & 0x1) == 0) {
         self.ids__v = [self strings:@"ids"];
         fields__set[0] |= 0x1; 
@@ -63,7 +63,7 @@
 }
         
 
--(void)setIds:(NSArray *)v {
+-(void)setIds:(NSArray<NSString *> *)v {
     self.ids__v = v;
     fields__set[0] |= 0x1; 
 }

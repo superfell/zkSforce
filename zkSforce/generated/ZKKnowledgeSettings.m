@@ -29,9 +29,9 @@
 #import "ZKKnowledgeLanguageItem.h"
 
 @interface ZKKnowledgeSettings()
-@property (strong,nonatomic) NSString  *defaultLanguage__v;
-@property (assign,nonatomic) BOOL       knowledgeEnabled__v;
-@property (strong,nonatomic) NSArray   *languages__v;
+@property (strong,nonatomic) NSString                            *defaultLanguage__v;
+@property (assign,nonatomic) BOOL                                 knowledgeEnabled__v;
+@property (strong,nonatomic) NSArray<ZKKnowledgeLanguageItem *>  *languages__v;
 @end
 
 @implementation ZKKnowledgeSettings
@@ -87,7 +87,7 @@
 }
         
 
--(NSArray *)languages {
+-(NSArray<ZKKnowledgeLanguageItem *> *)languages {
     if ((fields__set[0] & 0x4) == 0) {
         self.languages__v = [self complexTypeArrayFromElements:@"languages" cls:[ZKKnowledgeLanguageItem class]];
         fields__set[0] |= 0x4; 
@@ -96,7 +96,7 @@
 }
         
 
--(void)setLanguages:(NSArray *)v {
+-(void)setLanguages:(NSArray<ZKKnowledgeLanguageItem *> *)v {
     self.languages__v = v;
     fields__set[0] |= 0x4; 
 }

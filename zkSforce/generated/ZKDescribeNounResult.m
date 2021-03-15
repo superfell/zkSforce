@@ -29,12 +29,12 @@
 #import "ZKNameCaseValue.h"
 
 @interface ZKDescribeNounResult()
-@property (strong,nonatomic) NSArray   *caseValues__v;
-@property (strong,nonatomic) NSString  *developerName__v;
-@property (strong,nonatomic) NSString  *gender__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSString  *pluralAlias__v;
-@property (strong,nonatomic) NSString  *startsWith__v;
+@property (strong,nonatomic) NSArray<ZKNameCaseValue *>  *caseValues__v;
+@property (strong,nonatomic) NSString                    *developerName__v;
+@property (strong,nonatomic) NSString                    *gender__v;
+@property (strong,nonatomic) NSString                    *name__v;
+@property (strong,nonatomic) NSString                    *pluralAlias__v;
+@property (strong,nonatomic) NSString                    *startsWith__v;
 @end
 
 @implementation ZKDescribeNounResult
@@ -63,7 +63,7 @@
 }
     
 
--(NSArray *)caseValues {
+-(NSArray<ZKNameCaseValue *> *)caseValues {
     if ((fields__set[0] & 0x1) == 0) {
         self.caseValues__v = [self complexTypeArrayFromElements:@"caseValues" cls:[ZKNameCaseValue class]];
         fields__set[0] |= 0x1; 
@@ -72,7 +72,7 @@
 }
         
 
--(void)setCaseValues:(NSArray *)v {
+-(void)setCaseValues:(NSArray<ZKNameCaseValue *> *)v {
     self.caseValues__v = v;
     fields__set[0] |= 0x1; 
 }

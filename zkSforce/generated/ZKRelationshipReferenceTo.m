@@ -28,7 +28,7 @@
 #import "ZKEnvelope.h"
 
 @interface ZKRelationshipReferenceTo()
-@property (strong,nonatomic) NSArray  *referenceTo__v;
+@property (strong,nonatomic) NSArray<NSString *>  *referenceTo__v;
 @end
 
 @implementation ZKRelationshipReferenceTo
@@ -52,7 +52,7 @@
 }
     
 
--(NSArray *)referenceTo {
+-(NSArray<NSString *> *)referenceTo {
     if ((fields__set[0] & 0x1) == 0) {
         self.referenceTo__v = [self strings:@"referenceTo"];
         fields__set[0] |= 0x1; 
@@ -61,7 +61,7 @@
 }
         
 
--(void)setReferenceTo:(NSArray *)v {
+-(void)setReferenceTo:(NSArray<NSString *> *)v {
     self.referenceTo__v = v;
     fields__set[0] |= 0x1; 
 }

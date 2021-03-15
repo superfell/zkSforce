@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *assignmentRuleId; 
-@property (assign,nonatomic) BOOL       useDefaultRule; 
+@property (strong,nonatomic) NSString  *assignmentRuleId;
+@property (assign,nonatomic) BOOL       useDefaultRule;
 @end

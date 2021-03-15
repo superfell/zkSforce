@@ -30,10 +30,13 @@
 #import "ZKParser.h"
 
 @class ZKDescribeLayoutButtonSection;
-@class ZKDescribeLayoutFeedView;
 @class ZKDescribeLayoutSection;
+@class ZKDescribeLayoutFeedView;
 @class ZKDescribeQuickActionListResult;
 @class ZKRelatedContent;
+@class ZKRelatedList;
+@class ZKDescribeLayoutSaveOption;
+
 /*
 <complexType name="DescribeLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -55,14 +58,14 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
-@property (strong,nonatomic) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
-@property (strong,nonatomic) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
-@property (strong,nonatomic) ZKDescribeLayoutFeedView         *feedView; 
-@property (strong,nonatomic) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
-@property (strong,nonatomic) NSString                         *id; 
-@property (strong,nonatomic) ZKDescribeQuickActionListResult  *quickActionList; 
-@property (strong,nonatomic) ZKRelatedContent                 *relatedContent; 
-@property (strong,nonatomic) NSArray                          *relatedLists;  // of ZKRelatedList
-@property (strong,nonatomic) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
+@property (strong,nonatomic) ZKDescribeLayoutButtonSection          *buttonLayoutSection;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSection *>     *detailLayoutSections;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSection *>     *editLayoutSections;
+@property (strong,nonatomic) ZKDescribeLayoutFeedView               *feedView;
+@property (strong,nonatomic) ZKDescribeLayoutSection                *highlightsPanelLayoutSection;
+@property (strong,nonatomic) NSString                               *id;
+@property (strong,nonatomic) ZKDescribeQuickActionListResult        *quickActionList;
+@property (strong,nonatomic) ZKRelatedContent                       *relatedContent;
+@property (strong,nonatomic) NSArray<ZKRelatedList *>               *relatedLists;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSaveOption *>  *saveOptions;
 @end

@@ -29,11 +29,11 @@
 #import "ZKDescribeColumn.h"
 
 @interface ZKDescribeSearchLayoutResult()
-@property (strong,nonatomic) NSString  *errorMsg__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (assign,nonatomic) NSInteger  limitRows__v;
-@property (strong,nonatomic) NSString  *objectType__v;
-@property (strong,nonatomic) NSArray   *searchColumns__v;
+@property (strong,nonatomic) NSString                     *errorMsg__v;
+@property (strong,nonatomic) NSString                     *label__v;
+@property (assign,nonatomic) NSInteger                     limitRows__v;
+@property (strong,nonatomic) NSString                     *objectType__v;
+@property (strong,nonatomic) NSArray<ZKDescribeColumn *>  *searchColumns__v;
 @end
 
 @implementation ZKDescribeSearchLayoutResult
@@ -121,7 +121,7 @@
 }
         
 
--(NSArray *)searchColumns {
+-(NSArray<ZKDescribeColumn *> *)searchColumns {
     if ((fields__set[0] & 0x10) == 0) {
         self.searchColumns__v = [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
         fields__set[0] |= 0x10; 
@@ -130,7 +130,7 @@
 }
         
 
--(void)setSearchColumns:(NSArray *)v {
+-(void)setSearchColumns:(NSArray<ZKDescribeColumn *> *)v {
     self.searchColumns__v = v;
     fields__set[0] |= 0x10; 
 }

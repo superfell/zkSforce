@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *developerNameOrId; 
-@property (strong,nonatomic) NSString  *sobjectType; 
+@property (strong,nonatomic) NSString  *developerNameOrId;
+@property (strong,nonatomic) NSString  *sobjectType;
 @end

@@ -30,15 +30,15 @@
 #import "ZKDescribeIcon.h"
 
 @interface ZKDescribeQuickActionListItemResult()
-@property (strong,nonatomic) NSString  *accessLevelRequired__v;
-@property (strong,nonatomic) NSArray   *colors__v;
-@property (strong,nonatomic) NSString  *iconUrl__v;
-@property (strong,nonatomic) NSArray   *icons__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSString  *miniIconUrl__v;
-@property (strong,nonatomic) NSString  *quickActionName__v;
-@property (strong,nonatomic) NSString  *targetSobjectType__v;
-@property (strong,nonatomic) NSString  *type__v;
+@property (strong,nonatomic) NSString                    *accessLevelRequired__v;
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors__v;
+@property (strong,nonatomic) NSString                    *iconUrl__v;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons__v;
+@property (strong,nonatomic) NSString                    *label__v;
+@property (strong,nonatomic) NSString                    *miniIconUrl__v;
+@property (strong,nonatomic) NSString                    *quickActionName__v;
+@property (strong,nonatomic) NSString                    *targetSobjectType__v;
+@property (strong,nonatomic) NSString                    *type__v;
 @end
 
 @implementation ZKDescribeQuickActionListItemResult
@@ -85,7 +85,7 @@
 }
         
 
--(NSArray *)colors {
+-(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x2) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
         fields__set[0] |= 0x2; 
@@ -94,7 +94,7 @@
 }
         
 
--(void)setColors:(NSArray *)v {
+-(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
     fields__set[0] |= 0x2; 
 }
@@ -115,7 +115,7 @@
 }
         
 
--(NSArray *)icons {
+-(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x8) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
         fields__set[0] |= 0x8; 
@@ -124,7 +124,7 @@
 }
         
 
--(void)setIcons:(NSArray *)v {
+-(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
     fields__set[0] |= 0x8; 
 }

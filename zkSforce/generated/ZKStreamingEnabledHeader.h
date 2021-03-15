@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL streamingEnabled; 
+@property (assign,nonatomic) BOOL streamingEnabled;
 @end

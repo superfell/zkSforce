@@ -29,11 +29,11 @@
 #import "ZKDataCategory.h"
 
 @interface ZKDescribeDataCategoryGroupStructureResult()
-@property (strong,nonatomic) NSString  *a_description__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSString  *name__v;
-@property (strong,nonatomic) NSString  *sobject__v;
-@property (strong,nonatomic) NSArray   *topCategories__v;
+@property (strong,nonatomic) NSString                   *a_description__v;
+@property (strong,nonatomic) NSString                   *label__v;
+@property (strong,nonatomic) NSString                   *name__v;
+@property (strong,nonatomic) NSString                   *sobject__v;
+@property (strong,nonatomic) NSArray<ZKDataCategory *>  *topCategories__v;
 @end
 
 @implementation ZKDescribeDataCategoryGroupStructureResult
@@ -121,7 +121,7 @@
 }
         
 
--(NSArray *)topCategories {
+-(NSArray<ZKDataCategory *> *)topCategories {
     if ((fields__set[0] & 0x10) == 0) {
         self.topCategories__v = [self complexTypeArrayFromElements:@"topCategories" cls:[ZKDataCategory class]];
         fields__set[0] |= 0x10; 
@@ -130,7 +130,7 @@
 }
         
 
--(void)setTopCategories:(NSArray *)v {
+-(void)setTopCategories:(NSArray<ZKDataCategory *> *)v {
     self.topCategories__v = v;
     fields__set[0] |= 0x10; 
 }

@@ -30,13 +30,13 @@
 #import "ZKListViewRecord.h"
 
 @interface ZKExecuteListViewResult()
-@property (strong,nonatomic) NSArray   *columns__v;
-@property (strong,nonatomic) NSString  *developerName__v;
-@property (assign,nonatomic) BOOL       done__v;
-@property (strong,nonatomic) NSString  *id__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSArray   *records__v;
-@property (assign,nonatomic) NSInteger  size__v;
+@property (strong,nonatomic) NSArray<ZKListViewColumn *>  *columns__v;
+@property (strong,nonatomic) NSString                     *developerName__v;
+@property (assign,nonatomic) BOOL                          done__v;
+@property (strong,nonatomic) NSString                     *id__v;
+@property (strong,nonatomic) NSString                     *label__v;
+@property (strong,nonatomic) NSArray<ZKListViewRecord *>  *records__v;
+@property (assign,nonatomic) NSInteger                     size__v;
 @end
 
 @implementation ZKExecuteListViewResult
@@ -66,7 +66,7 @@
 }
     
 
--(NSArray *)columns {
+-(NSArray<ZKListViewColumn *> *)columns {
     if ((fields__set[0] & 0x1) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewColumn class]];
         fields__set[0] |= 0x1; 
@@ -75,7 +75,7 @@
 }
         
 
--(void)setColumns:(NSArray *)v {
+-(void)setColumns:(NSArray<ZKListViewColumn *> *)v {
     self.columns__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -141,7 +141,7 @@
 }
         
 
--(NSArray *)records {
+-(NSArray<ZKListViewRecord *> *)records {
     if ((fields__set[0] & 0x20) == 0) {
         self.records__v = [self complexTypeArrayFromElements:@"records" cls:[ZKListViewRecord class]];
         fields__set[0] |= 0x20; 
@@ -150,7 +150,7 @@
 }
         
 
--(void)setRecords:(NSArray *)v {
+-(void)setRecords:(NSArray<ZKListViewRecord *> *)v {
     self.records__v = v;
     fields__set[0] |= 0x20; 
 }

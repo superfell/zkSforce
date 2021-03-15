@@ -29,11 +29,11 @@
 #import "ZKListViewOrderBy.h"
 
 @interface ZKExecuteListViewRequest()
-@property (strong,nonatomic) NSString  *developerNameOrId__v;
-@property (assign,nonatomic) NSInteger  limit__v;
-@property (assign,nonatomic) NSInteger  offset__v;
-@property (strong,nonatomic) NSArray   *orderBy__v;
-@property (strong,nonatomic) NSString  *sobjectType__v;
+@property (strong,nonatomic) NSString                      *developerNameOrId__v;
+@property (assign,nonatomic) NSInteger                      limit__v;
+@property (assign,nonatomic) NSInteger                      offset__v;
+@property (strong,nonatomic) NSArray<ZKListViewOrderBy *>  *orderBy__v;
+@property (strong,nonatomic) NSString                      *sobjectType__v;
 @end
 
 @implementation ZKExecuteListViewRequest
@@ -106,7 +106,7 @@
 }
         
 
--(NSArray *)orderBy {
+-(NSArray<ZKListViewOrderBy *> *)orderBy {
     if ((fields__set[0] & 0x8) == 0) {
         self.orderBy__v = [self complexTypeArrayFromElements:@"orderBy" cls:[ZKListViewOrderBy class]];
         fields__set[0] |= 0x8; 
@@ -115,7 +115,7 @@
 }
         
 
--(void)setOrderBy:(NSArray *)v {
+-(void)setOrderBy:(NSArray<ZKListViewOrderBy *> *)v {
     self.orderBy__v = v;
     fields__set[0] |= 0x8; 
 }

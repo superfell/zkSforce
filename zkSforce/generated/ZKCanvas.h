@@ -50,10 +50,10 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *displayLocation; 
-@property (strong,nonatomic) NSString  *referenceId; 
-@property (assign,nonatomic) BOOL       showLabel; 
-@property (assign,nonatomic) BOOL       showScrollbars; 
-@property (strong,nonatomic) NSString  *suggestedHeight; 
-@property (strong,nonatomic) NSString  *suggestedWidth; 
+@property (strong,nonatomic) NSString  *displayLocation;
+@property (strong,nonatomic) NSString  *referenceId;
+@property (assign,nonatomic) BOOL       showLabel;
+@property (assign,nonatomic) BOOL       showScrollbars;
+@property (strong,nonatomic) NSString  *suggestedHeight;
+@property (strong,nonatomic) NSString  *suggestedWidth;
 @end

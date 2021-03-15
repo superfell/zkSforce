@@ -29,7 +29,7 @@
 #import "ZKDescribeAppMenuItem.h"
 
 @interface ZKDescribeAppMenuResult()
-@property (strong,nonatomic) NSArray  *appMenuItems__v;
+@property (strong,nonatomic) NSArray<ZKDescribeAppMenuItem *>  *appMenuItems__v;
 @end
 
 @implementation ZKDescribeAppMenuResult
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)appMenuItems {
+-(NSArray<ZKDescribeAppMenuItem *> *)appMenuItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.appMenuItems__v = [self complexTypeArrayFromElements:@"appMenuItems" cls:[ZKDescribeAppMenuItem class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setAppMenuItems:(NSArray *)v {
+-(void)setAppMenuItems:(NSArray<ZKDescribeAppMenuItem *> *)v {
     self.appMenuItems__v = v;
     fields__set[0] |= 0x1; 
 }

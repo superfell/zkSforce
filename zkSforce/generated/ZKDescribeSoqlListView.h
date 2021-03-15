@@ -29,7 +29,10 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKListViewColumn;
+@class ZKListViewOrderBy;
 @class ZKSoqlWhereCondition;
+
 /*
 <complexType name="DescribeSoqlListView" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -50,13 +53,13 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray               *columns;  // of ZKListViewColumn
-@property (strong,nonatomic) NSString              *id; 
-@property (strong,nonatomic) NSArray               *orderBy;  // of ZKListViewOrderBy
-@property (strong,nonatomic) NSString              *query; 
-@property (strong,nonatomic) NSString              *relatedEntityId; 
-@property (strong,nonatomic) NSString              *scope; 
-@property (strong,nonatomic) NSString              *scopeEntityId; 
-@property (strong,nonatomic) NSString              *sobjectType; 
-@property (strong,nonatomic) ZKSoqlWhereCondition  *whereCondition; 
+@property (strong,nonatomic) NSArray<ZKListViewColumn *>   *columns;
+@property (strong,nonatomic) NSString                      *id;
+@property (strong,nonatomic) NSArray<ZKListViewOrderBy *>  *orderBy;
+@property (strong,nonatomic) NSString                      *query;
+@property (strong,nonatomic) NSString                      *relatedEntityId;
+@property (strong,nonatomic) NSString                      *scope;
+@property (strong,nonatomic) NSString                      *scopeEntityId;
+@property (strong,nonatomic) NSString                      *sobjectType;
+@property (strong,nonatomic) ZKSoqlWhereCondition          *whereCondition;
 @end

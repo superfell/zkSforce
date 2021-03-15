@@ -28,8 +28,8 @@
 #import "ZKEnvelope.h"
 
 @interface ZKProcessRequest()
-@property (strong,nonatomic) NSString  *comments__v;
-@property (strong,nonatomic) NSArray   *nextApproverIds__v;
+@property (strong,nonatomic) NSString             *comments__v;
+@property (strong,nonatomic) NSArray<NSString *>  *nextApproverIds__v;
 @end
 
 @implementation ZKProcessRequest
@@ -69,7 +69,7 @@
 }
         
 
--(NSArray *)nextApproverIds {
+-(NSArray<NSString *> *)nextApproverIds {
     if ((fields__set[0] & 0x2) == 0) {
         self.nextApproverIds__v = [self strings:@"nextApproverIds"];
         fields__set[0] |= 0x2; 
@@ -78,7 +78,7 @@
 }
         
 
--(void)setNextApproverIds:(NSArray *)v {
+-(void)setNextApproverIds:(NSArray<NSString *> *)v {
     self.nextApproverIds__v = v;
     fields__set[0] |= 0x2; 
 }

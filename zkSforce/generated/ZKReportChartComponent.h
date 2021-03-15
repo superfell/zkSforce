@@ -51,11 +51,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       cacheData; 
-@property (strong,nonatomic) NSString  *contextFilterableField; 
-@property (strong,nonatomic) NSString  *error; 
-@property (assign,nonatomic) BOOL       hideOnError; 
-@property (assign,nonatomic) BOOL       includeContext; 
-@property (assign,nonatomic) BOOL       showTitle; 
-@property (strong,nonatomic) NSString  *size; 
+@property (assign,nonatomic) BOOL       cacheData;
+@property (strong,nonatomic) NSString  *contextFilterableField;
+@property (strong,nonatomic) NSString  *error;
+@property (assign,nonatomic) BOOL       hideOnError;
+@property (assign,nonatomic) BOOL       includeContext;
+@property (assign,nonatomic) BOOL       showTitle;
+@property (strong,nonatomic) NSString  *size;
 @end

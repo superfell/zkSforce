@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL allowSave; 
-@property (assign,nonatomic) BOOL includeRecordDetails; 
-@property (assign,nonatomic) BOOL runAsCurrentUser; 
+@property (assign,nonatomic) BOOL allowSave;
+@property (assign,nonatomic) BOOL includeRecordDetails;
+@property (assign,nonatomic) BOOL runAsCurrentUser;
 @end

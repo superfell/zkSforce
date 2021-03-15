@@ -28,9 +28,9 @@
 #import "ZKEnvelope.h"
 
 @interface ZKSoqlCondition()
-@property (strong,nonatomic) NSString  *field__v;
-@property (strong,nonatomic) NSString  *operator__v;
-@property (strong,nonatomic) NSArray   *values__v;
+@property (strong,nonatomic) NSString             *field__v;
+@property (strong,nonatomic) NSString             *operator__v;
+@property (strong,nonatomic) NSArray<NSString *>  *values__v;
 @end
 
 @implementation ZKSoqlCondition
@@ -86,7 +86,7 @@
 }
         
 
--(NSArray *)values {
+-(NSArray<NSString *> *)values {
     if ((fields__set2[0] & 0x4) == 0) {
         self.values__v = [self strings:@"values"];
         fields__set2[0] |= 0x4; 
@@ -95,7 +95,7 @@
 }
         
 
--(void)setValues:(NSArray *)v {
+-(void)setValues:(NSArray<NSString *> *)v {
     self.values__v = v;
     fields__set2[0] |= 0x4; 
 }

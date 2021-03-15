@@ -48,8 +48,8 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *objectId; 
-@property (strong,nonatomic) NSString  *submitterId; 
-@property (strong,nonatomic) NSString  *processDefinitionNameOrId; 
-@property (assign,nonatomic) BOOL       skipEntryCriteria; 
+@property (strong,nonatomic) NSString  *objectId;
+@property (strong,nonatomic) NSString  *submitterId;
+@property (strong,nonatomic) NSString  *processDefinitionNameOrId;
+@property (assign,nonatomic) BOOL       skipEntryCriteria;
 @end

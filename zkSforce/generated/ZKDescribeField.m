@@ -32,64 +32,64 @@
 #import "ZKXsdAnyType.h"
 
 @interface ZKDescribeField()
-@property (assign,nonatomic) BOOL                   aggregatable__v;
-@property (assign,nonatomic) BOOL                   aiPredictionField__v;
-@property (assign,nonatomic) BOOL                   autoNumber__v;
-@property (assign,nonatomic) NSInteger              byteLength__v;
-@property (assign,nonatomic) BOOL                   calculated__v;
-@property (strong,nonatomic) NSString              *calculatedFormula__v;
-@property (assign,nonatomic) BOOL                   cascadeDelete__v;
-@property (assign,nonatomic) BOOL                   caseSensitive__v;
-@property (strong,nonatomic) NSString              *compoundFieldName__v;
-@property (strong,nonatomic) NSString              *controllerName__v;
-@property (assign,nonatomic) BOOL                   createable__v;
-@property (assign,nonatomic) BOOL                   custom__v;
-@property (assign,nonatomic) BOOL                   dataTranslationEnabled__v;
-@property (strong,nonatomic) ZKXsdAnyType          *defaultValue__v;
-@property (strong,nonatomic) NSString              *defaultValueFormula__v;
-@property (assign,nonatomic) BOOL                   defaultedOnCreate__v;
-@property (assign,nonatomic) BOOL                   dependentPicklist__v;
-@property (assign,nonatomic) BOOL                   deprecatedAndHidden__v;
-@property (assign,nonatomic) NSInteger              digits__v;
-@property (assign,nonatomic) BOOL                   displayLocationInDecimal__v;
-@property (assign,nonatomic) BOOL                   encrypted__v;
-@property (assign,nonatomic) BOOL                   externalId__v;
-@property (strong,nonatomic) NSString              *extraTypeInfo__v;
-@property (assign,nonatomic) BOOL                   filterable__v;
-@property (strong,nonatomic) ZKFilteredLookupInfo  *filteredLookupInfo__v;
-@property (assign,nonatomic) BOOL                   formulaTreatNullNumberAsZero__v;
-@property (assign,nonatomic) BOOL                   groupable__v;
-@property (assign,nonatomic) BOOL                   highScaleNumber__v;
-@property (assign,nonatomic) BOOL                   htmlFormatted__v;
-@property (assign,nonatomic) BOOL                   idLookup__v;
-@property (strong,nonatomic) NSString              *inlineHelpText__v;
-@property (strong,nonatomic) NSString              *label__v;
-@property (assign,nonatomic) NSInteger              length__v;
-@property (strong,nonatomic) NSString              *mask__v;
-@property (strong,nonatomic) NSString              *maskType__v;
-@property (strong,nonatomic) NSString              *name__v;
-@property (assign,nonatomic) BOOL                   nameField__v;
-@property (assign,nonatomic) BOOL                   namePointing__v;
-@property (assign,nonatomic) BOOL                   nillable__v;
-@property (assign,nonatomic) BOOL                   permissionable__v;
-@property (strong,nonatomic) NSArray               *picklistValues__v;
-@property (assign,nonatomic) BOOL                   polymorphicForeignKey__v;
-@property (assign,nonatomic) NSInteger              precision__v;
-@property (assign,nonatomic) BOOL                   queryByDistance__v;
-@property (strong,nonatomic) NSString              *referenceTargetField__v;
-@property (strong,nonatomic) NSArray               *referenceTo__v;
-@property (strong,nonatomic) NSString              *relationshipName__v;
-@property (assign,nonatomic) NSInteger              relationshipOrder__v;
-@property (assign,nonatomic) BOOL                   restrictedDelete__v;
-@property (assign,nonatomic) BOOL                   restrictedPicklist__v;
-@property (assign,nonatomic) NSInteger              scale__v;
-@property (assign,nonatomic) BOOL                   searchPrefilterable__v;
-@property (strong,nonatomic) NSString              *soapType__v;
-@property (assign,nonatomic) BOOL                   sortable__v;
-@property (strong,nonatomic) NSString              *type__v;
-@property (assign,nonatomic) BOOL                   unique__v;
-@property (assign,nonatomic) BOOL                   updateable__v;
-@property (assign,nonatomic) BOOL                   writeRequiresMasterRead__v;
+@property (assign,nonatomic) BOOL                         aggregatable__v;
+@property (assign,nonatomic) BOOL                         aiPredictionField__v;
+@property (assign,nonatomic) BOOL                         autoNumber__v;
+@property (assign,nonatomic) NSInteger                    byteLength__v;
+@property (assign,nonatomic) BOOL                         calculated__v;
+@property (strong,nonatomic) NSString                    *calculatedFormula__v;
+@property (assign,nonatomic) BOOL                         cascadeDelete__v;
+@property (assign,nonatomic) BOOL                         caseSensitive__v;
+@property (strong,nonatomic) NSString                    *compoundFieldName__v;
+@property (strong,nonatomic) NSString                    *controllerName__v;
+@property (assign,nonatomic) BOOL                         createable__v;
+@property (assign,nonatomic) BOOL                         custom__v;
+@property (assign,nonatomic) BOOL                         dataTranslationEnabled__v;
+@property (strong,nonatomic) ZKXsdAnyType                *defaultValue__v;
+@property (strong,nonatomic) NSString                    *defaultValueFormula__v;
+@property (assign,nonatomic) BOOL                         defaultedOnCreate__v;
+@property (assign,nonatomic) BOOL                         dependentPicklist__v;
+@property (assign,nonatomic) BOOL                         deprecatedAndHidden__v;
+@property (assign,nonatomic) NSInteger                    digits__v;
+@property (assign,nonatomic) BOOL                         displayLocationInDecimal__v;
+@property (assign,nonatomic) BOOL                         encrypted__v;
+@property (assign,nonatomic) BOOL                         externalId__v;
+@property (strong,nonatomic) NSString                    *extraTypeInfo__v;
+@property (assign,nonatomic) BOOL                         filterable__v;
+@property (strong,nonatomic) ZKFilteredLookupInfo        *filteredLookupInfo__v;
+@property (assign,nonatomic) BOOL                         formulaTreatNullNumberAsZero__v;
+@property (assign,nonatomic) BOOL                         groupable__v;
+@property (assign,nonatomic) BOOL                         highScaleNumber__v;
+@property (assign,nonatomic) BOOL                         htmlFormatted__v;
+@property (assign,nonatomic) BOOL                         idLookup__v;
+@property (strong,nonatomic) NSString                    *inlineHelpText__v;
+@property (strong,nonatomic) NSString                    *label__v;
+@property (assign,nonatomic) NSInteger                    length__v;
+@property (strong,nonatomic) NSString                    *mask__v;
+@property (strong,nonatomic) NSString                    *maskType__v;
+@property (strong,nonatomic) NSString                    *name__v;
+@property (assign,nonatomic) BOOL                         nameField__v;
+@property (assign,nonatomic) BOOL                         namePointing__v;
+@property (assign,nonatomic) BOOL                         nillable__v;
+@property (assign,nonatomic) BOOL                         permissionable__v;
+@property (strong,nonatomic) NSArray<ZKPicklistEntry *>  *picklistValues__v;
+@property (assign,nonatomic) BOOL                         polymorphicForeignKey__v;
+@property (assign,nonatomic) NSInteger                    precision__v;
+@property (assign,nonatomic) BOOL                         queryByDistance__v;
+@property (strong,nonatomic) NSString                    *referenceTargetField__v;
+@property (strong,nonatomic) NSArray<NSString *>         *referenceTo__v;
+@property (strong,nonatomic) NSString                    *relationshipName__v;
+@property (assign,nonatomic) NSInteger                    relationshipOrder__v;
+@property (assign,nonatomic) BOOL                         restrictedDelete__v;
+@property (assign,nonatomic) BOOL                         restrictedPicklist__v;
+@property (assign,nonatomic) NSInteger                    scale__v;
+@property (assign,nonatomic) BOOL                         searchPrefilterable__v;
+@property (strong,nonatomic) NSString                    *soapType__v;
+@property (assign,nonatomic) BOOL                         sortable__v;
+@property (strong,nonatomic) NSString                    *type__v;
+@property (assign,nonatomic) BOOL                         unique__v;
+@property (assign,nonatomic) BOOL                         updateable__v;
+@property (assign,nonatomic) BOOL                         writeRequiresMasterRead__v;
 @end
 
 @implementation ZKDescribeField
@@ -772,7 +772,7 @@
 }
         
 
--(NSArray *)picklistValues {
+-(NSArray<ZKPicklistEntry *> *)picklistValues {
     if ((fields__set[0] & 0x10000000000) == 0) {
         self.picklistValues__v = [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
         fields__set[0] |= 0x10000000000; 
@@ -781,7 +781,7 @@
 }
         
 
--(void)setPicklistValues:(NSArray *)v {
+-(void)setPicklistValues:(NSArray<ZKPicklistEntry *> *)v {
     self.picklistValues__v = v;
     fields__set[0] |= 0x10000000000; 
 }
@@ -847,7 +847,7 @@
 }
         
 
--(NSArray *)referenceTo {
+-(NSArray<NSString *> *)referenceTo {
     if ((fields__set[0] & 0x200000000000) == 0) {
         self.referenceTo__v = [self strings:@"referenceTo"];
         fields__set[0] |= 0x200000000000; 
@@ -856,7 +856,7 @@
 }
         
 
--(void)setReferenceTo:(NSArray *)v {
+-(void)setReferenceTo:(NSArray<NSString *> *)v {
     self.referenceTo__v = v;
     fields__set[0] |= 0x200000000000; 
 }

@@ -30,14 +30,14 @@
 #import "ZKDescribePathAssistantField.h"
 
 @interface ZKDescribePathAssistantStep()
-@property (assign,nonatomic) BOOL                      closed__v;
-@property (assign,nonatomic) BOOL                      converted__v;
-@property (strong,nonatomic) NSArray                  *fields__v;
-@property (strong,nonatomic) NSString                 *info__v;
-@property (strong,nonatomic) ZKDescribeLayoutSection  *layoutSection__v;
-@property (strong,nonatomic) NSString                 *picklistLabel__v;
-@property (strong,nonatomic) NSString                 *picklistValue__v;
-@property (assign,nonatomic) BOOL                      won__v;
+@property (assign,nonatomic) BOOL                                      closed__v;
+@property (assign,nonatomic) BOOL                                      converted__v;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistantField *>  *fields__v;
+@property (strong,nonatomic) NSString                                 *info__v;
+@property (strong,nonatomic) ZKDescribeLayoutSection                  *layoutSection__v;
+@property (strong,nonatomic) NSString                                 *picklistLabel__v;
+@property (strong,nonatomic) NSString                                 *picklistValue__v;
+@property (assign,nonatomic) BOOL                                      won__v;
 @end
 
 @implementation ZKDescribePathAssistantStep
@@ -98,7 +98,7 @@
 }
         
 
--(NSArray *)fields {
+-(NSArray<ZKDescribePathAssistantField *> *)fields {
     if ((fields__set[0] & 0x4) == 0) {
         self.fields__v = [self complexTypeArrayFromElements:@"fields" cls:[ZKDescribePathAssistantField class]];
         fields__set[0] |= 0x4; 
@@ -107,7 +107,7 @@
 }
         
 
--(void)setFields:(NSArray *)v {
+-(void)setFields:(NSArray<ZKDescribePathAssistantField *> *)v {
     self.fields__v = v;
     fields__set[0] |= 0x4; 
 }

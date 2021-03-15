@@ -29,9 +29,9 @@
 #import "ZKDescribeGlobalSObject.h"
 
 @interface ZKDescribeGlobalResult()
-@property (strong,nonatomic) NSString  *encoding__v;
-@property (assign,nonatomic) NSInteger  maxBatchSize__v;
-@property (strong,nonatomic) NSArray   *sobjects__v;
+@property (strong,nonatomic) NSString                            *encoding__v;
+@property (assign,nonatomic) NSInteger                            maxBatchSize__v;
+@property (strong,nonatomic) NSArray<ZKDescribeGlobalSObject *>  *sobjects__v;
 @end
 
 @implementation ZKDescribeGlobalResult
@@ -87,7 +87,7 @@
 }
         
 
--(NSArray *)sobjects {
+-(NSArray<ZKDescribeGlobalSObject *> *)sobjects {
     if ((fields__set[0] & 0x4) == 0) {
         self.sobjects__v = [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
         fields__set[0] |= 0x4; 
@@ -96,7 +96,7 @@
 }
         
 
--(void)setSobjects:(NSArray *)v {
+-(void)setSobjects:(NSArray<ZKDescribeGlobalSObject *> *)v {
     self.sobjects__v = v;
     fields__set[0] |= 0x4; 
 }

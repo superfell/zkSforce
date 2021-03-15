@@ -29,6 +29,9 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeColor;
+@class ZKDescribeIcon;
+
 /*
 <complexType name="DescribeLayoutButton" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -60,24 +63,24 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *behavior; 
-@property (strong,nonatomic) NSArray   *colors;  // of ZKDescribeColor
-@property (strong,nonatomic) NSString  *content; 
-@property (strong,nonatomic) NSString  *contentSource; 
-@property (assign,nonatomic) BOOL       custom; 
-@property (strong,nonatomic) NSString  *encoding; 
-@property (assign,nonatomic) NSInteger  height; 
-@property (strong,nonatomic) NSArray   *icons;  // of ZKDescribeIcon
-@property (strong,nonatomic) NSString  *label; 
-@property (assign,nonatomic) BOOL       menubar; 
-@property (strong,nonatomic) NSString  *name; 
-@property (assign,nonatomic) BOOL       overridden; 
-@property (assign,nonatomic) BOOL       resizeable; 
-@property (assign,nonatomic) BOOL       scrollbars; 
-@property (assign,nonatomic) BOOL       showsLocation; 
-@property (assign,nonatomic) BOOL       showsStatus; 
-@property (assign,nonatomic) BOOL       toolbar; 
-@property (strong,nonatomic) NSString  *url; 
-@property (assign,nonatomic) NSInteger  width; 
-@property (strong,nonatomic) NSString  *windowPosition; 
+@property (strong,nonatomic) NSString                    *behavior;
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors;
+@property (strong,nonatomic) NSString                    *content;
+@property (strong,nonatomic) NSString                    *contentSource;
+@property (assign,nonatomic) BOOL                         custom;
+@property (strong,nonatomic) NSString                    *encoding;
+@property (assign,nonatomic) NSInteger                    height;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons;
+@property (strong,nonatomic) NSString                    *label;
+@property (assign,nonatomic) BOOL                         menubar;
+@property (strong,nonatomic) NSString                    *name;
+@property (assign,nonatomic) BOOL                         overridden;
+@property (assign,nonatomic) BOOL                         resizeable;
+@property (assign,nonatomic) BOOL                         scrollbars;
+@property (assign,nonatomic) BOOL                         showsLocation;
+@property (assign,nonatomic) BOOL                         showsStatus;
+@property (assign,nonatomic) BOOL                         toolbar;
+@property (strong,nonatomic) NSString                    *url;
+@property (assign,nonatomic) NSInteger                    width;
+@property (strong,nonatomic) NSString                    *windowPosition;
 @end

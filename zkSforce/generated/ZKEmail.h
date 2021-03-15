@@ -47,11 +47,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       bccSender; 
-@property (strong,nonatomic) NSString  *emailPriority; 
-@property (strong,nonatomic) NSString  *replyTo; 
-@property (assign,nonatomic) BOOL       saveAsActivity; 
-@property (strong,nonatomic) NSString  *senderDisplayName; 
-@property (strong,nonatomic) NSString  *subject; 
-@property (assign,nonatomic) BOOL       useSignature; 
+@property (assign,nonatomic) BOOL       bccSender;
+@property (strong,nonatomic) NSString  *emailPriority;
+@property (strong,nonatomic) NSString  *replyTo;
+@property (assign,nonatomic) BOOL       saveAsActivity;
+@property (strong,nonatomic) NSString  *senderDisplayName;
+@property (strong,nonatomic) NSString  *subject;
+@property (assign,nonatomic) BOOL       useSignature;
 @end

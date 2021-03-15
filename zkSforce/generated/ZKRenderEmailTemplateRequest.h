@@ -44,8 +44,8 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       escapeHtmlInMergeFields; 
-@property (strong,nonatomic) NSArray   *templateBodies;  // of NSString
-@property (strong,nonatomic) NSString  *whatId; 
-@property (strong,nonatomic) NSString  *whoId; 
+@property (assign,nonatomic) BOOL                  escapeHtmlInMergeFields;
+@property (strong,nonatomic) NSArray<NSString *>  *templateBodies;
+@property (strong,nonatomic) NSString             *whatId;
+@property (strong,nonatomic) NSString             *whoId;
 @end

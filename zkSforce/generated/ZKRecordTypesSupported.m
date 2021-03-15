@@ -29,7 +29,7 @@
 #import "ZKRecordTypeInfo.h"
 
 @interface ZKRecordTypesSupported()
-@property (strong,nonatomic) NSArray  *recordTypeInfos__v;
+@property (strong,nonatomic) NSArray<ZKRecordTypeInfo *>  *recordTypeInfos__v;
 @end
 
 @implementation ZKRecordTypesSupported
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)recordTypeInfos {
+-(NSArray<ZKRecordTypeInfo *> *)recordTypeInfos {
     if ((fields__set[0] & 0x1) == 0) {
         self.recordTypeInfos__v = [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setRecordTypeInfos:(NSArray *)v {
+-(void)setRecordTypeInfos:(NSArray<ZKRecordTypeInfo *> *)v {
     self.recordTypeInfos__v = v;
     fields__set[0] |= 0x1; 
 }

@@ -29,8 +29,8 @@
 #import "ZKSearchLayoutField.h"
 
 @interface ZKSearchLayoutFieldsDisplayed()
-@property (assign,nonatomic) BOOL      applicable__v;
-@property (strong,nonatomic) NSArray  *fields__v;
+@property (assign,nonatomic) BOOL                             applicable__v;
+@property (strong,nonatomic) NSArray<ZKSearchLayoutField *>  *fields__v;
 @end
 
 @implementation ZKSearchLayoutFieldsDisplayed
@@ -70,7 +70,7 @@
 }
         
 
--(NSArray *)fields {
+-(NSArray<ZKSearchLayoutField *> *)fields {
     if ((fields__set[0] & 0x2) == 0) {
         self.fields__v = [self complexTypeArrayFromElements:@"fields" cls:[ZKSearchLayoutField class]];
         fields__set[0] |= 0x2; 
@@ -79,7 +79,7 @@
 }
         
 
--(void)setFields:(NSArray *)v {
+-(void)setFields:(NSArray<ZKSearchLayoutField *> *)v {
     self.fields__v = v;
     fields__set[0] |= 0x2; 
 }

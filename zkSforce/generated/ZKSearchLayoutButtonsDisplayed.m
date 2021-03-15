@@ -29,8 +29,8 @@
 #import "ZKSearchLayoutButton.h"
 
 @interface ZKSearchLayoutButtonsDisplayed()
-@property (assign,nonatomic) BOOL      applicable__v;
-@property (strong,nonatomic) NSArray  *buttons__v;
+@property (assign,nonatomic) BOOL                              applicable__v;
+@property (strong,nonatomic) NSArray<ZKSearchLayoutButton *>  *buttons__v;
 @end
 
 @implementation ZKSearchLayoutButtonsDisplayed
@@ -70,7 +70,7 @@
 }
         
 
--(NSArray *)buttons {
+-(NSArray<ZKSearchLayoutButton *> *)buttons {
     if ((fields__set[0] & 0x2) == 0) {
         self.buttons__v = [self complexTypeArrayFromElements:@"buttons" cls:[ZKSearchLayoutButton class]];
         fields__set[0] |= 0x2; 
@@ -79,7 +79,7 @@
 }
         
 
--(void)setButtons:(NSArray *)v {
+-(void)setButtons:(NSArray<ZKSearchLayoutButton *> *)v {
     self.buttons__v = v;
     fields__set[0] |= 0x2; 
 }

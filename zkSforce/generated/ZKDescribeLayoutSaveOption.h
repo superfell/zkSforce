@@ -46,10 +46,10 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       defaultValue; 
-@property (assign,nonatomic) BOOL       isDisplayed; 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSString  *restHeaderName; 
-@property (strong,nonatomic) NSString  *soapHeaderName; 
+@property (assign,nonatomic) BOOL       defaultValue;
+@property (assign,nonatomic) BOOL       isDisplayed;
+@property (strong,nonatomic) NSString  *label;
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *restHeaderName;
+@property (strong,nonatomic) NSString  *soapHeaderName;
 @end

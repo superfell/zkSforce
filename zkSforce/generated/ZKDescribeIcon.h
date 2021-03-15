@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *contentType; 
-@property (assign,nonatomic) NSInteger  height; 
-@property (strong,nonatomic) NSString  *theme; 
-@property (strong,nonatomic) NSString  *url; 
-@property (assign,nonatomic) NSInteger  width; 
+@property (strong,nonatomic) NSString  *contentType;
+@property (assign,nonatomic) NSInteger  height;
+@property (strong,nonatomic) NSString  *theme;
+@property (strong,nonatomic) NSString  *url;
+@property (assign,nonatomic) NSInteger  width;
 @end

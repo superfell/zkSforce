@@ -28,7 +28,7 @@
 #import "ZKEnvelope.h"
 
 @interface ZKJunctionIdListNames()
-@property (strong,nonatomic) NSArray  *names__v;
+@property (strong,nonatomic) NSArray<NSString *>  *names__v;
 @end
 
 @implementation ZKJunctionIdListNames
@@ -52,7 +52,7 @@
 }
     
 
--(NSArray *)names {
+-(NSArray<NSString *> *)names {
     if ((fields__set[0] & 0x1) == 0) {
         self.names__v = [self strings:@"names"];
         fields__set[0] |= 0x1; 
@@ -61,7 +61,7 @@
 }
         
 
--(void)setNames:(NSArray *)v {
+-(void)setNames:(NSArray<NSString *> *)v {
     self.names__v = v;
     fields__set[0] |= 0x1; 
 }

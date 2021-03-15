@@ -29,10 +29,10 @@
 #import "ZKError.h"
 
 @interface ZKUpsertResult()
-@property (assign,nonatomic) BOOL       created__v;
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSString  *id__v;
-@property (assign,nonatomic) BOOL       success__v;
+@property (assign,nonatomic) BOOL                 created__v;
+@property (strong,nonatomic) NSArray<ZKError *>  *errors__v;
+@property (strong,nonatomic) NSString            *id__v;
+@property (assign,nonatomic) BOOL                 success__v;
 @end
 
 @implementation ZKUpsertResult
@@ -74,7 +74,7 @@
 }
         
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x2) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x2; 
@@ -83,7 +83,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x2; 
 }

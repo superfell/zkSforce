@@ -29,7 +29,7 @@
 #import "ZKListViewRecordColumn.h"
 
 @interface ZKListViewRecord()
-@property (strong,nonatomic) NSArray  *columns__v;
+@property (strong,nonatomic) NSArray<ZKListViewRecordColumn *>  *columns__v;
 @end
 
 @implementation ZKListViewRecord
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)columns {
+-(NSArray<ZKListViewRecordColumn *> *)columns {
     if ((fields__set[0] & 0x1) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewRecordColumn class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setColumns:(NSArray *)v {
+-(void)setColumns:(NSArray<ZKListViewRecordColumn *> *)v {
     self.columns__v = v;
     fields__set[0] |= 0x1; 
 }

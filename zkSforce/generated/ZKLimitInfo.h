@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) NSInteger  current; 
-@property (assign,nonatomic) NSInteger  limit; 
-@property (strong,nonatomic) NSString  *type; 
+@property (assign,nonatomic) NSInteger  current;
+@property (assign,nonatomic) NSInteger  limit;
+@property (strong,nonatomic) NSString  *type;
 @end

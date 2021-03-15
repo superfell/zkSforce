@@ -30,9 +30,9 @@
 #import "ZKError.h"
 
 @interface ZKFindDuplicatesResult()
-@property (strong,nonatomic) NSArray  *duplicateResults__v;
-@property (strong,nonatomic) NSArray  *errors__v;
-@property (assign,nonatomic) BOOL      success__v;
+@property (strong,nonatomic) NSArray<ZKDuplicateResult *>  *duplicateResults__v;
+@property (strong,nonatomic) NSArray<ZKError *>            *errors__v;
+@property (assign,nonatomic) BOOL                           success__v;
 @end
 
 @implementation ZKFindDuplicatesResult
@@ -58,7 +58,7 @@
 }
     
 
--(NSArray *)duplicateResults {
+-(NSArray<ZKDuplicateResult *> *)duplicateResults {
     if ((fields__set[0] & 0x1) == 0) {
         self.duplicateResults__v = [self complexTypeArrayFromElements:@"duplicateResults" cls:[ZKDuplicateResult class]];
         fields__set[0] |= 0x1; 
@@ -67,13 +67,13 @@
 }
         
 
--(void)setDuplicateResults:(NSArray *)v {
+-(void)setDuplicateResults:(NSArray<ZKDuplicateResult *> *)v {
     self.duplicateResults__v = v;
     fields__set[0] |= 0x1; 
 }
         
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x2) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x2; 
@@ -82,7 +82,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x2; 
 }

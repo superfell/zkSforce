@@ -29,7 +29,7 @@
 #import "ZKDescribeRelatedContentItem.h"
 
 @interface ZKRelatedContent()
-@property (strong,nonatomic) NSArray  *relatedContentItems__v;
+@property (strong,nonatomic) NSArray<ZKDescribeRelatedContentItem *>  *relatedContentItems__v;
 @end
 
 @implementation ZKRelatedContent
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)relatedContentItems {
+-(NSArray<ZKDescribeRelatedContentItem *> *)relatedContentItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.relatedContentItems__v = [self complexTypeArrayFromElements:@"relatedContentItems" cls:[ZKDescribeRelatedContentItem class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setRelatedContentItems:(NSArray *)v {
+-(void)setRelatedContentItems:(NSArray<ZKDescribeRelatedContentItem *> *)v {
     self.relatedContentItems__v = v;
     fields__set[0] |= 0x1; 
 }

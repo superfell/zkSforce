@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *itemApiName; 
+@property (strong,nonatomic) NSString  *itemApiName;
 @end

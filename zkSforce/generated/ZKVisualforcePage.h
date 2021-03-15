@@ -49,9 +49,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       showLabel; 
-@property (assign,nonatomic) BOOL       showScrollbars; 
-@property (strong,nonatomic) NSString  *suggestedHeight; 
-@property (strong,nonatomic) NSString  *suggestedWidth; 
-@property (strong,nonatomic) NSString  *url; 
+@property (assign,nonatomic) BOOL       showLabel;
+@property (assign,nonatomic) BOOL       showScrollbars;
+@property (strong,nonatomic) NSString  *suggestedHeight;
+@property (strong,nonatomic) NSString  *suggestedWidth;
+@property (strong,nonatomic) NSString  *url;
 @end

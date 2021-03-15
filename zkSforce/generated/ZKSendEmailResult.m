@@ -29,8 +29,8 @@
 #import "ZKSendEmailError.h"
 
 @interface ZKSendEmailResult()
-@property (strong,nonatomic) NSArray  *errors__v;
-@property (assign,nonatomic) BOOL      success__v;
+@property (strong,nonatomic) NSArray<ZKSendEmailError *>  *errors__v;
+@property (assign,nonatomic) BOOL                          success__v;
 @end
 
 @implementation ZKSendEmailResult
@@ -55,7 +55,7 @@
 }
     
 
--(NSArray *)errors {
+-(NSArray<ZKSendEmailError *> *)errors {
     if ((fields__set[0] & 0x1) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKSendEmailError class]];
         fields__set[0] |= 0x1; 
@@ -64,7 +64,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKSendEmailError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x1; 
 }

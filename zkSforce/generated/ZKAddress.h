@@ -52,12 +52,12 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *city; 
-@property (strong,nonatomic) NSString  *country; 
-@property (strong,nonatomic) NSString  *countryCode; 
-@property (strong,nonatomic) NSString  *geocodeAccuracy; 
-@property (strong,nonatomic) NSString  *postalCode; 
-@property (strong,nonatomic) NSString  *state; 
-@property (strong,nonatomic) NSString  *stateCode; 
-@property (strong,nonatomic) NSString  *street; 
+@property (strong,nonatomic) NSString  *city;
+@property (strong,nonatomic) NSString  *country;
+@property (strong,nonatomic) NSString  *countryCode;
+@property (strong,nonatomic) NSString  *geocodeAccuracy;
+@property (strong,nonatomic) NSString  *postalCode;
+@property (strong,nonatomic) NSString  *state;
+@property (strong,nonatomic) NSString  *stateCode;
+@property (strong,nonatomic) NSString  *street;
 @end

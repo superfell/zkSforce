@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) NSInteger batchSize; 
+@property (assign,nonatomic) NSInteger batchSize;
 @end

@@ -29,13 +29,13 @@
 #import "ZKError.h"
 
 @interface ZKPerformQuickActionResult()
-@property (strong,nonatomic) NSString  *contextId__v;
-@property (assign,nonatomic) BOOL       created__v;
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSArray   *feedItemIds__v;
-@property (strong,nonatomic) NSArray   *ids__v;
-@property (assign,nonatomic) BOOL       success__v;
-@property (strong,nonatomic) NSString  *successMessage__v;
+@property (strong,nonatomic) NSString             *contextId__v;
+@property (assign,nonatomic) BOOL                  created__v;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors__v;
+@property (strong,nonatomic) NSArray<NSString *>  *feedItemIds__v;
+@property (strong,nonatomic) NSArray<NSString *>  *ids__v;
+@property (assign,nonatomic) BOOL                  success__v;
+@property (strong,nonatomic) NSString             *successMessage__v;
 @end
 
 @implementation ZKPerformQuickActionResult
@@ -95,7 +95,7 @@
 }
         
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x4) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x4; 
@@ -104,13 +104,13 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x4; 
 }
         
 
--(NSArray *)feedItemIds {
+-(NSArray<NSString *> *)feedItemIds {
     if ((fields__set[0] & 0x8) == 0) {
         self.feedItemIds__v = [self strings:@"feedItemIds"];
         fields__set[0] |= 0x8; 
@@ -119,13 +119,13 @@
 }
         
 
--(void)setFeedItemIds:(NSArray *)v {
+-(void)setFeedItemIds:(NSArray<NSString *> *)v {
     self.feedItemIds__v = v;
     fields__set[0] |= 0x8; 
 }
         
 
--(NSArray *)ids {
+-(NSArray<NSString *> *)ids {
     if ((fields__set[0] & 0x10) == 0) {
         self.ids__v = [self strings:@"ids"];
         fields__set[0] |= 0x10; 
@@ -134,7 +134,7 @@
 }
         
 
--(void)setIds:(NSArray *)v {
+-(void)setIds:(NSArray<NSString *> *)v {
     self.ids__v = v;
     fields__set[0] |= 0x10; 
 }

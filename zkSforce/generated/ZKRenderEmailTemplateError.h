@@ -44,8 +44,8 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *fieldName; 
-@property (strong,nonatomic) NSString  *message; 
-@property (assign,nonatomic) NSInteger  offset; 
-@property (strong,nonatomic) NSString  *statusCode; 
+@property (strong,nonatomic) NSString  *fieldName;
+@property (strong,nonatomic) NSString  *message;
+@property (assign,nonatomic) NSInteger  offset;
+@property (strong,nonatomic) NSString  *statusCode;
 @end

@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *formFactor; 
-@property (assign,nonatomic) BOOL       isAvailableInTouch; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSString  *pageId; 
-@property (strong,nonatomic) NSString  *url; 
+@property (strong,nonatomic) NSString  *formFactor;
+@property (assign,nonatomic) BOOL       isAvailableInTouch;
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *pageId;
+@property (strong,nonatomic) NSString  *url;
 @end

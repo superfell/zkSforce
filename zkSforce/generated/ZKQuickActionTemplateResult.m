@@ -30,11 +30,11 @@
 #import "ZKSObject.h"
 
 @interface ZKQuickActionTemplateResult()
-@property (strong,nonatomic) NSString   *contextId__v;
-@property (strong,nonatomic) ZKSObject  *defaultValueFormulas__v;
-@property (strong,nonatomic) ZKSObject  *defaultValues__v;
-@property (strong,nonatomic) NSArray    *errors__v;
-@property (assign,nonatomic) BOOL        success__v;
+@property (strong,nonatomic) NSString            *contextId__v;
+@property (strong,nonatomic) ZKSObject           *defaultValueFormulas__v;
+@property (strong,nonatomic) ZKSObject           *defaultValues__v;
+@property (strong,nonatomic) NSArray<ZKError *>  *errors__v;
+@property (assign,nonatomic) BOOL                 success__v;
 @end
 
 @implementation ZKQuickActionTemplateResult
@@ -107,7 +107,7 @@
 }
         
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x8) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x8; 
@@ -116,7 +116,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x8; 
 }

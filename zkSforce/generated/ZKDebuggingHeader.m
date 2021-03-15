@@ -29,8 +29,8 @@
 #import "ZKLogInfo.h"
 
 @interface ZKDebuggingHeader()
-@property (strong,nonatomic) NSArray   *categories__v;
-@property (strong,nonatomic) NSString  *debugLevel__v;
+@property (strong,nonatomic) NSArray<ZKLogInfo *>  *categories__v;
+@property (strong,nonatomic) NSString              *debugLevel__v;
 @end
 
 @implementation ZKDebuggingHeader
@@ -55,7 +55,7 @@
 }
     
 
--(NSArray *)categories {
+-(NSArray<ZKLogInfo *> *)categories {
     if ((fields__set[0] & 0x1) == 0) {
         self.categories__v = [self complexTypeArrayFromElements:@"categories" cls:[ZKLogInfo class]];
         fields__set[0] |= 0x1; 
@@ -64,7 +64,7 @@
 }
         
 
--(void)setCategories:(NSArray *)v {
+-(void)setCategories:(NSArray<ZKLogInfo *> *)v {
     self.categories__v = v;
     fields__set[0] |= 0x1; 
 }

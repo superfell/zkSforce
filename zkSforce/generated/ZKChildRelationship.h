@@ -48,12 +48,12 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       cascadeDelete; 
-@property (strong,nonatomic) NSString  *childSObject; 
-@property (assign,nonatomic) BOOL       deprecatedAndHidden; 
-@property (strong,nonatomic) NSString  *field; 
-@property (strong,nonatomic) NSArray   *junctionIdListNames;  // of NSString
-@property (strong,nonatomic) NSArray   *junctionReferenceTo;  // of NSString
-@property (strong,nonatomic) NSString  *relationshipName; 
-@property (assign,nonatomic) BOOL       restrictedDelete; 
+@property (assign,nonatomic) BOOL                  cascadeDelete;
+@property (strong,nonatomic) NSString             *childSObject;
+@property (assign,nonatomic) BOOL                  deprecatedAndHidden;
+@property (strong,nonatomic) NSString             *field;
+@property (strong,nonatomic) NSArray<NSString *>  *junctionIdListNames;
+@property (strong,nonatomic) NSArray<NSString *>  *junctionReferenceTo;
+@property (strong,nonatomic) NSString             *relationshipName;
+@property (assign,nonatomic) BOOL                  restrictedDelete;
 @end

@@ -29,7 +29,7 @@
 #import "ZKPackageVersion.h"
 
 @interface ZKPackageVersionHeader()
-@property (strong,nonatomic) NSArray  *packageVersions__v;
+@property (strong,nonatomic) NSArray<ZKPackageVersion *>  *packageVersions__v;
 @end
 
 @implementation ZKPackageVersionHeader
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)packageVersions {
+-(NSArray<ZKPackageVersion *> *)packageVersions {
     if ((fields__set[0] & 0x1) == 0) {
         self.packageVersions__v = [self complexTypeArrayFromElements:@"packageVersions" cls:[ZKPackageVersion class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setPackageVersions:(NSArray *)v {
+-(void)setPackageVersions:(NSArray<ZKPackageVersion *> *)v {
     self.packageVersions__v = v;
     fields__set[0] |= 0x1; 
 }

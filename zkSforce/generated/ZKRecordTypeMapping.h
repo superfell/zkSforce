@@ -29,6 +29,8 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKPicklistForRecordType;
+
 /*
 <complexType name="RecordTypeMapping" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -49,13 +51,13 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       active; 
-@property (assign,nonatomic) BOOL       available; 
-@property (assign,nonatomic) BOOL       defaultRecordTypeMapping; 
-@property (strong,nonatomic) NSString  *developerName; 
-@property (strong,nonatomic) NSString  *layoutId; 
-@property (assign,nonatomic) BOOL       master; 
-@property (strong,nonatomic) NSString  *name; 
-@property (strong,nonatomic) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
-@property (strong,nonatomic) NSString  *recordTypeId; 
+@property (assign,nonatomic) BOOL                                 active;
+@property (assign,nonatomic) BOOL                                 available;
+@property (assign,nonatomic) BOOL                                 defaultRecordTypeMapping;
+@property (strong,nonatomic) NSString                            *developerName;
+@property (strong,nonatomic) NSString                            *layoutId;
+@property (assign,nonatomic) BOOL                                 master;
+@property (strong,nonatomic) NSString                            *name;
+@property (strong,nonatomic) NSArray<ZKPicklistForRecordType *>  *picklistsForRecordType;
+@property (strong,nonatomic) NSString                            *recordTypeId;
 @end

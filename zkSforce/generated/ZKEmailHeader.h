@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL triggerAutoResponseEmail; 
-@property (assign,nonatomic) BOOL triggerOtherEmail; 
-@property (assign,nonatomic) BOOL triggerUserEmail; 
+@property (assign,nonatomic) BOOL triggerAutoResponseEmail;
+@property (assign,nonatomic) BOOL triggerOtherEmail;
+@property (assign,nonatomic) BOOL triggerUserEmail;
 @end

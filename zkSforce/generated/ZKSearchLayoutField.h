@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *apiName; 
-@property (strong,nonatomic) NSString  *label; 
-@property (assign,nonatomic) BOOL       sortable; 
+@property (strong,nonatomic) NSString  *apiName;
+@property (strong,nonatomic) NSString  *label;
+@property (assign,nonatomic) BOOL       sortable;
 @end

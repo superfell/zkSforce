@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSData    *body; 
-@property (strong,nonatomic) NSString  *contentType; 
-@property (strong,nonatomic) NSString  *fileName; 
-@property (strong,nonatomic) NSString  *id; 
-@property (assign,nonatomic) BOOL       a_inline; 
+@property (strong,nonatomic) NSData    *body;
+@property (strong,nonatomic) NSString  *contentType;
+@property (strong,nonatomic) NSString  *fileName;
+@property (strong,nonatomic) NSString  *id;
+@property (assign,nonatomic) BOOL       a_inline;
 @end

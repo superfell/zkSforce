@@ -29,7 +29,7 @@
 #import "ZKDescribeThemeItem.h"
 
 @interface ZKDescribeThemeResult()
-@property (strong,nonatomic) NSArray  *themeItems__v;
+@property (strong,nonatomic) NSArray<ZKDescribeThemeItem *>  *themeItems__v;
 @end
 
 @implementation ZKDescribeThemeResult
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)themeItems {
+-(NSArray<ZKDescribeThemeItem *> *)themeItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.themeItems__v = [self complexTypeArrayFromElements:@"themeItems" cls:[ZKDescribeThemeItem class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setThemeItems:(NSArray *)v {
+-(void)setThemeItems:(NSArray<ZKDescribeThemeItem *> *)v {
     self.themeItems__v = v;
     fields__set[0] |= 0x1; 
 }

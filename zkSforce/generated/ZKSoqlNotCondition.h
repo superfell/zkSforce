@@ -30,6 +30,7 @@
 #import "ZKParser.h"
 
 @class ZKSoqlWhereCondition;
+
 /*
 <complexType name="SoqlNotCondition" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
@@ -46,5 +47,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) ZKSoqlWhereCondition  *condition; 
+@property (strong,nonatomic) ZKSoqlWhereCondition  *condition;
 @end

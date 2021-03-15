@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *organizationId; 
-@property (strong,nonatomic) NSString  *portalId; 
+@property (strong,nonatomic) NSString  *organizationId;
+@property (strong,nonatomic) NSString  *portalId;
 @end

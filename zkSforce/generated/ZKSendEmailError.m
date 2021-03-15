@@ -28,10 +28,10 @@
 #import "ZKEnvelope.h"
 
 @interface ZKSendEmailError()
-@property (strong,nonatomic) NSArray   *fields__v;
-@property (strong,nonatomic) NSString  *message__v;
-@property (strong,nonatomic) NSString  *statusCode__v;
-@property (strong,nonatomic) NSString  *targetObjectId__v;
+@property (strong,nonatomic) NSArray<NSString *>  *fields__v;
+@property (strong,nonatomic) NSString             *message__v;
+@property (strong,nonatomic) NSString             *statusCode__v;
+@property (strong,nonatomic) NSString             *targetObjectId__v;
 @end
 
 @implementation ZKSendEmailError
@@ -58,7 +58,7 @@
 }
     
 
--(NSArray *)fields {
+-(NSArray<NSString *> *)fields {
     if ((fields__set[0] & 0x1) == 0) {
         self.fields__v = [self strings:@"fields"];
         fields__set[0] |= 0x1; 
@@ -67,7 +67,7 @@
 }
         
 
--(void)setFields:(NSArray *)v {
+-(void)setFields:(NSArray<NSString *> *)v {
     self.fields__v = v;
     fields__set[0] |= 0x1; 
 }

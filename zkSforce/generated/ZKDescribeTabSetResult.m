@@ -29,13 +29,13 @@
 #import "ZKDescribeTab.h"
 
 @interface ZKDescribeTabSetResult()
-@property (strong,nonatomic) NSString  *a_description__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSString  *logoUrl__v;
-@property (strong,nonatomic) NSString  *namespace__v;
-@property (assign,nonatomic) BOOL       selected__v;
-@property (strong,nonatomic) NSString  *tabSetId__v;
-@property (strong,nonatomic) NSArray   *tabs__v;
+@property (strong,nonatomic) NSString                  *a_description__v;
+@property (strong,nonatomic) NSString                  *label__v;
+@property (strong,nonatomic) NSString                  *logoUrl__v;
+@property (strong,nonatomic) NSString                  *namespace__v;
+@property (assign,nonatomic) BOOL                       selected__v;
+@property (strong,nonatomic) NSString                  *tabSetId__v;
+@property (strong,nonatomic) NSArray<ZKDescribeTab *>  *tabs__v;
 @end
 
 @implementation ZKDescribeTabSetResult
@@ -155,7 +155,7 @@
 }
         
 
--(NSArray *)tabs {
+-(NSArray<ZKDescribeTab *> *)tabs {
     if ((fields__set[0] & 0x40) == 0) {
         self.tabs__v = [self complexTypeArrayFromElements:@"tabs" cls:[ZKDescribeTab class]];
         fields__set[0] |= 0x40; 
@@ -164,7 +164,7 @@
 }
         
 
--(void)setTabs:(NSArray *)v {
+-(void)setTabs:(NSArray<ZKDescribeTab *> *)v {
     self.tabs__v = v;
     fields__set[0] |= 0x40; 
 }

@@ -29,12 +29,12 @@
 #import "ZKDescribeLayoutComponent.h"
 
 @interface ZKDescribeLayoutItem()
-@property (assign,nonatomic) BOOL       editableForNew__v;
-@property (assign,nonatomic) BOOL       editableForUpdate__v;
-@property (strong,nonatomic) NSString  *label__v;
-@property (strong,nonatomic) NSArray   *layoutComponents__v;
-@property (assign,nonatomic) BOOL       placeholder__v;
-@property (assign,nonatomic) BOOL       required__v;
+@property (assign,nonatomic) BOOL                                   editableForNew__v;
+@property (assign,nonatomic) BOOL                                   editableForUpdate__v;
+@property (strong,nonatomic) NSString                              *label__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutComponent *>  *layoutComponents__v;
+@property (assign,nonatomic) BOOL                                   placeholder__v;
+@property (assign,nonatomic) BOOL                                   required__v;
 @end
 
 @implementation ZKDescribeLayoutItem
@@ -108,7 +108,7 @@
 }
         
 
--(NSArray *)layoutComponents {
+-(NSArray<ZKDescribeLayoutComponent *> *)layoutComponents {
     if ((fields__set[0] & 0x8) == 0) {
         self.layoutComponents__v = [self complexTypeArrayFromElements:@"layoutComponents" cls:[ZKDescribeLayoutComponent class]];
         fields__set[0] |= 0x8; 
@@ -117,7 +117,7 @@
 }
         
 
--(void)setLayoutComponents:(NSArray *)v {
+-(void)setLayoutComponents:(NSArray<ZKDescribeLayoutComponent *> *)v {
     self.layoutComponents__v = v;
     fields__set[0] |= 0x8; 
 }

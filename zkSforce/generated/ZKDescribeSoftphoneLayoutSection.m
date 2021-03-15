@@ -29,8 +29,8 @@
 #import "ZKDescribeSoftphoneLayoutItem.h"
 
 @interface ZKDescribeSoftphoneLayoutSection()
-@property (strong,nonatomic) NSString  *entityApiName__v;
-@property (strong,nonatomic) NSArray   *items__v;
+@property (strong,nonatomic) NSString                                  *entityApiName__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutItem *>  *items__v;
 @end
 
 @implementation ZKDescribeSoftphoneLayoutSection
@@ -70,7 +70,7 @@
 }
         
 
--(NSArray *)items {
+-(NSArray<ZKDescribeSoftphoneLayoutItem *> *)items {
     if ((fields__set[0] & 0x2) == 0) {
         self.items__v = [self complexTypeArrayFromElements:@"items" cls:[ZKDescribeSoftphoneLayoutItem class]];
         fields__set[0] |= 0x2; 
@@ -79,7 +79,7 @@
 }
         
 
--(void)setItems:(NSArray *)v {
+-(void)setItems:(NSArray<ZKDescribeSoftphoneLayoutItem *> *)v {
     self.items__v = v;
     fields__set[0] |= 0x2; 
 }

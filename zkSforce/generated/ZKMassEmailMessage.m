@@ -28,10 +28,10 @@
 #import "ZKEnvelope.h"
 
 @interface ZKMassEmailMessage()
-@property (strong,nonatomic) NSString  *a_description__v;
-@property (strong,nonatomic) NSArray   *targetObjectIds__v;
-@property (strong,nonatomic) NSString  *templateId__v;
-@property (strong,nonatomic) NSArray   *whatIds__v;
+@property (strong,nonatomic) NSString             *a_description__v;
+@property (strong,nonatomic) NSArray<NSString *>  *targetObjectIds__v;
+@property (strong,nonatomic) NSString             *templateId__v;
+@property (strong,nonatomic) NSArray<NSString *>  *whatIds__v;
 @end
 
 @implementation ZKMassEmailMessage
@@ -73,7 +73,7 @@
 }
         
 
--(NSArray *)targetObjectIds {
+-(NSArray<NSString *> *)targetObjectIds {
     if ((fields__set2[0] & 0x2) == 0) {
         self.targetObjectIds__v = [self strings:@"targetObjectIds"];
         fields__set2[0] |= 0x2; 
@@ -82,7 +82,7 @@
 }
         
 
--(void)setTargetObjectIds:(NSArray *)v {
+-(void)setTargetObjectIds:(NSArray<NSString *> *)v {
     self.targetObjectIds__v = v;
     fields__set2[0] |= 0x2; 
 }
@@ -103,7 +103,7 @@
 }
         
 
--(NSArray *)whatIds {
+-(NSArray<NSString *> *)whatIds {
     if ((fields__set2[0] & 0x8) == 0) {
         self.whatIds__v = [self strings:@"whatIds"];
         fields__set2[0] |= 0x8; 
@@ -112,7 +112,7 @@
 }
         
 
--(void)setWhatIds:(NSArray *)v {
+-(void)setWhatIds:(NSArray<NSString *> *)v {
     self.whatIds__v = v;
     fields__set2[0] |= 0x8; 
 }

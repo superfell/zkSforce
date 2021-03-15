@@ -51,11 +51,11 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *error; 
-@property (strong,nonatomic) NSString  *filter; 
-@property (strong,nonatomic) NSString  *height; 
-@property (assign,nonatomic) BOOL       hideOnError; 
-@property (assign,nonatomic) BOOL       showSharing; 
-@property (assign,nonatomic) BOOL       showTitle; 
-@property (strong,nonatomic) NSString  *width; 
+@property (strong,nonatomic) NSString  *error;
+@property (strong,nonatomic) NSString  *filter;
+@property (strong,nonatomic) NSString  *height;
+@property (assign,nonatomic) BOOL       hideOnError;
+@property (assign,nonatomic) BOOL       showSharing;
+@property (assign,nonatomic) BOOL       showTitle;
+@property (strong,nonatomic) NSString  *width;
 @end

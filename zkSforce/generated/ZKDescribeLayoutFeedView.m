@@ -29,7 +29,7 @@
 #import "ZKDescribeLayoutFeedFilter.h"
 
 @interface ZKDescribeLayoutFeedView()
-@property (strong,nonatomic) NSArray  *feedFilters__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutFeedFilter *>  *feedFilters__v;
 @end
 
 @implementation ZKDescribeLayoutFeedView
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)feedFilters {
+-(NSArray<ZKDescribeLayoutFeedFilter *> *)feedFilters {
     if ((fields__set[0] & 0x1) == 0) {
         self.feedFilters__v = [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setFeedFilters:(NSArray *)v {
+-(void)setFeedFilters:(NSArray<ZKDescribeLayoutFeedFilter *> *)v {
     self.feedFilters__v = v;
     fields__set[0] |= 0x1; 
 }

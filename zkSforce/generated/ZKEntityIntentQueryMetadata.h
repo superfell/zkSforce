@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       intentQuery; 
-@property (strong,nonatomic) NSString  *message; 
+@property (assign,nonatomic) BOOL       intentQuery;
+@property (strong,nonatomic) NSString  *message;
 @end

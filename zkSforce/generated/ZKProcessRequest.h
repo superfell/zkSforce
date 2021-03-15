@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *comments; 
-@property (strong,nonatomic) NSArray   *nextApproverIds;  // of NSString
+@property (strong,nonatomic) NSString             *comments;
+@property (strong,nonatomic) NSArray<NSString *>  *nextApproverIds;
 @end

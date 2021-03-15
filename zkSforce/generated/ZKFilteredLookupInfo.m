@@ -28,9 +28,9 @@
 #import "ZKEnvelope.h"
 
 @interface ZKFilteredLookupInfo()
-@property (strong,nonatomic) NSArray  *controllingFields__v;
-@property (assign,nonatomic) BOOL      dependent__v;
-@property (assign,nonatomic) BOOL      optionalFilter__v;
+@property (strong,nonatomic) NSArray<NSString *>  *controllingFields__v;
+@property (assign,nonatomic) BOOL                  dependent__v;
+@property (assign,nonatomic) BOOL                  optionalFilter__v;
 @end
 
 @implementation ZKFilteredLookupInfo
@@ -56,7 +56,7 @@
 }
     
 
--(NSArray *)controllingFields {
+-(NSArray<NSString *> *)controllingFields {
     if ((fields__set[0] & 0x1) == 0) {
         self.controllingFields__v = [self strings:@"controllingFields"];
         fields__set[0] |= 0x1; 
@@ -65,7 +65,7 @@
 }
         
 
--(void)setControllingFields:(NSArray *)v {
+-(void)setControllingFields:(NSArray<NSString *> *)v {
     self.controllingFields__v = v;
     fields__set[0] |= 0x1; 
 }

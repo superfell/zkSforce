@@ -29,11 +29,11 @@
 #import "ZKError.h"
 
 @interface ZKMergeResult()
-@property (strong,nonatomic) NSArray   *errors__v;
-@property (strong,nonatomic) NSString  *id__v;
-@property (strong,nonatomic) NSArray   *mergedRecordIds__v;
-@property (assign,nonatomic) BOOL       success__v;
-@property (strong,nonatomic) NSArray   *updatedRelatedIds__v;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors__v;
+@property (strong,nonatomic) NSString             *id__v;
+@property (strong,nonatomic) NSArray<NSString *>  *mergedRecordIds__v;
+@property (assign,nonatomic) BOOL                  success__v;
+@property (strong,nonatomic) NSArray<NSString *>  *updatedRelatedIds__v;
 @end
 
 @implementation ZKMergeResult
@@ -61,7 +61,7 @@
 }
     
 
--(NSArray *)errors {
+-(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x1) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
         fields__set[0] |= 0x1; 
@@ -70,7 +70,7 @@
 }
         
 
--(void)setErrors:(NSArray *)v {
+-(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
     fields__set[0] |= 0x1; 
 }
@@ -91,7 +91,7 @@
 }
         
 
--(NSArray *)mergedRecordIds {
+-(NSArray<NSString *> *)mergedRecordIds {
     if ((fields__set[0] & 0x4) == 0) {
         self.mergedRecordIds__v = [self strings:@"mergedRecordIds"];
         fields__set[0] |= 0x4; 
@@ -100,7 +100,7 @@
 }
         
 
--(void)setMergedRecordIds:(NSArray *)v {
+-(void)setMergedRecordIds:(NSArray<NSString *> *)v {
     self.mergedRecordIds__v = v;
     fields__set[0] |= 0x4; 
 }
@@ -121,7 +121,7 @@
 }
         
 
--(NSArray *)updatedRelatedIds {
+-(NSArray<NSString *> *)updatedRelatedIds {
     if ((fields__set[0] & 0x10) == 0) {
         self.updatedRelatedIds__v = [self strings:@"updatedRelatedIds"];
         fields__set[0] |= 0x10; 
@@ -130,7 +130,7 @@
 }
         
 
--(void)setUpdatedRelatedIds:(NSArray *)v {
+-(void)setUpdatedRelatedIds:(NSArray<NSString *> *)v {
     self.updatedRelatedIds__v = v;
     fields__set[0] |= 0x10; 
 }

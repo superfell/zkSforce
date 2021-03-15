@@ -29,8 +29,8 @@
 #import "ZKNameValuePair.h"
 
 @interface ZKSearchSnippet()
-@property (strong,nonatomic) NSString  *text__v;
-@property (strong,nonatomic) NSArray   *wholeFields__v;
+@property (strong,nonatomic) NSString                    *text__v;
+@property (strong,nonatomic) NSArray<ZKNameValuePair *>  *wholeFields__v;
 @end
 
 @implementation ZKSearchSnippet
@@ -70,7 +70,7 @@
 }
         
 
--(NSArray *)wholeFields {
+-(NSArray<ZKNameValuePair *> *)wholeFields {
     if ((fields__set[0] & 0x2) == 0) {
         self.wholeFields__v = [self complexTypeArrayFromElements:@"wholeFields" cls:[ZKNameValuePair class]];
         fields__set[0] |= 0x2; 
@@ -79,7 +79,7 @@
 }
         
 
--(void)setWholeFields:(NSArray *)v {
+-(void)setWholeFields:(NSArray<ZKNameValuePair *> *)v {
     self.wholeFields__v = v;
     fields__set[0] |= 0x2; 
 }

@@ -29,7 +29,7 @@
 #import "ZKDescribeQuickActionListItemResult.h"
 
 @interface ZKDescribeQuickActionListResult()
-@property (strong,nonatomic) NSArray  *quickActionListItems__v;
+@property (strong,nonatomic) NSArray<ZKDescribeQuickActionListItemResult *>  *quickActionListItems__v;
 @end
 
 @implementation ZKDescribeQuickActionListResult
@@ -53,7 +53,7 @@
 }
     
 
--(NSArray *)quickActionListItems {
+-(NSArray<ZKDescribeQuickActionListItemResult *> *)quickActionListItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.quickActionListItems__v = [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
         fields__set[0] |= 0x1; 
@@ -62,7 +62,7 @@
 }
         
 
--(void)setQuickActionListItems:(NSArray *)v {
+-(void)setQuickActionListItems:(NSArray<ZKDescribeQuickActionListItemResult *> *)v {
     self.quickActionListItems__v = v;
     fields__set[0] |= 0x1; 
 }

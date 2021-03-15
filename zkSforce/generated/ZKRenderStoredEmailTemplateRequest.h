@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *attachmentRetrievalOption; 
-@property (strong,nonatomic) NSString  *templateId; 
-@property (assign,nonatomic) BOOL       updateTemplateUsage; 
-@property (strong,nonatomic) NSString  *whatId; 
-@property (strong,nonatomic) NSString  *whoId; 
+@property (strong,nonatomic) NSString  *attachmentRetrievalOption;
+@property (strong,nonatomic) NSString  *templateId;
+@property (assign,nonatomic) BOOL       updateTemplateUsage;
+@property (strong,nonatomic) NSString  *whatId;
+@property (strong,nonatomic) NSString  *whoId;
 @end

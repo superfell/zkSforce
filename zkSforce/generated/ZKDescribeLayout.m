@@ -35,16 +35,16 @@
 #import "ZKRelatedList.h"
 
 @interface ZKDescribeLayout()
-@property (strong,nonatomic) ZKDescribeLayoutButtonSection    *buttonLayoutSection__v;
-@property (strong,nonatomic) NSArray                          *detailLayoutSections__v;
-@property (strong,nonatomic) NSArray                          *editLayoutSections__v;
-@property (strong,nonatomic) ZKDescribeLayoutFeedView         *feedView__v;
-@property (strong,nonatomic) ZKDescribeLayoutSection          *highlightsPanelLayoutSection__v;
-@property (strong,nonatomic) NSString                         *id__v;
-@property (strong,nonatomic) ZKDescribeQuickActionListResult  *quickActionList__v;
-@property (strong,nonatomic) ZKRelatedContent                 *relatedContent__v;
-@property (strong,nonatomic) NSArray                          *relatedLists__v;
-@property (strong,nonatomic) NSArray                          *saveOptions__v;
+@property (strong,nonatomic) ZKDescribeLayoutButtonSection          *buttonLayoutSection__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSection *>     *detailLayoutSections__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSection *>     *editLayoutSections__v;
+@property (strong,nonatomic) ZKDescribeLayoutFeedView               *feedView__v;
+@property (strong,nonatomic) ZKDescribeLayoutSection                *highlightsPanelLayoutSection__v;
+@property (strong,nonatomic) NSString                               *id__v;
+@property (strong,nonatomic) ZKDescribeQuickActionListResult        *quickActionList__v;
+@property (strong,nonatomic) ZKRelatedContent                       *relatedContent__v;
+@property (strong,nonatomic) NSArray<ZKRelatedList *>               *relatedLists__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSaveOption *>  *saveOptions__v;
 @end
 
 @implementation ZKDescribeLayout
@@ -92,7 +92,7 @@
 }
         
 
--(NSArray *)detailLayoutSections {
+-(NSArray<ZKDescribeLayoutSection *> *)detailLayoutSections {
     if ((fields__set[0] & 0x2) == 0) {
         self.detailLayoutSections__v = [self complexTypeArrayFromElements:@"detailLayoutSections" cls:[ZKDescribeLayoutSection class]];
         fields__set[0] |= 0x2; 
@@ -101,13 +101,13 @@
 }
         
 
--(void)setDetailLayoutSections:(NSArray *)v {
+-(void)setDetailLayoutSections:(NSArray<ZKDescribeLayoutSection *> *)v {
     self.detailLayoutSections__v = v;
     fields__set[0] |= 0x2; 
 }
         
 
--(NSArray *)editLayoutSections {
+-(NSArray<ZKDescribeLayoutSection *> *)editLayoutSections {
     if ((fields__set[0] & 0x4) == 0) {
         self.editLayoutSections__v = [self complexTypeArrayFromElements:@"editLayoutSections" cls:[ZKDescribeLayoutSection class]];
         fields__set[0] |= 0x4; 
@@ -116,7 +116,7 @@
 }
         
 
--(void)setEditLayoutSections:(NSArray *)v {
+-(void)setEditLayoutSections:(NSArray<ZKDescribeLayoutSection *> *)v {
     self.editLayoutSections__v = v;
     fields__set[0] |= 0x4; 
 }
@@ -197,7 +197,7 @@
 }
         
 
--(NSArray *)relatedLists {
+-(NSArray<ZKRelatedList *> *)relatedLists {
     if ((fields__set[0] & 0x100) == 0) {
         self.relatedLists__v = [self complexTypeArrayFromElements:@"relatedLists" cls:[ZKRelatedList class]];
         fields__set[0] |= 0x100; 
@@ -206,13 +206,13 @@
 }
         
 
--(void)setRelatedLists:(NSArray *)v {
+-(void)setRelatedLists:(NSArray<ZKRelatedList *> *)v {
     self.relatedLists__v = v;
     fields__set[0] |= 0x100; 
 }
         
 
--(NSArray *)saveOptions {
+-(NSArray<ZKDescribeLayoutSaveOption *> *)saveOptions {
     if ((fields__set[0] & 0x200) == 0) {
         self.saveOptions__v = [self complexTypeArrayFromElements:@"saveOptions" cls:[ZKDescribeLayoutSaveOption class]];
         fields__set[0] |= 0x200; 
@@ -221,7 +221,7 @@
 }
         
 
--(void)setSaveOptions:(NSArray *)v {
+-(void)setSaveOptions:(NSArray<ZKDescribeLayoutSaveOption *> *)v {
     self.saveOptions__v = v;
     fields__set[0] |= 0x200; 
 }

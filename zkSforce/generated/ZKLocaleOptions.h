@@ -42,6 +42,6 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString  *language; 
-@property (assign,nonatomic) BOOL       localizeErrors; 
+@property (strong,nonatomic) NSString  *language;
+@property (assign,nonatomic) BOOL       localizeErrors;
 @end

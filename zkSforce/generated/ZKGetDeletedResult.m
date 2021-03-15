@@ -29,9 +29,9 @@
 #import "ZKDeletedRecord.h"
 
 @interface ZKGetDeletedResult()
-@property (strong,nonatomic) NSArray  *deletedRecords__v;
-@property (strong,nonatomic) NSDate   *earliestDateAvailable__v;
-@property (strong,nonatomic) NSDate   *latestDateCovered__v;
+@property (strong,nonatomic) NSArray<ZKDeletedRecord *>  *deletedRecords__v;
+@property (strong,nonatomic) NSDate                      *earliestDateAvailable__v;
+@property (strong,nonatomic) NSDate                      *latestDateCovered__v;
 @end
 
 @implementation ZKGetDeletedResult
@@ -57,7 +57,7 @@
 }
     
 
--(NSArray *)deletedRecords {
+-(NSArray<ZKDeletedRecord *> *)deletedRecords {
     if ((fields__set[0] & 0x1) == 0) {
         self.deletedRecords__v = [self complexTypeArrayFromElements:@"deletedRecords" cls:[ZKDeletedRecord class]];
         fields__set[0] |= 0x1; 
@@ -66,7 +66,7 @@
 }
         
 
--(void)setDeletedRecords:(NSArray *)v {
+-(void)setDeletedRecords:(NSArray<ZKDeletedRecord *> *)v {
     self.deletedRecords__v = v;
     fields__set[0] |= 0x1; 
 }

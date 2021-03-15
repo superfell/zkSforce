@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL disableFeedTracking; 
+@property (assign,nonatomic) BOOL disableFeedTracking;
 @end

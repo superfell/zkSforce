@@ -29,16 +29,16 @@
 #import "ZKDescribeLayoutRow.h"
 
 @interface ZKDescribeLayoutSection()
-@property (assign,nonatomic) BOOL       collapsed__v;
-@property (assign,nonatomic) NSInteger  columns__v;
-@property (strong,nonatomic) NSString  *heading__v;
-@property (strong,nonatomic) NSArray   *layoutRows__v;
-@property (strong,nonatomic) NSString  *layoutSectionId__v;
-@property (strong,nonatomic) NSString  *parentLayoutId__v;
-@property (assign,nonatomic) NSInteger  rows__v;
-@property (strong,nonatomic) NSString  *tabOrder__v;
-@property (assign,nonatomic) BOOL       useCollapsibleSection__v;
-@property (assign,nonatomic) BOOL       useHeading__v;
+@property (assign,nonatomic) BOOL                             collapsed__v;
+@property (assign,nonatomic) NSInteger                        columns__v;
+@property (strong,nonatomic) NSString                        *heading__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutRow *>  *layoutRows__v;
+@property (strong,nonatomic) NSString                        *layoutSectionId__v;
+@property (strong,nonatomic) NSString                        *parentLayoutId__v;
+@property (assign,nonatomic) NSInteger                        rows__v;
+@property (strong,nonatomic) NSString                        *tabOrder__v;
+@property (assign,nonatomic) BOOL                             useCollapsibleSection__v;
+@property (assign,nonatomic) BOOL                             useHeading__v;
 @end
 
 @implementation ZKDescribeLayoutSection
@@ -116,7 +116,7 @@
 }
         
 
--(NSArray *)layoutRows {
+-(NSArray<ZKDescribeLayoutRow *> *)layoutRows {
     if ((fields__set[0] & 0x8) == 0) {
         self.layoutRows__v = [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
         fields__set[0] |= 0x8; 
@@ -125,7 +125,7 @@
 }
         
 
--(void)setLayoutRows:(NSArray *)v {
+-(void)setLayoutRows:(NSArray<ZKDescribeLayoutRow *> *)v {
     self.layoutRows__v = v;
     fields__set[0] |= 0x8; 
 }

@@ -43,7 +43,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) NSInteger  majorNumber; 
-@property (assign,nonatomic) NSInteger  minorNumber; 
-@property (strong,nonatomic) NSString  *namespace; 
+@property (assign,nonatomic) NSInteger  majorNumber;
+@property (assign,nonatomic) NSInteger  minorNumber;
+@property (strong,nonatomic) NSString  *namespace;
 @end

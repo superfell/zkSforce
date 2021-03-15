@@ -29,10 +29,10 @@
 #import "ZKExtendedErrorDetails.h"
 
 @interface ZKError()
-@property (strong,nonatomic) NSArray   *extendedErrorDetails__v;
-@property (strong,nonatomic) NSArray   *fields__v;
-@property (strong,nonatomic) NSString  *message__v;
-@property (strong,nonatomic) NSString  *statusCode__v;
+@property (strong,nonatomic) NSArray<ZKExtendedErrorDetails *>  *extendedErrorDetails__v;
+@property (strong,nonatomic) NSArray<NSString *>                *fields__v;
+@property (strong,nonatomic) NSString                           *message__v;
+@property (strong,nonatomic) NSString                           *statusCode__v;
 @end
 
 @implementation ZKError
@@ -59,7 +59,7 @@
 }
     
 
--(NSArray *)extendedErrorDetails {
+-(NSArray<ZKExtendedErrorDetails *> *)extendedErrorDetails {
     if ((fields__set[0] & 0x1) == 0) {
         self.extendedErrorDetails__v = [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
         fields__set[0] |= 0x1; 
@@ -68,13 +68,13 @@
 }
         
 
--(void)setExtendedErrorDetails:(NSArray *)v {
+-(void)setExtendedErrorDetails:(NSArray<ZKExtendedErrorDetails *> *)v {
     self.extendedErrorDetails__v = v;
     fields__set[0] |= 0x1; 
 }
         
 
--(NSArray *)fields {
+-(NSArray<NSString *> *)fields {
     if ((fields__set[0] & 0x2) == 0) {
         self.fields__v = [self strings:@"fields"];
         fields__set[0] |= 0x2; 
@@ -83,7 +83,7 @@
 }
         
 
--(void)setFields:(NSArray *)v {
+-(void)setFields:(NSArray<NSString *> *)v {
     self.fields__v = v;
     fields__set[0] |= 0x2; 
 }

@@ -29,6 +29,9 @@
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
 
+@class ZKDescribeCompactLayout;
+@class ZKRecordTypeCompactLayoutMapping;
+
 /*
 <complexType name="DescribeCompactLayoutsResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -43,7 +46,7 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSArray   *compactLayouts;  // of ZKDescribeCompactLayout
-@property (strong,nonatomic) NSString  *defaultCompactLayoutId; 
-@property (strong,nonatomic) NSArray   *recordTypeCompactLayoutMappings;  // of ZKRecordTypeCompactLayoutMapping
+@property (strong,nonatomic) NSArray<ZKDescribeCompactLayout *>           *compactLayouts;
+@property (strong,nonatomic) NSString                                     *defaultCompactLayoutId;
+@property (strong,nonatomic) NSArray<ZKRecordTypeCompactLayoutMapping *>  *recordTypeCompactLayoutMappings;
 @end

@@ -45,9 +45,9 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) BOOL       active; 
-@property (assign,nonatomic) BOOL       defaultValue; 
-@property (strong,nonatomic) NSString  *label; 
-@property (strong,nonatomic) NSData    *validFor; 
-@property (strong,nonatomic) NSString  *value; 
+@property (assign,nonatomic) BOOL       active;
+@property (assign,nonatomic) BOOL       defaultValue;
+@property (strong,nonatomic) NSString  *label;
+@property (strong,nonatomic) NSData    *validFor;
+@property (strong,nonatomic) NSString  *value;
 @end

@@ -30,6 +30,7 @@
 #import "ZKParser.h"
 
 @class ZKSObject;
+
 /*
 <complexType name="LeadConvert" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
@@ -58,21 +59,21 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong,nonatomic) NSString   *accountId; 
-@property (strong,nonatomic) ZKSObject  *accountRecord; 
-@property (assign,nonatomic) BOOL        bypassAccountDedupeCheck; 
-@property (assign,nonatomic) BOOL        bypassContactDedupeCheck; 
-@property (strong,nonatomic) NSString   *contactId; 
-@property (strong,nonatomic) ZKSObject  *contactRecord; 
-@property (strong,nonatomic) NSString   *convertedStatus; 
-@property (assign,nonatomic) BOOL        doNotCreateOpportunity; 
-@property (strong,nonatomic) NSString   *leadId; 
-@property (strong,nonatomic) NSString   *opportunityId; 
-@property (strong,nonatomic) NSString   *opportunityName; 
-@property (strong,nonatomic) ZKSObject  *opportunityRecord; 
-@property (assign,nonatomic) BOOL        overwriteLeadSource; 
-@property (strong,nonatomic) NSString   *ownerId; 
-@property (strong,nonatomic) NSString   *relatedPersonAccountId; 
-@property (strong,nonatomic) ZKSObject  *relatedPersonAccountRecord; 
-@property (assign,nonatomic) BOOL        sendNotificationEmail; 
+@property (strong,nonatomic) NSString   *accountId;
+@property (strong,nonatomic) ZKSObject  *accountRecord;
+@property (assign,nonatomic) BOOL        bypassAccountDedupeCheck;
+@property (assign,nonatomic) BOOL        bypassContactDedupeCheck;
+@property (strong,nonatomic) NSString   *contactId;
+@property (strong,nonatomic) ZKSObject  *contactRecord;
+@property (strong,nonatomic) NSString   *convertedStatus;
+@property (assign,nonatomic) BOOL        doNotCreateOpportunity;
+@property (strong,nonatomic) NSString   *leadId;
+@property (strong,nonatomic) NSString   *opportunityId;
+@property (strong,nonatomic) NSString   *opportunityName;
+@property (strong,nonatomic) ZKSObject  *opportunityRecord;
+@property (assign,nonatomic) BOOL        overwriteLeadSource;
+@property (strong,nonatomic) NSString   *ownerId;
+@property (strong,nonatomic) NSString   *relatedPersonAccountId;
+@property (strong,nonatomic) ZKSObject  *relatedPersonAccountRecord;
+@property (assign,nonatomic) BOOL        sendNotificationEmail;
 @end

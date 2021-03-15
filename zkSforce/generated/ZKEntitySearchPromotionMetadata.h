@@ -41,5 +41,5 @@
 }
 +(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (assign,nonatomic) NSInteger promotedResultCount; 
+@property (assign,nonatomic) NSInteger promotedResultCount;
 @end
