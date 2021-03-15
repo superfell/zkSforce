@@ -95,6 +95,16 @@ to those that mirror the changes in the Salesforce API. Sometimes larger structu
 versioning policy for APIs, so if your App is working fine, there's no need to continually upgrade, upgrade when you need to take
 advantage of some API addition.
 
+## Major changes at v51
+Classes generated from complex types in the WSDL have a number of changes.
+ * They all now follow a single pattern. Previously they were structured differently based on how they were used (they were variations
+   for deserialized only, serialized only and both). 
+ * All types from the WSDL now have classes generated for them, previously only those reachable from an operation were included.
+ * Some metadata from the WSDL is now programatically available via the wsdlSchema method on each class.
+ * They no longer implement NSCopying.
+ * Property accessors have changed from atomic to nonatomic.
+ * NSArray properties have been updated to include their contained type, e.g. NSArray<NSString*>* rather than NSArray*
+
 ## Major changes at v47
 v47 is a major change that cleans up some OS API deprecations, as well as completely modernizing the Objective-C API to ZKSforce to
 use async methods with block for all requests that can result in network requests. If you're migrating from an earlier version and
