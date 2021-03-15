@@ -25,7 +25,32 @@
 //
 
 #import "ZKSetPasswordResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKSetPasswordResult()
+@end
 
 @implementation ZKSetPasswordResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"SetPasswordResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SetPasswordResult" parent:nil
+                    fields:@[
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env endElement:elemName];
+}
 @end

@@ -25,84 +25,382 @@
 //
 
 #import "ZKSingleEmailMessage.h"
+#import "ZKEnvelope.h"
 #import "ZKEmailFileAttachment.h"
+
+@interface ZKSingleEmailMessage()
+@property (strong,nonatomic) NSArray<NSString *>               *bccAddresses__v;
+@property (strong,nonatomic) NSArray<NSString *>               *ccAddresses__v;
+@property (strong,nonatomic) NSString                          *charset__v;
+@property (strong,nonatomic) NSArray<NSString *>               *documentAttachments__v;
+@property (strong,nonatomic) NSArray<NSString *>               *entityAttachments__v;
+@property (strong,nonatomic) NSArray<ZKEmailFileAttachment *>  *fileAttachments__v;
+@property (strong,nonatomic) NSString                          *htmlBody__v;
+@property (strong,nonatomic) NSString                          *inReplyTo__v;
+@property (strong,nonatomic) NSString                          *optOutPolicy__v;
+@property (strong,nonatomic) NSString                          *orgWideEmailAddressId__v;
+@property (strong,nonatomic) NSString                          *plainTextBody__v;
+@property (strong,nonatomic) NSString                          *references__v;
+@property (strong,nonatomic) NSString                          *targetObjectId__v;
+@property (strong,nonatomic) NSString                          *templateId__v;
+@property (strong,nonatomic) NSString                          *templateName__v;
+@property (strong,nonatomic) NSArray<NSString *>               *toAddresses__v;
+@property (assign,nonatomic) BOOL                               treatBodiesAsTemplate__v;
+@property (assign,nonatomic) BOOL                               treatTargetObjectAsRecipient__v;
+@property (strong,nonatomic) NSString                          *whatId__v;
+@end
 
 @implementation ZKSingleEmailMessage
 
--(NSArray *)bccAddresses {
-    return [self strings:@"bccAddresses"];
+
++(void)load {
+    [self registerType:self xmlName:@"SingleEmailMessage"];
 }
-			
--(NSArray *)ccAddresses {
-    return [self strings:@"ccAddresses"];
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SingleEmailMessage" parent:[ZKEmail class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"bccAddresses" propertyName:@"bccAddresses" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ccAddresses" propertyName:@"ccAddresses" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"charset" propertyName:@"charset" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"documentAttachments" propertyName:@"documentAttachments" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityAttachments" propertyName:@"entityAttachments" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fileAttachments" propertyName:@"fileAttachments" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"htmlBody" propertyName:@"htmlBody" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"inReplyTo" propertyName:@"inReplyTo" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"optOutPolicy" propertyName:@"optOutPolicy" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"orgWideEmailAddressId" propertyName:@"orgWideEmailAddressId" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"plainTextBody" propertyName:@"plainTextBody" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"references" propertyName:@"references" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"targetObjectId" propertyName:@"targetObjectId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateId" propertyName:@"templateId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateName" propertyName:@"templateName" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"toAddresses" propertyName:@"toAddresses" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"treatBodiesAsTemplate" propertyName:@"treatBodiesAsTemplate" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"treatTargetObjectAsRecipient" propertyName:@"treatTargetObjectAsRecipient" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whatId" propertyName:@"whatId" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
 }
-			
+    
+
+-(NSArray<NSString *> *)bccAddresses {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.bccAddresses__v = [self strings:@"bccAddresses"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.bccAddresses__v;
+}
+        
+
+-(void)setBccAddresses:(NSArray<NSString *> *)v {
+    self.bccAddresses__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
+-(NSArray<NSString *> *)ccAddresses {
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.ccAddresses__v = [self strings:@"ccAddresses"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.ccAddresses__v;
+}
+        
+
+-(void)setCcAddresses:(NSArray<NSString *> *)v {
+    self.ccAddresses__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
 -(NSString *)charset {
-    return [self string:@"charset"];
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.charset__v = [self string:@"charset"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.charset__v;
 }
-			
--(NSArray *)documentAttachments {
-    return [self strings:@"documentAttachments"];
+        
+
+-(void)setCharset:(NSString *)v {
+    self.charset__v = v;
+    fields__set2[0] |= 0x4; 
 }
-			
--(NSArray *)entityAttachments {
-    return [self strings:@"entityAttachments"];
+        
+
+-(NSArray<NSString *> *)documentAttachments {
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.documentAttachments__v = [self strings:@"documentAttachments"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.documentAttachments__v;
 }
-			
--(NSArray *)fileAttachments {
-    return [self complexTypeArrayFromElements:@"fileAttachments" cls:[ZKEmailFileAttachment class]];
+        
+
+-(void)setDocumentAttachments:(NSArray<NSString *> *)v {
+    self.documentAttachments__v = v;
+    fields__set2[0] |= 0x8; 
 }
-			
+        
+
+-(NSArray<NSString *> *)entityAttachments {
+    if ((fields__set2[0] & 0x10) == 0) {
+        self.entityAttachments__v = [self strings:@"entityAttachments"];
+        fields__set2[0] |= 0x10; 
+    }
+    return self.entityAttachments__v;
+}
+        
+
+-(void)setEntityAttachments:(NSArray<NSString *> *)v {
+    self.entityAttachments__v = v;
+    fields__set2[0] |= 0x10; 
+}
+        
+
+-(NSArray<ZKEmailFileAttachment *> *)fileAttachments {
+    if ((fields__set2[0] & 0x20) == 0) {
+        self.fileAttachments__v = [self complexTypeArrayFromElements:@"fileAttachments" cls:[ZKEmailFileAttachment class]];
+        fields__set2[0] |= 0x20; 
+    }
+    return self.fileAttachments__v;
+}
+        
+
+-(void)setFileAttachments:(NSArray<ZKEmailFileAttachment *> *)v {
+    self.fileAttachments__v = v;
+    fields__set2[0] |= 0x20; 
+}
+        
+
 -(NSString *)htmlBody {
-    return [self string:@"htmlBody"];
+    if ((fields__set2[0] & 0x40) == 0) {
+        self.htmlBody__v = [self string:@"htmlBody"];
+        fields__set2[0] |= 0x40; 
+    }
+    return self.htmlBody__v;
 }
-			
+        
+
+-(void)setHtmlBody:(NSString *)v {
+    self.htmlBody__v = v;
+    fields__set2[0] |= 0x40; 
+}
+        
+
 -(NSString *)inReplyTo {
-    return [self string:@"inReplyTo"];
+    if ((fields__set2[0] & 0x80) == 0) {
+        self.inReplyTo__v = [self string:@"inReplyTo"];
+        fields__set2[0] |= 0x80; 
+    }
+    return self.inReplyTo__v;
 }
-			
+        
+
+-(void)setInReplyTo:(NSString *)v {
+    self.inReplyTo__v = v;
+    fields__set2[0] |= 0x80; 
+}
+        
+
 -(NSString *)optOutPolicy {
-    return [self string:@"optOutPolicy"];
+    if ((fields__set2[0] & 0x100) == 0) {
+        self.optOutPolicy__v = [self string:@"optOutPolicy"];
+        fields__set2[0] |= 0x100; 
+    }
+    return self.optOutPolicy__v;
 }
-			
+        
+
+-(void)setOptOutPolicy:(NSString *)v {
+    self.optOutPolicy__v = v;
+    fields__set2[0] |= 0x100; 
+}
+        
+
 -(NSString *)orgWideEmailAddressId {
-    return [self string:@"orgWideEmailAddressId"];
+    if ((fields__set2[0] & 0x200) == 0) {
+        self.orgWideEmailAddressId__v = [self string:@"orgWideEmailAddressId"];
+        fields__set2[0] |= 0x200; 
+    }
+    return self.orgWideEmailAddressId__v;
 }
-			
+        
+
+-(void)setOrgWideEmailAddressId:(NSString *)v {
+    self.orgWideEmailAddressId__v = v;
+    fields__set2[0] |= 0x200; 
+}
+        
+
 -(NSString *)plainTextBody {
-    return [self string:@"plainTextBody"];
+    if ((fields__set2[0] & 0x400) == 0) {
+        self.plainTextBody__v = [self string:@"plainTextBody"];
+        fields__set2[0] |= 0x400; 
+    }
+    return self.plainTextBody__v;
 }
-			
+        
+
+-(void)setPlainTextBody:(NSString *)v {
+    self.plainTextBody__v = v;
+    fields__set2[0] |= 0x400; 
+}
+        
+
 -(NSString *)references {
-    return [self string:@"references"];
+    if ((fields__set2[0] & 0x800) == 0) {
+        self.references__v = [self string:@"references"];
+        fields__set2[0] |= 0x800; 
+    }
+    return self.references__v;
 }
-			
+        
+
+-(void)setReferences:(NSString *)v {
+    self.references__v = v;
+    fields__set2[0] |= 0x800; 
+}
+        
+
 -(NSString *)targetObjectId {
-    return [self string:@"targetObjectId"];
+    if ((fields__set2[0] & 0x1000) == 0) {
+        self.targetObjectId__v = [self string:@"targetObjectId"];
+        fields__set2[0] |= 0x1000; 
+    }
+    return self.targetObjectId__v;
 }
-			
+        
+
+-(void)setTargetObjectId:(NSString *)v {
+    self.targetObjectId__v = v;
+    fields__set2[0] |= 0x1000; 
+}
+        
+
 -(NSString *)templateId {
-    return [self string:@"templateId"];
+    if ((fields__set2[0] & 0x2000) == 0) {
+        self.templateId__v = [self string:@"templateId"];
+        fields__set2[0] |= 0x2000; 
+    }
+    return self.templateId__v;
 }
-			
+        
+
+-(void)setTemplateId:(NSString *)v {
+    self.templateId__v = v;
+    fields__set2[0] |= 0x2000; 
+}
+        
+
 -(NSString *)templateName {
-    return [self string:@"templateName"];
+    if ((fields__set2[0] & 0x4000) == 0) {
+        self.templateName__v = [self string:@"templateName"];
+        fields__set2[0] |= 0x4000; 
+    }
+    return self.templateName__v;
 }
-			
--(NSArray *)toAddresses {
-    return [self strings:@"toAddresses"];
+        
+
+-(void)setTemplateName:(NSString *)v {
+    self.templateName__v = v;
+    fields__set2[0] |= 0x4000; 
 }
-			
+        
+
+-(NSArray<NSString *> *)toAddresses {
+    if ((fields__set2[0] & 0x8000) == 0) {
+        self.toAddresses__v = [self strings:@"toAddresses"];
+        fields__set2[0] |= 0x8000; 
+    }
+    return self.toAddresses__v;
+}
+        
+
+-(void)setToAddresses:(NSArray<NSString *> *)v {
+    self.toAddresses__v = v;
+    fields__set2[0] |= 0x8000; 
+}
+        
+
 -(BOOL)treatBodiesAsTemplate {
-    return [self boolean:@"treatBodiesAsTemplate"];
+    if ((fields__set2[0] & 0x10000) == 0) {
+        self.treatBodiesAsTemplate__v = [self boolean:@"treatBodiesAsTemplate"];
+        fields__set2[0] |= 0x10000; 
+    }
+    return self.treatBodiesAsTemplate__v;
 }
-			
+        
+
+-(void)setTreatBodiesAsTemplate:(BOOL)v {
+    self.treatBodiesAsTemplate__v = v;
+    fields__set2[0] |= 0x10000; 
+}
+        
+
 -(BOOL)treatTargetObjectAsRecipient {
-    return [self boolean:@"treatTargetObjectAsRecipient"];
+    if ((fields__set2[0] & 0x20000) == 0) {
+        self.treatTargetObjectAsRecipient__v = [self boolean:@"treatTargetObjectAsRecipient"];
+        fields__set2[0] |= 0x20000; 
+    }
+    return self.treatTargetObjectAsRecipient__v;
 }
-			
+        
+
+-(void)setTreatTargetObjectAsRecipient:(BOOL)v {
+    self.treatTargetObjectAsRecipient__v = v;
+    fields__set2[0] |= 0x20000; 
+}
+        
+
 -(NSString *)whatId {
-    return [self string:@"whatId"];
+    if ((fields__set2[0] & 0x40000) == 0) {
+        self.whatId__v = [self string:@"whatId"];
+        fields__set2[0] |= 0x40000; 
+    }
+    return self.whatId__v;
 }
-			
+        
+
+-(void)setWhatId:(NSString *)v {
+    self.whatId__v = v;
+    fields__set2[0] |= 0x40000; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"SingleEmailMessage"];
+	[env addBoolElement:@"bccSender"                    elemValue:self.bccSender];
+	[env addElement:@"emailPriority"                    elemValue:self.emailPriority                nillable:YES optional:NO];
+	[env addElement:@"replyTo"                          elemValue:self.replyTo                      nillable:YES optional:NO];
+	[env addBoolElement:@"saveAsActivity"               elemValue:self.saveAsActivity];
+	[env addElement:@"senderDisplayName"                elemValue:self.senderDisplayName            nillable:YES optional:NO];
+	[env addElement:@"subject"                          elemValue:self.subject                      nillable:YES optional:NO];
+	[env addBoolElement:@"useSignature"                 elemValue:self.useSignature];
+	[env addElementArray:@"bccAddresses"                elemValue:self.bccAddresses];
+	[env addElementArray:@"ccAddresses"                 elemValue:self.ccAddresses];
+	[env addElement:@"charset"                          elemValue:self.charset                      nillable:YES optional:NO];
+	[env addElementArray:@"documentAttachments"         elemValue:self.documentAttachments];
+	[env addElementArray:@"entityAttachments"           elemValue:self.entityAttachments];
+	[env addElementArray:@"fileAttachments"             elemValue:self.fileAttachments];
+	[env addElement:@"htmlBody"                         elemValue:self.htmlBody                     nillable:YES optional:NO];
+	[env addElement:@"inReplyTo"                        elemValue:self.inReplyTo                    nillable:YES optional:YES];
+	[env addElement:@"optOutPolicy"                     elemValue:self.optOutPolicy                 nillable:YES optional:NO];
+	[env addElement:@"orgWideEmailAddressId"            elemValue:self.orgWideEmailAddressId        nillable:YES optional:YES];
+	[env addElement:@"plainTextBody"                    elemValue:self.plainTextBody                nillable:YES optional:NO];
+	[env addElement:@"references"                       elemValue:self.references                   nillable:YES optional:YES];
+	[env addElement:@"targetObjectId"                   elemValue:self.targetObjectId               nillable:YES optional:NO];
+	[env addElement:@"templateId"                       elemValue:self.templateId                   nillable:YES optional:NO];
+	[env addElement:@"templateName"                     elemValue:self.templateName                 nillable:YES optional:YES];
+	[env addElementArray:@"toAddresses"                 elemValue:self.toAddresses];
+	[env addBoolElement:@"treatBodiesAsTemplate"        elemValue:self.treatBodiesAsTemplate];
+	[env addBoolElement:@"treatTargetObjectAsRecipient" elemValue:self.treatTargetObjectAsRecipient];
+	[env addElement:@"whatId"                           elemValue:self.whatId                       nillable:YES optional:NO];
+	[env endElement:elemName];
+}
 @end

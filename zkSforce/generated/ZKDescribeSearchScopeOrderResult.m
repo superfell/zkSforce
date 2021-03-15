@@ -25,15 +25,68 @@
 //
 
 #import "ZKDescribeSearchScopeOrderResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeSearchScopeOrderResult()
+@property (strong,nonatomic) NSString  *keyPrefix__v;
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKDescribeSearchScopeOrderResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeSearchScopeOrderResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSearchScopeOrderResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"keyPrefix" propertyName:@"keyPrefix" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)keyPrefix {
-    return [self string:@"keyPrefix"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.keyPrefix__v = [self string:@"keyPrefix"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.keyPrefix__v;
 }
-			
+        
+
+-(void)setKeyPrefix:(NSString *)v {
+    self.keyPrefix__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"keyPrefix" elemValue:self.keyPrefix nillable:NO  optional:NO];
+	[env addElement:@"name"      elemValue:self.name      nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

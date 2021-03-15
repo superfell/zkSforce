@@ -26,6 +26,8 @@
 #import "zkQueryResult.h"
 #import "ZKReportChartComponent.h"
 #import "ZKDescribeColumn.h"
+#import "ZKStringList.h"
+#import "ZKAddress.h"
 
 @implementation ZKXmlDeserializerTests
 
@@ -118,22 +120,13 @@
     XCTAssertEqual(1, [qr size]);
 }
 
--(void)testNSCopying {
-    NSString *doc = @"<root><field>f</field><format>fmt</format><label>lbl</label><name>n</name></root>";
+-(void)testSubClassesCacheValue {
+    NSString *doc = @"<root><values>a</values><values>b</values></root>";
     ZKElement *e = [ZKParser parseData:[doc dataUsingEncoding:NSUTF8StringEncoding]];
-    ZKDescribeColumn *l = [[ZKDescribeColumn alloc] initWithXmlElement:e];
-    XCTAssertEqualObjects([ZKDescribeColumn class], [l class], @"original of wrong type");
-    XCTAssertEqualObjects(@"f", [l field], @"field is wrong");
-    XCTAssertEqualObjects(@"fmt", [l format],  @"format is wrong");
-    XCTAssertEqualObjects(@"lbl", [l label],  @"label is wrong");
-    XCTAssertEqualObjects(@"n", [l name],  @"name is wrong");
-    ZKDescribeColumn *copy = [l copyWithZone:nil];
-    XCTAssertNotNil(copy, @"copy was nil");
-    XCTAssertEqualObjects([ZKDescribeColumn class], [copy class], @"copy of wrong type");
-    XCTAssertEqualObjects(@"f", [copy field], @"field is wrong");
-    XCTAssertEqualObjects(@"fmt", [copy format],  @"format is wrong");
-    XCTAssertEqualObjects(@"lbl", [copy label],  @"label is wrong");
-    XCTAssertEqualObjects(@"n", [copy name],  @"name is wrong");
+    ZKStringList *l = [[ZKStringList alloc] initWithXmlElement:e];
+    NSArray *v = l.values;
+    XCTAssertEqualObjects((@[@"a",@"b"]), v);
+    XCTAssertEqual(v, l.values);
 }
 
 @end

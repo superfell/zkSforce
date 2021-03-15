@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKRenderEmailTemplateError;
 
 /*
-<complexType name="RenderEmailTemplateBodyResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="RenderEmailTemplateBodyResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:RenderEmailTemplateError" name="errors"/>
     <element nillable="true" type="xsd:string" name="mergedBody"/>
@@ -35,9 +40,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKRenderEmailTemplateBodyResult : ZKXmlDeserializer {
+@interface ZKRenderEmailTemplateBodyResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *errors;  // of ZKRenderEmailTemplateError
-@property (weak, readonly) NSString  *mergedBody; 
-@property (readonly) BOOL             success; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<ZKRenderEmailTemplateError *>  *errors;
+@property (strong,nonatomic) NSString                               *mergedBody;
+@property (assign,nonatomic) BOOL                                    success;
 @end

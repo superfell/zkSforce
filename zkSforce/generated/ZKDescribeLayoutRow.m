@@ -25,16 +25,69 @@
 //
 
 #import "ZKDescribeLayoutRow.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutItem.h"
+
+@interface ZKDescribeLayoutRow()
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>  *layoutItems__v;
+@property (assign,nonatomic) NSInteger                         numItems__v;
+@end
 
 @implementation ZKDescribeLayoutRow
 
--(NSArray *)layoutItems {
-    return [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeLayoutRow"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutRow" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"layoutItems" propertyName:@"layoutItems" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"numItems" propertyName:@"numItems" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeLayoutItem *> *)layoutItems {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.layoutItems__v;
+}
+        
+
+-(void)setLayoutItems:(NSArray<ZKDescribeLayoutItem *> *)v {
+    self.layoutItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSInteger)numItems {
-    return [self integer:@"numItems"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.numItems__v = [self integer:@"numItems"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.numItems__v;
 }
-			
+        
+
+-(void)setNumItems:(NSInteger)v {
+    self.numItems__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"layoutItems" elemValue:self.layoutItems];
+	[env addIntElement:@"numItems"      elemValue:self.numItems];
+	[env endElement:elemName];
+}
 @end

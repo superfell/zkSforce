@@ -25,19 +25,86 @@
 //
 
 #import "ZKSoqlCondition.h"
+#import "ZKEnvelope.h"
+
+@interface ZKSoqlCondition()
+@property (strong,nonatomic) NSString             *field__v;
+@property (strong,nonatomic) NSString             *operator__v;
+@property (strong,nonatomic) NSArray<NSString *>  *values__v;
+@end
 
 @implementation ZKSoqlCondition
 
+
++(void)load {
+    [self registerType:self xmlName:@"SoqlCondition"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SoqlCondition" parent:[ZKSoqlWhereCondition class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"field" propertyName:@"field" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"operator" propertyName:@"operator" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"values" propertyName:@"values" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)field {
-    return [self string:@"field"];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.field__v = [self string:@"field"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(NSString *)v {
+    self.field__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(NSString *)operator {
-    return [self string:@"operator"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.operator__v = [self string:@"operator"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.operator__v;
 }
-			
--(NSArray *)values {
-    return [self strings:@"values"];
+        
+
+-(void)setOperator:(NSString *)v {
+    self.operator__v = v;
+    fields__set2[0] |= 0x2; 
 }
-			
+        
+
+-(NSArray<NSString *> *)values {
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.values__v = [self strings:@"values"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.values__v;
+}
+        
+
+-(void)setValues:(NSArray<NSString *> *)v {
+    self.values__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"SoqlCondition"];
+	[env addElement:@"field"       elemValue:self.field    nillable:NO  optional:NO];
+	[env addElement:@"operator"    elemValue:self.operator nillable:NO  optional:NO];
+	[env addElementArray:@"values" elemValue:self.values];
+	[env endElement:elemName];
+}
 @end

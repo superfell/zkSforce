@@ -25,15 +25,68 @@
 //
 
 #import "ZKDescribeQuickActionDefaultValue.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeQuickActionDefaultValue()
+@property (strong,nonatomic) NSString  *defaultValue__v;
+@property (strong,nonatomic) NSString  *field__v;
+@end
 
 @implementation ZKDescribeQuickActionDefaultValue
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeQuickActionDefaultValue"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeQuickActionDefaultValue" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"defaultValue" propertyName:@"defaultValue" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"field" propertyName:@"field" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)defaultValue {
-    return [self string:@"defaultValue"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.defaultValue__v = [self string:@"defaultValue"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.defaultValue__v;
 }
-			
+        
+
+-(void)setDefaultValue:(NSString *)v {
+    self.defaultValue__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)field {
-    return [self string:@"field"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.field__v = [self string:@"field"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(NSString *)v {
+    self.field__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"defaultValue" elemValue:self.defaultValue nillable:YES optional:NO];
+	[env addElement:@"field"        elemValue:self.field        nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

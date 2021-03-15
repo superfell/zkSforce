@@ -25,9 +25,12 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:boolean" name="triggerAutoResponseEmail"/>
     <element type="xsd:boolean" name="triggerOtherEmail"/>
@@ -35,9 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKEmailHeader : NSObject<ZKXMLSerializable> {
+@interface ZKEmailHeader : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (assign) BOOL triggerAutoResponseEmail; 
-@property (assign) BOOL triggerOtherEmail; 
-@property (assign) BOOL triggerUserEmail; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (assign,nonatomic) BOOL triggerAutoResponseEmail;
+@property (assign,nonatomic) BOOL triggerOtherEmail;
+@property (assign,nonatomic) BOOL triggerUserEmail;
 @end

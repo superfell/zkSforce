@@ -25,12 +25,14 @@
 //
 
 #import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSObject;
-@class ZKSObject;
-@class ZKSObject;
+
 /*
-<complexType name="LeadConvert" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="LeadConvert" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element nillable="true" type="tns:ID" name="accountId"/>
     <element nillable="true" type="ens:sObject" name="accountRecord"/>
@@ -46,25 +48,32 @@
     <element nillable="true" type="ens:sObject" name="opportunityRecord"/>
     <element type="xsd:boolean" name="overwriteLeadSource"/>
     <element nillable="true" type="tns:ID" name="ownerId"/>
+    <element nillable="true" type="tns:ID" name="relatedPersonAccountId"/>
+    <element nillable="true" type="ens:sObject" name="relatedPersonAccountRecord"/>
     <element type="xsd:boolean" name="sendNotificationEmail"/>
   </sequence>
 </complexType>
 */
-@interface ZKLeadConvert : NSObject<ZKXMLSerializable> {
+@interface ZKLeadConvert : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt32   fields__set[1];
 }
-@property (strong) NSString   *accountId; 
-@property (strong) ZKSObject  *accountRecord; 
-@property (assign) BOOL        bypassAccountDedupeCheck; 
-@property (assign) BOOL        bypassContactDedupeCheck; 
-@property (strong) NSString   *contactId; 
-@property (strong) ZKSObject  *contactRecord; 
-@property (strong) NSString   *convertedStatus; 
-@property (assign) BOOL        doNotCreateOpportunity; 
-@property (strong) NSString   *leadId; 
-@property (strong) NSString   *opportunityId; 
-@property (strong) NSString   *opportunityName; 
-@property (strong) ZKSObject  *opportunityRecord; 
-@property (assign) BOOL        overwriteLeadSource; 
-@property (strong) NSString   *ownerId; 
-@property (assign) BOOL        sendNotificationEmail; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString   *accountId;
+@property (strong,nonatomic) ZKSObject  *accountRecord;
+@property (assign,nonatomic) BOOL        bypassAccountDedupeCheck;
+@property (assign,nonatomic) BOOL        bypassContactDedupeCheck;
+@property (strong,nonatomic) NSString   *contactId;
+@property (strong,nonatomic) ZKSObject  *contactRecord;
+@property (strong,nonatomic) NSString   *convertedStatus;
+@property (assign,nonatomic) BOOL        doNotCreateOpportunity;
+@property (strong,nonatomic) NSString   *leadId;
+@property (strong,nonatomic) NSString   *opportunityId;
+@property (strong,nonatomic) NSString   *opportunityName;
+@property (strong,nonatomic) ZKSObject  *opportunityRecord;
+@property (assign,nonatomic) BOOL        overwriteLeadSource;
+@property (strong,nonatomic) NSString   *ownerId;
+@property (strong,nonatomic) NSString   *relatedPersonAccountId;
+@property (strong,nonatomic) ZKSObject  *relatedPersonAccountRecord;
+@property (assign,nonatomic) BOOL        sendNotificationEmail;
 @end

@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeSoqlListViewResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeSoqlListView.h"
+
+@interface ZKDescribeSoqlListViewResult()
+@property (strong,nonatomic) NSArray<ZKDescribeSoqlListView *>  *describeSoqlListViews__v;
+@end
 
 @implementation ZKDescribeSoqlListViewResult
 
--(NSArray *)describeSoqlListViews {
-    return [self complexTypeArrayFromElements:@"describeSoqlListViews" cls:[ZKDescribeSoqlListView class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeSoqlListViewResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoqlListViewResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"describeSoqlListViews" propertyName:@"describeSoqlListViews" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeSoqlListView *> *)describeSoqlListViews {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.describeSoqlListViews__v = [self complexTypeArrayFromElements:@"describeSoqlListViews" cls:[ZKDescribeSoqlListView class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.describeSoqlListViews__v;
+}
+        
+
+-(void)setDescribeSoqlListViews:(NSArray<ZKDescribeSoqlListView *> *)v {
+    self.describeSoqlListViews__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"describeSoqlListViews" elemValue:self.describeSoqlListViews];
+	[env endElement:elemName];
+}
 @end

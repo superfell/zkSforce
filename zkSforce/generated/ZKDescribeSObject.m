@@ -25,6 +25,7 @@
 //
 
 #import "ZKDescribeSObject.h"
+#import "ZKEnvelope.h"
 #import "ZKActionOverride.h"
 #import "ZKChildRelationship.h"
 #import "ZKDescribeField.h"
@@ -32,71 +33,177 @@
 #import "ZKRecordTypeInfo.h"
 #import "ZKScopeInfo.h"
 
+@interface ZKDescribeSObject()
+@property (strong,nonatomic) NSArray<ZKActionOverride *>     *actionOverrides__v;
+@property (strong,nonatomic) NSArray<ZKChildRelationship *>  *childRelationships__v;
+@property (assign,nonatomic) BOOL                             compactLayoutable__v;
+@property (strong,nonatomic) NSString                        *defaultImplementation__v;
+@property (strong,nonatomic) NSArray<ZKDescribeField *>      *fields__v;
+@property (strong,nonatomic) NSString                        *implementedBy__v;
+@property (strong,nonatomic) NSString                        *implementsInterfaces__v;
+@property (strong,nonatomic) NSArray<ZKNamedLayoutInfo *>    *namedLayoutInfos__v;
+@property (strong,nonatomic) NSString                        *networkScopeFieldName__v;
+@property (strong,nonatomic) NSArray<ZKRecordTypeInfo *>     *recordTypeInfos__v;
+@property (assign,nonatomic) BOOL                             searchLayoutable__v;
+@property (strong,nonatomic) NSArray<ZKScopeInfo *>          *supportedScopes__v;
+@property (strong,nonatomic) NSString                        *urlDetail__v;
+@property (strong,nonatomic) NSString                        *urlEdit__v;
+@property (strong,nonatomic) NSString                        *urlNew__v;
+@end
+
 @implementation ZKDescribeSObject
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeSObjectResult"];
+}
+
+// This schema information reflects how ZKSforce maps DescribeSObject
+// into being a subclass of DescribeGlobalSObject, rather than
+// exactly how it is defined in the WSDL (where they are not related).
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSObjectResult" parent:[ZKDescribeGlobalSObject class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"actionOverrides" propertyName:@"actionOverrides" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"childRelationships" propertyName:@"childRelationships" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"compactLayoutable" propertyName:@"compactLayoutable" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"defaultImplementation" propertyName:@"defaultImplementation" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fields" propertyName:@"fields" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"implementedBy" propertyName:@"implementedBy" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"implementsInterfaces" propertyName:@"implementsInterfaces" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"namedLayoutInfos" propertyName:@"namedLayoutInfos" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"networkScopeFieldName" propertyName:@"networkScopeFieldName" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeInfos" propertyName:@"recordTypeInfos" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"searchLayoutable" propertyName:@"searchLayoutable" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"supportedScopes" propertyName:@"supportedScopes" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"urlDetail" propertyName:@"urlDetail" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"urlEdit" propertyName:@"urlEdit" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"urlNew" propertyName:@"urlNew" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
 -(NSArray *)fields {
-	if (fieldList == nil) {
+	if (self.fields__v == nil) {
 		NSArray *fa = [self complexTypeArrayFromElements:@"fields" cls:[ZKDescribeField class]];
-		for (ZKDescribeField *f in fa)
+		for (ZKDescribeField *f in fa) {
 			f.sobject = self;
-		fieldList = fa;
+       }
+		self.fields__v = fa;
 	}
-	return fieldList;
+	return self.fields__v;
 }
--(NSArray *)actionOverrides {
-    return [self complexTypeArrayFromElements:@"actionOverrides" cls:[ZKActionOverride class]];
+
+-(NSArray<ZKActionOverride *> *)actionOverrides {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.actionOverrides__v = [self complexTypeArrayFromElements:@"actionOverrides" cls:[ZKActionOverride class]];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.actionOverrides__v;
 }
-			
--(NSArray *)childRelationships {
-    return [self complexTypeArrayFromElements:@"childRelationships" cls:[ZKChildRelationship class]];
+        
+
+-(void)setActionOverrides:(NSArray<ZKActionOverride *> *)v {
+    self.actionOverrides__v = v;
+    fields__set2[0] |= 0x1; 
 }
-			
+        
+
+-(NSArray<ZKChildRelationship *> *)childRelationships {
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.childRelationships__v = [self complexTypeArrayFromElements:@"childRelationships" cls:[ZKChildRelationship class]];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.childRelationships__v;
+}
+        
+
+-(void)setChildRelationships:(NSArray<ZKChildRelationship *> *)v {
+    self.childRelationships__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
 -(BOOL)compactLayoutable {
-    return [self boolean:@"compactLayoutable"];
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.compactLayoutable__v = [self boolean:@"compactLayoutable"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.compactLayoutable__v;
 }
-			
+        
+
+-(void)setCompactLayoutable:(BOOL)v {
+    self.compactLayoutable__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
 -(NSString *)defaultImplementation {
-    return [self string:@"defaultImplementation"];
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.defaultImplementation__v = [self string:@"defaultImplementation"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.defaultImplementation__v;
 }
-			
--(NSString *)implementedBy {
-    return [self string:@"implementedBy"];
+        
+
+-(void)setDefaultImplementation:(NSString *)v {
+    self.defaultImplementation__v = v;
+    fields__set2[0] |= 0x8; 
 }
-			
--(NSString *)implementsInterfaces {
-    return [self string:@"implementsInterfaces"];
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"DescribeSObjectResult"];
+	[env addBoolElement:@"activateable"           elemValue:self.activateable];
+	[env addElement:@"associateEntityType"        elemValue:self.associateEntityType    nillable:YES optional:NO];
+	[env addElement:@"associateParentEntity"      elemValue:self.associateParentEntity  nillable:YES optional:NO];
+	[env addBoolElement:@"createable"             elemValue:self.createable];
+	[env addBoolElement:@"custom"                 elemValue:self.custom];
+	[env addBoolElement:@"customSetting"          elemValue:self.customSetting];
+	[env addBoolElement:@"dataTranslationEnabled" elemValue:self.dataTranslationEnabled];
+	[env addBoolElement:@"deepCloneable"          elemValue:self.deepCloneable];
+	[env addBoolElement:@"deletable"              elemValue:self.deletable];
+	[env addBoolElement:@"deprecatedAndHidden"    elemValue:self.deprecatedAndHidden];
+	[env addBoolElement:@"feedEnabled"            elemValue:self.feedEnabled];
+	[env addBoolElement:@"hasSubtypes"            elemValue:self.hasSubtypes];
+	[env addBoolElement:@"idEnabled"              elemValue:self.idEnabled];
+	[env addBoolElement:@"isInterface"            elemValue:self.isInterface];
+	[env addBoolElement:@"isSubtype"              elemValue:self.isSubtype];
+	[env addElement:@"keyPrefix"                  elemValue:self.keyPrefix              nillable:YES optional:NO];
+	[env addElement:@"label"                      elemValue:self.label                  nillable:NO  optional:NO];
+	[env addElement:@"labelPlural"                elemValue:self.labelPlural            nillable:NO  optional:NO];
+	[env addBoolElement:@"layoutable"             elemValue:self.layoutable];
+	[env addBoolElement:@"mergeable"              elemValue:self.mergeable];
+	[env addBoolElement:@"mruEnabled"             elemValue:self.mruEnabled];
+	[env addElement:@"name"                       elemValue:self.name                   nillable:NO  optional:NO];
+	[env addBoolElement:@"queryable"              elemValue:self.queryable];
+	[env addBoolElement:@"replicateable"          elemValue:self.replicateable];
+	[env addBoolElement:@"retrieveable"           elemValue:self.retrieveable];
+	[env addBoolElement:@"searchable"             elemValue:self.searchable];
+	[env addBoolElement:@"triggerable"            elemValue:self.triggerable];
+	[env addBoolElement:@"undeletable"            elemValue:self.undeletable];
+	[env addBoolElement:@"updateable"             elemValue:self.updateable];
+	[env addElementArray:@"actionOverrides"       elemValue:self.actionOverrides];
+	[env addElementArray:@"childRelationships"    elemValue:self.childRelationships];
+	[env addBoolElement:@"compactLayoutable"      elemValue:self.compactLayoutable];
+	[env addElement:@"defaultImplementation"      elemValue:self.defaultImplementation  nillable:YES optional:NO];
+	[env addElementArray:@"fields"                elemValue:self.fields];
+	[env addElement:@"implementedBy"              elemValue:self.implementedBy          nillable:YES optional:NO];
+	[env addElement:@"implementsInterfaces"       elemValue:self.implementsInterfaces   nillable:YES optional:NO];
+	[env addElementArray:@"namedLayoutInfos"      elemValue:self.namedLayoutInfos];
+	[env addElement:@"networkScopeFieldName"      elemValue:self.networkScopeFieldName  nillable:YES optional:NO];
+	[env addElementArray:@"recordTypeInfos"       elemValue:self.recordTypeInfos];
+	[env addBoolElement:@"searchLayoutable"       elemValue:self.searchLayoutable];
+	[env addElementArray:@"supportedScopes"       elemValue:self.supportedScopes];
+	[env addElement:@"urlDetail"                  elemValue:self.urlDetail              nillable:YES optional:NO];
+	[env addElement:@"urlEdit"                    elemValue:self.urlEdit                nillable:YES optional:NO];
+	[env addElement:@"urlNew"                     elemValue:self.urlNew                 nillable:YES optional:NO];
+	[env endElement:elemName];
 }
-			
--(NSArray *)namedLayoutInfos {
-    return [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
-}
-			
--(NSString *)networkScopeFieldName {
-    return [self string:@"networkScopeFieldName"];
-}
-			
--(NSArray *)recordTypeInfos {
-    return [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];
-}
-			
--(BOOL)searchLayoutable {
-    return [self boolean:@"searchLayoutable"];
-}
-			
--(NSArray *)supportedScopes {
-    return [self complexTypeArrayFromElements:@"supportedScopes" cls:[ZKScopeInfo class]];
-}
-			
--(NSString *)urlDetail {
-    return [self string:@"urlDetail"];
-}
-			
--(NSString *)urlEdit {
-    return [self string:@"urlEdit"];
-}
-			
--(NSString *)urlNew {
-    return [self string:@"urlNew"];
-}
-			
 @end

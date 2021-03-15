@@ -25,15 +25,68 @@
 //
 
 #import "ZKEntityIntentQueryMetadata.h"
+#import "ZKEnvelope.h"
+
+@interface ZKEntityIntentQueryMetadata()
+@property (assign,nonatomic) BOOL       intentQuery__v;
+@property (strong,nonatomic) NSString  *message__v;
+@end
 
 @implementation ZKEntityIntentQueryMetadata
 
+
++(void)load {
+    [self registerType:self xmlName:@"EntityIntentQueryMetadata"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EntityIntentQueryMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"intentQuery" propertyName:@"intentQuery" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"message" propertyName:@"message" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)intentQuery {
-    return [self boolean:@"intentQuery"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.intentQuery__v = [self boolean:@"intentQuery"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.intentQuery__v;
 }
-			
+        
+
+-(void)setIntentQuery:(BOOL)v {
+    self.intentQuery__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)message {
-    return [self string:@"message"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.message__v = [self string:@"message"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.message__v;
 }
-			
+        
+
+-(void)setMessage:(NSString *)v {
+    self.message__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"intentQuery" elemValue:self.intentQuery];
+	[env addElement:@"message"         elemValue:self.message     nillable:YES optional:NO];
+	[env endElement:elemName];
+}
 @end

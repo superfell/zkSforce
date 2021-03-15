@@ -27,29 +27,80 @@
 #import "ZKListViewOrderBy.h"
 #import "ZKEnvelope.h"
 
+@interface ZKListViewOrderBy()
+@property (strong,nonatomic) NSString  *fieldNameOrPath__v;
+@property (strong,nonatomic) NSString  *nullsPosition__v;
+@property (strong,nonatomic) NSString  *sortDirection__v;
+@end
+
 @implementation ZKListViewOrderBy
 
-@synthesize fieldNameOrPath, nullsPosition, sortDirection;
 
--(instancetype)init {
-    self = [super init];
-    return self;
++(void)load {
+    [self registerType:self xmlName:@"ListViewOrderBy"];
 }
 
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.fieldNameOrPath = [d string:@"fieldNameOrPath"];
-	self.nullsPosition = [d string:@"nullsPosition"];
-	self.sortDirection = [d string:@"sortDirection"];
-    return self;
-}
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ListViewOrderBy" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fieldNameOrPath" propertyName:@"fieldNameOrPath" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"nullsPosition" propertyName:@"nullsPosition" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sortDirection" propertyName:@"sortDirection" optional:NO nillable:YES],
 
--(instancetype)initWithXmlElement:(ZKElement *)e {
-    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
-    return [self initWithZKXmlDeserializer:d];
+                    ]];
+   });
+   return wsdlSchema;
 }
+    
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(NSString *)fieldNameOrPath {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.fieldNameOrPath__v;
+}
+        
+
+-(void)setFieldNameOrPath:(NSString *)v {
+    self.fieldNameOrPath__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)nullsPosition {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.nullsPosition__v = [self string:@"nullsPosition"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.nullsPosition__v;
+}
+        
+
+-(void)setNullsPosition:(NSString *)v {
+    self.nullsPosition__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSString *)sortDirection {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.sortDirection__v = [self string:@"sortDirection"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.sortDirection__v;
+}
+        
+
+-(void)setSortDirection:(NSString *)v {
+    self.sortDirection__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"fieldNameOrPath" elemValue:self.fieldNameOrPath nillable:NO  optional:NO];
 	[env addElement:@"nullsPosition"   elemValue:self.nullsPosition   nillable:YES optional:NO];

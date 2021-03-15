@@ -25,20 +25,87 @@
 //
 
 #import "ZKDescribeGlobalResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeGlobalSObject.h"
+
+@interface ZKDescribeGlobalResult()
+@property (strong,nonatomic) NSString                            *encoding__v;
+@property (assign,nonatomic) NSInteger                            maxBatchSize__v;
+@property (strong,nonatomic) NSArray<ZKDescribeGlobalSObject *>  *sobjects__v;
+@end
 
 @implementation ZKDescribeGlobalResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeGlobalResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeGlobalResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"encoding" propertyName:@"encoding" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"maxBatchSize" propertyName:@"maxBatchSize" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobjects" propertyName:@"sobjects" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)encoding {
-    return [self string:@"encoding"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.encoding__v = [self string:@"encoding"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.encoding__v;
 }
-			
+        
+
+-(void)setEncoding:(NSString *)v {
+    self.encoding__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSInteger)maxBatchSize {
-    return [self integer:@"maxBatchSize"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.maxBatchSize__v = [self integer:@"maxBatchSize"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.maxBatchSize__v;
 }
-			
--(NSArray *)sobjects {
-    return [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
+        
+
+-(void)setMaxBatchSize:(NSInteger)v {
+    self.maxBatchSize__v = v;
+    fields__set[0] |= 0x2; 
 }
-			
+        
+
+-(NSArray<ZKDescribeGlobalSObject *> *)sobjects {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.sobjects__v = [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.sobjects__v;
+}
+        
+
+-(void)setSobjects:(NSArray<ZKDescribeGlobalSObject *> *)v {
+    self.sobjects__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"encoding"        elemValue:self.encoding     nillable:YES optional:NO];
+	[env addIntElement:@"maxBatchSize" elemValue:self.maxBatchSize];
+	[env addElementArray:@"sobjects"   elemValue:self.sobjects];
+	[env endElement:elemName];
+}
 @end

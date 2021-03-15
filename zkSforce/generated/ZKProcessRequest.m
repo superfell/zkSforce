@@ -27,11 +27,63 @@
 #import "ZKProcessRequest.h"
 #import "ZKEnvelope.h"
 
+@interface ZKProcessRequest()
+@property (strong,nonatomic) NSString             *comments__v;
+@property (strong,nonatomic) NSArray<NSString *>  *nextApproverIds__v;
+@end
+
 @implementation ZKProcessRequest
 
-@synthesize comments, nextApproverIds;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"ProcessRequest"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ProcessRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"comments" propertyName:@"comments" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"nextApproverIds" propertyName:@"nextApproverIds" optional:YES nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)comments {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.comments__v = [self string:@"comments"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.comments__v;
+}
+        
+
+-(void)setComments:(NSString *)v {
+    self.comments__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSArray<NSString *> *)nextApproverIds {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.nextApproverIds__v = [self strings:@"nextApproverIds"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.nextApproverIds__v;
+}
+        
+
+-(void)setNextApproverIds:(NSArray<NSString *> *)v {
+    self.nextApproverIds__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"comments"             elemValue:self.comments        nillable:YES optional:NO];
 	[env addElementArray:@"nextApproverIds" elemValue:self.nextApproverIds];

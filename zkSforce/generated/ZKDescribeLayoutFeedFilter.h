@@ -24,10 +24,13 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType name="DescribeLayoutFeedFilter" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeLayoutFeedFilter" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:string" name="label"/>
     <element type="xsd:string" name="name"/>
@@ -35,9 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutFeedFilter : ZKXmlDeserializer {
+@interface ZKDescribeLayoutFeedFilter : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *type; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString  *label;
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *type;
 @end

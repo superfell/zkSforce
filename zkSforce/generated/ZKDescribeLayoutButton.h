@@ -24,10 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeColor;
+@class ZKDescribeIcon;
 
 /*
-<complexType name="DescribeLayoutButton" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeLayoutButton" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element minOccurs="0" nillable="true" type="tns:WebLinkWindowType" name="behavior"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
@@ -52,26 +58,29 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutButton : ZKXmlDeserializer {
+@interface ZKDescribeLayoutButton : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt32   fields__set[1];
 }
-@property (weak, readonly) NSString  *behavior; 
-@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (weak, readonly) NSString  *content; 
-@property (weak, readonly) NSString  *contentSource; 
-@property (readonly) BOOL             custom; 
-@property (weak, readonly) NSString  *encoding; 
-@property (readonly) NSInteger        height; 
-@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (weak, readonly) NSString  *label; 
-@property (readonly) BOOL             menubar; 
-@property (weak, readonly) NSString  *name; 
-@property (readonly) BOOL             overridden; 
-@property (readonly) BOOL             resizeable; 
-@property (readonly) BOOL             scrollbars; 
-@property (readonly) BOOL             showsLocation; 
-@property (readonly) BOOL             showsStatus; 
-@property (readonly) BOOL             toolbar; 
-@property (weak, readonly) NSString  *url; 
-@property (readonly) NSInteger        width; 
-@property (weak, readonly) NSString  *windowPosition; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                    *behavior;
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors;
+@property (strong,nonatomic) NSString                    *content;
+@property (strong,nonatomic) NSString                    *contentSource;
+@property (assign,nonatomic) BOOL                         custom;
+@property (strong,nonatomic) NSString                    *encoding;
+@property (assign,nonatomic) NSInteger                    height;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons;
+@property (strong,nonatomic) NSString                    *label;
+@property (assign,nonatomic) BOOL                         menubar;
+@property (strong,nonatomic) NSString                    *name;
+@property (assign,nonatomic) BOOL                         overridden;
+@property (assign,nonatomic) BOOL                         resizeable;
+@property (assign,nonatomic) BOOL                         scrollbars;
+@property (assign,nonatomic) BOOL                         showsLocation;
+@property (assign,nonatomic) BOOL                         showsStatus;
+@property (assign,nonatomic) BOOL                         toolbar;
+@property (strong,nonatomic) NSString                    *url;
+@property (assign,nonatomic) NSInteger                    width;
+@property (strong,nonatomic) NSString                    *windowPosition;
 @end

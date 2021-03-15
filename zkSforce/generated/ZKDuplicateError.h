@@ -25,10 +25,14 @@
 //
 
 #import "ZKError.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDuplicateResult;
+
 /*
-<complexType name="DuplicateError" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DuplicateError" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:Error">
       <sequence>
@@ -38,7 +42,10 @@
   </complexContent>
 </complexType>
 */
-@interface ZKDuplicateError : ZKError {
+@interface ZKDuplicateError : ZKError  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) ZKDuplicateResult  *duplicateResult; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) ZKDuplicateResult  *duplicateResult;
 @end

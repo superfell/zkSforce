@@ -27,11 +27,46 @@
 #import "ZKUserTerritoryDeleteHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKUserTerritoryDeleteHeader()
+@property (strong,nonatomic) NSString  *transferToUserId__v;
+@end
+
 @implementation ZKUserTerritoryDeleteHeader
 
-@synthesize transferToUserId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"UserTerritoryDeleteHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"UserTerritoryDeleteHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"transferToUserId" propertyName:@"transferToUserId" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)transferToUserId {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.transferToUserId__v = [self string:@"transferToUserId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.transferToUserId__v;
+}
+        
+
+-(void)setTransferToUserId:(NSString *)v {
+    self.transferToUserId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"transferToUserId" elemValue:self.transferToUserId nillable:YES optional:NO];
 	[env endElement:elemName];

@@ -25,24 +25,105 @@
 //
 
 #import "ZKDescribeApprovalLayout.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutItem.h"
+
+@interface ZKDescribeApprovalLayout()
+@property (strong,nonatomic) NSString                         *id__v;
+@property (strong,nonatomic) NSString                         *label__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>  *layoutItems__v;
+@property (strong,nonatomic) NSString                         *name__v;
+@end
 
 @implementation ZKDescribeApprovalLayout
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeApprovalLayout"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeApprovalLayout" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"id" propertyName:@"id" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"layoutItems" propertyName:@"layoutItems" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)id {
-    return [self string:@"id"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.id__v = [self string:@"id"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.id__v;
 }
-			
+        
+
+-(void)setId:(NSString *)v {
+    self.id__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.label__v;
 }
-			
--(NSArray *)layoutItems {
-    return [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x2; 
 }
-			
+        
+
+-(NSArray<ZKDescribeLayoutItem *> *)layoutItems {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.layoutItems__v;
+}
+        
+
+-(void)setLayoutItems:(NSArray<ZKDescribeLayoutItem *> *)v {
+    self.layoutItems__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"id"               elemValue:self.id          nillable:NO  optional:NO];
+	[env addElement:@"label"            elemValue:self.label       nillable:NO  optional:NO];
+	[env addElementArray:@"layoutItems" elemValue:self.layoutItems];
+	[env addElement:@"name"             elemValue:self.name        nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

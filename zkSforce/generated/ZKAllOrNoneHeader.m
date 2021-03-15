@@ -27,11 +27,46 @@
 #import "ZKAllOrNoneHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKAllOrNoneHeader()
+@property (assign,nonatomic) BOOL allOrNone__v;
+@end
+
 @implementation ZKAllOrNoneHeader
 
-@synthesize allOrNone;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"AllOrNoneHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"AllOrNoneHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"allOrNone" propertyName:@"allOrNone" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(BOOL)allOrNone {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.allOrNone__v = [self boolean:@"allOrNone"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.allOrNone__v;
+}
+        
+
+-(void)setAllOrNone:(BOOL)v {
+    self.allOrNone__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allOrNone" elemValue:self.allOrNone];
 	[env endElement:elemName];

@@ -25,50 +25,215 @@
 //
 
 #import "ZKRelatedList.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutButton.h"
 #import "ZKRelatedListColumn.h"
 #import "ZKRelatedListSort.h"
 
+@interface ZKRelatedList()
+@property (strong,nonatomic) NSString                           *accessLevelRequiredForCreate__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *buttons__v;
+@property (strong,nonatomic) NSArray<ZKRelatedListColumn *>     *columns__v;
+@property (assign,nonatomic) BOOL                                custom__v;
+@property (strong,nonatomic) NSString                           *field__v;
+@property (strong,nonatomic) NSString                           *label__v;
+@property (assign,nonatomic) NSInteger                           limitRows__v;
+@property (strong,nonatomic) NSString                           *name__v;
+@property (strong,nonatomic) NSString                           *sobject__v;
+@property (strong,nonatomic) NSArray<ZKRelatedListSort *>       *sort__v;
+@end
+
 @implementation ZKRelatedList
 
+
++(void)load {
+    [self registerType:self xmlName:@"RelatedList"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RelatedList" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"accessLevelRequiredForCreate" propertyName:@"accessLevelRequiredForCreate" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"buttons" propertyName:@"buttons" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"columns" propertyName:@"columns" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"custom" propertyName:@"custom" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"field" propertyName:@"field" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"limitRows" propertyName:@"limitRows" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobject" propertyName:@"sobject" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sort" propertyName:@"sort" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)accessLevelRequiredForCreate {
-    return [self string:@"accessLevelRequiredForCreate"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.accessLevelRequiredForCreate__v = [self string:@"accessLevelRequiredForCreate"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.accessLevelRequiredForCreate__v;
 }
-			
--(NSArray *)buttons {
-    return [self complexTypeArrayFromElements:@"buttons" cls:[ZKDescribeLayoutButton class]];
+        
+
+-(void)setAccessLevelRequiredForCreate:(NSString *)v {
+    self.accessLevelRequiredForCreate__v = v;
+    fields__set[0] |= 0x1; 
 }
-			
--(NSArray *)columns {
-    return [self complexTypeArrayFromElements:@"columns" cls:[ZKRelatedListColumn class]];
+        
+
+-(NSArray<ZKDescribeLayoutButton *> *)buttons {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.buttons__v = [self complexTypeArrayFromElements:@"buttons" cls:[ZKDescribeLayoutButton class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.buttons__v;
 }
-			
+        
+
+-(void)setButtons:(NSArray<ZKDescribeLayoutButton *> *)v {
+    self.buttons__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSArray<ZKRelatedListColumn *> *)columns {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKRelatedListColumn class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.columns__v;
+}
+        
+
+-(void)setColumns:(NSArray<ZKRelatedListColumn *> *)v {
+    self.columns__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(BOOL)custom {
-    return [self boolean:@"custom"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.custom__v = [self boolean:@"custom"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.custom__v;
 }
-			
+        
+
+-(void)setCustom:(BOOL)v {
+    self.custom__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)field {
-    return [self string:@"field"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.field__v = [self string:@"field"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.field__v;
 }
-			
+        
+
+-(void)setField:(NSString *)v {
+    self.field__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.limitRows__v = [self integer:@"limitRows"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.limitRows__v;
 }
-			
+        
+
+-(void)setLimitRows:(NSInteger)v {
+    self.limitRows__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(NSString *)sobject {
-    return [self string:@"sobject"];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.sobject__v = [self string:@"sobject"];
+        fields__set[0] |= 0x100; 
+    }
+    return self.sobject__v;
 }
-			
--(NSArray *)sort {
-    return [self complexTypeArrayFromElements:@"sort" cls:[ZKRelatedListSort class]];
+        
+
+-(void)setSobject:(NSString *)v {
+    self.sobject__v = v;
+    fields__set[0] |= 0x100; 
 }
-			
+        
+
+-(NSArray<ZKRelatedListSort *> *)sort {
+    if ((fields__set[0] & 0x200) == 0) {
+        self.sort__v = [self complexTypeArrayFromElements:@"sort" cls:[ZKRelatedListSort class]];
+        fields__set[0] |= 0x200; 
+    }
+    return self.sort__v;
+}
+        
+
+-(void)setSort:(NSArray<ZKRelatedListSort *> *)v {
+    self.sort__v = v;
+    fields__set[0] |= 0x200; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"accessLevelRequiredForCreate" elemValue:self.accessLevelRequiredForCreate nillable:YES optional:NO];
+	[env addElementArray:@"buttons"                 elemValue:self.buttons];
+	[env addElementArray:@"columns"                 elemValue:self.columns];
+	[env addBoolElement:@"custom"                   elemValue:self.custom];
+	[env addElement:@"field"                        elemValue:self.field                        nillable:YES optional:NO];
+	[env addElement:@"label"                        elemValue:self.label                        nillable:NO  optional:NO];
+	[env addIntElement:@"limitRows"                 elemValue:self.limitRows];
+	[env addElement:@"name"                         elemValue:self.name                         nillable:NO  optional:NO];
+	[env addElement:@"sobject"                      elemValue:self.sobject                      nillable:YES optional:NO];
+	[env addElementArray:@"sort"                    elemValue:self.sort];
+	[env endElement:elemName];
+}
 @end

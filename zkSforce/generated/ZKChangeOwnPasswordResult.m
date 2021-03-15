@@ -25,7 +25,32 @@
 //
 
 #import "ZKChangeOwnPasswordResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKChangeOwnPasswordResult()
+@end
 
 @implementation ZKChangeOwnPasswordResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"ChangeOwnPasswordResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ChangeOwnPasswordResult" parent:nil
+                    fields:@[
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env endElement:elemName];
+}
 @end

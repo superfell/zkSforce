@@ -25,23 +25,23 @@
 //
 
 #import "ZKXMLSerializable.h"
-
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
 #import "ZKParser.h"
+
 /*
-<complexType name="AdditionalInformationMap" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="AdditionalInformationMap" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:string" name="name"/>
     <element type="xsd:string" name="value"/>
   </sequence>
 </complexType>
 */
-@interface ZKAdditionalInformationMap : ZKXmlDeserializer<ZKXMLSerializable> {
+@interface ZKAdditionalInformationMap : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
--(instancetype)init NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d NS_DESIGNATED_INITIALIZER;
--(instancetype)initWithXmlElement:(ZKElement *)e;
++(ZKComplexTypeInfo *)wsdlSchema;
 
-@property (strong) NSString  *name; 
-@property (strong) NSString  *value; 
+@property (strong,nonatomic) NSString  *name;
+@property (strong,nonatomic) NSString  *value;
 @end

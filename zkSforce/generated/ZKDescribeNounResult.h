@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKNameCaseValue;
 
 /*
-<complexType name="DescribeNounResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeNounResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="tns:NameCaseValue" maxOccurs="unbounded" minOccurs="0" name="caseValues"/>
     <element type="xsd:string" name="developerName"/>
@@ -38,12 +43,15 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeNounResult : ZKXmlDeserializer {
+@interface ZKDescribeNounResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *caseValues;  // of ZKNameCaseValue
-@property (weak, readonly) NSString  *developerName; 
-@property (weak, readonly) NSString  *gender; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *pluralAlias; 
-@property (weak, readonly) NSString  *startsWith; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<ZKNameCaseValue *>  *caseValues;
+@property (strong,nonatomic) NSString                    *developerName;
+@property (strong,nonatomic) NSString                    *gender;
+@property (strong,nonatomic) NSString                    *name;
+@property (strong,nonatomic) NSString                    *pluralAlias;
+@property (strong,nonatomic) NSString                    *startsWith;
 @end

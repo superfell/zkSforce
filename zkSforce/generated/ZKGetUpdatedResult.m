@@ -25,15 +25,68 @@
 //
 
 #import "ZKGetUpdatedResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKGetUpdatedResult()
+@property (strong,nonatomic) NSArray<NSString *>  *ids__v;
+@property (strong,nonatomic) NSDate               *latestDateCovered__v;
+@end
 
 @implementation ZKGetUpdatedResult
 
--(NSArray *)ids {
-    return [self strings:@"ids"];
+
++(void)load {
+    [self registerType:self xmlName:@"GetUpdatedResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"GetUpdatedResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ids" propertyName:@"ids" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"latestDateCovered" propertyName:@"latestDateCovered" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<NSString *> *)ids {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.ids__v = [self strings:@"ids"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.ids__v;
+}
+        
+
+-(void)setIds:(NSArray<NSString *> *)v {
+    self.ids__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSDate *)latestDateCovered {
-    return [self dateTime:@"latestDateCovered"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.latestDateCovered__v = [self dateTime:@"latestDateCovered"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.latestDateCovered__v;
 }
-			
+        
+
+-(void)setLatestDateCovered:(NSDate *)v {
+    self.latestDateCovered__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"ids"          elemValue:self.ids];
+	[env addElement:@"latestDateCovered" elemValue:self.latestDateCovered nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

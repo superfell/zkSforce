@@ -25,31 +25,144 @@
 //
 
 #import "ZKCanvas.h"
+#import "ZKEnvelope.h"
+
+@interface ZKCanvas()
+@property (strong,nonatomic) NSString  *displayLocation__v;
+@property (strong,nonatomic) NSString  *referenceId__v;
+@property (assign,nonatomic) BOOL       showLabel__v;
+@property (assign,nonatomic) BOOL       showScrollbars__v;
+@property (strong,nonatomic) NSString  *suggestedHeight__v;
+@property (strong,nonatomic) NSString  *suggestedWidth__v;
+@end
 
 @implementation ZKCanvas
 
+
++(void)load {
+    [self registerType:self xmlName:@"Canvas"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"Canvas" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"displayLocation" propertyName:@"displayLocation" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"referenceId" propertyName:@"referenceId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showLabel" propertyName:@"showLabel" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showScrollbars" propertyName:@"showScrollbars" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"suggestedHeight" propertyName:@"suggestedHeight" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"suggestedWidth" propertyName:@"suggestedWidth" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)displayLocation {
-    return [self string:@"displayLocation"];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.displayLocation__v = [self string:@"displayLocation"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.displayLocation__v;
 }
-			
+        
+
+-(void)setDisplayLocation:(NSString *)v {
+    self.displayLocation__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(NSString *)referenceId {
-    return [self string:@"referenceId"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.referenceId__v = [self string:@"referenceId"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.referenceId__v;
 }
-			
+        
+
+-(void)setReferenceId:(NSString *)v {
+    self.referenceId__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
 -(BOOL)showLabel {
-    return [self boolean:@"showLabel"];
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.showLabel__v = [self boolean:@"showLabel"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.showLabel__v;
 }
-			
+        
+
+-(void)setShowLabel:(BOOL)v {
+    self.showLabel__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
 -(BOOL)showScrollbars {
-    return [self boolean:@"showScrollbars"];
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.showScrollbars__v = [self boolean:@"showScrollbars"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.showScrollbars__v;
 }
-			
+        
+
+-(void)setShowScrollbars:(BOOL)v {
+    self.showScrollbars__v = v;
+    fields__set2[0] |= 0x8; 
+}
+        
+
 -(NSString *)suggestedHeight {
-    return [self string:@"suggestedHeight"];
+    if ((fields__set2[0] & 0x10) == 0) {
+        self.suggestedHeight__v = [self string:@"suggestedHeight"];
+        fields__set2[0] |= 0x10; 
+    }
+    return self.suggestedHeight__v;
 }
-			
+        
+
+-(void)setSuggestedHeight:(NSString *)v {
+    self.suggestedHeight__v = v;
+    fields__set2[0] |= 0x10; 
+}
+        
+
 -(NSString *)suggestedWidth {
-    return [self string:@"suggestedWidth"];
+    if ((fields__set2[0] & 0x20) == 0) {
+        self.suggestedWidth__v = [self string:@"suggestedWidth"];
+        fields__set2[0] |= 0x20; 
+    }
+    return self.suggestedWidth__v;
 }
-			
+        
+
+-(void)setSuggestedWidth:(NSString *)v {
+    self.suggestedWidth__v = v;
+    fields__set2[0] |= 0x20; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"Canvas"];
+	[env addIntElement:@"displayLines"    elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"        elemValue:self.tabOrder];
+	[env addElement:@"type"               elemValue:self.type            nillable:NO  optional:NO];
+	[env addElement:@"value"              elemValue:self.value           nillable:YES optional:NO];
+	[env addElement:@"displayLocation"    elemValue:self.displayLocation nillable:NO  optional:NO];
+	[env addElement:@"referenceId"        elemValue:self.referenceId     nillable:NO  optional:NO];
+	[env addBoolElement:@"showLabel"      elemValue:self.showLabel];
+	[env addBoolElement:@"showScrollbars" elemValue:self.showScrollbars];
+	[env addElement:@"suggestedHeight"    elemValue:self.suggestedHeight nillable:NO  optional:NO];
+	[env addElement:@"suggestedWidth"     elemValue:self.suggestedWidth  nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

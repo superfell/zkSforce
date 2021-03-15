@@ -25,27 +25,122 @@
 //
 
 #import "ZKDescribeDataCategoryGroupResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeDataCategoryGroupResult()
+@property (assign,nonatomic) NSInteger  categoryCount__v;
+@property (strong,nonatomic) NSString  *a_description__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *sobject__v;
+@end
 
 @implementation ZKDescribeDataCategoryGroupResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeDataCategoryGroupResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeDataCategoryGroupResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"categoryCount" propertyName:@"categoryCount" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"description" propertyName:@"a_description" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobject" propertyName:@"sobject" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSInteger)categoryCount {
-    return [self integer:@"categoryCount"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.categoryCount__v = [self integer:@"categoryCount"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.categoryCount__v;
 }
-			
--(NSString *)description {
-    return [self string:@"description"];
+        
+
+-(void)setCategoryCount:(NSInteger)v {
+    self.categoryCount__v = v;
+    fields__set[0] |= 0x1; 
 }
-			
+        
+
+-(NSString *)a_description {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.a_description__v = [self string:@"description"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.a_description__v;
+}
+        
+
+-(void)setA_description:(NSString *)v {
+    self.a_description__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)sobject {
-    return [self string:@"sobject"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.sobject__v = [self string:@"sobject"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.sobject__v;
 }
-			
+        
+
+-(void)setSobject:(NSString *)v {
+    self.sobject__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addIntElement:@"categoryCount" elemValue:self.categoryCount];
+	[env addElement:@"description"      elemValue:self.a_description   nillable:NO  optional:NO];
+	[env addElement:@"label"            elemValue:self.label         nillable:NO  optional:NO];
+	[env addElement:@"name"             elemValue:self.name          nillable:NO  optional:NO];
+	[env addElement:@"sobject"          elemValue:self.sobject       nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

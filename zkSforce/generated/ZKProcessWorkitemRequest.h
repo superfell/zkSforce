@@ -25,9 +25,12 @@
 //
 
 #import "ZKProcessRequest.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType name="ProcessWorkitemRequest" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="ProcessWorkitemRequest" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:ProcessRequest">
       <sequence>
@@ -38,8 +41,11 @@
   </complexContent>
 </complexType>
 */
-@interface ZKProcessWorkitemRequest : ZKProcessRequest {
+@interface ZKProcessWorkitemRequest : ZKProcessRequest  {
+	UInt16   fields__set2[1];
 }
-@property (strong) NSString  *action; 
-@property (strong) NSString  *workitemId; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString  *action;
+@property (strong,nonatomic) NSString  *workitemId;
 @end

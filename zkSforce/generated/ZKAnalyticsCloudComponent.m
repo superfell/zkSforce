@@ -25,35 +25,162 @@
 //
 
 #import "ZKAnalyticsCloudComponent.h"
+#import "ZKEnvelope.h"
+
+@interface ZKAnalyticsCloudComponent()
+@property (strong,nonatomic) NSString  *error__v;
+@property (strong,nonatomic) NSString  *filter__v;
+@property (strong,nonatomic) NSString  *height__v;
+@property (assign,nonatomic) BOOL       hideOnError__v;
+@property (assign,nonatomic) BOOL       showSharing__v;
+@property (assign,nonatomic) BOOL       showTitle__v;
+@property (strong,nonatomic) NSString  *width__v;
+@end
 
 @implementation ZKAnalyticsCloudComponent
 
+
++(void)load {
+    [self registerType:self xmlName:@"AnalyticsCloudComponent"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"AnalyticsCloudComponent" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"error" propertyName:@"error" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"filter" propertyName:@"filter" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"height" propertyName:@"height" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"hideOnError" propertyName:@"hideOnError" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showSharing" propertyName:@"showSharing" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showTitle" propertyName:@"showTitle" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"width" propertyName:@"width" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)error {
-    return [self string:@"error"];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.error__v = [self string:@"error"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.error__v;
 }
-			
+        
+
+-(void)setError:(NSString *)v {
+    self.error__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(NSString *)filter {
-    return [self string:@"filter"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.filter__v = [self string:@"filter"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.filter__v;
 }
-			
+        
+
+-(void)setFilter:(NSString *)v {
+    self.filter__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
 -(NSString *)height {
-    return [self string:@"height"];
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.height__v = [self string:@"height"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.height__v;
 }
-			
+        
+
+-(void)setHeight:(NSString *)v {
+    self.height__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
 -(BOOL)hideOnError {
-    return [self boolean:@"hideOnError"];
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.hideOnError__v = [self boolean:@"hideOnError"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.hideOnError__v;
 }
-			
+        
+
+-(void)setHideOnError:(BOOL)v {
+    self.hideOnError__v = v;
+    fields__set2[0] |= 0x8; 
+}
+        
+
 -(BOOL)showSharing {
-    return [self boolean:@"showSharing"];
+    if ((fields__set2[0] & 0x10) == 0) {
+        self.showSharing__v = [self boolean:@"showSharing"];
+        fields__set2[0] |= 0x10; 
+    }
+    return self.showSharing__v;
 }
-			
+        
+
+-(void)setShowSharing:(BOOL)v {
+    self.showSharing__v = v;
+    fields__set2[0] |= 0x10; 
+}
+        
+
 -(BOOL)showTitle {
-    return [self boolean:@"showTitle"];
+    if ((fields__set2[0] & 0x20) == 0) {
+        self.showTitle__v = [self boolean:@"showTitle"];
+        fields__set2[0] |= 0x20; 
+    }
+    return self.showTitle__v;
 }
-			
+        
+
+-(void)setShowTitle:(BOOL)v {
+    self.showTitle__v = v;
+    fields__set2[0] |= 0x20; 
+}
+        
+
 -(NSString *)width {
-    return [self string:@"width"];
+    if ((fields__set2[0] & 0x40) == 0) {
+        self.width__v = [self string:@"width"];
+        fields__set2[0] |= 0x40; 
+    }
+    return self.width__v;
 }
-			
+        
+
+-(void)setWidth:(NSString *)v {
+    self.width__v = v;
+    fields__set2[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"AnalyticsCloudComponent"];
+	[env addIntElement:@"displayLines" elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"     elemValue:self.tabOrder];
+	[env addElement:@"type"            elemValue:self.type         nillable:NO  optional:NO];
+	[env addElement:@"value"           elemValue:self.value        nillable:YES optional:NO];
+	[env addElement:@"error"           elemValue:self.error        nillable:NO  optional:NO];
+	[env addElement:@"filter"          elemValue:self.filter       nillable:NO  optional:NO];
+	[env addElement:@"height"          elemValue:self.height       nillable:NO  optional:NO];
+	[env addBoolElement:@"hideOnError" elemValue:self.hideOnError];
+	[env addBoolElement:@"showSharing" elemValue:self.showSharing];
+	[env addBoolElement:@"showTitle"   elemValue:self.showTitle];
+	[env addElement:@"width"           elemValue:self.width        nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

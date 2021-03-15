@@ -25,9 +25,12 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType name="VisualforcePage" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="VisualforcePage" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:DescribeLayoutComponent">
       <sequence>
@@ -41,11 +44,14 @@
   </complexContent>
 </complexType>
 */
-@interface ZKVisualforcePage : ZKDescribeLayoutComponent {
+@interface ZKVisualforcePage : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (readonly) BOOL             showLabel; 
-@property (readonly) BOOL             showScrollbars; 
-@property (weak, readonly) NSString  *suggestedHeight; 
-@property (weak, readonly) NSString  *suggestedWidth; 
-@property (weak, readonly) NSString  *url; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (assign,nonatomic) BOOL       showLabel;
+@property (assign,nonatomic) BOOL       showScrollbars;
+@property (strong,nonatomic) NSString  *suggestedHeight;
+@property (strong,nonatomic) NSString  *suggestedWidth;
+@property (strong,nonatomic) NSString  *url;
 @end

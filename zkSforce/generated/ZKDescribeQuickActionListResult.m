@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeQuickActionListResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeQuickActionListItemResult.h"
+
+@interface ZKDescribeQuickActionListResult()
+@property (strong,nonatomic) NSArray<ZKDescribeQuickActionListItemResult *>  *quickActionListItems__v;
+@end
 
 @implementation ZKDescribeQuickActionListResult
 
--(NSArray *)quickActionListItems {
-    return [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeQuickActionListResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeQuickActionListResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"quickActionListItems" propertyName:@"quickActionListItems" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeQuickActionListItemResult *> *)quickActionListItems {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.quickActionListItems__v = [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.quickActionListItems__v;
+}
+        
+
+-(void)setQuickActionListItems:(NSArray<ZKDescribeQuickActionListItemResult *> *)v {
+    self.quickActionListItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"quickActionListItems" elemValue:self.quickActionListItems];
+	[env endElement:elemName];
+}
 @end

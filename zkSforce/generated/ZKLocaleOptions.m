@@ -27,11 +27,63 @@
 #import "ZKLocaleOptions.h"
 #import "ZKEnvelope.h"
 
+@interface ZKLocaleOptions()
+@property (strong,nonatomic) NSString  *language__v;
+@property (assign,nonatomic) BOOL       localizeErrors__v;
+@end
+
 @implementation ZKLocaleOptions
 
-@synthesize language, localizeErrors;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"LocaleOptions"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"LocaleOptions" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"language" propertyName:@"language" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"localizeErrors" propertyName:@"localizeErrors" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)language {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.language__v = [self string:@"language"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.language__v;
+}
+        
+
+-(void)setLanguage:(NSString *)v {
+    self.language__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(BOOL)localizeErrors {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.localizeErrors__v = [self boolean:@"localizeErrors"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.localizeErrors__v;
+}
+        
+
+-(void)setLocalizeErrors:(BOOL)v {
+    self.localizeErrors__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"language"           elemValue:self.language       nillable:NO  optional:YES];
 	[env addBoolElement:@"localizeErrors" elemValue:self.localizeErrors];

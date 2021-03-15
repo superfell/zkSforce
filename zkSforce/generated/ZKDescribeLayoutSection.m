@@ -25,48 +25,213 @@
 //
 
 #import "ZKDescribeLayoutSection.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutRow.h"
+
+@interface ZKDescribeLayoutSection()
+@property (assign,nonatomic) BOOL                             collapsed__v;
+@property (assign,nonatomic) NSInteger                        columns__v;
+@property (strong,nonatomic) NSString                        *heading__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutRow *>  *layoutRows__v;
+@property (strong,nonatomic) NSString                        *layoutSectionId__v;
+@property (strong,nonatomic) NSString                        *parentLayoutId__v;
+@property (assign,nonatomic) NSInteger                        rows__v;
+@property (strong,nonatomic) NSString                        *tabOrder__v;
+@property (assign,nonatomic) BOOL                             useCollapsibleSection__v;
+@property (assign,nonatomic) BOOL                             useHeading__v;
+@end
 
 @implementation ZKDescribeLayoutSection
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeLayoutSection"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutSection" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"collapsed" propertyName:@"collapsed" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"columns" propertyName:@"columns" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"heading" propertyName:@"heading" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"layoutRows" propertyName:@"layoutRows" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"layoutSectionId" propertyName:@"layoutSectionId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"parentLayoutId" propertyName:@"parentLayoutId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"rows" propertyName:@"rows" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"tabOrder" propertyName:@"tabOrder" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"useCollapsibleSection" propertyName:@"useCollapsibleSection" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"useHeading" propertyName:@"useHeading" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)collapsed {
-    return [self boolean:@"collapsed"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.collapsed__v = [self boolean:@"collapsed"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.collapsed__v;
 }
-			
+        
+
+-(void)setCollapsed:(BOOL)v {
+    self.collapsed__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSInteger)columns {
-    return [self integer:@"columns"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.columns__v = [self integer:@"columns"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.columns__v;
 }
-			
+        
+
+-(void)setColumns:(NSInteger)v {
+    self.columns__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)heading {
-    return [self string:@"heading"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.heading__v = [self string:@"heading"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.heading__v;
 }
-			
--(NSArray *)layoutRows {
-    return [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
+        
+
+-(void)setHeading:(NSString *)v {
+    self.heading__v = v;
+    fields__set[0] |= 0x4; 
 }
-			
+        
+
+-(NSArray<ZKDescribeLayoutRow *> *)layoutRows {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.layoutRows__v = [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
+        fields__set[0] |= 0x8; 
+    }
+    return self.layoutRows__v;
+}
+        
+
+-(void)setLayoutRows:(NSArray<ZKDescribeLayoutRow *> *)v {
+    self.layoutRows__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)layoutSectionId {
-    return [self string:@"layoutSectionId"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.layoutSectionId__v = [self string:@"layoutSectionId"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.layoutSectionId__v;
 }
-			
+        
+
+-(void)setLayoutSectionId:(NSString *)v {
+    self.layoutSectionId__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)parentLayoutId {
-    return [self string:@"parentLayoutId"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.parentLayoutId__v = [self string:@"parentLayoutId"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.parentLayoutId__v;
 }
-			
+        
+
+-(void)setParentLayoutId:(NSString *)v {
+    self.parentLayoutId__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSInteger)rows {
-    return [self integer:@"rows"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.rows__v = [self integer:@"rows"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.rows__v;
 }
-			
+        
+
+-(void)setRows:(NSInteger)v {
+    self.rows__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(NSString *)tabOrder {
-    return [self string:@"tabOrder"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.tabOrder__v = [self string:@"tabOrder"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.tabOrder__v;
 }
-			
+        
+
+-(void)setTabOrder:(NSString *)v {
+    self.tabOrder__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(BOOL)useCollapsibleSection {
-    return [self boolean:@"useCollapsibleSection"];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.useCollapsibleSection__v = [self boolean:@"useCollapsibleSection"];
+        fields__set[0] |= 0x100; 
+    }
+    return self.useCollapsibleSection__v;
 }
-			
+        
+
+-(void)setUseCollapsibleSection:(BOOL)v {
+    self.useCollapsibleSection__v = v;
+    fields__set[0] |= 0x100; 
+}
+        
+
 -(BOOL)useHeading {
-    return [self boolean:@"useHeading"];
+    if ((fields__set[0] & 0x200) == 0) {
+        self.useHeading__v = [self boolean:@"useHeading"];
+        fields__set[0] |= 0x200; 
+    }
+    return self.useHeading__v;
 }
-			
+        
+
+-(void)setUseHeading:(BOOL)v {
+    self.useHeading__v = v;
+    fields__set[0] |= 0x200; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"collapsed"             elemValue:self.collapsed];
+	[env addIntElement:@"columns"                elemValue:self.columns];
+	[env addElement:@"heading"                   elemValue:self.heading               nillable:YES optional:NO];
+	[env addElementArray:@"layoutRows"           elemValue:self.layoutRows];
+	[env addElement:@"layoutSectionId"           elemValue:self.layoutSectionId       nillable:YES optional:NO];
+	[env addElement:@"parentLayoutId"            elemValue:self.parentLayoutId        nillable:NO  optional:NO];
+	[env addIntElement:@"rows"                   elemValue:self.rows];
+	[env addElement:@"tabOrder"                  elemValue:self.tabOrder              nillable:NO  optional:NO];
+	[env addBoolElement:@"useCollapsibleSection" elemValue:self.useCollapsibleSection];
+	[env addBoolElement:@"useHeading"            elemValue:self.useHeading];
+	[env endElement:elemName];
+}
 @end

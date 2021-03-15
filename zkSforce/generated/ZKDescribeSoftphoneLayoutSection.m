@@ -25,16 +25,69 @@
 //
 
 #import "ZKDescribeSoftphoneLayoutSection.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeSoftphoneLayoutItem.h"
+
+@interface ZKDescribeSoftphoneLayoutSection()
+@property (strong,nonatomic) NSString                                  *entityApiName__v;
+@property (strong,nonatomic) NSArray<ZKDescribeSoftphoneLayoutItem *>  *items__v;
+@end
 
 @implementation ZKDescribeSoftphoneLayoutSection
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeSoftphoneLayoutSection"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoftphoneLayoutSection" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityApiName" propertyName:@"entityApiName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"items" propertyName:@"items" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)entityApiName {
-    return [self string:@"entityApiName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.entityApiName__v = [self string:@"entityApiName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.entityApiName__v;
 }
-			
--(NSArray *)items {
-    return [self complexTypeArrayFromElements:@"items" cls:[ZKDescribeSoftphoneLayoutItem class]];
+        
+
+-(void)setEntityApiName:(NSString *)v {
+    self.entityApiName__v = v;
+    fields__set[0] |= 0x1; 
 }
-			
+        
+
+-(NSArray<ZKDescribeSoftphoneLayoutItem *> *)items {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.items__v = [self complexTypeArrayFromElements:@"items" cls:[ZKDescribeSoftphoneLayoutItem class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.items__v;
+}
+        
+
+-(void)setItems:(NSArray<ZKDescribeSoftphoneLayoutItem *> *)v {
+    self.items__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"entityApiName" elemValue:self.entityApiName nillable:NO  optional:NO];
+	[env addElementArray:@"items"    elemValue:self.items];
+	[env endElement:elemName];
+}
 @end

@@ -21,11 +21,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class ZKEnvelope;
+@class ZKXmlWriter;
 
 @protocol ZKXMLSerializable <NSObject>
 
-/** Write the current instance to this envelope */
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName;
+/** Write the current instance to this writer */
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName;
 
 @end

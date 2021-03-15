@@ -25,7 +25,32 @@
 //
 
 #import "ZKSoqlWhereCondition.h"
+#import "ZKEnvelope.h"
+
+@interface ZKSoqlWhereCondition()
+@end
 
 @implementation ZKSoqlWhereCondition
 
+
++(void)load {
+    [self registerType:self xmlName:@"SoqlWhereCondition"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SoqlWhereCondition" parent:nil
+                    fields:@[
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env endElement:elemName];
+}
 @end

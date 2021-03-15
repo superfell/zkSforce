@@ -24,10 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeColor;
+@class ZKDescribeIcon;
 
 /*
-<complexType name="DescribeTab" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeTab" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeColor" name="colors"/>
     <element type="xsd:boolean" name="custom"/>
@@ -41,15 +47,18 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeTab : ZKXmlDeserializer {
+@interface ZKDescribeTab : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *colors;  // of ZKDescribeColor
-@property (readonly) BOOL             custom; 
-@property (weak, readonly) NSString  *iconUrl; 
-@property (weak, readonly) NSArray   *icons;  // of ZKDescribeIcon
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *miniIconUrl; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *sobjectName; 
-@property (weak, readonly) NSString  *url; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors;
+@property (assign,nonatomic) BOOL                         custom;
+@property (strong,nonatomic) NSString                    *iconUrl;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons;
+@property (strong,nonatomic) NSString                    *label;
+@property (strong,nonatomic) NSString                    *miniIconUrl;
+@property (strong,nonatomic) NSString                    *name;
+@property (strong,nonatomic) NSString                    *sobjectName;
+@property (strong,nonatomic) NSString                    *url;
 @end

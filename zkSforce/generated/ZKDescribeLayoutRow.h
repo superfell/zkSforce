@@ -24,18 +24,26 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeLayoutItem;
 
 /*
-<complexType name="DescribeLayoutRow" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeLayoutRow" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="1" type="tns:DescribeLayoutItem" name="layoutItems"/>
     <element type="xsd:int" name="numItems"/>
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayoutRow : ZKXmlDeserializer {
+@interface ZKDescribeLayoutRow : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray  *layoutItems;  // of ZKDescribeLayoutItem
-@property (readonly) NSInteger       numItems; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>  *layoutItems;
+@property (assign,nonatomic) NSInteger                         numItems;
 @end

@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKPicklistForRecordType;
 
 /*
-<complexType name="RecordTypeMapping" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="RecordTypeMapping" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:boolean" name="active"/>
     <element type="xsd:boolean" name="available"/>
@@ -41,15 +46,18 @@
   </sequence>
 </complexType>
 */
-@interface ZKRecordTypeMapping : ZKXmlDeserializer {
+@interface ZKRecordTypeMapping : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL             active; 
-@property (readonly) BOOL             available; 
-@property (readonly) BOOL             defaultRecordTypeMapping; 
-@property (weak, readonly) NSString  *developerName; 
-@property (weak, readonly) NSString  *layoutId; 
-@property (readonly) BOOL             master; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
-@property (weak, readonly) NSString  *recordTypeId; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (assign,nonatomic) BOOL                                 active;
+@property (assign,nonatomic) BOOL                                 available;
+@property (assign,nonatomic) BOOL                                 defaultRecordTypeMapping;
+@property (strong,nonatomic) NSString                            *developerName;
+@property (strong,nonatomic) NSString                            *layoutId;
+@property (assign,nonatomic) BOOL                                 master;
+@property (strong,nonatomic) NSString                            *name;
+@property (strong,nonatomic) NSArray<ZKPicklistForRecordType *>  *picklistsForRecordType;
+@property (strong,nonatomic) NSString                            *recordTypeId;
 @end

@@ -25,36 +25,159 @@
 //
 
 #import "ZKPerformQuickActionResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
+
+@interface ZKPerformQuickActionResult()
+@property (strong,nonatomic) NSString             *contextId__v;
+@property (assign,nonatomic) BOOL                  created__v;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors__v;
+@property (strong,nonatomic) NSArray<NSString *>  *feedItemIds__v;
+@property (strong,nonatomic) NSArray<NSString *>  *ids__v;
+@property (assign,nonatomic) BOOL                  success__v;
+@property (strong,nonatomic) NSString             *successMessage__v;
+@end
 
 @implementation ZKPerformQuickActionResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"PerformQuickActionResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"PerformQuickActionResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"contextId" propertyName:@"contextId" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"created" propertyName:@"created" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errors" propertyName:@"errors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"feedItemIds" propertyName:@"feedItemIds" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ids" propertyName:@"ids" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"success" propertyName:@"success" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"successMessage" propertyName:@"successMessage" optional:YES nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)contextId {
-    return [self string:@"contextId"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.contextId__v = [self string:@"contextId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.contextId__v;
 }
-			
+        
+
+-(void)setContextId:(NSString *)v {
+    self.contextId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)created {
-    return [self boolean:@"created"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.created__v = [self boolean:@"created"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.created__v;
 }
-			
--(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        
+
+-(void)setCreated:(BOOL)v {
+    self.created__v = v;
+    fields__set[0] |= 0x2; 
 }
-			
--(NSArray *)feedItemIds {
-    return [self strings:@"feedItemIds"];
+        
+
+-(NSArray<ZKError *> *)errors {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x4; 
+    }
+    return self.errors__v;
 }
-			
--(NSArray *)ids {
-    return [self strings:@"ids"];
+        
+
+-(void)setErrors:(NSArray<ZKError *> *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x4; 
 }
-			
+        
+
+-(NSArray<NSString *> *)feedItemIds {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.feedItemIds__v = [self strings:@"feedItemIds"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.feedItemIds__v;
+}
+        
+
+-(void)setFeedItemIds:(NSArray<NSString *> *)v {
+    self.feedItemIds__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
+-(NSArray<NSString *> *)ids {
+    if ((fields__set[0] & 0x10) == 0) {
+        self.ids__v = [self strings:@"ids"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.ids__v;
+}
+        
+
+-(void)setIds:(NSArray<NSString *> *)v {
+    self.ids__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)successMessage {
-    return [self string:@"successMessage"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.successMessage__v = [self string:@"successMessage"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.successMessage__v;
 }
-			
+        
+
+-(void)setSuccessMessage:(NSString *)v {
+    self.successMessage__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"contextId"        elemValue:self.contextId      nillable:YES optional:YES];
+	[env addBoolElement:@"created"      elemValue:self.created];
+	[env addElementArray:@"errors"      elemValue:self.errors];
+	[env addElementArray:@"feedItemIds" elemValue:self.feedItemIds];
+	[env addElementArray:@"ids"         elemValue:self.ids];
+	[env addBoolElement:@"success"      elemValue:self.success];
+	[env addElement:@"successMessage"   elemValue:self.successMessage nillable:YES optional:YES];
+	[env endElement:elemName];
+}
 @end

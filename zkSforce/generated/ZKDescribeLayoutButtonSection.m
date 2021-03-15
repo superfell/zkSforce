@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeLayoutButtonSection.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutButton.h"
+
+@interface ZKDescribeLayoutButtonSection()
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *detailButtons__v;
+@end
 
 @implementation ZKDescribeLayoutButtonSection
 
--(NSArray *)detailButtons {
-    return [self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeLayoutButtonSection"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutButtonSection" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"detailButtons" propertyName:@"detailButtons" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeLayoutButton *> *)detailButtons {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.detailButtons__v = [self complexTypeArrayFromElements:@"detailButtons" cls:[ZKDescribeLayoutButton class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.detailButtons__v;
+}
+        
+
+-(void)setDetailButtons:(NSArray<ZKDescribeLayoutButton *> *)v {
+    self.detailButtons__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"detailButtons" elemValue:self.detailButtons];
+	[env endElement:elemName];
+}
 @end

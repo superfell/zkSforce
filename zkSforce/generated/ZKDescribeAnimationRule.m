@@ -25,31 +25,140 @@
 //
 
 #import "ZKDescribeAnimationRule.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeAnimationRule()
+@property (strong,nonatomic) NSString  *animationFrequency__v;
+@property (assign,nonatomic) BOOL       isActive__v;
+@property (strong,nonatomic) NSString  *recordTypeContext__v;
+@property (strong,nonatomic) NSString  *recordTypeId__v;
+@property (strong,nonatomic) NSString  *targetField__v;
+@property (strong,nonatomic) NSString  *targetFieldChangeToValues__v;
+@end
 
 @implementation ZKDescribeAnimationRule
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeAnimationRule"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeAnimationRule" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"animationFrequency" propertyName:@"animationFrequency" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"isActive" propertyName:@"isActive" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeContext" propertyName:@"recordTypeContext" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeId" propertyName:@"recordTypeId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"targetField" propertyName:@"targetField" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"targetFieldChangeToValues" propertyName:@"targetFieldChangeToValues" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)animationFrequency {
-    return [self string:@"animationFrequency"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.animationFrequency__v = [self string:@"animationFrequency"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.animationFrequency__v;
 }
-			
+        
+
+-(void)setAnimationFrequency:(NSString *)v {
+    self.animationFrequency__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)isActive {
-    return [self boolean:@"isActive"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.isActive__v = [self boolean:@"isActive"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.isActive__v;
 }
-			
+        
+
+-(void)setIsActive:(BOOL)v {
+    self.isActive__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)recordTypeContext {
-    return [self string:@"recordTypeContext"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.recordTypeContext__v = [self string:@"recordTypeContext"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.recordTypeContext__v;
 }
-			
+        
+
+-(void)setRecordTypeContext:(NSString *)v {
+    self.recordTypeContext__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)recordTypeId {
-    return [self string:@"recordTypeId"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.recordTypeId__v = [self string:@"recordTypeId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.recordTypeId__v;
 }
-			
+        
+
+-(void)setRecordTypeId:(NSString *)v {
+    self.recordTypeId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)targetField {
-    return [self string:@"targetField"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.targetField__v = [self string:@"targetField"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.targetField__v;
 }
-			
+        
+
+-(void)setTargetField:(NSString *)v {
+    self.targetField__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)targetFieldChangeToValues {
-    return [self string:@"targetFieldChangeToValues"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.targetFieldChangeToValues__v = [self string:@"targetFieldChangeToValues"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.targetFieldChangeToValues__v;
 }
-			
+        
+
+-(void)setTargetFieldChangeToValues:(NSString *)v {
+    self.targetFieldChangeToValues__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"animationFrequency"        elemValue:self.animationFrequency        nillable:NO  optional:NO];
+	[env addBoolElement:@"isActive"              elemValue:self.isActive];
+	[env addElement:@"recordTypeContext"         elemValue:self.recordTypeContext         nillable:NO  optional:NO];
+	[env addElement:@"recordTypeId"              elemValue:self.recordTypeId              nillable:YES optional:NO];
+	[env addElement:@"targetField"               elemValue:self.targetField               nillable:NO  optional:NO];
+	[env addElement:@"targetFieldChangeToValues" elemValue:self.targetFieldChangeToValues nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

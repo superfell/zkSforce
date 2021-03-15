@@ -27,11 +27,97 @@
 #import "ZKRenderEmailTemplateRequest.h"
 #import "ZKEnvelope.h"
 
+@interface ZKRenderEmailTemplateRequest()
+@property (assign,nonatomic) BOOL                  escapeHtmlInMergeFields__v;
+@property (strong,nonatomic) NSArray<NSString *>  *templateBodies__v;
+@property (strong,nonatomic) NSString             *whatId__v;
+@property (strong,nonatomic) NSString             *whoId__v;
+@end
+
 @implementation ZKRenderEmailTemplateRequest
 
-@synthesize escapeHtmlInMergeFields, templateBodies, whatId, whoId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"RenderEmailTemplateRequest"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RenderEmailTemplateRequest" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"escapeHtmlInMergeFields" propertyName:@"escapeHtmlInMergeFields" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"templateBodies" propertyName:@"templateBodies" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whatId" propertyName:@"whatId" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"whoId" propertyName:@"whoId" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(BOOL)escapeHtmlInMergeFields {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.escapeHtmlInMergeFields__v = [self boolean:@"escapeHtmlInMergeFields"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.escapeHtmlInMergeFields__v;
+}
+        
+
+-(void)setEscapeHtmlInMergeFields:(BOOL)v {
+    self.escapeHtmlInMergeFields__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSArray<NSString *> *)templateBodies {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.templateBodies__v = [self strings:@"templateBodies"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.templateBodies__v;
+}
+        
+
+-(void)setTemplateBodies:(NSArray<NSString *> *)v {
+    self.templateBodies__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
+-(NSString *)whatId {
+    if ((fields__set[0] & 0x4) == 0) {
+        self.whatId__v = [self string:@"whatId"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.whatId__v;
+}
+        
+
+-(void)setWhatId:(NSString *)v {
+    self.whatId__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
+-(NSString *)whoId {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.whoId__v = [self string:@"whoId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.whoId__v;
+}
+        
+
+-(void)setWhoId:(NSString *)v {
+    self.whoId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"escapeHtmlInMergeFields" elemValue:self.escapeHtmlInMergeFields];
 	[env addElementArray:@"templateBodies"         elemValue:self.templateBodies];

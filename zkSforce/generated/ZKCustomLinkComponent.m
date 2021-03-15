@@ -25,12 +25,55 @@
 //
 
 #import "ZKCustomLinkComponent.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutButton.h"
+
+@interface ZKCustomLinkComponent()
+@property (strong,nonatomic) ZKDescribeLayoutButton  *customLink__v;
+@end
 
 @implementation ZKCustomLinkComponent
 
--(ZKDescribeLayoutButton *)customLink {
-    return [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
+
++(void)load {
+    [self registerType:self xmlName:@"CustomLinkComponent"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"CustomLinkComponent" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"customLink" propertyName:@"customLink" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(ZKDescribeLayoutButton *)customLink {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.customLink__v = [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
+        fields__set2[0] |= 0x1; 
+    }
+    return self.customLink__v;
+}
+        
+
+-(void)setCustomLink:(ZKDescribeLayoutButton *)v {
+    self.customLink__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"CustomLinkComponent"];
+	[env addIntElement:@"displayLines" elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"     elemValue:self.tabOrder];
+	[env addElement:@"type"            elemValue:self.type         nillable:NO  optional:NO];
+	[env addElement:@"value"           elemValue:self.value        nillable:YES optional:NO];
+	[env addElement:@"customLink"      elemValue:self.customLink   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

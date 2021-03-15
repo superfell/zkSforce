@@ -24,10 +24,13 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType name="FilteredLookupInfo" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="FilteredLookupInfo" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" type="xsd:string" name="controllingFields"/>
     <element type="xsd:boolean" name="dependent"/>
@@ -35,9 +38,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKFilteredLookupInfo : ZKXmlDeserializer {
+@interface ZKFilteredLookupInfo : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray  *controllingFields;  // of NSString
-@property (readonly) BOOL            dependent; 
-@property (readonly) BOOL            optionalFilter; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<NSString *>  *controllingFields;
+@property (assign,nonatomic) BOOL                  dependent;
+@property (assign,nonatomic) BOOL                  optionalFilter;
 @end

@@ -27,11 +27,63 @@
 #import "ZKAssignmentRuleHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKAssignmentRuleHeader()
+@property (strong,nonatomic) NSString  *assignmentRuleId__v;
+@property (assign,nonatomic) BOOL       useDefaultRule__v;
+@end
+
 @implementation ZKAssignmentRuleHeader
 
-@synthesize assignmentRuleId, useDefaultRule;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"AssignmentRuleHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"AssignmentRuleHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"assignmentRuleId" propertyName:@"assignmentRuleId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"useDefaultRule" propertyName:@"useDefaultRule" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)assignmentRuleId {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.assignmentRuleId__v = [self string:@"assignmentRuleId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.assignmentRuleId__v;
+}
+        
+
+-(void)setAssignmentRuleId:(NSString *)v {
+    self.assignmentRuleId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(BOOL)useDefaultRule {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.useDefaultRule__v = [self boolean:@"useDefaultRule"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.useDefaultRule__v;
+}
+        
+
+-(void)setUseDefaultRule:(BOOL)v {
+    self.useDefaultRule__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"assignmentRuleId"   elemValue:self.assignmentRuleId nillable:YES optional:NO];
 	[env addBoolElement:@"useDefaultRule" elemValue:self.useDefaultRule];

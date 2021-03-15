@@ -25,21 +25,88 @@
 //
 
 #import "ZKDescribeThemeItem.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeColor.h"
 #import "ZKDescribeIcon.h"
 
+@interface ZKDescribeThemeItem()
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors__v;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons__v;
+@property (strong,nonatomic) NSString                    *name__v;
+@end
+
 @implementation ZKDescribeThemeItem
 
--(NSArray *)colors {
-    return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeThemeItem"];
 }
-			
--(NSArray *)icons {
-    return [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeThemeItem" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"colors" propertyName:@"colors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"icons" propertyName:@"icons" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
 }
-			
+    
+
+-(NSArray<ZKDescribeColor *> *)colors {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.colors__v;
+}
+        
+
+-(void)setColors:(NSArray<ZKDescribeColor *> *)v {
+    self.colors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSArray<ZKDescribeIcon *> *)icons {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.icons__v;
+}
+        
+
+-(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
+    self.icons__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"colors" elemValue:self.colors];
+	[env addElementArray:@"icons"  elemValue:self.icons];
+	[env addElement:@"name"        elemValue:self.name   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

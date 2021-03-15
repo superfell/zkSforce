@@ -25,27 +25,122 @@
 //
 
 #import "ZKRecordTypeCompactLayoutMapping.h"
+#import "ZKEnvelope.h"
+
+@interface ZKRecordTypeCompactLayoutMapping()
+@property (assign,nonatomic) BOOL       available__v;
+@property (strong,nonatomic) NSString  *compactLayoutId__v;
+@property (strong,nonatomic) NSString  *compactLayoutName__v;
+@property (strong,nonatomic) NSString  *recordTypeId__v;
+@property (strong,nonatomic) NSString  *recordTypeName__v;
+@end
 
 @implementation ZKRecordTypeCompactLayoutMapping
 
+
++(void)load {
+    [self registerType:self xmlName:@"RecordTypeCompactLayoutMapping"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RecordTypeCompactLayoutMapping" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"available" propertyName:@"available" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"compactLayoutId" propertyName:@"compactLayoutId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"compactLayoutName" propertyName:@"compactLayoutName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeId" propertyName:@"recordTypeId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeName" propertyName:@"recordTypeName" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)available {
-    return [self boolean:@"available"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.available__v = [self boolean:@"available"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.available__v;
 }
-			
+        
+
+-(void)setAvailable:(BOOL)v {
+    self.available__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)compactLayoutId {
-    return [self string:@"compactLayoutId"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.compactLayoutId__v = [self string:@"compactLayoutId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.compactLayoutId__v;
 }
-			
+        
+
+-(void)setCompactLayoutId:(NSString *)v {
+    self.compactLayoutId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)compactLayoutName {
-    return [self string:@"compactLayoutName"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.compactLayoutName__v = [self string:@"compactLayoutName"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.compactLayoutName__v;
 }
-			
+        
+
+-(void)setCompactLayoutName:(NSString *)v {
+    self.compactLayoutName__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)recordTypeId {
-    return [self string:@"recordTypeId"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.recordTypeId__v = [self string:@"recordTypeId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.recordTypeId__v;
 }
-			
+        
+
+-(void)setRecordTypeId:(NSString *)v {
+    self.recordTypeId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)recordTypeName {
-    return [self string:@"recordTypeName"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.recordTypeName__v = [self string:@"recordTypeName"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.recordTypeName__v;
 }
-			
+        
+
+-(void)setRecordTypeName:(NSString *)v {
+    self.recordTypeName__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"available"     elemValue:self.available];
+	[env addElement:@"compactLayoutId"   elemValue:self.compactLayoutId   nillable:YES optional:NO];
+	[env addElement:@"compactLayoutName" elemValue:self.compactLayoutName nillable:NO  optional:NO];
+	[env addElement:@"recordTypeId"      elemValue:self.recordTypeId      nillable:NO  optional:NO];
+	[env addElement:@"recordTypeName"    elemValue:self.recordTypeName    nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

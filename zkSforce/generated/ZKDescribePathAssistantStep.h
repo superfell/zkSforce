@@ -24,11 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
+@class ZKDescribePathAssistantField;
 @class ZKDescribeLayoutSection;
+
 /*
-<complexType name="DescribePathAssistantStep" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribePathAssistantStep" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:boolean" name="closed"/>
     <element type="xsd:boolean" name="converted"/>
@@ -41,14 +46,17 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribePathAssistantStep : ZKXmlDeserializer {
+@interface ZKDescribePathAssistantStep : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL                            closed; 
-@property (readonly) BOOL                            converted; 
-@property (weak, readonly) NSArray                  *fields;  // of ZKDescribePathAssistantField
-@property (weak, readonly) NSString                 *info; 
-@property (weak, readonly) ZKDescribeLayoutSection  *layoutSection; 
-@property (weak, readonly) NSString                 *picklistLabel; 
-@property (weak, readonly) NSString                 *picklistValue; 
-@property (readonly) BOOL                            won; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (assign,nonatomic) BOOL                                      closed;
+@property (assign,nonatomic) BOOL                                      converted;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistantField *>  *fields;
+@property (strong,nonatomic) NSString                                 *info;
+@property (strong,nonatomic) ZKDescribeLayoutSection                  *layoutSection;
+@property (strong,nonatomic) NSString                                 *picklistLabel;
+@property (strong,nonatomic) NSString                                 *picklistValue;
+@property (assign,nonatomic) BOOL                                      won;
 @end

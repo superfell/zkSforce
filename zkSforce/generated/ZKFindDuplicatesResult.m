@@ -25,21 +25,88 @@
 //
 
 #import "ZKFindDuplicatesResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDuplicateResult.h"
 #import "ZKError.h"
 
+@interface ZKFindDuplicatesResult()
+@property (strong,nonatomic) NSArray<ZKDuplicateResult *>  *duplicateResults__v;
+@property (strong,nonatomic) NSArray<ZKError *>            *errors__v;
+@property (assign,nonatomic) BOOL                           success__v;
+@end
+
 @implementation ZKFindDuplicatesResult
 
--(NSArray *)duplicateResults {
-    return [self complexTypeArrayFromElements:@"duplicateResults" cls:[ZKDuplicateResult class]];
+
++(void)load {
+    [self registerType:self xmlName:@"FindDuplicatesResult"];
 }
-			
--(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"FindDuplicatesResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateResults" propertyName:@"duplicateResults" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errors" propertyName:@"errors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"success" propertyName:@"success" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
 }
-			
+    
+
+-(NSArray<ZKDuplicateResult *> *)duplicateResults {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.duplicateResults__v = [self complexTypeArrayFromElements:@"duplicateResults" cls:[ZKDuplicateResult class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.duplicateResults__v;
+}
+        
+
+-(void)setDuplicateResults:(NSArray<ZKDuplicateResult *> *)v {
+    self.duplicateResults__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSArray<ZKError *> *)errors {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.errors__v;
+}
+        
+
+-(void)setErrors:(NSArray<ZKError *> *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"duplicateResults" elemValue:self.duplicateResults];
+	[env addElementArray:@"errors"           elemValue:self.errors];
+	[env addBoolElement:@"success"           elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

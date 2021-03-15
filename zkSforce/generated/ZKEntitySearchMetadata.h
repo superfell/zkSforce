@@ -24,14 +24,19 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKEntityErrorMetadata;
+@class ZKFieldLevelSearchMetadata;
 @class ZKEntityIntentQueryMetadata;
 @class ZKEntitySearchPromotionMetadata;
 @class ZKEntitySpellCorrectionMetadata;
+
 /*
-<complexType name="EntitySearchMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="EntitySearchMetadata" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false" name="entityName"/>
     <element type="tns:EntityErrorMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="errorMetadata"/>
@@ -42,12 +47,15 @@
   </sequence>
 </complexType>
 */
-@interface ZKEntitySearchMetadata : ZKXmlDeserializer {
+@interface ZKEntitySearchMetadata : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString                         *entityName; 
-@property (weak, readonly) ZKEntityErrorMetadata            *errorMetadata; 
-@property (weak, readonly) NSArray                          *fieldMetadata;  // of ZKFieldLevelSearchMetadata
-@property (weak, readonly) ZKEntityIntentQueryMetadata      *intentQueryMetadata; 
-@property (weak, readonly) ZKEntitySearchPromotionMetadata  *searchPromotionMetadata; 
-@property (weak, readonly) ZKEntitySpellCorrectionMetadata  *spellCorrectionMetadata; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                               *entityName;
+@property (strong,nonatomic) ZKEntityErrorMetadata                  *errorMetadata;
+@property (strong,nonatomic) NSArray<ZKFieldLevelSearchMetadata *>  *fieldMetadata;
+@property (strong,nonatomic) ZKEntityIntentQueryMetadata            *intentQueryMetadata;
+@property (strong,nonatomic) ZKEntitySearchPromotionMetadata        *searchPromotionMetadata;
+@property (strong,nonatomic) ZKEntitySpellCorrectionMetadata        *spellCorrectionMetadata;
 @end

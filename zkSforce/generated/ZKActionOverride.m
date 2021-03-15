@@ -25,27 +25,122 @@
 //
 
 #import "ZKActionOverride.h"
+#import "ZKEnvelope.h"
+
+@interface ZKActionOverride()
+@property (strong,nonatomic) NSString  *formFactor__v;
+@property (assign,nonatomic) BOOL       isAvailableInTouch__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *pageId__v;
+@property (strong,nonatomic) NSString  *url__v;
+@end
 
 @implementation ZKActionOverride
 
+
++(void)load {
+    [self registerType:self xmlName:@"ActionOverride"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ActionOverride" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"formFactor" propertyName:@"formFactor" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"isAvailableInTouch" propertyName:@"isAvailableInTouch" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"pageId" propertyName:@"pageId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"url" propertyName:@"url" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)formFactor {
-    return [self string:@"formFactor"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.formFactor__v = [self string:@"formFactor"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.formFactor__v;
 }
-			
+        
+
+-(void)setFormFactor:(NSString *)v {
+    self.formFactor__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)isAvailableInTouch {
-    return [self boolean:@"isAvailableInTouch"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.isAvailableInTouch__v = [self boolean:@"isAvailableInTouch"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.isAvailableInTouch__v;
 }
-			
+        
+
+-(void)setIsAvailableInTouch:(BOOL)v {
+    self.isAvailableInTouch__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)pageId {
-    return [self string:@"pageId"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.pageId__v = [self string:@"pageId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.pageId__v;
 }
-			
+        
+
+-(void)setPageId:(NSString *)v {
+    self.pageId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)url {
-    return [self string:@"url"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.url__v = [self string:@"url"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.url__v;
 }
-			
+        
+
+-(void)setUrl:(NSString *)v {
+    self.url__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"formFactor"             elemValue:self.formFactor         nillable:YES optional:NO];
+	[env addBoolElement:@"isAvailableInTouch" elemValue:self.isAvailableInTouch];
+	[env addElement:@"name"                   elemValue:self.name               nillable:NO  optional:NO];
+	[env addElement:@"pageId"                 elemValue:self.pageId             nillable:NO  optional:NO];
+	[env addElement:@"url"                    elemValue:self.url                nillable:YES optional:NO];
+	[env endElement:elemName];
+}
 @end

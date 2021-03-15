@@ -24,26 +24,36 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKError;
 
 /*
-<complexType name="LeadConvertResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="LeadConvertResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element nillable="true" type="tns:ID" name="accountId"/>
     <element nillable="true" type="tns:ID" name="contactId"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
     <element nillable="true" type="tns:ID" name="leadId"/>
     <element nillable="true" type="tns:ID" name="opportunityId"/>
+    <element maxOccurs="1" minOccurs="0" type="tns:ID" name="relatedPersonAccountId"/>
     <element type="xsd:boolean" name="success"/>
   </sequence>
 </complexType>
 */
-@interface ZKLeadConvertResult : ZKXmlDeserializer {
+@interface ZKLeadConvertResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *accountId; 
-@property (weak, readonly) NSString  *contactId; 
-@property (weak, readonly) NSArray   *errors;  // of ZKError
-@property (weak, readonly) NSString  *leadId; 
-@property (weak, readonly) NSString  *opportunityId; 
-@property (readonly) BOOL             success; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString            *accountId;
+@property (strong,nonatomic) NSString            *contactId;
+@property (strong,nonatomic) NSArray<ZKError *>  *errors;
+@property (strong,nonatomic) NSString            *leadId;
+@property (strong,nonatomic) NSString            *opportunityId;
+@property (strong,nonatomic) NSString            *relatedPersonAccountId;
+@property (assign,nonatomic) BOOL                 success;
 @end

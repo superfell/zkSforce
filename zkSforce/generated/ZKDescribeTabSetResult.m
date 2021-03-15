@@ -25,36 +25,159 @@
 //
 
 #import "ZKDescribeTabSetResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeTab.h"
+
+@interface ZKDescribeTabSetResult()
+@property (strong,nonatomic) NSString                  *a_description__v;
+@property (strong,nonatomic) NSString                  *label__v;
+@property (strong,nonatomic) NSString                  *logoUrl__v;
+@property (strong,nonatomic) NSString                  *namespace__v;
+@property (assign,nonatomic) BOOL                       selected__v;
+@property (strong,nonatomic) NSString                  *tabSetId__v;
+@property (strong,nonatomic) NSArray<ZKDescribeTab *>  *tabs__v;
+@end
 
 @implementation ZKDescribeTabSetResult
 
--(NSString *)description {
-    return [self string:@"description"];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeTabSetResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeTabSetResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"description" propertyName:@"a_description" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"logoUrl" propertyName:@"logoUrl" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"namespace" propertyName:@"namespace" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"selected" propertyName:@"selected" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"tabSetId" propertyName:@"tabSetId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"tabs" propertyName:@"tabs" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)a_description {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.a_description__v = [self string:@"description"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.a_description__v;
+}
+        
+
+-(void)setA_description:(NSString *)v {
+    self.a_description__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)logoUrl {
-    return [self string:@"logoUrl"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.logoUrl__v = [self string:@"logoUrl"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.logoUrl__v;
 }
-			
+        
+
+-(void)setLogoUrl:(NSString *)v {
+    self.logoUrl__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)namespace {
-    return [self string:@"namespace"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.namespace__v = [self string:@"namespace"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.namespace__v;
 }
-			
+        
+
+-(void)setNamespace:(NSString *)v {
+    self.namespace__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(BOOL)selected {
-    return [self boolean:@"selected"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.selected__v = [self boolean:@"selected"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.selected__v;
 }
-			
+        
+
+-(void)setSelected:(BOOL)v {
+    self.selected__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)tabSetId {
-    return [self string:@"tabSetId"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.tabSetId__v = [self string:@"tabSetId"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.tabSetId__v;
 }
-			
--(NSArray *)tabs {
-    return [self complexTypeArrayFromElements:@"tabs" cls:[ZKDescribeTab class]];
+        
+
+-(void)setTabSetId:(NSString *)v {
+    self.tabSetId__v = v;
+    fields__set[0] |= 0x20; 
 }
-			
+        
+
+-(NSArray<ZKDescribeTab *> *)tabs {
+    if ((fields__set[0] & 0x40) == 0) {
+        self.tabs__v = [self complexTypeArrayFromElements:@"tabs" cls:[ZKDescribeTab class]];
+        fields__set[0] |= 0x40; 
+    }
+    return self.tabs__v;
+}
+        
+
+-(void)setTabs:(NSArray<ZKDescribeTab *> *)v {
+    self.tabs__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"description"  elemValue:self.a_description nillable:NO  optional:NO];
+	[env addElement:@"label"        elemValue:self.label       nillable:NO  optional:NO];
+	[env addElement:@"logoUrl"      elemValue:self.logoUrl     nillable:NO  optional:NO];
+	[env addElement:@"namespace"    elemValue:self.namespace   nillable:NO  optional:YES];
+	[env addBoolElement:@"selected" elemValue:self.selected];
+	[env addElement:@"tabSetId"     elemValue:self.tabSetId    nillable:NO  optional:NO];
+	[env addElementArray:@"tabs"    elemValue:self.tabs];
+	[env endElement:elemName];
+}
 @end

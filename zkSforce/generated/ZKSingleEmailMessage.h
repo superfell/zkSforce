@@ -25,9 +25,14 @@
 //
 
 #import "ZKEmail.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKEmailFileAttachment;
 
 /*
-<complexType name="SingleEmailMessage" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="SingleEmailMessage" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:Email">
       <sequence>
@@ -55,25 +60,28 @@
   </complexContent>
 </complexType>
 */
-@interface ZKSingleEmailMessage : ZKEmail {
+@interface ZKSingleEmailMessage : ZKEmail  {
+	UInt32   fields__set2[1];
 }
-@property (weak, readonly) NSArray   *bccAddresses;  // of NSString
-@property (weak, readonly) NSArray   *ccAddresses;  // of NSString
-@property (weak, readonly) NSString  *charset; 
-@property (weak, readonly) NSArray   *documentAttachments;  // of NSString
-@property (weak, readonly) NSArray   *entityAttachments;  // of NSString
-@property (weak, readonly) NSArray   *fileAttachments;  // of ZKEmailFileAttachment
-@property (weak, readonly) NSString  *htmlBody; 
-@property (weak, readonly) NSString  *inReplyTo; 
-@property (weak, readonly) NSString  *optOutPolicy; 
-@property (weak, readonly) NSString  *orgWideEmailAddressId; 
-@property (weak, readonly) NSString  *plainTextBody; 
-@property (weak, readonly) NSString  *references; 
-@property (weak, readonly) NSString  *targetObjectId; 
-@property (weak, readonly) NSString  *templateId; 
-@property (weak, readonly) NSString  *templateName; 
-@property (weak, readonly) NSArray   *toAddresses;  // of NSString
-@property (readonly) BOOL             treatBodiesAsTemplate; 
-@property (readonly) BOOL             treatTargetObjectAsRecipient; 
-@property (weak, readonly) NSString  *whatId; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<NSString *>               *bccAddresses;
+@property (strong,nonatomic) NSArray<NSString *>               *ccAddresses;
+@property (strong,nonatomic) NSString                          *charset;
+@property (strong,nonatomic) NSArray<NSString *>               *documentAttachments;
+@property (strong,nonatomic) NSArray<NSString *>               *entityAttachments;
+@property (strong,nonatomic) NSArray<ZKEmailFileAttachment *>  *fileAttachments;
+@property (strong,nonatomic) NSString                          *htmlBody;
+@property (strong,nonatomic) NSString                          *inReplyTo;
+@property (strong,nonatomic) NSString                          *optOutPolicy;
+@property (strong,nonatomic) NSString                          *orgWideEmailAddressId;
+@property (strong,nonatomic) NSString                          *plainTextBody;
+@property (strong,nonatomic) NSString                          *references;
+@property (strong,nonatomic) NSString                          *targetObjectId;
+@property (strong,nonatomic) NSString                          *templateId;
+@property (strong,nonatomic) NSString                          *templateName;
+@property (strong,nonatomic) NSArray<NSString *>               *toAddresses;
+@property (assign,nonatomic) BOOL                               treatBodiesAsTemplate;
+@property (assign,nonatomic) BOOL                               treatTargetObjectAsRecipient;
+@property (strong,nonatomic) NSString                          *whatId;
 @end

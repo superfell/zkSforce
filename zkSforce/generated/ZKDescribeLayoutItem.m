@@ -25,32 +25,141 @@
 //
 
 #import "ZKDescribeLayoutItem.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutComponent.h"
+
+@interface ZKDescribeLayoutItem()
+@property (assign,nonatomic) BOOL                                   editableForNew__v;
+@property (assign,nonatomic) BOOL                                   editableForUpdate__v;
+@property (strong,nonatomic) NSString                              *label__v;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutComponent *>  *layoutComponents__v;
+@property (assign,nonatomic) BOOL                                   placeholder__v;
+@property (assign,nonatomic) BOOL                                   required__v;
+@end
 
 @implementation ZKDescribeLayoutItem
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeLayoutItem"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutItem" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"editableForNew" propertyName:@"editableForNew" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"editableForUpdate" propertyName:@"editableForUpdate" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"layoutComponents" propertyName:@"layoutComponents" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"placeholder" propertyName:@"placeholder" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"required" propertyName:@"required" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)editableForNew {
-    return [self boolean:@"editableForNew"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.editableForNew__v = [self boolean:@"editableForNew"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.editableForNew__v;
 }
-			
+        
+
+-(void)setEditableForNew:(BOOL)v {
+    self.editableForNew__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)editableForUpdate {
-    return [self boolean:@"editableForUpdate"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.editableForUpdate__v = [self boolean:@"editableForUpdate"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.editableForUpdate__v;
 }
-			
+        
+
+-(void)setEditableForUpdate:(BOOL)v {
+    self.editableForUpdate__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.label__v;
 }
-			
--(NSArray *)layoutComponents {
-    return [self complexTypeArrayFromElements:@"layoutComponents" cls:[ZKDescribeLayoutComponent class]];
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x4; 
 }
-			
+        
+
+-(NSArray<ZKDescribeLayoutComponent *> *)layoutComponents {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.layoutComponents__v = [self complexTypeArrayFromElements:@"layoutComponents" cls:[ZKDescribeLayoutComponent class]];
+        fields__set[0] |= 0x8; 
+    }
+    return self.layoutComponents__v;
+}
+        
+
+-(void)setLayoutComponents:(NSArray<ZKDescribeLayoutComponent *> *)v {
+    self.layoutComponents__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(BOOL)placeholder {
-    return [self boolean:@"placeholder"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.placeholder__v = [self boolean:@"placeholder"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.placeholder__v;
 }
-			
+        
+
+-(void)setPlaceholder:(BOOL)v {
+    self.placeholder__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(BOOL)required {
-    return [self boolean:@"required"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.required__v = [self boolean:@"required"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.required__v;
 }
-			
+        
+
+-(void)setRequired:(BOOL)v {
+    self.required__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"editableForNew"    elemValue:self.editableForNew];
+	[env addBoolElement:@"editableForUpdate" elemValue:self.editableForUpdate];
+	[env addElement:@"label"                 elemValue:self.label             nillable:YES optional:NO];
+	[env addElementArray:@"layoutComponents" elemValue:self.layoutComponents];
+	[env addBoolElement:@"placeholder"       elemValue:self.placeholder];
+	[env addBoolElement:@"required"          elemValue:self.required];
+	[env endElement:elemName];
+}
 @end

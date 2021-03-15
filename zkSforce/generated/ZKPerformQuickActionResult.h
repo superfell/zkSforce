@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKError;
 
 /*
-<complexType name="PerformQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="PerformQuickActionResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element nillable="true" minOccurs="0" type="tns:ID" name="contextId"/>
     <element type="xsd:boolean" name="created"/>
@@ -39,13 +44,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKPerformQuickActionResult : ZKXmlDeserializer {
+@interface ZKPerformQuickActionResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *contextId; 
-@property (readonly) BOOL             created; 
-@property (weak, readonly) NSArray   *errors;  // of ZKError
-@property (weak, readonly) NSArray   *feedItemIds;  // of NSString
-@property (weak, readonly) NSArray   *ids;  // of NSString
-@property (readonly) BOOL             success; 
-@property (weak, readonly) NSString  *successMessage; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString             *contextId;
+@property (assign,nonatomic) BOOL                  created;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors;
+@property (strong,nonatomic) NSArray<NSString *>  *feedItemIds;
+@property (strong,nonatomic) NSArray<NSString *>  *ids;
+@property (assign,nonatomic) BOOL                  success;
+@property (strong,nonatomic) NSString             *successMessage;
 @end

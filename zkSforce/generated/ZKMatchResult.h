@@ -24,10 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKError;
+@class ZKMatchRecord;
 
 /*
-<complexType name="MatchResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="MatchResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:string" name="entityType"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:Error" name="errors"/>
@@ -39,13 +45,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKMatchResult : ZKXmlDeserializer {
+@interface ZKMatchResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *entityType; 
-@property (weak, readonly) NSArray   *errors;  // of ZKError
-@property (weak, readonly) NSString  *matchEngine; 
-@property (weak, readonly) NSArray   *matchRecords;  // of ZKMatchRecord
-@property (weak, readonly) NSString  *rule; 
-@property (readonly) NSInteger        size; 
-@property (readonly) BOOL             success; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                  *entityType;
+@property (strong,nonatomic) NSArray<ZKError *>        *errors;
+@property (strong,nonatomic) NSString                  *matchEngine;
+@property (strong,nonatomic) NSArray<ZKMatchRecord *>  *matchRecords;
+@property (strong,nonatomic) NSString                  *rule;
+@property (assign,nonatomic) NSInteger                  size;
+@property (assign,nonatomic) BOOL                       success;
 @end

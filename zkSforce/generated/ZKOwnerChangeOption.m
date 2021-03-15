@@ -27,11 +27,63 @@
 #import "ZKOwnerChangeOption.h"
 #import "ZKEnvelope.h"
 
+@interface ZKOwnerChangeOption()
+@property (strong,nonatomic) NSString  *type__v;
+@property (assign,nonatomic) BOOL       execute__v;
+@end
+
 @implementation ZKOwnerChangeOption
 
-@synthesize type, execute;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"OwnerChangeOption"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"OwnerChangeOption" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"type" propertyName:@"type" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"execute" propertyName:@"execute" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)type {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.type__v = [self string:@"type"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.type__v;
+}
+        
+
+-(void)setType:(NSString *)v {
+    self.type__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(BOOL)execute {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.execute__v = [self boolean:@"execute"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.execute__v;
+}
+        
+
+-(void)setExecute:(BOOL)v {
+    self.execute__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"type"        elemValue:self.type    nillable:NO  optional:NO];
 	[env addBoolElement:@"execute" elemValue:self.execute];

@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeApprovalLayoutResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeApprovalLayout.h"
+
+@interface ZKDescribeApprovalLayoutResult()
+@property (strong,nonatomic) NSArray<ZKDescribeApprovalLayout *>  *approvalLayouts__v;
+@end
 
 @implementation ZKDescribeApprovalLayoutResult
 
--(NSArray *)approvalLayouts {
-    return [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeApprovalLayoutResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeApprovalLayoutResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"approvalLayouts" propertyName:@"approvalLayouts" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeApprovalLayout *> *)approvalLayouts {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.approvalLayouts__v = [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.approvalLayouts__v;
+}
+        
+
+-(void)setApprovalLayouts:(NSArray<ZKDescribeApprovalLayout *> *)v {
+    self.approvalLayouts__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"approvalLayouts" elemValue:self.approvalLayouts];
+	[env endElement:elemName];
+}
 @end

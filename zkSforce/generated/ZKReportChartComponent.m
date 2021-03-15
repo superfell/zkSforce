@@ -25,35 +25,162 @@
 //
 
 #import "ZKReportChartComponent.h"
+#import "ZKEnvelope.h"
+
+@interface ZKReportChartComponent()
+@property (assign,nonatomic) BOOL       cacheData__v;
+@property (strong,nonatomic) NSString  *contextFilterableField__v;
+@property (strong,nonatomic) NSString  *error__v;
+@property (assign,nonatomic) BOOL       hideOnError__v;
+@property (assign,nonatomic) BOOL       includeContext__v;
+@property (assign,nonatomic) BOOL       showTitle__v;
+@property (strong,nonatomic) NSString  *size__v;
+@end
 
 @implementation ZKReportChartComponent
 
+
++(void)load {
+    [self registerType:self xmlName:@"ReportChartComponent"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ReportChartComponent" parent:[ZKDescribeLayoutComponent class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"cacheData" propertyName:@"cacheData" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"contextFilterableField" propertyName:@"contextFilterableField" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"error" propertyName:@"error" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"hideOnError" propertyName:@"hideOnError" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"includeContext" propertyName:@"includeContext" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"showTitle" propertyName:@"showTitle" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"size" propertyName:@"size" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)cacheData {
-    return [self boolean:@"cacheData"];
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.cacheData__v = [self boolean:@"cacheData"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.cacheData__v;
 }
-			
+        
+
+-(void)setCacheData:(BOOL)v {
+    self.cacheData__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
 -(NSString *)contextFilterableField {
-    return [self string:@"contextFilterableField"];
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.contextFilterableField__v = [self string:@"contextFilterableField"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.contextFilterableField__v;
 }
-			
+        
+
+-(void)setContextFilterableField:(NSString *)v {
+    self.contextFilterableField__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
 -(NSString *)error {
-    return [self string:@"error"];
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.error__v = [self string:@"error"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.error__v;
 }
-			
+        
+
+-(void)setError:(NSString *)v {
+    self.error__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
 -(BOOL)hideOnError {
-    return [self boolean:@"hideOnError"];
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.hideOnError__v = [self boolean:@"hideOnError"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.hideOnError__v;
 }
-			
+        
+
+-(void)setHideOnError:(BOOL)v {
+    self.hideOnError__v = v;
+    fields__set2[0] |= 0x8; 
+}
+        
+
 -(BOOL)includeContext {
-    return [self boolean:@"includeContext"];
+    if ((fields__set2[0] & 0x10) == 0) {
+        self.includeContext__v = [self boolean:@"includeContext"];
+        fields__set2[0] |= 0x10; 
+    }
+    return self.includeContext__v;
 }
-			
+        
+
+-(void)setIncludeContext:(BOOL)v {
+    self.includeContext__v = v;
+    fields__set2[0] |= 0x10; 
+}
+        
+
 -(BOOL)showTitle {
-    return [self boolean:@"showTitle"];
+    if ((fields__set2[0] & 0x20) == 0) {
+        self.showTitle__v = [self boolean:@"showTitle"];
+        fields__set2[0] |= 0x20; 
+    }
+    return self.showTitle__v;
 }
-			
+        
+
+-(void)setShowTitle:(BOOL)v {
+    self.showTitle__v = v;
+    fields__set2[0] |= 0x20; 
+}
+        
+
 -(NSString *)size {
-    return [self string:@"size"];
+    if ((fields__set2[0] & 0x40) == 0) {
+        self.size__v = [self string:@"size"];
+        fields__set2[0] |= 0x40; 
+    }
+    return self.size__v;
 }
-			
+        
+
+-(void)setSize:(NSString *)v {
+    self.size__v = v;
+    fields__set2[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName type:@"ReportChartComponent"];
+	[env addIntElement:@"displayLines"        elemValue:self.displayLines];
+	[env addIntElement:@"tabOrder"            elemValue:self.tabOrder];
+	[env addElement:@"type"                   elemValue:self.type                   nillable:NO  optional:NO];
+	[env addElement:@"value"                  elemValue:self.value                  nillable:YES optional:NO];
+	[env addBoolElement:@"cacheData"          elemValue:self.cacheData];
+	[env addElement:@"contextFilterableField" elemValue:self.contextFilterableField nillable:NO  optional:NO];
+	[env addElement:@"error"                  elemValue:self.error                  nillable:NO  optional:NO];
+	[env addBoolElement:@"hideOnError"        elemValue:self.hideOnError];
+	[env addBoolElement:@"includeContext"     elemValue:self.includeContext];
+	[env addBoolElement:@"showTitle"          elemValue:self.showTitle];
+	[env addElement:@"size"                   elemValue:self.size                   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

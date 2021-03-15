@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeThemeResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeThemeItem.h"
+
+@interface ZKDescribeThemeResult()
+@property (strong,nonatomic) NSArray<ZKDescribeThemeItem *>  *themeItems__v;
+@end
 
 @implementation ZKDescribeThemeResult
 
--(NSArray *)themeItems {
-    return [self complexTypeArrayFromElements:@"themeItems" cls:[ZKDescribeThemeItem class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeThemeResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeThemeResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"themeItems" propertyName:@"themeItems" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeThemeItem *> *)themeItems {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.themeItems__v = [self complexTypeArrayFromElements:@"themeItems" cls:[ZKDescribeThemeItem class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.themeItems__v;
+}
+        
+
+-(void)setThemeItems:(NSArray<ZKDescribeThemeItem *> *)v {
+    self.themeItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"themeItems" elemValue:self.themeItems];
+	[env endElement:elemName];
+}
 @end

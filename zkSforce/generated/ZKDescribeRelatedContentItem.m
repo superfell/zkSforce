@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeRelatedContentItem.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutItem.h"
+
+@interface ZKDescribeRelatedContentItem()
+@property (strong,nonatomic) ZKDescribeLayoutItem  *describeLayoutItem__v;
+@end
 
 @implementation ZKDescribeRelatedContentItem
 
--(ZKDescribeLayoutItem *)describeLayoutItem {
-    return [self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]].lastObject;
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeRelatedContentItem"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeRelatedContentItem" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"describeLayoutItem" propertyName:@"describeLayoutItem" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(ZKDescribeLayoutItem *)describeLayoutItem {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.describeLayoutItem__v = [self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]].lastObject;
+        fields__set[0] |= 0x1; 
+    }
+    return self.describeLayoutItem__v;
+}
+        
+
+-(void)setDescribeLayoutItem:(ZKDescribeLayoutItem *)v {
+    self.describeLayoutItem__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"describeLayoutItem" elemValue:self.describeLayoutItem nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

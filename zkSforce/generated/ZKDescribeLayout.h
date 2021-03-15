@@ -24,15 +24,21 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeLayoutButtonSection;
-@class ZKDescribeLayoutFeedView;
 @class ZKDescribeLayoutSection;
+@class ZKDescribeLayoutFeedView;
 @class ZKDescribeQuickActionListResult;
 @class ZKRelatedContent;
+@class ZKRelatedList;
+@class ZKDescribeLayoutSaveOption;
+
 /*
-<complexType name="DescribeLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element minOccurs="0" type="tns:DescribeLayoutButtonSection" name="buttonLayoutSection"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutSection" name="detailLayoutSections"/>
@@ -47,16 +53,19 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeLayout : ZKXmlDeserializer {
+@interface ZKDescribeLayout : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) ZKDescribeLayoutButtonSection    *buttonLayoutSection; 
-@property (weak, readonly) NSArray                          *detailLayoutSections;  // of ZKDescribeLayoutSection
-@property (weak, readonly) NSArray                          *editLayoutSections;  // of ZKDescribeLayoutSection
-@property (weak, readonly) ZKDescribeLayoutFeedView         *feedView; 
-@property (weak, readonly) ZKDescribeLayoutSection          *highlightsPanelLayoutSection; 
-@property (weak, readonly) NSString                         *id; 
-@property (weak, readonly) ZKDescribeQuickActionListResult  *quickActionList; 
-@property (weak, readonly) ZKRelatedContent                 *relatedContent; 
-@property (weak, readonly) NSArray                          *relatedLists;  // of ZKRelatedList
-@property (weak, readonly) NSArray                          *saveOptions;  // of ZKDescribeLayoutSaveOption
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) ZKDescribeLayoutButtonSection          *buttonLayoutSection;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSection *>     *detailLayoutSections;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSection *>     *editLayoutSections;
+@property (strong,nonatomic) ZKDescribeLayoutFeedView               *feedView;
+@property (strong,nonatomic) ZKDescribeLayoutSection                *highlightsPanelLayoutSection;
+@property (strong,nonatomic) NSString                               *id;
+@property (strong,nonatomic) ZKDescribeQuickActionListResult        *quickActionList;
+@property (strong,nonatomic) ZKRelatedContent                       *relatedContent;
+@property (strong,nonatomic) NSArray<ZKRelatedList *>               *relatedLists;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutSaveOption *>  *saveOptions;
 @end

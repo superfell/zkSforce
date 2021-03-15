@@ -25,35 +25,158 @@
 //
 
 #import "ZKRecordTypeInfo.h"
+#import "ZKEnvelope.h"
+
+@interface ZKRecordTypeInfo()
+@property (assign,nonatomic) BOOL       active__v;
+@property (assign,nonatomic) BOOL       available__v;
+@property (assign,nonatomic) BOOL       defaultRecordTypeMapping__v;
+@property (strong,nonatomic) NSString  *developerName__v;
+@property (assign,nonatomic) BOOL       master__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *recordTypeId__v;
+@end
 
 @implementation ZKRecordTypeInfo
 
+
++(void)load {
+    [self registerType:self xmlName:@"RecordTypeInfo"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RecordTypeInfo" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"active" propertyName:@"active" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"available" propertyName:@"available" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"defaultRecordTypeMapping" propertyName:@"defaultRecordTypeMapping" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"developerName" propertyName:@"developerName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"master" propertyName:@"master" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"recordTypeId" propertyName:@"recordTypeId" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)active {
-    return [self boolean:@"active"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.active__v = [self boolean:@"active"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.active__v;
 }
-			
+        
+
+-(void)setActive:(BOOL)v {
+    self.active__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)available {
-    return [self boolean:@"available"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.available__v = [self boolean:@"available"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.available__v;
 }
-			
+        
+
+-(void)setAvailable:(BOOL)v {
+    self.available__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)defaultRecordTypeMapping {
-    return [self boolean:@"defaultRecordTypeMapping"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.defaultRecordTypeMapping__v = [self boolean:@"defaultRecordTypeMapping"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.defaultRecordTypeMapping__v;
 }
-			
+        
+
+-(void)setDefaultRecordTypeMapping:(BOOL)v {
+    self.defaultRecordTypeMapping__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)developerName {
-    return [self string:@"developerName"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.developerName__v = [self string:@"developerName"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.developerName__v;
 }
-			
+        
+
+-(void)setDeveloperName:(NSString *)v {
+    self.developerName__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(BOOL)master {
-    return [self boolean:@"master"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.master__v = [self boolean:@"master"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.master__v;
 }
-			
+        
+
+-(void)setMaster:(BOOL)v {
+    self.master__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)recordTypeId {
-    return [self string:@"recordTypeId"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.recordTypeId__v = [self string:@"recordTypeId"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.recordTypeId__v;
 }
-			
+        
+
+-(void)setRecordTypeId:(NSString *)v {
+    self.recordTypeId__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"active"                   elemValue:self.active];
+	[env addBoolElement:@"available"                elemValue:self.available];
+	[env addBoolElement:@"defaultRecordTypeMapping" elemValue:self.defaultRecordTypeMapping];
+	[env addElement:@"developerName"                elemValue:self.developerName            nillable:NO  optional:NO];
+	[env addBoolElement:@"master"                   elemValue:self.master];
+	[env addElement:@"name"                         elemValue:self.name                     nillable:NO  optional:NO];
+	[env addElement:@"recordTypeId"                 elemValue:self.recordTypeId             nillable:YES optional:NO];
+	[env endElement:elemName];
+}
 @end

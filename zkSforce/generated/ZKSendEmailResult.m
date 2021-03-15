@@ -25,16 +25,69 @@
 //
 
 #import "ZKSendEmailResult.h"
+#import "ZKEnvelope.h"
 #import "ZKSendEmailError.h"
+
+@interface ZKSendEmailResult()
+@property (strong,nonatomic) NSArray<ZKSendEmailError *>  *errors__v;
+@property (assign,nonatomic) BOOL                          success__v;
+@end
 
 @implementation ZKSendEmailResult
 
--(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKSendEmailError class]];
+
++(void)load {
+    [self registerType:self xmlName:@"SendEmailResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SendEmailResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errors" propertyName:@"errors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"success" propertyName:@"success" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKSendEmailError *> *)errors {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKSendEmailError class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.errors__v;
+}
+        
+
+-(void)setErrors:(NSArray<ZKSendEmailError *> *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"errors" elemValue:self.errors];
+	[env addBoolElement:@"success" elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

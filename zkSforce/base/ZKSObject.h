@@ -20,6 +20,7 @@
 //
 
 #import "ZKXmlDeserializer.h"
+#import "ZKXMLSerializable.h"
 
 @class ZKElement;
 @class ZKQueryResult;
@@ -29,7 +30,7 @@
 
 /** ZKSObject represents a row of data in Salesforce [either already in salesforce, or one we're in
     the process of constructing to be sent to Salesforce */
-@interface ZKSObject : NSObject {
+@interface ZKSObject : NSObject<ZKXmlInitable, ZKXMLSerializable> {
 }
 
 + (instancetype) withType:(NSString *)type;

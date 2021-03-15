@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeLayoutItem;
 
 /*
-<complexType name="DescribeApprovalLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeApprovalLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="tns:ID" name="id"/>
     <element type="xsd:string" name="label"/>
@@ -36,10 +41,13 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeApprovalLayout : ZKXmlDeserializer {
+@interface ZKDescribeApprovalLayout : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *id; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSArray   *layoutItems;  // of ZKDescribeLayoutItem
-@property (weak, readonly) NSString  *name; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                         *id;
+@property (strong,nonatomic) NSString                         *label;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>  *layoutItems;
+@property (strong,nonatomic) NSString                         *name;
 @end

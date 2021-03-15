@@ -25,16 +25,69 @@
 //
 
 #import "ZKPicklistForRecordType.h"
+#import "ZKEnvelope.h"
 #import "ZKPicklistEntry.h"
+
+@interface ZKPicklistForRecordType()
+@property (strong,nonatomic) NSString                    *picklistName__v;
+@property (strong,nonatomic) NSArray<ZKPicklistEntry *>  *picklistValues__v;
+@end
 
 @implementation ZKPicklistForRecordType
 
+
++(void)load {
+    [self registerType:self xmlName:@"PicklistForRecordType"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"PicklistForRecordType" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"picklistName" propertyName:@"picklistName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"picklistValues" propertyName:@"picklistValues" optional:YES nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)picklistName {
-    return [self string:@"picklistName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.picklistName__v = [self string:@"picklistName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.picklistName__v;
 }
-			
--(NSArray *)picklistValues {
-    return [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
+        
+
+-(void)setPicklistName:(NSString *)v {
+    self.picklistName__v = v;
+    fields__set[0] |= 0x1; 
 }
-			
+        
+
+-(NSArray<ZKPicklistEntry *> *)picklistValues {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.picklistValues__v = [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.picklistValues__v;
+}
+        
+
+-(void)setPicklistValues:(NSArray<ZKPicklistEntry *> *)v {
+    self.picklistValues__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"picklistName"        elemValue:self.picklistName   nillable:NO  optional:NO];
+	[env addElementArray:@"picklistValues" elemValue:self.picklistValues];
+	[env endElement:elemName];
+}
 @end

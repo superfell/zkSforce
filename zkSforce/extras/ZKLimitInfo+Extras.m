@@ -21,22 +21,10 @@
 
 #import "ZKLimitInfo.h"
 
-@implementation ZKLimitInfo
-
--(NSString *)type {
-    return [self string:@"type"];
-}
-
--(int)limit {
-    return [self integer:@"limit"];
-}
-
--(int)current {
-    return [self integer:@"current"];
-}
+@implementation ZKLimitInfo(description)
 
 -(NSString *)description {
-    return [NSString stringWithFormat:@"%@ %d/%d", self.type, self.current, self.limit];
+    return [NSString stringWithFormat:@"%@ %ld/%ld", self.type, (long)self.current, (long)self.limit];
 }
 
 @end

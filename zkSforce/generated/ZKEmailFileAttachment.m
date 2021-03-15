@@ -25,27 +25,122 @@
 //
 
 #import "ZKEmailFileAttachment.h"
+#import "ZKEnvelope.h"
+
+@interface ZKEmailFileAttachment()
+@property (strong,nonatomic) NSData    *body__v;
+@property (strong,nonatomic) NSString  *contentType__v;
+@property (strong,nonatomic) NSString  *fileName__v;
+@property (strong,nonatomic) NSString  *id__v;
+@property (assign,nonatomic) BOOL       a_inline__v;
+@end
 
 @implementation ZKEmailFileAttachment
 
+
++(void)load {
+    [self registerType:self xmlName:@"EmailFileAttachment"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"EmailFileAttachment" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"body" propertyName:@"body" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"contentType" propertyName:@"contentType" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fileName" propertyName:@"fileName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"id" propertyName:@"id" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"inline" propertyName:@"a_inline" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSData *)body {
-    return [self blob:@"body"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.body__v = [self blob:@"body"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.body__v;
 }
-			
+        
+
+-(void)setBody:(NSData *)v {
+    self.body__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)contentType {
-    return [self string:@"contentType"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.contentType__v = [self string:@"contentType"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.contentType__v;
 }
-			
+        
+
+-(void)setContentType:(NSString *)v {
+    self.contentType__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)fileName {
-    return [self string:@"fileName"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.fileName__v = [self string:@"fileName"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.fileName__v;
 }
-			
+        
+
+-(void)setFileName:(NSString *)v {
+    self.fileName__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)id {
-    return [self string:@"id"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.id__v = [self string:@"id"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.id__v;
 }
-			
--(BOOL)_inline {
-    return [self boolean:@"inline"];
+        
+
+-(void)setId:(NSString *)v {
+    self.id__v = v;
+    fields__set[0] |= 0x8; 
 }
-			
+        
+
+-(BOOL)a_inline {
+    if ((fields__set[0] & 0x10) == 0) {
+        self.a_inline__v = [self boolean:@"inline"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.a_inline__v;
+}
+        
+
+-(void)setA_inline:(BOOL)v {
+    self.a_inline__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"body"        elemValue:self.body        nillable:YES optional:YES];
+	[env addElement:@"contentType" elemValue:self.contentType nillable:YES optional:YES];
+	[env addElement:@"fileName"    elemValue:self.fileName    nillable:NO  optional:NO];
+	[env addElement:@"id"          elemValue:self.id          nillable:YES optional:YES];
+	[env addBoolElement:@"inline"  elemValue:self.a_inline];
+	[env endElement:elemName];
+}
 @end

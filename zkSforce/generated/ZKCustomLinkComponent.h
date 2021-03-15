@@ -25,10 +25,14 @@
 //
 
 #import "ZKDescribeLayoutComponent.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKDescribeLayoutButton;
+
 /*
-<complexType name="CustomLinkComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="CustomLinkComponent" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:DescribeLayoutComponent">
       <sequence>
@@ -38,7 +42,10 @@
   </complexContent>
 </complexType>
 */
-@interface ZKCustomLinkComponent : ZKDescribeLayoutComponent {
+@interface ZKCustomLinkComponent : ZKDescribeLayoutComponent  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) ZKDescribeLayoutButton  *customLink; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) ZKDescribeLayoutButton  *customLink;
 @end

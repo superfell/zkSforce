@@ -25,23 +25,104 @@
 //
 
 #import "ZKDescribePathAssistantField.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribePathAssistantField()
+@property (strong,nonatomic) NSString  *apiName__v;
+@property (strong,nonatomic) NSString  *label__v;
+@property (assign,nonatomic) BOOL       readOnly__v;
+@property (assign,nonatomic) BOOL       required__v;
+@end
 
 @implementation ZKDescribePathAssistantField
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribePathAssistantField"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribePathAssistantField" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"apiName" propertyName:@"apiName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"readOnly" propertyName:@"readOnly" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"required" propertyName:@"required" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)apiName {
-    return [self string:@"apiName"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.apiName__v = [self string:@"apiName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.apiName__v;
 }
-			
+        
+
+-(void)setApiName:(NSString *)v {
+    self.apiName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)readOnly {
-    return [self boolean:@"readOnly"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.readOnly__v = [self boolean:@"readOnly"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.readOnly__v;
 }
-			
+        
+
+-(void)setReadOnly:(BOOL)v {
+    self.readOnly__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(BOOL)required {
-    return [self boolean:@"required"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.required__v = [self boolean:@"required"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.required__v;
 }
-			
+        
+
+-(void)setRequired:(BOOL)v {
+    self.required__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"apiName"      elemValue:self.apiName  nillable:NO  optional:NO];
+	[env addElement:@"label"        elemValue:self.label    nillable:NO  optional:NO];
+	[env addBoolElement:@"readOnly" elemValue:self.readOnly];
+	[env addBoolElement:@"required" elemValue:self.required];
+	[env endElement:elemName];
+}
 @end

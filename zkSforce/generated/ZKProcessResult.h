@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKError;
 
 /*
-<complexType name="ProcessResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="ProcessResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" nillable="false" type="tns:ID" name="actorIds"/>
     <element nillable="true" type="tns:ID" name="entityId"/>
@@ -39,13 +44,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKProcessResult : ZKXmlDeserializer {
+@interface ZKProcessResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *actorIds;  // of NSString
-@property (weak, readonly) NSString  *entityId; 
-@property (weak, readonly) NSArray   *errors;  // of ZKError
-@property (weak, readonly) NSString  *instanceId; 
-@property (weak, readonly) NSString  *instanceStatus; 
-@property (weak, readonly) NSArray   *newWorkitemIds NS_RETURNS_NOT_RETAINED;  // of NSString; returns an autoreleased object, doesn't follow cocoa rules for properties/method starting with 'new'
-@property (readonly) BOOL             success; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<NSString *>  *actorIds;
+@property (strong,nonatomic) NSString             *entityId;
+@property (strong,nonatomic) NSArray<ZKError *>   *errors;
+@property (strong,nonatomic) NSString             *instanceId;
+@property (strong,nonatomic) NSString             *instanceStatus;
+@property (strong,nonatomic) NSArray<NSString *>  *a_newWorkitemIds;
+@property (assign,nonatomic) BOOL                  success;
 @end

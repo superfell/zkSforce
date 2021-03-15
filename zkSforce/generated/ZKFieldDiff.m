@@ -25,15 +25,68 @@
 //
 
 #import "ZKFieldDiff.h"
+#import "ZKEnvelope.h"
+
+@interface ZKFieldDiff()
+@property (strong,nonatomic) NSString  *difference__v;
+@property (strong,nonatomic) NSString  *name__v;
+@end
 
 @implementation ZKFieldDiff
 
+
++(void)load {
+    [self registerType:self xmlName:@"FieldDiff"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"FieldDiff" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"difference" propertyName:@"difference" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)difference {
-    return [self string:@"difference"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.difference__v = [self string:@"difference"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.difference__v;
 }
-			
+        
+
+-(void)setDifference:(NSString *)v {
+    self.difference__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"difference" elemValue:self.difference nillable:NO  optional:NO];
+	[env addElement:@"name"       elemValue:self.name       nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

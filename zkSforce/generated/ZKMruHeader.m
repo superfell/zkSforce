@@ -27,11 +27,46 @@
 #import "ZKMruHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKMruHeader()
+@property (assign,nonatomic) BOOL updateMru__v;
+@end
+
 @implementation ZKMruHeader
 
-@synthesize updateMru;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"MruHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"MruHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"updateMru" propertyName:@"updateMru" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(BOOL)updateMru {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.updateMru__v = [self boolean:@"updateMru"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.updateMru__v;
+}
+        
+
+-(void)setUpdateMru:(BOOL)v {
+    self.updateMru__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"updateMru" elemValue:self.updateMru];
 	[env endElement:elemName];

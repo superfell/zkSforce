@@ -27,6 +27,10 @@
 
 @implementation ZKQueryResult
 
++(void)load {
+    [ZKXmlDeserializer registerType:self xmlName:@"QueryResult"];
+}
+
 - (instancetype)initWithXmlElement:(ZKElement *)node {
     self = [super init];
     size = [node childElement:@"size"].stringValue.intValue;
@@ -39,8 +43,7 @@
     NSMutableArray * recArray = [NSMutableArray arrayWithCapacity:nodes.count];
     ZKSObject * o;
     for (ZKElement *n in nodes) {
-        NSString *xsiNil = [n attributeValue:@"nil" ns:NS_URI_XSI];
-        if (xsiNil != nil && [xsiNil isEqualToString:@"true"]) {
+        if (n.isXsiNil) {
             continue;
         }
         o = [[ZKSObject alloc] initWithXmlElement:n];

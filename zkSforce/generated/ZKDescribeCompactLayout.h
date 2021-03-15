@@ -24,10 +24,16 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeLayoutButton;
+@class ZKDescribeLayoutItem;
 
 /*
-<complexType name="DescribeCompactLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeCompactLayout" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutButton" name="actions"/>
     <element maxOccurs="unbounded" minOccurs="0" type="tns:DescribeLayoutItem" name="fieldItems"/>
@@ -39,13 +45,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeCompactLayout : ZKXmlDeserializer {
+@interface ZKDescribeCompactLayout : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray   *actions;  // of ZKDescribeLayoutButton
-@property (weak, readonly) NSArray   *fieldItems;  // of ZKDescribeLayoutItem
-@property (weak, readonly) NSString  *id; 
-@property (weak, readonly) NSArray   *imageItems;  // of ZKDescribeLayoutItem
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *objectType; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *actions;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>    *fieldItems;
+@property (strong,nonatomic) NSString                           *id;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutItem *>    *imageItems;
+@property (strong,nonatomic) NSString                           *label;
+@property (strong,nonatomic) NSString                           *name;
+@property (strong,nonatomic) NSString                           *objectType;
 @end

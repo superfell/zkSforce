@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKKnowledgeLanguageItem;
 
 /*
-<complexType name="KnowledgeSettings" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="KnowledgeSettings" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element minOccurs="0" type="xsd:string" name="defaultLanguage"/>
     <element type="xsd:boolean" name="knowledgeEnabled"/>
@@ -35,9 +40,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKKnowledgeSettings : ZKXmlDeserializer {
+@interface ZKKnowledgeSettings : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *defaultLanguage; 
-@property (readonly) BOOL             knowledgeEnabled; 
-@property (weak, readonly) NSArray   *languages;  // of ZKKnowledgeLanguageItem
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                            *defaultLanguage;
+@property (assign,nonatomic) BOOL                                 knowledgeEnabled;
+@property (strong,nonatomic) NSArray<ZKKnowledgeLanguageItem *>  *languages;
 @end

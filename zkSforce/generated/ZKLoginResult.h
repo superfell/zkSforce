@@ -24,11 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKUserInfo;
+
 /*
-<complexType name="LoginResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="LoginResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element nillable="true" type="xsd:string" name="metadataServerUrl"/>
     <element type="xsd:boolean" name="passwordExpired"/>
@@ -40,13 +44,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKLoginResult : ZKXmlDeserializer {
+@interface ZKLoginResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString    *metadataServerUrl; 
-@property (readonly) BOOL               passwordExpired; 
-@property (readonly) BOOL               sandbox; 
-@property (weak, readonly) NSString    *serverUrl; 
-@property (weak, readonly) NSString    *sessionId; 
-@property (weak, readonly) NSString    *userId; 
-@property (weak, readonly) ZKUserInfo  *userInfo; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString    *metadataServerUrl;
+@property (assign,nonatomic) BOOL         passwordExpired;
+@property (assign,nonatomic) BOOL         sandbox;
+@property (strong,nonatomic) NSString    *serverUrl;
+@property (strong,nonatomic) NSString    *sessionId;
+@property (strong,nonatomic) NSString    *userId;
+@property (strong,nonatomic) ZKUserInfo  *userInfo;
 @end

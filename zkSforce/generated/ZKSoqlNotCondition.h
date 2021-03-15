@@ -25,10 +25,14 @@
 //
 
 #import "ZKSoqlWhereCondition.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSoqlWhereCondition;
+
 /*
-<complexType name="SoqlNotCondition" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="SoqlNotCondition" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:SoqlWhereCondition">
       <sequence>
@@ -38,7 +42,10 @@
   </complexContent>
 </complexType>
 */
-@interface ZKSoqlNotCondition : ZKSoqlWhereCondition {
+@interface ZKSoqlNotCondition : ZKSoqlWhereCondition  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) ZKSoqlWhereCondition  *condition; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) ZKSoqlWhereCondition  *condition;
 @end

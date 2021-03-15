@@ -25,12 +25,51 @@
 //
 
 #import "ZKRelatedContent.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeRelatedContentItem.h"
+
+@interface ZKRelatedContent()
+@property (strong,nonatomic) NSArray<ZKDescribeRelatedContentItem *>  *relatedContentItems__v;
+@end
 
 @implementation ZKRelatedContent
 
--(NSArray *)relatedContentItems {
-    return [self complexTypeArrayFromElements:@"relatedContentItems" cls:[ZKDescribeRelatedContentItem class]];
+
++(void)load {
+    [self registerType:self xmlName:@"RelatedContent"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RelatedContent" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"relatedContentItems" propertyName:@"relatedContentItems" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeRelatedContentItem *> *)relatedContentItems {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.relatedContentItems__v = [self complexTypeArrayFromElements:@"relatedContentItems" cls:[ZKDescribeRelatedContentItem class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.relatedContentItems__v;
+}
+        
+
+-(void)setRelatedContentItems:(NSArray<ZKDescribeRelatedContentItem *> *)v {
+    self.relatedContentItems__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"relatedContentItems" elemValue:self.relatedContentItems];
+	[env endElement:elemName];
+}
 @end

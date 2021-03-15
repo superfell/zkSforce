@@ -24,13 +24,17 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 @class ZKSObject;
 @class ZKSearchRecordMetadata;
 @class ZKSearchSnippet;
+
 /*
-<complexType name="SearchRecord" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="SearchRecord" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="ens:sObject" name="record"/>
     <element type="tns:SearchRecordMetadata" maxOccurs="1" minOccurs="0" nillable="false" name="searchRecordMetadata"/>
@@ -38,9 +42,12 @@
   </sequence>
 </complexType>
 */
-@interface ZKSearchRecord : ZKXmlDeserializer {
+@interface ZKSearchRecord : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) ZKSObject               *record; 
-@property (weak, readonly) ZKSearchRecordMetadata  *searchRecordMetadata; 
-@property (weak, readonly) ZKSearchSnippet         *snippet; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) ZKSObject               *record;
+@property (strong,nonatomic) ZKSearchRecordMetadata  *searchRecordMetadata;
+@property (strong,nonatomic) ZKSearchSnippet         *snippet;
 @end

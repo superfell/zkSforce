@@ -25,11 +25,50 @@
 //
 
 #import "ZKExtendedErrorDetails.h"
+#import "ZKEnvelope.h"
+
+@interface ZKExtendedErrorDetails()
+@property (strong,nonatomic) NSString  *extendedErrorCode__v;
+@end
 
 @implementation ZKExtendedErrorDetails
 
--(NSString *)extendedErrorCode {
-    return [self string:@"extendedErrorCode"];
+
++(void)load {
+    [self registerType:self xmlName:@"ExtendedErrorDetails"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ExtendedErrorDetails" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"extendedErrorCode" propertyName:@"extendedErrorCode" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)extendedErrorCode {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.extendedErrorCode__v = [self string:@"extendedErrorCode"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.extendedErrorCode__v;
+}
+        
+
+-(void)setExtendedErrorCode:(NSString *)v {
+    self.extendedErrorCode__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"extendedErrorCode" elemValue:self.extendedErrorCode nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

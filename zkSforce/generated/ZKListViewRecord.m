@@ -25,12 +25,51 @@
 //
 
 #import "ZKListViewRecord.h"
+#import "ZKEnvelope.h"
 #import "ZKListViewRecordColumn.h"
+
+@interface ZKListViewRecord()
+@property (strong,nonatomic) NSArray<ZKListViewRecordColumn *>  *columns__v;
+@end
 
 @implementation ZKListViewRecord
 
--(NSArray *)columns {
-    return [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewRecordColumn class]];
+
++(void)load {
+    [self registerType:self xmlName:@"ListViewRecord"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ListViewRecord" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"columns" propertyName:@"columns" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKListViewRecordColumn *> *)columns {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewRecordColumn class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.columns__v;
+}
+        
+
+-(void)setColumns:(NSArray<ZKListViewRecordColumn *> *)v {
+    self.columns__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"columns" elemValue:self.columns];
+	[env endElement:elemName];
+}
 @end

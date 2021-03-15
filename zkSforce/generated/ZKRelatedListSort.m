@@ -25,15 +25,68 @@
 //
 
 #import "ZKRelatedListSort.h"
+#import "ZKEnvelope.h"
+
+@interface ZKRelatedListSort()
+@property (assign,nonatomic) BOOL       ascending__v;
+@property (strong,nonatomic) NSString  *column__v;
+@end
 
 @implementation ZKRelatedListSort
 
+
++(void)load {
+    [self registerType:self xmlName:@"RelatedListSort"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RelatedListSort" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"ascending" propertyName:@"ascending" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"column" propertyName:@"column" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)ascending {
-    return [self boolean:@"ascending"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.ascending__v = [self boolean:@"ascending"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.ascending__v;
 }
-			
+        
+
+-(void)setAscending:(BOOL)v {
+    self.ascending__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)column {
-    return [self string:@"column"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.column__v = [self string:@"column"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.column__v;
 }
-			
+        
+
+-(void)setColumn:(NSString *)v {
+    self.column__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"ascending" elemValue:self.ascending];
+	[env addElement:@"column"        elemValue:self.column    nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

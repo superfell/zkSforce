@@ -24,10 +24,17 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeAnimationRule;
+@class ZKPicklistForRecordType;
+@class ZKDescribePathAssistantStep;
 
 /*
-<complexType name="DescribePathAssistant" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribePathAssistant" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:boolean" name="active"/>
     <element maxOccurs="unbounded" minOccurs="0" nillable="true" type="tns:DescribeAnimationRule" name="animationRule"/>
@@ -40,14 +47,17 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribePathAssistant : ZKXmlDeserializer {
+@interface ZKDescribePathAssistant : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (readonly) BOOL             active; 
-@property (weak, readonly) NSArray   *animationRule;  // of ZKDescribeAnimationRule
-@property (weak, readonly) NSString  *apiName; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *pathPicklistField; 
-@property (weak, readonly) NSArray   *picklistsForRecordType;  // of ZKPicklistForRecordType
-@property (weak, readonly) NSString  *recordTypeId; 
-@property (weak, readonly) NSArray   *steps;  // of ZKDescribePathAssistantStep
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (assign,nonatomic) BOOL                                     active;
+@property (strong,nonatomic) NSArray<ZKDescribeAnimationRule *>      *animationRule;
+@property (strong,nonatomic) NSString                                *apiName;
+@property (strong,nonatomic) NSString                                *label;
+@property (strong,nonatomic) NSString                                *pathPicklistField;
+@property (strong,nonatomic) NSArray<ZKPicklistForRecordType *>      *picklistsForRecordType;
+@property (strong,nonatomic) NSString                                *recordTypeId;
+@property (strong,nonatomic) NSArray<ZKDescribePathAssistantStep *>  *steps;
 @end

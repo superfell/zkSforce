@@ -25,45 +25,196 @@
 //
 
 #import "ZKDescribeTab.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeColor.h"
 #import "ZKDescribeIcon.h"
 
+@interface ZKDescribeTab()
+@property (strong,nonatomic) NSArray<ZKDescribeColor *>  *colors__v;
+@property (assign,nonatomic) BOOL                         custom__v;
+@property (strong,nonatomic) NSString                    *iconUrl__v;
+@property (strong,nonatomic) NSArray<ZKDescribeIcon *>   *icons__v;
+@property (strong,nonatomic) NSString                    *label__v;
+@property (strong,nonatomic) NSString                    *miniIconUrl__v;
+@property (strong,nonatomic) NSString                    *name__v;
+@property (strong,nonatomic) NSString                    *sobjectName__v;
+@property (strong,nonatomic) NSString                    *url__v;
+@end
+
 @implementation ZKDescribeTab
 
--(NSArray *)colors {
-    return [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeTab"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeTab" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"colors" propertyName:@"colors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"custom" propertyName:@"custom" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"iconUrl" propertyName:@"iconUrl" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"icons" propertyName:@"icons" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"miniIconUrl" propertyName:@"miniIconUrl" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobjectName" propertyName:@"sobjectName" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"url" propertyName:@"url" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeColor *> *)colors {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.colors__v;
+}
+        
+
+-(void)setColors:(NSArray<ZKDescribeColor *> *)v {
+    self.colors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(BOOL)custom {
-    return [self boolean:@"custom"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.custom__v = [self boolean:@"custom"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.custom__v;
 }
-			
+        
+
+-(void)setCustom:(BOOL)v {
+    self.custom__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)iconUrl {
-    return [self string:@"iconUrl"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.iconUrl__v = [self string:@"iconUrl"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.iconUrl__v;
 }
-			
--(NSArray *)icons {
-    return [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+        
+
+-(void)setIconUrl:(NSString *)v {
+    self.iconUrl__v = v;
+    fields__set[0] |= 0x4; 
 }
-			
+        
+
+-(NSArray<ZKDescribeIcon *> *)icons {
+    if ((fields__set[0] & 0x8) == 0) {
+        self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
+        fields__set[0] |= 0x8; 
+    }
+    return self.icons__v;
+}
+        
+
+-(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
+    self.icons__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)miniIconUrl {
-    return [self string:@"miniIconUrl"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.miniIconUrl__v = [self string:@"miniIconUrl"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.miniIconUrl__v;
 }
-			
+        
+
+-(void)setMiniIconUrl:(NSString *)v {
+    self.miniIconUrl__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(NSString *)sobjectName {
-    return [self string:@"sobjectName"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.sobjectName__v = [self string:@"sobjectName"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.sobjectName__v;
 }
-			
+        
+
+-(void)setSobjectName:(NSString *)v {
+    self.sobjectName__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(NSString *)url {
-    return [self string:@"url"];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.url__v = [self string:@"url"];
+        fields__set[0] |= 0x100; 
+    }
+    return self.url__v;
 }
-			
+        
+
+-(void)setUrl:(NSString *)v {
+    self.url__v = v;
+    fields__set[0] |= 0x100; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"colors" elemValue:self.colors];
+	[env addBoolElement:@"custom"  elemValue:self.custom];
+	[env addElement:@"iconUrl"     elemValue:self.iconUrl     nillable:NO  optional:NO];
+	[env addElementArray:@"icons"  elemValue:self.icons];
+	[env addElement:@"label"       elemValue:self.label       nillable:NO  optional:NO];
+	[env addElement:@"miniIconUrl" elemValue:self.miniIconUrl nillable:NO  optional:NO];
+	[env addElement:@"name"        elemValue:self.name        nillable:NO  optional:NO];
+	[env addElement:@"sobjectName" elemValue:self.sobjectName nillable:YES optional:NO];
+	[env addElement:@"url"         elemValue:self.url         nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

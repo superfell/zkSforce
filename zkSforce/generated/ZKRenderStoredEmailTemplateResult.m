@@ -25,21 +25,88 @@
 //
 
 #import "ZKRenderStoredEmailTemplateResult.h"
+#import "ZKEnvelope.h"
 #import "ZKError.h"
 #import "ZKSingleEmailMessage.h"
 
+@interface ZKRenderStoredEmailTemplateResult()
+@property (strong,nonatomic) NSArray<ZKError *>    *errors__v;
+@property (strong,nonatomic) ZKSingleEmailMessage  *renderedEmail__v;
+@property (assign,nonatomic) BOOL                   success__v;
+@end
+
 @implementation ZKRenderStoredEmailTemplateResult
 
--(NSArray *)errors {
-    return [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+
++(void)load {
+    [self registerType:self xmlName:@"RenderStoredEmailTemplateResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"RenderStoredEmailTemplateResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errors" propertyName:@"errors" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"renderedEmail" propertyName:@"renderedEmail" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"success" propertyName:@"success" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKError *> *)errors {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.errors__v;
+}
+        
+
+-(void)setErrors:(NSArray<ZKError *> *)v {
+    self.errors__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(ZKSingleEmailMessage *)renderedEmail {
-    return [self complexTypeArrayFromElements:@"renderedEmail" cls:[ZKSingleEmailMessage class]].lastObject;
+    if ((fields__set[0] & 0x2) == 0) {
+        self.renderedEmail__v = [self complexTypeArrayFromElements:@"renderedEmail" cls:[ZKSingleEmailMessage class]].lastObject;
+        fields__set[0] |= 0x2; 
+    }
+    return self.renderedEmail__v;
 }
-			
+        
+
+-(void)setRenderedEmail:(ZKSingleEmailMessage *)v {
+    self.renderedEmail__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(BOOL)success {
-    return [self boolean:@"success"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.success__v = [self boolean:@"success"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.success__v;
 }
-			
+        
+
+-(void)setSuccess:(BOOL)v {
+    self.success__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"errors"   elemValue:self.errors];
+	[env addElement:@"renderedEmail" elemValue:self.renderedEmail nillable:YES optional:NO];
+	[env addBoolElement:@"success"   elemValue:self.success];
+	[env endElement:elemName];
+}
 @end

@@ -27,11 +27,46 @@
 #import "ZKDisableFeedTrackingHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKDisableFeedTrackingHeader()
+@property (assign,nonatomic) BOOL disableFeedTracking__v;
+@end
+
 @implementation ZKDisableFeedTrackingHeader
 
-@synthesize disableFeedTracking;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"DisableFeedTrackingHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DisableFeedTrackingHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"disableFeedTracking" propertyName:@"disableFeedTracking" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(BOOL)disableFeedTracking {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.disableFeedTracking__v = [self boolean:@"disableFeedTracking"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.disableFeedTracking__v;
+}
+        
+
+-(void)setDisableFeedTracking:(BOOL)v {
+    self.disableFeedTracking__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"disableFeedTracking" elemValue:self.disableFeedTracking];
 	[env endElement:elemName];

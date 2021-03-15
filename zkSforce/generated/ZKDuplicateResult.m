@@ -25,28 +25,123 @@
 //
 
 #import "ZKDuplicateResult.h"
+#import "ZKEnvelope.h"
 #import "ZKMatchResult.h"
+
+@interface ZKDuplicateResult()
+@property (assign,nonatomic) BOOL                       allowSave__v;
+@property (strong,nonatomic) NSString                  *duplicateRule__v;
+@property (strong,nonatomic) NSString                  *duplicateRuleEntityType__v;
+@property (strong,nonatomic) NSString                  *errorMessage__v;
+@property (strong,nonatomic) NSArray<ZKMatchResult *>  *matchResults__v;
+@end
 
 @implementation ZKDuplicateResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"DuplicateResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DuplicateResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"allowSave" propertyName:@"allowSave" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateRule" propertyName:@"duplicateRule" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"duplicateRuleEntityType" propertyName:@"duplicateRuleEntityType" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errorMessage" propertyName:@"errorMessage" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"matchResults" propertyName:@"matchResults" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(BOOL)allowSave {
-    return [self boolean:@"allowSave"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.allowSave__v = [self boolean:@"allowSave"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.allowSave__v;
 }
-			
+        
+
+-(void)setAllowSave:(BOOL)v {
+    self.allowSave__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)duplicateRule {
-    return [self string:@"duplicateRule"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.duplicateRule__v = [self string:@"duplicateRule"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.duplicateRule__v;
 }
-			
+        
+
+-(void)setDuplicateRule:(NSString *)v {
+    self.duplicateRule__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)duplicateRuleEntityType {
-    return [self string:@"duplicateRuleEntityType"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.duplicateRuleEntityType__v = [self string:@"duplicateRuleEntityType"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.duplicateRuleEntityType__v;
 }
-			
+        
+
+-(void)setDuplicateRuleEntityType:(NSString *)v {
+    self.duplicateRuleEntityType__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)errorMessage {
-    return [self string:@"errorMessage"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.errorMessage__v = [self string:@"errorMessage"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.errorMessage__v;
 }
-			
--(NSArray *)matchResults {
-    return [self complexTypeArrayFromElements:@"matchResults" cls:[ZKMatchResult class]];
+        
+
+-(void)setErrorMessage:(NSString *)v {
+    self.errorMessage__v = v;
+    fields__set[0] |= 0x8; 
 }
-			
+        
+
+-(NSArray<ZKMatchResult *> *)matchResults {
+    if ((fields__set[0] & 0x10) == 0) {
+        self.matchResults__v = [self complexTypeArrayFromElements:@"matchResults" cls:[ZKMatchResult class]];
+        fields__set[0] |= 0x10; 
+    }
+    return self.matchResults__v;
+}
+        
+
+-(void)setMatchResults:(NSArray<ZKMatchResult *> *)v {
+    self.matchResults__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addBoolElement:@"allowSave"           elemValue:self.allowSave];
+	[env addElement:@"duplicateRule"           elemValue:self.duplicateRule           nillable:NO  optional:NO];
+	[env addElement:@"duplicateRuleEntityType" elemValue:self.duplicateRuleEntityType nillable:NO  optional:NO];
+	[env addElement:@"errorMessage"            elemValue:self.errorMessage            nillable:YES optional:NO];
+	[env addElementArray:@"matchResults"       elemValue:self.matchResults];
+	[env endElement:elemName];
+}
 @end

@@ -27,28 +27,63 @@
 #import "ZKLocation.h"
 #import "ZKEnvelope.h"
 
+@interface ZKLocation()
+@property (assign,nonatomic) double latitude__v;
+@property (assign,nonatomic) double longitude__v;
+@end
+
 @implementation ZKLocation
 
-@synthesize latitude, longitude;
 
--(instancetype)init {
-    self = [super init];
-    return self;
++(void)load {
+    [self registerType:self xmlName:@"location"];
 }
 
--(instancetype)initWithZKXmlDeserializer:(ZKXmlDeserializer *)d {
-    self = [super init];
-	self.latitude = [d double:@"latitude"];
-	self.longitude = [d double:@"longitude"];
-    return self;
-}
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"location" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"latitude" propertyName:@"latitude" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"longitude" propertyName:@"longitude" optional:NO nillable:YES],
 
--(instancetype)initWithXmlElement:(ZKElement *)e {
-    ZKXmlDeserializer *d = [[ZKXmlDeserializer alloc] initWithXmlElement:e];
-    return [self initWithZKXmlDeserializer:d];
+                    ]];
+   });
+   return wsdlSchema;
 }
+    
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
+-(double)latitude {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.latitude__v = [self double:@"latitude"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.latitude__v;
+}
+        
+
+-(void)setLatitude:(double)v {
+    self.latitude__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(double)longitude {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.longitude__v = [self double:@"longitude"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.longitude__v;
+}
+        
+
+-(void)setLongitude:(double)v {
+    self.longitude__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addDoubleElement:@"latitude"  elemValue:self.latitude];
 	[env addDoubleElement:@"longitude" elemValue:self.longitude];

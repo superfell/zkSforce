@@ -86,12 +86,7 @@
         }
     }
     Class complexType = [self complexTypeClassForType:xsiType baseClass:[NSObject class]];
-    id complexTypeInst = [complexType alloc];
-    if (![complexTypeInst respondsToSelector:@selector(initWithXmlElement:)]) {
-        NSLog(@"Unable to find a class for type %@ [mapped class was %@", xsiType, complexType);
-        return node;
-    }
-    return [complexTypeInst initWithXmlElement:node];
+    return [[complexType alloc] initWithXmlElement:node];
 }
 
 @end

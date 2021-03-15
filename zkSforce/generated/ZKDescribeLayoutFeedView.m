@@ -25,12 +25,51 @@
 //
 
 #import "ZKDescribeLayoutFeedView.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeLayoutFeedFilter.h"
+
+@interface ZKDescribeLayoutFeedView()
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutFeedFilter *>  *feedFilters__v;
+@end
 
 @implementation ZKDescribeLayoutFeedView
 
--(NSArray *)feedFilters {
-    return [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeLayoutFeedView"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutFeedView" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"feedFilters" propertyName:@"feedFilters" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKDescribeLayoutFeedFilter *> *)feedFilters {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.feedFilters__v = [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.feedFilters__v;
+}
+        
+
+-(void)setFeedFilters:(NSArray<ZKDescribeLayoutFeedFilter *> *)v {
+    self.feedFilters__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"feedFilters" elemValue:self.feedFilters];
+	[env endElement:elemName];
+}
 @end

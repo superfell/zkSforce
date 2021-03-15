@@ -27,11 +27,97 @@
 #import "ZKProcessSubmitRequest.h"
 #import "ZKEnvelope.h"
 
+@interface ZKProcessSubmitRequest()
+@property (strong,nonatomic) NSString  *objectId__v;
+@property (strong,nonatomic) NSString  *submitterId__v;
+@property (strong,nonatomic) NSString  *processDefinitionNameOrId__v;
+@property (assign,nonatomic) BOOL       skipEntryCriteria__v;
+@end
+
 @implementation ZKProcessSubmitRequest
 
-@synthesize objectId, submitterId, processDefinitionNameOrId, skipEntryCriteria;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"ProcessSubmitRequest"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ProcessSubmitRequest" parent:[ZKProcessRequest class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"objectId" propertyName:@"objectId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"submitterId" propertyName:@"submitterId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"processDefinitionNameOrId" propertyName:@"processDefinitionNameOrId" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"skipEntryCriteria" propertyName:@"skipEntryCriteria" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)objectId {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.objectId__v = [self string:@"objectId"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.objectId__v;
+}
+        
+
+-(void)setObjectId:(NSString *)v {
+    self.objectId__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
+-(NSString *)submitterId {
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.submitterId__v = [self string:@"submitterId"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.submitterId__v;
+}
+        
+
+-(void)setSubmitterId:(NSString *)v {
+    self.submitterId__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+
+-(NSString *)processDefinitionNameOrId {
+    if ((fields__set2[0] & 0x4) == 0) {
+        self.processDefinitionNameOrId__v = [self string:@"processDefinitionNameOrId"];
+        fields__set2[0] |= 0x4; 
+    }
+    return self.processDefinitionNameOrId__v;
+}
+        
+
+-(void)setProcessDefinitionNameOrId:(NSString *)v {
+    self.processDefinitionNameOrId__v = v;
+    fields__set2[0] |= 0x4; 
+}
+        
+
+-(BOOL)skipEntryCriteria {
+    if ((fields__set2[0] & 0x8) == 0) {
+        self.skipEntryCriteria__v = [self boolean:@"skipEntryCriteria"];
+        fields__set2[0] |= 0x8; 
+    }
+    return self.skipEntryCriteria__v;
+}
+        
+
+-(void)setSkipEntryCriteria:(BOOL)v {
+    self.skipEntryCriteria__v = v;
+    fields__set2[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"ProcessSubmitRequest"];
 	[env addElement:@"comments"                  elemValue:self.comments                  nillable:YES optional:NO];
 	[env addElementArray:@"nextApproverIds"      elemValue:self.nextApproverIds];

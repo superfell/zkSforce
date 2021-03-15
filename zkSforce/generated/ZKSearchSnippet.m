@@ -25,16 +25,69 @@
 //
 
 #import "ZKSearchSnippet.h"
+#import "ZKEnvelope.h"
 #import "ZKNameValuePair.h"
+
+@interface ZKSearchSnippet()
+@property (strong,nonatomic) NSString                    *text__v;
+@property (strong,nonatomic) NSArray<ZKNameValuePair *>  *wholeFields__v;
+@end
 
 @implementation ZKSearchSnippet
 
+
++(void)load {
+    [self registerType:self xmlName:@"SearchSnippet"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SearchSnippet" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"text" propertyName:@"text" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"wholeFields" propertyName:@"wholeFields" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)text {
-    return [self string:@"text"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.text__v = [self string:@"text"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.text__v;
 }
-			
--(NSArray *)wholeFields {
-    return [self complexTypeArrayFromElements:@"wholeFields" cls:[ZKNameValuePair class]];
+        
+
+-(void)setText:(NSString *)v {
+    self.text__v = v;
+    fields__set[0] |= 0x1; 
 }
-			
+        
+
+-(NSArray<ZKNameValuePair *> *)wholeFields {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.wholeFields__v = [self complexTypeArrayFromElements:@"wholeFields" cls:[ZKNameValuePair class]];
+        fields__set[0] |= 0x2; 
+    }
+    return self.wholeFields__v;
+}
+        
+
+-(void)setWholeFields:(NSArray<ZKNameValuePair *> *)v {
+    self.wholeFields__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"text"             elemValue:self.text        nillable:YES optional:YES];
+	[env addElementArray:@"wholeFields" elemValue:self.wholeFields];
+	[env endElement:elemName];
+}
 @end

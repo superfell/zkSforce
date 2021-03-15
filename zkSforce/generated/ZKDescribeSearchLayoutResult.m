@@ -25,28 +25,123 @@
 //
 
 #import "ZKDescribeSearchLayoutResult.h"
+#import "ZKEnvelope.h"
 #import "ZKDescribeColumn.h"
+
+@interface ZKDescribeSearchLayoutResult()
+@property (strong,nonatomic) NSString                     *errorMsg__v;
+@property (strong,nonatomic) NSString                     *label__v;
+@property (assign,nonatomic) NSInteger                     limitRows__v;
+@property (strong,nonatomic) NSString                     *objectType__v;
+@property (strong,nonatomic) NSArray<ZKDescribeColumn *>  *searchColumns__v;
+@end
 
 @implementation ZKDescribeSearchLayoutResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeSearchLayoutResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSearchLayoutResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"errorMsg" propertyName:@"errorMsg" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"limitRows" propertyName:@"limitRows" optional:NO nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"objectType" propertyName:@"objectType" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"searchColumns" propertyName:@"searchColumns" optional:YES nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)errorMsg {
-    return [self string:@"errorMsg"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.errorMsg__v = [self string:@"errorMsg"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.errorMsg__v;
 }
-			
+        
+
+-(void)setErrorMsg:(NSString *)v {
+    self.errorMsg__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSInteger)limitRows {
-    return [self integer:@"limitRows"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.limitRows__v = [self integer:@"limitRows"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.limitRows__v;
 }
-			
+        
+
+-(void)setLimitRows:(NSInteger)v {
+    self.limitRows__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)objectType {
-    return [self string:@"objectType"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.objectType__v = [self string:@"objectType"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.objectType__v;
 }
-			
--(NSArray *)searchColumns {
-    return [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
+        
+
+-(void)setObjectType:(NSString *)v {
+    self.objectType__v = v;
+    fields__set[0] |= 0x8; 
 }
-			
+        
+
+-(NSArray<ZKDescribeColumn *> *)searchColumns {
+    if ((fields__set[0] & 0x10) == 0) {
+        self.searchColumns__v = [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
+        fields__set[0] |= 0x10; 
+    }
+    return self.searchColumns__v;
+}
+        
+
+-(void)setSearchColumns:(NSArray<ZKDescribeColumn *> *)v {
+    self.searchColumns__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"errorMsg"           elemValue:self.errorMsg      nillable:YES optional:NO];
+	[env addElement:@"label"              elemValue:self.label         nillable:YES optional:NO];
+	[env addIntElement:@"limitRows"       elemValue:self.limitRows];
+	[env addElement:@"objectType"         elemValue:self.objectType    nillable:NO  optional:NO];
+	[env addElementArray:@"searchColumns" elemValue:self.searchColumns];
+	[env endElement:elemName];
+}
 @end

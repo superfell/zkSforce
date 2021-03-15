@@ -25,11 +25,50 @@
 //
 
 #import "ZKResetPasswordResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKResetPasswordResult()
+@property (strong,nonatomic) NSString  *password__v;
+@end
 
 @implementation ZKResetPasswordResult
 
--(NSString *)password {
-    return [self string:@"password"];
+
++(void)load {
+    [self registerType:self xmlName:@"ResetPasswordResult"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ResetPasswordResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"password" propertyName:@"password" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)password {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.password__v = [self string:@"password"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.password__v;
+}
+        
+
+-(void)setPassword:(NSString *)v {
+    self.password__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"password" elemValue:self.password nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

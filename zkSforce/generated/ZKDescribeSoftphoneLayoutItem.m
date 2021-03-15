@@ -25,11 +25,50 @@
 //
 
 #import "ZKDescribeSoftphoneLayoutItem.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeSoftphoneLayoutItem()
+@property (strong,nonatomic) NSString  *itemApiName__v;
+@end
 
 @implementation ZKDescribeSoftphoneLayoutItem
 
--(NSString *)itemApiName {
-    return [self string:@"itemApiName"];
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeSoftphoneLayoutItem"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoftphoneLayoutItem" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"itemApiName" propertyName:@"itemApiName" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)itemApiName {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.itemApiName__v = [self string:@"itemApiName"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.itemApiName__v;
+}
+        
+
+-(void)setItemApiName:(NSString *)v {
+    self.itemApiName__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"itemApiName" elemValue:self.itemApiName nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

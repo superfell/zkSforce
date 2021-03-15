@@ -27,11 +27,63 @@
 #import "ZKLoginScopeHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKLoginScopeHeader()
+@property (strong,nonatomic) NSString  *organizationId__v;
+@property (strong,nonatomic) NSString  *portalId__v;
+@end
+
 @implementation ZKLoginScopeHeader
 
-@synthesize organizationId, portalId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"LoginScopeHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"LoginScopeHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"organizationId" propertyName:@"organizationId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"portalId" propertyName:@"portalId" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)organizationId {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.organizationId__v = [self string:@"organizationId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.organizationId__v;
+}
+        
+
+-(void)setOrganizationId:(NSString *)v {
+    self.organizationId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)portalId {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.portalId__v = [self string:@"portalId"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.portalId__v;
+}
+        
+
+-(void)setPortalId:(NSString *)v {
+    self.portalId__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"organizationId" elemValue:self.organizationId nillable:NO  optional:NO];
 	[env addElement:@"portalId"       elemValue:self.portalId       nillable:NO  optional:YES];

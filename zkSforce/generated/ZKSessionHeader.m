@@ -27,11 +27,46 @@
 #import "ZKSessionHeader.h"
 #import "ZKEnvelope.h"
 
+@interface ZKSessionHeader()
+@property (strong,nonatomic) NSString  *sessionId__v;
+@end
+
 @implementation ZKSessionHeader
 
-@synthesize sessionId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"SessionHeader"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"SessionHeader" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sessionId" propertyName:@"sessionId" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)sessionId {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.sessionId__v = [self string:@"sessionId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.sessionId__v;
+}
+        
+
+-(void)setSessionId:(NSString *)v {
+    self.sessionId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"sessionId" elemValue:self.sessionId nillable:NO  optional:NO];
 	[env endElement:elemName];

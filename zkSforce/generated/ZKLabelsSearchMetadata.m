@@ -25,16 +25,69 @@
 //
 
 #import "ZKLabelsSearchMetadata.h"
+#import "ZKEnvelope.h"
 #import "ZKNameValuePair.h"
+
+@interface ZKLabelsSearchMetadata()
+@property (strong,nonatomic) NSArray<ZKNameValuePair *>  *entityFieldLabels__v;
+@property (strong,nonatomic) NSString                    *entityName__v;
+@end
 
 @implementation ZKLabelsSearchMetadata
 
--(NSArray *)entityFieldLabels {
-    return [self complexTypeArrayFromElements:@"entityFieldLabels" cls:[ZKNameValuePair class]];
+
++(void)load {
+    [self registerType:self xmlName:@"LabelsSearchMetadata"];
 }
-			
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"LabelsSearchMetadata" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityFieldLabels" propertyName:@"entityFieldLabels" optional:YES nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"entityName" propertyName:@"entityName" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSArray<ZKNameValuePair *> *)entityFieldLabels {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.entityFieldLabels__v = [self complexTypeArrayFromElements:@"entityFieldLabels" cls:[ZKNameValuePair class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.entityFieldLabels__v;
+}
+        
+
+-(void)setEntityFieldLabels:(NSArray<ZKNameValuePair *> *)v {
+    self.entityFieldLabels__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)entityName {
-    return [self string:@"entityName"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.entityName__v = [self string:@"entityName"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.entityName__v;
 }
-			
+        
+
+-(void)setEntityName:(NSString *)v {
+    self.entityName__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"entityFieldLabels" elemValue:self.entityFieldLabels];
+	[env addElement:@"entityName"             elemValue:self.entityName        nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

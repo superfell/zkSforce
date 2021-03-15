@@ -25,9 +25,12 @@
 //
 
 #import "ZKSoqlWhereCondition.h"
+#import "ZKComplexTypeFieldInfo.h"
+#import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType name="SoqlSubQueryCondition" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="SoqlSubQueryCondition" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <complexContent>
     <extension base="tns:SoqlWhereCondition">
       <sequence>
@@ -39,9 +42,12 @@
   </complexContent>
 </complexType>
 */
-@interface ZKSoqlSubQueryCondition : ZKSoqlWhereCondition {
+@interface ZKSoqlSubQueryCondition : ZKSoqlWhereCondition  {
+	UInt16   fields__set2[1];
 }
-@property (weak, readonly) NSString  *field; 
-@property (weak, readonly) NSString  *operator; 
-@property (weak, readonly) NSString  *subQuery; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString  *field;
+@property (strong,nonatomic) NSString  *operator;
+@property (strong,nonatomic) NSString  *subQuery;
 @end

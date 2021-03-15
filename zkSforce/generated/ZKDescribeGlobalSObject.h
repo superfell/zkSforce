@@ -24,10 +24,13 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
 /*
-<complexType name="DescribeGlobalSObjectResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeGlobalSObjectResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:boolean" name="activateable"/>
     <element nillable="true" type="xsd:string" name="associateEntityType"/>
@@ -61,35 +64,38 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeGlobalSObject : ZKXmlDeserializer {
+@interface ZKDescribeGlobalSObject : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt32   fields__set[1];
 }
-@property (readonly) BOOL             activateable; 
-@property (weak, readonly) NSString  *associateEntityType; 
-@property (weak, readonly) NSString  *associateParentEntity; 
-@property (readonly) BOOL             createable; 
-@property (readonly) BOOL             custom; 
-@property (readonly) BOOL             customSetting; 
-@property (readonly) BOOL             dataTranslationEnabled; 
-@property (readonly) BOOL             deepCloneable; 
-@property (readonly) BOOL             deletable; 
-@property (readonly) BOOL             deprecatedAndHidden; 
-@property (readonly) BOOL             feedEnabled; 
-@property (readonly) BOOL             hasSubtypes; 
-@property (readonly) BOOL             idEnabled; 
-@property (readonly) BOOL             isInterface; 
-@property (readonly) BOOL             isSubtype; 
-@property (weak, readonly) NSString  *keyPrefix; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *labelPlural; 
-@property (readonly) BOOL             layoutable; 
-@property (readonly) BOOL             mergeable; 
-@property (readonly) BOOL             mruEnabled; 
-@property (weak, readonly) NSString  *name; 
-@property (readonly) BOOL             queryable; 
-@property (readonly) BOOL             replicateable; 
-@property (readonly) BOOL             retrieveable; 
-@property (readonly) BOOL             searchable; 
-@property (readonly) BOOL             triggerable; 
-@property (readonly) BOOL             undeletable; 
-@property (readonly) BOOL             updateable; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (assign,nonatomic) BOOL       activateable;
+@property (strong,nonatomic) NSString  *associateEntityType;
+@property (strong,nonatomic) NSString  *associateParentEntity;
+@property (assign,nonatomic) BOOL       createable;
+@property (assign,nonatomic) BOOL       custom;
+@property (assign,nonatomic) BOOL       customSetting;
+@property (assign,nonatomic) BOOL       dataTranslationEnabled;
+@property (assign,nonatomic) BOOL       deepCloneable;
+@property (assign,nonatomic) BOOL       deletable;
+@property (assign,nonatomic) BOOL       deprecatedAndHidden;
+@property (assign,nonatomic) BOOL       feedEnabled;
+@property (assign,nonatomic) BOOL       hasSubtypes;
+@property (assign,nonatomic) BOOL       idEnabled;
+@property (assign,nonatomic) BOOL       isInterface;
+@property (assign,nonatomic) BOOL       isSubtype;
+@property (strong,nonatomic) NSString  *keyPrefix;
+@property (strong,nonatomic) NSString  *label;
+@property (strong,nonatomic) NSString  *labelPlural;
+@property (assign,nonatomic) BOOL       layoutable;
+@property (assign,nonatomic) BOOL       mergeable;
+@property (assign,nonatomic) BOOL       mruEnabled;
+@property (strong,nonatomic) NSString  *name;
+@property (assign,nonatomic) BOOL       queryable;
+@property (assign,nonatomic) BOOL       replicateable;
+@property (assign,nonatomic) BOOL       retrieveable;
+@property (assign,nonatomic) BOOL       searchable;
+@property (assign,nonatomic) BOOL       triggerable;
+@property (assign,nonatomic) BOOL       undeletable;
+@property (assign,nonatomic) BOOL       updateable;
 @end

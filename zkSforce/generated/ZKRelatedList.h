@@ -24,10 +24,17 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeLayoutButton;
+@class ZKRelatedListColumn;
+@class ZKRelatedListSort;
 
 /*
-<complexType name="RelatedList" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="RelatedList" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element nillable="true" type="tns:ShareAccessLevel" name="accessLevelRequiredForCreate"/>
     <element nillable="true" minOccurs="0" maxOccurs="unbounded" type="tns:DescribeLayoutButton" name="buttons"/>
@@ -42,16 +49,19 @@
   </sequence>
 </complexType>
 */
-@interface ZKRelatedList : ZKXmlDeserializer {
+@interface ZKRelatedList : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *accessLevelRequiredForCreate; 
-@property (weak, readonly) NSArray   *buttons;  // of ZKDescribeLayoutButton
-@property (weak, readonly) NSArray   *columns;  // of ZKRelatedListColumn
-@property (readonly) BOOL             custom; 
-@property (weak, readonly) NSString  *field; 
-@property (weak, readonly) NSString  *label; 
-@property (readonly) NSInteger        limitRows; 
-@property (weak, readonly) NSString  *name; 
-@property (weak, readonly) NSString  *sobject; 
-@property (weak, readonly) NSArray   *sort;  // of ZKRelatedListSort
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                           *accessLevelRequiredForCreate;
+@property (strong,nonatomic) NSArray<ZKDescribeLayoutButton *>  *buttons;
+@property (strong,nonatomic) NSArray<ZKRelatedListColumn *>     *columns;
+@property (assign,nonatomic) BOOL                                custom;
+@property (strong,nonatomic) NSString                           *field;
+@property (strong,nonatomic) NSString                           *label;
+@property (assign,nonatomic) NSInteger                           limitRows;
+@property (strong,nonatomic) NSString                           *name;
+@property (strong,nonatomic) NSString                           *sobject;
+@property (strong,nonatomic) NSArray<ZKRelatedListSort *>       *sort;
 @end

@@ -19,11 +19,11 @@
 // THE SOFTWARE.
 //
 
+#import "ZKXmlWriter.h"
 
-#import "ZKSObject.h"
+@class ZKSObject;
 
-@interface ZKEnvelope : NSObject {
-    NSMutableString     *env;
+@interface ZKEnvelope : ZKXmlWriter {
     int                 state;
 }
 
@@ -34,21 +34,9 @@
 
 - (void) moveToHeaders;
 - (void) moveToBody;
-- (void) startElement:(NSString *)elemName;
-- (void) startElement:(NSString *)elemName type:(NSString *)type;
-- (void) endElement:(NSString *)elemName;
-- (void) writeText:(NSString *)text;
-- (void) addElement:(NSString *)elemName elemValue:(id)elemValue;
-- (void) addElement:(NSString *)elemName elemValue:(id)elemValue nillable:(BOOL)nillable optional:(BOOL)optional;
-- (void) addNullElement:(NSString *)elemName;
-- (void) addBoolElement:(NSString *)elemName elemValue:(BOOL)elemValue;
-- (void) addIntElement:(NSString *)elemName elemValue:(NSInteger)elemValue;
-- (void) addDoubleElement:(NSString *)elemName elemValue:(double)elemValue;
 
 - (NSString *)end;
 
-- (void) addElementArray:(NSString *)elemName   elemValue:(NSArray *)elemValues;
 - (void) addElementSObject:(NSString *)elemName elemValue:(ZKSObject *)sobject;
-- (void) addElementString:(NSString *)elemName  elemValue:(NSString *)elemValue;
 
 @end

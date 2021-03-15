@@ -24,10 +24,15 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
+
+@class ZKDescribeTab;
 
 /*
-<complexType name="DescribeTabSetResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="DescribeTabSetResult" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="xsd:string" name="description"/>
     <element type="xsd:string" name="label"/>
@@ -39,13 +44,16 @@
   </sequence>
 </complexType>
 */
-@interface ZKDescribeTabSetResult : ZKXmlDeserializer {
+@interface ZKDescribeTabSetResult : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSString  *description; 
-@property (weak, readonly) NSString  *label; 
-@property (weak, readonly) NSString  *logoUrl; 
-@property (weak, readonly) NSString  *namespace; 
-@property (readonly) BOOL             selected; 
-@property (weak, readonly) NSString  *tabSetId; 
-@property (weak, readonly) NSArray   *tabs;  // of ZKDescribeTab
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSString                  *a_description;
+@property (strong,nonatomic) NSString                  *label;
+@property (strong,nonatomic) NSString                  *logoUrl;
+@property (strong,nonatomic) NSString                  *namespace;
+@property (assign,nonatomic) BOOL                       selected;
+@property (strong,nonatomic) NSString                  *tabSetId;
+@property (strong,nonatomic) NSArray<ZKDescribeTab *>  *tabs;
 @end

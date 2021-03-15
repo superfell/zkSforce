@@ -27,11 +27,63 @@
 #import "ZKDescribeSoqlListViewParams.h"
 #import "ZKEnvelope.h"
 
+@interface ZKDescribeSoqlListViewParams()
+@property (strong,nonatomic) NSString  *developerNameOrId__v;
+@property (strong,nonatomic) NSString  *sobjectType__v;
+@end
+
 @implementation ZKDescribeSoqlListViewParams
 
-@synthesize developerNameOrId, sobjectType;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"DescribeSoqlListViewParams"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeSoqlListViewParams" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"developerNameOrId" propertyName:@"developerNameOrId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"sobjectType" propertyName:@"sobjectType" optional:NO nillable:YES],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)developerNameOrId {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.developerNameOrId__v = [self string:@"developerNameOrId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.developerNameOrId__v;
+}
+        
+
+-(void)setDeveloperNameOrId:(NSString *)v {
+    self.developerNameOrId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSString *)sobjectType {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.sobjectType__v = [self string:@"sobjectType"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.sobjectType__v;
+}
+        
+
+-(void)setSobjectType:(NSString *)v {
+    self.sobjectType__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"developerNameOrId" elemValue:self.developerNameOrId nillable:NO  optional:NO];
 	[env addElement:@"sobjectType"       elemValue:self.sobjectType       nillable:YES optional:NO];

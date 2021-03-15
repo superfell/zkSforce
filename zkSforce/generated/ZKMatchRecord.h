@@ -24,11 +24,17 @@
 //       DO NOT HAND EDIT.
 //
 
+#import "ZKXMLSerializable.h"
+#import "ZKComplexTypeFieldInfo.h"
 #import "ZKXmlDeserializer.h"
+#import "ZKParser.h"
 
+@class ZKAdditionalInformationMap;
+@class ZKFieldDiff;
 @class ZKSObject;
+
 /*
-<complexType name="MatchRecord" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ens="urn:sobject.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<complexType name="MatchRecord" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn:fault.partner.soap.sforce.com" xmlns:tns="urn:partner.soap.sforce.com" xmlns:ens="urn:sobject.partner.soap.sforce.com">
   <sequence>
     <element type="tns:AdditionalInformationMap" maxOccurs="unbounded" minOccurs="0" name="additionalInformation"/>
     <element type="tns:FieldDiff" maxOccurs="unbounded" minOccurs="0" name="fieldDiffs"/>
@@ -37,10 +43,13 @@
   </sequence>
 </complexType>
 */
-@interface ZKMatchRecord : ZKXmlDeserializer {
+@interface ZKMatchRecord : ZKXmlDeserializer <ZKXMLSerializable> {
+	UInt16   fields__set[1];
 }
-@property (weak, readonly) NSArray    *additionalInformation;  // of ZKAdditionalInformationMap
-@property (weak, readonly) NSArray    *fieldDiffs;  // of ZKFieldDiff
-@property (readonly) double            matchConfidence; 
-@property (weak, readonly) ZKSObject  *record; 
++(ZKComplexTypeInfo *)wsdlSchema;
+
+@property (strong,nonatomic) NSArray<ZKAdditionalInformationMap *>  *additionalInformation;
+@property (strong,nonatomic) NSArray<ZKFieldDiff *>                 *fieldDiffs;
+@property (assign,nonatomic) double                                  matchConfidence;
+@property (strong,nonatomic) ZKSObject                              *record;
 @end

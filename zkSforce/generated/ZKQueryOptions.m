@@ -27,11 +27,46 @@
 #import "ZKQueryOptions.h"
 #import "ZKEnvelope.h"
 
+@interface ZKQueryOptions()
+@property (assign,nonatomic) NSInteger batchSize__v;
+@end
+
 @implementation ZKQueryOptions
 
-@synthesize batchSize;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"QueryOptions"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"QueryOptions" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"batchSize" propertyName:@"batchSize" optional:YES nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSInteger)batchSize {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.batchSize__v = [self integer:@"batchSize"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.batchSize__v;
+}
+        
+
+-(void)setBatchSize:(NSInteger)v {
+    self.batchSize__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addIntElement:@"batchSize" elemValue:self.batchSize];
 	[env endElement:elemName];

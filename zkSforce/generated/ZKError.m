@@ -25,24 +25,105 @@
 //
 
 #import "ZKError.h"
+#import "ZKEnvelope.h"
 #import "ZKExtendedErrorDetails.h"
+
+@interface ZKError()
+@property (strong,nonatomic) NSArray<ZKExtendedErrorDetails *>  *extendedErrorDetails__v;
+@property (strong,nonatomic) NSArray<NSString *>                *fields__v;
+@property (strong,nonatomic) NSString                           *message__v;
+@property (strong,nonatomic) NSString                           *statusCode__v;
+@end
 
 @implementation ZKError
 
--(NSArray *)extendedErrorDetails {
-    return [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
+
++(void)load {
+    [self registerType:self xmlName:@"Error"];
 }
-			
--(NSArray *)fields {
-    return [self strings:@"fields"];
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"Error" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"extendedErrorDetails" propertyName:@"extendedErrorDetails" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"fields" propertyName:@"fields" optional:YES nillable:YES],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"message" propertyName:@"message" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"statusCode" propertyName:@"statusCode" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
 }
-			
+    
+
+-(NSArray<ZKExtendedErrorDetails *> *)extendedErrorDetails {
+    if ((fields__set[0] & 0x1) == 0) {
+        self.extendedErrorDetails__v = [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
+        fields__set[0] |= 0x1; 
+    }
+    return self.extendedErrorDetails__v;
+}
+        
+
+-(void)setExtendedErrorDetails:(NSArray<ZKExtendedErrorDetails *> *)v {
+    self.extendedErrorDetails__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
+-(NSArray<NSString *> *)fields {
+    if ((fields__set[0] & 0x2) == 0) {
+        self.fields__v = [self strings:@"fields"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.fields__v;
+}
+        
+
+-(void)setFields:(NSArray<NSString *> *)v {
+    self.fields__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)message {
-    return [self string:@"message"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.message__v = [self string:@"message"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.message__v;
 }
-			
+        
+
+-(void)setMessage:(NSString *)v {
+    self.message__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)statusCode {
-    return [self string:@"statusCode"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.statusCode__v = [self string:@"statusCode"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.statusCode__v;
 }
-			
+        
+
+-(void)setStatusCode:(NSString *)v {
+    self.statusCode__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElementArray:@"extendedErrorDetails" elemValue:self.extendedErrorDetails];
+	[env addElementArray:@"fields"               elemValue:self.fields];
+	[env addElement:@"message"                   elemValue:self.message              nillable:NO  optional:NO];
+	[env addElement:@"statusCode"                elemValue:self.statusCode           nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

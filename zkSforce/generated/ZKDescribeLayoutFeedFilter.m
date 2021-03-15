@@ -25,19 +25,86 @@
 //
 
 #import "ZKDescribeLayoutFeedFilter.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeLayoutFeedFilter()
+@property (strong,nonatomic) NSString  *label__v;
+@property (strong,nonatomic) NSString  *name__v;
+@property (strong,nonatomic) NSString  *type__v;
+@end
 
 @implementation ZKDescribeLayoutFeedFilter
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeLayoutFeedFilter"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeLayoutFeedFilter" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"label" propertyName:@"label" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"name" propertyName:@"name" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"type" propertyName:@"type" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)label {
-    return [self string:@"label"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.label__v = [self string:@"label"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.label__v;
 }
-			
+        
+
+-(void)setLabel:(NSString *)v {
+    self.label__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)name {
-    return [self string:@"name"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.name__v = [self string:@"name"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.name__v;
 }
-			
+        
+
+-(void)setName:(NSString *)v {
+    self.name__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)type {
-    return [self string:@"type"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.type__v = [self string:@"type"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.type__v;
 }
-			
+        
+
+-(void)setType:(NSString *)v {
+    self.type__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"label" elemValue:self.label nillable:NO  optional:NO];
+	[env addElement:@"name"  elemValue:self.name  nillable:NO  optional:NO];
+	[env addElement:@"type"  elemValue:self.type  nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

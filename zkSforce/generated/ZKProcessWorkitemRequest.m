@@ -27,11 +27,63 @@
 #import "ZKProcessWorkitemRequest.h"
 #import "ZKEnvelope.h"
 
+@interface ZKProcessWorkitemRequest()
+@property (strong,nonatomic) NSString  *action__v;
+@property (strong,nonatomic) NSString  *workitemId__v;
+@end
+
 @implementation ZKProcessWorkitemRequest
 
-@synthesize action, workitemId;
 
--(void)serializeToEnvelope:(ZKEnvelope *)env elemName:(NSString *)elemName {
++(void)load {
+    [self registerType:self xmlName:@"ProcessWorkitemRequest"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"ProcessWorkitemRequest" parent:[ZKProcessRequest class]
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"action" propertyName:@"action" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"workitemId" propertyName:@"workitemId" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
+-(NSString *)action {
+    if ((fields__set2[0] & 0x1) == 0) {
+        self.action__v = [self string:@"action"];
+        fields__set2[0] |= 0x1; 
+    }
+    return self.action__v;
+}
+        
+
+-(void)setAction:(NSString *)v {
+    self.action__v = v;
+    fields__set2[0] |= 0x1; 
+}
+        
+
+-(NSString *)workitemId {
+    if ((fields__set2[0] & 0x2) == 0) {
+        self.workitemId__v = [self string:@"workitemId"];
+        fields__set2[0] |= 0x2; 
+    }
+    return self.workitemId__v;
+}
+        
+
+-(void)setWorkitemId:(NSString *)v {
+    self.workitemId__v = v;
+    fields__set2[0] |= 0x2; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"ProcessWorkitemRequest"];
 	[env addElement:@"comments"             elemValue:self.comments        nillable:YES optional:NO];
 	[env addElementArray:@"nextApproverIds" elemValue:self.nextApproverIds];

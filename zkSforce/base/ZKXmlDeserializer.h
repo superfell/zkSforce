@@ -1,4 +1,4 @@
-// Copyright (c) 2006,2013,2014,2016,2018 Simon Fell
+// Copyright (c) 2006,2013,2014,2016,2018,2021 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a 
 // copy of this software and associated documentation files (the "Software"), 
@@ -26,10 +26,17 @@
 @class ZKNamespacedName;
 @class ZKXsdAnyType;
 
-@interface ZKXmlDeserializer : NSObject<NSCopying> {
+@protocol ZKXmlInitable <NSObject>
+- (instancetype)initWithXmlElement:(ZKElement *)e;
+@end
+
+@interface ZKXmlDeserializer : NSObject<ZKXmlInitable> {
     ZKElement *node;
-    NSMutableDictionary *values;
 }
+
++ (void)registerType:(Class)cls xmlName:(NSString *)name;
++ (NSObject<ZKXmlInitable>*)instanceOfXmlType:(NSString *)localName;
+
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithXmlElement:(ZKElement *)e NS_DESIGNATED_INITIALIZER;
 

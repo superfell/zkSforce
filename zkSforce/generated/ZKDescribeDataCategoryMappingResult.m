@@ -25,43 +25,194 @@
 //
 
 #import "ZKDescribeDataCategoryMappingResult.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeDataCategoryMappingResult()
+@property (strong,nonatomic) NSString  *dataCategoryGroupId__v;
+@property (strong,nonatomic) NSString  *dataCategoryGroupLabel__v;
+@property (strong,nonatomic) NSString  *dataCategoryGroupName__v;
+@property (strong,nonatomic) NSString  *dataCategoryId__v;
+@property (strong,nonatomic) NSString  *dataCategoryLabel__v;
+@property (strong,nonatomic) NSString  *dataCategoryName__v;
+@property (strong,nonatomic) NSString  *id__v;
+@property (strong,nonatomic) NSString  *mappedEntity__v;
+@property (strong,nonatomic) NSString  *mappedField__v;
+@end
 
 @implementation ZKDescribeDataCategoryMappingResult
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeDataCategoryMappingResult"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeDataCategoryMappingResult" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupId" propertyName:@"dataCategoryGroupId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupLabel" propertyName:@"dataCategoryGroupLabel" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryGroupName" propertyName:@"dataCategoryGroupName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryId" propertyName:@"dataCategoryId" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryLabel" propertyName:@"dataCategoryLabel" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"dataCategoryName" propertyName:@"dataCategoryName" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"id" propertyName:@"id" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"mappedEntity" propertyName:@"mappedEntity" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"mappedField" propertyName:@"mappedField" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)dataCategoryGroupId {
-    return [self string:@"dataCategoryGroupId"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.dataCategoryGroupId__v = [self string:@"dataCategoryGroupId"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.dataCategoryGroupId__v;
 }
-			
+        
+
+-(void)setDataCategoryGroupId:(NSString *)v {
+    self.dataCategoryGroupId__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)dataCategoryGroupLabel {
-    return [self string:@"dataCategoryGroupLabel"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.dataCategoryGroupLabel__v = [self string:@"dataCategoryGroupLabel"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.dataCategoryGroupLabel__v;
 }
-			
+        
+
+-(void)setDataCategoryGroupLabel:(NSString *)v {
+    self.dataCategoryGroupLabel__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)dataCategoryGroupName {
-    return [self string:@"dataCategoryGroupName"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.dataCategoryGroupName__v = [self string:@"dataCategoryGroupName"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.dataCategoryGroupName__v;
 }
-			
+        
+
+-(void)setDataCategoryGroupName:(NSString *)v {
+    self.dataCategoryGroupName__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+
 -(NSString *)dataCategoryId {
-    return [self string:@"dataCategoryId"];
+    if ((fields__set[0] & 0x8) == 0) {
+        self.dataCategoryId__v = [self string:@"dataCategoryId"];
+        fields__set[0] |= 0x8; 
+    }
+    return self.dataCategoryId__v;
 }
-			
+        
+
+-(void)setDataCategoryId:(NSString *)v {
+    self.dataCategoryId__v = v;
+    fields__set[0] |= 0x8; 
+}
+        
+
 -(NSString *)dataCategoryLabel {
-    return [self string:@"dataCategoryLabel"];
+    if ((fields__set[0] & 0x10) == 0) {
+        self.dataCategoryLabel__v = [self string:@"dataCategoryLabel"];
+        fields__set[0] |= 0x10; 
+    }
+    return self.dataCategoryLabel__v;
 }
-			
+        
+
+-(void)setDataCategoryLabel:(NSString *)v {
+    self.dataCategoryLabel__v = v;
+    fields__set[0] |= 0x10; 
+}
+        
+
 -(NSString *)dataCategoryName {
-    return [self string:@"dataCategoryName"];
+    if ((fields__set[0] & 0x20) == 0) {
+        self.dataCategoryName__v = [self string:@"dataCategoryName"];
+        fields__set[0] |= 0x20; 
+    }
+    return self.dataCategoryName__v;
 }
-			
+        
+
+-(void)setDataCategoryName:(NSString *)v {
+    self.dataCategoryName__v = v;
+    fields__set[0] |= 0x20; 
+}
+        
+
 -(NSString *)id {
-    return [self string:@"id"];
+    if ((fields__set[0] & 0x40) == 0) {
+        self.id__v = [self string:@"id"];
+        fields__set[0] |= 0x40; 
+    }
+    return self.id__v;
 }
-			
+        
+
+-(void)setId:(NSString *)v {
+    self.id__v = v;
+    fields__set[0] |= 0x40; 
+}
+        
+
 -(NSString *)mappedEntity {
-    return [self string:@"mappedEntity"];
+    if ((fields__set[0] & 0x80) == 0) {
+        self.mappedEntity__v = [self string:@"mappedEntity"];
+        fields__set[0] |= 0x80; 
+    }
+    return self.mappedEntity__v;
 }
-			
+        
+
+-(void)setMappedEntity:(NSString *)v {
+    self.mappedEntity__v = v;
+    fields__set[0] |= 0x80; 
+}
+        
+
 -(NSString *)mappedField {
-    return [self string:@"mappedField"];
+    if ((fields__set[0] & 0x100) == 0) {
+        self.mappedField__v = [self string:@"mappedField"];
+        fields__set[0] |= 0x100; 
+    }
+    return self.mappedField__v;
 }
-			
+        
+
+-(void)setMappedField:(NSString *)v {
+    self.mappedField__v = v;
+    fields__set[0] |= 0x100; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"dataCategoryGroupId"    elemValue:self.dataCategoryGroupId    nillable:NO  optional:NO];
+	[env addElement:@"dataCategoryGroupLabel" elemValue:self.dataCategoryGroupLabel nillable:NO  optional:NO];
+	[env addElement:@"dataCategoryGroupName"  elemValue:self.dataCategoryGroupName  nillable:NO  optional:NO];
+	[env addElement:@"dataCategoryId"         elemValue:self.dataCategoryId         nillable:NO  optional:NO];
+	[env addElement:@"dataCategoryLabel"      elemValue:self.dataCategoryLabel      nillable:NO  optional:NO];
+	[env addElement:@"dataCategoryName"       elemValue:self.dataCategoryName       nillable:NO  optional:NO];
+	[env addElement:@"id"                     elemValue:self.id                     nillable:NO  optional:NO];
+	[env addElement:@"mappedEntity"           elemValue:self.mappedEntity           nillable:NO  optional:NO];
+	[env addElement:@"mappedField"            elemValue:self.mappedField            nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

@@ -25,19 +25,86 @@
 //
 
 #import "ZKDescribeColor.h"
+#import "ZKEnvelope.h"
+
+@interface ZKDescribeColor()
+@property (strong,nonatomic) NSString  *color__v;
+@property (strong,nonatomic) NSString  *context__v;
+@property (strong,nonatomic) NSString  *theme__v;
+@end
 
 @implementation ZKDescribeColor
 
+
++(void)load {
+    [self registerType:self xmlName:@"DescribeColor"];
+}
+
++(ZKComplexTypeInfo *)wsdlSchema {
+   static ZKComplexTypeInfo *wsdlSchema;
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
+       wsdlSchema = [[ZKComplexTypeInfo alloc] initWithType:@"DescribeColor" parent:nil
+                    fields:@[
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"color" propertyName:@"color" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"context" propertyName:@"context" optional:NO nillable:NO],
+                        [[ZKComplexTypeFieldInfo alloc] initWithElementName:@"theme" propertyName:@"theme" optional:NO nillable:NO],
+
+                    ]];
+   });
+   return wsdlSchema;
+}
+    
+
 -(NSString *)color {
-    return [self string:@"color"];
+    if ((fields__set[0] & 0x1) == 0) {
+        self.color__v = [self string:@"color"];
+        fields__set[0] |= 0x1; 
+    }
+    return self.color__v;
 }
-			
+        
+
+-(void)setColor:(NSString *)v {
+    self.color__v = v;
+    fields__set[0] |= 0x1; 
+}
+        
+
 -(NSString *)context {
-    return [self string:@"context"];
+    if ((fields__set[0] & 0x2) == 0) {
+        self.context__v = [self string:@"context"];
+        fields__set[0] |= 0x2; 
+    }
+    return self.context__v;
 }
-			
+        
+
+-(void)setContext:(NSString *)v {
+    self.context__v = v;
+    fields__set[0] |= 0x2; 
+}
+        
+
 -(NSString *)theme {
-    return [self string:@"theme"];
+    if ((fields__set[0] & 0x4) == 0) {
+        self.theme__v = [self string:@"theme"];
+        fields__set[0] |= 0x4; 
+    }
+    return self.theme__v;
 }
-			
+        
+
+-(void)setTheme:(NSString *)v {
+    self.theme__v = v;
+    fields__set[0] |= 0x4; 
+}
+        
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+	[env startElement:elemName];
+	[env addElement:@"color"   elemValue:self.color   nillable:NO  optional:NO];
+	[env addElement:@"context" elemValue:self.context nillable:NO  optional:NO];
+	[env addElement:@"theme"   elemValue:self.theme   nillable:NO  optional:NO];
+	[env endElement:elemName];
+}
 @end

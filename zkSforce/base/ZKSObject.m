@@ -29,6 +29,7 @@
 #import "ZKDescribeSObject+Extras.h"
 #import "ZKDescribeField.h"
 #import "ZKSimpleTypes.h"
+#import "ZKXmlWriter.h"
 
 @interface ZKSObject()
 @property (strong) NSMutableSet<NSString*> *fieldsToNullSet;
@@ -39,6 +40,10 @@
 @end
 
 @implementation ZKSObject
+
++(void)load {
+    [ZKXmlDeserializer registerType:self xmlName:@"sObject"];
+}
 
 @synthesize fields, fieldOrder;
 
@@ -75,23 +80,20 @@
     // start at 2 to skip Id & Type
     for (NSUInteger i = 2; i < childCount; i++) {
         ZKElement *f = children[i];
-        id fieldVal;
+        id fieldVal = nil;
         if (f.isXsiNil) {
             fieldVal = [NSNull null];
         } else {
             NSString *xsiType = [f attributeValue:@"type" ns:NS_URI_XSI];
             if (xsiType != nil) {
                 self.fieldTypes[f.name] = xsiType;
+                NSString *localName = [self localName:xsiType];
+                NSObject<ZKXmlInitable> *registeredType = [ZKXmlDeserializer instanceOfXmlType:localName];
+                if (registeredType != nil) {
+                    fieldVal = [registeredType initWithXmlElement:f];
+                }
             }
-            if ([xsiType hasSuffix:@"QueryResult"]) {
-                fieldVal = [[ZKQueryResult alloc] initWithXmlElement:f];
-            } else if ([xsiType hasSuffix:@"sObject"]) {
-                fieldVal = [[ZKSObject alloc] initWithXmlElement:f];
-            } else if ([xsiType hasSuffix:@"address"]) {
-                fieldVal = [[ZKAddress alloc] initWithXmlElement:f];
-            } else if ([xsiType hasSuffix:@"location"]) {
-                fieldVal = [[ZKLocation alloc] initWithXmlElement:f];
-            } else {
+            if (fieldVal == nil) {
                 fieldVal = f.stringValue;
             }
         }
@@ -110,6 +112,17 @@
     c.fieldTypes = self.fieldTypes.mutableCopy;
     // typedValues is a cache, no need to copy it over.
     return c;
+}
+
+-(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
+    [env startElement:elemName];
+    [env addElement:@"type" elemValue:self.type];
+    [env addElementArray:@"fieldsToNull" elemValue:self.fieldsToNull];
+    [env addElement:@"Id" elemValue:self.id nillable:NO optional:YES];
+    [self.fieldsDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSObject * _Nonnull obj, BOOL * _Nonnull stop) {
+        [env addElement:key elemValue:obj];
+    }];
+    [env endElement:elemName];
 }
 
 - (id)description {
@@ -232,8 +245,7 @@
     }
     NSObject *fv = [self fieldValue:field];
     if ([fv isKindOfClass:[NSString class]]) {
-        NSString *xmlType = [self typeOfField:field withDescribe:desc];
-        NSString *xmlTypeLocalName = [xmlType substringFromIndex:[xmlType rangeOfString:@":"].location+1];
+        NSString *xmlTypeLocalName = [self localName:[self typeOfField:field withDescribe:desc]];
         tv = [(NSString*)fv ZKAsXmlType:xmlTypeLocalName];
         if (self.typedValues == nil) {
             self.typedValues = [[NSMutableDictionary alloc] init];
@@ -242,6 +254,14 @@
         return tv;
     }
     return fv;
+}
+
+-(NSString *)localName:(NSString *)qname {
+    NSRange pos = [qname rangeOfString:@":"];
+    if (pos.length == 0) {
+        return qname;
+    }
+    return [qname substringFromIndex:pos.location+1];
 }
 
 @end
