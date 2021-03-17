@@ -71,137 +71,128 @@
 -(NSString *)dataCategoryGroupId {
     if ((fields__set[0] & 0x1) == 0) {
         self.dataCategoryGroupId__v = [self string:@"dataCategoryGroupId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.dataCategoryGroupId__v;
 }
-        
 
 -(void)setDataCategoryGroupId:(NSString *)v {
     self.dataCategoryGroupId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)dataCategoryGroupLabel {
     if ((fields__set[0] & 0x2) == 0) {
         self.dataCategoryGroupLabel__v = [self string:@"dataCategoryGroupLabel"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.dataCategoryGroupLabel__v;
 }
-        
 
 -(void)setDataCategoryGroupLabel:(NSString *)v {
     self.dataCategoryGroupLabel__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)dataCategoryGroupName {
     if ((fields__set[0] & 0x4) == 0) {
         self.dataCategoryGroupName__v = [self string:@"dataCategoryGroupName"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.dataCategoryGroupName__v;
 }
-        
 
 -(void)setDataCategoryGroupName:(NSString *)v {
     self.dataCategoryGroupName__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)dataCategoryId {
     if ((fields__set[0] & 0x8) == 0) {
         self.dataCategoryId__v = [self string:@"dataCategoryId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.dataCategoryId__v;
 }
-        
 
 -(void)setDataCategoryId:(NSString *)v {
     self.dataCategoryId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)dataCategoryLabel {
     if ((fields__set[0] & 0x10) == 0) {
         self.dataCategoryLabel__v = [self string:@"dataCategoryLabel"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.dataCategoryLabel__v;
 }
-        
 
 -(void)setDataCategoryLabel:(NSString *)v {
     self.dataCategoryLabel__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)dataCategoryName {
     if ((fields__set[0] & 0x20) == 0) {
         self.dataCategoryName__v = [self string:@"dataCategoryName"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.dataCategoryName__v;
 }
-        
 
 -(void)setDataCategoryName:(NSString *)v {
     self.dataCategoryName__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)id {
     if ((fields__set[0] & 0x40) == 0) {
         self.id__v = [self string:@"id"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.id__v;
 }
-        
 
 -(void)setId:(NSString *)v {
     self.id__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)mappedEntity {
     if ((fields__set[0] & 0x80) == 0) {
         self.mappedEntity__v = [self string:@"mappedEntity"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.mappedEntity__v;
 }
-        
 
 -(void)setMappedEntity:(NSString *)v {
     self.mappedEntity__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)mappedField {
     if ((fields__set[0] & 0x100) == 0) {
         self.mappedField__v = [self string:@"mappedField"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.mappedField__v;
 }
-        
 
 -(void)setMappedField:(NSString *)v {
     self.mappedField__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"dataCategoryGroupId"    elemValue:self.dataCategoryGroupId    nillable:NO  optional:NO];

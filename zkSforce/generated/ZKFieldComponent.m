@@ -56,17 +56,16 @@
 -(ZKDescribeField *)field {
     if ((fields__set2[0] & 0x1) == 0) {
         self.field__v = [self complexTypeArrayFromElements:@"field" cls:[ZKDescribeField class]].lastObject;
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.field__v;
 }
-        
 
 -(void)setField:(ZKDescribeField *)v {
     self.field__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"FieldComponent"];
 	[env addIntElement:@"displayLines" elemValue:self.displayLines];

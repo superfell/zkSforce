@@ -69,107 +69,100 @@
 -(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x1) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.colors__v;
 }
-        
 
 -(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)content {
     if ((fields__set[0] & 0x2) == 0) {
         self.content__v = [self string:@"content"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.content__v;
 }
-        
 
 -(void)setContent:(NSString *)v {
     self.content__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x4) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.icons__v;
 }
-        
 
 -(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x8) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x10) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x20) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)url {
     if ((fields__set[0] & 0x40) == 0) {
         self.url__v = [self string:@"url"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.url__v;
 }
-        
 
 -(void)setUrl:(NSString *)v {
     self.url__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"colors" elemValue:self.colors];

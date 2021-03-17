@@ -57,32 +57,30 @@
 -(NSString *)keyPrefix {
     if ((fields__set[0] & 0x1) == 0) {
         self.keyPrefix__v = [self string:@"keyPrefix"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.keyPrefix__v;
 }
-        
 
 -(void)setKeyPrefix:(NSString *)v {
     self.keyPrefix__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x2) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"keyPrefix" elemValue:self.keyPrefix nillable:NO  optional:NO];

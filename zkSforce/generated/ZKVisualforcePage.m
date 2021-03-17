@@ -63,77 +63,72 @@
 -(BOOL)showLabel {
     if ((fields__set2[0] & 0x1) == 0) {
         self.showLabel__v = [self boolean:@"showLabel"];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.showLabel__v;
 }
-        
 
 -(void)setShowLabel:(BOOL)v {
     self.showLabel__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(BOOL)showScrollbars {
     if ((fields__set2[0] & 0x2) == 0) {
         self.showScrollbars__v = [self boolean:@"showScrollbars"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.showScrollbars__v;
 }
-        
 
 -(void)setShowScrollbars:(BOOL)v {
     self.showScrollbars__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 
 -(NSString *)suggestedHeight {
     if ((fields__set2[0] & 0x4) == 0) {
         self.suggestedHeight__v = [self string:@"suggestedHeight"];
-        fields__set2[0] |= 0x4; 
+        fields__set2[0] |= 0x4;
     }
     return self.suggestedHeight__v;
 }
-        
 
 -(void)setSuggestedHeight:(NSString *)v {
     self.suggestedHeight__v = v;
-    fields__set2[0] |= 0x4; 
+    fields__set2[0] |= 0x4;
 }
-        
+
 
 -(NSString *)suggestedWidth {
     if ((fields__set2[0] & 0x8) == 0) {
         self.suggestedWidth__v = [self string:@"suggestedWidth"];
-        fields__set2[0] |= 0x8; 
+        fields__set2[0] |= 0x8;
     }
     return self.suggestedWidth__v;
 }
-        
 
 -(void)setSuggestedWidth:(NSString *)v {
     self.suggestedWidth__v = v;
-    fields__set2[0] |= 0x8; 
+    fields__set2[0] |= 0x8;
 }
-        
+
 
 -(NSString *)url {
     if ((fields__set2[0] & 0x10) == 0) {
         self.url__v = [self string:@"url"];
-        fields__set2[0] |= 0x10; 
+        fields__set2[0] |= 0x10;
     }
     return self.url__v;
 }
-        
 
 -(void)setUrl:(NSString *)v {
     self.url__v = v;
-    fields__set2[0] |= 0x10; 
+    fields__set2[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"VisualforcePage"];
 	[env addIntElement:@"displayLines"    elemValue:self.displayLines];

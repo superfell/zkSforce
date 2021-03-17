@@ -74,152 +74,142 @@
 -(BOOL)collapsed {
     if ((fields__set[0] & 0x1) == 0) {
         self.collapsed__v = [self boolean:@"collapsed"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.collapsed__v;
 }
-        
 
 -(void)setCollapsed:(BOOL)v {
     self.collapsed__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)columns {
     if ((fields__set[0] & 0x2) == 0) {
         self.columns__v = [self integer:@"columns"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.columns__v;
 }
-        
 
 -(void)setColumns:(NSInteger)v {
     self.columns__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)heading {
     if ((fields__set[0] & 0x4) == 0) {
         self.heading__v = [self string:@"heading"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.heading__v;
 }
-        
 
 -(void)setHeading:(NSString *)v {
     self.heading__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSArray<ZKDescribeLayoutRow *> *)layoutRows {
     if ((fields__set[0] & 0x8) == 0) {
         self.layoutRows__v = [self complexTypeArrayFromElements:@"layoutRows" cls:[ZKDescribeLayoutRow class]];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.layoutRows__v;
 }
-        
 
 -(void)setLayoutRows:(NSArray<ZKDescribeLayoutRow *> *)v {
     self.layoutRows__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)layoutSectionId {
     if ((fields__set[0] & 0x10) == 0) {
         self.layoutSectionId__v = [self string:@"layoutSectionId"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.layoutSectionId__v;
 }
-        
 
 -(void)setLayoutSectionId:(NSString *)v {
     self.layoutSectionId__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)parentLayoutId {
     if ((fields__set[0] & 0x20) == 0) {
         self.parentLayoutId__v = [self string:@"parentLayoutId"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.parentLayoutId__v;
 }
-        
 
 -(void)setParentLayoutId:(NSString *)v {
     self.parentLayoutId__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSInteger)rows {
     if ((fields__set[0] & 0x40) == 0) {
         self.rows__v = [self integer:@"rows"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.rows__v;
 }
-        
 
 -(void)setRows:(NSInteger)v {
     self.rows__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)tabOrder {
     if ((fields__set[0] & 0x80) == 0) {
         self.tabOrder__v = [self string:@"tabOrder"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.tabOrder__v;
 }
-        
 
 -(void)setTabOrder:(NSString *)v {
     self.tabOrder__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(BOOL)useCollapsibleSection {
     if ((fields__set[0] & 0x100) == 0) {
         self.useCollapsibleSection__v = [self boolean:@"useCollapsibleSection"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.useCollapsibleSection__v;
 }
-        
 
 -(void)setUseCollapsibleSection:(BOOL)v {
     self.useCollapsibleSection__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(BOOL)useHeading {
     if ((fields__set[0] & 0x200) == 0) {
         self.useHeading__v = [self boolean:@"useHeading"];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.useHeading__v;
 }
-        
 
 -(void)setUseHeading:(BOOL)v {
     self.useHeading__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"collapsed"             elemValue:self.collapsed];

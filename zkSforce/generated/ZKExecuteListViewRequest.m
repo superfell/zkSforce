@@ -64,77 +64,72 @@
 -(NSString *)developerNameOrId {
     if ((fields__set[0] & 0x1) == 0) {
         self.developerNameOrId__v = [self string:@"developerNameOrId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.developerNameOrId__v;
 }
-        
 
 -(void)setDeveloperNameOrId:(NSString *)v {
     self.developerNameOrId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)limit {
     if ((fields__set[0] & 0x2) == 0) {
         self.limit__v = [self integer:@"limit"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.limit__v;
 }
-        
 
 -(void)setLimit:(NSInteger)v {
     self.limit__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSInteger)offset {
     if ((fields__set[0] & 0x4) == 0) {
         self.offset__v = [self integer:@"offset"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.offset__v;
 }
-        
 
 -(void)setOffset:(NSInteger)v {
     self.offset__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSArray<ZKListViewOrderBy *> *)orderBy {
     if ((fields__set[0] & 0x8) == 0) {
         self.orderBy__v = [self complexTypeArrayFromElements:@"orderBy" cls:[ZKListViewOrderBy class]];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.orderBy__v;
 }
-        
 
 -(void)setOrderBy:(NSArray<ZKListViewOrderBy *> *)v {
     self.orderBy__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)sobjectType {
     if ((fields__set[0] & 0x10) == 0) {
         self.sobjectType__v = [self string:@"sobjectType"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.sobjectType__v;
 }
-        
 
 -(void)setSobjectType:(NSString *)v {
     self.sobjectType__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"developerNameOrId" elemValue:self.developerNameOrId nillable:NO  optional:NO];

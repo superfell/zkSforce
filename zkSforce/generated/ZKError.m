@@ -62,62 +62,58 @@
 -(NSArray<ZKExtendedErrorDetails *> *)extendedErrorDetails {
     if ((fields__set[0] & 0x1) == 0) {
         self.extendedErrorDetails__v = [self complexTypeArrayFromElements:@"extendedErrorDetails" cls:[ZKExtendedErrorDetails class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.extendedErrorDetails__v;
 }
-        
 
 -(void)setExtendedErrorDetails:(NSArray<ZKExtendedErrorDetails *> *)v {
     self.extendedErrorDetails__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<NSString *> *)fields {
     if ((fields__set[0] & 0x2) == 0) {
         self.fields__v = [self strings:@"fields"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.fields__v;
 }
-        
 
 -(void)setFields:(NSArray<NSString *> *)v {
     self.fields__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)message {
     if ((fields__set[0] & 0x4) == 0) {
         self.message__v = [self string:@"message"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.message__v;
 }
-        
 
 -(void)setMessage:(NSString *)v {
     self.message__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)statusCode {
     if ((fields__set[0] & 0x8) == 0) {
         self.statusCode__v = [self string:@"statusCode"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.statusCode__v;
 }
-        
 
 -(void)setStatusCode:(NSString *)v {
     self.statusCode__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"extendedErrorDetails" elemValue:self.extendedErrorDetails];

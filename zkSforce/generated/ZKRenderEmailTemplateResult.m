@@ -61,47 +61,44 @@
 -(NSArray<ZKRenderEmailTemplateBodyResult *> *)bodyResults {
     if ((fields__set[0] & 0x1) == 0) {
         self.bodyResults__v = [self complexTypeArrayFromElements:@"bodyResults" cls:[ZKRenderEmailTemplateBodyResult class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.bodyResults__v;
 }
-        
 
 -(void)setBodyResults:(NSArray<ZKRenderEmailTemplateBodyResult *> *)v {
     self.bodyResults__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x2) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x4) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"bodyResults" elemValue:self.bodyResults];

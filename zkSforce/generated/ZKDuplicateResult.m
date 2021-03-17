@@ -64,77 +64,72 @@
 -(BOOL)allowSave {
     if ((fields__set[0] & 0x1) == 0) {
         self.allowSave__v = [self boolean:@"allowSave"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.allowSave__v;
 }
-        
 
 -(void)setAllowSave:(BOOL)v {
     self.allowSave__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)duplicateRule {
     if ((fields__set[0] & 0x2) == 0) {
         self.duplicateRule__v = [self string:@"duplicateRule"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.duplicateRule__v;
 }
-        
 
 -(void)setDuplicateRule:(NSString *)v {
     self.duplicateRule__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)duplicateRuleEntityType {
     if ((fields__set[0] & 0x4) == 0) {
         self.duplicateRuleEntityType__v = [self string:@"duplicateRuleEntityType"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.duplicateRuleEntityType__v;
 }
-        
 
 -(void)setDuplicateRuleEntityType:(NSString *)v {
     self.duplicateRuleEntityType__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)errorMessage {
     if ((fields__set[0] & 0x8) == 0) {
         self.errorMessage__v = [self string:@"errorMessage"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.errorMessage__v;
 }
-        
 
 -(void)setErrorMessage:(NSString *)v {
     self.errorMessage__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSArray<ZKMatchResult *> *)matchResults {
     if ((fields__set[0] & 0x10) == 0) {
         self.matchResults__v = [self complexTypeArrayFromElements:@"matchResults" cls:[ZKMatchResult class]];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.matchResults__v;
 }
-        
 
 -(void)setMatchResults:(NSArray<ZKMatchResult *> *)v {
     self.matchResults__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allowSave"           elemValue:self.allowSave];

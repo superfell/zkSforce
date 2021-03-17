@@ -56,17 +56,16 @@
 -(NSArray<ZKRecordTypeInfo *> *)recordTypeInfos {
     if ((fields__set[0] & 0x1) == 0) {
         self.recordTypeInfos__v = [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.recordTypeInfos__v;
 }
-        
 
 -(void)setRecordTypeInfos:(NSArray<ZKRecordTypeInfo *> *)v {
     self.recordTypeInfos__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"recordTypeInfos" elemValue:self.recordTypeInfos];

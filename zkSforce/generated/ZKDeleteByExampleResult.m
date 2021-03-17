@@ -63,62 +63,58 @@
 -(ZKSObject *)entity {
     if ((fields__set[0] & 0x1) == 0) {
         self.entity__v = [self sObject:@"entity"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.entity__v;
 }
-        
 
 -(void)setEntity:(ZKSObject *)v {
     self.entity__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x2) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(int64_t)rowCount {
     if ((fields__set[0] & 0x4) == 0) {
         self.rowCount__v = [self int64:@"rowCount"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.rowCount__v;
 }
-        
 
 -(void)setRowCount:(int64_t)v {
     self.rowCount__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x8) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"entity"        elemValue:self.entity   nillable:YES optional:NO];

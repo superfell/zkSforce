@@ -60,47 +60,44 @@
 -(NSString *)defaultLanguage {
     if ((fields__set[0] & 0x1) == 0) {
         self.defaultLanguage__v = [self string:@"defaultLanguage"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.defaultLanguage__v;
 }
-        
 
 -(void)setDefaultLanguage:(NSString *)v {
     self.defaultLanguage__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)knowledgeEnabled {
     if ((fields__set[0] & 0x2) == 0) {
         self.knowledgeEnabled__v = [self boolean:@"knowledgeEnabled"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.knowledgeEnabled__v;
 }
-        
 
 -(void)setKnowledgeEnabled:(BOOL)v {
     self.knowledgeEnabled__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKKnowledgeLanguageItem *> *)languages {
     if ((fields__set[0] & 0x4) == 0) {
         self.languages__v = [self complexTypeArrayFromElements:@"languages" cls:[ZKKnowledgeLanguageItem class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.languages__v;
 }
-        
 
 -(void)setLanguages:(NSArray<ZKKnowledgeLanguageItem *> *)v {
     self.languages__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"defaultLanguage"      elemValue:self.defaultLanguage  nillable:NO  optional:YES];

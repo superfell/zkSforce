@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribeLayoutFeedFilter *> *)feedFilters {
     if ((fields__set[0] & 0x1) == 0) {
         self.feedFilters__v = [self complexTypeArrayFromElements:@"feedFilters" cls:[ZKDescribeLayoutFeedFilter class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.feedFilters__v;
 }
-        
 
 -(void)setFeedFilters:(NSArray<ZKDescribeLayoutFeedFilter *> *)v {
     self.feedFilters__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"feedFilters" elemValue:self.feedFilters];

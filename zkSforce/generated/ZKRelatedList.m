@@ -76,152 +76,142 @@
 -(NSString *)accessLevelRequiredForCreate {
     if ((fields__set[0] & 0x1) == 0) {
         self.accessLevelRequiredForCreate__v = [self string:@"accessLevelRequiredForCreate"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.accessLevelRequiredForCreate__v;
 }
-        
 
 -(void)setAccessLevelRequiredForCreate:(NSString *)v {
     self.accessLevelRequiredForCreate__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKDescribeLayoutButton *> *)buttons {
     if ((fields__set[0] & 0x2) == 0) {
         self.buttons__v = [self complexTypeArrayFromElements:@"buttons" cls:[ZKDescribeLayoutButton class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.buttons__v;
 }
-        
 
 -(void)setButtons:(NSArray<ZKDescribeLayoutButton *> *)v {
     self.buttons__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKRelatedListColumn *> *)columns {
     if ((fields__set[0] & 0x4) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKRelatedListColumn class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.columns__v;
 }
-        
 
 -(void)setColumns:(NSArray<ZKRelatedListColumn *> *)v {
     self.columns__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(BOOL)custom {
     if ((fields__set[0] & 0x8) == 0) {
         self.custom__v = [self boolean:@"custom"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.custom__v;
 }
-        
 
 -(void)setCustom:(BOOL)v {
     self.custom__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)field {
     if ((fields__set[0] & 0x10) == 0) {
         self.field__v = [self string:@"field"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.field__v;
 }
-        
 
 -(void)setField:(NSString *)v {
     self.field__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x20) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSInteger)limitRows {
     if ((fields__set[0] & 0x40) == 0) {
         self.limitRows__v = [self integer:@"limitRows"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.limitRows__v;
 }
-        
 
 -(void)setLimitRows:(NSInteger)v {
     self.limitRows__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x80) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)sobject {
     if ((fields__set[0] & 0x100) == 0) {
         self.sobject__v = [self string:@"sobject"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.sobject__v;
 }
-        
 
 -(void)setSobject:(NSString *)v {
     self.sobject__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(NSArray<ZKRelatedListSort *> *)sort {
     if ((fields__set[0] & 0x200) == 0) {
         self.sort__v = [self complexTypeArrayFromElements:@"sort" cls:[ZKRelatedListSort class]];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.sort__v;
 }
-        
 
 -(void)setSort:(NSArray<ZKRelatedListSort *> *)v {
     self.sort__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accessLevelRequiredForCreate" elemValue:self.accessLevelRequiredForCreate nillable:YES optional:NO];

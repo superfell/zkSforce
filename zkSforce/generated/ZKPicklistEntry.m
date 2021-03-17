@@ -63,77 +63,72 @@
 -(BOOL)active {
     if ((fields__set[0] & 0x1) == 0) {
         self.active__v = [self boolean:@"active"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.active__v;
 }
-        
 
 -(void)setActive:(BOOL)v {
     self.active__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)defaultValue {
     if ((fields__set[0] & 0x2) == 0) {
         self.defaultValue__v = [self boolean:@"defaultValue"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.defaultValue__v;
 }
-        
 
 -(void)setDefaultValue:(BOOL)v {
     self.defaultValue__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x4) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSData *)validFor {
     if ((fields__set[0] & 0x8) == 0) {
         self.validFor__v = [self blob:@"validFor"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.validFor__v;
 }
-        
 
 -(void)setValidFor:(NSData *)v {
     self.validFor__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)value {
     if ((fields__set[0] & 0x10) == 0) {
         self.value__v = [self string:@"value"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.value__v;
 }
-        
 
 -(void)setValue:(NSString *)v {
     self.value__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"active"       elemValue:self.active];

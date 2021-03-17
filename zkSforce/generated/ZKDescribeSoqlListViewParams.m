@@ -57,32 +57,30 @@
 -(NSString *)developerNameOrId {
     if ((fields__set[0] & 0x1) == 0) {
         self.developerNameOrId__v = [self string:@"developerNameOrId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.developerNameOrId__v;
 }
-        
 
 -(void)setDeveloperNameOrId:(NSString *)v {
     self.developerNameOrId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)sobjectType {
     if ((fields__set[0] & 0x2) == 0) {
         self.sobjectType__v = [self string:@"sobjectType"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.sobjectType__v;
 }
-        
 
 -(void)setSobjectType:(NSString *)v {
     self.sobjectType__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"developerNameOrId" elemValue:self.developerNameOrId nillable:NO  optional:NO];

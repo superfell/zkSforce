@@ -102,62 +102,198 @@
 -(NSArray<ZKActionOverride *> *)actionOverrides {
     if ((fields__set2[0] & 0x1) == 0) {
         self.actionOverrides__v = [self complexTypeArrayFromElements:@"actionOverrides" cls:[ZKActionOverride class]];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.actionOverrides__v;
 }
-        
 
 -(void)setActionOverrides:(NSArray<ZKActionOverride *> *)v {
     self.actionOverrides__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKChildRelationship *> *)childRelationships {
     if ((fields__set2[0] & 0x2) == 0) {
         self.childRelationships__v = [self complexTypeArrayFromElements:@"childRelationships" cls:[ZKChildRelationship class]];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.childRelationships__v;
 }
-        
 
 -(void)setChildRelationships:(NSArray<ZKChildRelationship *> *)v {
     self.childRelationships__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 
 -(BOOL)compactLayoutable {
     if ((fields__set2[0] & 0x4) == 0) {
         self.compactLayoutable__v = [self boolean:@"compactLayoutable"];
-        fields__set2[0] |= 0x4; 
+        fields__set2[0] |= 0x4;
     }
     return self.compactLayoutable__v;
 }
-        
 
 -(void)setCompactLayoutable:(BOOL)v {
     self.compactLayoutable__v = v;
-    fields__set2[0] |= 0x4; 
+    fields__set2[0] |= 0x4;
 }
-        
+
 
 -(NSString *)defaultImplementation {
     if ((fields__set2[0] & 0x8) == 0) {
         self.defaultImplementation__v = [self string:@"defaultImplementation"];
-        fields__set2[0] |= 0x8; 
+        fields__set2[0] |= 0x8;
     }
     return self.defaultImplementation__v;
 }
-        
 
 -(void)setDefaultImplementation:(NSString *)v {
     self.defaultImplementation__v = v;
-    fields__set2[0] |= 0x8; 
+    fields__set2[0] |= 0x8;
 }
-        
+
+
+-(NSString *)implementedBy {
+    if ((fields__set2[0] & 0x20) == 0) {
+        self.implementedBy__v = [self string:@"implementedBy"];
+        fields__set2[0] |= 0x20;
+    }
+    return self.implementedBy__v;
+}
+
+-(void)setImplementedBy:(NSString *)v {
+    self.implementedBy__v = v;
+    fields__set2[0] |= 0x20;
+}
+
+
+-(NSString *)implementsInterfaces {
+    if ((fields__set2[0] & 0x40) == 0) {
+        self.implementsInterfaces__v = [self string:@"implementsInterfaces"];
+        fields__set2[0] |= 0x40;
+    }
+    return self.implementsInterfaces__v;
+}
+
+-(void)setImplementsInterfaces:(NSString *)v {
+    self.implementsInterfaces__v = v;
+    fields__set2[0] |= 0x40;
+}
+
+
+-(NSArray<ZKNamedLayoutInfo *> *)namedLayoutInfos {
+    if ((fields__set2[0] & 0x80) == 0) {
+        self.namedLayoutInfos__v = [self complexTypeArrayFromElements:@"namedLayoutInfos" cls:[ZKNamedLayoutInfo class]];
+        fields__set2[0] |= 0x80;
+    }
+    return self.namedLayoutInfos__v;
+}
+
+-(void)setNamedLayoutInfos:(NSArray<ZKNamedLayoutInfo *> *)v {
+    self.namedLayoutInfos__v = v;
+    fields__set2[0] |= 0x80;
+}
+
+
+-(NSString *)networkScopeFieldName {
+    if ((fields__set2[0] & 0x100) == 0) {
+        self.networkScopeFieldName__v = [self string:@"networkScopeFieldName"];
+        fields__set2[0] |= 0x100;
+    }
+    return self.networkScopeFieldName__v;
+}
+
+-(void)setNetworkScopeFieldName:(NSString *)v {
+    self.networkScopeFieldName__v = v;
+    fields__set2[0] |= 0x100;
+}
+
+
+-(NSArray<ZKRecordTypeInfo *> *)recordTypeInfos {
+    if ((fields__set2[0] & 0x200) == 0) {
+        self.recordTypeInfos__v = [self complexTypeArrayFromElements:@"recordTypeInfos" cls:[ZKRecordTypeInfo class]];
+        fields__set2[0] |= 0x200;
+    }
+    return self.recordTypeInfos__v;
+}
+
+-(void)setRecordTypeInfos:(NSArray<ZKRecordTypeInfo *> *)v {
+    self.recordTypeInfos__v = v;
+    fields__set2[0] |= 0x200;
+}
+
+
+-(BOOL)searchLayoutable {
+    if ((fields__set2[0] & 0x400) == 0) {
+        self.searchLayoutable__v = [self boolean:@"searchLayoutable"];
+        fields__set2[0] |= 0x400;
+    }
+    return self.searchLayoutable__v;
+}
+
+-(void)setSearchLayoutable:(BOOL)v {
+    self.searchLayoutable__v = v;
+    fields__set2[0] |= 0x400;
+}
+
+
+-(NSArray<ZKScopeInfo *> *)supportedScopes {
+    if ((fields__set2[0] & 0x800) == 0) {
+        self.supportedScopes__v = [self complexTypeArrayFromElements:@"supportedScopes" cls:[ZKScopeInfo class]];
+        fields__set2[0] |= 0x800;
+    }
+    return self.supportedScopes__v;
+}
+
+-(void)setSupportedScopes:(NSArray<ZKScopeInfo *> *)v {
+    self.supportedScopes__v = v;
+    fields__set2[0] |= 0x800;
+}
+
+
+-(NSString *)urlDetail {
+    if ((fields__set2[0] & 0x1000) == 0) {
+        self.urlDetail__v = [self string:@"urlDetail"];
+        fields__set2[0] |= 0x1000;
+    }
+    return self.urlDetail__v;
+}
+
+-(void)setUrlDetail:(NSString *)v {
+    self.urlDetail__v = v;
+    fields__set2[0] |= 0x1000;
+}
+
+
+-(NSString *)urlEdit {
+    if ((fields__set2[0] & 0x2000) == 0) {
+        self.urlEdit__v = [self string:@"urlEdit"];
+        fields__set2[0] |= 0x2000;
+    }
+    return self.urlEdit__v;
+}
+
+-(void)setUrlEdit:(NSString *)v {
+    self.urlEdit__v = v;
+    fields__set2[0] |= 0x2000;
+}
+
+
+-(NSString *)urlNew {
+    if ((fields__set2[0] & 0x4000) == 0) {
+        self.urlNew__v = [self string:@"urlNew"];
+        fields__set2[0] |= 0x4000;
+    }
+    return self.urlNew__v;
+}
+
+-(void)setUrlNew:(NSString *)v {
+    self.urlNew__v = v;
+    fields__set2[0] |= 0x4000;
+}
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"DescribeSObjectResult"];
 	[env addBoolElement:@"activateable"           elemValue:self.activateable];

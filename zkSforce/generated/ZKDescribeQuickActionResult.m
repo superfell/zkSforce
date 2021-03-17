@@ -123,497 +123,464 @@
 -(NSString *)accessLevelRequired {
     if ((fields__set[0] & 0x1) == 0) {
         self.accessLevelRequired__v = [self string:@"accessLevelRequired"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.accessLevelRequired__v;
 }
-        
 
 -(void)setAccessLevelRequired:(NSString *)v {
     self.accessLevelRequired__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)actionEnumOrId {
     if ((fields__set[0] & 0x2) == 0) {
         self.actionEnumOrId__v = [self string:@"actionEnumOrId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.actionEnumOrId__v;
 }
-        
 
 -(void)setActionEnumOrId:(NSString *)v {
     self.actionEnumOrId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)canvasApplicationId {
     if ((fields__set[0] & 0x4) == 0) {
         self.canvasApplicationId__v = [self string:@"canvasApplicationId"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.canvasApplicationId__v;
 }
-        
 
 -(void)setCanvasApplicationId:(NSString *)v {
     self.canvasApplicationId__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)canvasApplicationName {
     if ((fields__set[0] & 0x8) == 0) {
         self.canvasApplicationName__v = [self string:@"canvasApplicationName"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.canvasApplicationName__v;
 }
-        
 
 -(void)setCanvasApplicationName:(NSString *)v {
     self.canvasApplicationName__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x10) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.colors__v;
 }
-        
 
 -(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)contextSobjectType {
     if ((fields__set[0] & 0x20) == 0) {
         self.contextSobjectType__v = [self string:@"contextSobjectType"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.contextSobjectType__v;
 }
-        
 
 -(void)setContextSobjectType:(NSString *)v {
     self.contextSobjectType__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSArray<ZKDescribeQuickActionDefaultValue *> *)defaultValues {
     if ((fields__set[0] & 0x40) == 0) {
         self.defaultValues__v = [self complexTypeArrayFromElements:@"defaultValues" cls:[ZKDescribeQuickActionDefaultValue class]];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.defaultValues__v;
 }
-        
 
 -(void)setDefaultValues:(NSArray<ZKDescribeQuickActionDefaultValue *> *)v {
     self.defaultValues__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)flowDevName {
     if ((fields__set[0] & 0x80) == 0) {
         self.flowDevName__v = [self string:@"flowDevName"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.flowDevName__v;
 }
-        
 
 -(void)setFlowDevName:(NSString *)v {
     self.flowDevName__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)flowRecordIdVar {
     if ((fields__set[0] & 0x100) == 0) {
         self.flowRecordIdVar__v = [self string:@"flowRecordIdVar"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.flowRecordIdVar__v;
 }
-        
 
 -(void)setFlowRecordIdVar:(NSString *)v {
     self.flowRecordIdVar__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(NSInteger)height {
     if ((fields__set[0] & 0x200) == 0) {
         self.height__v = [self integer:@"height"];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.height__v;
 }
-        
 
 -(void)setHeight:(NSInteger)v {
     self.height__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 
 -(NSString *)iconName {
     if ((fields__set[0] & 0x400) == 0) {
         self.iconName__v = [self string:@"iconName"];
-        fields__set[0] |= 0x400; 
+        fields__set[0] |= 0x400;
     }
     return self.iconName__v;
 }
-        
 
 -(void)setIconName:(NSString *)v {
     self.iconName__v = v;
-    fields__set[0] |= 0x400; 
+    fields__set[0] |= 0x400;
 }
-        
+
 
 -(NSString *)iconUrl {
     if ((fields__set[0] & 0x800) == 0) {
         self.iconUrl__v = [self string:@"iconUrl"];
-        fields__set[0] |= 0x800; 
+        fields__set[0] |= 0x800;
     }
     return self.iconUrl__v;
 }
-        
 
 -(void)setIconUrl:(NSString *)v {
     self.iconUrl__v = v;
-    fields__set[0] |= 0x800; 
+    fields__set[0] |= 0x800;
 }
-        
+
 
 -(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x1000) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
-        fields__set[0] |= 0x1000; 
+        fields__set[0] |= 0x1000;
     }
     return self.icons__v;
 }
-        
 
 -(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
-    fields__set[0] |= 0x1000; 
+    fields__set[0] |= 0x1000;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2000) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2000; 
+        fields__set[0] |= 0x2000;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2000; 
+    fields__set[0] |= 0x2000;
 }
-        
+
 
 -(ZKDescribeLayoutSection *)layout {
     if ((fields__set[0] & 0x4000) == 0) {
         self.layout__v = [self complexTypeArrayFromElements:@"layout" cls:[ZKDescribeLayoutSection class]].lastObject;
-        fields__set[0] |= 0x4000; 
+        fields__set[0] |= 0x4000;
     }
     return self.layout__v;
 }
-        
 
 -(void)setLayout:(ZKDescribeLayoutSection *)v {
     self.layout__v = v;
-    fields__set[0] |= 0x4000; 
+    fields__set[0] |= 0x4000;
 }
-        
+
 
 -(NSString *)lightningComponentBundleId {
     if ((fields__set[0] & 0x8000) == 0) {
         self.lightningComponentBundleId__v = [self string:@"lightningComponentBundleId"];
-        fields__set[0] |= 0x8000; 
+        fields__set[0] |= 0x8000;
     }
     return self.lightningComponentBundleId__v;
 }
-        
 
 -(void)setLightningComponentBundleId:(NSString *)v {
     self.lightningComponentBundleId__v = v;
-    fields__set[0] |= 0x8000; 
+    fields__set[0] |= 0x8000;
 }
-        
+
 
 -(NSString *)lightningComponentBundleName {
     if ((fields__set[0] & 0x10000) == 0) {
         self.lightningComponentBundleName__v = [self string:@"lightningComponentBundleName"];
-        fields__set[0] |= 0x10000; 
+        fields__set[0] |= 0x10000;
     }
     return self.lightningComponentBundleName__v;
 }
-        
 
 -(void)setLightningComponentBundleName:(NSString *)v {
     self.lightningComponentBundleName__v = v;
-    fields__set[0] |= 0x10000; 
+    fields__set[0] |= 0x10000;
 }
-        
+
 
 -(NSString *)lightningComponentQualifiedName {
     if ((fields__set[0] & 0x20000) == 0) {
         self.lightningComponentQualifiedName__v = [self string:@"lightningComponentQualifiedName"];
-        fields__set[0] |= 0x20000; 
+        fields__set[0] |= 0x20000;
     }
     return self.lightningComponentQualifiedName__v;
 }
-        
 
 -(void)setLightningComponentQualifiedName:(NSString *)v {
     self.lightningComponentQualifiedName__v = v;
-    fields__set[0] |= 0x20000; 
+    fields__set[0] |= 0x20000;
 }
-        
+
 
 -(NSString *)lightningWebComponentBundleId {
     if ((fields__set[0] & 0x40000) == 0) {
         self.lightningWebComponentBundleId__v = [self string:@"lightningWebComponentBundleId"];
-        fields__set[0] |= 0x40000; 
+        fields__set[0] |= 0x40000;
     }
     return self.lightningWebComponentBundleId__v;
 }
-        
 
 -(void)setLightningWebComponentBundleId:(NSString *)v {
     self.lightningWebComponentBundleId__v = v;
-    fields__set[0] |= 0x40000; 
+    fields__set[0] |= 0x40000;
 }
-        
+
 
 -(NSString *)lightningWebComponentBundleName {
     if ((fields__set[0] & 0x80000) == 0) {
         self.lightningWebComponentBundleName__v = [self string:@"lightningWebComponentBundleName"];
-        fields__set[0] |= 0x80000; 
+        fields__set[0] |= 0x80000;
     }
     return self.lightningWebComponentBundleName__v;
 }
-        
 
 -(void)setLightningWebComponentBundleName:(NSString *)v {
     self.lightningWebComponentBundleName__v = v;
-    fields__set[0] |= 0x80000; 
+    fields__set[0] |= 0x80000;
 }
-        
+
 
 -(NSString *)lightningWebComponentQualifiedName {
     if ((fields__set[0] & 0x100000) == 0) {
         self.lightningWebComponentQualifiedName__v = [self string:@"lightningWebComponentQualifiedName"];
-        fields__set[0] |= 0x100000; 
+        fields__set[0] |= 0x100000;
     }
     return self.lightningWebComponentQualifiedName__v;
 }
-        
 
 -(void)setLightningWebComponentQualifiedName:(NSString *)v {
     self.lightningWebComponentQualifiedName__v = v;
-    fields__set[0] |= 0x100000; 
+    fields__set[0] |= 0x100000;
 }
-        
+
 
 -(NSString *)miniIconUrl {
     if ((fields__set[0] & 0x200000) == 0) {
         self.miniIconUrl__v = [self string:@"miniIconUrl"];
-        fields__set[0] |= 0x200000; 
+        fields__set[0] |= 0x200000;
     }
     return self.miniIconUrl__v;
 }
-        
 
 -(void)setMiniIconUrl:(NSString *)v {
     self.miniIconUrl__v = v;
-    fields__set[0] |= 0x200000; 
+    fields__set[0] |= 0x200000;
 }
-        
+
 
 -(NSString *)mobileExtensionId {
     if ((fields__set[0] & 0x400000) == 0) {
         self.mobileExtensionId__v = [self string:@"mobileExtensionId"];
-        fields__set[0] |= 0x400000; 
+        fields__set[0] |= 0x400000;
     }
     return self.mobileExtensionId__v;
 }
-        
 
 -(void)setMobileExtensionId:(NSString *)v {
     self.mobileExtensionId__v = v;
-    fields__set[0] |= 0x400000; 
+    fields__set[0] |= 0x400000;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x800000) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x800000; 
+        fields__set[0] |= 0x800000;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x800000; 
+    fields__set[0] |= 0x800000;
 }
-        
+
 
 -(BOOL)showQuickActionLcHeader {
     if ((fields__set[0] & 0x1000000) == 0) {
         self.showQuickActionLcHeader__v = [self boolean:@"showQuickActionLcHeader"];
-        fields__set[0] |= 0x1000000; 
+        fields__set[0] |= 0x1000000;
     }
     return self.showQuickActionLcHeader__v;
 }
-        
 
 -(void)setShowQuickActionLcHeader:(BOOL)v {
     self.showQuickActionLcHeader__v = v;
-    fields__set[0] |= 0x1000000; 
+    fields__set[0] |= 0x1000000;
 }
-        
+
 
 -(BOOL)showQuickActionVfHeader {
     if ((fields__set[0] & 0x2000000) == 0) {
         self.showQuickActionVfHeader__v = [self boolean:@"showQuickActionVfHeader"];
-        fields__set[0] |= 0x2000000; 
+        fields__set[0] |= 0x2000000;
     }
     return self.showQuickActionVfHeader__v;
 }
-        
 
 -(void)setShowQuickActionVfHeader:(BOOL)v {
     self.showQuickActionVfHeader__v = v;
-    fields__set[0] |= 0x2000000; 
+    fields__set[0] |= 0x2000000;
 }
-        
+
 
 -(NSString *)targetParentField {
     if ((fields__set[0] & 0x4000000) == 0) {
         self.targetParentField__v = [self string:@"targetParentField"];
-        fields__set[0] |= 0x4000000; 
+        fields__set[0] |= 0x4000000;
     }
     return self.targetParentField__v;
 }
-        
 
 -(void)setTargetParentField:(NSString *)v {
     self.targetParentField__v = v;
-    fields__set[0] |= 0x4000000; 
+    fields__set[0] |= 0x4000000;
 }
-        
+
 
 -(NSString *)targetRecordTypeId {
     if ((fields__set[0] & 0x8000000) == 0) {
         self.targetRecordTypeId__v = [self string:@"targetRecordTypeId"];
-        fields__set[0] |= 0x8000000; 
+        fields__set[0] |= 0x8000000;
     }
     return self.targetRecordTypeId__v;
 }
-        
 
 -(void)setTargetRecordTypeId:(NSString *)v {
     self.targetRecordTypeId__v = v;
-    fields__set[0] |= 0x8000000; 
+    fields__set[0] |= 0x8000000;
 }
-        
+
 
 -(NSString *)targetSobjectType {
     if ((fields__set[0] & 0x10000000) == 0) {
         self.targetSobjectType__v = [self string:@"targetSobjectType"];
-        fields__set[0] |= 0x10000000; 
+        fields__set[0] |= 0x10000000;
     }
     return self.targetSobjectType__v;
 }
-        
 
 -(void)setTargetSobjectType:(NSString *)v {
     self.targetSobjectType__v = v;
-    fields__set[0] |= 0x10000000; 
+    fields__set[0] |= 0x10000000;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x20000000) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x20000000; 
+        fields__set[0] |= 0x20000000;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x20000000; 
+    fields__set[0] |= 0x20000000;
 }
-        
+
 
 -(NSString *)visualforcePageName {
     if ((fields__set[0] & 0x40000000) == 0) {
         self.visualforcePageName__v = [self string:@"visualforcePageName"];
-        fields__set[0] |= 0x40000000; 
+        fields__set[0] |= 0x40000000;
     }
     return self.visualforcePageName__v;
 }
-        
 
 -(void)setVisualforcePageName:(NSString *)v {
     self.visualforcePageName__v = v;
-    fields__set[0] |= 0x40000000; 
+    fields__set[0] |= 0x40000000;
 }
-        
+
 
 -(NSString *)visualforcePageUrl {
     if ((fields__set[0] & 0x80000000) == 0) {
         self.visualforcePageUrl__v = [self string:@"visualforcePageUrl"];
-        fields__set[0] |= 0x80000000; 
+        fields__set[0] |= 0x80000000;
     }
     return self.visualforcePageUrl__v;
 }
-        
 
 -(void)setVisualforcePageUrl:(NSString *)v {
     self.visualforcePageUrl__v = v;
-    fields__set[0] |= 0x80000000; 
+    fields__set[0] |= 0x80000000;
 }
-        
+
 
 -(NSInteger)width {
     if ((fields__set[0] & 0x100000000) == 0) {
         self.width__v = [self integer:@"width"];
-        fields__set[0] |= 0x100000000; 
+        fields__set[0] |= 0x100000000;
     }
     return self.width__v;
 }
-        
 
 -(void)setWidth:(NSInteger)v {
     self.width__v = v;
-    fields__set[0] |= 0x100000000; 
+    fields__set[0] |= 0x100000000;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accessLevelRequired"                elemValue:self.accessLevelRequired                nillable:YES optional:NO];

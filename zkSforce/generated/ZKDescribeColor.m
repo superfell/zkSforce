@@ -59,47 +59,44 @@
 -(NSString *)color {
     if ((fields__set[0] & 0x1) == 0) {
         self.color__v = [self string:@"color"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.color__v;
 }
-        
 
 -(void)setColor:(NSString *)v {
     self.color__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)context {
     if ((fields__set[0] & 0x2) == 0) {
         self.context__v = [self string:@"context"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.context__v;
 }
-        
 
 -(void)setContext:(NSString *)v {
     self.context__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)theme {
     if ((fields__set[0] & 0x4) == 0) {
         self.theme__v = [self string:@"theme"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.theme__v;
 }
-        
 
 -(void)setTheme:(NSString *)v {
     self.theme__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"color"   elemValue:self.color   nillable:NO  optional:NO];

@@ -61,62 +61,58 @@
 -(NSString *)a_description {
     if ((fields__set2[0] & 0x1) == 0) {
         self.a_description__v = [self string:@"description"];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.a_description__v;
 }
-        
 
 -(void)setA_description:(NSString *)v {
     self.a_description__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSArray<NSString *> *)targetObjectIds {
     if ((fields__set2[0] & 0x2) == 0) {
         self.targetObjectIds__v = [self strings:@"targetObjectIds"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.targetObjectIds__v;
 }
-        
 
 -(void)setTargetObjectIds:(NSArray<NSString *> *)v {
     self.targetObjectIds__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 
 -(NSString *)templateId {
     if ((fields__set2[0] & 0x4) == 0) {
         self.templateId__v = [self string:@"templateId"];
-        fields__set2[0] |= 0x4; 
+        fields__set2[0] |= 0x4;
     }
     return self.templateId__v;
 }
-        
 
 -(void)setTemplateId:(NSString *)v {
     self.templateId__v = v;
-    fields__set2[0] |= 0x4; 
+    fields__set2[0] |= 0x4;
 }
-        
+
 
 -(NSArray<NSString *> *)whatIds {
     if ((fields__set2[0] & 0x8) == 0) {
         self.whatIds__v = [self strings:@"whatIds"];
-        fields__set2[0] |= 0x8; 
+        fields__set2[0] |= 0x8;
     }
     return self.whatIds__v;
 }
-        
 
 -(void)setWhatIds:(NSArray<NSString *> *)v {
     self.whatIds__v = v;
-    fields__set2[0] |= 0x8; 
+    fields__set2[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"MassEmailMessage"];
 	[env addBoolElement:@"bccSender"        elemValue:self.bccSender];

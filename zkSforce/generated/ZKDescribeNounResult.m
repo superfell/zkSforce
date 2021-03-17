@@ -66,92 +66,86 @@
 -(NSArray<ZKNameCaseValue *> *)caseValues {
     if ((fields__set[0] & 0x1) == 0) {
         self.caseValues__v = [self complexTypeArrayFromElements:@"caseValues" cls:[ZKNameCaseValue class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.caseValues__v;
 }
-        
 
 -(void)setCaseValues:(NSArray<ZKNameCaseValue *> *)v {
     self.caseValues__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)developerName {
     if ((fields__set[0] & 0x2) == 0) {
         self.developerName__v = [self string:@"developerName"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.developerName__v;
 }
-        
 
 -(void)setDeveloperName:(NSString *)v {
     self.developerName__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)gender {
     if ((fields__set[0] & 0x4) == 0) {
         self.gender__v = [self string:@"gender"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.gender__v;
 }
-        
 
 -(void)setGender:(NSString *)v {
     self.gender__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x8) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)pluralAlias {
     if ((fields__set[0] & 0x10) == 0) {
         self.pluralAlias__v = [self string:@"pluralAlias"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.pluralAlias__v;
 }
-        
 
 -(void)setPluralAlias:(NSString *)v {
     self.pluralAlias__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)startsWith {
     if ((fields__set[0] & 0x20) == 0) {
         self.startsWith__v = [self string:@"startsWith"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.startsWith__v;
 }
-        
 
 -(void)setStartsWith:(NSString *)v {
     self.startsWith__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"caseValues" elemValue:self.caseValues];

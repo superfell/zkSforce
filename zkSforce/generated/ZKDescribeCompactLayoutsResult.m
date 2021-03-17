@@ -61,47 +61,44 @@
 -(NSArray<ZKDescribeCompactLayout *> *)compactLayouts {
     if ((fields__set[0] & 0x1) == 0) {
         self.compactLayouts__v = [self complexTypeArrayFromElements:@"compactLayouts" cls:[ZKDescribeCompactLayout class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.compactLayouts__v;
 }
-        
 
 -(void)setCompactLayouts:(NSArray<ZKDescribeCompactLayout *> *)v {
     self.compactLayouts__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)defaultCompactLayoutId {
     if ((fields__set[0] & 0x2) == 0) {
         self.defaultCompactLayoutId__v = [self string:@"defaultCompactLayoutId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.defaultCompactLayoutId__v;
 }
-        
 
 -(void)setDefaultCompactLayoutId:(NSString *)v {
     self.defaultCompactLayoutId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKRecordTypeCompactLayoutMapping *> *)recordTypeCompactLayoutMappings {
     if ((fields__set[0] & 0x4) == 0) {
         self.recordTypeCompactLayoutMappings__v = [self complexTypeArrayFromElements:@"recordTypeCompactLayoutMappings" cls:[ZKRecordTypeCompactLayoutMapping class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.recordTypeCompactLayoutMappings__v;
 }
-        
 
 -(void)setRecordTypeCompactLayoutMappings:(NSArray<ZKRecordTypeCompactLayoutMapping *> *)v {
     self.recordTypeCompactLayoutMappings__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"compactLayouts"                  elemValue:self.compactLayouts];

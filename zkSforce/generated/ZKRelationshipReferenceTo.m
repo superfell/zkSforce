@@ -55,17 +55,16 @@
 -(NSArray<NSString *> *)referenceTo {
     if ((fields__set[0] & 0x1) == 0) {
         self.referenceTo__v = [self strings:@"referenceTo"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.referenceTo__v;
 }
-        
 
 -(void)setReferenceTo:(NSArray<NSString *> *)v {
     self.referenceTo__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"referenceTo" elemValue:self.referenceTo];

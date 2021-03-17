@@ -72,122 +72,114 @@
 -(BOOL)active {
     if ((fields__set[0] & 0x1) == 0) {
         self.active__v = [self boolean:@"active"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.active__v;
 }
-        
 
 -(void)setActive:(BOOL)v {
     self.active__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKDescribeAnimationRule *> *)animationRule {
     if ((fields__set[0] & 0x2) == 0) {
         self.animationRule__v = [self complexTypeArrayFromElements:@"animationRule" cls:[ZKDescribeAnimationRule class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.animationRule__v;
 }
-        
 
 -(void)setAnimationRule:(NSArray<ZKDescribeAnimationRule *> *)v {
     self.animationRule__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)apiName {
     if ((fields__set[0] & 0x4) == 0) {
         self.apiName__v = [self string:@"apiName"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.apiName__v;
 }
-        
 
 -(void)setApiName:(NSString *)v {
     self.apiName__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x8) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)pathPicklistField {
     if ((fields__set[0] & 0x10) == 0) {
         self.pathPicklistField__v = [self string:@"pathPicklistField"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.pathPicklistField__v;
 }
-        
 
 -(void)setPathPicklistField:(NSString *)v {
     self.pathPicklistField__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSArray<ZKPicklistForRecordType *> *)picklistsForRecordType {
     if ((fields__set[0] & 0x20) == 0) {
         self.picklistsForRecordType__v = [self complexTypeArrayFromElements:@"picklistsForRecordType" cls:[ZKPicklistForRecordType class]];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.picklistsForRecordType__v;
 }
-        
 
 -(void)setPicklistsForRecordType:(NSArray<ZKPicklistForRecordType *> *)v {
     self.picklistsForRecordType__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)recordTypeId {
     if ((fields__set[0] & 0x40) == 0) {
         self.recordTypeId__v = [self string:@"recordTypeId"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.recordTypeId__v;
 }
-        
 
 -(void)setRecordTypeId:(NSString *)v {
     self.recordTypeId__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSArray<ZKDescribePathAssistantStep *> *)steps {
     if ((fields__set[0] & 0x80) == 0) {
         self.steps__v = [self complexTypeArrayFromElements:@"steps" cls:[ZKDescribePathAssistantStep class]];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.steps__v;
 }
-        
 
 -(void)setSteps:(NSArray<ZKDescribePathAssistantStep *> *)v {
     self.steps__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"active"                  elemValue:self.active];

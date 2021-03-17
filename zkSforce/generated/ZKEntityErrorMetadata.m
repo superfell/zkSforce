@@ -57,32 +57,30 @@
 -(NSString *)errorCode {
     if ((fields__set[0] & 0x1) == 0) {
         self.errorCode__v = [self string:@"errorCode"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.errorCode__v;
 }
-        
 
 -(void)setErrorCode:(NSString *)v {
     self.errorCode__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)message {
     if ((fields__set[0] & 0x2) == 0) {
         self.message__v = [self string:@"message"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.message__v;
 }
-        
 
 -(void)setMessage:(NSString *)v {
     self.message__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"errorCode" elemValue:self.errorCode nillable:YES optional:NO];

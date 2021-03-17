@@ -65,92 +65,86 @@
 -(BOOL)defaultValue {
     if ((fields__set[0] & 0x1) == 0) {
         self.defaultValue__v = [self boolean:@"defaultValue"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.defaultValue__v;
 }
-        
 
 -(void)setDefaultValue:(BOOL)v {
     self.defaultValue__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)isDisplayed {
     if ((fields__set[0] & 0x2) == 0) {
         self.isDisplayed__v = [self boolean:@"isDisplayed"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.isDisplayed__v;
 }
-        
 
 -(void)setIsDisplayed:(BOOL)v {
     self.isDisplayed__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x4) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x8) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)restHeaderName {
     if ((fields__set[0] & 0x10) == 0) {
         self.restHeaderName__v = [self string:@"restHeaderName"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.restHeaderName__v;
 }
-        
 
 -(void)setRestHeaderName:(NSString *)v {
     self.restHeaderName__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)soapHeaderName {
     if ((fields__set[0] & 0x20) == 0) {
         self.soapHeaderName__v = [self string:@"soapHeaderName"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.soapHeaderName__v;
 }
-        
 
 -(void)setSoapHeaderName:(NSString *)v {
     self.soapHeaderName__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"defaultValue" elemValue:self.defaultValue];

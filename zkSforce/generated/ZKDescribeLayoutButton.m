@@ -95,302 +95,282 @@
 -(NSString *)behavior {
     if ((fields__set[0] & 0x1) == 0) {
         self.behavior__v = [self string:@"behavior"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.behavior__v;
 }
-        
 
 -(void)setBehavior:(NSString *)v {
     self.behavior__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x2) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.colors__v;
 }
-        
 
 -(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)content {
     if ((fields__set[0] & 0x4) == 0) {
         self.content__v = [self string:@"content"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.content__v;
 }
-        
 
 -(void)setContent:(NSString *)v {
     self.content__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)contentSource {
     if ((fields__set[0] & 0x8) == 0) {
         self.contentSource__v = [self string:@"contentSource"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.contentSource__v;
 }
-        
 
 -(void)setContentSource:(NSString *)v {
     self.contentSource__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(BOOL)custom {
     if ((fields__set[0] & 0x10) == 0) {
         self.custom__v = [self boolean:@"custom"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.custom__v;
 }
-        
 
 -(void)setCustom:(BOOL)v {
     self.custom__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)encoding {
     if ((fields__set[0] & 0x20) == 0) {
         self.encoding__v = [self string:@"encoding"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.encoding__v;
 }
-        
 
 -(void)setEncoding:(NSString *)v {
     self.encoding__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSInteger)height {
     if ((fields__set[0] & 0x40) == 0) {
         self.height__v = [self integer:@"height"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.height__v;
 }
-        
 
 -(void)setHeight:(NSInteger)v {
     self.height__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x80) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.icons__v;
 }
-        
 
 -(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x100) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(BOOL)menubar {
     if ((fields__set[0] & 0x200) == 0) {
         self.menubar__v = [self boolean:@"menubar"];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.menubar__v;
 }
-        
 
 -(void)setMenubar:(BOOL)v {
     self.menubar__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x400) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x400; 
+        fields__set[0] |= 0x400;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x400; 
+    fields__set[0] |= 0x400;
 }
-        
+
 
 -(BOOL)overridden {
     if ((fields__set[0] & 0x800) == 0) {
         self.overridden__v = [self boolean:@"overridden"];
-        fields__set[0] |= 0x800; 
+        fields__set[0] |= 0x800;
     }
     return self.overridden__v;
 }
-        
 
 -(void)setOverridden:(BOOL)v {
     self.overridden__v = v;
-    fields__set[0] |= 0x800; 
+    fields__set[0] |= 0x800;
 }
-        
+
 
 -(BOOL)resizeable {
     if ((fields__set[0] & 0x1000) == 0) {
         self.resizeable__v = [self boolean:@"resizeable"];
-        fields__set[0] |= 0x1000; 
+        fields__set[0] |= 0x1000;
     }
     return self.resizeable__v;
 }
-        
 
 -(void)setResizeable:(BOOL)v {
     self.resizeable__v = v;
-    fields__set[0] |= 0x1000; 
+    fields__set[0] |= 0x1000;
 }
-        
+
 
 -(BOOL)scrollbars {
     if ((fields__set[0] & 0x2000) == 0) {
         self.scrollbars__v = [self boolean:@"scrollbars"];
-        fields__set[0] |= 0x2000; 
+        fields__set[0] |= 0x2000;
     }
     return self.scrollbars__v;
 }
-        
 
 -(void)setScrollbars:(BOOL)v {
     self.scrollbars__v = v;
-    fields__set[0] |= 0x2000; 
+    fields__set[0] |= 0x2000;
 }
-        
+
 
 -(BOOL)showsLocation {
     if ((fields__set[0] & 0x4000) == 0) {
         self.showsLocation__v = [self boolean:@"showsLocation"];
-        fields__set[0] |= 0x4000; 
+        fields__set[0] |= 0x4000;
     }
     return self.showsLocation__v;
 }
-        
 
 -(void)setShowsLocation:(BOOL)v {
     self.showsLocation__v = v;
-    fields__set[0] |= 0x4000; 
+    fields__set[0] |= 0x4000;
 }
-        
+
 
 -(BOOL)showsStatus {
     if ((fields__set[0] & 0x8000) == 0) {
         self.showsStatus__v = [self boolean:@"showsStatus"];
-        fields__set[0] |= 0x8000; 
+        fields__set[0] |= 0x8000;
     }
     return self.showsStatus__v;
 }
-        
 
 -(void)setShowsStatus:(BOOL)v {
     self.showsStatus__v = v;
-    fields__set[0] |= 0x8000; 
+    fields__set[0] |= 0x8000;
 }
-        
+
 
 -(BOOL)toolbar {
     if ((fields__set[0] & 0x10000) == 0) {
         self.toolbar__v = [self boolean:@"toolbar"];
-        fields__set[0] |= 0x10000; 
+        fields__set[0] |= 0x10000;
     }
     return self.toolbar__v;
 }
-        
 
 -(void)setToolbar:(BOOL)v {
     self.toolbar__v = v;
-    fields__set[0] |= 0x10000; 
+    fields__set[0] |= 0x10000;
 }
-        
+
 
 -(NSString *)url {
     if ((fields__set[0] & 0x20000) == 0) {
         self.url__v = [self string:@"url"];
-        fields__set[0] |= 0x20000; 
+        fields__set[0] |= 0x20000;
     }
     return self.url__v;
 }
-        
 
 -(void)setUrl:(NSString *)v {
     self.url__v = v;
-    fields__set[0] |= 0x20000; 
+    fields__set[0] |= 0x20000;
 }
-        
+
 
 -(NSInteger)width {
     if ((fields__set[0] & 0x40000) == 0) {
         self.width__v = [self integer:@"width"];
-        fields__set[0] |= 0x40000; 
+        fields__set[0] |= 0x40000;
     }
     return self.width__v;
 }
-        
 
 -(void)setWidth:(NSInteger)v {
     self.width__v = v;
-    fields__set[0] |= 0x40000; 
+    fields__set[0] |= 0x40000;
 }
-        
+
 
 -(NSString *)windowPosition {
     if ((fields__set[0] & 0x80000) == 0) {
         self.windowPosition__v = [self string:@"windowPosition"];
-        fields__set[0] |= 0x80000; 
+        fields__set[0] |= 0x80000;
     }
     return self.windowPosition__v;
 }
-        
 
 -(void)setWindowPosition:(NSString *)v {
     self.windowPosition__v = v;
-    fields__set[0] |= 0x80000; 
+    fields__set[0] |= 0x80000;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"behavior"          elemValue:self.behavior       nillable:YES optional:YES];

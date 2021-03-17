@@ -56,17 +56,16 @@
 -(ZKSoqlWhereCondition *)condition {
     if ((fields__set2[0] & 0x1) == 0) {
         self.condition__v = [self complexTypeArrayFromElements:@"condition" cls:[ZKSoqlWhereCondition class]].lastObject;
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.condition__v;
 }
-        
 
 -(void)setCondition:(ZKSoqlWhereCondition *)v {
     self.condition__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"SoqlNotCondition"];
 	[env addElement:@"condition" elemValue:self.condition nillable:NO  optional:NO];

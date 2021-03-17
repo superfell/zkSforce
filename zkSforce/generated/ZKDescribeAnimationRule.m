@@ -65,92 +65,86 @@
 -(NSString *)animationFrequency {
     if ((fields__set[0] & 0x1) == 0) {
         self.animationFrequency__v = [self string:@"animationFrequency"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.animationFrequency__v;
 }
-        
 
 -(void)setAnimationFrequency:(NSString *)v {
     self.animationFrequency__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)isActive {
     if ((fields__set[0] & 0x2) == 0) {
         self.isActive__v = [self boolean:@"isActive"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.isActive__v;
 }
-        
 
 -(void)setIsActive:(BOOL)v {
     self.isActive__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)recordTypeContext {
     if ((fields__set[0] & 0x4) == 0) {
         self.recordTypeContext__v = [self string:@"recordTypeContext"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.recordTypeContext__v;
 }
-        
 
 -(void)setRecordTypeContext:(NSString *)v {
     self.recordTypeContext__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)recordTypeId {
     if ((fields__set[0] & 0x8) == 0) {
         self.recordTypeId__v = [self string:@"recordTypeId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.recordTypeId__v;
 }
-        
 
 -(void)setRecordTypeId:(NSString *)v {
     self.recordTypeId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)targetField {
     if ((fields__set[0] & 0x10) == 0) {
         self.targetField__v = [self string:@"targetField"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.targetField__v;
 }
-        
 
 -(void)setTargetField:(NSString *)v {
     self.targetField__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)targetFieldChangeToValues {
     if ((fields__set[0] & 0x20) == 0) {
         self.targetFieldChangeToValues__v = [self string:@"targetFieldChangeToValues"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.targetFieldChangeToValues__v;
 }
-        
 
 -(void)setTargetFieldChangeToValues:(NSString *)v {
     self.targetFieldChangeToValues__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"animationFrequency"        elemValue:self.animationFrequency        nillable:NO  optional:NO];

@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribeAppMenuItem *> *)appMenuItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.appMenuItems__v = [self complexTypeArrayFromElements:@"appMenuItems" cls:[ZKDescribeAppMenuItem class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.appMenuItems__v;
 }
-        
 
 -(void)setAppMenuItems:(NSArray<ZKDescribeAppMenuItem *> *)v {
     self.appMenuItems__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"appMenuItems" elemValue:self.appMenuItems];

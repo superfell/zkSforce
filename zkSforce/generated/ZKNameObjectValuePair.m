@@ -60,47 +60,44 @@
 -(BOOL)isVisible {
     if ((fields__set[0] & 0x1) == 0) {
         self.isVisible__v = [self boolean:@"isVisible"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.isVisible__v;
 }
-        
 
 -(void)setIsVisible:(BOOL)v {
     self.isVisible__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x2) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKXsdAnyType *> *)value {
     if ((fields__set[0] & 0x4) == 0) {
         self.value__v = [self complexTypeArrayFromElements:@"value" cls:[ZKXsdAnyType class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.value__v;
 }
-        
 
 -(void)setValue:(NSArray<ZKXsdAnyType *> *)v {
     self.value__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"isVisible" elemValue:self.isVisible];

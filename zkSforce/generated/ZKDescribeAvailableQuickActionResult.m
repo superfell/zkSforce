@@ -61,62 +61,58 @@
 -(NSString *)actionEnumOrId {
     if ((fields__set[0] & 0x1) == 0) {
         self.actionEnumOrId__v = [self string:@"actionEnumOrId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.actionEnumOrId__v;
 }
-        
 
 -(void)setActionEnumOrId:(NSString *)v {
     self.actionEnumOrId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x4) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x8) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"actionEnumOrId" elemValue:self.actionEnumOrId nillable:NO  optional:NO];

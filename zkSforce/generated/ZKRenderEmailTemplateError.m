@@ -61,62 +61,58 @@
 -(NSString *)fieldName {
     if ((fields__set[0] & 0x1) == 0) {
         self.fieldName__v = [self string:@"fieldName"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.fieldName__v;
 }
-        
 
 -(void)setFieldName:(NSString *)v {
     self.fieldName__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)message {
     if ((fields__set[0] & 0x2) == 0) {
         self.message__v = [self string:@"message"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.message__v;
 }
-        
 
 -(void)setMessage:(NSString *)v {
     self.message__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSInteger)offset {
     if ((fields__set[0] & 0x4) == 0) {
         self.offset__v = [self integer:@"offset"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.offset__v;
 }
-        
 
 -(void)setOffset:(NSInteger)v {
     self.offset__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)statusCode {
     if ((fields__set[0] & 0x8) == 0) {
         self.statusCode__v = [self string:@"statusCode"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.statusCode__v;
 }
-        
 
 -(void)setStatusCode:(NSString *)v {
     self.statusCode__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"fieldName"  elemValue:self.fieldName  nillable:NO  optional:NO];

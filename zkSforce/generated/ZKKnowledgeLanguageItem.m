@@ -59,47 +59,44 @@
 -(BOOL)active {
     if ((fields__set[0] & 0x1) == 0) {
         self.active__v = [self boolean:@"active"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.active__v;
 }
-        
 
 -(void)setActive:(BOOL)v {
     self.active__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)assigneeId {
     if ((fields__set[0] & 0x2) == 0) {
         self.assigneeId__v = [self string:@"assigneeId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.assigneeId__v;
 }
-        
 
 -(void)setAssigneeId:(NSString *)v {
     self.assigneeId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x4) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"active" elemValue:self.active];

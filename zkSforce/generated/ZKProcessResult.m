@@ -68,107 +68,100 @@
 -(NSArray<NSString *> *)actorIds {
     if ((fields__set[0] & 0x1) == 0) {
         self.actorIds__v = [self strings:@"actorIds"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.actorIds__v;
 }
-        
 
 -(void)setActorIds:(NSArray<NSString *> *)v {
     self.actorIds__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)entityId {
     if ((fields__set[0] & 0x2) == 0) {
         self.entityId__v = [self string:@"entityId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.entityId__v;
 }
-        
 
 -(void)setEntityId:(NSString *)v {
     self.entityId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x4) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)instanceId {
     if ((fields__set[0] & 0x8) == 0) {
         self.instanceId__v = [self string:@"instanceId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.instanceId__v;
 }
-        
 
 -(void)setInstanceId:(NSString *)v {
     self.instanceId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)instanceStatus {
     if ((fields__set[0] & 0x10) == 0) {
         self.instanceStatus__v = [self string:@"instanceStatus"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.instanceStatus__v;
 }
-        
 
 -(void)setInstanceStatus:(NSString *)v {
     self.instanceStatus__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSArray<NSString *> *)a_newWorkitemIds {
     if ((fields__set[0] & 0x20) == 0) {
         self.a_newWorkitemIds__v = [self strings:@"newWorkitemIds"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.a_newWorkitemIds__v;
 }
-        
 
 -(void)setA_newWorkitemIds:(NSArray<NSString *> *)v {
     self.a_newWorkitemIds__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x40) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"actorIds"       elemValue:self.actorIds];

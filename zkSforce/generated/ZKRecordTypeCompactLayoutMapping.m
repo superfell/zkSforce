@@ -63,77 +63,72 @@
 -(BOOL)available {
     if ((fields__set[0] & 0x1) == 0) {
         self.available__v = [self boolean:@"available"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.available__v;
 }
-        
 
 -(void)setAvailable:(BOOL)v {
     self.available__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)compactLayoutId {
     if ((fields__set[0] & 0x2) == 0) {
         self.compactLayoutId__v = [self string:@"compactLayoutId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.compactLayoutId__v;
 }
-        
 
 -(void)setCompactLayoutId:(NSString *)v {
     self.compactLayoutId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)compactLayoutName {
     if ((fields__set[0] & 0x4) == 0) {
         self.compactLayoutName__v = [self string:@"compactLayoutName"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.compactLayoutName__v;
 }
-        
 
 -(void)setCompactLayoutName:(NSString *)v {
     self.compactLayoutName__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)recordTypeId {
     if ((fields__set[0] & 0x8) == 0) {
         self.recordTypeId__v = [self string:@"recordTypeId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.recordTypeId__v;
 }
-        
 
 -(void)setRecordTypeId:(NSString *)v {
     self.recordTypeId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)recordTypeName {
     if ((fields__set[0] & 0x10) == 0) {
         self.recordTypeName__v = [self string:@"recordTypeName"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.recordTypeName__v;
 }
-        
 
 -(void)setRecordTypeName:(NSString *)v {
     self.recordTypeName__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"available"     elemValue:self.available];

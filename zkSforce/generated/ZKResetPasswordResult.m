@@ -55,17 +55,16 @@
 -(NSString *)password {
     if ((fields__set[0] & 0x1) == 0) {
         self.password__v = [self string:@"password"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.password__v;
 }
-        
 
 -(void)setPassword:(NSString *)v {
     self.password__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"password" elemValue:self.password nillable:NO  optional:NO];

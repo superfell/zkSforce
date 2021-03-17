@@ -63,77 +63,72 @@
 -(NSString *)contentType {
     if ((fields__set[0] & 0x1) == 0) {
         self.contentType__v = [self string:@"contentType"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.contentType__v;
 }
-        
 
 -(void)setContentType:(NSString *)v {
     self.contentType__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)height {
     if ((fields__set[0] & 0x2) == 0) {
         self.height__v = [self integer:@"height"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.height__v;
 }
-        
 
 -(void)setHeight:(NSInteger)v {
     self.height__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)theme {
     if ((fields__set[0] & 0x4) == 0) {
         self.theme__v = [self string:@"theme"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.theme__v;
 }
-        
 
 -(void)setTheme:(NSString *)v {
     self.theme__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)url {
     if ((fields__set[0] & 0x8) == 0) {
         self.url__v = [self string:@"url"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.url__v;
 }
-        
 
 -(void)setUrl:(NSString *)v {
     self.url__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSInteger)width {
     if ((fields__set[0] & 0x10) == 0) {
         self.width__v = [self integer:@"width"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.width__v;
 }
-        
 
 -(void)setWidth:(NSInteger)v {
     self.width__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"contentType" elemValue:self.contentType nillable:NO  optional:NO];

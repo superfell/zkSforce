@@ -64,62 +64,58 @@
 -(NSArray<ZKAdditionalInformationMap *> *)additionalInformation {
     if ((fields__set[0] & 0x1) == 0) {
         self.additionalInformation__v = [self complexTypeArrayFromElements:@"additionalInformation" cls:[ZKAdditionalInformationMap class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.additionalInformation__v;
 }
-        
 
 -(void)setAdditionalInformation:(NSArray<ZKAdditionalInformationMap *> *)v {
     self.additionalInformation__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKFieldDiff *> *)fieldDiffs {
     if ((fields__set[0] & 0x2) == 0) {
         self.fieldDiffs__v = [self complexTypeArrayFromElements:@"fieldDiffs" cls:[ZKFieldDiff class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.fieldDiffs__v;
 }
-        
 
 -(void)setFieldDiffs:(NSArray<ZKFieldDiff *> *)v {
     self.fieldDiffs__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(double)matchConfidence {
     if ((fields__set[0] & 0x4) == 0) {
         self.matchConfidence__v = [self double:@"matchConfidence"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.matchConfidence__v;
 }
-        
 
 -(void)setMatchConfidence:(double)v {
     self.matchConfidence__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(ZKSObject *)record {
     if ((fields__set[0] & 0x8) == 0) {
         self.record__v = [self sObject:@"record"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.record__v;
 }
-        
 
 -(void)setRecord:(ZKSObject *)v {
     self.record__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"additionalInformation" elemValue:self.additionalInformation];

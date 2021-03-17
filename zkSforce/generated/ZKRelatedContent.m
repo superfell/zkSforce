@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribeRelatedContentItem *> *)relatedContentItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.relatedContentItems__v = [self complexTypeArrayFromElements:@"relatedContentItems" cls:[ZKDescribeRelatedContentItem class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.relatedContentItems__v;
 }
-        
 
 -(void)setRelatedContentItems:(NSArray<ZKDescribeRelatedContentItem *> *)v {
     self.relatedContentItems__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"relatedContentItems" elemValue:self.relatedContentItems];

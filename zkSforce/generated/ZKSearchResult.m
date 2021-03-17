@@ -61,47 +61,44 @@
 -(NSString *)queryId {
     if ((fields__set[0] & 0x1) == 0) {
         self.queryId__v = [self string:@"queryId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.queryId__v;
 }
-        
 
 -(void)setQueryId:(NSString *)v {
     self.queryId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKSearchRecord *> *)searchRecords {
     if ((fields__set[0] & 0x2) == 0) {
         self.searchRecords__v = [self complexTypeArrayFromElements:@"searchRecords" cls:[ZKSearchRecord class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.searchRecords__v;
 }
-        
 
 -(void)setSearchRecords:(NSArray<ZKSearchRecord *> *)v {
     self.searchRecords__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(ZKSearchResultsMetadata *)searchResultsMetadata {
     if ((fields__set[0] & 0x4) == 0) {
         self.searchResultsMetadata__v = [self complexTypeArrayFromElements:@"searchResultsMetadata" cls:[ZKSearchResultsMetadata class]].lastObject;
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.searchResultsMetadata__v;
 }
-        
 
 -(void)setSearchResultsMetadata:(ZKSearchResultsMetadata *)v {
     self.searchResultsMetadata__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"queryId"               elemValue:self.queryId               nillable:NO  optional:NO];

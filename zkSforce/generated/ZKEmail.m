@@ -67,107 +67,100 @@
 -(BOOL)bccSender {
     if ((fields__set[0] & 0x1) == 0) {
         self.bccSender__v = [self boolean:@"bccSender"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.bccSender__v;
 }
-        
 
 -(void)setBccSender:(BOOL)v {
     self.bccSender__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)emailPriority {
     if ((fields__set[0] & 0x2) == 0) {
         self.emailPriority__v = [self string:@"emailPriority"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.emailPriority__v;
 }
-        
 
 -(void)setEmailPriority:(NSString *)v {
     self.emailPriority__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)replyTo {
     if ((fields__set[0] & 0x4) == 0) {
         self.replyTo__v = [self string:@"replyTo"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.replyTo__v;
 }
-        
 
 -(void)setReplyTo:(NSString *)v {
     self.replyTo__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(BOOL)saveAsActivity {
     if ((fields__set[0] & 0x8) == 0) {
         self.saveAsActivity__v = [self boolean:@"saveAsActivity"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.saveAsActivity__v;
 }
-        
 
 -(void)setSaveAsActivity:(BOOL)v {
     self.saveAsActivity__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)senderDisplayName {
     if ((fields__set[0] & 0x10) == 0) {
         self.senderDisplayName__v = [self string:@"senderDisplayName"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.senderDisplayName__v;
 }
-        
 
 -(void)setSenderDisplayName:(NSString *)v {
     self.senderDisplayName__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)subject {
     if ((fields__set[0] & 0x20) == 0) {
         self.subject__v = [self string:@"subject"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.subject__v;
 }
-        
 
 -(void)setSubject:(NSString *)v {
     self.subject__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(BOOL)useSignature {
     if ((fields__set[0] & 0x40) == 0) {
         self.useSignature__v = [self boolean:@"useSignature"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.useSignature__v;
 }
-        
 
 -(void)setUseSignature:(BOOL)v {
     self.useSignature__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"bccSender"      elemValue:self.bccSender];

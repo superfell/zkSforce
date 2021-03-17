@@ -57,32 +57,30 @@
 -(NSArray<NSString *> *)ids {
     if ((fields__set[0] & 0x1) == 0) {
         self.ids__v = [self strings:@"ids"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.ids__v;
 }
-        
 
 -(void)setIds:(NSArray<NSString *> *)v {
     self.ids__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSDate *)latestDateCovered {
     if ((fields__set[0] & 0x2) == 0) {
         self.latestDateCovered__v = [self dateTime:@"latestDateCovered"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.latestDateCovered__v;
 }
-        
 
 -(void)setLatestDateCovered:(NSDate *)v {
     self.latestDateCovered__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"ids"          elemValue:self.ids];

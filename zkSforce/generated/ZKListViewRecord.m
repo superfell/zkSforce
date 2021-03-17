@@ -56,17 +56,16 @@
 -(NSArray<ZKListViewRecordColumn *> *)columns {
     if ((fields__set[0] & 0x1) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewRecordColumn class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.columns__v;
 }
-        
 
 -(void)setColumns:(NSArray<ZKListViewRecordColumn *> *)v {
     self.columns__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"columns" elemValue:self.columns];

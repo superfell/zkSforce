@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribeQuickActionListItemResult *> *)quickActionListItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.quickActionListItems__v = [self complexTypeArrayFromElements:@"quickActionListItems" cls:[ZKDescribeQuickActionListItemResult class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.quickActionListItems__v;
 }
-        
 
 -(void)setQuickActionListItems:(NSArray<ZKDescribeQuickActionListItemResult *> *)v {
     self.quickActionListItems__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"quickActionListItems" elemValue:self.quickActionListItems];

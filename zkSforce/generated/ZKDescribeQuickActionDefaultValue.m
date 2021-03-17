@@ -57,32 +57,30 @@
 -(NSString *)defaultValue {
     if ((fields__set[0] & 0x1) == 0) {
         self.defaultValue__v = [self string:@"defaultValue"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.defaultValue__v;
 }
-        
 
 -(void)setDefaultValue:(NSString *)v {
     self.defaultValue__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)field {
     if ((fields__set[0] & 0x2) == 0) {
         self.field__v = [self string:@"field"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.field__v;
 }
-        
 
 -(void)setField:(NSString *)v {
     self.field__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"defaultValue" elemValue:self.defaultValue nillable:YES optional:NO];

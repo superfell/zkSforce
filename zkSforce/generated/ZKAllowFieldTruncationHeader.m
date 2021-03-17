@@ -55,17 +55,16 @@
 -(BOOL)allowFieldTruncation {
     if ((fields__set[0] & 0x1) == 0) {
         self.allowFieldTruncation__v = [self boolean:@"allowFieldTruncation"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.allowFieldTruncation__v;
 }
-        
 
 -(void)setAllowFieldTruncation:(BOOL)v {
     self.allowFieldTruncation__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allowFieldTruncation" elemValue:self.allowFieldTruncation];

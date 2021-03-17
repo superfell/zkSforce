@@ -59,47 +59,44 @@
 -(BOOL)allowSave {
     if ((fields__set[0] & 0x1) == 0) {
         self.allowSave__v = [self boolean:@"allowSave"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.allowSave__v;
 }
-        
 
 -(void)setAllowSave:(BOOL)v {
     self.allowSave__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)includeRecordDetails {
     if ((fields__set[0] & 0x2) == 0) {
         self.includeRecordDetails__v = [self boolean:@"includeRecordDetails"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.includeRecordDetails__v;
 }
-        
 
 -(void)setIncludeRecordDetails:(BOOL)v {
     self.includeRecordDetails__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)runAsCurrentUser {
     if ((fields__set[0] & 0x4) == 0) {
         self.runAsCurrentUser__v = [self boolean:@"runAsCurrentUser"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.runAsCurrentUser__v;
 }
-        
 
 -(void)setRunAsCurrentUser:(BOOL)v {
     self.runAsCurrentUser__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"allowSave"            elemValue:self.allowSave];

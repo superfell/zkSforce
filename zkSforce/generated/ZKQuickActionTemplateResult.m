@@ -65,77 +65,72 @@
 -(NSString *)contextId {
     if ((fields__set[0] & 0x1) == 0) {
         self.contextId__v = [self string:@"contextId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.contextId__v;
 }
-        
 
 -(void)setContextId:(NSString *)v {
     self.contextId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(ZKSObject *)defaultValueFormulas {
     if ((fields__set[0] & 0x2) == 0) {
         self.defaultValueFormulas__v = [self sObject:@"defaultValueFormulas"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.defaultValueFormulas__v;
 }
-        
 
 -(void)setDefaultValueFormulas:(ZKSObject *)v {
     self.defaultValueFormulas__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(ZKSObject *)defaultValues {
     if ((fields__set[0] & 0x4) == 0) {
         self.defaultValues__v = [self sObject:@"defaultValues"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.defaultValues__v;
 }
-        
 
 -(void)setDefaultValues:(ZKSObject *)v {
     self.defaultValues__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x8) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x10) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"contextId"            elemValue:self.contextId            nillable:YES optional:NO];

@@ -59,47 +59,44 @@
 -(NSString *)apiName {
     if ((fields__set[0] & 0x1) == 0) {
         self.apiName__v = [self string:@"apiName"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.apiName__v;
 }
-        
 
 -(void)setApiName:(NSString *)v {
     self.apiName__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)sortable {
     if ((fields__set[0] & 0x4) == 0) {
         self.sortable__v = [self boolean:@"sortable"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.sortable__v;
 }
-        
 
 -(void)setSortable:(BOOL)v {
     self.sortable__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"apiName"      elemValue:self.apiName  nillable:NO  optional:NO];

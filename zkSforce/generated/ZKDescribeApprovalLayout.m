@@ -62,62 +62,58 @@
 -(NSString *)id {
     if ((fields__set[0] & 0x1) == 0) {
         self.id__v = [self string:@"id"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.id__v;
 }
-        
 
 -(void)setId:(NSString *)v {
     self.id__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKDescribeLayoutItem *> *)layoutItems {
     if ((fields__set[0] & 0x4) == 0) {
         self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.layoutItems__v;
 }
-        
 
 -(void)setLayoutItems:(NSArray<ZKDescribeLayoutItem *> *)v {
     self.layoutItems__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x8) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"id"               elemValue:self.id          nillable:NO  optional:NO];

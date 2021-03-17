@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribePathAssistant *> *)pathAssistants {
     if ((fields__set[0] & 0x1) == 0) {
         self.pathAssistants__v = [self complexTypeArrayFromElements:@"pathAssistants" cls:[ZKDescribePathAssistant class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.pathAssistants__v;
 }
-        
 
 -(void)setPathAssistants:(NSArray<ZKDescribePathAssistant *> *)v {
     self.pathAssistants__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"pathAssistants" elemValue:self.pathAssistants];

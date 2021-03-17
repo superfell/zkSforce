@@ -67,107 +67,100 @@
 -(BOOL)active {
     if ((fields__set[0] & 0x1) == 0) {
         self.active__v = [self boolean:@"active"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.active__v;
 }
-        
 
 -(void)setActive:(BOOL)v {
     self.active__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)available {
     if ((fields__set[0] & 0x2) == 0) {
         self.available__v = [self boolean:@"available"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.available__v;
 }
-        
 
 -(void)setAvailable:(BOOL)v {
     self.available__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)defaultRecordTypeMapping {
     if ((fields__set[0] & 0x4) == 0) {
         self.defaultRecordTypeMapping__v = [self boolean:@"defaultRecordTypeMapping"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.defaultRecordTypeMapping__v;
 }
-        
 
 -(void)setDefaultRecordTypeMapping:(BOOL)v {
     self.defaultRecordTypeMapping__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)developerName {
     if ((fields__set[0] & 0x8) == 0) {
         self.developerName__v = [self string:@"developerName"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.developerName__v;
 }
-        
 
 -(void)setDeveloperName:(NSString *)v {
     self.developerName__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(BOOL)master {
     if ((fields__set[0] & 0x10) == 0) {
         self.master__v = [self boolean:@"master"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.master__v;
 }
-        
 
 -(void)setMaster:(BOOL)v {
     self.master__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x20) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)recordTypeId {
     if ((fields__set[0] & 0x40) == 0) {
         self.recordTypeId__v = [self string:@"recordTypeId"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.recordTypeId__v;
 }
-        
 
 -(void)setRecordTypeId:(NSString *)v {
     self.recordTypeId__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"active"                   elemValue:self.active];

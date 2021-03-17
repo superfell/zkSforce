@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribeSoqlListViewParams *> *)listViewParams {
     if ((fields__set[0] & 0x1) == 0) {
         self.listViewParams__v = [self complexTypeArrayFromElements:@"listViewParams" cls:[ZKDescribeSoqlListViewParams class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.listViewParams__v;
 }
-        
 
 -(void)setListViewParams:(NSArray<ZKDescribeSoqlListViewParams *> *)v {
     self.listViewParams__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"listViewParams" elemValue:self.listViewParams];

@@ -62,47 +62,44 @@
 -(ZKSObject *)record {
     if ((fields__set[0] & 0x1) == 0) {
         self.record__v = [self sObject:@"record"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.record__v;
 }
-        
 
 -(void)setRecord:(ZKSObject *)v {
     self.record__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(ZKSearchRecordMetadata *)searchRecordMetadata {
     if ((fields__set[0] & 0x2) == 0) {
         self.searchRecordMetadata__v = [self complexTypeArrayFromElements:@"searchRecordMetadata" cls:[ZKSearchRecordMetadata class]].lastObject;
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.searchRecordMetadata__v;
 }
-        
 
 -(void)setSearchRecordMetadata:(ZKSearchRecordMetadata *)v {
     self.searchRecordMetadata__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(ZKSearchSnippet *)snippet {
     if ((fields__set[0] & 0x4) == 0) {
         self.snippet__v = [self complexTypeArrayFromElements:@"snippet" cls:[ZKSearchSnippet class]].lastObject;
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.snippet__v;
 }
-        
 
 -(void)setSnippet:(ZKSearchSnippet *)v {
     self.snippet__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"record"               elemValue:self.record               nillable:NO  optional:NO];

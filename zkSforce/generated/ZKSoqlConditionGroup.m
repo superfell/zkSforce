@@ -58,32 +58,30 @@
 -(NSArray<ZKSoqlWhereCondition *> *)conditions {
     if ((fields__set2[0] & 0x1) == 0) {
         self.conditions__v = [self complexTypeArrayFromElements:@"conditions" cls:[ZKSoqlWhereCondition class]];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.conditions__v;
 }
-        
 
 -(void)setConditions:(NSArray<ZKSoqlWhereCondition *> *)v {
     self.conditions__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSString *)conjunction {
     if ((fields__set2[0] & 0x2) == 0) {
         self.conjunction__v = [self string:@"conjunction"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.conjunction__v;
 }
-        
 
 -(void)setConjunction:(NSString *)v {
     self.conjunction__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"SoqlConditionGroup"];
 	[env addElementArray:@"conditions" elemValue:self.conditions];

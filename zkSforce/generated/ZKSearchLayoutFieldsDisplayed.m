@@ -58,32 +58,30 @@
 -(BOOL)applicable {
     if ((fields__set[0] & 0x1) == 0) {
         self.applicable__v = [self boolean:@"applicable"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.applicable__v;
 }
-        
 
 -(void)setApplicable:(BOOL)v {
     self.applicable__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKSearchLayoutField *> *)fields {
     if ((fields__set[0] & 0x2) == 0) {
         self.fields__v = [self complexTypeArrayFromElements:@"fields" cls:[ZKSearchLayoutField class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.fields__v;
 }
-        
 
 -(void)setFields:(NSArray<ZKSearchLayoutField *> *)v {
     self.fields__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"applicable" elemValue:self.applicable];

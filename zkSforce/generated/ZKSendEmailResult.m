@@ -58,32 +58,30 @@
 -(NSArray<ZKSendEmailError *> *)errors {
     if ((fields__set[0] & 0x1) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKSendEmailError class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKSendEmailError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x2) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"errors" elemValue:self.errors];

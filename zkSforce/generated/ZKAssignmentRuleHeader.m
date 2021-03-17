@@ -57,32 +57,30 @@
 -(NSString *)assignmentRuleId {
     if ((fields__set[0] & 0x1) == 0) {
         self.assignmentRuleId__v = [self string:@"assignmentRuleId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.assignmentRuleId__v;
 }
-        
 
 -(void)setAssignmentRuleId:(NSString *)v {
     self.assignmentRuleId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)useDefaultRule {
     if ((fields__set[0] & 0x2) == 0) {
         self.useDefaultRule__v = [self boolean:@"useDefaultRule"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.useDefaultRule__v;
 }
-        
 
 -(void)setUseDefaultRule:(BOOL)v {
     self.useDefaultRule__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"assignmentRuleId"   elemValue:self.assignmentRuleId nillable:YES optional:NO];

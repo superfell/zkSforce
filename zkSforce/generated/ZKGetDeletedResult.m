@@ -60,47 +60,44 @@
 -(NSArray<ZKDeletedRecord *> *)deletedRecords {
     if ((fields__set[0] & 0x1) == 0) {
         self.deletedRecords__v = [self complexTypeArrayFromElements:@"deletedRecords" cls:[ZKDeletedRecord class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.deletedRecords__v;
 }
-        
 
 -(void)setDeletedRecords:(NSArray<ZKDeletedRecord *> *)v {
     self.deletedRecords__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSDate *)earliestDateAvailable {
     if ((fields__set[0] & 0x2) == 0) {
         self.earliestDateAvailable__v = [self dateTime:@"earliestDateAvailable"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.earliestDateAvailable__v;
 }
-        
 
 -(void)setEarliestDateAvailable:(NSDate *)v {
     self.earliestDateAvailable__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSDate *)latestDateCovered {
     if ((fields__set[0] & 0x4) == 0) {
         self.latestDateCovered__v = [self dateTime:@"latestDateCovered"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.latestDateCovered__v;
 }
-        
 
 -(void)setLatestDateCovered:(NSDate *)v {
     self.latestDateCovered__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"deletedRecords"   elemValue:self.deletedRecords];

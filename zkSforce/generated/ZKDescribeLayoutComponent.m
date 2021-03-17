@@ -61,62 +61,58 @@
 -(NSInteger)displayLines {
     if ((fields__set[0] & 0x1) == 0) {
         self.displayLines__v = [self integer:@"displayLines"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.displayLines__v;
 }
-        
 
 -(void)setDisplayLines:(NSInteger)v {
     self.displayLines__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)tabOrder {
     if ((fields__set[0] & 0x2) == 0) {
         self.tabOrder__v = [self integer:@"tabOrder"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.tabOrder__v;
 }
-        
 
 -(void)setTabOrder:(NSInteger)v {
     self.tabOrder__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x4) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)value {
     if ((fields__set[0] & 0x8) == 0) {
         self.value__v = [self string:@"value"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.value__v;
 }
-        
 
 -(void)setValue:(NSString *)v {
     self.value__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addIntElement:@"displayLines" elemValue:self.displayLines];

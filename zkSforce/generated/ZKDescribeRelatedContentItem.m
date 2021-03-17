@@ -56,17 +56,16 @@
 -(ZKDescribeLayoutItem *)describeLayoutItem {
     if ((fields__set[0] & 0x1) == 0) {
         self.describeLayoutItem__v = [self complexTypeArrayFromElements:@"describeLayoutItem" cls:[ZKDescribeLayoutItem class]].lastObject;
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.describeLayoutItem__v;
 }
-        
 
 -(void)setDescribeLayoutItem:(ZKDescribeLayoutItem *)v {
     self.describeLayoutItem__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"describeLayoutItem" elemValue:self.describeLayoutItem nillable:NO  optional:NO];

@@ -69,107 +69,100 @@
 -(NSArray<ZKListViewColumn *> *)columns {
     if ((fields__set[0] & 0x1) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewColumn class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.columns__v;
 }
-        
 
 -(void)setColumns:(NSArray<ZKListViewColumn *> *)v {
     self.columns__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)developerName {
     if ((fields__set[0] & 0x2) == 0) {
         self.developerName__v = [self string:@"developerName"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.developerName__v;
 }
-        
 
 -(void)setDeveloperName:(NSString *)v {
     self.developerName__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)done {
     if ((fields__set[0] & 0x4) == 0) {
         self.done__v = [self boolean:@"done"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.done__v;
 }
-        
 
 -(void)setDone:(BOOL)v {
     self.done__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)id {
     if ((fields__set[0] & 0x8) == 0) {
         self.id__v = [self string:@"id"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.id__v;
 }
-        
 
 -(void)setId:(NSString *)v {
     self.id__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x10) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSArray<ZKListViewRecord *> *)records {
     if ((fields__set[0] & 0x20) == 0) {
         self.records__v = [self complexTypeArrayFromElements:@"records" cls:[ZKListViewRecord class]];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.records__v;
 }
-        
 
 -(void)setRecords:(NSArray<ZKListViewRecord *> *)v {
     self.records__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSInteger)size {
     if ((fields__set[0] & 0x40) == 0) {
         self.size__v = [self integer:@"size"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.size__v;
 }
-        
 
 -(void)setSize:(NSInteger)v {
     self.size__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"columns"  elemValue:self.columns];

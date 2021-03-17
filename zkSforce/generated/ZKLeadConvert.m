@@ -88,257 +88,240 @@
 -(NSString *)accountId {
     if ((fields__set[0] & 0x1) == 0) {
         self.accountId__v = [self string:@"accountId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.accountId__v;
 }
-        
 
 -(void)setAccountId:(NSString *)v {
     self.accountId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(ZKSObject *)accountRecord {
     if ((fields__set[0] & 0x2) == 0) {
         self.accountRecord__v = [self sObject:@"accountRecord"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.accountRecord__v;
 }
-        
 
 -(void)setAccountRecord:(ZKSObject *)v {
     self.accountRecord__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)bypassAccountDedupeCheck {
     if ((fields__set[0] & 0x4) == 0) {
         self.bypassAccountDedupeCheck__v = [self boolean:@"bypassAccountDedupeCheck"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.bypassAccountDedupeCheck__v;
 }
-        
 
 -(void)setBypassAccountDedupeCheck:(BOOL)v {
     self.bypassAccountDedupeCheck__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(BOOL)bypassContactDedupeCheck {
     if ((fields__set[0] & 0x8) == 0) {
         self.bypassContactDedupeCheck__v = [self boolean:@"bypassContactDedupeCheck"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.bypassContactDedupeCheck__v;
 }
-        
 
 -(void)setBypassContactDedupeCheck:(BOOL)v {
     self.bypassContactDedupeCheck__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)contactId {
     if ((fields__set[0] & 0x10) == 0) {
         self.contactId__v = [self string:@"contactId"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.contactId__v;
 }
-        
 
 -(void)setContactId:(NSString *)v {
     self.contactId__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(ZKSObject *)contactRecord {
     if ((fields__set[0] & 0x20) == 0) {
         self.contactRecord__v = [self sObject:@"contactRecord"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.contactRecord__v;
 }
-        
 
 -(void)setContactRecord:(ZKSObject *)v {
     self.contactRecord__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)convertedStatus {
     if ((fields__set[0] & 0x40) == 0) {
         self.convertedStatus__v = [self string:@"convertedStatus"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.convertedStatus__v;
 }
-        
 
 -(void)setConvertedStatus:(NSString *)v {
     self.convertedStatus__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(BOOL)doNotCreateOpportunity {
     if ((fields__set[0] & 0x80) == 0) {
         self.doNotCreateOpportunity__v = [self boolean:@"doNotCreateOpportunity"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.doNotCreateOpportunity__v;
 }
-        
 
 -(void)setDoNotCreateOpportunity:(BOOL)v {
     self.doNotCreateOpportunity__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)leadId {
     if ((fields__set[0] & 0x100) == 0) {
         self.leadId__v = [self string:@"leadId"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.leadId__v;
 }
-        
 
 -(void)setLeadId:(NSString *)v {
     self.leadId__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(NSString *)opportunityId {
     if ((fields__set[0] & 0x200) == 0) {
         self.opportunityId__v = [self string:@"opportunityId"];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.opportunityId__v;
 }
-        
 
 -(void)setOpportunityId:(NSString *)v {
     self.opportunityId__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 
 -(NSString *)opportunityName {
     if ((fields__set[0] & 0x400) == 0) {
         self.opportunityName__v = [self string:@"opportunityName"];
-        fields__set[0] |= 0x400; 
+        fields__set[0] |= 0x400;
     }
     return self.opportunityName__v;
 }
-        
 
 -(void)setOpportunityName:(NSString *)v {
     self.opportunityName__v = v;
-    fields__set[0] |= 0x400; 
+    fields__set[0] |= 0x400;
 }
-        
+
 
 -(ZKSObject *)opportunityRecord {
     if ((fields__set[0] & 0x800) == 0) {
         self.opportunityRecord__v = [self sObject:@"opportunityRecord"];
-        fields__set[0] |= 0x800; 
+        fields__set[0] |= 0x800;
     }
     return self.opportunityRecord__v;
 }
-        
 
 -(void)setOpportunityRecord:(ZKSObject *)v {
     self.opportunityRecord__v = v;
-    fields__set[0] |= 0x800; 
+    fields__set[0] |= 0x800;
 }
-        
+
 
 -(BOOL)overwriteLeadSource {
     if ((fields__set[0] & 0x1000) == 0) {
         self.overwriteLeadSource__v = [self boolean:@"overwriteLeadSource"];
-        fields__set[0] |= 0x1000; 
+        fields__set[0] |= 0x1000;
     }
     return self.overwriteLeadSource__v;
 }
-        
 
 -(void)setOverwriteLeadSource:(BOOL)v {
     self.overwriteLeadSource__v = v;
-    fields__set[0] |= 0x1000; 
+    fields__set[0] |= 0x1000;
 }
-        
+
 
 -(NSString *)ownerId {
     if ((fields__set[0] & 0x2000) == 0) {
         self.ownerId__v = [self string:@"ownerId"];
-        fields__set[0] |= 0x2000; 
+        fields__set[0] |= 0x2000;
     }
     return self.ownerId__v;
 }
-        
 
 -(void)setOwnerId:(NSString *)v {
     self.ownerId__v = v;
-    fields__set[0] |= 0x2000; 
+    fields__set[0] |= 0x2000;
 }
-        
+
 
 -(NSString *)relatedPersonAccountId {
     if ((fields__set[0] & 0x4000) == 0) {
         self.relatedPersonAccountId__v = [self string:@"relatedPersonAccountId"];
-        fields__set[0] |= 0x4000; 
+        fields__set[0] |= 0x4000;
     }
     return self.relatedPersonAccountId__v;
 }
-        
 
 -(void)setRelatedPersonAccountId:(NSString *)v {
     self.relatedPersonAccountId__v = v;
-    fields__set[0] |= 0x4000; 
+    fields__set[0] |= 0x4000;
 }
-        
+
 
 -(ZKSObject *)relatedPersonAccountRecord {
     if ((fields__set[0] & 0x8000) == 0) {
         self.relatedPersonAccountRecord__v = [self sObject:@"relatedPersonAccountRecord"];
-        fields__set[0] |= 0x8000; 
+        fields__set[0] |= 0x8000;
     }
     return self.relatedPersonAccountRecord__v;
 }
-        
 
 -(void)setRelatedPersonAccountRecord:(ZKSObject *)v {
     self.relatedPersonAccountRecord__v = v;
-    fields__set[0] |= 0x8000; 
+    fields__set[0] |= 0x8000;
 }
-        
+
 
 -(BOOL)sendNotificationEmail {
     if ((fields__set[0] & 0x10000) == 0) {
         self.sendNotificationEmail__v = [self boolean:@"sendNotificationEmail"];
-        fields__set[0] |= 0x10000; 
+        fields__set[0] |= 0x10000;
     }
     return self.sendNotificationEmail__v;
 }
-        
 
 -(void)setSendNotificationEmail:(BOOL)v {
     self.sendNotificationEmail__v = v;
-    fields__set[0] |= 0x10000; 
+    fields__set[0] |= 0x10000;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accountId"                    elemValue:self.accountId                  nillable:YES optional:NO];

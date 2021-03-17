@@ -75,167 +75,156 @@
 -(NSString *)ascendingLabel {
     if ((fields__set[0] & 0x1) == 0) {
         self.ascendingLabel__v = [self string:@"ascendingLabel"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.ascendingLabel__v;
 }
-        
 
 -(void)setAscendingLabel:(NSString *)v {
     self.ascendingLabel__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)descendingLabel {
     if ((fields__set[0] & 0x2) == 0) {
         self.descendingLabel__v = [self string:@"descendingLabel"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.descendingLabel__v;
 }
-        
 
 -(void)setDescendingLabel:(NSString *)v {
     self.descendingLabel__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)fieldNameOrPath {
     if ((fields__set[0] & 0x4) == 0) {
         self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.fieldNameOrPath__v;
 }
-        
 
 -(void)setFieldNameOrPath:(NSString *)v {
     self.fieldNameOrPath__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(BOOL)hidden {
     if ((fields__set[0] & 0x8) == 0) {
         self.hidden__v = [self boolean:@"hidden"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.hidden__v;
 }
-        
 
 -(void)setHidden:(BOOL)v {
     self.hidden__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x10) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(BOOL)searchable {
     if ((fields__set[0] & 0x20) == 0) {
         self.searchable__v = [self boolean:@"searchable"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.searchable__v;
 }
-        
 
 -(void)setSearchable:(BOOL)v {
     self.searchable__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)selectListItem {
     if ((fields__set[0] & 0x40) == 0) {
         self.selectListItem__v = [self string:@"selectListItem"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.selectListItem__v;
 }
-        
 
 -(void)setSelectListItem:(NSString *)v {
     self.selectListItem__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)sortDirection {
     if ((fields__set[0] & 0x80) == 0) {
         self.sortDirection__v = [self string:@"sortDirection"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.sortDirection__v;
 }
-        
 
 -(void)setSortDirection:(NSString *)v {
     self.sortDirection__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSInteger)sortIndex {
     if ((fields__set[0] & 0x100) == 0) {
         self.sortIndex__v = [self integer:@"sortIndex"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.sortIndex__v;
 }
-        
 
 -(void)setSortIndex:(NSInteger)v {
     self.sortIndex__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(BOOL)sortable {
     if ((fields__set[0] & 0x200) == 0) {
         self.sortable__v = [self boolean:@"sortable"];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.sortable__v;
 }
-        
 
 -(void)setSortable:(BOOL)v {
     self.sortable__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x400) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x400; 
+        fields__set[0] |= 0x400;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x400; 
+    fields__set[0] |= 0x400;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"ascendingLabel"  elemValue:self.ascendingLabel  nillable:YES optional:NO];

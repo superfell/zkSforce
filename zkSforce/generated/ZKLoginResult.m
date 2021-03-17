@@ -68,107 +68,100 @@
 -(NSString *)metadataServerUrl {
     if ((fields__set[0] & 0x1) == 0) {
         self.metadataServerUrl__v = [self string:@"metadataServerUrl"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.metadataServerUrl__v;
 }
-        
 
 -(void)setMetadataServerUrl:(NSString *)v {
     self.metadataServerUrl__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)passwordExpired {
     if ((fields__set[0] & 0x2) == 0) {
         self.passwordExpired__v = [self boolean:@"passwordExpired"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.passwordExpired__v;
 }
-        
 
 -(void)setPasswordExpired:(BOOL)v {
     self.passwordExpired__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)sandbox {
     if ((fields__set[0] & 0x4) == 0) {
         self.sandbox__v = [self boolean:@"sandbox"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.sandbox__v;
 }
-        
 
 -(void)setSandbox:(BOOL)v {
     self.sandbox__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)serverUrl {
     if ((fields__set[0] & 0x8) == 0) {
         self.serverUrl__v = [self string:@"serverUrl"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.serverUrl__v;
 }
-        
 
 -(void)setServerUrl:(NSString *)v {
     self.serverUrl__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)sessionId {
     if ((fields__set[0] & 0x10) == 0) {
         self.sessionId__v = [self string:@"sessionId"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.sessionId__v;
 }
-        
 
 -(void)setSessionId:(NSString *)v {
     self.sessionId__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)userId {
     if ((fields__set[0] & 0x20) == 0) {
         self.userId__v = [self string:@"userId"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.userId__v;
 }
-        
 
 -(void)setUserId:(NSString *)v {
     self.userId__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(ZKUserInfo *)userInfo {
     if ((fields__set[0] & 0x40) == 0) {
         self.userInfo__v = [self complexTypeArrayFromElements:@"userInfo" cls:[ZKUserInfo class]].lastObject;
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.userInfo__v;
 }
-        
 
 -(void)setUserInfo:(ZKUserInfo *)v {
     self.userInfo__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"metadataServerUrl"   elemValue:self.metadataServerUrl nillable:YES optional:NO];

@@ -67,107 +67,100 @@
 -(NSString *)error {
     if ((fields__set2[0] & 0x1) == 0) {
         self.error__v = [self string:@"error"];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.error__v;
 }
-        
 
 -(void)setError:(NSString *)v {
     self.error__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSString *)filter {
     if ((fields__set2[0] & 0x2) == 0) {
         self.filter__v = [self string:@"filter"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.filter__v;
 }
-        
 
 -(void)setFilter:(NSString *)v {
     self.filter__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 
 -(NSString *)height {
     if ((fields__set2[0] & 0x4) == 0) {
         self.height__v = [self string:@"height"];
-        fields__set2[0] |= 0x4; 
+        fields__set2[0] |= 0x4;
     }
     return self.height__v;
 }
-        
 
 -(void)setHeight:(NSString *)v {
     self.height__v = v;
-    fields__set2[0] |= 0x4; 
+    fields__set2[0] |= 0x4;
 }
-        
+
 
 -(BOOL)hideOnError {
     if ((fields__set2[0] & 0x8) == 0) {
         self.hideOnError__v = [self boolean:@"hideOnError"];
-        fields__set2[0] |= 0x8; 
+        fields__set2[0] |= 0x8;
     }
     return self.hideOnError__v;
 }
-        
 
 -(void)setHideOnError:(BOOL)v {
     self.hideOnError__v = v;
-    fields__set2[0] |= 0x8; 
+    fields__set2[0] |= 0x8;
 }
-        
+
 
 -(BOOL)showSharing {
     if ((fields__set2[0] & 0x10) == 0) {
         self.showSharing__v = [self boolean:@"showSharing"];
-        fields__set2[0] |= 0x10; 
+        fields__set2[0] |= 0x10;
     }
     return self.showSharing__v;
 }
-        
 
 -(void)setShowSharing:(BOOL)v {
     self.showSharing__v = v;
-    fields__set2[0] |= 0x10; 
+    fields__set2[0] |= 0x10;
 }
-        
+
 
 -(BOOL)showTitle {
     if ((fields__set2[0] & 0x20) == 0) {
         self.showTitle__v = [self boolean:@"showTitle"];
-        fields__set2[0] |= 0x20; 
+        fields__set2[0] |= 0x20;
     }
     return self.showTitle__v;
 }
-        
 
 -(void)setShowTitle:(BOOL)v {
     self.showTitle__v = v;
-    fields__set2[0] |= 0x20; 
+    fields__set2[0] |= 0x20;
 }
-        
+
 
 -(NSString *)width {
     if ((fields__set2[0] & 0x40) == 0) {
         self.width__v = [self string:@"width"];
-        fields__set2[0] |= 0x40; 
+        fields__set2[0] |= 0x40;
     }
     return self.width__v;
 }
-        
 
 -(void)setWidth:(NSString *)v {
     self.width__v = v;
-    fields__set2[0] |= 0x40; 
+    fields__set2[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"AnalyticsCloudComponent"];
 	[env addIntElement:@"displayLines" elemValue:self.displayLines];

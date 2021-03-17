@@ -59,47 +59,44 @@
 -(NSString *)fieldNameOrPath {
     if ((fields__set[0] & 0x1) == 0) {
         self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.fieldNameOrPath__v;
 }
-        
 
 -(void)setFieldNameOrPath:(NSString *)v {
     self.fieldNameOrPath__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)nullsPosition {
     if ((fields__set[0] & 0x2) == 0) {
         self.nullsPosition__v = [self string:@"nullsPosition"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.nullsPosition__v;
 }
-        
 
 -(void)setNullsPosition:(NSString *)v {
     self.nullsPosition__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)sortDirection {
     if ((fields__set[0] & 0x4) == 0) {
         self.sortDirection__v = [self string:@"sortDirection"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.sortDirection__v;
 }
-        
 
 -(void)setSortDirection:(NSString *)v {
     self.sortDirection__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"fieldNameOrPath" elemValue:self.fieldNameOrPath nillable:NO  optional:NO];

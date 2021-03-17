@@ -66,92 +66,86 @@
 -(BOOL)editableForNew {
     if ((fields__set[0] & 0x1) == 0) {
         self.editableForNew__v = [self boolean:@"editableForNew"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.editableForNew__v;
 }
-        
 
 -(void)setEditableForNew:(BOOL)v {
     self.editableForNew__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)editableForUpdate {
     if ((fields__set[0] & 0x2) == 0) {
         self.editableForUpdate__v = [self boolean:@"editableForUpdate"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.editableForUpdate__v;
 }
-        
 
 -(void)setEditableForUpdate:(BOOL)v {
     self.editableForUpdate__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x4) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSArray<ZKDescribeLayoutComponent *> *)layoutComponents {
     if ((fields__set[0] & 0x8) == 0) {
         self.layoutComponents__v = [self complexTypeArrayFromElements:@"layoutComponents" cls:[ZKDescribeLayoutComponent class]];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.layoutComponents__v;
 }
-        
 
 -(void)setLayoutComponents:(NSArray<ZKDescribeLayoutComponent *> *)v {
     self.layoutComponents__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(BOOL)placeholder {
     if ((fields__set[0] & 0x10) == 0) {
         self.placeholder__v = [self boolean:@"placeholder"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.placeholder__v;
 }
-        
 
 -(void)setPlaceholder:(BOOL)v {
     self.placeholder__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(BOOL)required {
     if ((fields__set[0] & 0x20) == 0) {
         self.required__v = [self boolean:@"required"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.required__v;
 }
-        
 
 -(void)setRequired:(BOOL)v {
     self.required__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"editableForNew"    elemValue:self.editableForNew];

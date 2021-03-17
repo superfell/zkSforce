@@ -57,32 +57,30 @@
 -(NSString *)organizationId {
     if ((fields__set[0] & 0x1) == 0) {
         self.organizationId__v = [self string:@"organizationId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.organizationId__v;
 }
-        
 
 -(void)setOrganizationId:(NSString *)v {
     self.organizationId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)portalId {
     if ((fields__set[0] & 0x2) == 0) {
         self.portalId__v = [self string:@"portalId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.portalId__v;
 }
-        
 
 -(void)setPortalId:(NSString *)v {
     self.portalId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"organizationId" elemValue:self.organizationId nillable:NO  optional:NO];

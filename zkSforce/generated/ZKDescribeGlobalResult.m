@@ -60,47 +60,44 @@
 -(NSString *)encoding {
     if ((fields__set[0] & 0x1) == 0) {
         self.encoding__v = [self string:@"encoding"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.encoding__v;
 }
-        
 
 -(void)setEncoding:(NSString *)v {
     self.encoding__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)maxBatchSize {
     if ((fields__set[0] & 0x2) == 0) {
         self.maxBatchSize__v = [self integer:@"maxBatchSize"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.maxBatchSize__v;
 }
-        
 
 -(void)setMaxBatchSize:(NSInteger)v {
     self.maxBatchSize__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKDescribeGlobalSObject *> *)sobjects {
     if ((fields__set[0] & 0x4) == 0) {
         self.sobjects__v = [self complexTypeArrayFromElements:@"sobjects" cls:[ZKDescribeGlobalSObject class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.sobjects__v;
 }
-        
 
 -(void)setSobjects:(NSArray<ZKDescribeGlobalSObject *> *)v {
     self.sobjects__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"encoding"        elemValue:self.encoding     nillable:YES optional:NO];

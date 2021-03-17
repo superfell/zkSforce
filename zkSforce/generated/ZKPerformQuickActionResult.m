@@ -68,107 +68,100 @@
 -(NSString *)contextId {
     if ((fields__set[0] & 0x1) == 0) {
         self.contextId__v = [self string:@"contextId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.contextId__v;
 }
-        
 
 -(void)setContextId:(NSString *)v {
     self.contextId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)created {
     if ((fields__set[0] & 0x2) == 0) {
         self.created__v = [self boolean:@"created"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.created__v;
 }
-        
 
 -(void)setCreated:(BOOL)v {
     self.created__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x4) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSArray<NSString *> *)feedItemIds {
     if ((fields__set[0] & 0x8) == 0) {
         self.feedItemIds__v = [self strings:@"feedItemIds"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.feedItemIds__v;
 }
-        
 
 -(void)setFeedItemIds:(NSArray<NSString *> *)v {
     self.feedItemIds__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSArray<NSString *> *)ids {
     if ((fields__set[0] & 0x10) == 0) {
         self.ids__v = [self strings:@"ids"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.ids__v;
 }
-        
 
 -(void)setIds:(NSArray<NSString *> *)v {
     self.ids__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x20) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)successMessage {
     if ((fields__set[0] & 0x40) == 0) {
         self.successMessage__v = [self string:@"successMessage"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.successMessage__v;
 }
-        
 
 -(void)setSuccessMessage:(NSString *)v {
     self.successMessage__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"contextId"        elemValue:self.contextId      nillable:YES optional:YES];

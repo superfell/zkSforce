@@ -61,47 +61,44 @@
 -(NSArray<ZKDescribeLayout *> *)layouts {
     if ((fields__set[0] & 0x1) == 0) {
         self.layouts__v = [self complexTypeArrayFromElements:@"layouts" cls:[ZKDescribeLayout class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.layouts__v;
 }
-        
 
 -(void)setLayouts:(NSArray<ZKDescribeLayout *> *)v {
     self.layouts__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKRecordTypeMapping *> *)recordTypeMappings {
     if ((fields__set[0] & 0x2) == 0) {
         self.recordTypeMappings__v = [self complexTypeArrayFromElements:@"recordTypeMappings" cls:[ZKRecordTypeMapping class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.recordTypeMappings__v;
 }
-        
 
 -(void)setRecordTypeMappings:(NSArray<ZKRecordTypeMapping *> *)v {
     self.recordTypeMappings__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)recordTypeSelectorRequired {
     if ((fields__set[0] & 0x4) == 0) {
         self.recordTypeSelectorRequired__v = [self boolean:@"recordTypeSelectorRequired"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.recordTypeSelectorRequired__v;
 }
-        
 
 -(void)setRecordTypeSelectorRequired:(BOOL)v {
     self.recordTypeSelectorRequired__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"layouts"                   elemValue:self.layouts];

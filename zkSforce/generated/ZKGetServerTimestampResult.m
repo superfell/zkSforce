@@ -55,17 +55,16 @@
 -(NSDate *)timestamp {
     if ((fields__set[0] & 0x1) == 0) {
         self.timestamp__v = [self dateTime:@"timestamp"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.timestamp__v;
 }
-        
 
 -(void)setTimestamp:(NSDate *)v {
     self.timestamp__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"timestamp" elemValue:self.timestamp nillable:NO  optional:NO];

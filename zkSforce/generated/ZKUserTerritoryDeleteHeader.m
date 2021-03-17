@@ -55,17 +55,16 @@
 -(NSString *)transferToUserId {
     if ((fields__set[0] & 0x1) == 0) {
         self.transferToUserId__v = [self string:@"transferToUserId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.transferToUserId__v;
 }
-        
 
 -(void)setTransferToUserId:(NSString *)v {
     self.transferToUserId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"transferToUserId" elemValue:self.transferToUserId nillable:YES optional:NO];

@@ -59,47 +59,44 @@
 -(NSInteger)current {
     if ((fields__set[0] & 0x1) == 0) {
         self.current__v = [self integer:@"current"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.current__v;
 }
-        
 
 -(void)setCurrent:(NSInteger)v {
     self.current__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)limit {
     if ((fields__set[0] & 0x2) == 0) {
         self.limit__v = [self integer:@"limit"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.limit__v;
 }
-        
 
 -(void)setLimit:(NSInteger)v {
     self.limit__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x4) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addIntElement:@"current" elemValue:self.current];

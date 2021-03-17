@@ -57,32 +57,30 @@
 -(double)latitude {
     if ((fields__set[0] & 0x1) == 0) {
         self.latitude__v = [self double:@"latitude"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.latitude__v;
 }
-        
 
 -(void)setLatitude:(double)v {
     self.latitude__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(double)longitude {
     if ((fields__set[0] & 0x2) == 0) {
         self.longitude__v = [self double:@"longitude"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.longitude__v;
 }
-        
 
 -(void)setLongitude:(double)v {
     self.longitude__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addDoubleElement:@"latitude"  elemValue:self.latitude];

@@ -68,107 +68,100 @@
 -(NSString *)accountId {
     if ((fields__set[0] & 0x1) == 0) {
         self.accountId__v = [self string:@"accountId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.accountId__v;
 }
-        
 
 -(void)setAccountId:(NSString *)v {
     self.accountId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)contactId {
     if ((fields__set[0] & 0x2) == 0) {
         self.contactId__v = [self string:@"contactId"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.contactId__v;
 }
-        
 
 -(void)setContactId:(NSString *)v {
     self.contactId__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKError *> *)errors {
     if ((fields__set[0] & 0x4) == 0) {
         self.errors__v = [self complexTypeArrayFromElements:@"errors" cls:[ZKError class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.errors__v;
 }
-        
 
 -(void)setErrors:(NSArray<ZKError *> *)v {
     self.errors__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)leadId {
     if ((fields__set[0] & 0x8) == 0) {
         self.leadId__v = [self string:@"leadId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.leadId__v;
 }
-        
 
 -(void)setLeadId:(NSString *)v {
     self.leadId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)opportunityId {
     if ((fields__set[0] & 0x10) == 0) {
         self.opportunityId__v = [self string:@"opportunityId"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.opportunityId__v;
 }
-        
 
 -(void)setOpportunityId:(NSString *)v {
     self.opportunityId__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)relatedPersonAccountId {
     if ((fields__set[0] & 0x20) == 0) {
         self.relatedPersonAccountId__v = [self string:@"relatedPersonAccountId"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.relatedPersonAccountId__v;
 }
-        
 
 -(void)setRelatedPersonAccountId:(NSString *)v {
     self.relatedPersonAccountId__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(BOOL)success {
     if ((fields__set[0] & 0x40) == 0) {
         self.success__v = [self boolean:@"success"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.success__v;
 }
-        
 
 -(void)setSuccess:(BOOL)v {
     self.success__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accountId"              elemValue:self.accountId              nillable:YES optional:NO];

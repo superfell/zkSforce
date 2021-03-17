@@ -58,32 +58,30 @@
 -(NSArray<ZKDescribeLayoutComponent *> *)components {
     if ((fields__set2[0] & 0x1) == 0) {
         self.components__v = [self complexTypeArrayFromElements:@"components" cls:[ZKDescribeLayoutComponent class]];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.components__v;
 }
-        
 
 -(void)setComponents:(NSArray<ZKDescribeLayoutComponent *> *)v {
     self.components__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSString *)fieldType {
     if ((fields__set2[0] & 0x2) == 0) {
         self.fieldType__v = [self string:@"fieldType"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.fieldType__v;
 }
-        
 
 -(void)setFieldType:(NSString *)v {
     self.fieldType__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"FieldLayoutComponent"];
 	[env addIntElement:@"displayLines" elemValue:self.displayLines];

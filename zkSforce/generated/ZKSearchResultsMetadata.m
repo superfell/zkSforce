@@ -59,32 +59,30 @@
 -(NSArray<ZKLabelsSearchMetadata *> *)entityLabelMetadata {
     if ((fields__set[0] & 0x1) == 0) {
         self.entityLabelMetadata__v = [self complexTypeArrayFromElements:@"entityLabelMetadata" cls:[ZKLabelsSearchMetadata class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.entityLabelMetadata__v;
 }
-        
 
 -(void)setEntityLabelMetadata:(NSArray<ZKLabelsSearchMetadata *> *)v {
     self.entityLabelMetadata__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKEntitySearchMetadata *> *)entityMetadata {
     if ((fields__set[0] & 0x2) == 0) {
         self.entityMetadata__v = [self complexTypeArrayFromElements:@"entityMetadata" cls:[ZKEntitySearchMetadata class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.entityMetadata__v;
 }
-        
 
 -(void)setEntityMetadata:(NSArray<ZKEntitySearchMetadata *> *)v {
     self.entityMetadata__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"entityLabelMetadata" elemValue:self.entityLabelMetadata];

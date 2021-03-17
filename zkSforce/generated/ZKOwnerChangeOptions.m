@@ -56,17 +56,16 @@
 -(NSArray<ZKOwnerChangeOption *> *)options {
     if ((fields__set[0] & 0x1) == 0) {
         self.options__v = [self complexTypeArrayFromElements:@"options" cls:[ZKOwnerChangeOption class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.options__v;
 }
-        
 
 -(void)setOptions:(NSArray<ZKOwnerChangeOption *> *)v {
     self.options__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"options" elemValue:self.options];

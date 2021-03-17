@@ -57,32 +57,30 @@
 -(BOOL)ascending {
     if ((fields__set[0] & 0x1) == 0) {
         self.ascending__v = [self boolean:@"ascending"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.ascending__v;
 }
-        
 
 -(void)setAscending:(BOOL)v {
     self.ascending__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)column {
     if ((fields__set[0] & 0x2) == 0) {
         self.column__v = [self string:@"column"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.column__v;
 }
-        
 
 -(void)setColumn:(NSString *)v {
     self.column__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"ascending" elemValue:self.ascending];

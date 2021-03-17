@@ -56,17 +56,16 @@
 -(NSArray<ZKPackageVersion *> *)packageVersions {
     if ((fields__set[0] & 0x1) == 0) {
         self.packageVersions__v = [self complexTypeArrayFromElements:@"packageVersions" cls:[ZKPackageVersion class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.packageVersions__v;
 }
-        
 
 -(void)setPackageVersions:(NSArray<ZKPackageVersion *> *)v {
     self.packageVersions__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"packageVersions" elemValue:self.packageVersions];

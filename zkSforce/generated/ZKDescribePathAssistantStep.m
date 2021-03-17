@@ -71,122 +71,114 @@
 -(BOOL)closed {
     if ((fields__set[0] & 0x1) == 0) {
         self.closed__v = [self boolean:@"closed"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.closed__v;
 }
-        
 
 -(void)setClosed:(BOOL)v {
     self.closed__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)converted {
     if ((fields__set[0] & 0x2) == 0) {
         self.converted__v = [self boolean:@"converted"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.converted__v;
 }
-        
 
 -(void)setConverted:(BOOL)v {
     self.converted__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKDescribePathAssistantField *> *)fields {
     if ((fields__set[0] & 0x4) == 0) {
         self.fields__v = [self complexTypeArrayFromElements:@"fields" cls:[ZKDescribePathAssistantField class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.fields__v;
 }
-        
 
 -(void)setFields:(NSArray<ZKDescribePathAssistantField *> *)v {
     self.fields__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)info {
     if ((fields__set[0] & 0x8) == 0) {
         self.info__v = [self string:@"info"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.info__v;
 }
-        
 
 -(void)setInfo:(NSString *)v {
     self.info__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(ZKDescribeLayoutSection *)layoutSection {
     if ((fields__set[0] & 0x10) == 0) {
         self.layoutSection__v = [self complexTypeArrayFromElements:@"layoutSection" cls:[ZKDescribeLayoutSection class]].lastObject;
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.layoutSection__v;
 }
-        
 
 -(void)setLayoutSection:(ZKDescribeLayoutSection *)v {
     self.layoutSection__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)picklistLabel {
     if ((fields__set[0] & 0x20) == 0) {
         self.picklistLabel__v = [self string:@"picklistLabel"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.picklistLabel__v;
 }
-        
 
 -(void)setPicklistLabel:(NSString *)v {
     self.picklistLabel__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)picklistValue {
     if ((fields__set[0] & 0x40) == 0) {
         self.picklistValue__v = [self string:@"picklistValue"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.picklistValue__v;
 }
-        
 
 -(void)setPicklistValue:(NSString *)v {
     self.picklistValue__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(BOOL)won {
     if ((fields__set[0] & 0x80) == 0) {
         self.won__v = [self boolean:@"won"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.won__v;
 }
-        
 
 -(void)setWon:(BOOL)v {
     self.won__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"closed"    elemValue:self.closed];

@@ -59,32 +59,30 @@
 -(ZKDescribeGlobalResult *)global {
     if ((fields__set[0] & 0x1) == 0) {
         self.global__v = [self complexTypeArrayFromElements:@"global" cls:[ZKDescribeGlobalResult class]].lastObject;
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.global__v;
 }
-        
 
 -(void)setGlobal:(ZKDescribeGlobalResult *)v {
     self.global__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(ZKDescribeThemeResult *)theme {
     if ((fields__set[0] & 0x2) == 0) {
         self.theme__v = [self complexTypeArrayFromElements:@"theme" cls:[ZKDescribeThemeResult class]].lastObject;
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.theme__v;
 }
-        
 
 -(void)setTheme:(ZKDescribeThemeResult *)v {
     self.theme__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"global" elemValue:self.global nillable:NO  optional:NO];

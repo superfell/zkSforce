@@ -55,17 +55,16 @@
 -(NSString *)domain {
     if ((fields__set[0] & 0x1) == 0) {
         self.domain__v = [self string:@"domain"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.domain__v;
 }
-        
 
 -(void)setDomain:(NSString *)v {
     self.domain__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"domain" elemValue:self.domain nillable:NO  optional:NO];

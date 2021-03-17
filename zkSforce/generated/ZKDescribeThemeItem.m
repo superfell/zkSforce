@@ -61,47 +61,44 @@
 -(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x1) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.colors__v;
 }
-        
 
 -(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x2) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.icons__v;
 }
-        
 
 -(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x4) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"colors" elemValue:self.colors];

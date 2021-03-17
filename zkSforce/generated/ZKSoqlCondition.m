@@ -59,47 +59,44 @@
 -(NSString *)field {
     if ((fields__set2[0] & 0x1) == 0) {
         self.field__v = [self string:@"field"];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.field__v;
 }
-        
 
 -(void)setField:(NSString *)v {
     self.field__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSString *)operator {
     if ((fields__set2[0] & 0x2) == 0) {
         self.operator__v = [self string:@"operator"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.operator__v;
 }
-        
 
 -(void)setOperator:(NSString *)v {
     self.operator__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 
 -(NSArray<NSString *> *)values {
     if ((fields__set2[0] & 0x4) == 0) {
         self.values__v = [self strings:@"values"];
-        fields__set2[0] |= 0x4; 
+        fields__set2[0] |= 0x4;
     }
     return self.values__v;
 }
-        
 
 -(void)setValues:(NSArray<NSString *> *)v {
     self.values__v = v;
-    fields__set2[0] |= 0x4; 
+    fields__set2[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"SoqlCondition"];
 	[env addElement:@"field"       elemValue:self.field    nillable:NO  optional:NO];

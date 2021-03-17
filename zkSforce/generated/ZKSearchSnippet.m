@@ -58,32 +58,30 @@
 -(NSString *)text {
     if ((fields__set[0] & 0x1) == 0) {
         self.text__v = [self string:@"text"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.text__v;
 }
-        
 
 -(void)setText:(NSString *)v {
     self.text__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKNameValuePair *> *)wholeFields {
     if ((fields__set[0] & 0x2) == 0) {
         self.wholeFields__v = [self complexTypeArrayFromElements:@"wholeFields" cls:[ZKNameValuePair class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.wholeFields__v;
 }
-        
 
 -(void)setWholeFields:(NSArray<ZKNameValuePair *> *)v {
     self.wholeFields__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"text"             elemValue:self.text        nillable:YES optional:YES];

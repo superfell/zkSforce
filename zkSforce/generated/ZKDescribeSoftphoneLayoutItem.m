@@ -55,17 +55,16 @@
 -(NSString *)itemApiName {
     if ((fields__set[0] & 0x1) == 0) {
         self.itemApiName__v = [self string:@"itemApiName"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.itemApiName__v;
 }
-        
 
 -(void)setItemApiName:(NSString *)v {
     self.itemApiName__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"itemApiName" elemValue:self.itemApiName nillable:NO  optional:NO];

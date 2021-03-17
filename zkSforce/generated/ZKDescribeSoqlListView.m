@@ -74,137 +74,128 @@
 -(NSArray<ZKListViewColumn *> *)columns {
     if ((fields__set[0] & 0x1) == 0) {
         self.columns__v = [self complexTypeArrayFromElements:@"columns" cls:[ZKListViewColumn class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.columns__v;
 }
-        
 
 -(void)setColumns:(NSArray<ZKListViewColumn *> *)v {
     self.columns__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)id {
     if ((fields__set[0] & 0x2) == 0) {
         self.id__v = [self string:@"id"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.id__v;
 }
-        
 
 -(void)setId:(NSString *)v {
     self.id__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSArray<ZKListViewOrderBy *> *)orderBy {
     if ((fields__set[0] & 0x4) == 0) {
         self.orderBy__v = [self complexTypeArrayFromElements:@"orderBy" cls:[ZKListViewOrderBy class]];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.orderBy__v;
 }
-        
 
 -(void)setOrderBy:(NSArray<ZKListViewOrderBy *> *)v {
     self.orderBy__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)query {
     if ((fields__set[0] & 0x8) == 0) {
         self.query__v = [self string:@"query"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.query__v;
 }
-        
 
 -(void)setQuery:(NSString *)v {
     self.query__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)relatedEntityId {
     if ((fields__set[0] & 0x10) == 0) {
         self.relatedEntityId__v = [self string:@"relatedEntityId"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.relatedEntityId__v;
 }
-        
 
 -(void)setRelatedEntityId:(NSString *)v {
     self.relatedEntityId__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)scope {
     if ((fields__set[0] & 0x20) == 0) {
         self.scope__v = [self string:@"scope"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.scope__v;
 }
-        
 
 -(void)setScope:(NSString *)v {
     self.scope__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)scopeEntityId {
     if ((fields__set[0] & 0x40) == 0) {
         self.scopeEntityId__v = [self string:@"scopeEntityId"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.scopeEntityId__v;
 }
-        
 
 -(void)setScopeEntityId:(NSString *)v {
     self.scopeEntityId__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)sobjectType {
     if ((fields__set[0] & 0x80) == 0) {
         self.sobjectType__v = [self string:@"sobjectType"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.sobjectType__v;
 }
-        
 
 -(void)setSobjectType:(NSString *)v {
     self.sobjectType__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(ZKSoqlWhereCondition *)whereCondition {
     if ((fields__set[0] & 0x100) == 0) {
         self.whereCondition__v = [self complexTypeArrayFromElements:@"whereCondition" cls:[ZKSoqlWhereCondition class]].lastObject;
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.whereCondition__v;
 }
-        
 
 -(void)setWhereCondition:(ZKSoqlWhereCondition *)v {
     self.whereCondition__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"columns"    elemValue:self.columns];

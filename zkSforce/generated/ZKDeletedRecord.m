@@ -57,32 +57,30 @@
 -(NSDate *)deletedDate {
     if ((fields__set[0] & 0x1) == 0) {
         self.deletedDate__v = [self dateTime:@"deletedDate"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.deletedDate__v;
 }
-        
 
 -(void)setDeletedDate:(NSDate *)v {
     self.deletedDate__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)id {
     if ((fields__set[0] & 0x2) == 0) {
         self.id__v = [self string:@"id"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.id__v;
 }
-        
 
 -(void)setId:(NSString *)v {
     self.id__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"deletedDate" elemValue:self.deletedDate nillable:NO  optional:NO];

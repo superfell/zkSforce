@@ -57,32 +57,30 @@
 -(BOOL)intentQuery {
     if ((fields__set[0] & 0x1) == 0) {
         self.intentQuery__v = [self boolean:@"intentQuery"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.intentQuery__v;
 }
-        
 
 -(void)setIntentQuery:(BOOL)v {
     self.intentQuery__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)message {
     if ((fields__set[0] & 0x2) == 0) {
         self.message__v = [self string:@"message"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.message__v;
 }
-        
 
 -(void)setMessage:(NSString *)v {
     self.message__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"intentQuery" elemValue:self.intentQuery];

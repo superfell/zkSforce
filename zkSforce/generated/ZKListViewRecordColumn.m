@@ -57,32 +57,30 @@
 -(NSString *)fieldNameOrPath {
     if ((fields__set[0] & 0x1) == 0) {
         self.fieldNameOrPath__v = [self string:@"fieldNameOrPath"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.fieldNameOrPath__v;
 }
-        
 
 -(void)setFieldNameOrPath:(NSString *)v {
     self.fieldNameOrPath__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)value {
     if ((fields__set[0] & 0x2) == 0) {
         self.value__v = [self string:@"value"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.value__v;
 }
-        
 
 -(void)setValue:(NSString *)v {
     self.value__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"fieldNameOrPath" elemValue:self.fieldNameOrPath nillable:NO  optional:NO];

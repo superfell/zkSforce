@@ -55,17 +55,16 @@
 -(NSString *)sessionId {
     if ((fields__set[0] & 0x1) == 0) {
         self.sessionId__v = [self string:@"sessionId"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.sessionId__v;
 }
-        
 
 -(void)setSessionId:(NSString *)v {
     self.sessionId__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"sessionId" elemValue:self.sessionId nillable:NO  optional:NO];

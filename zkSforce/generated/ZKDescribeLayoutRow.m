@@ -58,32 +58,30 @@
 -(NSArray<ZKDescribeLayoutItem *> *)layoutItems {
     if ((fields__set[0] & 0x1) == 0) {
         self.layoutItems__v = [self complexTypeArrayFromElements:@"layoutItems" cls:[ZKDescribeLayoutItem class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.layoutItems__v;
 }
-        
 
 -(void)setLayoutItems:(NSArray<ZKDescribeLayoutItem *> *)v {
     self.layoutItems__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSInteger)numItems {
     if ((fields__set[0] & 0x2) == 0) {
         self.numItems__v = [self integer:@"numItems"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.numItems__v;
 }
-        
 
 -(void)setNumItems:(NSInteger)v {
     self.numItems__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"layoutItems" elemValue:self.layoutItems];

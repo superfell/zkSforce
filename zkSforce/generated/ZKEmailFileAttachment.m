@@ -63,77 +63,72 @@
 -(NSData *)body {
     if ((fields__set[0] & 0x1) == 0) {
         self.body__v = [self blob:@"body"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.body__v;
 }
-        
 
 -(void)setBody:(NSData *)v {
     self.body__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)contentType {
     if ((fields__set[0] & 0x2) == 0) {
         self.contentType__v = [self string:@"contentType"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.contentType__v;
 }
-        
 
 -(void)setContentType:(NSString *)v {
     self.contentType__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)fileName {
     if ((fields__set[0] & 0x4) == 0) {
         self.fileName__v = [self string:@"fileName"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.fileName__v;
 }
-        
 
 -(void)setFileName:(NSString *)v {
     self.fileName__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)id {
     if ((fields__set[0] & 0x8) == 0) {
         self.id__v = [self string:@"id"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.id__v;
 }
-        
 
 -(void)setId:(NSString *)v {
     self.id__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(BOOL)a_inline {
     if ((fields__set[0] & 0x10) == 0) {
         self.a_inline__v = [self boolean:@"inline"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.a_inline__v;
 }
-        
 
 -(void)setA_inline:(BOOL)v {
     self.a_inline__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"body"        elemValue:self.body        nillable:YES optional:YES];

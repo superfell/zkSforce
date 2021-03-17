@@ -56,17 +56,16 @@
 -(ZKDescribeLayoutButton *)customLink {
     if ((fields__set2[0] & 0x1) == 0) {
         self.customLink__v = [self complexTypeArrayFromElements:@"customLink" cls:[ZKDescribeLayoutButton class]].lastObject;
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.customLink__v;
 }
-        
 
 -(void)setCustomLink:(ZKDescribeLayoutButton *)v {
     self.customLink__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"CustomLinkComponent"];
 	[env addIntElement:@"displayLines" elemValue:self.displayLines];

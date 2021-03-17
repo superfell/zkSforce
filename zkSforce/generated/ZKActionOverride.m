@@ -63,77 +63,72 @@
 -(NSString *)formFactor {
     if ((fields__set[0] & 0x1) == 0) {
         self.formFactor__v = [self string:@"formFactor"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.formFactor__v;
 }
-        
 
 -(void)setFormFactor:(NSString *)v {
     self.formFactor__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)isAvailableInTouch {
     if ((fields__set[0] & 0x2) == 0) {
         self.isAvailableInTouch__v = [self boolean:@"isAvailableInTouch"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.isAvailableInTouch__v;
 }
-        
 
 -(void)setIsAvailableInTouch:(BOOL)v {
     self.isAvailableInTouch__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x4) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)pageId {
     if ((fields__set[0] & 0x8) == 0) {
         self.pageId__v = [self string:@"pageId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.pageId__v;
 }
-        
 
 -(void)setPageId:(NSString *)v {
     self.pageId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)url {
     if ((fields__set[0] & 0x10) == 0) {
         self.url__v = [self string:@"url"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.url__v;
 }
-        
 
 -(void)setUrl:(NSString *)v {
     self.url__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"formFactor"             elemValue:self.formFactor         nillable:YES optional:NO];

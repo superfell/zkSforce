@@ -60,47 +60,44 @@
 -(NSArray<ZKDataCategory *> *)childCategories {
     if ((fields__set[0] & 0x1) == 0) {
         self.childCategories__v = [self complexTypeArrayFromElements:@"childCategories" cls:[ZKDataCategory class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.childCategories__v;
 }
-        
 
 -(void)setChildCategories:(NSArray<ZKDataCategory *> *)v {
     self.childCategories__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x4) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"childCategories" elemValue:self.childCategories];

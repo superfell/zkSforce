@@ -57,32 +57,30 @@
 -(NSString *)category {
     if ((fields__set[0] & 0x1) == 0) {
         self.category__v = [self string:@"category"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.category__v;
 }
-        
 
 -(void)setCategory:(NSString *)v {
     self.category__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)level {
     if ((fields__set[0] & 0x2) == 0) {
         self.level__v = [self string:@"level"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.level__v;
 }
-        
 
 -(void)setLevel:(NSString *)v {
     self.level__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"category" elemValue:self.category nillable:NO  optional:NO];

@@ -55,17 +55,16 @@
 -(NSArray<NSString *> *)names {
     if ((fields__set[0] & 0x1) == 0) {
         self.names__v = [self strings:@"names"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.names__v;
 }
-        
 
 -(void)setNames:(NSArray<NSString *> *)v {
     self.names__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"names" elemValue:self.names];

@@ -55,17 +55,16 @@
 -(NSInteger)promotedResultCount {
     if ((fields__set[0] & 0x1) == 0) {
         self.promotedResultCount__v = [self integer:@"promotedResultCount"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.promotedResultCount__v;
 }
-        
 
 -(void)setPromotedResultCount:(NSInteger)v {
     self.promotedResultCount__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addIntElement:@"promotedResultCount" elemValue:self.promotedResultCount];

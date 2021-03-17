@@ -175,872 +175,814 @@
 -(BOOL)aggregatable {
     if ((fields__set[0] & 0x1) == 0) {
         self.aggregatable__v = [self boolean:@"aggregatable"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.aggregatable__v;
 }
-        
 
 -(void)setAggregatable:(BOOL)v {
     self.aggregatable__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(BOOL)aiPredictionField {
     if ((fields__set[0] & 0x2) == 0) {
         self.aiPredictionField__v = [self boolean:@"aiPredictionField"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.aiPredictionField__v;
 }
-        
 
 -(void)setAiPredictionField:(BOOL)v {
     self.aiPredictionField__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(BOOL)autoNumber {
     if ((fields__set[0] & 0x4) == 0) {
         self.autoNumber__v = [self boolean:@"autoNumber"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.autoNumber__v;
 }
-        
 
 -(void)setAutoNumber:(BOOL)v {
     self.autoNumber__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSInteger)byteLength {
     if ((fields__set[0] & 0x8) == 0) {
         self.byteLength__v = [self integer:@"byteLength"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.byteLength__v;
 }
-        
 
 -(void)setByteLength:(NSInteger)v {
     self.byteLength__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(BOOL)calculated {
     if ((fields__set[0] & 0x10) == 0) {
         self.calculated__v = [self boolean:@"calculated"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.calculated__v;
 }
-        
 
 -(void)setCalculated:(BOOL)v {
     self.calculated__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)calculatedFormula {
     if ((fields__set[0] & 0x20) == 0) {
         self.calculatedFormula__v = [self string:@"calculatedFormula"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.calculatedFormula__v;
 }
-        
 
 -(void)setCalculatedFormula:(NSString *)v {
     self.calculatedFormula__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(BOOL)cascadeDelete {
     if ((fields__set[0] & 0x40) == 0) {
         self.cascadeDelete__v = [self boolean:@"cascadeDelete"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.cascadeDelete__v;
 }
-        
 
 -(void)setCascadeDelete:(BOOL)v {
     self.cascadeDelete__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(BOOL)caseSensitive {
     if ((fields__set[0] & 0x80) == 0) {
         self.caseSensitive__v = [self boolean:@"caseSensitive"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.caseSensitive__v;
 }
-        
 
 -(void)setCaseSensitive:(BOOL)v {
     self.caseSensitive__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)compoundFieldName {
     if ((fields__set[0] & 0x100) == 0) {
         self.compoundFieldName__v = [self string:@"compoundFieldName"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.compoundFieldName__v;
 }
-        
 
 -(void)setCompoundFieldName:(NSString *)v {
     self.compoundFieldName__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 
 -(NSString *)controllerName {
     if ((fields__set[0] & 0x200) == 0) {
         self.controllerName__v = [self string:@"controllerName"];
-        fields__set[0] |= 0x200; 
+        fields__set[0] |= 0x200;
     }
     return self.controllerName__v;
 }
-        
 
 -(void)setControllerName:(NSString *)v {
     self.controllerName__v = v;
-    fields__set[0] |= 0x200; 
+    fields__set[0] |= 0x200;
 }
-        
+
 
 -(BOOL)createable {
     if ((fields__set[0] & 0x400) == 0) {
         self.createable__v = [self boolean:@"createable"];
-        fields__set[0] |= 0x400; 
+        fields__set[0] |= 0x400;
     }
     return self.createable__v;
 }
-        
 
 -(void)setCreateable:(BOOL)v {
     self.createable__v = v;
-    fields__set[0] |= 0x400; 
+    fields__set[0] |= 0x400;
 }
-        
+
 
 -(BOOL)custom {
     if ((fields__set[0] & 0x800) == 0) {
         self.custom__v = [self boolean:@"custom"];
-        fields__set[0] |= 0x800; 
+        fields__set[0] |= 0x800;
     }
     return self.custom__v;
 }
-        
 
 -(void)setCustom:(BOOL)v {
     self.custom__v = v;
-    fields__set[0] |= 0x800; 
+    fields__set[0] |= 0x800;
 }
-        
+
 
 -(BOOL)dataTranslationEnabled {
     if ((fields__set[0] & 0x1000) == 0) {
         self.dataTranslationEnabled__v = [self boolean:@"dataTranslationEnabled"];
-        fields__set[0] |= 0x1000; 
+        fields__set[0] |= 0x1000;
     }
     return self.dataTranslationEnabled__v;
 }
-        
 
 -(void)setDataTranslationEnabled:(BOOL)v {
     self.dataTranslationEnabled__v = v;
-    fields__set[0] |= 0x1000; 
+    fields__set[0] |= 0x1000;
 }
-        
+
 
 -(ZKXsdAnyType *)defaultValue {
     if ((fields__set[0] & 0x2000) == 0) {
         self.defaultValue__v = [self anyType:@"defaultValue"];
-        fields__set[0] |= 0x2000; 
+        fields__set[0] |= 0x2000;
     }
     return self.defaultValue__v;
 }
-        
 
 -(void)setDefaultValue:(ZKXsdAnyType *)v {
     self.defaultValue__v = v;
-    fields__set[0] |= 0x2000; 
+    fields__set[0] |= 0x2000;
 }
-        
+
 
 -(NSString *)defaultValueFormula {
     if ((fields__set[0] & 0x4000) == 0) {
         self.defaultValueFormula__v = [self string:@"defaultValueFormula"];
-        fields__set[0] |= 0x4000; 
+        fields__set[0] |= 0x4000;
     }
     return self.defaultValueFormula__v;
 }
-        
 
 -(void)setDefaultValueFormula:(NSString *)v {
     self.defaultValueFormula__v = v;
-    fields__set[0] |= 0x4000; 
+    fields__set[0] |= 0x4000;
 }
-        
+
 
 -(BOOL)defaultedOnCreate {
     if ((fields__set[0] & 0x8000) == 0) {
         self.defaultedOnCreate__v = [self boolean:@"defaultedOnCreate"];
-        fields__set[0] |= 0x8000; 
+        fields__set[0] |= 0x8000;
     }
     return self.defaultedOnCreate__v;
 }
-        
 
 -(void)setDefaultedOnCreate:(BOOL)v {
     self.defaultedOnCreate__v = v;
-    fields__set[0] |= 0x8000; 
+    fields__set[0] |= 0x8000;
 }
-        
+
 
 -(BOOL)dependentPicklist {
     if ((fields__set[0] & 0x10000) == 0) {
         self.dependentPicklist__v = [self boolean:@"dependentPicklist"];
-        fields__set[0] |= 0x10000; 
+        fields__set[0] |= 0x10000;
     }
     return self.dependentPicklist__v;
 }
-        
 
 -(void)setDependentPicklist:(BOOL)v {
     self.dependentPicklist__v = v;
-    fields__set[0] |= 0x10000; 
+    fields__set[0] |= 0x10000;
 }
-        
+
 
 -(BOOL)deprecatedAndHidden {
     if ((fields__set[0] & 0x20000) == 0) {
         self.deprecatedAndHidden__v = [self boolean:@"deprecatedAndHidden"];
-        fields__set[0] |= 0x20000; 
+        fields__set[0] |= 0x20000;
     }
     return self.deprecatedAndHidden__v;
 }
-        
 
 -(void)setDeprecatedAndHidden:(BOOL)v {
     self.deprecatedAndHidden__v = v;
-    fields__set[0] |= 0x20000; 
+    fields__set[0] |= 0x20000;
 }
-        
+
 
 -(NSInteger)digits {
     if ((fields__set[0] & 0x40000) == 0) {
         self.digits__v = [self integer:@"digits"];
-        fields__set[0] |= 0x40000; 
+        fields__set[0] |= 0x40000;
     }
     return self.digits__v;
 }
-        
 
 -(void)setDigits:(NSInteger)v {
     self.digits__v = v;
-    fields__set[0] |= 0x40000; 
+    fields__set[0] |= 0x40000;
 }
-        
+
 
 -(BOOL)displayLocationInDecimal {
     if ((fields__set[0] & 0x80000) == 0) {
         self.displayLocationInDecimal__v = [self boolean:@"displayLocationInDecimal"];
-        fields__set[0] |= 0x80000; 
+        fields__set[0] |= 0x80000;
     }
     return self.displayLocationInDecimal__v;
 }
-        
 
 -(void)setDisplayLocationInDecimal:(BOOL)v {
     self.displayLocationInDecimal__v = v;
-    fields__set[0] |= 0x80000; 
+    fields__set[0] |= 0x80000;
 }
-        
+
 
 -(BOOL)encrypted {
     if ((fields__set[0] & 0x100000) == 0) {
         self.encrypted__v = [self boolean:@"encrypted"];
-        fields__set[0] |= 0x100000; 
+        fields__set[0] |= 0x100000;
     }
     return self.encrypted__v;
 }
-        
 
 -(void)setEncrypted:(BOOL)v {
     self.encrypted__v = v;
-    fields__set[0] |= 0x100000; 
+    fields__set[0] |= 0x100000;
 }
-        
+
 
 -(BOOL)externalId {
     if ((fields__set[0] & 0x200000) == 0) {
         self.externalId__v = [self boolean:@"externalId"];
-        fields__set[0] |= 0x200000; 
+        fields__set[0] |= 0x200000;
     }
     return self.externalId__v;
 }
-        
 
 -(void)setExternalId:(BOOL)v {
     self.externalId__v = v;
-    fields__set[0] |= 0x200000; 
+    fields__set[0] |= 0x200000;
 }
-        
+
 
 -(NSString *)extraTypeInfo {
     if ((fields__set[0] & 0x400000) == 0) {
         self.extraTypeInfo__v = [self string:@"extraTypeInfo"];
-        fields__set[0] |= 0x400000; 
+        fields__set[0] |= 0x400000;
     }
     return self.extraTypeInfo__v;
 }
-        
 
 -(void)setExtraTypeInfo:(NSString *)v {
     self.extraTypeInfo__v = v;
-    fields__set[0] |= 0x400000; 
+    fields__set[0] |= 0x400000;
 }
-        
+
 
 -(BOOL)filterable {
     if ((fields__set[0] & 0x800000) == 0) {
         self.filterable__v = [self boolean:@"filterable"];
-        fields__set[0] |= 0x800000; 
+        fields__set[0] |= 0x800000;
     }
     return self.filterable__v;
 }
-        
 
 -(void)setFilterable:(BOOL)v {
     self.filterable__v = v;
-    fields__set[0] |= 0x800000; 
+    fields__set[0] |= 0x800000;
 }
-        
+
 
 -(ZKFilteredLookupInfo *)filteredLookupInfo {
     if ((fields__set[0] & 0x1000000) == 0) {
         self.filteredLookupInfo__v = [self complexTypeArrayFromElements:@"filteredLookupInfo" cls:[ZKFilteredLookupInfo class]].lastObject;
-        fields__set[0] |= 0x1000000; 
+        fields__set[0] |= 0x1000000;
     }
     return self.filteredLookupInfo__v;
 }
-        
 
 -(void)setFilteredLookupInfo:(ZKFilteredLookupInfo *)v {
     self.filteredLookupInfo__v = v;
-    fields__set[0] |= 0x1000000; 
+    fields__set[0] |= 0x1000000;
 }
-        
+
 
 -(BOOL)formulaTreatNullNumberAsZero {
     if ((fields__set[0] & 0x2000000) == 0) {
         self.formulaTreatNullNumberAsZero__v = [self boolean:@"formulaTreatNullNumberAsZero"];
-        fields__set[0] |= 0x2000000; 
+        fields__set[0] |= 0x2000000;
     }
     return self.formulaTreatNullNumberAsZero__v;
 }
-        
 
 -(void)setFormulaTreatNullNumberAsZero:(BOOL)v {
     self.formulaTreatNullNumberAsZero__v = v;
-    fields__set[0] |= 0x2000000; 
+    fields__set[0] |= 0x2000000;
 }
-        
+
 
 -(BOOL)groupable {
     if ((fields__set[0] & 0x4000000) == 0) {
         self.groupable__v = [self boolean:@"groupable"];
-        fields__set[0] |= 0x4000000; 
+        fields__set[0] |= 0x4000000;
     }
     return self.groupable__v;
 }
-        
 
 -(void)setGroupable:(BOOL)v {
     self.groupable__v = v;
-    fields__set[0] |= 0x4000000; 
+    fields__set[0] |= 0x4000000;
 }
-        
+
 
 -(BOOL)highScaleNumber {
     if ((fields__set[0] & 0x8000000) == 0) {
         self.highScaleNumber__v = [self boolean:@"highScaleNumber"];
-        fields__set[0] |= 0x8000000; 
+        fields__set[0] |= 0x8000000;
     }
     return self.highScaleNumber__v;
 }
-        
 
 -(void)setHighScaleNumber:(BOOL)v {
     self.highScaleNumber__v = v;
-    fields__set[0] |= 0x8000000; 
+    fields__set[0] |= 0x8000000;
 }
-        
+
 
 -(BOOL)htmlFormatted {
     if ((fields__set[0] & 0x10000000) == 0) {
         self.htmlFormatted__v = [self boolean:@"htmlFormatted"];
-        fields__set[0] |= 0x10000000; 
+        fields__set[0] |= 0x10000000;
     }
     return self.htmlFormatted__v;
 }
-        
 
 -(void)setHtmlFormatted:(BOOL)v {
     self.htmlFormatted__v = v;
-    fields__set[0] |= 0x10000000; 
+    fields__set[0] |= 0x10000000;
 }
-        
+
 
 -(BOOL)idLookup {
     if ((fields__set[0] & 0x20000000) == 0) {
         self.idLookup__v = [self boolean:@"idLookup"];
-        fields__set[0] |= 0x20000000; 
+        fields__set[0] |= 0x20000000;
     }
     return self.idLookup__v;
 }
-        
 
 -(void)setIdLookup:(BOOL)v {
     self.idLookup__v = v;
-    fields__set[0] |= 0x20000000; 
+    fields__set[0] |= 0x20000000;
 }
-        
+
 
 -(NSString *)inlineHelpText {
     if ((fields__set[0] & 0x40000000) == 0) {
         self.inlineHelpText__v = [self string:@"inlineHelpText"];
-        fields__set[0] |= 0x40000000; 
+        fields__set[0] |= 0x40000000;
     }
     return self.inlineHelpText__v;
 }
-        
 
 -(void)setInlineHelpText:(NSString *)v {
     self.inlineHelpText__v = v;
-    fields__set[0] |= 0x40000000; 
+    fields__set[0] |= 0x40000000;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x80000000) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x80000000; 
+        fields__set[0] |= 0x80000000;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x80000000; 
+    fields__set[0] |= 0x80000000;
 }
-        
+
 
 -(NSInteger)length {
     if ((fields__set[0] & 0x100000000) == 0) {
         self.length__v = [self integer:@"length"];
-        fields__set[0] |= 0x100000000; 
+        fields__set[0] |= 0x100000000;
     }
     return self.length__v;
 }
-        
 
 -(void)setLength:(NSInteger)v {
     self.length__v = v;
-    fields__set[0] |= 0x100000000; 
+    fields__set[0] |= 0x100000000;
 }
-        
+
 
 -(NSString *)mask {
     if ((fields__set[0] & 0x200000000) == 0) {
         self.mask__v = [self string:@"mask"];
-        fields__set[0] |= 0x200000000; 
+        fields__set[0] |= 0x200000000;
     }
     return self.mask__v;
 }
-        
 
 -(void)setMask:(NSString *)v {
     self.mask__v = v;
-    fields__set[0] |= 0x200000000; 
+    fields__set[0] |= 0x200000000;
 }
-        
+
 
 -(NSString *)maskType {
     if ((fields__set[0] & 0x400000000) == 0) {
         self.maskType__v = [self string:@"maskType"];
-        fields__set[0] |= 0x400000000; 
+        fields__set[0] |= 0x400000000;
     }
     return self.maskType__v;
 }
-        
 
 -(void)setMaskType:(NSString *)v {
     self.maskType__v = v;
-    fields__set[0] |= 0x400000000; 
+    fields__set[0] |= 0x400000000;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x800000000) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x800000000; 
+        fields__set[0] |= 0x800000000;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x800000000; 
+    fields__set[0] |= 0x800000000;
 }
-        
+
 
 -(BOOL)nameField {
     if ((fields__set[0] & 0x1000000000) == 0) {
         self.nameField__v = [self boolean:@"nameField"];
-        fields__set[0] |= 0x1000000000; 
+        fields__set[0] |= 0x1000000000;
     }
     return self.nameField__v;
 }
-        
 
 -(void)setNameField:(BOOL)v {
     self.nameField__v = v;
-    fields__set[0] |= 0x1000000000; 
+    fields__set[0] |= 0x1000000000;
 }
-        
+
 
 -(BOOL)namePointing {
     if ((fields__set[0] & 0x2000000000) == 0) {
         self.namePointing__v = [self boolean:@"namePointing"];
-        fields__set[0] |= 0x2000000000; 
+        fields__set[0] |= 0x2000000000;
     }
     return self.namePointing__v;
 }
-        
 
 -(void)setNamePointing:(BOOL)v {
     self.namePointing__v = v;
-    fields__set[0] |= 0x2000000000; 
+    fields__set[0] |= 0x2000000000;
 }
-        
+
 
 -(BOOL)nillable {
     if ((fields__set[0] & 0x4000000000) == 0) {
         self.nillable__v = [self boolean:@"nillable"];
-        fields__set[0] |= 0x4000000000; 
+        fields__set[0] |= 0x4000000000;
     }
     return self.nillable__v;
 }
-        
 
 -(void)setNillable:(BOOL)v {
     self.nillable__v = v;
-    fields__set[0] |= 0x4000000000; 
+    fields__set[0] |= 0x4000000000;
 }
-        
+
 
 -(BOOL)permissionable {
     if ((fields__set[0] & 0x8000000000) == 0) {
         self.permissionable__v = [self boolean:@"permissionable"];
-        fields__set[0] |= 0x8000000000; 
+        fields__set[0] |= 0x8000000000;
     }
     return self.permissionable__v;
 }
-        
 
 -(void)setPermissionable:(BOOL)v {
     self.permissionable__v = v;
-    fields__set[0] |= 0x8000000000; 
+    fields__set[0] |= 0x8000000000;
 }
-        
+
 
 -(NSArray<ZKPicklistEntry *> *)picklistValues {
     if ((fields__set[0] & 0x10000000000) == 0) {
         self.picklistValues__v = [self complexTypeArrayFromElements:@"picklistValues" cls:[ZKPicklistEntry class]];
-        fields__set[0] |= 0x10000000000; 
+        fields__set[0] |= 0x10000000000;
     }
     return self.picklistValues__v;
 }
-        
 
 -(void)setPicklistValues:(NSArray<ZKPicklistEntry *> *)v {
     self.picklistValues__v = v;
-    fields__set[0] |= 0x10000000000; 
+    fields__set[0] |= 0x10000000000;
 }
-        
+
 
 -(BOOL)polymorphicForeignKey {
     if ((fields__set[0] & 0x20000000000) == 0) {
         self.polymorphicForeignKey__v = [self boolean:@"polymorphicForeignKey"];
-        fields__set[0] |= 0x20000000000; 
+        fields__set[0] |= 0x20000000000;
     }
     return self.polymorphicForeignKey__v;
 }
-        
 
 -(void)setPolymorphicForeignKey:(BOOL)v {
     self.polymorphicForeignKey__v = v;
-    fields__set[0] |= 0x20000000000; 
+    fields__set[0] |= 0x20000000000;
 }
-        
+
 
 -(NSInteger)precision {
     if ((fields__set[0] & 0x40000000000) == 0) {
         self.precision__v = [self integer:@"precision"];
-        fields__set[0] |= 0x40000000000; 
+        fields__set[0] |= 0x40000000000;
     }
     return self.precision__v;
 }
-        
 
 -(void)setPrecision:(NSInteger)v {
     self.precision__v = v;
-    fields__set[0] |= 0x40000000000; 
+    fields__set[0] |= 0x40000000000;
 }
-        
+
 
 -(BOOL)queryByDistance {
     if ((fields__set[0] & 0x80000000000) == 0) {
         self.queryByDistance__v = [self boolean:@"queryByDistance"];
-        fields__set[0] |= 0x80000000000; 
+        fields__set[0] |= 0x80000000000;
     }
     return self.queryByDistance__v;
 }
-        
 
 -(void)setQueryByDistance:(BOOL)v {
     self.queryByDistance__v = v;
-    fields__set[0] |= 0x80000000000; 
+    fields__set[0] |= 0x80000000000;
 }
-        
+
 
 -(NSString *)referenceTargetField {
     if ((fields__set[0] & 0x100000000000) == 0) {
         self.referenceTargetField__v = [self string:@"referenceTargetField"];
-        fields__set[0] |= 0x100000000000; 
+        fields__set[0] |= 0x100000000000;
     }
     return self.referenceTargetField__v;
 }
-        
 
 -(void)setReferenceTargetField:(NSString *)v {
     self.referenceTargetField__v = v;
-    fields__set[0] |= 0x100000000000; 
+    fields__set[0] |= 0x100000000000;
 }
-        
+
 
 -(NSArray<NSString *> *)referenceTo {
     if ((fields__set[0] & 0x200000000000) == 0) {
         self.referenceTo__v = [self strings:@"referenceTo"];
-        fields__set[0] |= 0x200000000000; 
+        fields__set[0] |= 0x200000000000;
     }
     return self.referenceTo__v;
 }
-        
 
 -(void)setReferenceTo:(NSArray<NSString *> *)v {
     self.referenceTo__v = v;
-    fields__set[0] |= 0x200000000000; 
+    fields__set[0] |= 0x200000000000;
 }
-        
+
 
 -(NSString *)relationshipName {
     if ((fields__set[0] & 0x400000000000) == 0) {
         self.relationshipName__v = [self string:@"relationshipName"];
-        fields__set[0] |= 0x400000000000; 
+        fields__set[0] |= 0x400000000000;
     }
     return self.relationshipName__v;
 }
-        
 
 -(void)setRelationshipName:(NSString *)v {
     self.relationshipName__v = v;
-    fields__set[0] |= 0x400000000000; 
+    fields__set[0] |= 0x400000000000;
 }
-        
+
 
 -(NSInteger)relationshipOrder {
     if ((fields__set[0] & 0x800000000000) == 0) {
         self.relationshipOrder__v = [self integer:@"relationshipOrder"];
-        fields__set[0] |= 0x800000000000; 
+        fields__set[0] |= 0x800000000000;
     }
     return self.relationshipOrder__v;
 }
-        
 
 -(void)setRelationshipOrder:(NSInteger)v {
     self.relationshipOrder__v = v;
-    fields__set[0] |= 0x800000000000; 
+    fields__set[0] |= 0x800000000000;
 }
-        
+
 
 -(BOOL)restrictedDelete {
     if ((fields__set[0] & 0x1000000000000) == 0) {
         self.restrictedDelete__v = [self boolean:@"restrictedDelete"];
-        fields__set[0] |= 0x1000000000000; 
+        fields__set[0] |= 0x1000000000000;
     }
     return self.restrictedDelete__v;
 }
-        
 
 -(void)setRestrictedDelete:(BOOL)v {
     self.restrictedDelete__v = v;
-    fields__set[0] |= 0x1000000000000; 
+    fields__set[0] |= 0x1000000000000;
 }
-        
+
 
 -(BOOL)restrictedPicklist {
     if ((fields__set[0] & 0x2000000000000) == 0) {
         self.restrictedPicklist__v = [self boolean:@"restrictedPicklist"];
-        fields__set[0] |= 0x2000000000000; 
+        fields__set[0] |= 0x2000000000000;
     }
     return self.restrictedPicklist__v;
 }
-        
 
 -(void)setRestrictedPicklist:(BOOL)v {
     self.restrictedPicklist__v = v;
-    fields__set[0] |= 0x2000000000000; 
+    fields__set[0] |= 0x2000000000000;
 }
-        
+
 
 -(NSInteger)scale {
     if ((fields__set[0] & 0x4000000000000) == 0) {
         self.scale__v = [self integer:@"scale"];
-        fields__set[0] |= 0x4000000000000; 
+        fields__set[0] |= 0x4000000000000;
     }
     return self.scale__v;
 }
-        
 
 -(void)setScale:(NSInteger)v {
     self.scale__v = v;
-    fields__set[0] |= 0x4000000000000; 
+    fields__set[0] |= 0x4000000000000;
 }
-        
+
 
 -(BOOL)searchPrefilterable {
     if ((fields__set[0] & 0x8000000000000) == 0) {
         self.searchPrefilterable__v = [self boolean:@"searchPrefilterable"];
-        fields__set[0] |= 0x8000000000000; 
+        fields__set[0] |= 0x8000000000000;
     }
     return self.searchPrefilterable__v;
 }
-        
 
 -(void)setSearchPrefilterable:(BOOL)v {
     self.searchPrefilterable__v = v;
-    fields__set[0] |= 0x8000000000000; 
+    fields__set[0] |= 0x8000000000000;
 }
-        
+
 
 -(NSString *)soapType {
     if ((fields__set[0] & 0x10000000000000) == 0) {
         self.soapType__v = [self string:@"soapType"];
-        fields__set[0] |= 0x10000000000000; 
+        fields__set[0] |= 0x10000000000000;
     }
     return self.soapType__v;
 }
-        
 
 -(void)setSoapType:(NSString *)v {
     self.soapType__v = v;
-    fields__set[0] |= 0x10000000000000; 
+    fields__set[0] |= 0x10000000000000;
 }
-        
+
 
 -(BOOL)sortable {
     if ((fields__set[0] & 0x20000000000000) == 0) {
         self.sortable__v = [self boolean:@"sortable"];
-        fields__set[0] |= 0x20000000000000; 
+        fields__set[0] |= 0x20000000000000;
     }
     return self.sortable__v;
 }
-        
 
 -(void)setSortable:(BOOL)v {
     self.sortable__v = v;
-    fields__set[0] |= 0x20000000000000; 
+    fields__set[0] |= 0x20000000000000;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x40000000000000) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x40000000000000; 
+        fields__set[0] |= 0x40000000000000;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x40000000000000; 
+    fields__set[0] |= 0x40000000000000;
 }
-        
+
 
 -(BOOL)unique {
     if ((fields__set[0] & 0x80000000000000) == 0) {
         self.unique__v = [self boolean:@"unique"];
-        fields__set[0] |= 0x80000000000000; 
+        fields__set[0] |= 0x80000000000000;
     }
     return self.unique__v;
 }
-        
 
 -(void)setUnique:(BOOL)v {
     self.unique__v = v;
-    fields__set[0] |= 0x80000000000000; 
+    fields__set[0] |= 0x80000000000000;
 }
-        
+
 
 -(BOOL)updateable {
     if ((fields__set[0] & 0x100000000000000) == 0) {
         self.updateable__v = [self boolean:@"updateable"];
-        fields__set[0] |= 0x100000000000000; 
+        fields__set[0] |= 0x100000000000000;
     }
     return self.updateable__v;
 }
-        
 
 -(void)setUpdateable:(BOOL)v {
     self.updateable__v = v;
-    fields__set[0] |= 0x100000000000000; 
+    fields__set[0] |= 0x100000000000000;
 }
-        
+
 
 -(BOOL)writeRequiresMasterRead {
     if ((fields__set[0] & 0x200000000000000) == 0) {
         self.writeRequiresMasterRead__v = [self boolean:@"writeRequiresMasterRead"];
-        fields__set[0] |= 0x200000000000000; 
+        fields__set[0] |= 0x200000000000000;
     }
     return self.writeRequiresMasterRead__v;
 }
-        
 
 -(void)setWriteRequiresMasterRead:(BOOL)v {
     self.writeRequiresMasterRead__v = v;
-    fields__set[0] |= 0x200000000000000; 
+    fields__set[0] |= 0x200000000000000;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"aggregatable"                 elemValue:self.aggregatable];

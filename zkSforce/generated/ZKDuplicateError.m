@@ -56,17 +56,16 @@
 -(ZKDuplicateResult *)duplicateResult {
     if ((fields__set2[0] & 0x1) == 0) {
         self.duplicateResult__v = [self complexTypeArrayFromElements:@"duplicateResult" cls:[ZKDuplicateResult class]].lastObject;
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.duplicateResult__v;
 }
-        
 
 -(void)setDuplicateResult:(ZKDuplicateResult *)v {
     self.duplicateResult__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"DuplicateError"];
 	[env addElementArray:@"extendedErrorDetails" elemValue:self.extendedErrorDetails];

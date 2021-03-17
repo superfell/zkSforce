@@ -56,17 +56,16 @@
 -(NSArray<ZKDescribeApprovalLayout *> *)approvalLayouts {
     if ((fields__set[0] & 0x1) == 0) {
         self.approvalLayouts__v = [self complexTypeArrayFromElements:@"approvalLayouts" cls:[ZKDescribeApprovalLayout class]];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.approvalLayouts__v;
 }
-        
 
 -(void)setApprovalLayouts:(NSArray<ZKDescribeApprovalLayout *> *)v {
     self.approvalLayouts__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElementArray:@"approvalLayouts" elemValue:self.approvalLayouts];

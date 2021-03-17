@@ -64,77 +64,72 @@
 -(NSString *)a_description {
     if ((fields__set[0] & 0x1) == 0) {
         self.a_description__v = [self string:@"description"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.a_description__v;
 }
-        
 
 -(void)setA_description:(NSString *)v {
     self.a_description__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)name {
     if ((fields__set[0] & 0x4) == 0) {
         self.name__v = [self string:@"name"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.name__v;
 }
-        
 
 -(void)setName:(NSString *)v {
     self.name__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)sobject {
     if ((fields__set[0] & 0x8) == 0) {
         self.sobject__v = [self string:@"sobject"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.sobject__v;
 }
-        
 
 -(void)setSobject:(NSString *)v {
     self.sobject__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSArray<ZKDataCategory *> *)topCategories {
     if ((fields__set[0] & 0x10) == 0) {
         self.topCategories__v = [self complexTypeArrayFromElements:@"topCategories" cls:[ZKDataCategory class]];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.topCategories__v;
 }
-        
 
 -(void)setTopCategories:(NSArray<ZKDataCategory *> *)v {
     self.topCategories__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"description"        elemValue:self.a_description   nillable:NO  optional:NO];

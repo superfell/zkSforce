@@ -73,137 +73,128 @@
 -(NSString *)accessLevelRequired {
     if ((fields__set[0] & 0x1) == 0) {
         self.accessLevelRequired__v = [self string:@"accessLevelRequired"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.accessLevelRequired__v;
 }
-        
 
 -(void)setAccessLevelRequired:(NSString *)v {
     self.accessLevelRequired__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<ZKDescribeColor *> *)colors {
     if ((fields__set[0] & 0x2) == 0) {
         self.colors__v = [self complexTypeArrayFromElements:@"colors" cls:[ZKDescribeColor class]];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.colors__v;
 }
-        
 
 -(void)setColors:(NSArray<ZKDescribeColor *> *)v {
     self.colors__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)iconUrl {
     if ((fields__set[0] & 0x4) == 0) {
         self.iconUrl__v = [self string:@"iconUrl"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.iconUrl__v;
 }
-        
 
 -(void)setIconUrl:(NSString *)v {
     self.iconUrl__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSArray<ZKDescribeIcon *> *)icons {
     if ((fields__set[0] & 0x8) == 0) {
         self.icons__v = [self complexTypeArrayFromElements:@"icons" cls:[ZKDescribeIcon class]];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.icons__v;
 }
-        
 
 -(void)setIcons:(NSArray<ZKDescribeIcon *> *)v {
     self.icons__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x10) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 
 -(NSString *)miniIconUrl {
     if ((fields__set[0] & 0x20) == 0) {
         self.miniIconUrl__v = [self string:@"miniIconUrl"];
-        fields__set[0] |= 0x20; 
+        fields__set[0] |= 0x20;
     }
     return self.miniIconUrl__v;
 }
-        
 
 -(void)setMiniIconUrl:(NSString *)v {
     self.miniIconUrl__v = v;
-    fields__set[0] |= 0x20; 
+    fields__set[0] |= 0x20;
 }
-        
+
 
 -(NSString *)quickActionName {
     if ((fields__set[0] & 0x40) == 0) {
         self.quickActionName__v = [self string:@"quickActionName"];
-        fields__set[0] |= 0x40; 
+        fields__set[0] |= 0x40;
     }
     return self.quickActionName__v;
 }
-        
 
 -(void)setQuickActionName:(NSString *)v {
     self.quickActionName__v = v;
-    fields__set[0] |= 0x40; 
+    fields__set[0] |= 0x40;
 }
-        
+
 
 -(NSString *)targetSobjectType {
     if ((fields__set[0] & 0x80) == 0) {
         self.targetSobjectType__v = [self string:@"targetSobjectType"];
-        fields__set[0] |= 0x80; 
+        fields__set[0] |= 0x80;
     }
     return self.targetSobjectType__v;
 }
-        
 
 -(void)setTargetSobjectType:(NSString *)v {
     self.targetSobjectType__v = v;
-    fields__set[0] |= 0x80; 
+    fields__set[0] |= 0x80;
 }
-        
+
 
 -(NSString *)type {
     if ((fields__set[0] & 0x100) == 0) {
         self.type__v = [self string:@"type"];
-        fields__set[0] |= 0x100; 
+        fields__set[0] |= 0x100;
     }
     return self.type__v;
 }
-        
 
 -(void)setType:(NSString *)v {
     self.type__v = v;
-    fields__set[0] |= 0x100; 
+    fields__set[0] |= 0x100;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"accessLevelRequired" elemValue:self.accessLevelRequired nillable:YES optional:NO];

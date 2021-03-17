@@ -69,122 +69,114 @@
 -(NSString *)city {
     if ((fields__set2[0] & 0x1) == 0) {
         self.city__v = [self string:@"city"];
-        fields__set2[0] |= 0x1; 
+        fields__set2[0] |= 0x1;
     }
     return self.city__v;
 }
-        
 
 -(void)setCity:(NSString *)v {
     self.city__v = v;
-    fields__set2[0] |= 0x1; 
+    fields__set2[0] |= 0x1;
 }
-        
+
 
 -(NSString *)country {
     if ((fields__set2[0] & 0x2) == 0) {
         self.country__v = [self string:@"country"];
-        fields__set2[0] |= 0x2; 
+        fields__set2[0] |= 0x2;
     }
     return self.country__v;
 }
-        
 
 -(void)setCountry:(NSString *)v {
     self.country__v = v;
-    fields__set2[0] |= 0x2; 
+    fields__set2[0] |= 0x2;
 }
-        
+
 
 -(NSString *)countryCode {
     if ((fields__set2[0] & 0x4) == 0) {
         self.countryCode__v = [self string:@"countryCode"];
-        fields__set2[0] |= 0x4; 
+        fields__set2[0] |= 0x4;
     }
     return self.countryCode__v;
 }
-        
 
 -(void)setCountryCode:(NSString *)v {
     self.countryCode__v = v;
-    fields__set2[0] |= 0x4; 
+    fields__set2[0] |= 0x4;
 }
-        
+
 
 -(NSString *)geocodeAccuracy {
     if ((fields__set2[0] & 0x8) == 0) {
         self.geocodeAccuracy__v = [self string:@"geocodeAccuracy"];
-        fields__set2[0] |= 0x8; 
+        fields__set2[0] |= 0x8;
     }
     return self.geocodeAccuracy__v;
 }
-        
 
 -(void)setGeocodeAccuracy:(NSString *)v {
     self.geocodeAccuracy__v = v;
-    fields__set2[0] |= 0x8; 
+    fields__set2[0] |= 0x8;
 }
-        
+
 
 -(NSString *)postalCode {
     if ((fields__set2[0] & 0x10) == 0) {
         self.postalCode__v = [self string:@"postalCode"];
-        fields__set2[0] |= 0x10; 
+        fields__set2[0] |= 0x10;
     }
     return self.postalCode__v;
 }
-        
 
 -(void)setPostalCode:(NSString *)v {
     self.postalCode__v = v;
-    fields__set2[0] |= 0x10; 
+    fields__set2[0] |= 0x10;
 }
-        
+
 
 -(NSString *)state {
     if ((fields__set2[0] & 0x20) == 0) {
         self.state__v = [self string:@"state"];
-        fields__set2[0] |= 0x20; 
+        fields__set2[0] |= 0x20;
     }
     return self.state__v;
 }
-        
 
 -(void)setState:(NSString *)v {
     self.state__v = v;
-    fields__set2[0] |= 0x20; 
+    fields__set2[0] |= 0x20;
 }
-        
+
 
 -(NSString *)stateCode {
     if ((fields__set2[0] & 0x40) == 0) {
         self.stateCode__v = [self string:@"stateCode"];
-        fields__set2[0] |= 0x40; 
+        fields__set2[0] |= 0x40;
     }
     return self.stateCode__v;
 }
-        
 
 -(void)setStateCode:(NSString *)v {
     self.stateCode__v = v;
-    fields__set2[0] |= 0x40; 
+    fields__set2[0] |= 0x40;
 }
-        
+
 
 -(NSString *)street {
     if ((fields__set2[0] & 0x80) == 0) {
         self.street__v = [self string:@"street"];
-        fields__set2[0] |= 0x80; 
+        fields__set2[0] |= 0x80;
     }
     return self.street__v;
 }
-        
 
 -(void)setStreet:(NSString *)v {
     self.street__v = v;
-    fields__set2[0] |= 0x80; 
+    fields__set2[0] |= 0x80;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName type:@"address"];
 	[env addDoubleElement:@"latitude"  elemValue:self.latitude];

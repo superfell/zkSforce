@@ -64,77 +64,72 @@
 -(NSString *)errorMsg {
     if ((fields__set[0] & 0x1) == 0) {
         self.errorMsg__v = [self string:@"errorMsg"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.errorMsg__v;
 }
-        
 
 -(void)setErrorMsg:(NSString *)v {
     self.errorMsg__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSString *)label {
     if ((fields__set[0] & 0x2) == 0) {
         self.label__v = [self string:@"label"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.label__v;
 }
-        
 
 -(void)setLabel:(NSString *)v {
     self.label__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSInteger)limitRows {
     if ((fields__set[0] & 0x4) == 0) {
         self.limitRows__v = [self integer:@"limitRows"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.limitRows__v;
 }
-        
 
 -(void)setLimitRows:(NSInteger)v {
     self.limitRows__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)objectType {
     if ((fields__set[0] & 0x8) == 0) {
         self.objectType__v = [self string:@"objectType"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.objectType__v;
 }
-        
 
 -(void)setObjectType:(NSString *)v {
     self.objectType__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 
 -(NSArray<ZKDescribeColumn *> *)searchColumns {
     if ((fields__set[0] & 0x10) == 0) {
         self.searchColumns__v = [self complexTypeArrayFromElements:@"searchColumns" cls:[ZKDescribeColumn class]];
-        fields__set[0] |= 0x10; 
+        fields__set[0] |= 0x10;
     }
     return self.searchColumns__v;
 }
-        
 
 -(void)setSearchColumns:(NSArray<ZKDescribeColumn *> *)v {
     self.searchColumns__v = v;
-    fields__set[0] |= 0x10; 
+    fields__set[0] |= 0x10;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addElement:@"errorMsg"           elemValue:self.errorMsg      nillable:YES optional:NO];

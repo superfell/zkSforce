@@ -61,62 +61,58 @@
 -(BOOL)escapeHtmlInMergeFields {
     if ((fields__set[0] & 0x1) == 0) {
         self.escapeHtmlInMergeFields__v = [self boolean:@"escapeHtmlInMergeFields"];
-        fields__set[0] |= 0x1; 
+        fields__set[0] |= 0x1;
     }
     return self.escapeHtmlInMergeFields__v;
 }
-        
 
 -(void)setEscapeHtmlInMergeFields:(BOOL)v {
     self.escapeHtmlInMergeFields__v = v;
-    fields__set[0] |= 0x1; 
+    fields__set[0] |= 0x1;
 }
-        
+
 
 -(NSArray<NSString *> *)templateBodies {
     if ((fields__set[0] & 0x2) == 0) {
         self.templateBodies__v = [self strings:@"templateBodies"];
-        fields__set[0] |= 0x2; 
+        fields__set[0] |= 0x2;
     }
     return self.templateBodies__v;
 }
-        
 
 -(void)setTemplateBodies:(NSArray<NSString *> *)v {
     self.templateBodies__v = v;
-    fields__set[0] |= 0x2; 
+    fields__set[0] |= 0x2;
 }
-        
+
 
 -(NSString *)whatId {
     if ((fields__set[0] & 0x4) == 0) {
         self.whatId__v = [self string:@"whatId"];
-        fields__set[0] |= 0x4; 
+        fields__set[0] |= 0x4;
     }
     return self.whatId__v;
 }
-        
 
 -(void)setWhatId:(NSString *)v {
     self.whatId__v = v;
-    fields__set[0] |= 0x4; 
+    fields__set[0] |= 0x4;
 }
-        
+
 
 -(NSString *)whoId {
     if ((fields__set[0] & 0x8) == 0) {
         self.whoId__v = [self string:@"whoId"];
-        fields__set[0] |= 0x8; 
+        fields__set[0] |= 0x8;
     }
     return self.whoId__v;
 }
-        
 
 -(void)setWhoId:(NSString *)v {
     self.whoId__v = v;
-    fields__set[0] |= 0x8; 
+    fields__set[0] |= 0x8;
 }
-        
+
 -(void)serializeTo:(ZKXmlWriter *)env elemName:(NSString *)elemName {
 	[env startElement:elemName];
 	[env addBoolElement:@"escapeHtmlInMergeFields" elemValue:self.escapeHtmlInMergeFields];
