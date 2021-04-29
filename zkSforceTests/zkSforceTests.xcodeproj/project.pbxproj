@@ -220,6 +220,7 @@
 		F42EC8862325AB6E00C5DC05 /* NSArray+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC7B72325AB6E00C5DC05 /* NSArray+Extras.m */; };
 		F42EC8872325AB6E00C5DC05 /* ZKUserInfo+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC7B82325AB6E00C5DC05 /* ZKUserInfo+Extras.m */; };
 		F42EC8882325AB6E00C5DC05 /* ZKSaveResult+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC7B92325AB6E00C5DC05 /* ZKSaveResult+Extras.m */; };
+		F45CDD78263B24250064920D /* ZKDescribeSObjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F45CDD77263B24250064920D /* ZKDescribeSObjectTest.m */; };
 		F49918891DCAE119009CC5B0 /* ZKAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */; };
 		F49DC38025F5AF9B0016A8A0 /* ZKLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC37F25F5AF9B0016A8A0 /* ZKLocationTests.m */; };
 		F49DC38525F5B1A10016A8A0 /* ZKXmlWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC38425F5B1A10016A8A0 /* ZKXmlWriter.m */; };
@@ -674,6 +675,7 @@
 		F42EC7BC2325AB6E00C5DC05 /* NSArray+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extras.h"; sourceTree = "<group>"; };
 		F42EC7BD2325AB6E00C5DC05 /* ZKDescribeSObject+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKDescribeSObject+Extras.h"; sourceTree = "<group>"; };
 		F42EC7BE2325AB6E00C5DC05 /* ZKDescribeField+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZKDescribeField+Extras.h"; sourceTree = "<group>"; };
+		F45CDD77263B24250064920D /* ZKDescribeSObjectTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKDescribeSObjectTest.m; sourceTree = "<group>"; };
 		F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKAuthenticationTests.m; sourceTree = "<group>"; };
 		F49DC37F25F5AF9B0016A8A0 /* ZKLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKLocationTests.m; sourceTree = "<group>"; };
 		F49DC38325F5B1A10016A8A0 /* ZKXmlWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKXmlWriter.h; sourceTree = "<group>"; };
@@ -782,6 +784,7 @@
 				F414BD5E184447D100322AC2 /* ZKXmlDeserializerTests.m */,
 				F4BB7F4B18B015EB00444797 /* ZKSObjectTests.h */,
 				F4BB7F4C18B015EB00444797 /* ZKSObjectTests.m */,
+				F45CDD77263B24250064920D /* ZKDescribeSObjectTest.m */,
 				F4EB23DD1D0DFC6600AA9B46 /* ZKSimpleTypesTests.m */,
 				F4F3ADFD1CFD4B9600638F0B /* ZKXsdAnyTypeTests.m */,
 				F49918881DCAE119009CC5B0 /* ZKAuthenticationTests.m */,
@@ -1398,6 +1401,7 @@
 				F42EC8202325AB6E00C5DC05 /* ZKLocation.m in Sources */,
 				F42EC84F2325AB6E00C5DC05 /* ZKRelatedListSort.m in Sources */,
 				F42C64012338346F00E1893A /* ZKDescribeAnimationRule.m in Sources */,
+				F45CDD78263B24250064920D /* ZKDescribeSObjectTest.m in Sources */,
 				F42EC7CB2325AB6E00C5DC05 /* ZKSoqlConditionGroup.m in Sources */,
 				F42EC86E2325AB6E00C5DC05 /* ZKDescribeLayoutSection.m in Sources */,
 				F42EC7E02325AB6E00C5DC05 /* ZKDescribeQuickActionResult.m in Sources */,
