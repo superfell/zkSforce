@@ -8,7 +8,7 @@ ZKSforce supports all of the partner web services API, including
  * describeGlobal, describeSObject, describeLayout, describeTabs and other describes.
  * create, update, delete, undelete, merge, upsert, convertLead
  * search, query, queryAll, queryMore, retrieve, process.
- * everything else in the parter API.
+ * everything else in the partner API.
  * OAuth support for refresh tokens
 
 
@@ -88,7 +88,16 @@ some reason you are calling the ZKSoapDate asString methods yourself, the result
 
 # Unit Tests
 The zkSforceTests directory contains a project with a number of tests in it, these tests are focused on the hand coded supporting classes, and generally don't test the classes that get code gen'd from the WSDL.
- 
+
+# About Salesforce API retirement
+
+During 2022 Salesforce are planning to [retire API versions v7 through v20](https://help.salesforce.com/s/articleView?id=000354473&type=1). 
+Also planned for 2023 is the retirement of versions v21 through v30.
+If you're on an older version of zkSforce you'll need to update to a newer version in order for your integrations to continue to work. Or you
+will at least have to change the API version that you are configuring zkSforce to use. How much work this update will be depends on what version
+you're currently on. Below are details of when major changes in the library happened.
+
+
 # Updating from older versions
 In general ZKSforce is updated when the Salesforce API is updated, usually 2 or 3 times a year. Most of the time changes are limited
 to those that mirror the changes in the Salesforce API. Sometimes larger structural changes are made as well. Salesforce has a strong
