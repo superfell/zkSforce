@@ -218,6 +218,7 @@
 		F42EC3BA2325899E00C5DC05 /* ZKSaveResult+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = F42EC2EB2325899D00C5DC05 /* ZKSaveResult+Extras.m */; };
 		F44CC08512B588AE0052D468 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F44CC08412B588AE0052D468 /* libxml2.2.dylib */; };
 		F44CC09112B58BA40052D468 /* QueryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F44CC09012B58BA40052D468 /* QueryController.m */; };
+		F47992252A83E86900922FB6 /* ZKSimpleNameObjectValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = F47992242A83E86900922FB6 /* ZKSimpleNameObjectValuePair.m */; };
 		F49DC3C725F6E1950016A8A0 /* ZKRelationshipReferenceTo.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3B125F6E1940016A8A0 /* ZKRelationshipReferenceTo.m */; };
 		F49DC3C825F6E1950016A8A0 /* ZKSearchLayoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3B425F6E1940016A8A0 /* ZKSearchLayoutButton.m */; };
 		F49DC3C925F6E1950016A8A0 /* ZKSearchLayoutFieldsDisplayed.m in Sources */ = {isa = PBXBuildFile; fileRef = F49DC3B725F6E1940016A8A0 /* ZKSearchLayoutFieldsDisplayed.m */; };
@@ -662,6 +663,8 @@
 		F44CC08412B588AE0052D468 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F44CC08F12B58BA40052D468 /* QueryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryController.h; sourceTree = "<group>"; };
 		F44CC09012B58BA40052D468 /* QueryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryController.m; sourceTree = "<group>"; };
+		F47992232A83E86800922FB6 /* ZKSimpleNameObjectValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSimpleNameObjectValuePair.h; sourceTree = "<group>"; };
+		F47992242A83E86900922FB6 /* ZKSimpleNameObjectValuePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSimpleNameObjectValuePair.m; sourceTree = "<group>"; };
 		F49DC3B125F6E1940016A8A0 /* ZKRelationshipReferenceTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKRelationshipReferenceTo.m; sourceTree = "<group>"; };
 		F49DC3B225F6E1940016A8A0 /* ZKChangeEventHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKChangeEventHeader.h; sourceTree = "<group>"; };
 		F49DC3B325F6E1940016A8A0 /* ZKNameObjectValuePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKNameObjectValuePair.h; sourceTree = "<group>"; };
@@ -804,6 +807,8 @@
 		F42EC1552325899D00C5DC05 /* generated */ = {
 			isa = PBXGroup;
 			children = (
+				F47992232A83E86800922FB6 /* ZKSimpleNameObjectValuePair.h */,
+				F47992242A83E86900922FB6 /* ZKSimpleNameObjectValuePair.m */,
 				F49DC3B225F6E1940016A8A0 /* ZKChangeEventHeader.h */,
 				F49DC3C625F6E1950016A8A0 /* ZKChangeEventHeader.m */,
 				F49DC3B525F6E1940016A8A0 /* ZKJunctionIdListNames.h */,
@@ -1529,6 +1534,7 @@
 				F42EC39D2325899E00C5DC05 /* ZKDescribeGlobalTheme.m in Sources */,
 				F42EC32C2325899E00C5DC05 /* ZKNameValuePair.m in Sources */,
 				F42EC38C2325899E00C5DC05 /* ZKDuplicateResult.m in Sources */,
+				F47992252A83E86900922FB6 /* ZKSimpleNameObjectValuePair.m in Sources */,
 				F42EC3172325899D00C5DC05 /* ZKDescribeColor.m in Sources */,
 				F42EC37A2325899E00C5DC05 /* ZKPicklistForRecordType.m in Sources */,
 				F42EC37B2325899E00C5DC05 /* ZKDescribeQuickActionListResult.m in Sources */,

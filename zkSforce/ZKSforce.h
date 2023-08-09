@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Simon Fell
+// Copyright (c) 2023 Simon Fell
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the "Software"),
@@ -205,6 +205,7 @@
 #import "ZKSendEmailResult.h"
 #import "ZKSessionHeader.h"
 #import "ZKSetPasswordResult.h"
+#import "ZKSimpleNameObjectValuePair.h"
 #import "ZKSingleEmailMessage.h"
 #import "ZKSoqlCondition.h"
 #import "ZKSoqlConditionGroup.h"
